@@ -158,6 +158,10 @@ The repo also includes a GitHub Pages workflow for a shareable static dashboard.
 npm run export:static
 ```
 
+GitHub also has a scheduled refresh workflow in `.github/workflows/refresh-data.yml`. It runs after the market close on weekdays, refreshes the high-risk scan, options scan, intraday snapshot, exports `public/dashboard.json`, and commits the refreshed data back to the repo.
+
+Intraday every-5-minute updates should not be done through GitHub Pages commits. Use the local Node server or a hosted Node service for that.
+
 ## Notes
 
 - Default stock swing universe is `data/universe_swing_core.csv`.
