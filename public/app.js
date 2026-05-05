@@ -395,7 +395,7 @@ function renderTable(targetId, rows, columns) {
 async function loadDashboard() {
   let response = await fetch("/api/dashboard");
   if (!response.ok) {
-    response = await fetch("dashboard.json");
+    response = await fetch("./dashboard.json");
   }
   const data = await response.json();
   const regime = data.marketRegime;
