@@ -38,6 +38,9 @@ jobs:
       - name: Refresh options scanner
         run: npm run options:scan
 
+      - name: Refresh LEAPS scanner
+        run: node src/leapsCli.js
+
       - name: Refresh swing backtest
         run: npm run backtest
 

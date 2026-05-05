@@ -166,6 +166,41 @@ function renderCoachCards(optionsAlerts, optionsScan) {
   target.innerHTML = cards.length ? cards.join("") : `<p class="empty">Run scans first, then beginner cards will appear here.</p>`;
 }
 
+function renderLeapsCards(leapsAlerts) {
+  const target = document.getElementById("leaps-cards");
+  const cards = (leapsAlerts ?? []).slice(0, 8).map((row) => `
+    <article class="coach-card ${row.direction === "CALL" ? "coach-card--bullish" : "coach-card--bearish"}">
+      <div class="coach-head">
+        <div>
+          <span class="symbol">${row.symbol}</span>
+          ${pill(row.decision)}
+        </div>
+        <strong>Grade ${row.qualityGrade || "n/a"} / ${row.score ?? "n/a"}</strong>
+      </div>
+      <p class="action">${row.tradePlan || row.fundManagerRead || "No LEAPS trade plan available."}</p>
+      <div class="explain-grid">
+        <div><span>Contract</span><strong>${row.direction} ${row.strike}</strong></div>
+        <div><span>Expiration</span><strong>${row.expiration} (${row.dte}d)</strong></div>
+        <div><span>Mid / Cost</span><strong>${money(row.mid)} / ${wholeMoney(row.cost)}</strong></div>
+        <div><span>Breakeven</span><strong>${money(row.breakeven)} (${row.breakevenMovePct}%)</strong></div>
+      </div>
+      <div class="explain-grid">
+        <div><span>Stock Now</span><strong>${money(row.currentPrice)}</strong></div>
+        <div><span>Stock Target</span><strong>${money(row.targetStock)}</strong></div>
+        <div><span>Danger Level</span><strong>${money(row.stopStock)}</strong></div>
+        <div><span>Spread / OI</span><strong>${row.spreadPct}% / ${row.openInterest}</strong></div>
+      </div>
+      <ul class="plain-list">
+        <li>${row.positionRead || "Risk is the premium paid."}</li>
+        <li>Fund manager read: ${row.fundManagerRead || "No manager read."}</li>
+        <li>Why: ${row.reasons || row.reason || "No reasons available."}</li>
+        <li>Risks: ${row.risks || "No risk notes available."}</li>
+      </ul>
+    </article>
+  `);
+  target.innerHTML = cards.length ? cards.join("") : `<p class="empty">No LEAPS ideas passed the long-dated option filters yet.</p>`;
+}
+
 function renderSwingSummary(stockScan, stockAlerts) {
   const target = document.getElementById("swing-summary");
   const rows = stockScan ?? [];
@@ -542,6 +577,7 @@ async function loadDashboard() {
   ` : `<div class="metric"><span>Regime</span><strong>No scan yet</strong></div>`;
 
   renderCoachCards(data.optionsAlerts, data.optionsScan);
+  renderLeapsCards(data.leapsAlerts);
   renderHighRiskSummary(data.highRiskSummary, data.highRiskAlerts);
   renderHighRiskCards(data.highRiskAlerts);
   renderLongTermStarterPack(data.longTermStarterPack);
@@ -560,6 +596,27 @@ async function loadDashboard() {
     { key: "optionStop", label: "Option Stop", formatter: money },
     { key: "optionTarget1", label: "Target 1", formatter: money },
     { key: "beginnerAction", label: "Beginner Read", formatter: (value) => value || "Watch only. No trade approved." },
+  ]);
+
+  renderTable("leaps-table", data.leapsScan, [
+    { key: "symbol", label: "Symbol" },
+    { key: "direction", label: "Side", pill: true },
+    { key: "decision", label: "Decision", pill: true },
+    { key: "score", label: "Score" },
+    { key: "stockScore", label: "Stock Score" },
+    { key: "currentPrice", label: "Stock", formatter: money },
+    { key: "strike", label: "Strike" },
+    { key: "expiration", label: "Exp" },
+    { key: "dte", label: "DTE" },
+    { key: "mid", label: "Mid", formatter: money },
+    { key: "cost", label: "1 Contract", formatter: wholeMoney },
+    { key: "breakeven", label: "Breakeven", formatter: money },
+    { key: "breakevenMovePct", label: "BE Move %" },
+    { key: "spreadPct", label: "Spread %" },
+    { key: "openInterest", label: "OI" },
+    { key: "targetStock", label: "Stock Target", formatter: money },
+    { key: "stopStock", label: "Danger", formatter: money },
+    { key: "fundManagerRead", label: "Manager Read" },
   ]);
 
   renderTable("longterm-table", data.longTermStarterPack?.holdings, [
