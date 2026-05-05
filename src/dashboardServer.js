@@ -14,8 +14,23 @@ const dataDir = path.join(rootDir, "data");
 const port = Number(process.env.PORT || 5050);
 
 function sendJson(response, payload) {
-  response.writeHead(200, { "Content-Type": "application/json" });
+  response.writeHead(200, {
+    "Content-Type": "application/json",
+    "Access-Control-Allow-Origin": "*",
+    "Access-Control-Allow-Methods": "GET,OPTIONS",
+    "Access-Control-Allow-Headers": "Content-Type",
+  });
   response.end(JSON.stringify(payload));
+}
+
+function sendError(response, message, status = 500) {
+  response.writeHead(status, {
+    "Content-Type": "application/json",
+    "Access-Control-Allow-Origin": "*",
+    "Access-Control-Allow-Methods": "GET,OPTIONS",
+    "Access-Control-Allow-Headers": "Content-Type",
+  });
+  response.end(JSON.stringify({ error: message }));
 }
 
 function serveStatic(response, requestPath) {
@@ -41,6 +56,15 @@ function serveStatic(response, requestPath) {
 
 const server = http.createServer((request, response) => {
   const url = new URL(request.url, `http://localhost:${port}`);
+  if (request.method === "OPTIONS") {
+    response.writeHead(204, {
+      "Access-Control-Allow-Origin": "*",
+      "Access-Control-Allow-Methods": "GET,OPTIONS",
+      "Access-Control-Allow-Headers": "Content-Type",
+    });
+    response.end();
+    return;
+  }
   if (url.pathname === "/api/dashboard") {
     sendJson(response, buildDashboardData({ reportsDir, dataDir }));
     return;
@@ -49,10 +73,7 @@ const server = http.createServer((request, response) => {
     const symbol = url.searchParams.get("symbol") ?? "";
     analyzeStock(symbol)
       .then((payload) => sendJson(response, payload))
-      .catch((error) => {
-        response.writeHead(500, { "Content-Type": "application/json" });
-        response.end(JSON.stringify({ error: error.message }));
-      });
+      .catch((error) => sendError(response, error.message));
     return;
   }
   serveStatic(response, url.pathname);

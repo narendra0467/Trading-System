@@ -338,21 +338,30 @@ function renderAnalyzer(result) {
 async function analyzeTicker(symbol) {
   const target = document.getElementById("analyzer-result");
   target.innerHTML = `<p class="empty">Analyzing ${symbol.toUpperCase()}...</p>`;
+  const apiUrls = [
+    `/api/analyze?symbol=${encodeURIComponent(symbol)}`,
+    `https://trading-system-dashboard.onrender.com/api/analyze?symbol=${encodeURIComponent(symbol)}`,
+  ];
+  let lastError = "Analyzer failed.";
   try {
-    const response = await fetch(`/api/analyze?symbol=${encodeURIComponent(symbol)}`, { cache: "no-store" });
-    const contentType = response.headers.get("content-type") ?? "";
-    if (!contentType.includes("application/json")) {
-      target.innerHTML = `<p class="empty">Live analyzer needs the Node dashboard server. Open the local dashboard at http://127.0.0.1:5050 for ticker-by-ticker analysis.</p>`;
+    for (const apiUrl of apiUrls) {
+      const response = await fetch(apiUrl, { cache: "no-store" });
+      const contentType = response.headers.get("content-type") ?? "";
+      if (!contentType.includes("application/json")) {
+        lastError = "Live API did not return JSON.";
+        continue;
+      }
+      const data = await response.json();
+      if (!response.ok || data.error) {
+        lastError = data.error || "Analyzer failed.";
+        continue;
+      }
+      renderAnalyzer(data);
       return;
     }
-    const data = await response.json();
-    if (!response.ok || data.error) {
-      target.innerHTML = `<p class="empty">${data.error || "Analyzer failed. Try another ticker format, like SHOP.TO for Canada."}</p>`;
-      return;
-    }
-    renderAnalyzer(data);
+    target.innerHTML = `<p class="empty">${lastError} If this is GitHub Pages, the free Render backend may still be sleeping or not deployed yet. Try again in a minute, or open the local dashboard at http://127.0.0.1:5050.</p>`;
   } catch (error) {
-    target.innerHTML = `<p class="empty">${error.message}. Open the local dashboard server for live analysis.</p>`;
+    target.innerHTML = `<p class="empty">${error.message}. The hosted analyzer backend may be sleeping or not deployed yet.</p>`;
   }
 }
 
