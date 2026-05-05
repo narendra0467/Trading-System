@@ -1,21 +1,21 @@
 symbol,signal,strategy,score,reason,marketRegime,eventRisk,contracts,maxRiskDollars,riskPerContract,riskPerSpread,plannedCapital
-AMZN,NO_TRADE,CALL_DEBIT_SPREAD,92,No liquid long option found,RISK_ON,MANUAL_CHECK,0,1000,,,
 AVGO,NO_TRADE,CALL_DEBIT_SPREAD,92,No liquid long option found,RISK_ON,CLEAR,0,1000,,,
-GOOGL,NO_TRADE,CALL_DEBIT_SPREAD,92,No liquid long option found,RISK_ON,CLEAR,0,1000,,,
-INTC,NO_TRADE,CALL_DEBIT_SPREAD,92,No liquid long option found,RISK_ON,CLEAR,0,1000,,,
-MU,NO_TRADE,CALL_DEBIT_SPREAD,92,No liquid long option found,RISK_ON,CLEAR,0,1000,,,
+INTC,CALL_SETUP,CALL_DEBIT_SPREAD,92,bull trend stack; overbought risk; ADX confirms bullish trend,RISK_ON,CLEAR,0,1000,1007.5,1007.5,0
+MU,CALL_SETUP,CALL_DEBIT_SPREAD,92,bull trend stack; overbought risk; ADX confirms bullish trend; above upper Bollinger band,RISK_ON,CLEAR,0,1000,6265,6265,0
 SNDK,NO_TRADE,CALL_DEBIT_SPREAD,92,No liquid long option found,RISK_ON,CLEAR,0,1000,,,
 WDC,NO_TRADE,CALL_DEBIT_SPREAD,92,No liquid long option found,RISK_ON,CLEAR,0,1000,,,
-AAPL,NO_TRADE,CALL_DEBIT_SPREAD,82,No liquid long option found,RISK_ON,MANUAL_CHECK,0,1000,,,
-AMD,NO_TRADE,CALL_DEBIT_SPREAD,80,No liquid long option found,RISK_ON,MANUAL_CHECK,0,1000,,,
+AAPL,WATCH,CALL_DEBIT_SPREAD,89,bull trend stack; ADX confirms bullish trend,RISK_ON,MANUAL_CHECK,1,1000,585,585,585
+AMZN,WATCH,CALL_DEBIT_SPREAD,87,bull trend stack; overbought risk; ADX confirms bullish trend,RISK_ON,MANUAL_CHECK,0,1000,1147.5,1147.5,0
 TSM,NO_TRADE,CALL_DEBIT_SPREAD,80,No liquid long option found,RISK_ON,CLEAR,0,1000,,,
+AMD,WATCH,CALL_DEBIT_SPREAD,75,bull trend stack; ADX confirms bullish trend,RISK_ON,MANUAL_CHECK,0,1000,2755,2755,0
+GOOGL,WATCH,CALL_DEBIT_SPREAD,70,bull trend stack; overbought risk; ADX confirms bullish trend,RISK_ON,CLEAR,1,1000,895,895,895
 MSTR,NO_TRADE,CALL_DEBIT_SPREAD,67,No liquid long option found,RISK_ON,CLEAR,0,1000,,,
 ORCL,NO_TRADE,CALL_DEBIT_SPREAD,67,No liquid long option found,RISK_ON,CLEAR,0,1000,,,
-META,NO_TRADE,PUT_DEBIT_SPREAD,62,No liquid long option found,RISK_ON,MANUAL_CHECK,0,500,,,
-PLTR,NO_TRADE,PUT_DEBIT_SPREAD,62,No liquid long option found,RISK_ON,CLEAR,0,500,,,
-C,NO_TRADE,NONE,52,bull trend stack; neutral technical regime,RISK_ON,CLEAR,0,1000,,,
-COIN,NO_TRADE,NONE,52,ADX confirms bullish trend; neutral technical regime,RISK_ON,CLEAR,0,1000,,,
-NVDA,NO_TRADE,NONE,48,bull trend stack; ADX confirms bearish trend; neutral technical regime,RISK_ON,MANUAL_CHECK,0,1000,,,
+C,PREMIUM_SELL_WATCH,IRON_CONDOR_WATCH,52,bull trend stack; neutral technical regime,RISK_ON,CLEAR,0,1000,,,
+NFLX,NO_TRADE,NONE,52,ADX confirms bearish trend; neutral technical regime,RISK_ON,CLEAR,0,1000,,,
+PLTR,WATCH,PUT_DEBIT_SPREAD,52,bear trend stack,RISK_ON,CLEAR,0,500,1002.5,1002.5,0
+META,WATCH,PUT_DEBIT_SPREAD,47,ADX confirms bearish trend,RISK_ON,MANUAL_CHECK,0,500,1997.5,1997.5,0
+NVDA,PREMIUM_SELL_WATCH,IRON_CONDOR_WATCH,44,ADX confirms bearish trend; neutral technical regime,RISK_ON,MANUAL_CHECK,0,1000,,,
+COIN,NO_TRADE,NONE,42,neutral technical regime,RISK_ON,CLEAR,0,1000,,,
 TSLA,NO_TRADE,NONE,42,ADX confirms bullish trend; neutral technical regime,RISK_ON,MANUAL_CHECK,0,1000,,,
-NFLX,NO_TRADE,NONE,40,ADX confirms bearish trend; neutral technical regime,RISK_ON,CLEAR,0,1000,,,
-MSFT,NO_TRADE,NONE,32,ADX confirms bearish trend; neutral technical regime,RISK_ON,MANUAL_CHECK,0,1000,,,
+MSFT,NO_TRADE,NONE,40,ADX confirms bearish trend; neutral technical regime,RISK_ON,MANUAL_CHECK,0,1000,,,
