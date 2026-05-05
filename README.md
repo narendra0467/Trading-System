@@ -50,6 +50,8 @@ It emphasizes technical analysis:
 - Buy zone, stop loss, target 1, target 2, and 100% moonshot target.
 - Manual macro/news risk from `data/event_calendar.csv`, including Fed, CPI, jobs, war/geopolitics, political/tariff events, earnings, and sector-specific shocks.
 
+The raw technical score is kept inside the reports for sorting. The dashboard presents it like a client note instead: conviction, action, setup read, buy zone, stop, targets, and event-risk warning.
+
 Run it with:
 
 ```powershell

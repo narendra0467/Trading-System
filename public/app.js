@@ -264,17 +264,18 @@ function renderHighRiskCards(rows) {
             <span class="symbol">${row.symbol}</span>
             ${highRiskBadge(row.signal)}
           </div>
-          <strong>Rating ${row.rating} / ${row.score}</strong>
+          <strong>${row.conviction || `Rating ${row.rating}`}</strong>
         </div>
         <p class="action">${row.managerRead}</p>
         <div class="explain-grid">
+          <div><span>Action</span><strong>${row.clientAction || highRiskSignalLabel(row.signal)}</strong></div>
           <div><span>Buy zone</span><strong>${money(row.buyZoneLow)}-${money(row.buyZoneHigh)}</strong></div>
           <div><span>Stop loss</span><strong>${money(row.stop)}</strong></div>
           <div><span>Target 1</span><strong>${money(row.target1)}</strong></div>
-          <div><span>Moonshot</span><strong>${money(row.doubleTarget)}</strong></div>
         </div>
         <ul class="plain-list">
           <li>Theme: ${row.theme || "speculative growth"} (${row.market || "US/Canada"}).</li>
+          <li>Setup read: ${row.scoreSummary || row.conviction || "Technical setup under review."}</li>
           <li>Technical reason: ${row.reason}</li>
           <li>News/macro: ${row.macroRead || "Manual news check required."} ${row.eventRiskReason || ""}</li>
           <li>20-day: ${row.return20}%, 60-day: ${row.return60}%, relative strength: ${row.relativeStrength60 ?? "n/a"}%.</li>
@@ -422,8 +423,8 @@ async function loadDashboard() {
   renderTable("highrisk-table", data.highRiskAlerts, [
     { key: "symbol", label: "Symbol" },
     { key: "signal", label: "Signal", formatter: highRiskBadge },
-    { key: "rating", label: "Rating" },
-    { key: "score", label: "Score" },
+    { key: "conviction", label: "Conviction" },
+    { key: "clientAction", label: "Action" },
     { key: "close", label: "Close", formatter: money },
     { key: "buyZoneLow", label: "Buy Low", formatter: money },
     { key: "buyZoneHigh", label: "Buy High", formatter: money },
@@ -436,6 +437,7 @@ async function loadDashboard() {
     { key: "return60", label: "60D %" },
     { key: "volumeRatio", label: "Vol x" },
     { key: "eventRisk", label: "Event Risk" },
+    { key: "scoreSummary", label: "Setup Read" },
     { key: "reason", label: "Technical Reason" },
   ]);
 

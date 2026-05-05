@@ -21,6 +21,40 @@ function allocationForRating(rating) {
   return 0;
 }
 
+function convictionLabel(rating) {
+  if (rating === "A") return "Strong Speculative Setup";
+  if (rating === "B") return "Starter Only";
+  if (rating === "C") return "Watchlist";
+  return "No Client Action";
+}
+
+function actionLabel(signal, eventRisk) {
+  if (eventRisk.level === "HIGH") return "Wait for event to clear";
+  if (signal === "SPEC_BUY" && eventRisk.level === "MANUAL_CHECK") return "Review news, then starter buy";
+  if (signal === "SPEC_BUY") return "Consider starter buy";
+  if (signal === "STARTER_BUY") return "Small starter only";
+  if (signal === "WATCHLIST") return "Watch for trigger";
+  return "No buy";
+}
+
+function scoreSummary(score, eventRisk) {
+  const strength =
+    score >= 90
+      ? "very strong technical momentum"
+      : score >= 75
+        ? "good technical momentum"
+        : score >= 58
+          ? "developing setup"
+          : "weak setup";
+  const caution =
+    eventRisk.level === "CLEAR"
+      ? "No local event warning."
+      : eventRisk.level === "MANUAL_CHECK"
+        ? "Needs manual news/macro check."
+        : "High-impact event risk.";
+  return `${strength}. ${caution}`;
+}
+
 export function scoreHighRiskIdea(symbol, rows, benchmarkRows, meta = {}) {
   if (rows.length < 160) {
     return { symbol, name: meta.name ?? symbol, signal: "SKIP", score: 0, reason: "Not enough history" };
@@ -193,6 +227,9 @@ export function scoreHighRiskIdea(symbol, rows, benchmarkRows, meta = {}) {
     setup,
     rating,
     score,
+    conviction: convictionLabel(rating),
+    clientAction: actionLabel(signal, eventRisk),
+    scoreSummary: scoreSummary(score, eventRisk),
     close: money(latest.close),
     buyZoneLow: money(latest.close - 0.4 * latest.atr14),
     buyZoneHigh: money(latest.close + 0.2 * latest.atr14),
