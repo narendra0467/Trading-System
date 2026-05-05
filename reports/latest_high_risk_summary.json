@@ -4,9 +4,9 @@
   "primaryAction": "MARA: SPEC BUY",
   "topSymbol": "MARA",
   "topReason": "This is the kind of technical risk I would fund from a small speculative sleeve because momentum, relative strength, and volume agree.",
-  "buyCount": 10,
-  "starterCount": 3,
-  "watchCount": 0,
+  "buyCount": 8,
+  "starterCount": 2,
+  "watchCount": 2,
   "plannedCapital": 4900,
   "cashReserve": 100,
   "rules": [
@@ -18,34 +18,34 @@
   ],
   "marketContext": {
     "SPY": {
-      "close": 722.3,
-      "return20": 9.57,
-      "return60": 4.59
+      "close": 722.66,
+      "return20": 9.62,
+      "return60": 4.64
     },
     "QQQ": {
-      "close": 678.91,
-      "return20": 15.35,
-      "return60": 11.36
+      "close": 680.61,
+      "return20": 15.63,
+      "return60": 11.64
     },
     "IWM": {
-      "close": 280.64,
-      "return20": 10.96,
-      "return60": 5.89
+      "close": 280.41,
+      "return20": 10.87,
+      "return60": 5.81
     },
     "ARKK": {
-      "close": 78.23,
-      "return20": 13.77,
-      "return60": 11.11
+      "close": 77.92,
+      "return20": 13.31,
+      "return60": 10.66
     },
     "XIU.TO": {
-      "close": 49.67,
-      "return20": 1.68,
-      "return60": 4.24
+      "close": 49.76,
+      "return20": 1.86,
+      "return60": 4.43
     },
     "XIC.TO": {
-      "close": 53.81,
-      "return20": 1.49,
-      "return60": 3.8
+      "close": 53.84,
+      "return20": 1.55,
+      "return60": 3.86
     }
   }
 }
