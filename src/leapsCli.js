@@ -20,7 +20,7 @@ function toCsv(rows) {
 }
 
 async function main() {
-  const universePath = getArg("universe", "data/universe_options_core.csv");
+  const universePath = getArg("universe", "data/universe_leaps_budget.csv");
   const reportDir = getArg("report-dir", "reports");
   const symbols = loadUniverse(universePath);
   const results = [];

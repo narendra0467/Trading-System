@@ -48,23 +48,29 @@ function normalize(contract, type, underlying) {
   };
 }
 
-function chooseLeapsContract(contracts, type, underlying) {
-  const minDelta = type === "call" ? 0.55 : 0.35;
-  const maxDelta = type === "call" ? 0.85 : 0.75;
+function chooseLeapsContract(contracts, type, underlying, { minCost = 500, maxCost = 1000 } = {}) {
+  const minDelta = type === "call" ? 0.2 : 0.2;
+  const maxDelta = type === "call" ? 0.55 : 0.55;
   return contracts
     .map((contract) => normalize(contract, type, underlying))
-    .filter((contract) => Number.isFinite(contract.mid) && contract.mid > 1)
-    .filter((contract) => contract.spreadPct <= 0.18)
-    .filter((contract) => (contract.openInterest ?? 0) >= 50 || (contract.volume ?? 0) >= 10)
+    .filter((contract) => Number.isFinite(contract.mid) && contract.mid * 100 >= minCost && contract.mid * 100 <= maxCost)
+    .filter((contract) => contract.spreadPct <= 0.25)
+    .filter((contract) => (contract.openInterest ?? 0) >= 25 || (contract.volume ?? 0) >= 5)
     .filter((contract) => {
       const delta = Math.abs(contract.deltaEstimate);
       return delta >= minDelta && delta <= maxDelta;
     })
     .sort((a, b) => {
+      const aCostScore = Math.abs(a.mid * 100 - 750);
+      const bCostScore = Math.abs(b.mid * 100 - 750);
       const aLiquidity = (a.openInterest ?? 0) + (a.volume ?? 0) * 3;
       const bLiquidity = (b.openInterest ?? 0) + (b.volume ?? 0) * 3;
-      return bLiquidity - aLiquidity || Math.abs(a.deltaEstimate - 0.7) - Math.abs(b.deltaEstimate - 0.7);
+      return aCostScore - bCostScore || bLiquidity - aLiquidity || Math.abs(a.deltaEstimate - 0.35) - Math.abs(b.deltaEstimate - 0.35);
     })[0] ?? null;
+}
+
+function chooseBudgetLeapsContract(contracts, type, underlying) {
+  return chooseLeapsContract(contracts, type, underlying, { minCost: 350, maxCost: 1500 });
 }
 
 function buildLeapsDecision(analysis, contract, direction, expirationMeta) {
@@ -91,19 +97,20 @@ function buildLeapsDecision(analysis, contract, direction, expirationMeta) {
   else if (analysis.valuation.score < 40) { score -= 8; risks.push("valuation is stretched"); }
 
   if (expirationMeta.dte >= 365) { score += 10; reasons.push("enough time for thesis to work"); }
-  if (Math.abs(contract.deltaEstimate) >= 0.6) { score += 8; reasons.push("delta is high enough for stock replacement behavior"); }
+  if (Math.abs(contract.deltaEstimate) >= 0.3) { score += 8; reasons.push("delta is acceptable for a starter LEAPS trade"); }
   if (spread <= 0.1) { score += 8; reasons.push("option spread is reasonably tight"); }
   else if (spread > 0.15) { score -= 10; risks.push("option spread is wide"); }
   if ((contract.openInterest ?? 0) >= 250) { score += 6; reasons.push("open interest is healthy"); }
-  if (cost > 25000) {
-    score -= 24;
-    risks.push("one contract is too large for most starter portfolios");
-  } else if (cost > 15000) {
-    score -= 14;
-    risks.push("premium commitment is large");
-  } else if (cost <= 7500) {
+  if (cost >= 500 && cost <= 1000) {
+    score += 18;
+    reasons.push("premium fits the $500-$1000 starter range");
+  } else if (cost >= 350 && cost <= 1500) {
     score += 6;
-    reasons.push("premium is manageable for a starter LEAPS sleeve");
+    reasons.push("premium is near the starter range but not perfect");
+    risks.push("premium is outside the preferred $500-$1000 range");
+  } else {
+    score -= 30;
+    risks.push("premium is outside the $500-$1000 starter range");
   }
   if (breakevenMove > 0.45) {
     score -= 24;
@@ -121,9 +128,9 @@ function buildLeapsDecision(analysis, contract, direction, expirationMeta) {
 
   const totalScore = Math.max(0, Math.min(100, Math.round(score)));
   const decision =
-    totalScore >= 75 && cost <= 20000 && breakevenMove <= 0.35
+    totalScore >= 75 && cost >= 500 && cost <= 1000 && breakevenMove <= 0.45
       ? "LEAPS BUY CANDIDATE"
-      : totalScore >= 60
+      : totalScore >= 60 && cost >= 350 && cost <= 1500
         ? "STARTER / WATCH"
         : totalScore >= 45
           ? "WATCH ONLY"
@@ -167,7 +174,7 @@ function buildLeapsDecision(analysis, contract, direction, expirationMeta) {
     optionStop: round(optionStop),
     optionTarget1: round(optionTarget1),
     optionTarget2: round(optionTarget2),
-    positionRead: `Risk is premium paid. For one contract, max loss is about $${round(cost, 0)} before commissions.`,
+    positionRead: `Starter LEAPS sizing: one contract costs about $${round(cost, 0)}. Risk is premium paid, but the plan should cut earlier if the thesis breaks.`,
     tradePlan: `${decision}: ${direction} ${contract.strike} exp ${new Date(expirationMeta.expiration * 1000).toISOString().slice(0, 10)} near ${round(premium)} mid. Stock thesis target ${round(targetStock)}, danger level ${round(stopStock)}.`,
     fundManagerRead: `${analysis.managerRead} LEAPS score ${totalScore}/100 because ${reasons.slice(0, 3).join("; ") || "the setup is mixed"}.`,
     reasons: reasons.join("; "),
@@ -189,7 +196,8 @@ export async function scanLeapsSymbol(symbol) {
   const underlying = chain.underlyingPrice ?? analysis.currentPrice;
   const direction = analysis.decision === "SELL / EXIT RISK" || analysis.decision === "AVOID NEW BUY" ? "PUT" : "CALL";
   const contracts = direction === "CALL" ? chain.calls : chain.puts;
-  const contract = chooseLeapsContract(contracts, direction.toLowerCase(), underlying);
+  const preferredContract = chooseLeapsContract(contracts, direction.toLowerCase(), underlying);
+  const contract = preferredContract ?? chooseBudgetLeapsContract(contracts, direction.toLowerCase(), underlying);
   if (!contract) {
     return {
       symbol,
@@ -199,7 +207,7 @@ export async function scanLeapsSymbol(symbol) {
       score: Math.round(analysis.totalScore * 0.4),
       stockScore: analysis.totalScore,
       currentPrice: round(analysis.currentPrice),
-      reason: "No liquid LEAPS contract passed delta/spread/open-interest filters",
+      reason: "No liquid $500-$1000 LEAPS contract passed cost/delta/spread/open-interest filters",
     };
   }
   return buildLeapsDecision(analysis, contract, direction, expirationMeta);
