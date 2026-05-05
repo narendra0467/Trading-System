@@ -125,6 +125,12 @@ Recommended path:
 
 GitHub Pages is also free, but it only hosts static files. This dashboard currently uses a small Node API, so Render is the cleaner fit.
 
+The repo also includes a GitHub Pages workflow for a shareable static dashboard. Before pushing a static refresh, run:
+
+```powershell
+npm run export:static
+```
+
 ## Notes
 
 - Default stock swing universe is `data/universe_swing_core.csv`.

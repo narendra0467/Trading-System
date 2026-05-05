@@ -393,7 +393,10 @@ function renderTable(targetId, rows, columns) {
 }
 
 async function loadDashboard() {
-  const response = await fetch("/api/dashboard");
+  let response = await fetch("/api/dashboard");
+  if (!response.ok) {
+    response = await fetch("dashboard.json");
+  }
   const data = await response.json();
   const regime = data.marketRegime;
   document.getElementById("regime").innerHTML = regime ? `

@@ -5,6 +5,7 @@
   "type": "module",
   "scripts": {
     "start": "node src/dashboardServer.js",
+    "export:static": "node src/exportDashboard.js",
     "scan": "node src/cli.js",
     "options:scan": "node src/optionsCli.js",
     "backtest": "node src/backtestCli.js",
