@@ -563,6 +563,7 @@ async function loadDashboard() {
 }
 
 document.getElementById("refresh").addEventListener("click", loadDashboard);
+setInterval(loadDashboard, 5 * 60 * 1000);
 document.querySelectorAll(".tab-button").forEach((button) => {
   button.addEventListener("click", () => {
     document.querySelectorAll(".tab-button").forEach((item) => item.classList.remove("tab-button--active"));

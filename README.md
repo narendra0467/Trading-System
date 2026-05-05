@@ -160,7 +160,13 @@ npm run export:static
 
 GitHub also has a scheduled refresh workflow in `.github/workflows/refresh-data.yml`. It runs after the market close on weekdays, refreshes the high-risk scan, options scan, intraday snapshot, exports `public/dashboard.json`, and commits the refreshed data back to the repo.
 
-Intraday every-5-minute updates should not be done through GitHub Pages commits. Use the local Node server or a hosted Node service for that.
+For a manual full refresh:
+
+```powershell
+npm run refresh:all
+```
+
+Intraday every-5-minute updates should not be done through GitHub Pages commits. Use the local Node server or a hosted Node service for that. The frontend refreshes itself every 5 minutes, but GitHub Pages can only show the newest static `dashboard.json` that has already been committed.
 
 ## Notes
 
