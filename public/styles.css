@@ -34,6 +34,11 @@ article {
   margin-bottom: 16px;
 }
 
+.coach--danger {
+  border-color: rgba(248, 113, 113, 0.3);
+  background: linear-gradient(180deg, rgba(127, 29, 29, 0.22), #101620 34%);
+}
+
 .section-title {
   display: flex;
   align-items: center;
@@ -75,6 +80,11 @@ article {
 .coach-card--bearish {
   border-color: rgba(239, 68, 68, 0.42);
   background: linear-gradient(180deg, rgba(239, 68, 68, 0.13), rgba(13, 19, 28, 0.96));
+}
+
+.coach-card--moonshot {
+  border-color: rgba(251, 191, 36, 0.5);
+  background: linear-gradient(180deg, rgba(245, 158, 11, 0.18), rgba(127, 29, 29, 0.08), rgba(13, 19, 28, 0.96));
 }
 
 .coach-head {

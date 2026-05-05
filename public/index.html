@@ -20,8 +20,8 @@
 
       <nav class="tabs" aria-label="Trading views">
         <button class="tab-button tab-button--active" data-tab="options">Stock Options</button>
+        <button class="tab-button" data-tab="moonshots">High Risk</button>
         <button class="tab-button" data-tab="longterm">15-Year Core</button>
-        <button class="tab-button" data-tab="stocks">Stock Swings</button>
         <button class="tab-button" data-tab="intraday">Index Intraday</button>
       </nav>
 
@@ -44,6 +44,26 @@
         </section>
       </section>
 
+      <section class="tab-panel" id="tab-moonshots">
+        <section class="coach coach--danger">
+          <div class="section-title">
+            <div>
+              <p class="eyebrow">Speculative Capital</p>
+              <h2>Very High Risk / High Reward</h2>
+            </div>
+          </div>
+          <div class="trader-cockpit" id="highrisk-summary"></div>
+          <div class="rules-strip" id="highrisk-rules"></div>
+          <div id="highrisk-cards" class="coach-grid"></div>
+        </section>
+        <section class="grid grid--single">
+          <article>
+            <h2>$5K Speculative Watchlist</h2>
+            <div id="highrisk-table" class="table-wrap"></div>
+          </article>
+        </section>
+      </section>
+
       <section class="tab-panel" id="tab-longterm">
         <section class="coach">
           <div class="section-title">
@@ -60,35 +80,6 @@
           <article>
             <h2>$10K Allocation Detail</h2>
             <div id="longterm-table" class="table-wrap"></div>
-          </article>
-        </section>
-      </section>
-
-      <section class="tab-panel" id="tab-stocks">
-        <section class="coach">
-          <div class="section-title">
-            <div>
-              <p class="eyebrow">2-8 Week Plan</p>
-              <h2>Stock Swing Command Center</h2>
-            </div>
-          </div>
-          <div class="trader-cockpit" id="swing-summary"></div>
-          <div id="swing-cards" class="coach-grid"></div>
-        </section>
-        <section class="grid">
-          <article>
-            <h2>Stock Swing Alerts</h2>
-            <div id="stock-alerts" class="table-wrap"></div>
-          </article>
-          <article>
-            <h2>Backtest Summary</h2>
-            <div id="backtest" class="table-wrap"></div>
-          </article>
-        </section>
-        <section class="grid grid--single">
-          <article>
-            <h2>Trade Journal</h2>
-            <div id="journal" class="table-wrap"></div>
           </article>
         </section>
       </section>

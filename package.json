@@ -7,6 +7,7 @@
     "start": "node src/dashboardServer.js",
     "export:static": "node src/exportDashboard.js",
     "scan": "node src/cli.js",
+    "highrisk:scan": "node src/highRiskCli.js",
     "options:scan": "node src/optionsCli.js",
     "backtest": "node src/backtestCli.js",
     "intraday:scan": "node src/intradayCli.js",

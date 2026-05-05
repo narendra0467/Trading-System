@@ -215,6 +215,94 @@ function renderSwingCards(stockAlerts) {
   target.innerHTML = cards.length ? cards.join("") : `<p class="empty">Run stock swing scan first.</p>`;
 }
 
+function highRiskSignalLabel(signal) {
+  if (signal === "SPEC_BUY") return "Spec Buy";
+  if (signal === "STARTER_BUY") return "Starter Buy";
+  if (signal === "WATCHLIST") return "Watch";
+  return signal || "No Edge";
+}
+
+function highRiskClass(signal) {
+  if (signal === "SPEC_BUY") return "decision-badge decision-badge--trade";
+  if (signal === "STARTER_BUY") return "decision-badge decision-badge--wait";
+  return "decision-badge decision-badge--no";
+}
+
+function highRiskBadge(signal) {
+  return `<span class="${highRiskClass(signal)}">${highRiskSignalLabel(signal)}</span>`;
+}
+
+function renderHighRiskSummary(summary, rows) {
+  const summaryTarget = document.getElementById("highrisk-summary");
+  const rulesTarget = document.getElementById("highrisk-rules");
+  const cleanRows = rows ?? [];
+  const top = cleanRows.find((row) => ["SPEC_BUY", "STARTER_BUY", "WATCHLIST"].includes(row.signal));
+  const context = summary?.marketContext ?? {};
+  const qqq = context.QQQ;
+  const xiu = context["XIU.TO"];
+  summaryTarget.innerHTML = `
+    <article class="bias-card bias-card--bearish">
+      <span>Sleeve</span>
+      <strong>${money(summary?.accountSize ?? 5000)}</strong>
+      <p>This is money you accept can go to zero. The system still uses stops to avoid wasting the whole sleeve on one bad chart.</p>
+    </article>
+    <article class="bias-card">
+      <span>Best Spec Setup</span>
+      <strong>${top ? `${top.symbol} ${highRiskSignalLabel(top.signal)}` : "No clean setup"}</strong>
+      <p>${top?.managerRead || "No speculative chart is strong enough right now."}</p>
+    </article>
+    <article class="bias-card">
+      <span>Market Context</span>
+      <strong>QQQ ${qqq?.return20 ?? "n/a"}% / XIU ${xiu?.return20 ?? "n/a"}%</strong>
+      <p>${summary?.buyCount ?? 0} spec buys, ${summary?.starterCount ?? 0} starter buys, ${summary?.watchCount ?? 0} watchlist names.</p>
+    </article>
+  `;
+  const rulePills = (summary?.rules ?? [
+    "This is not retirement money.",
+    "Maximum 5-7 names.",
+    "No averaging down below stop.",
+  ]).map((rule) => `<span>${rule}</span>`);
+  const indexPills = ["SPY", "QQQ", "IWM", "ARKK", "XIU.TO", "XIC.TO"]
+    .filter((symbol) => context[symbol])
+    .map((symbol) => `<span>${symbol} 20D ${context[symbol].return20 ?? "n/a"}% / 60D ${context[symbol].return60 ?? "n/a"}%</span>`);
+  rulesTarget.innerHTML = [...rulePills, ...indexPills].join("");
+}
+
+function renderHighRiskCards(rows) {
+  const target = document.getElementById("highrisk-cards");
+  const priority = { SPEC_BUY: 0, STARTER_BUY: 1, WATCHLIST: 2 };
+  const cards = (rows ?? [])
+    .filter((row) => ["SPEC_BUY", "STARTER_BUY", "WATCHLIST"].includes(row.signal))
+    .sort((a, b) => (priority[a.signal] ?? 9) - (priority[b.signal] ?? 9) || Number(b.score) - Number(a.score))
+    .slice(0, 8)
+    .map((row) => `
+      <article class="coach-card ${row.signal === "SPEC_BUY" ? "coach-card--moonshot" : row.signal === "STARTER_BUY" ? "coach-card--bullish" : "coach-card--neutral"}">
+        <div class="coach-head">
+          <div>
+            <span class="symbol">${row.symbol}</span>
+            ${highRiskBadge(row.signal)}
+          </div>
+          <strong>Rating ${row.rating} / ${row.score}</strong>
+        </div>
+        <p class="action">${row.managerRead}</p>
+        <div class="explain-grid">
+          <div><span>Buy zone</span><strong>${money(row.buyZoneLow)}-${money(row.buyZoneHigh)}</strong></div>
+          <div><span>Stop loss</span><strong>${money(row.stop)}</strong></div>
+          <div><span>Target 1</span><strong>${money(row.target1)}</strong></div>
+          <div><span>Moonshot</span><strong>${money(row.doubleTarget)}</strong></div>
+        </div>
+        <ul class="plain-list">
+          <li>Theme: ${row.theme || "speculative growth"} (${row.market || "US/Canada"}).</li>
+          <li>Technical reason: ${row.reason}</li>
+          <li>20-day: ${row.return20}%, 60-day: ${row.return60}%, relative strength: ${row.relativeStrength60 ?? "n/a"}%.</li>
+          <li>Risk: ${row.riskClass}; stop risk ${row.riskPct}%; planned capital ${money(row.capitalPlan)}; shares ${row.shares}.</li>
+          <li>Entry: ${row.entryPlan}</li>
+        </ul>
+      </article>
+    `);
+  target.innerHTML = cards.length ? cards.join("") : `<p class="empty">Run npm run highrisk:scan first.</p>`;
+}
+
 function renderLongTermStarterPack(pack) {
   const summaryTarget = document.getElementById("longterm-summary");
   const rulesTarget = document.getElementById("longterm-rules");
@@ -407,9 +495,9 @@ async function loadDashboard() {
   ` : `<div class="metric"><span>Regime</span><strong>No scan yet</strong></div>`;
 
   renderCoachCards(data.optionsAlerts);
+  renderHighRiskSummary(data.highRiskSummary, data.highRiskAlerts);
+  renderHighRiskCards(data.highRiskAlerts);
   renderLongTermStarterPack(data.longTermStarterPack);
-  renderSwingSummary(data.stockScan, data.stockAlerts);
-  renderSwingCards(data.stockAlerts);
   renderIntradayCockpit(data.intradaySummary, data.intradayScan);
   renderVwapNote(data.intradayScan);
   renderIntradayCards(data.intradayScan);
@@ -428,19 +516,6 @@ async function loadDashboard() {
     { key: "optionTarget1", label: "Target 1", formatter: money },
   ]);
 
-  renderTable("stock-alerts", data.stockAlerts, [
-    { key: "symbol", label: "Symbol" },
-    { key: "signal", label: "Signal", pill: true },
-    { key: "score", label: "Score", formatter: scoreBadge },
-    { key: "setup", label: "Setup" },
-    { key: "close", label: "Close" },
-    { key: "stop", label: "Stop" },
-    { key: "target1", label: "Target 1" },
-    { key: "target", label: "Target" },
-    { key: "riskPct", label: "Risk %" },
-    { key: "reason", label: "Reason" },
-  ]);
-
   renderTable("longterm-table", data.longTermStarterPack?.holdings, [
     { key: "symbol", label: "Symbol" },
     { key: "name", label: "Name" },
@@ -454,24 +529,23 @@ async function loadDashboard() {
     { key: "reviewRule", label: "Review Rule" },
   ]);
 
-  renderTable("backtest", data.backtest, [
+  renderTable("highrisk-table", data.highRiskAlerts, [
     { key: "symbol", label: "Symbol" },
-    { key: "trades", label: "Trades" },
-    { key: "winRate", label: "Win %" },
-    { key: "avgReturnPct", label: "Avg %" },
-    { key: "profitFactor", label: "PF" },
-  ]);
-
-  renderTable("journal", data.journal.map((item) => ({
-    symbol: item.latestIdea?.symbol,
-    strategy: item.latestIdea?.beginnerStrategy || item.latestIdea?.strategy,
-    status: item.status,
-    updatedAt: item.updatedAt,
-  })), [
-    { key: "symbol", label: "Symbol" },
-    { key: "strategy", label: "Trade" },
-    { key: "status", label: "Status", pill: true },
-    { key: "updatedAt", label: "Updated" },
+    { key: "signal", label: "Signal", formatter: highRiskBadge },
+    { key: "rating", label: "Rating" },
+    { key: "score", label: "Score" },
+    { key: "close", label: "Close", formatter: money },
+    { key: "buyZoneLow", label: "Buy Low", formatter: money },
+    { key: "buyZoneHigh", label: "Buy High", formatter: money },
+    { key: "stop", label: "Stop", formatter: money },
+    { key: "target1", label: "Target 1", formatter: money },
+    { key: "target2", label: "Target 2", formatter: money },
+    { key: "doubleTarget", label: "100% Target", formatter: money },
+    { key: "riskPct", label: "Stop Risk %" },
+    { key: "return20", label: "20D %" },
+    { key: "return60", label: "60D %" },
+    { key: "volumeRatio", label: "Vol x" },
+    { key: "reason", label: "Technical Reason" },
   ]);
 
   renderTable("intraday-table", data.intradayScan, [

@@ -1,6 +1,6 @@
 # Trading System
 
-Technical trading scanner for stock options, stock swings, and intraday index ETF ideas.
+Technical trading scanner for stock options, high-risk/high-reward speculation, long-term core holdings, and intraday index ETF ideas.
 
 The system scans configurable universes, ranks technical setups, and writes beginner-friendly alerts. It is not financial advice; it is a decision-support tool for disciplined review.
 
@@ -15,7 +15,9 @@ The system scans configurable universes, ranks technical setups, and writes begi
 
 ## Stock Swing Scanner
 
-The stock swing scanner is designed for bigger 2-8 week moves. Its default universe is now `data/universe_swing_core.csv`, a larger liquid list of high-beta growth stocks, AI/semiconductor leaders, software names, crypto proxies, consumer momentum names, and selected MidCap 400 leaders.
+The stock swing scanner still exists as a backend report generator, but it is no longer a main dashboard tab. The dashboard now emphasizes the high-risk speculative tab instead.
+
+The scanner is designed for bigger 2-8 week moves. Its default universe is `data/universe_swing_core.csv`, a larger liquid list of high-beta growth stocks, AI/semiconductor leaders, software names, crypto proxies, consumer momentum names, and selected MidCap 400 leaders.
 
 It writes:
 
@@ -28,11 +30,36 @@ Run it with:
 npm run scan
 ```
 
-The dashboard shows a Stock Swing Command Center with:
+The backend report includes:
 
 - `BUY_SETUP`, `WATCH`, `HOLD_TREND`, and `EXIT_WARNING`.
 - Buy zone, stop, first target, main target, and risk percent.
 - A 2-8 week hold plan for each setup.
+
+## High Risk / High Reward Scanner
+
+The high-risk scanner is for a separate speculative sleeve, such as `$5,000` that the user accepts could be lost. It scans U.S. and Canadian high-beta names across crypto, AI software, quantum, semiconductors, fintech, space, and other volatile themes.
+
+It emphasizes technical analysis:
+
+- 20-day and 60-day momentum.
+- Relative strength versus U.S. and Canadian risk indexes.
+- 55-day breakout behavior.
+- Volume confirmation.
+- RSI, MACD, ADX/DMI, ATR, and historical volatility.
+- Buy zone, stop loss, target 1, target 2, and 100% moonshot target.
+
+Run it with:
+
+```powershell
+npm run highrisk:scan
+```
+
+It writes:
+
+- `reports/latest_high_risk_scan.csv`
+- `reports/latest_high_risk_alerts.json`
+- `reports/latest_high_risk_summary.json`
 
 ## 15-Year Core Starter Pack
 

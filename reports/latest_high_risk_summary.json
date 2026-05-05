@@ -1,0 +1,51 @@
+{
+  "accountSize": 5000,
+  "sleeveName": "Very High Risk / High Reward",
+  "primaryAction": "DDOG: SPEC BUY",
+  "topSymbol": "DDOG",
+  "topReason": "This is the kind of technical risk I would fund from a small speculative sleeve because momentum, relative strength, and volume agree.",
+  "buyCount": 21,
+  "starterCount": 2,
+  "watchCount": 2,
+  "plannedCapital": 4900,
+  "cashReserve": 100,
+  "rules": [
+    "This is not retirement money.",
+    "Maximum 5-7 names.",
+    "No averaging down below stop.",
+    "Take partial profit near target 1.",
+    "Keep cash if the chart is not clean."
+  ],
+  "marketContext": {
+    "SPY": {
+      "close": 718.01,
+      "return20": 8.97,
+      "return60": 5.96
+    },
+    "QQQ": {
+      "close": 672.88,
+      "return20": 14.34,
+      "return60": 12.7
+    },
+    "IWM": {
+      "close": 277.88,
+      "return20": 10.11,
+      "return60": 8.62
+    },
+    "ARKK": {
+      "close": 78.23,
+      "return20": 13.71,
+      "return60": 17.94
+    },
+    "XIU.TO": {
+      "close": 49.74,
+      "return20": 2.05,
+      "return60": 5.63
+    },
+    "XIC.TO": {
+      "close": 53.76,
+      "return20": 1.59,
+      "return60": 5.23
+    }
+  }
+}
