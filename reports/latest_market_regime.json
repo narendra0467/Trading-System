@@ -1,0 +1,43 @@
+{
+  "regime": "RISK_ON",
+  "score": 93,
+  "bullishSizeMultiplier": 1,
+  "bearishSizeMultiplier": 0.5,
+  "vix": 18.29,
+  "indexes": [
+    {
+      "symbol": "SPY",
+      "score": 90,
+      "close": 718.01,
+      "rsi14": 70.3,
+      "adx14": 31.6,
+      "above20": true,
+      "above50": true,
+      "above150": true,
+      "reasons": []
+    },
+    {
+      "symbol": "QQQ",
+      "score": 80,
+      "close": 672.88,
+      "rsi14": 77.8,
+      "adx14": 48.5,
+      "above20": true,
+      "above50": true,
+      "above150": true,
+      "reasons": []
+    },
+    {
+      "symbol": "IWM",
+      "score": 80,
+      "close": 277.88,
+      "rsi14": 64.4,
+      "adx14": 31.8,
+      "above20": true,
+      "above50": true,
+      "above150": true,
+      "reasons": []
+    }
+  ],
+  "reason": "Market breadth and trend acceptable"
+}

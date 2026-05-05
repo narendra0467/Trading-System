@@ -1,0 +1,14 @@
+{
+  "name": "trading-system",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "start": "node src/dashboardServer.js",
+    "scan": "node src/cli.js",
+    "options:scan": "node src/optionsCli.js",
+    "backtest": "node src/backtestCli.js",
+    "intraday:scan": "node src/intradayCli.js",
+    "dashboard": "node src/dashboardServer.js"
+  }
+}

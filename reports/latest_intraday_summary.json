@@ -1,0 +1,22 @@
+{
+  "marketBias": "BEARISH_DAY",
+  "primaryAction": "Bias exists, but no A setup is confirmed yet.",
+  "tradeNowCount": 0,
+  "waitCount": 5,
+  "noTradeCount": 1,
+  "aboveVwap": 1,
+  "belowVwap": 5,
+  "longSignals": 0,
+  "shortSignals": 2,
+  "maxTradesToday": 3,
+  "stopAfterLosses": 2,
+  "maxRiskPerTradePct": 0.5,
+  "rules": [
+    "Only trade A setups.",
+    "Maximum 3 intraday trades.",
+    "Stop after 2 losses.",
+    "Do not trade when price chops around VWAP.",
+    "No averaging down."
+  ],
+  "updatedAt": "2026-05-04T20:00:03.348Z"
+}
