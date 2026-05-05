@@ -24,8 +24,6 @@ function pill(value) {
 function plainSignal(signal) {
   if (signal === "CALL_SETUP") return "Bullish option idea";
   if (signal === "PUT_SETUP") return "Bearish option idea";
-  if (signal === "INTRADAY_LONG") return "Intraday bullish idea";
-  if (signal === "INTRADAY_SHORT") return "Intraday bearish idea";
   if (signal === "WATCH") return "Watch only";
   if (signal === "PREMIUM_SELL_WATCH") return "No simple buy trade";
   if (signal === "BUY_SETUP") return "Bullish stock idea";
@@ -53,23 +51,6 @@ function confidenceBadge(score) {
 function scoreBadge(score) {
   const number = Number(score);
   return `<span class="${confidenceClass(number)}">${Number.isFinite(number) ? `${number}/100` : "n/a"}</span>`;
-}
-
-function decisionLabel(decision) {
-  if (decision === "TRADE_NOW") return "Trade Now";
-  if (decision === "WAIT") return "Wait";
-  if (decision === "NO_TRADE") return "No Trade";
-  return decision || "No Trade";
-}
-
-function decisionClass(decision) {
-  if (decision === "TRADE_NOW") return "decision-badge decision-badge--trade";
-  if (decision === "WAIT") return "decision-badge decision-badge--wait";
-  return "decision-badge decision-badge--no";
-}
-
-function decisionBadge(decision) {
-  return `<span class="${decisionClass(decision)}">${decisionLabel(decision)}</span>`;
 }
 
 function biasLabel(bias) {
@@ -365,96 +346,6 @@ function renderLongTermStarterPack(pack) {
   cardsTarget.innerHTML = cards.join("");
 }
 
-function renderIntradayCockpit(summary, rows) {
-  const cockpit = document.getElementById("intraday-cockpit");
-  const rules = document.getElementById("day-rules");
-  const tradeNowRows = (rows ?? []).filter((row) => row.decision === "TRADE_NOW");
-  const waitRows = (rows ?? []).filter((row) => row.decision === "WAIT");
-  const noTradeRows = (rows ?? []).filter((row) => row.decision === "NO_TRADE");
-  const bias = summary?.marketBias;
-  const topTrade = tradeNowRows[0];
-  const nextWait = waitRows[0];
-  cockpit.innerHTML = `
-    <article class="${biasClass(bias)}">
-      <span>Market Bias</span>
-      <strong>${biasLabel(bias)}</strong>
-      <p>${summary?.primaryAction || "Run intraday scan to get today's read."}</p>
-    </article>
-    <article class="bias-card">
-      <span>Best Action</span>
-      <strong>${topTrade ? `${topTrade.symbol} ${topTrade.signal === "INTRADAY_LONG" ? "Call" : "Put"}` : "Do Nothing Yet"}</strong>
-      <p>${topTrade ? topTrade.entryPlan : nextWait ? `${nextWait.symbol}: ${nextWait.noTradeReason || nextWait.action}` : "No clean intraday setup is active."}</p>
-    </article>
-    <article class="bias-card">
-      <span>Board</span>
-      <strong>${summary?.tradeNowCount ?? tradeNowRows.length} trade / ${summary?.waitCount ?? waitRows.length} wait / ${summary?.noTradeCount ?? noTradeRows.length} skip</strong>
-      <p>${summary?.aboveVwap ?? 0} above VWAP, ${summary?.belowVwap ?? 0} below VWAP.</p>
-    </article>
-  `;
-
-  const ruleItems = summary?.rules ?? [
-    "Only trade A setups.",
-    "Maximum 3 intraday trades.",
-    "Stop after 2 losses.",
-    "No averaging down.",
-  ];
-  rules.innerHTML = ruleItems.map((rule) => `<span>${rule}</span>`).join("");
-}
-
-function renderVwapNote(rows) {
-  const target = document.getElementById("vwap-note");
-  const cleanRows = (rows ?? []).filter((row) => Number.isFinite(Number(row.price)) && Number.isFinite(Number(row.vwap)));
-  const aboveCount = cleanRows.filter((row) => Number(row.price) > Number(row.vwap)).length;
-  const belowCount = cleanRows.filter((row) => Number(row.price) < Number(row.vwap)).length;
-  target.innerHTML = `
-    <div>
-      <strong>VWAP = volume-weighted average price.</strong>
-      <span>Think of it as today's fair-price line. Above VWAP means buyers are willing to pay above the day's average. Below VWAP means sellers have control.</span>
-    </div>
-    <div class="vwap-stats">
-      <span class="mini-stat mini-stat--good">${aboveCount} above VWAP</span>
-      <span class="mini-stat mini-stat--bad">${belowCount} below VWAP</span>
-    </div>
-  `;
-}
-
-function renderIntradayCards(rows) {
-  const target = document.getElementById("intraday-cards");
-  const cards = (rows ?? [])
-    .filter((row) => ["TRADE_NOW", "WAIT", "NO_TRADE"].includes(row.decision))
-    .sort((a, b) => {
-      const order = { TRADE_NOW: 0, WAIT: 1, NO_TRADE: 2 };
-      return (order[a.decision] ?? 3) - (order[b.decision] ?? 3) || Number(b.score) - Number(a.score);
-    })
-    .slice(0, 6)
-    .map((row) => `
-      <article class="coach-card ${row.decision === "TRADE_NOW" && row.signal === "INTRADAY_LONG" ? "coach-card--bullish" : row.decision === "TRADE_NOW" && row.signal === "INTRADAY_SHORT" ? "coach-card--bearish" : row.decision === "NO_TRADE" ? "coach-card--quiet" : "coach-card--neutral"}">
-        <div class="coach-head">
-          <div>
-            <span class="symbol">${row.symbol}</span>
-            ${decisionBadge(row.decision)}
-          </div>
-          ${confidenceBadge(row.score)}
-        </div>
-        <p class="action">${row.plainDecision || row.action || "No intraday trade right now."}</p>
-        <div class="explain-grid">
-          <div><span>Price</span><strong>${money(row.price)}</strong></div>
-          <div><span>VWAP</span><strong>${money(row.vwap)}</strong></div>
-          <div><span>Stop</span><strong>${money(row.stop)}</strong></div>
-          <div><span>Target</span><strong>${money(row.target)}</strong></div>
-        </div>
-        <ul class="plain-list">
-          <li>Setup: ${row.setup || "No clean setup"}</li>
-          <li>Entry: ${row.entryPlan || "No entry plan yet."}</li>
-          <li>Cancel if: ${row.invalidation || row.noTradeReason || "Conditions fade."}</li>
-          <li>Reward/risk: ${row.rewardRisk || "n/a"}</li>
-          <li>Why: ${row.reason}</li>
-        </ul>
-      </article>
-    `);
-  target.innerHTML = cards.length ? cards.join("") : `<p class="empty">Run intraday scan first.</p>`;
-}
-
 function renderTable(targetId, rows, columns) {
   const target = document.getElementById(targetId);
   if (!rows || rows.length === 0) {
@@ -498,9 +389,6 @@ async function loadDashboard() {
   renderHighRiskSummary(data.highRiskSummary, data.highRiskAlerts);
   renderHighRiskCards(data.highRiskAlerts);
   renderLongTermStarterPack(data.longTermStarterPack);
-  renderIntradayCockpit(data.intradaySummary, data.intradayScan);
-  renderVwapNote(data.intradayScan);
-  renderIntradayCards(data.intradayScan);
 
   const longOptions = (data.optionsScan ?? []).filter((row) => ["BUY_CALL", "BUY_PUT"].includes(row.beginnerStrategy));
   renderTable("options-alerts", longOptions, [
@@ -548,18 +436,6 @@ async function loadDashboard() {
     { key: "reason", label: "Technical Reason" },
   ]);
 
-  renderTable("intraday-table", data.intradayScan, [
-    { key: "symbol", label: "Symbol" },
-    { key: "decision", label: "Decision", formatter: decisionBadge },
-    { key: "score", label: "Score", formatter: scoreBadge },
-    { key: "setup", label: "Setup" },
-    { key: "price", label: "Price" },
-    { key: "vwap", label: "VWAP" },
-    { key: "stop", label: "Stop" },
-    { key: "target", label: "Target" },
-    { key: "rewardRisk", label: "R/R" },
-    { key: "reason", label: "Reason" },
-  ]);
 }
 
 document.getElementById("refresh").addEventListener("click", loadDashboard);

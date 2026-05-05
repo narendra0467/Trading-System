@@ -10,8 +10,7 @@
     "highrisk:scan": "node src/highRiskCli.js",
     "options:scan": "node src/optionsCli.js",
     "backtest": "node src/backtestCli.js",
-    "intraday:scan": "node src/intradayCli.js",
-    "refresh:all": "npm run highrisk:scan && npm run options:scan && npm run intraday:scan && npm run export:static",
+    "refresh:all": "npm run highrisk:scan && npm run scan && npm run options:scan && npm run backtest && npm run export:static",
     "dashboard": "node src/dashboardServer.js"
   }
 }

@@ -243,39 +243,6 @@ article {
   padding: 6px 9px;
 }
 
-.vwap-note {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 14px;
-  margin-bottom: 14px;
-  border: 1px solid rgba(114, 210, 255, 0.18);
-  background: rgba(114, 210, 255, 0.06);
-  border-radius: 8px;
-  padding: 12px;
-  color: #c7d2e1;
-  line-height: 1.45;
-}
-
-.vwap-note strong {
-  display: block;
-  color: #f3f7fb;
-  font-size: 14px;
-  margin-bottom: 2px;
-}
-
-.vwap-note span {
-  font-size: 13px;
-}
-
-.vwap-stats {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: flex-end;
-  gap: 8px;
-  flex: 0 0 auto;
-}
-
 .mini-stat {
   display: inline-flex;
   border-radius: 999px;
@@ -385,7 +352,7 @@ button {
 
 .tabs {
   display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
+  grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 10px;
   margin-bottom: 16px;
 }
@@ -494,12 +461,4 @@ th {
     grid-template-columns: 1fr;
   }
 
-  .vwap-note {
-    align-items: flex-start;
-    flex-direction: column;
-  }
-
-  .vwap-stats {
-    justify-content: flex-start;
-  }
 }

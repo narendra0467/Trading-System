@@ -6,7 +6,8 @@ env:
 on:
   workflow_dispatch:
   schedule:
-    - cron: "30 22 * * 1-5"
+    - cron: "30 14 * * 1-5"
+    - cron: "0 19 * * 1-5"
   push:
     branches:
       - main
@@ -30,11 +31,14 @@ jobs:
       - name: Refresh high-risk scanner
         run: npm run highrisk:scan
 
+      - name: Refresh stock swing scanner
+        run: npm run scan
+
       - name: Refresh options scanner
         run: npm run options:scan
 
-      - name: Refresh intraday snapshot
-        run: npm run intraday:scan
+      - name: Refresh swing backtest
+        run: npm run backtest
 
       - name: Export static dashboard
         run: npm run export:static

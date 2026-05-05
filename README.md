@@ -1,6 +1,6 @@
 # Trading System
 
-Technical trading scanner for stock options, high-risk/high-reward speculation, long-term core holdings, and intraday index ETF ideas.
+Technical trading scanner for stock options, high-risk/high-reward speculation, long-term core holdings, and swing-trade snapshots.
 
 The system scans configurable universes, ranks technical setups, and writes beginner-friendly alerts. It is not financial advice; it is a decision-support tool for disciplined review.
 
@@ -78,7 +78,7 @@ Current structure:
 
 ## Simple Stock Options Scanner
 
-The options scanner is separate from the mid-cap stock scanner. It is designed for 15-20 high-volume single-stock options names such as `TSLA`, `SNDK`, `MU`, `AMD`, `AAPL`, `NVDA`, `C`, `INTC`, `AMZN`, `GOOGL`, `META`, `MSFT`, `MSTR`, `AVGO`, `ORCL`, `PLTR`, `WDC`, `NFLX`, `TSM`, and `COIN`. Index ETFs are kept out of this long-options watchlist and used for the intraday scanner instead.
+The options scanner is separate from the mid-cap stock scanner. It is designed for 15-20 high-volume single-stock options names such as `TSLA`, `SNDK`, `MU`, `AMD`, `AAPL`, `NVDA`, `C`, `INTC`, `AMZN`, `GOOGL`, `META`, `MSFT`, `MSTR`, `AVGO`, `ORCL`, `PLTR`, `WDC`, `NFLX`, `TSM`, and `COIN`.
 
 It checks the underlying first, then the option chain:
 
@@ -126,10 +126,8 @@ Optional arguments:
 npm run scan -- --universe=data/universe_sp400_seed.csv --benchmark=IJH --range=18mo
 npm run scan -- --universe=data/universe_swing_core.csv --benchmark=QQQ --range=18mo
 npm run options:scan -- --universe=data/universe_options_core.csv --benchmark=QQQ --range=18mo
-npm run intraday:scan -- --universe=data/universe_intraday_indexes.csv
+npm run highrisk:scan -- --universe=data/universe_high_risk.csv
 ```
-
-The default intraday universe is `data/universe_intraday_indexes.csv`, currently `SPY`, `QQQ`, `IWM`, `DIA`, `TQQQ`, and `SQQQ`.
 
 ## Local Dashboard
 
@@ -158,7 +156,7 @@ The repo also includes a GitHub Pages workflow for a shareable static dashboard.
 npm run export:static
 ```
 
-GitHub also has a scheduled refresh workflow in `.github/workflows/refresh-data.yml`. It runs after the market close on weekdays, refreshes the high-risk scan, options scan, intraday snapshot, exports `public/dashboard.json`, and commits the refreshed data back to the repo.
+GitHub also has a scheduled refresh workflow in `.github/workflows/refresh-data.yml`. It runs twice on weekdays: about one hour after U.S. market open and about one hour before U.S. market close during daylight saving time. It refreshes high-risk, stock swing, options, backtest, exports `public/dashboard.json`, and commits the refreshed data back to the repo.
 
 For a manual full refresh:
 
@@ -166,7 +164,7 @@ For a manual full refresh:
 npm run refresh:all
 ```
 
-Intraday every-5-minute updates should not be done through GitHub Pages commits. Use the local Node server or a hosted Node service for that. The frontend refreshes itself every 5 minutes, but GitHub Pages can only show the newest static `dashboard.json` that has already been committed.
+Intraday every-5-minute updates are intentionally excluded from this public GitHub Pages dashboard. We will build that later as a separate local/live system.
 
 ## Notes
 
