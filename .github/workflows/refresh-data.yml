@@ -6,8 +6,9 @@ env:
 on:
   workflow_dispatch:
   schedule:
-    - cron: "30 14 * * 1-5"
-    - cron: "0 19 * * 1-5"
+    # Weekdays during market hours, roughly every 2 hours.
+    # During daylight saving time: 08:30, 10:30, 12:30, 14:30 Edmonton time.
+    - cron: "30 14-20/2 * * 1-5"
   push:
     branches:
       - main
