@@ -562,9 +562,12 @@ function renderTable(targetId, rows, columns) {
 }
 
 async function loadDashboard() {
-  let response = await fetch("/api/dashboard", { cache: "no-store" });
-  if (!response.ok) {
-    response = await fetch(`./dashboard.json?v=${Date.now()}`, { cache: "no-store" });
+  let response = await fetch(`./dashboard.json?v=${Date.now()}`, { cache: "no-store" });
+  if (!response.ok || !(response.headers.get("content-type") ?? "").includes("application/json")) {
+    response = await fetch("/api/dashboard", { cache: "no-store" });
+  }
+  if (!response.ok || !(response.headers.get("content-type") ?? "").includes("application/json")) {
+    throw new Error("Dashboard data is not available.");
   }
   const data = await response.json();
   document.getElementById("updated-line").textContent = `Last refreshed: ${dateTime(data.updatedAt)}`;
