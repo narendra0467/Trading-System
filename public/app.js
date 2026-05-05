@@ -221,6 +221,7 @@ function renderHighRiskSummary(summary, rows) {
   const context = summary?.marketContext ?? {};
   const qqq = context.QQQ;
   const xiu = context["XIU.TO"];
+  const eventRiskCount = cleanRows.filter((row) => row.eventRisk && row.eventRisk !== "CLEAR").length;
   summaryTarget.innerHTML = `
     <article class="bias-card bias-card--bearish">
       <span>Sleeve</span>
@@ -235,7 +236,7 @@ function renderHighRiskSummary(summary, rows) {
     <article class="bias-card">
       <span>Market Context</span>
       <strong>QQQ ${qqq?.return20 ?? "n/a"}% / XIU ${xiu?.return20 ?? "n/a"}%</strong>
-      <p>${summary?.buyCount ?? 0} spec buys, ${summary?.starterCount ?? 0} starter buys, ${summary?.watchCount ?? 0} watchlist names.</p>
+      <p>${summary?.buyCount ?? 0} spec buys, ${summary?.starterCount ?? 0} starter buys, ${summary?.watchCount ?? 0} watchlist names. ${eventRiskCount} need macro/news review before entry.</p>
     </article>
   `;
   const rulePills = (summary?.rules ?? [
@@ -275,6 +276,7 @@ function renderHighRiskCards(rows) {
         <ul class="plain-list">
           <li>Theme: ${row.theme || "speculative growth"} (${row.market || "US/Canada"}).</li>
           <li>Technical reason: ${row.reason}</li>
+          <li>News/macro: ${row.macroRead || "Manual news check required."} ${row.eventRiskReason || ""}</li>
           <li>20-day: ${row.return20}%, 60-day: ${row.return60}%, relative strength: ${row.relativeStrength60 ?? "n/a"}%.</li>
           <li>Risk: ${row.riskClass}; stop risk ${row.riskPct}%; planned capital ${money(row.capitalPlan)}; shares ${row.shares}.</li>
           <li>Entry: ${row.entryPlan}</li>
@@ -433,6 +435,7 @@ async function loadDashboard() {
     { key: "return20", label: "20D %" },
     { key: "return60", label: "60D %" },
     { key: "volumeRatio", label: "Vol x" },
+    { key: "eventRisk", label: "Event Risk" },
     { key: "reason", label: "Technical Reason" },
   ]);
 

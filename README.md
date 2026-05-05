@@ -38,7 +38,7 @@ The backend report includes:
 
 ## High Risk / High Reward Scanner
 
-The high-risk scanner is for a separate speculative sleeve, such as `$5,000` that the user accepts could be lost. It scans U.S. and Canadian high-beta names across crypto, AI software, quantum, semiconductors, fintech, space, and other volatile themes.
+The high-risk scanner is for a separate speculative sleeve, such as `$5,000` that the user accepts could be lost. It scans U.S. and Canadian moonshot-style small/mid-cap names across crypto miners, AI software, quantum, fintech, space, biotech, EV, and junior resource themes. Large liquid momentum names such as `MU`, `WDC`, and `SNDK` are kept out of this moonshot universe.
 
 It emphasizes technical analysis:
 
@@ -48,6 +48,7 @@ It emphasizes technical analysis:
 - Volume confirmation.
 - RSI, MACD, ADX/DMI, ATR, and historical volatility.
 - Buy zone, stop loss, target 1, target 2, and 100% moonshot target.
+- Manual macro/news risk from `data/event_calendar.csv`, including Fed, CPI, jobs, war/geopolitics, political/tariff events, earnings, and sector-specific shocks.
 
 Run it with:
 

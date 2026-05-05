@@ -60,6 +60,7 @@ export function scoreHighRiskIdea(symbol, rows, benchmarkRows, meta = {}) {
 
   let score = 0;
   const reasons = [];
+  const eventRisk = meta.eventRisk ?? { level: "CLEAR", reason: "No dated event in window" };
 
   if (latest.close > latest.ema20 && latest.ema20 > latest.ema50) {
     score += 18;
@@ -132,6 +133,16 @@ export function scoreHighRiskIdea(symbol, rows, benchmarkRows, meta = {}) {
     reasons.push("enough volatility for outsized move");
   }
 
+  if (eventRisk.level === "HIGH") {
+    score -= 10;
+    reasons.push("major event risk today/soon");
+  } else if (eventRisk.level === "MANUAL_CHECK") {
+    score -= 4;
+    reasons.push("manual macro/news check required");
+  }
+
+  score = Math.max(0, score);
+
   const tooExtended = latest.rsi14 > 88 || riskPct > 0.24;
   const signal =
     score >= 82 && !tooExtended
@@ -163,7 +174,9 @@ export function scoreHighRiskIdea(symbol, rows, benchmarkRows, meta = {}) {
           ? `Wait for a close above ${money(latest.high55)} with volume at least 1.25x normal.`
           : "No buy until trend and momentum repair.";
   const managerRead =
-    signal === "SPEC_BUY"
+    eventRisk.level === "HIGH"
+      ? "The chart is interesting, but event risk is elevated. I would reduce size or wait until the news clears."
+      : signal === "SPEC_BUY"
       ? "This is the kind of technical risk I would fund from a small speculative sleeve because momentum, relative strength, and volume agree."
       : signal === "STARTER_BUY"
         ? "Good chart, but not clean enough for full speculative size. I would nibble only or wait for a better entry."
@@ -206,6 +219,14 @@ export function scoreHighRiskIdea(symbol, rows, benchmarkRows, meta = {}) {
     maxLossMindset: "This sleeve can go to zero. Still use stops so one bad idea does not waste the whole $5K.",
     upsideGoal: `${pct(upsideToDouble)}% moonshot target`,
     riskClass: classifyRisk(latest, riskPct * 100),
+    eventRisk: eventRisk.level,
+    eventRiskReason: eventRisk.reason,
+    macroRead:
+      eventRisk.level === "CLEAR"
+        ? "No dated macro/company event in the local calendar."
+        : eventRisk.level === "MANUAL_CHECK"
+          ? "Manual macro/news check required before entry."
+          : "High-impact event risk. Size down or wait.",
     entryPlan,
     managerRead,
     reason: reasons.join("; ") || "No technical edge",

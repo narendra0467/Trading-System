@@ -4,6 +4,7 @@ import path from "node:path";
 import { fetchHistory } from "./marketData.js";
 import { scoreHighRiskIdea, summarizeHighRisk } from "./highRiskScanner.js";
 import { loadUniverseRecords } from "./universe.js";
+import { getEventRisk, loadEventCalendar } from "./eventRisk.js";
 
 function getArg(name, fallback) {
   const prefix = `--${name}=`;
@@ -52,6 +53,7 @@ async function main() {
   const reportDir = getArg("report-dir", "reports");
   const accountSize = Number(getArg("account-size", "5000"));
   const universe = loadUniverseRecords(universePath);
+  const events = loadEventCalendar();
   const benchmarks = await fetchBenchmarks(range);
   const marketContext = summarizeIndexes(benchmarks);
   const results = [];
@@ -63,7 +65,10 @@ async function main() {
       const symbol = record.symbol;
       const primaryBenchmark = symbol.endsWith(".TO") || symbol.endsWith(".V") ? "XIU.TO" : "QQQ";
       const rows = await fetchHistory(symbol, range);
-      results.push(scoreHighRiskIdea(symbol, rows, benchmarks[primaryBenchmark] ?? [], record));
+      results.push(scoreHighRiskIdea(symbol, rows, benchmarks[primaryBenchmark] ?? [], {
+        ...record,
+        eventRisk: getEventRisk(symbol, events),
+      }));
     } catch (error) {
       results.push({
         symbol: record.symbol,
@@ -86,7 +91,7 @@ async function main() {
   fs.writeFileSync(path.join(reportDir, "latest_high_risk_alerts.json"), JSON.stringify(alerts, null, 2), "utf8");
   fs.writeFileSync(path.join(reportDir, "latest_high_risk_summary.json"), JSON.stringify(summary, null, 2), "utf8");
 
-  console.table(alerts.slice(0, 12).map(({ symbol, signal, rating, score, close, stop, target1, target2, doubleTarget, reason }) => ({
+  console.table(alerts.slice(0, 12).map(({ symbol, signal, rating, score, close, stop, target1, target2, doubleTarget, eventRisk, reason }) => ({
     symbol,
     signal,
     rating,
@@ -96,6 +101,7 @@ async function main() {
     target1,
     target2,
     doubleTarget,
+    eventRisk,
     reason,
   })));
   console.log(`Wrote ${path.join(reportDir, "latest_high_risk_scan.csv")}`);

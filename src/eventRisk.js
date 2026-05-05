@@ -23,7 +23,7 @@ export function getEventRisk(symbol, events, lookaheadDays = 10) {
     });
 
   if (upcoming.length === 0) {
-    const manual = events.find((event) => event.symbol === symbol && !event.date);
+    const manual = events.find((event) => (event.symbol === symbol || event.symbol === "ALL") && !event.date);
     return manual ? { level: "MANUAL_CHECK", reason: manual.event } : { level: "CLEAR", reason: "No dated event in window" };
   }
 
@@ -32,4 +32,3 @@ export function getEventRisk(symbol, events, lookaheadDays = 10) {
     reason: upcoming.map((event) => `${event.event} ${event.date}`).join("; "),
   };
 }
-
