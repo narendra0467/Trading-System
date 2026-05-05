@@ -7,6 +7,18 @@ const wholeMoney = (value) => {
   const number = Number(value);
   return Number.isFinite(number) ? `$${number.toFixed(0)}` : "n/a";
 };
+const dateTime = (value) => {
+  const date = new Date(value);
+  return Number.isNaN(date.getTime())
+    ? "n/a"
+    : date.toLocaleString(undefined, {
+        month: "short",
+        day: "numeric",
+        hour: "numeric",
+        minute: "2-digit",
+        timeZoneName: "short",
+      });
+};
 
 function pill(value) {
   const text = String(value ?? "");
@@ -73,11 +85,13 @@ function optionAction(row) {
   return `Simple trade: ${row.beginnerAction}`;
 }
 
-function renderCoachCards(optionsAlerts) {
+function renderCoachCards(optionsAlerts, optionsScan) {
   const target = document.getElementById("coach-cards");
+  const scanRows = optionsScan ?? [];
   const longOptionRows = (optionsAlerts ?? [])
     .filter((row) => ["CALL_SETUP", "PUT_SETUP", "WATCH"].includes(row.signal) && ["BUY_CALL", "BUY_PUT"].includes(row.beginnerStrategy));
   const hasPut = longOptionRows.some((row) => row.beginnerStrategy === "BUY_PUT");
+  const topWatch = scanRows[0];
   const optionCards = longOptionRows
     .slice(0, 6)
     .map((row) => {
@@ -114,6 +128,24 @@ function renderCoachCards(optionsAlerts) {
       `;
     });
 
+  const scanStatusCard = optionCards.length === 0 && scanRows.length > 0 ? `
+    <article class="coach-card coach-card--neutral">
+      <div class="coach-head">
+        <div>
+          <span class="symbol">OPTIONS</span>
+          ${pill("Scan ran")}
+        </div>
+        ${topWatch ? confidenceBadge(topWatch.score) : ""}
+      </div>
+      <p class="action">Scanned ${scanRows.length} popular option stocks. No clean beginner buy-call or buy-put passed the risk and contract filters right now.</p>
+      <ul class="plain-list">
+        <li>Best technical watch: ${topWatch ? `${topWatch.symbol} ${scoreBadge(topWatch.score)}` : "n/a"}.</li>
+        <li>That means wait. For simple trading, cash is a valid position until the contract price, trend, and stop make sense.</li>
+        <li>The table below still shows the watchlist so you can see the scan actually updated.</li>
+      </ul>
+    </article>
+  ` : "";
+
   const putNote = hasPut ? "" : `
     <article class="coach-card coach-card--neutral">
       <div class="coach-head">
@@ -130,7 +162,7 @@ function renderCoachCards(optionsAlerts) {
     </article>
   `;
 
-  const cards = [...optionCards, putNote].filter(Boolean);
+  const cards = [...optionCards, scanStatusCard, putNote].filter(Boolean);
   target.innerHTML = cards.length ? cards.join("") : `<p class="empty">Run scans first, then beginner cards will appear here.</p>`;
 }
 
@@ -380,6 +412,7 @@ async function loadDashboard() {
     response = await fetch("./dashboard.json");
   }
   const data = await response.json();
+  document.getElementById("updated-line").textContent = `Last refreshed: ${dateTime(data.updatedAt)}`;
   const regime = data.marketRegime;
   document.getElementById("regime").innerHTML = regime ? `
     <div class="metric"><span>Regime</span><strong>${pill(regime.regime)}</strong></div>
@@ -388,23 +421,25 @@ async function loadDashboard() {
     <div class="metric"><span>Read</span><strong>${regime.reason}</strong></div>
   ` : `<div class="metric"><span>Regime</span><strong>No scan yet</strong></div>`;
 
-  renderCoachCards(data.optionsAlerts);
+  renderCoachCards(data.optionsAlerts, data.optionsScan);
   renderHighRiskSummary(data.highRiskSummary, data.highRiskAlerts);
   renderHighRiskCards(data.highRiskAlerts);
   renderLongTermStarterPack(data.longTermStarterPack);
 
   const longOptions = (data.optionsScan ?? []).filter((row) => ["BUY_CALL", "BUY_PUT"].includes(row.beginnerStrategy));
-  renderTable("options-alerts", longOptions, [
+  const optionRows = longOptions.length ? longOptions : (data.optionsScan ?? []).slice(0, 20);
+  renderTable("options-alerts", optionRows, [
     { key: "symbol", label: "Symbol" },
-    { key: "signal", label: "Signal", pill: true },
+    { key: "signal", label: "Signal", formatter: plainSignal, pill: true },
     { key: "score", label: "Score", formatter: scoreBadge },
     { key: "expiration", label: "Exp" },
-    { key: "beginnerStrategy", label: "Trade" },
+    { key: "beginnerStrategy", label: "Trade", formatter: (value) => value || "No simple buy" },
     { key: "optionStrike", label: "Strike" },
     { key: "optionEntry", label: "Option Price", formatter: money },
     { key: "optionCost", label: "1 Contract Cost", formatter: wholeMoney },
     { key: "optionStop", label: "Option Stop", formatter: money },
     { key: "optionTarget1", label: "Target 1", formatter: money },
+    { key: "beginnerAction", label: "Beginner Read", formatter: (value) => value || "Watch only. No trade approved." },
   ]);
 
   renderTable("longterm-table", data.longTermStarterPack?.holdings, [
