@@ -90,3 +90,24 @@ export async function fetchOptionChain(symbol, expiration) {
     puts: optionSet.puts ?? [],
   };
 }
+
+export async function fetchQuoteSummary(symbol, modules = []) {
+  const { cookie, crumb } = await getYahooAuth();
+  const moduleList = modules.length
+    ? modules.join(",")
+    : "price,summaryDetail,financialData,defaultKeyStatistics,recommendationTrend,earningsTrend,assetProfile";
+  const url = `https://query2.finance.yahoo.com/v10/finance/quoteSummary/${encodeURIComponent(symbol)}?modules=${encodeURIComponent(moduleList)}&crumb=${encodeURIComponent(crumb)}`;
+  const response = await fetch(url, {
+    headers: { "User-Agent": "Mozilla/5.0", Cookie: cookie },
+  });
+  if (!response.ok) {
+    throw new Error(`${symbol} quote summary request failed: ${response.status}`);
+  }
+  const payload = await response.json();
+  const result = payload.quoteSummary?.result?.[0];
+  if (!result) {
+    const description = payload.quoteSummary?.error?.description ?? "No quote summary found";
+    throw new Error(`${symbol} quote summary unavailable: ${description}`);
+  }
+  return result;
+}

@@ -359,7 +359,7 @@ button {
 
 .tabs {
   display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
+  grid-template-columns: repeat(4, minmax(0, 1fr));
   gap: 10px;
   margin-bottom: 16px;
 }
@@ -458,13 +458,87 @@ th {
   background: rgba(239, 68, 68, 0.16);
 }
 
+.analyzer-form {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 10px;
+  margin-bottom: 10px;
+}
+
+.analyzer-form input {
+  min-width: 0;
+  border: 1px solid rgba(148, 163, 184, 0.2);
+  background: #0d131c;
+  color: #f3f7fb;
+  border-radius: 6px;
+  padding: 10px 12px;
+  font: inherit;
+}
+
+.analyzer-note {
+  color: #9aa7b7;
+  font-size: 13px;
+  margin-bottom: 14px;
+}
+
+.analyzer-card,
+.analyzer-detail {
+  margin-top: 14px;
+}
+
+.score-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 8px;
+  margin: 12px 0;
+}
+
+.score-grid div {
+  border: 1px solid rgba(148, 163, 184, 0.12);
+  background: rgba(148, 163, 184, 0.06);
+  border-radius: 6px;
+  padding: 10px;
+}
+
+.score-grid span {
+  display: block;
+  color: #9aa7b7;
+  font-size: 11px;
+  margin-bottom: 4px;
+}
+
+.score-grid strong {
+  display: block;
+  font-size: 18px;
+}
+
+.score-grid p {
+  color: #b8c3d2;
+  font-size: 12px;
+  margin-top: 4px;
+}
+
+.analyzer-columns {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+}
+
+.analyzer-columns h3 {
+  font-size: 14px;
+  margin: 0 0 8px;
+}
+
 @media (max-width: 900px) {
   .grid,
   .regime,
   .tabs,
   .coach-grid,
   .trader-cockpit,
-  .explain-grid {
+  .explain-grid,
+  .score-grid,
+  .analyzer-columns,
+  .analyzer-form {
     grid-template-columns: 1fr;
   }
 

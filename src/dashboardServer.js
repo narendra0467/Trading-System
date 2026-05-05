@@ -4,6 +4,7 @@ import path from "node:path";
 import { fileURLToPath } from "node:url";
 
 import { buildDashboardData } from "./dashboardData.js";
+import { analyzeStock } from "./stockAnalyzer.js";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const rootDir = path.resolve(__dirname, "..");
@@ -42,6 +43,16 @@ const server = http.createServer((request, response) => {
   const url = new URL(request.url, `http://localhost:${port}`);
   if (url.pathname === "/api/dashboard") {
     sendJson(response, buildDashboardData({ reportsDir, dataDir }));
+    return;
+  }
+  if (url.pathname === "/api/analyze") {
+    const symbol = url.searchParams.get("symbol") ?? "";
+    analyzeStock(symbol)
+      .then((payload) => sendJson(response, payload))
+      .catch((error) => {
+        response.writeHead(500, { "Content-Type": "application/json" });
+        response.end(JSON.stringify({ error: error.message }));
+      });
     return;
   }
   serveStatic(response, url.pathname);

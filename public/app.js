@@ -245,6 +245,117 @@ function highRiskBadge(signal) {
   return `<span class="${highRiskClass(signal)}">${highRiskSignalLabel(signal)}</span>`;
 }
 
+function analyzerDecisionClass(decision) {
+  if (decision === "BUY" || decision === "WATCH / STARTER BUY") return "coach-card--bullish";
+  if (decision === "SELL / EXIT RISK" || decision === "AVOID NEW BUY") return "coach-card--bearish";
+  return "coach-card--neutral";
+}
+
+function pct(value) {
+  const number = Number(value);
+  return Number.isFinite(number) ? `${number.toFixed(1)}%` : "n/a";
+}
+
+function bigMoney(value) {
+  const number = Number(value);
+  if (!Number.isFinite(number)) return "n/a";
+  if (Math.abs(number) >= 1_000_000_000_000) return `$${(number / 1_000_000_000_000).toFixed(2)}T`;
+  if (Math.abs(number) >= 1_000_000_000) return `$${(number / 1_000_000_000).toFixed(2)}B`;
+  if (Math.abs(number) >= 1_000_000) return `$${(number / 1_000_000).toFixed(1)}M`;
+  return money(number);
+}
+
+function renderAnalyzer(result) {
+  const target = document.getElementById("analyzer-result");
+  if (!result) {
+    target.innerHTML = "";
+    return;
+  }
+  const sections = [
+    ["Technical", result.technical.score, result.technical.rating],
+    ["Fundamental", result.fundamentals.score, result.fundamentals.rating],
+    ["Valuation", result.valuation.score, result.valuation.rating],
+    ["Analysts", result.analysts.score, result.analysts.rating],
+  ];
+  target.innerHTML = `
+    <article class="coach-card ${analyzerDecisionClass(result.decision)} analyzer-card">
+      <div class="coach-head">
+        <div>
+          <span class="symbol">${result.symbol}</span>
+          ${pill(result.decision)}
+        </div>
+        <strong>Grade ${result.qualityGrade} / ${result.totalScore}/100</strong>
+      </div>
+      <p class="action">${result.managerRead}</p>
+      <div class="explain-grid">
+        <div><span>Price</span><strong>${money(result.currentPrice)}</strong></div>
+        <div><span>Market Cap</span><strong>${bigMoney(result.marketCap)}</strong></div>
+        <div><span>Exchange</span><strong>${format(result.exchange)}</strong></div>
+        <div><span>Benchmark</span><strong>${format(result.benchmark)}</strong></div>
+      </div>
+      <div class="score-grid">
+        ${sections.map(([label, score, rating]) => `
+          <div>
+            <span>${label}</span>
+            <strong>${score}/100</strong>
+            <p>${rating}</p>
+          </div>
+        `).join("")}
+      </div>
+      <div class="analyzer-columns">
+        <div>
+          <h3>Why It Works</h3>
+          <ul class="plain-list">${(result.strengths ?? []).map((item) => `<li>${item}</li>`).join("") || "<li>No strong positives found.</li>"}</ul>
+        </div>
+        <div>
+          <h3>Risks</h3>
+          <ul class="plain-list">${(result.risks ?? []).map((item) => `<li>${item}</li>`).join("") || "<li>No major risk flags from available fields.</li>"}</ul>
+        </div>
+      </div>
+    </article>
+    <article class="analyzer-detail">
+      <h2>Deep Read</h2>
+      <div class="explain-grid">
+        <div><span>Revenue Growth</span><strong>${pct(result.fundamentals.revenueGrowth)}</strong></div>
+        <div><span>Operating Margin</span><strong>${pct(result.fundamentals.operatingMargins)}</strong></div>
+        <div><span>Free Cash Flow</span><strong>${bigMoney(result.fundamentals.freeCashflow)}</strong></div>
+        <div><span>Debt / Equity</span><strong>${format(result.fundamentals.debtToEquity)}</strong></div>
+        <div><span>Forward P/E</span><strong>${format(result.valuation.forwardPE)}</strong></div>
+        <div><span>PEG</span><strong>${format(result.valuation.pegRatio)}</strong></div>
+        <div><span>Analyst View</span><strong>${format(result.analysts.recommendationKey)}</strong></div>
+        <div><span>Analyst Upside</span><strong>${pct(result.valuation.analystUpside)}</strong></div>
+      </div>
+      <div class="explain-grid">
+        <div><span>EMA20</span><strong>${money(result.technical.ema20)}</strong></div>
+        <div><span>EMA50</span><strong>${money(result.technical.ema50)}</strong></div>
+        <div><span>RSI</span><strong>${format(result.technical.rsi14)}</strong></div>
+        <div><span>Stop / Target</span><strong>${money(result.technical.stop)} / ${money(result.technical.target)}</strong></div>
+      </div>
+    </article>
+  `;
+}
+
+async function analyzeTicker(symbol) {
+  const target = document.getElementById("analyzer-result");
+  target.innerHTML = `<p class="empty">Analyzing ${symbol.toUpperCase()}...</p>`;
+  try {
+    const response = await fetch(`/api/analyze?symbol=${encodeURIComponent(symbol)}`, { cache: "no-store" });
+    const contentType = response.headers.get("content-type") ?? "";
+    if (!contentType.includes("application/json")) {
+      target.innerHTML = `<p class="empty">Live analyzer needs the Node dashboard server. Open the local dashboard at http://127.0.0.1:5050 for ticker-by-ticker analysis.</p>`;
+      return;
+    }
+    const data = await response.json();
+    if (!response.ok || data.error) {
+      target.innerHTML = `<p class="empty">${data.error || "Analyzer failed. Try another ticker format, like SHOP.TO for Canada."}</p>`;
+      return;
+    }
+    renderAnalyzer(data);
+  } catch (error) {
+    target.innerHTML = `<p class="empty">${error.message}. Open the local dashboard server for live analysis.</p>`;
+  }
+}
+
 function renderHighRiskSummary(summary, rows) {
   const summaryTarget = document.getElementById("highrisk-summary");
   const rulesTarget = document.getElementById("highrisk-rules");
@@ -479,6 +590,11 @@ async function loadDashboard() {
 }
 
 document.getElementById("refresh").addEventListener("click", loadDashboard);
+document.getElementById("analyzer-form").addEventListener("submit", (event) => {
+  event.preventDefault();
+  const symbol = document.getElementById("analyzer-symbol").value.trim();
+  if (symbol) analyzeTicker(symbol);
+});
 setInterval(loadDashboard, 5 * 60 * 1000);
 document.querySelectorAll(".tab-button").forEach((button) => {
   button.addEventListener("click", () => {
