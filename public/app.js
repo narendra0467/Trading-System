@@ -370,6 +370,48 @@ function renderAnalyzer(result) {
   `;
 }
 
+let analyzerCachePromise = null;
+
+async function loadAnalyzerCache() {
+  if (!analyzerCachePromise) {
+    analyzerCachePromise = fetch(`./analyzer-cache.json?v=${Date.now()}`, { cache: "no-store" })
+      .then((response) => {
+        if (!response.ok || !(response.headers.get("content-type") ?? "").includes("application/json")) {
+          throw new Error("Analyzer cache is not published yet.");
+        }
+        return response.json();
+      });
+  }
+  return analyzerCachePromise;
+}
+
+async function renderCachedAnalyzer(symbol, lastError) {
+  const target = document.getElementById("analyzer-result");
+  try {
+    const cache = await loadAnalyzerCache();
+    const cleanSymbol = symbol.trim().toUpperCase();
+    const cached = cache.results?.[cleanSymbol];
+    if (cached) {
+      renderAnalyzer({
+        ...cached,
+        managerRead: `${cached.managerRead} Public cached read from ${dateTime(cache.updatedAt)}. Local dashboard gives a live refresh.`,
+      });
+      return true;
+    }
+    target.innerHTML = `
+      <p class="empty">
+        ${lastError} Public GitHub Pages can only analyze cached symbols right now.
+        ${cache.symbols?.length ? `Cached symbols include: ${cache.symbols.slice(0, 28).join(", ")}${cache.symbols.length > 28 ? "..." : ""}.` : ""}
+        For any ticker live, open the local dashboard at http://127.0.0.1:5050.
+      </p>
+    `;
+    return true;
+  } catch (error) {
+    target.innerHTML = `<p class="empty">${lastError} Analyzer cache is not published yet. Open the local dashboard at http://127.0.0.1:5050 for live ticker-by-ticker analysis.</p>`;
+    return false;
+  }
+}
+
 async function analyzeTicker(symbol) {
   const target = document.getElementById("analyzer-result");
   target.innerHTML = `<p class="empty">Analyzing ${symbol.toUpperCase()}...</p>`;
@@ -394,9 +436,9 @@ async function analyzeTicker(symbol) {
       renderAnalyzer(data);
       return;
     }
-    target.innerHTML = `<p class="empty">${lastError} If this is GitHub Pages, the free Render backend may still be sleeping or not deployed yet. Try again in a minute, or open the local dashboard at http://127.0.0.1:5050.</p>`;
+    await renderCachedAnalyzer(symbol, lastError);
   } catch (error) {
-    target.innerHTML = `<p class="empty">${error.message}. The hosted analyzer backend may be sleeping or not deployed yet.</p>`;
+    await renderCachedAnalyzer(symbol, `${error.message}. The hosted analyzer backend may be sleeping or not deployed yet.`);
   }
 }
 

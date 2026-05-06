@@ -11,7 +11,7 @@ function clamp(value, min = 0, max = 100) {
 
 function scoreTechnical(symbol, rows, benchmarkRows) {
   if (rows.length < 160) {
-    return { score: 0, rating: "Weak", reasons: ["not enough price history"] };
+    return { score: 0, rating: "Weak", reasons: ["not enough price history"], risks: ["not enough price history"] };
   }
   const enriched = addIndicators(rows, benchmarkRows);
   const latest = last(enriched);
