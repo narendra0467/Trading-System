@@ -12,6 +12,7 @@ const publicDir = path.join(rootDir, "public");
 const reportsDir = path.join(rootDir, "reports");
 const dataDir = path.join(rootDir, "data");
 const port = Number(process.env.PORT || 5050);
+const host = process.env.HOST || "0.0.0.0";
 
 function sendJson(response, payload) {
   response.writeHead(200, {
@@ -79,6 +80,6 @@ const server = http.createServer((request, response) => {
   serveStatic(response, url.pathname);
 });
 
-server.listen(port, () => {
+server.listen(port, host, () => {
   console.log(`Trading dashboard running at http://127.0.0.1:${port}`);
 });
