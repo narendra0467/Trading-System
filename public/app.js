@@ -316,6 +316,101 @@ function growthStatusPill(status) {
   return `<span class="growth-status growth-status--${status || "unavailable"}">${String(status || "unavailable").toUpperCase()}</span>`;
 }
 
+function scoreTone(score, inverse = false) {
+  const number = Number(score);
+  if (!Number.isFinite(number)) return "neutral";
+  const adjusted = inverse ? 100 - number : number;
+  if (adjusted >= 70) return "good";
+  if (adjusted >= 45) return "caution";
+  return "bad";
+}
+
+function reportMeter(label, score, helper, inverse = false) {
+  const number = Number(score);
+  const value = Number.isFinite(number) ? Math.max(0, Math.min(100, number)) : 0;
+  return `
+    <div class="report-meter report-meter--${scoreTone(score, inverse)}">
+      <div><span>${escapeHtml(label)}</span><strong>${Number.isFinite(number) ? Math.round(number) : "n/a"}/100</strong></div>
+      <div class="meter-track"><span style="width:${value}%"></span></div>
+      <p>${escapeHtml(helper)}</p>
+    </div>
+  `;
+}
+
+function metricCard(row) {
+  if (!row) return "";
+  return `
+    <div class="metric-card metric-card--${row.status}">
+      <span>${escapeHtml(row.label)}</span>
+      <strong>${escapeHtml(row.display)}</strong>
+      <p>Ideal: ${escapeHtml(row.ideal)}</p>
+      ${growthStatusPill(row.status)}
+    </div>
+  `;
+}
+
+function rowsByLabel(checklist, labels) {
+  return labels.map((label) => checklist?.rows?.find((row) => row.label === label)).filter(Boolean);
+}
+
+function renderReportSection(result) {
+  const checklist = result.growthChecklist;
+  const report = result.report ?? {};
+  const reportScores = result.reportScores ?? {
+    overallScore: result.totalScore,
+    growthPotential: result.growthPotential,
+    riskScore: result.riskScore,
+    weighting: [],
+  };
+  const valuationRows = rowsByLabel(checklist, ["P/E Ratio", "Forward P/E", "PEG Ratio", "P/B Ratio", "P/S Ratio", "Enterprise Value / EBITDA"]);
+  const healthRows = rowsByLabel(checklist, ["Gross Profit Margin", "Operating Profit Margin", "Net Profit Margin", "EBITDA Margin", "FCF Margin", "Return on Equity"]);
+  const growthRows = rowsByLabel(checklist, ["1-Year Revenue Growth", "3-Year Revenue CAGR", "5-Year Revenue CAGR", "EPS Growth", "Return on Assets", "P/FCF"]);
+  return `
+    <article class="analyzer-detail investor-report">
+      <div class="section-title">
+        <div>
+          <p class="eyebrow">Interactive Investor Report</p>
+          <h2>${escapeHtml(result.symbol)} Stock Analysis</h2>
+        </div>
+        <span class="growth-status growth-status--${checklist?.isGrowthStock ? "pass" : "fail"}">${checklist?.isGrowthStock ? "Growth stock" : "Not confirmed"}</span>
+      </div>
+      <div class="kpi-strip">
+        ${reportMeter("Overall Score", reportScores.overallScore, "Revenue growth versus what the stock price already demands.")}
+        ${reportMeter("Growth Potential", reportScores.growthPotential, "Higher means the company has growth plus enough chart/analyst support.")}
+        ${reportMeter("Risk Analysis", reportScores.riskScore, "Higher means more things can go wrong.", true)}
+      </div>
+      <div class="score-bars">
+        ${(reportScores.weighting ?? []).map((item) => `
+          <div>
+            <div><span>${escapeHtml(item.label)} (${item.weight}%)</span><strong>${Math.round(item.score)}/100</strong></div>
+            <div class="meter-track"><span style="width:${Math.max(0, Math.min(100, Number(item.score) || 0))}%"></span></div>
+            <p>${escapeHtml(item.note)}</p>
+          </div>
+        `).join("")}
+      </div>
+      <div class="report-grid">
+        <div><span>Business Model</span><p>${escapeHtml(report.businessModel || "Business model was not available.")}</p></div>
+        <div><span>Moat and Competition</span><p>${escapeHtml(report.moat || "Moat read was not available.")}</p><strong>${(report.competitors ?? []).map(escapeHtml).join(" / ") || "n/a"}</strong></div>
+        <div><span>Technology Advantage</span><p>${escapeHtml(report.technologyAdvantage || "Technology advantage was not confirmed.")}</p></div>
+        <div><span>Catalysts: Next 12 Months</span><ul class="plain-list">${(report.catalysts ?? []).map((item) => `<li>${escapeHtml(item)}</li>`).join("") || "<li>No specific catalysts found.</li>"}</ul></div>
+        <div><span>Asymmetry Check</span><p>${escapeHtml(report.asymmetry || "Asymmetry read was not available.")}</p></div>
+        <div><span>Deals / Backlog / Partnerships</span><p>${escapeHtml(report.partnerships || "Partnership data was not available.")}</p></div>
+      </div>
+      <div class="analyzer-columns">
+        <div class="thesis-card thesis-card--bull"><h3>Bull Case</h3><p>${escapeHtml(report.bullCase || "Bull case was not available.")}</p></div>
+        <div class="thesis-card thesis-card--bear"><h3>Bear Case</h3><p>${escapeHtml(report.bearCase || "Bear case was not available.")}</p></div>
+      </div>
+      <p class="action">${escapeHtml(report.shortAnalysis || checklist?.summary || "Use this as a research starting point.")}</p>
+      <h3>Valuation</h3>
+      <div class="metric-card-grid">${valuationRows.map(metricCard).join("")}</div>
+      <h3>Financial Health</h3>
+      <div class="metric-card-grid">${healthRows.map(metricCard).join("")}</div>
+      <h3>Growth</h3>
+      <div class="metric-card-grid">${growthRows.map(metricCard).join("")}</div>
+    </article>
+  `;
+}
+
 function renderGrowthChecklist(result) {
   const checklist = result.growthChecklist;
   if (!checklist?.rows?.length) {
@@ -373,6 +468,7 @@ function renderAnalyzer(result) {
     ["Analysts", result.analysts.score, result.analysts.rating],
   ];
   target.innerHTML = `
+    ${renderReportSection(result)}
     <article class="coach-card ${analyzerDecisionClass(result.decision)} analyzer-card">
       <div class="coach-head">
         <div>

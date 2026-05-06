@@ -40,6 +40,143 @@ function metricRow(label, value, display, ideal, status, note) {
   return { label, value: round(value, 4), display, ideal, status, note };
 }
 
+function cleanSentence(text) {
+  return String(text ?? "")
+    .replace(/\s+/g, " ")
+    .trim();
+}
+
+function firstSentences(text, count = 2) {
+  const sentences = cleanSentence(text).match(/[^.!?]+[.!?]+/g) ?? [];
+  return sentences.slice(0, count).join(" ").trim();
+}
+
+function competitorSet(sector, industry, symbol) {
+  const text = `${sector ?? ""} ${industry ?? ""}`.toLowerCase();
+  const candidates = [
+    [/(semiconductor|chip)/, ["NVDA", "AMD", "AVGO"]],
+    [/(software|application|internet|cloud)/, ["MSFT", "GOOGL", "AMZN"]],
+    [/(bank|credit|financial|capital markets|fintech)/, ["JPM", "BAC", "PYPL"]],
+    [/(auto|vehicle|ev)/, ["TSLA", "GM", "F"]],
+    [/(biotech|pharma|health)/, ["LLY", "MRK", "PFE"]],
+    [/(retail|consumer|apparel)/, ["AMZN", "WMT", "TGT"]],
+    [/(entertainment|streaming|media)/, ["NFLX", "DIS", "WBD"]],
+    [/(energy|oil|gas)/, ["XOM", "CVX", "COP"]],
+  ];
+  const match = candidates.find(([pattern]) => pattern.test(text));
+  return (match?.[1] ?? ["SPY", "QQQ", "IWM"]).filter((item) => item !== symbol).slice(0, 3);
+}
+
+function technologyAdvantage(theme, profileSummary) {
+  const text = `${theme} ${profileSummary}`.toLowerCase();
+  if (text.includes("semiconductor") || text.includes("ai")) {
+    return "Possible edge comes from product performance, ecosystem, supply chain access, and developer/customer adoption. Patent-level proof is not available from Yahoo data, so treat this as a moat hypothesis.";
+  }
+  if (text.includes("software") || text.includes("platform")) {
+    return "Possible edge comes from switching costs, data, ecosystem integrations, and customer workflow lock-in. Yahoo data does not confirm unique patents.";
+  }
+  if (text.includes("financial")) {
+    return "Possible edge comes from customer acquisition, underwriting/data quality, funding cost, and product bundle. Yahoo data does not confirm a unique patent advantage.";
+  }
+  return "No clear unique technological or patent advantage is confirmed from the Yahoo Finance structured data. Treat moat claims as research items, not proven facts.";
+}
+
+function buildCatalystRead(summary, symbol) {
+  const earnings = summary.calendarEvents?.earnings;
+  const earningsDates = [earnings?.earningsDate?.[0]?.fmt, earnings?.earningsDate?.[1]?.fmt].filter(Boolean);
+  const catalysts = [];
+  if (earningsDates.length) catalysts.push(`Next earnings window shown by Yahoo: ${earningsDates.join(" to ")}.`);
+  const revenueGrowth = raw(summary.financialData?.revenueGrowth);
+  const targetMeanPrice = raw(summary.financialData?.targetMeanPrice);
+  const currentPrice = raw(summary.financialData?.currentPrice) ?? raw(summary.price?.regularMarketPrice);
+  if (revenueGrowth > 0.2) catalysts.push("Growth itself is a catalyst if management keeps beating expectations.");
+  if (Number.isFinite(targetMeanPrice) && Number.isFinite(currentPrice) && targetMeanPrice > currentPrice) {
+    catalysts.push("Analyst target is above current price, so estimate revisions matter.");
+  }
+  if (!catalysts.length) {
+    catalysts.push(`No specific product launch, approval, or partnership catalyst was available from Yahoo structured data for ${symbol}.`);
+  }
+  return catalysts;
+}
+
+function buildAsymmetryRead(growthChecklist, valuation, technical) {
+  const growthPass = growthChecklist.passCount >= 7 && growthChecklist.isGrowthStock;
+  const valuationOkay = valuation.score >= 55;
+  const chartOkay = technical.score >= 60;
+  if (growthPass && valuationOkay && chartOkay) {
+    return "Asymmetry looks favorable: growth is strong, valuation is not completely broken, and the chart is supporting the thesis.";
+  }
+  if (growthPass && !valuationOkay) {
+    return "Upside ceiling exists, but valuation is the risk. The stock needs growth to stay very strong or the downside floor can move lower.";
+  }
+  if (!growthPass && valuationOkay) {
+    return "Valuation may give some floor, but the high-growth ceiling is not confirmed by the checklist.";
+  }
+  return "Asymmetry is not clearly favorable yet. Either growth, valuation, or price trend needs to improve before this becomes a strong risk/reward setup.";
+}
+
+function buildReportScores(growthChecklist, technical, fundamentals, valuation, analysts, riskScore) {
+  const growthRows = ["1-Year Revenue Growth", "3-Year Revenue CAGR", "5-Year Revenue CAGR", "EPS Growth"]
+    .map((label) => growthChecklist.rows.find((row) => row.label === label))
+    .filter(Boolean);
+  const growthBase = growthRows.length
+    ? growthRows.reduce((sum, row) => sum + (row.status === "pass" ? 100 : row.status === "near" ? 65 : row.status === "fail" ? 20 : 35), 0) / growthRows.length
+    : 35;
+  const marginRows = ["Gross Profit Margin", "Operating Profit Margin", "Net Profit Margin", "EBITDA Margin", "FCF Margin", "Return on Equity", "Return on Assets"]
+    .map((label) => growthChecklist.rows.find((row) => row.label === label))
+    .filter(Boolean);
+  const qualityBase = marginRows.length
+    ? marginRows.reduce((sum, row) => sum + (row.status === "pass" ? 100 : row.status === "near" ? 65 : row.status === "fail" ? 25 : 40), 0) / marginRows.length
+    : fundamentals.score;
+  const growthPotential = clamp(Math.round(growthBase * 0.5 + technical.score * 0.25 + analysts.score * 0.15 + (100 - riskScore) * 0.1));
+  const valuationLeg = valuation.score;
+  const qualityLeg = clamp(Math.round(qualityBase * 0.45 + fundamentals.score * 0.35 + technical.score * 0.2));
+  const overallScore = clamp(Math.round(growthBase * 0.35 + valuationLeg * 0.35 + qualityLeg * 0.3));
+  return {
+    growthPotential,
+    overallScore,
+    riskScore,
+    weighting: [
+      { label: "Growth vs Revenue", weight: 35, score: round(growthBase), note: "Revenue and EPS growth versus the growth-stock thresholds." },
+      { label: "Price / Valuation", weight: 35, score: round(valuationLeg), note: "How much the market is already charging for that growth." },
+      { label: "Quality + Trend", weight: 30, score: round(qualityLeg), note: "Margins, returns, balance sheet, analyst tone, and chart health." },
+    ],
+  };
+}
+
+function buildBusinessReport(symbol, companyName, sector, industry, theme, summary, growthChecklist, technical, fundamentals, valuation, analysts, riskScore) {
+  const profileSummary = summary.assetProfile?.longBusinessSummary ?? "";
+  const productRead = firstSentences(profileSummary, 2) || `${companyName} operates in ${sector} / ${industry}. Yahoo did not provide a full business summary.`;
+  const catalystRead = buildCatalystRead(summary, symbol);
+  const businessModel = theme === "diversified fund / ETF"
+    ? "It makes money as a fund product by tracking a basket/index and charging fund expenses, while investors get exposure to the underlying holdings."
+    : `It makes money by selling products or services tied to ${industry || sector}. In plain English: ${productRead}`;
+  const bullParts = [];
+  const bearParts = [];
+  if (growthChecklist.isGrowthStock) bullParts.push("growth is strong enough to qualify as a growth-stock candidate");
+  else bearParts.push("growth is not fully confirmed by the checklist");
+  if (technical.score >= 65) bullParts.push("the chart trend is supportive");
+  else bearParts.push("the chart is not giving a clean confirmation");
+  if (valuation.score >= 55) bullParts.push("valuation is not fighting the story too hard");
+  else bearParts.push("valuation or missing valuation support can limit upside");
+  if (fundamentals.score >= 55) bullParts.push("business quality is acceptable");
+  else bearParts.push("fundamental quality still needs proof");
+
+  return {
+    businessModel,
+    coreProduct: productRead,
+    moat: `The likely moat is ${theme === "diversified fund / ETF" ? "diversification, brand, liquidity, and low-cost access" : "brand, product ecosystem, customer relationships, execution quality, and scale"}. This dashboard does not claim a proven patent moat unless Yahoo data explicitly supports it.`,
+    competitors: competitorSet(sector, industry, symbol),
+    technologyAdvantage: technologyAdvantage(theme, profileSummary),
+    catalysts: catalystRead,
+    asymmetry: buildAsymmetryRead(growthChecklist, valuation, technical),
+    partnerships: "Yahoo structured data does not reliably list fresh deals, backlogs, or government/mega-cap partnerships. If a thesis depends on an NVDA/MSFT/government deal, confirm it from company press releases before buying.",
+    bullCase: bullParts.length ? `Bull case: ${bullParts.join(", ")}.` : "Bull case: the setup needs more proof before it becomes compelling.",
+    bearCase: bearParts.length ? `Bear case: ${bearParts.join(", ")}.` : "Bear case: the main risk is paying too much after a strong move.",
+    shortAnalysis: `${companyName} is a ${theme} candidate. Overall, I would treat it as ${growthChecklist.isGrowthStock ? "a growth stock candidate" : "not yet a confirmed growth stock"} with risk around ${riskScore}/100. The key is whether revenue growth can stay ahead of the stock's valuation. Analyst tone is ${analysts.rating.toLowerCase()}.`,
+  };
+}
+
 function scoreTechnical(symbol, rows, benchmarkRows) {
   if (rows.length < 160) {
     return { score: 0, rating: "Weak", reasons: ["not enough price history"], risks: ["not enough price history"] };
@@ -463,6 +600,7 @@ export async function analyzeStock(symbolInput) {
       "earningsTrend",
       "assetProfile",
       "incomeStatementHistory",
+      "calendarEvents",
     ]),
   ]);
 
@@ -500,6 +638,8 @@ export async function analyzeStock(symbolInput) {
     : `${companyName} is classified in ${sector} / ${industry}. For a beginner, think of it as a ${theme} name, then judge whether growth, profits, balance sheet, valuation, and chart all support owning it.`;
   const growthChecklist = buildGrowthChecklist(summary);
   const riskScore = growthRiskScore(growthChecklist, technical, fundamentals, valuation, analysts);
+  const reportScores = buildReportScores(growthChecklist, technical, fundamentals, valuation, analysts, riskScore);
+  const report = buildBusinessReport(symbol, companyName, sector, industry, theme, summary, growthChecklist, technical, fundamentals, valuation, analysts, riskScore);
 
   return {
     symbol,
@@ -532,6 +672,9 @@ export async function analyzeStock(symbolInput) {
     },
     growthChecklist,
     riskScore,
+    growthPotential: reportScores.growthPotential,
+    reportScores,
+    report,
     managerRead: `${decision}: ${symbol} scores ${totalScore}/100. Technicals are ${technical.rating.toLowerCase()}, fundamentals are ${fundamentals.rating.toLowerCase()}, valuation is ${valuation.rating.toLowerCase()}, and analyst sentiment is ${analysts.rating.toLowerCase()}.`,
     asOf: new Date().toISOString(),
   };
