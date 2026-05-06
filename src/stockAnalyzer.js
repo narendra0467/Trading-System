@@ -72,7 +72,9 @@ function scoreTechnical(symbol, rows, benchmarkRows) {
     reasons.push("volume is expanding");
   }
 
-  const stop = Math.max(latest.ema50, latest.close - 2 * latest.atr14);
+  const stopCandidates = [latest.close - 2 * latest.atr14];
+  if (latest.ema50 < latest.close) stopCandidates.push(latest.ema50);
+  const stop = Math.max(...stopCandidates);
   const target = latest.close + 3 * (latest.close - stop);
   return {
     score: clamp(Math.round(score + 35)),
@@ -271,6 +273,57 @@ function finalDecision(totalScore, technical, fundamentals) {
   return "SELL / EXIT RISK";
 }
 
+function businessTheme(sector, industry, name = "") {
+  const text = `${sector ?? ""} ${industry ?? ""} ${name ?? ""}`.toLowerCase();
+  if (text.includes("semiconductor")) return "AI / semiconductor infrastructure";
+  if (text.includes("software") || text.includes("internet") || text.includes("information technology")) return "software / internet platform";
+  if (text.includes("bank") || text.includes("financial") || text.includes("capital markets")) return "financial services";
+  if (text.includes("biotech") || text.includes("pharmaceutical") || text.includes("health")) return "healthcare / biotech";
+  if (text.includes("auto") || text.includes("vehicle")) return "autos / transportation";
+  if (text.includes("consumer")) return "consumer brand";
+  if (text.includes("energy") || text.includes("oil") || text.includes("gas")) return "energy";
+  if (text.includes("real estate")) return "real estate";
+  if (text.includes("etf") || text.includes("fund") || text.includes("trust")) return "diversified fund / ETF";
+  return sector || "general business";
+}
+
+function beginnerRead(decision, technical, fundamentals, valuation, theme) {
+  if (theme === "diversified fund / ETF") {
+    return "Beginner read: this is a basket, not one company. Judge it by index exposure, cost, diversification, and overlap with what you already own.";
+  }
+  if (decision === "BUY") {
+    return "Beginner read: this is investable quality with a supportive chart. I would still buy in stages, not all at once.";
+  }
+  if (decision === "WATCH / STARTER BUY") {
+    return "Beginner read: interesting, but not perfect. A small starter position or watchlist spot makes more sense than a full-size buy.";
+  }
+  if (decision === "HOLD / WAIT") {
+    return "Beginner read: okay to study or hold if you already own it, but I would wait for either better price action or a better valuation before adding.";
+  }
+  if (decision === "AVOID NEW BUY") {
+    return "Beginner read: do not rush. Something important is not lined up yet, usually chart, business quality, or valuation.";
+  }
+  return "Beginner read: avoid or reduce risk until the business and chart improve.";
+}
+
+function ownershipStyle(totalScore, fundamentals, valuation, theme) {
+  if (theme === "diversified fund / ETF") return "Diversified fund / ETF building block";
+  if (fundamentals.score >= 70 && totalScore >= 75) return "Core compounder candidate";
+  if (fundamentals.score >= 55 && valuation.score >= 55) return "Quality watchlist candidate";
+  if (fundamentals.score < 35) return "Speculative / trading-only candidate";
+  return "Tactical position, not automatic long-term core";
+}
+
+function buildInvestorChecklist(decision, technical, fundamentals, valuation, analysts) {
+  const checklist = [];
+  checklist.push(`Action: ${decision}. Use the score as a filter, then read the business and risk notes.`);
+  if (technical.stop && technical.target) checklist.push(`Risk plan: chart danger level near ${technical.stop}; first upside target near ${technical.target}.`);
+  if (fundamentals.rating) checklist.push(`Business quality: ${fundamentals.rating}. Look for revenue growth, margins, cash flow, and debt risk.`);
+  if (valuation.rating) checklist.push(`Valuation: ${valuation.rating}. Great companies can still be bad buys if the price is stretched.`);
+  if (analysts.recommendationKey && analysts.recommendationKey !== "n/a") checklist.push(`Analyst tone: ${analysts.recommendationKey}; use this as background, not as a blind buy signal.`);
+  return checklist;
+}
+
 export async function analyzeStock(symbolInput) {
   const symbol = symbolInput.trim().toUpperCase();
   if (!symbol) throw new Error("Ticker is required");
@@ -286,6 +339,7 @@ export async function analyzeStock(symbolInput) {
   const valuation = scoreValuation(summary);
   const analysts = scoreAnalysts(summary);
   const price = summary.price ?? {};
+  const profile = summary.assetProfile ?? {};
   const totalScore = Math.round(
     technical.score * 0.35 +
     fundamentals.score * 0.35 +
@@ -305,10 +359,17 @@ export async function analyzeStock(symbolInput) {
     ...valuation.risks,
     ...analysts.risks,
   ].slice(0, 7);
+  const sector = profile.sector ?? fundamentals.sector ?? "n/a";
+  const industry = profile.industry ?? fundamentals.industry ?? "n/a";
+  const companyName = price.longName ?? price.shortName ?? symbol;
+  const theme = businessTheme(sector, industry, companyName);
+  const plainEnglish = theme === "diversified fund / ETF"
+    ? `${companyName} is a diversified fund/ETF. For a beginner, think about what index or basket it tracks, fees, concentration, and whether it overlaps with funds you already own.`
+    : `${companyName} is classified in ${sector} / ${industry}. For a beginner, think of it as a ${theme} name, then judge whether growth, profits, balance sheet, valuation, and chart all support owning it.`;
 
   return {
     symbol,
-    name: price.longName ?? price.shortName ?? symbol,
+    name: companyName,
     exchange: price.exchangeName ?? price.fullExchangeName ?? "n/a",
     currency: price.currency ?? "USD",
     decision,
@@ -323,6 +384,18 @@ export async function analyzeStock(symbolInput) {
     analysts,
     strengths,
     risks,
+    business: {
+      sector,
+      industry,
+      country: profile.country ?? "n/a",
+      employees: raw(profile.fullTimeEmployees),
+      website: profile.website ?? "",
+      theme,
+      plainEnglish,
+      ownershipStyle: ownershipStyle(totalScore, fundamentals, valuation, theme),
+      beginnerRead: beginnerRead(decision, technical, fundamentals, valuation, theme),
+      investorChecklist: buildInvestorChecklist(decision, technical, fundamentals, valuation, analysts),
+    },
     managerRead: `${decision}: ${symbol} scores ${totalScore}/100. Technicals are ${technical.rating.toLowerCase()}, fundamentals are ${fundamentals.rating.toLowerCase()}, valuation is ${valuation.rating.toLowerCase()}, and analyst sentiment is ${analysts.rating.toLowerCase()}.`,
     asOf: new Date().toISOString(),
   };

@@ -307,6 +307,11 @@ function bigMoney(value) {
   return money(number);
 }
 
+function wholeNumber(value) {
+  const number = Number(value);
+  return Number.isFinite(number) ? number.toLocaleString() : "n/a";
+}
+
 function renderAnalyzer(result) {
   const target = document.getElementById("analyzer-result");
   if (!result) {
@@ -329,6 +334,18 @@ function renderAnalyzer(result) {
         <strong>Grade ${result.qualityGrade} / ${result.totalScore}/100</strong>
       </div>
       <p class="action">${result.managerRead}</p>
+      <article class="business-read">
+        <div>
+          <span>Business Theme</span>
+          <strong>${escapeHtml(result.business?.theme || "n/a")}</strong>
+          <p>${escapeHtml(result.business?.plainEnglish || "Business profile was not available from the data source.")}</p>
+        </div>
+        <div>
+          <span>Beginner View</span>
+          <strong>${escapeHtml(result.business?.ownershipStyle || "Review candidate")}</strong>
+          <p>${escapeHtml(result.business?.beginnerRead || "Use this as a research starting point, not a blind trade.")}</p>
+        </div>
+      </article>
       <div class="explain-grid">
         <div><span>Price</span><strong>${money(result.currentPrice)}</strong></div>
         <div><span>Market Cap</span><strong>${bigMoney(result.marketCap)}</strong></div>
@@ -356,7 +373,30 @@ function renderAnalyzer(result) {
       </div>
     </article>
     <article class="analyzer-detail">
-      <h2>Deep Read</h2>
+      <h2>Investor Read</h2>
+      <div class="explain-grid">
+        <div><span>Company</span><strong>${escapeHtml(result.name)}</strong></div>
+        <div><span>Sector</span><strong>${escapeHtml(result.business?.sector || result.fundamentals.sector || "n/a")}</strong></div>
+        <div><span>Industry</span><strong>${escapeHtml(result.business?.industry || result.fundamentals.industry || "n/a")}</strong></div>
+        <div><span>Employees</span><strong>${wholeNumber(result.business?.employees)}</strong></div>
+      </div>
+      <div class="analyzer-columns">
+        <div>
+          <h3>Beginner Checklist</h3>
+          <ul class="plain-list">${(result.business?.investorChecklist ?? []).map((item) => `<li>${escapeHtml(item)}</li>`).join("") || "<li>Checklist was not available.</li>"}</ul>
+        </div>
+        <div>
+          <h3>How I Would Use It</h3>
+          <ul class="plain-list">
+            <li>Do not buy only because the grade is high. Confirm the business, price, and chart.</li>
+            <li>For long-term investing, prefer high fundamentals plus fair valuation. For trades, respect the stop.</li>
+            <li>If you cannot explain how the company makes money, keep it on the watchlist until you can.</li>
+          </ul>
+        </div>
+      </div>
+    </article>
+    <article class="analyzer-detail">
+      <h2>Score Breakdown</h2>
       <div class="explain-grid">
         <div><span>Revenue Growth</span><strong>${pct(result.fundamentals.revenueGrowth)}</strong></div>
         <div><span>Operating Margin</span><strong>${pct(result.fundamentals.operatingMargins)}</strong></div>
