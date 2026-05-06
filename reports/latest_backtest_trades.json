@@ -1199,8 +1199,8 @@
         "entryDate": "2026-05-01",
         "exitDate": "2026-05-06",
         "entry": 527.25,
-        "exit": 572.6,
-        "returnPct": 8.6,
+        "exit": 573.16,
+        "returnPct": 8.71,
         "exitReason": "time"
       }
     ]
@@ -4097,9 +4097,189 @@
         "entryDate": "2026-05-01",
         "exitDate": "2026-05-06",
         "entry": 719.17,
-        "exit": 738.65,
-        "returnPct": 2.71,
+        "exit": 739.54,
+        "returnPct": 2.83,
         "exitReason": "time"
+      }
+    ]
+  },
+  {
+    "symbol": "NVDA",
+    "trades": 19,
+    "winRate": 42.1,
+    "avgReturnPct": 1.19,
+    "profitFactor": 1.48,
+    "tradeLog": [
+      {
+        "symbol": "NVDA",
+        "entryDate": "2021-12-27",
+        "exitDate": "2022-01-04",
+        "entry": 29.66,
+        "exit": 29.29,
+        "returnPct": -1.25,
+        "exitReason": "trend_loss"
+      },
+      {
+        "symbol": "NVDA",
+        "entryDate": "2023-02-02",
+        "exitDate": "2023-02-21",
+        "entry": 21,
+        "exit": 20.66,
+        "returnPct": -1.64,
+        "exitReason": "trend_loss"
+      },
+      {
+        "symbol": "NVDA",
+        "entryDate": "2023-03-15",
+        "exitDate": "2023-03-22",
+        "entry": 23.76,
+        "exit": 27.04,
+        "returnPct": 13.81,
+        "exitReason": "target"
+      },
+      {
+        "symbol": "NVDA",
+        "entryDate": "2023-04-20",
+        "exitDate": "2023-04-21",
+        "entry": 27.67,
+        "exit": 26.74,
+        "returnPct": -3.37,
+        "exitReason": "stop"
+      },
+      {
+        "symbol": "NVDA",
+        "entryDate": "2023-06-14",
+        "exitDate": "2023-07-13",
+        "entry": 40.82,
+        "exit": 45.78,
+        "returnPct": 12.14,
+        "exitReason": "target"
+      },
+      {
+        "symbol": "NVDA",
+        "entryDate": "2023-07-28",
+        "exitDate": "2023-08-02",
+        "entry": 46.67,
+        "exit": 43.5,
+        "returnPct": -6.78,
+        "exitReason": "stop"
+      },
+      {
+        "symbol": "NVDA",
+        "entryDate": "2023-09-01",
+        "exitDate": "2023-09-07",
+        "entry": 49.76,
+        "exit": 46.32,
+        "returnPct": -6.92,
+        "exitReason": "stop"
+      },
+      {
+        "symbol": "NVDA",
+        "entryDate": "2023-12-11",
+        "exitDate": "2023-12-11",
+        "entry": 47.49,
+        "exit": 46.05,
+        "returnPct": -3.04,
+        "exitReason": "stop"
+      },
+      {
+        "symbol": "NVDA",
+        "entryDate": "2024-02-23",
+        "exitDate": "2024-03-07",
+        "entry": 80.79,
+        "exit": 90.15,
+        "returnPct": 11.59,
+        "exitReason": "target"
+      },
+      {
+        "symbol": "NVDA",
+        "entryDate": "2024-04-12",
+        "exitDate": "2024-04-17",
+        "entry": 89.7,
+        "exit": 85.4,
+        "returnPct": -4.79,
+        "exitReason": "stop"
+      },
+      {
+        "symbol": "NVDA",
+        "entryDate": "2024-05-17",
+        "exitDate": "2024-05-23",
+        "entry": 94.37,
+        "exit": 103.37,
+        "returnPct": 9.54,
+        "exitReason": "target"
+      },
+      {
+        "symbol": "NVDA",
+        "entryDate": "2024-07-05",
+        "exitDate": "2024-07-17",
+        "entry": 127.38,
+        "exit": 119.7,
+        "returnPct": -6.03,
+        "exitReason": "stop"
+      },
+      {
+        "symbol": "NVDA",
+        "entryDate": "2024-10-07",
+        "exitDate": "2024-10-14",
+        "entry": 124.99,
+        "exit": 139.21,
+        "returnPct": 11.38,
+        "exitReason": "target"
+      },
+      {
+        "symbol": "NVDA",
+        "entryDate": "2024-11-11",
+        "exitDate": "2024-11-15",
+        "entry": 148.68,
+        "exit": 141.06,
+        "returnPct": -5.13,
+        "exitReason": "stop"
+      },
+      {
+        "symbol": "NVDA",
+        "entryDate": "2025-06-04",
+        "exitDate": "2025-06-26",
+        "entry": 142.19,
+        "exit": 155.27,
+        "returnPct": 9.2,
+        "exitReason": "target"
+      },
+      {
+        "symbol": "NVDA",
+        "entryDate": "2025-07-25",
+        "exitDate": "2025-08-19",
+        "entry": 173.61,
+        "exit": 175.64,
+        "returnPct": 1.17,
+        "exitReason": "trend_loss"
+      },
+      {
+        "symbol": "NVDA",
+        "entryDate": "2025-08-29",
+        "exitDate": "2025-09-02",
+        "entry": 178.11,
+        "exit": 172.54,
+        "returnPct": -3.13,
+        "exitReason": "stop"
+      },
+      {
+        "symbol": "NVDA",
+        "entryDate": "2025-10-09",
+        "exitDate": "2025-10-14",
+        "entry": 192.23,
+        "exit": 181.57,
+        "returnPct": -5.55,
+        "exitReason": "stop"
+      },
+      {
+        "symbol": "NVDA",
+        "entryDate": "2026-01-20",
+        "exitDate": "2026-01-20",
+        "entry": 181.9,
+        "exit": 184.62,
+        "returnPct": 1.5,
+        "exitReason": "stop"
       }
     ]
   },
@@ -4107,8 +4287,8 @@
     "symbol": "FIX",
     "trades": 24,
     "winRate": 37.5,
-    "avgReturnPct": 1.12,
-    "profitFactor": 1.49,
+    "avgReturnPct": 1.08,
+    "profitFactor": 1.47,
     "tradeLog": [
       {
         "symbol": "FIX",
@@ -4322,189 +4502,9 @@
         "entryDate": "2026-04-28",
         "exitDate": "2026-05-06",
         "entry": 1740,
-        "exit": 2014.06,
-        "returnPct": 15.75,
+        "exit": 1995.8,
+        "returnPct": 14.7,
         "exitReason": "time"
-      }
-    ]
-  },
-  {
-    "symbol": "NVDA",
-    "trades": 19,
-    "winRate": 42.1,
-    "avgReturnPct": 1.19,
-    "profitFactor": 1.48,
-    "tradeLog": [
-      {
-        "symbol": "NVDA",
-        "entryDate": "2021-12-27",
-        "exitDate": "2022-01-04",
-        "entry": 29.66,
-        "exit": 29.29,
-        "returnPct": -1.25,
-        "exitReason": "trend_loss"
-      },
-      {
-        "symbol": "NVDA",
-        "entryDate": "2023-02-02",
-        "exitDate": "2023-02-21",
-        "entry": 21,
-        "exit": 20.66,
-        "returnPct": -1.64,
-        "exitReason": "trend_loss"
-      },
-      {
-        "symbol": "NVDA",
-        "entryDate": "2023-03-15",
-        "exitDate": "2023-03-22",
-        "entry": 23.76,
-        "exit": 27.04,
-        "returnPct": 13.81,
-        "exitReason": "target"
-      },
-      {
-        "symbol": "NVDA",
-        "entryDate": "2023-04-20",
-        "exitDate": "2023-04-21",
-        "entry": 27.67,
-        "exit": 26.74,
-        "returnPct": -3.37,
-        "exitReason": "stop"
-      },
-      {
-        "symbol": "NVDA",
-        "entryDate": "2023-06-14",
-        "exitDate": "2023-07-13",
-        "entry": 40.82,
-        "exit": 45.78,
-        "returnPct": 12.14,
-        "exitReason": "target"
-      },
-      {
-        "symbol": "NVDA",
-        "entryDate": "2023-07-28",
-        "exitDate": "2023-08-02",
-        "entry": 46.67,
-        "exit": 43.5,
-        "returnPct": -6.78,
-        "exitReason": "stop"
-      },
-      {
-        "symbol": "NVDA",
-        "entryDate": "2023-09-01",
-        "exitDate": "2023-09-07",
-        "entry": 49.76,
-        "exit": 46.32,
-        "returnPct": -6.92,
-        "exitReason": "stop"
-      },
-      {
-        "symbol": "NVDA",
-        "entryDate": "2023-12-11",
-        "exitDate": "2023-12-11",
-        "entry": 47.49,
-        "exit": 46.05,
-        "returnPct": -3.04,
-        "exitReason": "stop"
-      },
-      {
-        "symbol": "NVDA",
-        "entryDate": "2024-02-23",
-        "exitDate": "2024-03-07",
-        "entry": 80.79,
-        "exit": 90.15,
-        "returnPct": 11.59,
-        "exitReason": "target"
-      },
-      {
-        "symbol": "NVDA",
-        "entryDate": "2024-04-12",
-        "exitDate": "2024-04-17",
-        "entry": 89.7,
-        "exit": 85.4,
-        "returnPct": -4.79,
-        "exitReason": "stop"
-      },
-      {
-        "symbol": "NVDA",
-        "entryDate": "2024-05-17",
-        "exitDate": "2024-05-23",
-        "entry": 94.37,
-        "exit": 103.37,
-        "returnPct": 9.54,
-        "exitReason": "target"
-      },
-      {
-        "symbol": "NVDA",
-        "entryDate": "2024-07-05",
-        "exitDate": "2024-07-17",
-        "entry": 127.38,
-        "exit": 119.7,
-        "returnPct": -6.03,
-        "exitReason": "stop"
-      },
-      {
-        "symbol": "NVDA",
-        "entryDate": "2024-10-07",
-        "exitDate": "2024-10-14",
-        "entry": 124.99,
-        "exit": 139.21,
-        "returnPct": 11.38,
-        "exitReason": "target"
-      },
-      {
-        "symbol": "NVDA",
-        "entryDate": "2024-11-11",
-        "exitDate": "2024-11-15",
-        "entry": 148.68,
-        "exit": 141.06,
-        "returnPct": -5.13,
-        "exitReason": "stop"
-      },
-      {
-        "symbol": "NVDA",
-        "entryDate": "2025-06-04",
-        "exitDate": "2025-06-26",
-        "entry": 142.19,
-        "exit": 155.27,
-        "returnPct": 9.2,
-        "exitReason": "target"
-      },
-      {
-        "symbol": "NVDA",
-        "entryDate": "2025-07-25",
-        "exitDate": "2025-08-19",
-        "entry": 173.61,
-        "exit": 175.64,
-        "returnPct": 1.17,
-        "exitReason": "trend_loss"
-      },
-      {
-        "symbol": "NVDA",
-        "entryDate": "2025-08-29",
-        "exitDate": "2025-09-02",
-        "entry": 178.11,
-        "exit": 172.54,
-        "returnPct": -3.13,
-        "exitReason": "stop"
-      },
-      {
-        "symbol": "NVDA",
-        "entryDate": "2025-10-09",
-        "exitDate": "2025-10-14",
-        "entry": 192.23,
-        "exit": 181.57,
-        "returnPct": -5.55,
-        "exitReason": "stop"
-      },
-      {
-        "symbol": "NVDA",
-        "entryDate": "2026-01-20",
-        "exitDate": "2026-01-20",
-        "entry": 181.9,
-        "exit": 184.62,
-        "returnPct": 1.5,
-        "exitReason": "stop"
       }
     ]
   },
