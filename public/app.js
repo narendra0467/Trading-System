@@ -312,6 +312,54 @@ function wholeNumber(value) {
   return Number.isFinite(number) ? number.toLocaleString() : "n/a";
 }
 
+function growthStatusPill(status) {
+  return `<span class="growth-status growth-status--${status || "unavailable"}">${String(status || "unavailable").toUpperCase()}</span>`;
+}
+
+function renderGrowthChecklist(result) {
+  const checklist = result.growthChecklist;
+  if (!checklist?.rows?.length) {
+    return `<article class="analyzer-detail"><h2>Growth Checklist</h2><p class="empty">Growth checklist data was not available.</p></article>`;
+  }
+  return `
+    <article class="analyzer-detail growth-checklist">
+      <div class="section-title">
+        <div>
+          <p class="eyebrow">Growth Stock Framework</p>
+          <h2>Growth Checklist</h2>
+        </div>
+        <span class="growth-status growth-status--${checklist.isGrowthStock ? "pass" : "fail"}">${escapeHtml(checklist.verdict)}</span>
+      </div>
+      <div class="growth-summary">
+        <div><span>Risk Score</span><strong>${result.riskScore ?? "n/a"}/100</strong><p>Higher means riskier.</p></div>
+        <div><span>Pass</span><strong>${checklist.passCount}</strong><p>Metrics inside ideal range.</p></div>
+        <div><span>Near</span><strong>${checklist.nearCount}</strong><p>Close, but not perfect.</p></div>
+        <div><span>Fail</span><strong>${checklist.failCount}</strong><p>Outside ideal range.</p></div>
+      </div>
+      <p class="action">${escapeHtml(checklist.summary)}</p>
+      <div class="growth-filters">
+        ${["all", "pass", "near", "fail", "unavailable"].map((filter) => `<button type="button" data-growth-filter="${filter}">${filter}</button>`).join("")}
+      </div>
+      <div class="table-wrap growth-table">
+        <table>
+          <thead><tr><th>Metric</th><th>Value</th><th>Ideal</th><th>Status</th><th>Note</th></tr></thead>
+          <tbody>
+            ${checklist.rows.map((row) => `
+              <tr data-growth-row="${row.status}">
+                <td><strong>${escapeHtml(row.label)}</strong></td>
+                <td>${escapeHtml(row.display)}</td>
+                <td>${escapeHtml(row.ideal)}</td>
+                <td>${growthStatusPill(row.status)}</td>
+                <td>${escapeHtml(row.note)}</td>
+              </tr>
+            `).join("")}
+          </tbody>
+        </table>
+      </div>
+    </article>
+  `;
+}
+
 function renderAnalyzer(result) {
   const target = document.getElementById("analyzer-result");
   if (!result) {
@@ -372,6 +420,7 @@ function renderAnalyzer(result) {
         </div>
       </div>
     </article>
+    ${renderGrowthChecklist(result)}
     <article class="analyzer-detail">
       <h2>Investor Read</h2>
       <div class="explain-grid">
@@ -415,6 +464,16 @@ function renderAnalyzer(result) {
       </div>
     </article>
   `;
+  document.querySelectorAll("[data-growth-filter]").forEach((button) => {
+    button.addEventListener("click", () => {
+      const filter = button.dataset.growthFilter;
+      document.querySelectorAll("[data-growth-filter]").forEach((item) => item.classList.toggle("active", item === button));
+      document.querySelectorAll("[data-growth-row]").forEach((row) => {
+        row.style.display = filter === "all" || row.dataset.growthRow === filter ? "" : "none";
+      });
+    });
+  });
+  document.querySelector('[data-growth-filter="all"]')?.classList.add("active");
 }
 
 let analyzerCachePromise = null;

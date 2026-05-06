@@ -4,9 +4,40 @@ import { fetchHistory, fetchQuoteSummary } from "./marketData.js";
 const round = (value, digits = 2) => Number.isFinite(value) ? Number(value.toFixed(digits)) : null;
 const raw = (field) => field?.raw ?? null;
 const fmt = (field) => field?.fmt ?? null;
+const pctRaw = (field) => {
+  const value = raw(field);
+  return Number.isFinite(value) ? value * 100 : null;
+};
 
 function clamp(value, min = 0, max = 100) {
   return Math.max(min, Math.min(max, value));
+}
+
+function metricStatus(value, min, max = Infinity) {
+  if (!Number.isFinite(value)) return "unavailable";
+  if (value >= min && value <= max) return "pass";
+  const nearLow = value < min && value >= min * 0.85;
+  const nearHigh = Number.isFinite(max) && value > max && value <= max * 1.15;
+  return nearLow || nearHigh ? "near" : "fail";
+}
+
+function belowMetricStatus(value, max) {
+  if (!Number.isFinite(value)) return "unavailable";
+  return value <= max ? "pass" : value <= max * 1.15 ? "near" : "fail";
+}
+
+function formatMetric(value, suffix = "%") {
+  if (!Number.isFinite(value)) return "Unavailable";
+  return `${round(value, 2)}${suffix}`;
+}
+
+function cagr(start, end, years) {
+  if (!Number.isFinite(start) || !Number.isFinite(end) || start <= 0 || end <= 0 || years <= 0) return null;
+  return (end / start) ** (1 / years) - 1;
+}
+
+function metricRow(label, value, display, ideal, status, note) {
+  return { label, value: round(value, 4), display, ideal, status, note };
 }
 
 function scoreTechnical(symbol, rows, benchmarkRows) {
@@ -324,6 +355,98 @@ function buildInvestorChecklist(decision, technical, fundamentals, valuation, an
   return checklist;
 }
 
+function buildGrowthChecklist(summary) {
+  const financial = summary.financialData ?? {};
+  const stats = summary.defaultKeyStatistics ?? {};
+  const detail = summary.summaryDetail ?? {};
+  const price = summary.price ?? {};
+  const marketCap = raw(price.marketCap) ?? raw(detail.marketCap);
+  const totalRevenue = raw(financial.totalRevenue);
+  const annual = (summary.incomeStatementHistory?.incomeStatementHistory ?? [])
+    .map((item) => ({ date: item.endDate?.fmt, revenue: raw(item.totalRevenue), netIncome: raw(item.netIncome) }))
+    .filter((item) => Number.isFinite(item.revenue))
+    .sort((a, b) => String(a.date).localeCompare(String(b.date)));
+  const latestAnnual = annual.at(-1);
+  const oldestAnnual = annual[0];
+  const revenueCagr = latestAnnual && oldestAnnual ? cagr(oldestAnnual.revenue, latestAnnual.revenue, annual.length - 1) : null;
+  const revenueCagrPct = Number.isFinite(revenueCagr) ? revenueCagr * 100 : null;
+  const trendYear = summary.earningsTrend?.trend?.find((item) => item.period === "0y");
+  const revenueGrowthEstimate = raw(trendYear?.revenueEstimate?.growth);
+  const epsGrowthEstimate = raw(trendYear?.earningsEstimate?.growth) ?? raw(financial.earningsGrowth);
+  const ebitda = raw(financial.ebitda);
+  const freeCashflow = raw(financial.freeCashflow);
+  const enterpriseValue = raw(stats.enterpriseValue);
+  const grossMargin = pctRaw(financial.grossMargins);
+  const operatingMargin = pctRaw(financial.operatingMargins);
+  const profitMarginRaw = raw(stats.profitMargins) ?? raw(financial.profitMargins);
+  const netMargin = Number.isFinite(profitMarginRaw) ? profitMarginRaw * 100 : null;
+  const revenueGrowthRaw = raw(financial.revenueGrowth) ?? revenueGrowthEstimate;
+  const revenueGrowth1y = Number.isFinite(revenueGrowthRaw) ? revenueGrowthRaw * 100 : null;
+  const epsGrowth = Number.isFinite(epsGrowthEstimate) ? epsGrowthEstimate * 100 : null;
+  const ebitdaMargin = totalRevenue && ebitda ? (ebitda / totalRevenue) * 100 : null;
+  const fcfMargin = totalRevenue && freeCashflow ? (freeCashflow / totalRevenue) * 100 : null;
+  const trailingPE = raw(detail.trailingPE) ?? raw(stats.trailingPE);
+  const forwardPE = raw(stats.forwardPE);
+  const peg = raw(stats.pegRatio);
+  const pb = raw(stats.priceToBook);
+  const ps = raw(stats.priceToSalesTrailing12Months) ?? (marketCap && totalRevenue ? marketCap / totalRevenue : null);
+  const evToEbitda = raw(stats.enterpriseToEbitda) ?? (enterpriseValue && ebitda ? enterpriseValue / ebitda : null);
+  const pToFcf = marketCap && freeCashflow ? marketCap / freeCashflow : null;
+  const roe = pctRaw(financial.returnOnEquity);
+  const roa = pctRaw(financial.returnOnAssets);
+
+  const rows = [
+    metricRow("Gross Profit Margin", grossMargin, formatMetric(grossMargin), "20% - 50%", metricStatus(grossMargin, 20, 50), "For banks/fintech/lenders this can be less comparable than for normal product companies."),
+    metricRow("Operating Profit Margin", operatingMargin, formatMetric(operatingMargin), "10% - 30%", metricStatus(operatingMargin, 10, 30), "Shows whether growth is turning into operating leverage."),
+    metricRow("Net Profit Margin", netMargin, formatMetric(netMargin), "5% - 20%", metricStatus(netMargin, 5, 20), "Profitability after all costs."),
+    metricRow("1-Year Revenue Growth", revenueGrowth1y, formatMetric(revenueGrowth1y), "20%+", metricStatus(revenueGrowth1y, 20), "Growth-stock threshold."),
+    metricRow("3-Year Revenue CAGR", revenueCagrPct, formatMetric(revenueCagrPct), "20%+", metricStatus(revenueCagrPct, 20), annual.length >= 2 ? `Uses annual revenue from ${oldestAnnual.date} to ${latestAnnual.date}.` : "Annual revenue history was not available."),
+    metricRow("5-Year Revenue CAGR", null, "Unavailable", "20%+", "unavailable", "Yahoo quote summary often returns only four annual statement rows."),
+    metricRow("EPS Growth", epsGrowth, formatMetric(epsGrowth), "20%+", metricStatus(epsGrowth, 20), "Uses current-year earnings growth estimate when available."),
+    metricRow("EBITDA Margin", ebitdaMargin, formatMetric(ebitdaMargin), "20%+", metricStatus(ebitdaMargin, 20), "Unavailable when EBITDA is missing from the data source."),
+    metricRow("FCF Margin", fcfMargin, formatMetric(fcfMargin), "10% - 15%+", metricStatus(fcfMargin, 10), "Unavailable when free cash flow is missing from the data source."),
+    metricRow("P/E Ratio", trailingPE, formatMetric(trailingPE, "x"), "20x - 40x", metricStatus(trailingPE, 20, 40), "Trailing valuation range for profitable growth companies."),
+    metricRow("Forward P/E", forwardPE, formatMetric(forwardPE, "x"), "20x - 30x", metricStatus(forwardPE, 20, 30), "Forward valuation based on estimates."),
+    metricRow("PEG Ratio", peg, formatMetric(peg, "x"), "0.5x - 1.5x", metricStatus(peg, 0.5, 1.5), "Growth adjusted valuation."),
+    metricRow("P/B Ratio", pb, formatMetric(pb, "x"), "0.5x - 1.5x", metricStatus(pb, 0.5, 1.5), "Important for banks/fintech balance-sheet businesses."),
+    metricRow("P/S Ratio", ps, formatMetric(ps, "x"), "1.0x - 5.0x", metricStatus(ps, 1, 5), "Sales multiple; too high can mean expectations are stretched."),
+    metricRow("Enterprise Value / EBITDA", evToEbitda, formatMetric(evToEbitda, "x"), "10x - 20x", metricStatus(evToEbitda, 10, 20), "Unavailable when EBITDA is missing."),
+    metricRow("P/FCF", pToFcf, formatMetric(pToFcf, "x"), "Below 10x", belowMetricStatus(pToFcf, 10), "Unavailable when free cash flow is missing."),
+    metricRow("Return on Equity", roe, formatMetric(roe), "12% - 20%+", metricStatus(roe, 12), "Quality and capital efficiency."),
+    metricRow("Return on Assets", roa, formatMetric(roa), "5% - 10%+", metricStatus(roa, 5), "Asset efficiency; especially useful for lenders/financials."),
+  ];
+  const growthLabels = ["1-Year Revenue Growth", "3-Year Revenue CAGR", "EPS Growth"];
+  const isGrowthStock = growthLabels.every((label) => rows.find((item) => item.label === label)?.status === "pass");
+  return {
+    rows,
+    passCount: rows.filter((item) => item.status === "pass").length,
+    nearCount: rows.filter((item) => item.status === "near").length,
+    failCount: rows.filter((item) => item.status === "fail").length,
+    unavailableCount: rows.filter((item) => item.status === "unavailable").length,
+    isGrowthStock,
+    verdict: isGrowthStock ? "Growth stock: yes" : "Growth stock: not confirmed",
+    summary: isGrowthStock
+      ? "Revenue and EPS growth clear the growth-stock thresholds. Now judge quality, valuation, returns, and chart risk before buying."
+      : "Growth is not strong enough across the required revenue/EPS tests, or key growth fields are unavailable.",
+  };
+}
+
+function growthRiskScore(growthChecklist, technical, fundamentals, valuation, analysts) {
+  const rows = growthChecklist.rows ?? [];
+  let risk = 30;
+  risk += growthChecklist.failCount * 5;
+  risk += growthChecklist.nearCount * 2;
+  risk += growthChecklist.unavailableCount * 1.5;
+  if (!growthChecklist.isGrowthStock) risk += 8;
+  if ((technical?.score ?? 0) < 50) risk += 8;
+  if ((fundamentals?.score ?? 0) < 50) risk += 8;
+  if ((valuation?.score ?? 0) < 50) risk += 8;
+  if ((analysts?.rating ?? "").toLowerCase().includes("neutral")) risk += 4;
+  if (rows.some((row) => row.label === "Return on Equity" && row.status === "fail")) risk += 4;
+  if (rows.some((row) => row.label === "Return on Assets" && row.status === "fail")) risk += 4;
+  return clamp(Math.round(risk));
+}
+
 export async function analyzeStock(symbolInput) {
   const symbol = symbolInput.trim().toUpperCase();
   if (!symbol) throw new Error("Ticker is required");
@@ -331,7 +454,16 @@ export async function analyzeStock(symbolInput) {
   const [rows, benchmarkRows, summary] = await Promise.all([
     fetchHistory(symbol, "18mo"),
     fetchHistory(benchmark, "18mo"),
-    fetchQuoteSummary(symbol),
+    fetchQuoteSummary(symbol, [
+      "price",
+      "summaryDetail",
+      "financialData",
+      "defaultKeyStatistics",
+      "recommendationTrend",
+      "earningsTrend",
+      "assetProfile",
+      "incomeStatementHistory",
+    ]),
   ]);
 
   const technical = scoreTechnical(symbol, rows, benchmarkRows);
@@ -366,6 +498,8 @@ export async function analyzeStock(symbolInput) {
   const plainEnglish = theme === "diversified fund / ETF"
     ? `${companyName} is a diversified fund/ETF. For a beginner, think about what index or basket it tracks, fees, concentration, and whether it overlaps with funds you already own.`
     : `${companyName} is classified in ${sector} / ${industry}. For a beginner, think of it as a ${theme} name, then judge whether growth, profits, balance sheet, valuation, and chart all support owning it.`;
+  const growthChecklist = buildGrowthChecklist(summary);
+  const riskScore = growthRiskScore(growthChecklist, technical, fundamentals, valuation, analysts);
 
   return {
     symbol,
@@ -396,6 +530,8 @@ export async function analyzeStock(symbolInput) {
       beginnerRead: beginnerRead(decision, technical, fundamentals, valuation, theme),
       investorChecklist: buildInvestorChecklist(decision, technical, fundamentals, valuation, analysts),
     },
+    growthChecklist,
+    riskScore,
     managerRead: `${decision}: ${symbol} scores ${totalScore}/100. Technicals are ${technical.rating.toLowerCase()}, fundamentals are ${fundamentals.rating.toLowerCase()}, valuation is ${valuation.rating.toLowerCase()}, and analyst sentiment is ${analysts.rating.toLowerCase()}.`,
     asOf: new Date().toISOString(),
   };
