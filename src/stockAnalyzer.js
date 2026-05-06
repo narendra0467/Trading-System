@@ -1,5 +1,5 @@
 import { addIndicators, last } from "./indicators.js";
-import { fetchHistory, fetchQuoteSummary } from "./marketData.js";
+import { fetchHistory, fetchQuoteSummary, fetchYahooNews } from "./marketData.js";
 
 const round = (value, digits = 2) => Number.isFinite(value) ? Number(value.toFixed(digits)) : null;
 const raw = (field) => field?.raw ?? null;
@@ -81,6 +81,80 @@ function technologyAdvantage(theme, profileSummary) {
   return "No clear unique technological or patent advantage is confirmed from the Yahoo Finance structured data. Treat moat claims as research items, not proven facts.";
 }
 
+function classifyNewsItem(item) {
+  const title = String(item.title ?? "").toLowerCase();
+  const bullishWords = ["beats", "raises", "upgrade", "upgrades", "buy", "partnership", "deal", "contract", "approval", "launch", "record", "surges", "profit"];
+  const bearishWords = ["misses", "cuts", "downgrade", "downgrades", "sell", "lawsuit", "probe", "delay", "loss", "drops", "warning", "bankruptcy"];
+  const catalystWords = ["earnings", "launch", "approval", "partnership", "deal", "contract", "guidance", "forecast", "target", "upgrade", "downgrade"];
+  const bullishHits = bullishWords.filter((word) => title.includes(word));
+  const bearishHits = bearishWords.filter((word) => title.includes(word));
+  const catalystHits = catalystWords.filter((word) => title.includes(word));
+  const tone = bullishHits.length > bearishHits.length ? "bullish" : bearishHits.length > bullishHits.length ? "bearish" : "neutral";
+  return {
+    ...item,
+    tone,
+    catalyst: catalystHits.length > 0,
+    reason: catalystHits.length ? `Keywords: ${catalystHits.slice(0, 3).join(", ")}` : "No obvious catalyst keyword in headline.",
+  };
+}
+
+function buildNewsEngine(newsItems, summary) {
+  const items = newsItems.map(classifyNewsItem).slice(0, 8);
+  const bullish = items.filter((item) => item.tone === "bullish").length;
+  const bearish = items.filter((item) => item.tone === "bearish").length;
+  const catalystCount = items.filter((item) => item.catalyst).length;
+  const filings = (summary.secFilings?.filings ?? []).slice(0, 5).map((item) => ({
+    date: item.date,
+    type: item.type,
+    title: item.title,
+    url: item.edgarUrl,
+  }));
+  const upgrades = (summary.upgradeDowngradeHistory?.history ?? []).slice(0, 5).map((item) => ({
+    firm: item.firm,
+    action: item.action,
+    toGrade: item.toGrade,
+    fromGrade: item.fromGrade,
+    priceTargetAction: item.priceTargetAction,
+    currentPriceTarget: raw(item.currentPriceTarget) ?? item.currentPriceTarget,
+    priorPriceTarget: raw(item.priorPriceTarget) ?? item.priorPriceTarget,
+    date: item.epochGradeDate ? new Date(item.epochGradeDate * 1000).toISOString().slice(0, 10) : null,
+  }));
+  const filingFlags = filings.map((item) => `${item.type}${item.title ? `: ${item.title}` : ""}`);
+  const score = clamp(50 + bullish * 7 - bearish * 8 + catalystCount * 4 + upgrades.filter((item) => /buy|outperform|overweight/i.test(item.toGrade ?? "")).length * 4);
+  return {
+    score,
+    tone: score >= 70 ? "Positive catalyst tape" : score >= 45 ? "Mixed / normal tape" : "Caution tape",
+    bullishCount: bullish,
+    bearishCount: bearish,
+    catalystCount,
+    items,
+    filings,
+    upgrades,
+    filingRead: filingFlags.length ? filingFlags.slice(0, 3).join(" | ") : "No recent SEC filing summary found from Yahoo.",
+    caveat: "Headline classification is a filter, not a final truth. Open the source article or filing before acting on a catalyst.",
+  };
+}
+
+function moatScore(theme, fundamentals, valuation, technical, report) {
+  let score = 35;
+  const points = [];
+  const risks = [];
+  if ((fundamentals.grossMargins ?? 0) > 45) { score += 15; points.push("high gross margin suggests pricing power or product differentiation"); }
+  if ((fundamentals.operatingMargins ?? 0) > 15) { score += 12; points.push("operating margin supports business quality"); }
+  if ((fundamentals.returnOnEquity ?? 0) > 12) { score += 12; points.push("return on equity supports capital efficiency"); }
+  if ((technical.relativeStrength60 ?? 0) > 0) { score += 8; points.push("stock is outperforming its benchmark"); }
+  if (/software|internet|semiconductor|platform|financial services/.test(String(theme).toLowerCase())) { score += 8; points.push("business type can support scale advantages if execution stays strong"); }
+  if ((valuation.priceToSales ?? 0) > 10) { score -= 8; risks.push("valuation demands a strong moat already"); }
+  if ((fundamentals.profitMargins ?? 0) < 5) { score -= 8; risks.push("thin profitability weakens moat proof"); }
+  return {
+    score: clamp(Math.round(score)),
+    rating: score >= 75 ? "Strong moat candidate" : score >= 55 ? "Possible moat" : score >= 40 ? "Unproven moat" : "Weak moat evidence",
+    points: points.slice(0, 4),
+    risks: risks.slice(0, 3),
+    read: report?.technologyAdvantage ?? "Moat read unavailable.",
+  };
+}
+
 function buildCatalystRead(summary, symbol) {
   const earnings = summary.calendarEvents?.earnings;
   const earningsDates = [earnings?.earningsDate?.[0]?.fmt, earnings?.earningsDate?.[1]?.fmt].filter(Boolean);
@@ -144,10 +218,25 @@ function buildReportScores(growthChecklist, technical, fundamentals, valuation, 
   };
 }
 
-function buildBusinessReport(symbol, companyName, sector, industry, theme, summary, growthChecklist, technical, fundamentals, valuation, analysts, riskScore) {
+function finalInvestorAction(reportScores, growthChecklist, technical, valuation, newsEngine) {
+  if ((newsEngine?.score ?? 50) < 35) return "Wait: news tape is cautionary";
+  if (reportScores.overallScore >= 75 && reportScores.growthPotential >= 70 && reportScores.riskScore <= 60) return "Buy candidate";
+  if (reportScores.overallScore >= 62 && growthChecklist.isGrowthStock && technical.score >= 55) return "Starter buy / scale in";
+  if (reportScores.overallScore >= 50 || valuation.score >= 55) return "Watchlist / wait for better entry";
+  if (technical.score < 40 || reportScores.riskScore >= 80) return "Avoid new money";
+  return "Research only";
+}
+
+function buildBusinessReport(symbol, companyName, sector, industry, theme, summary, growthChecklist, technical, fundamentals, valuation, analysts, riskScore, newsEngine = null) {
   const profileSummary = summary.assetProfile?.longBusinessSummary ?? "";
   const productRead = firstSentences(profileSummary, 2) || `${companyName} operates in ${sector} / ${industry}. Yahoo did not provide a full business summary.`;
-  const catalystRead = buildCatalystRead(summary, symbol);
+  const catalystRead = [
+    ...buildCatalystRead(summary, symbol),
+    ...(newsEngine?.items ?? [])
+      .filter((item) => item.catalyst)
+      .slice(0, 3)
+      .map((item) => `Recent Yahoo headline catalyst: ${item.title}`),
+  ].slice(0, 6);
   const businessModel = theme === "diversified fund / ETF"
     ? "It makes money as a fund product by tracking a basket/index and charging fund expenses, while investors get exposure to the underlying holdings."
     : `It makes money by selling products or services tied to ${industry || sector}. In plain English: ${productRead}`;
@@ -170,7 +259,9 @@ function buildBusinessReport(symbol, companyName, sector, industry, theme, summa
     technologyAdvantage: technologyAdvantage(theme, profileSummary),
     catalysts: catalystRead,
     asymmetry: buildAsymmetryRead(growthChecklist, valuation, technical),
-    partnerships: "Yahoo structured data does not reliably list fresh deals, backlogs, or government/mega-cap partnerships. If a thesis depends on an NVDA/MSFT/government deal, confirm it from company press releases before buying.",
+    partnerships: (newsEngine?.items ?? []).some((item) => /partnership|deal|contract|backlog|government|nvidia|nvda|microsoft|msft/i.test(item.title ?? ""))
+      ? "Recent Yahoo headlines may include deal/partnership language. Open the linked story and company release to confirm revenue impact before treating it as real backlog."
+      : "Yahoo structured data does not reliably list fresh deals, backlogs, or government/mega-cap partnerships. If a thesis depends on an NVDA/MSFT/government deal, confirm it from company press releases before buying.",
     bullCase: bullParts.length ? `Bull case: ${bullParts.join(", ")}.` : "Bull case: the setup needs more proof before it becomes compelling.",
     bearCase: bearParts.length ? `Bear case: ${bearParts.join(", ")}.` : "Bear case: the main risk is paying too much after a strong move.",
     shortAnalysis: `${companyName} is a ${theme} candidate. Overall, I would treat it as ${growthChecklist.isGrowthStock ? "a growth stock candidate" : "not yet a confirmed growth stock"} with risk around ${riskScore}/100. The key is whether revenue growth can stay ahead of the stock's valuation. Analyst tone is ${analysts.rating.toLowerCase()}.`,
@@ -588,7 +679,7 @@ export async function analyzeStock(symbolInput) {
   const symbol = symbolInput.trim().toUpperCase();
   if (!symbol) throw new Error("Ticker is required");
   const benchmark = symbol.endsWith(".TO") || symbol.endsWith(".V") || symbol.endsWith(".NE") || symbol.endsWith(".CN") ? "XIU.TO" : "QQQ";
-  const [rows, benchmarkRows, summary] = await Promise.all([
+  const [rows, benchmarkRows, summary, newsItems] = await Promise.all([
     fetchHistory(symbol, "18mo"),
     fetchHistory(benchmark, "18mo"),
     fetchQuoteSummary(symbol, [
@@ -601,7 +692,10 @@ export async function analyzeStock(symbolInput) {
       "assetProfile",
       "incomeStatementHistory",
       "calendarEvents",
+      "secFilings",
+      "upgradeDowngradeHistory",
     ]),
+    fetchYahooNews(symbol, 10).catch(() => []),
   ]);
 
   const technical = scoreTechnical(symbol, rows, benchmarkRows);
@@ -638,8 +732,11 @@ export async function analyzeStock(symbolInput) {
     : `${companyName} is classified in ${sector} / ${industry}. For a beginner, think of it as a ${theme} name, then judge whether growth, profits, balance sheet, valuation, and chart all support owning it.`;
   const growthChecklist = buildGrowthChecklist(summary);
   const riskScore = growthRiskScore(growthChecklist, technical, fundamentals, valuation, analysts);
+  const newsEngine = buildNewsEngine(newsItems, summary);
   const reportScores = buildReportScores(growthChecklist, technical, fundamentals, valuation, analysts, riskScore);
-  const report = buildBusinessReport(symbol, companyName, sector, industry, theme, summary, growthChecklist, technical, fundamentals, valuation, analysts, riskScore);
+  const report = buildBusinessReport(symbol, companyName, sector, industry, theme, summary, growthChecklist, technical, fundamentals, valuation, analysts, riskScore, newsEngine);
+  const moat = moatScore(theme, fundamentals, valuation, technical, report);
+  const finalAction = finalInvestorAction(reportScores, growthChecklist, technical, valuation, newsEngine);
 
   return {
     symbol,
@@ -675,6 +772,9 @@ export async function analyzeStock(symbolInput) {
     growthPotential: reportScores.growthPotential,
     reportScores,
     report,
+    moat,
+    newsEngine,
+    finalAction,
     managerRead: `${decision}: ${symbol} scores ${totalScore}/100. Technicals are ${technical.rating.toLowerCase()}, fundamentals are ${fundamentals.rating.toLowerCase()}, valuation is ${valuation.rating.toLowerCase()}, and analyst sentiment is ${analysts.rating.toLowerCase()}.`,
     asOf: new Date().toISOString(),
   };

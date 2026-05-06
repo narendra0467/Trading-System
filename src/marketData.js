@@ -1,5 +1,6 @@
 const YAHOO_CHART_URL = "https://query1.finance.yahoo.com/v8/finance/chart";
 const YAHOO_OPTIONS_URL = "https://query2.finance.yahoo.com/v7/finance/options";
+const YAHOO_SEARCH_URL = "https://query1.finance.yahoo.com/v1/finance/search";
 let yahooAuth = null;
 
 async function getYahooAuth() {
@@ -110,4 +111,29 @@ export async function fetchQuoteSummary(symbol, modules = []) {
     throw new Error(`${symbol} quote summary unavailable: ${description}`);
   }
   return result;
+}
+
+export async function fetchYahooNews(symbol, count = 8) {
+  const url = `${YAHOO_SEARCH_URL}?q=${encodeURIComponent(symbol)}&quotesCount=0&newsCount=${count}`;
+  const response = await fetch(url, {
+    headers: { "User-Agent": "Mozilla/5.0" },
+  });
+  if (!response.ok) {
+    throw new Error(`${symbol} news request failed: ${response.status}`);
+  }
+  const payload = await response.json();
+  return (payload.news ?? [])
+    .filter((item) => {
+      const related = (item.relatedTickers ?? []).map((ticker) => String(ticker).toUpperCase());
+      return !related.length || related.includes(symbol.toUpperCase());
+    })
+    .map((item) => ({
+      title: item.title,
+      publisher: item.publisher,
+      link: item.link,
+      publishedAt: item.providerPublishTime
+        ? new Date(item.providerPublishTime * 1000).toISOString()
+        : null,
+      relatedTickers: item.relatedTickers ?? [],
+    }));
 }

@@ -356,6 +356,8 @@ function rowsByLabel(checklist, labels) {
 function renderReportSection(result) {
   const checklist = result.growthChecklist;
   const report = result.report ?? {};
+  const moat = result.moat ?? {};
+  const newsEngine = result.newsEngine ?? {};
   const reportScores = result.reportScores ?? {
     overallScore: result.totalScore,
     growthPotential: result.growthPotential,
@@ -379,6 +381,11 @@ function renderReportSection(result) {
         ${reportMeter("Growth Potential", reportScores.growthPotential, "Higher means the company has growth plus enough chart/analyst support.")}
         ${reportMeter("Risk Analysis", reportScores.riskScore, "Higher means more things can go wrong.", true)}
       </div>
+      <div class="decision-strip">
+        <div><span>Final Action</span><strong>${escapeHtml(result.finalAction || result.decision)}</strong><p>Plain-English action after growth, valuation, trend, analyst tone, and news tape.</p></div>
+        <div><span>Moat Score</span><strong>${Number.isFinite(Number(moat.score)) ? Math.round(moat.score) : "n/a"}/100</strong><p>${escapeHtml(moat.rating || "Moat evidence not available.")}</p></div>
+        <div><span>News / Catalyst Tape</span><strong>${escapeHtml(newsEngine.tone || "n/a")}</strong><p>${Number(newsEngine.catalystCount ?? 0)} catalyst headlines, ${Number(newsEngine.bullishCount ?? 0)} bullish, ${Number(newsEngine.bearishCount ?? 0)} bearish.</p></div>
+      </div>
       <div class="score-bars">
         ${(reportScores.weighting ?? []).map((item) => `
           <div>
@@ -395,6 +402,41 @@ function renderReportSection(result) {
         <div><span>Catalysts: Next 12 Months</span><ul class="plain-list">${(report.catalysts ?? []).map((item) => `<li>${escapeHtml(item)}</li>`).join("") || "<li>No specific catalysts found.</li>"}</ul></div>
         <div><span>Asymmetry Check</span><p>${escapeHtml(report.asymmetry || "Asymmetry read was not available.")}</p></div>
         <div><span>Deals / Backlog / Partnerships</span><p>${escapeHtml(report.partnerships || "Partnership data was not available.")}</p></div>
+      </div>
+      <div class="analyzer-columns">
+        <div>
+          <h3>Moat Evidence</h3>
+          <ul class="plain-list">${(moat.points ?? []).map((item) => `<li>${escapeHtml(item)}</li>`).join("") || "<li>No strong moat evidence found in available fields.</li>"}</ul>
+        </div>
+        <div>
+          <h3>Moat Risks</h3>
+          <ul class="plain-list">${(moat.risks ?? []).map((item) => `<li>${escapeHtml(item)}</li>`).join("") || "<li>No major moat risks from available fields.</li>"}</ul>
+        </div>
+      </div>
+      <div class="news-panel">
+        <div class="section-title">
+          <div>
+            <p class="eyebrow">Yahoo News + Filings</p>
+            <h3>Catalyst Intelligence</h3>
+          </div>
+          <span class="growth-status growth-status--${scoreTone(newsEngine.score) === "good" ? "pass" : scoreTone(newsEngine.score) === "bad" ? "fail" : "near"}">${Number.isFinite(Number(newsEngine.score)) ? Math.round(newsEngine.score) : "n/a"}/100</span>
+        </div>
+        <div class="news-grid">
+          <div>
+            <span>Recent Headlines</span>
+            <ul class="plain-list">${(newsEngine.items ?? []).slice(0, 5).map((item) => `<li><a href="${escapeHtml(item.link)}" target="_blank" rel="noreferrer">${escapeHtml(item.title)}</a><small>${escapeHtml(item.publisher || "")} - ${escapeHtml(item.tone || "neutral")}</small></li>`).join("") || "<li>No Yahoo headline feed available.</li>"}</ul>
+          </div>
+          <div>
+            <span>SEC Filing Watch</span>
+            <p>${escapeHtml(newsEngine.filingRead || "No filing read available.")}</p>
+            <ul class="plain-list">${(newsEngine.filings ?? []).slice(0, 3).map((item) => `<li><a href="${escapeHtml(item.url)}" target="_blank" rel="noreferrer">${escapeHtml(`${item.date || ""} ${item.type || ""}: ${item.title || ""}`)}</a></li>`).join("") || "<li>No recent filings from Yahoo.</li>"}</ul>
+          </div>
+          <div>
+            <span>Analyst Revisions</span>
+            <ul class="plain-list">${(newsEngine.upgrades ?? []).slice(0, 4).map((item) => `<li>${escapeHtml(`${item.date || ""} ${item.firm || ""}: ${item.fromGrade || "n/a"} -> ${item.toGrade || "n/a"}${item.priceTargetAction ? `, target ${item.priceTargetAction}` : ""}`)}</li>`).join("") || "<li>No recent upgrade/downgrade history from Yahoo.</li>"}</ul>
+            <p>${escapeHtml(newsEngine.caveat || "")}</p>
+          </div>
+        </div>
       </div>
       <div class="analyzer-columns">
         <div class="thesis-card thesis-card--bull"><h3>Bull Case</h3><p>${escapeHtml(report.bullCase || "Bull case was not available.")}</p></div>
