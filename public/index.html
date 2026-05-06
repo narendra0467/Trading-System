@@ -73,7 +73,10 @@
             </div>
           </div>
           <form class="analyzer-form" id="analyzer-form">
-            <input id="analyzer-symbol" name="symbol" placeholder="Enter ticker, e.g. AAPL, NVDA, SHOP.TO" autocomplete="off" />
+            <div class="analyzer-search">
+              <input id="analyzer-symbol" name="symbol" placeholder="Search company or ticker, e.g. app, Tesla, SHOP.TO" autocomplete="off" />
+              <div class="analyzer-suggestions" id="analyzer-suggestions"></div>
+            </div>
             <button type="submit">Analyze</button>
           </form>
           <p class="analyzer-note">Works live on the local dashboard server. U.S. tickers use regular symbols; Canadian tickers usually need suffixes like .TO, .V, .NE, or .CN.</p>
@@ -122,6 +125,6 @@
       </section>
 
     </main>
-    <script src="./app.js?v=20260505-analyst"></script>
+    <script src="./app.js?v=20260506-search"></script>
   </body>
 </html>

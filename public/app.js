@@ -1,4 +1,11 @@
 const format = (value) => value ?? "";
+const escapeHtml = (value) =>
+  String(value ?? "")
+    .replaceAll("&", "&amp;")
+    .replaceAll("<", "&lt;")
+    .replaceAll(">", "&gt;")
+    .replaceAll('"', "&quot;")
+    .replaceAll("'", "&#039;");
 const money = (value) => {
   const number = Number(value);
   return Number.isFinite(number) ? `$${number.toFixed(2)}` : "n/a";
@@ -385,6 +392,97 @@ async function loadAnalyzerCache() {
   return analyzerCachePromise;
 }
 
+function analyzerOptionsFromCache(cache) {
+  return Object.values(cache.results ?? {})
+    .map((row) => ({
+      symbol: String(row.symbol ?? "").toUpperCase(),
+      name: row.name || row.symbol || "",
+      decision: row.decision || "Cached",
+      score: row.totalScore,
+    }))
+    .filter((row) => row.symbol)
+    .sort((a, b) => a.symbol.localeCompare(b.symbol));
+}
+
+function scoreAnalyzerMatch(option, query) {
+  const clean = query.trim().toLowerCase();
+  if (!clean) return -1;
+  const symbol = option.symbol.toLowerCase();
+  const name = option.name.toLowerCase();
+  const words = name.split(/[^a-z0-9.]+/).filter(Boolean);
+  if (symbol === clean || name === clean) return 100;
+  if (symbol.startsWith(clean)) return 90;
+  if (words.some((word) => word.startsWith(clean))) return 82;
+  if (name.startsWith(clean)) return 78;
+  if (symbol.includes(clean)) return 60;
+  if (name.includes(clean)) return 50;
+  return -1;
+}
+
+function searchAnalyzerOptions(query, cache, limit = 8) {
+  return analyzerOptionsFromCache(cache)
+    .map((option) => ({ ...option, matchScore: scoreAnalyzerMatch(option, query) }))
+    .filter((option) => option.matchScore >= 0)
+    .sort((a, b) => b.matchScore - a.matchScore || Number(b.score ?? 0) - Number(a.score ?? 0) || a.symbol.localeCompare(b.symbol))
+    .slice(0, limit);
+}
+
+function setAnalyzerInput(symbol) {
+  const input = document.getElementById("analyzer-symbol");
+  input.value = symbol;
+  input.dataset.symbol = symbol;
+  document.getElementById("analyzer-suggestions").classList.remove("analyzer-suggestions--open");
+}
+
+async function renderAnalyzerSuggestions() {
+  const input = document.getElementById("analyzer-symbol");
+  const target = document.getElementById("analyzer-suggestions");
+  const query = input.value.trim();
+  input.dataset.symbol = "";
+  if (query.length < 2) {
+    target.classList.remove("analyzer-suggestions--open");
+    target.innerHTML = "";
+    return;
+  }
+  try {
+    const cache = await loadAnalyzerCache();
+    const matches = searchAnalyzerOptions(query, cache);
+    if (!matches.length) {
+      target.classList.remove("analyzer-suggestions--open");
+      target.innerHTML = "";
+      return;
+    }
+    target.innerHTML = matches.map((row) => `
+      <button class="analyzer-suggestion" type="button" data-symbol="${escapeHtml(row.symbol)}">
+        <strong>${escapeHtml(row.symbol)}</strong>
+        <span>${escapeHtml(row.name)}</span>
+        <small>${escapeHtml(row.decision)} ${Number.isFinite(Number(row.score)) ? `${row.score}/100` : ""}</small>
+      </button>
+    `).join("");
+    target.classList.add("analyzer-suggestions--open");
+  } catch {
+    target.classList.remove("analyzer-suggestions--open");
+    target.innerHTML = "";
+  }
+}
+
+async function resolveAnalyzerSymbol(rawInput) {
+  const input = document.getElementById("analyzer-symbol");
+  const selected = input.dataset.symbol;
+  if (selected) return selected;
+  const query = rawInput.trim();
+  const explicitSymbol = query.match(/^[A-Z0-9.-]+/i)?.[0]?.toUpperCase();
+  try {
+    const cache = await loadAnalyzerCache();
+    const exact = analyzerOptionsFromCache(cache).find((row) => row.symbol === query.toUpperCase() || row.name.toLowerCase() === query.toLowerCase());
+    if (exact) return exact.symbol;
+    const best = searchAnalyzerOptions(query, cache, 1)[0];
+    return best?.symbol || explicitSymbol || query.toUpperCase();
+  } catch {
+    return explicitSymbol || query.toUpperCase();
+  }
+}
+
 async function renderCachedAnalyzer(symbol, lastError) {
   const target = document.getElementById("analyzer-result");
   try {
@@ -701,10 +799,23 @@ async function loadDashboard() {
 }
 
 document.getElementById("refresh").addEventListener("click", loadDashboard);
-document.getElementById("analyzer-form").addEventListener("submit", (event) => {
+document.getElementById("analyzer-form").addEventListener("submit", async (event) => {
   event.preventDefault();
-  const symbol = document.getElementById("analyzer-symbol").value.trim();
+  const symbol = await resolveAnalyzerSymbol(document.getElementById("analyzer-symbol").value);
   if (symbol) analyzeTicker(symbol);
+});
+document.getElementById("analyzer-symbol").addEventListener("input", renderAnalyzerSuggestions);
+document.getElementById("analyzer-symbol").addEventListener("focus", renderAnalyzerSuggestions);
+document.getElementById("analyzer-suggestions").addEventListener("click", (event) => {
+  const button = event.target.closest(".analyzer-suggestion");
+  if (!button) return;
+  setAnalyzerInput(button.dataset.symbol);
+  analyzeTicker(button.dataset.symbol);
+});
+document.addEventListener("click", (event) => {
+  if (!event.target.closest(".analyzer-form")) {
+    document.getElementById("analyzer-suggestions").classList.remove("analyzer-suggestions--open");
+  }
 });
 setInterval(loadDashboard, 5 * 60 * 1000);
 document.querySelectorAll(".tab-button").forEach((button) => {
