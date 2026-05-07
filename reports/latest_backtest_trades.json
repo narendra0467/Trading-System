@@ -1192,7 +1192,7 @@
     "trades": 19,
     "winRate": 47.4,
     "avgReturnPct": 3.42,
-    "profitFactor": 2.61,
+    "profitFactor": 2.62,
     "tradeLog": [
       {
         "symbol": "CIEN",
@@ -1361,8 +1361,8 @@
         "entryDate": "2026-05-01",
         "exitDate": "2026-05-07",
         "entry": 527.25,
-        "exit": 523.53,
-        "returnPct": -0.71,
+        "exit": 524.04,
+        "returnPct": -0.61,
         "exitReason": "time"
       }
     ]
@@ -1677,8 +1677,8 @@
     "symbol": "DELL",
     "trades": 19,
     "winRate": 42.1,
-    "avgReturnPct": 1.93,
-    "profitFactor": 2.01,
+    "avgReturnPct": 1.96,
+    "profitFactor": 2.02,
     "tradeLog": [
       {
         "symbol": "DELL",
@@ -1847,8 +1847,8 @@
         "entryDate": "2026-05-06",
         "exitDate": "2026-05-07",
         "entry": 220.8,
-        "exit": 229.78,
-        "returnPct": 4.07,
+        "exit": 230.9,
+        "returnPct": 4.58,
         "exitReason": "time"
       }
     ]
@@ -3936,8 +3936,8 @@
     "symbol": "CW",
     "trades": 24,
     "winRate": 45.8,
-    "avgReturnPct": 0.61,
-    "profitFactor": 1.46,
+    "avgReturnPct": 0.59,
+    "profitFactor": 1.45,
     "tradeLog": [
       {
         "symbol": "CW",
@@ -4151,108 +4151,9 @@
         "entryDate": "2026-05-01",
         "exitDate": "2026-05-07",
         "entry": 719.17,
-        "exit": 731.03,
-        "returnPct": 1.65,
+        "exit": 728.31,
+        "returnPct": 1.27,
         "exitReason": "time"
-      }
-    ]
-  },
-  {
-    "symbol": "AFRM",
-    "trades": 10,
-    "winRate": 30,
-    "avgReturnPct": 1.72,
-    "profitFactor": 1.37,
-    "tradeLog": [
-      {
-        "symbol": "AFRM",
-        "entryDate": "2023-07-27",
-        "exitDate": "2023-08-04",
-        "entry": 18.33,
-        "exit": 16.69,
-        "returnPct": -8.95,
-        "exitReason": "trend_loss"
-      },
-      {
-        "symbol": "AFRM",
-        "entryDate": "2023-10-12",
-        "exitDate": "2023-10-12",
-        "entry": 20.2,
-        "exit": 19.27,
-        "returnPct": -4.61,
-        "exitReason": "stop"
-      },
-      {
-        "symbol": "AFRM",
-        "entryDate": "2023-11-16",
-        "exitDate": "2023-11-28",
-        "entry": 25.46,
-        "exit": 32.73,
-        "returnPct": 28.57,
-        "exitReason": "target"
-      },
-      {
-        "symbol": "AFRM",
-        "entryDate": "2024-01-09",
-        "exitDate": "2024-01-16",
-        "entry": 44.61,
-        "exit": 40.71,
-        "returnPct": -8.75,
-        "exitReason": "stop"
-      },
-      {
-        "symbol": "AFRM",
-        "entryDate": "2024-09-13",
-        "exitDate": "2024-09-30",
-        "entry": 42.39,
-        "exit": 40.82,
-        "returnPct": -3.7,
-        "exitReason": "trend_loss"
-      },
-      {
-        "symbol": "AFRM",
-        "entryDate": "2024-10-31",
-        "exitDate": "2024-11-11",
-        "entry": 44.39,
-        "exit": 53.1,
-        "returnPct": 19.62,
-        "exitReason": "target"
-      },
-      {
-        "symbol": "AFRM",
-        "entryDate": "2024-12-16",
-        "exitDate": "2024-12-18",
-        "entry": 71.09,
-        "exit": 64.42,
-        "returnPct": -9.39,
-        "exitReason": "stop"
-      },
-      {
-        "symbol": "AFRM",
-        "entryDate": "2025-07-17",
-        "exitDate": "2025-07-24",
-        "entry": 68.8,
-        "exit": 65.82,
-        "returnPct": -4.33,
-        "exitReason": "trend_loss"
-      },
-      {
-        "symbol": "AFRM",
-        "entryDate": "2025-08-25",
-        "exitDate": "2025-08-29",
-        "entry": 78.93,
-        "exit": 91.57,
-        "returnPct": 16.01,
-        "exitReason": "target"
-      },
-      {
-        "symbol": "AFRM",
-        "entryDate": "2026-01-06",
-        "exitDate": "2026-01-12",
-        "entry": 81.63,
-        "exit": 75.71,
-        "returnPct": -7.25,
-        "exitReason": "stop"
       }
     ]
   },
@@ -4260,8 +4161,8 @@
     "symbol": "FIX",
     "trades": 24,
     "winRate": 37.5,
-    "avgReturnPct": 0.86,
-    "profitFactor": 1.37,
+    "avgReturnPct": 0.89,
+    "profitFactor": 1.38,
     "tradeLog": [
       {
         "symbol": "FIX",
@@ -4475,9 +4376,108 @@
         "entryDate": "2026-04-28",
         "exitDate": "2026-05-07",
         "entry": 1740,
-        "exit": 1917.7,
-        "returnPct": 10.21,
+        "exit": 1930.96,
+        "returnPct": 10.97,
         "exitReason": "time"
+      }
+    ]
+  },
+  {
+    "symbol": "AFRM",
+    "trades": 10,
+    "winRate": 30,
+    "avgReturnPct": 1.72,
+    "profitFactor": 1.37,
+    "tradeLog": [
+      {
+        "symbol": "AFRM",
+        "entryDate": "2023-07-27",
+        "exitDate": "2023-08-04",
+        "entry": 18.33,
+        "exit": 16.69,
+        "returnPct": -8.95,
+        "exitReason": "trend_loss"
+      },
+      {
+        "symbol": "AFRM",
+        "entryDate": "2023-10-12",
+        "exitDate": "2023-10-12",
+        "entry": 20.2,
+        "exit": 19.27,
+        "returnPct": -4.61,
+        "exitReason": "stop"
+      },
+      {
+        "symbol": "AFRM",
+        "entryDate": "2023-11-16",
+        "exitDate": "2023-11-28",
+        "entry": 25.46,
+        "exit": 32.73,
+        "returnPct": 28.57,
+        "exitReason": "target"
+      },
+      {
+        "symbol": "AFRM",
+        "entryDate": "2024-01-09",
+        "exitDate": "2024-01-16",
+        "entry": 44.61,
+        "exit": 40.71,
+        "returnPct": -8.75,
+        "exitReason": "stop"
+      },
+      {
+        "symbol": "AFRM",
+        "entryDate": "2024-09-13",
+        "exitDate": "2024-09-30",
+        "entry": 42.39,
+        "exit": 40.82,
+        "returnPct": -3.7,
+        "exitReason": "trend_loss"
+      },
+      {
+        "symbol": "AFRM",
+        "entryDate": "2024-10-31",
+        "exitDate": "2024-11-11",
+        "entry": 44.39,
+        "exit": 53.1,
+        "returnPct": 19.62,
+        "exitReason": "target"
+      },
+      {
+        "symbol": "AFRM",
+        "entryDate": "2024-12-16",
+        "exitDate": "2024-12-18",
+        "entry": 71.09,
+        "exit": 64.42,
+        "returnPct": -9.39,
+        "exitReason": "stop"
+      },
+      {
+        "symbol": "AFRM",
+        "entryDate": "2025-07-17",
+        "exitDate": "2025-07-24",
+        "entry": 68.8,
+        "exit": 65.82,
+        "returnPct": -4.33,
+        "exitReason": "trend_loss"
+      },
+      {
+        "symbol": "AFRM",
+        "entryDate": "2025-08-25",
+        "exitDate": "2025-08-29",
+        "entry": 78.93,
+        "exit": 91.57,
+        "returnPct": 16.01,
+        "exitReason": "target"
+      },
+      {
+        "symbol": "AFRM",
+        "entryDate": "2026-01-06",
+        "exitDate": "2026-01-12",
+        "entry": 81.63,
+        "exit": 75.71,
+        "returnPct": -7.25,
+        "exitReason": "stop"
       }
     ]
   },
@@ -5517,11 +5517,110 @@
     ]
   },
   {
+    "symbol": "SOFI",
+    "trades": 10,
+    "winRate": 40,
+    "avgReturnPct": 0.21,
+    "profitFactor": 1.06,
+    "tradeLog": [
+      {
+        "symbol": "SOFI",
+        "entryDate": "2023-06-29",
+        "exitDate": "2023-07-06",
+        "entry": 9.07,
+        "exit": 7.98,
+        "returnPct": -12.03,
+        "exitReason": "stop"
+      },
+      {
+        "symbol": "SOFI",
+        "entryDate": "2024-09-20",
+        "exitDate": "2024-09-24",
+        "entry": 8.14,
+        "exit": 7.64,
+        "returnPct": -6.1,
+        "exitReason": "stop"
+      },
+      {
+        "symbol": "SOFI",
+        "entryDate": "2024-11-06",
+        "exitDate": "2024-11-11",
+        "entry": 12.07,
+        "exit": 13.17,
+        "returnPct": 9.11,
+        "exitReason": "target"
+      },
+      {
+        "symbol": "SOFI",
+        "entryDate": "2024-12-12",
+        "exitDate": "2024-12-19",
+        "entry": 15.92,
+        "exit": 15.03,
+        "returnPct": -5.59,
+        "exitReason": "trend_loss"
+      },
+      {
+        "symbol": "SOFI",
+        "entryDate": "2025-01-23",
+        "exitDate": "2025-01-27",
+        "entry": 17.4,
+        "exit": 16.27,
+        "returnPct": -6.49,
+        "exitReason": "stop"
+      },
+      {
+        "symbol": "SOFI",
+        "entryDate": "2025-06-03",
+        "exitDate": "2025-06-18",
+        "entry": 13.71,
+        "exit": 15.26,
+        "returnPct": 11.3,
+        "exitReason": "target"
+      },
+      {
+        "symbol": "SOFI",
+        "entryDate": "2025-07-30",
+        "exitDate": "2025-07-30",
+        "entry": 20.83,
+        "exit": 20.53,
+        "returnPct": -1.46,
+        "exitReason": "stop"
+      },
+      {
+        "symbol": "SOFI",
+        "entryDate": "2025-09-08",
+        "exitDate": "2025-09-22",
+        "entry": 25.81,
+        "exit": 29.72,
+        "returnPct": 15.14,
+        "exitReason": "target"
+      },
+      {
+        "symbol": "SOFI",
+        "entryDate": "2025-10-14",
+        "exitDate": "2025-10-22",
+        "entry": 26.51,
+        "exit": 27.19,
+        "returnPct": 2.57,
+        "exitReason": "trend_loss"
+      },
+      {
+        "symbol": "SOFI",
+        "entryDate": "2025-11-26",
+        "exitDate": "2025-12-05",
+        "entry": 28.71,
+        "exit": 27.47,
+        "returnPct": -4.33,
+        "exitReason": "stop"
+      }
+    ]
+  },
+  {
     "symbol": "AVGO",
     "trades": 23,
     "winRate": 34.8,
-    "avgReturnPct": 0.22,
-    "profitFactor": 1.1,
+    "avgReturnPct": 0.14,
+    "profitFactor": 1.06,
     "tradeLog": [
       {
         "symbol": "AVGO",
@@ -5726,108 +5825,9 @@
         "entryDate": "2026-05-06",
         "exitDate": "2026-05-07",
         "entry": 435.56,
-        "exit": 417.64,
-        "returnPct": -4.12,
+        "exit": 409.18,
+        "returnPct": -6.06,
         "exitReason": "time"
-      }
-    ]
-  },
-  {
-    "symbol": "SOFI",
-    "trades": 10,
-    "winRate": 40,
-    "avgReturnPct": 0.21,
-    "profitFactor": 1.06,
-    "tradeLog": [
-      {
-        "symbol": "SOFI",
-        "entryDate": "2023-06-29",
-        "exitDate": "2023-07-06",
-        "entry": 9.07,
-        "exit": 7.98,
-        "returnPct": -12.03,
-        "exitReason": "stop"
-      },
-      {
-        "symbol": "SOFI",
-        "entryDate": "2024-09-20",
-        "exitDate": "2024-09-24",
-        "entry": 8.14,
-        "exit": 7.64,
-        "returnPct": -6.1,
-        "exitReason": "stop"
-      },
-      {
-        "symbol": "SOFI",
-        "entryDate": "2024-11-06",
-        "exitDate": "2024-11-11",
-        "entry": 12.07,
-        "exit": 13.17,
-        "returnPct": 9.11,
-        "exitReason": "target"
-      },
-      {
-        "symbol": "SOFI",
-        "entryDate": "2024-12-12",
-        "exitDate": "2024-12-19",
-        "entry": 15.92,
-        "exit": 15.03,
-        "returnPct": -5.59,
-        "exitReason": "trend_loss"
-      },
-      {
-        "symbol": "SOFI",
-        "entryDate": "2025-01-23",
-        "exitDate": "2025-01-27",
-        "entry": 17.4,
-        "exit": 16.27,
-        "returnPct": -6.49,
-        "exitReason": "stop"
-      },
-      {
-        "symbol": "SOFI",
-        "entryDate": "2025-06-03",
-        "exitDate": "2025-06-18",
-        "entry": 13.71,
-        "exit": 15.26,
-        "returnPct": 11.3,
-        "exitReason": "target"
-      },
-      {
-        "symbol": "SOFI",
-        "entryDate": "2025-07-30",
-        "exitDate": "2025-07-30",
-        "entry": 20.83,
-        "exit": 20.53,
-        "returnPct": -1.46,
-        "exitReason": "stop"
-      },
-      {
-        "symbol": "SOFI",
-        "entryDate": "2025-09-08",
-        "exitDate": "2025-09-22",
-        "entry": 25.81,
-        "exit": 29.72,
-        "returnPct": 15.14,
-        "exitReason": "target"
-      },
-      {
-        "symbol": "SOFI",
-        "entryDate": "2025-10-14",
-        "exitDate": "2025-10-22",
-        "entry": 26.51,
-        "exit": 27.19,
-        "returnPct": 2.57,
-        "exitReason": "trend_loss"
-      },
-      {
-        "symbol": "SOFI",
-        "entryDate": "2025-11-26",
-        "exitDate": "2025-12-05",
-        "entry": 28.71,
-        "exit": 27.47,
-        "returnPct": -4.33,
-        "exitReason": "stop"
       }
     ]
   },
