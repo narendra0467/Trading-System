@@ -111,8 +111,8 @@
     "symbol": "RKLB",
     "trades": 15,
     "winRate": 66.7,
-    "avgReturnPct": 10.15,
-    "profitFactor": 4.7,
+    "avgReturnPct": 10.3,
+    "profitFactor": 4.75,
     "tradeLog": [
       {
         "symbol": "RKLB",
@@ -245,8 +245,8 @@
         "entryDate": "2026-05-07",
         "exitDate": "2026-05-08",
         "entry": 84.71,
-        "exit": 99.23,
-        "returnPct": 17.14,
+        "exit": 101.04,
+        "returnPct": 19.28,
         "exitReason": "time"
       }
     ]
@@ -1200,8 +1200,8 @@
     "symbol": "CIEN",
     "trades": 19,
     "winRate": 52.6,
-    "avgReturnPct": 3.67,
-    "profitFactor": 2.76,
+    "avgReturnPct": 3.65,
+    "profitFactor": 2.75,
     "tradeLog": [
       {
         "symbol": "CIEN",
@@ -1370,8 +1370,8 @@
         "entryDate": "2026-05-01",
         "exitDate": "2026-05-08",
         "entry": 527.25,
-        "exit": 548.6,
-        "returnPct": 4.05,
+        "exit": 546.57,
+        "returnPct": 3.66,
         "exitReason": "time"
       }
     ]
@@ -1656,222 +1656,6 @@
     ]
   },
   {
-    "symbol": "TSM",
-    "trades": 23,
-    "winRate": 39.1,
-    "avgReturnPct": 1.37,
-    "profitFactor": 2.04,
-    "tradeLog": [
-      {
-        "symbol": "TSM",
-        "entryDate": "2022-01-12",
-        "exitDate": "2022-01-13",
-        "entry": 130.5,
-        "exit": 141.54,
-        "returnPct": 8.46,
-        "exitReason": "target"
-      },
-      {
-        "symbol": "TSM",
-        "entryDate": "2023-02-10",
-        "exitDate": "2023-02-15",
-        "entry": 95.95,
-        "exit": 92.17,
-        "returnPct": -3.94,
-        "exitReason": "stop"
-      },
-      {
-        "symbol": "TSM",
-        "entryDate": "2023-03-22",
-        "exitDate": "2023-04-05",
-        "entry": 93.5,
-        "exit": 90.2,
-        "returnPct": -3.53,
-        "exitReason": "trend_loss"
-      },
-      {
-        "symbol": "TSM",
-        "entryDate": "2023-06-12",
-        "exitDate": "2023-06-26",
-        "entry": 104.34,
-        "exit": 100.11,
-        "returnPct": -4.05,
-        "exitReason": "trend_loss"
-      },
-      {
-        "symbol": "TSM",
-        "entryDate": "2023-07-31",
-        "exitDate": "2023-07-31",
-        "entry": 99.18,
-        "exit": 99.06,
-        "returnPct": -0.12,
-        "exitReason": "stop"
-      },
-      {
-        "symbol": "TSM",
-        "entryDate": "2023-12-07",
-        "exitDate": "2023-12-14",
-        "entry": 97.96,
-        "exit": 103.44,
-        "returnPct": 5.6,
-        "exitReason": "target"
-      },
-      {
-        "symbol": "TSM",
-        "entryDate": "2024-01-17",
-        "exitDate": "2024-01-18",
-        "entry": 100.87,
-        "exit": 107.82,
-        "returnPct": 6.89,
-        "exitReason": "target"
-      },
-      {
-        "symbol": "TSM",
-        "entryDate": "2024-02-23",
-        "exitDate": "2024-03-04",
-        "entry": 130.5,
-        "exit": 140.44,
-        "returnPct": 7.62,
-        "exitReason": "target"
-      },
-      {
-        "symbol": "TSM",
-        "entryDate": "2024-04-02",
-        "exitDate": "2024-04-15",
-        "entry": 140.38,
-        "exit": 140.14,
-        "returnPct": -0.17,
-        "exitReason": "trend_loss"
-      },
-      {
-        "symbol": "TSM",
-        "entryDate": "2024-05-07",
-        "exitDate": "2024-05-22",
-        "entry": 141.87,
-        "exit": 156.31,
-        "returnPct": 10.18,
-        "exitReason": "target"
-      },
-      {
-        "symbol": "TSM",
-        "entryDate": "2024-07-03",
-        "exitDate": "2024-07-08",
-        "entry": 177.99,
-        "exit": 191.94,
-        "returnPct": 7.84,
-        "exitReason": "target"
-      },
-      {
-        "symbol": "TSM",
-        "entryDate": "2024-09-03",
-        "exitDate": "2024-09-03",
-        "entry": 168,
-        "exit": 167.08,
-        "returnPct": -0.55,
-        "exitReason": "stop"
-      },
-      {
-        "symbol": "TSM",
-        "entryDate": "2024-10-08",
-        "exitDate": "2024-10-17",
-        "entry": 184.96,
-        "exit": 200.58,
-        "returnPct": 8.44,
-        "exitReason": "target"
-      },
-      {
-        "symbol": "TSM",
-        "entryDate": "2024-12-03",
-        "exitDate": "2024-12-10",
-        "entry": 193.5,
-        "exit": 191.94,
-        "returnPct": -0.81,
-        "exitReason": "trend_loss"
-      },
-      {
-        "symbol": "TSM",
-        "entryDate": "2025-01-17",
-        "exitDate": "2025-01-27",
-        "entry": 215.17,
-        "exit": 201.82,
-        "returnPct": -6.2,
-        "exitReason": "stop"
-      },
-      {
-        "symbol": "TSM",
-        "entryDate": "2025-06-05",
-        "exitDate": "2025-06-11",
-        "entry": 204.88,
-        "exit": 217.3,
-        "returnPct": 6.06,
-        "exitReason": "target"
-      },
-      {
-        "symbol": "TSM",
-        "entryDate": "2025-07-16",
-        "exitDate": "2025-08-01",
-        "entry": 236.4,
-        "exit": 235.21,
-        "returnPct": -0.5,
-        "exitReason": "trend_loss"
-      },
-      {
-        "symbol": "TSM",
-        "entryDate": "2025-08-27",
-        "exitDate": "2025-09-02",
-        "entry": 236.87,
-        "exit": 230.15,
-        "returnPct": -2.84,
-        "exitReason": "stop"
-      },
-      {
-        "symbol": "TSM",
-        "entryDate": "2025-10-14",
-        "exitDate": "2025-10-22",
-        "entry": 295.63,
-        "exit": 288.88,
-        "returnPct": -2.28,
-        "exitReason": "trend_loss"
-      },
-      {
-        "symbol": "TSM",
-        "entryDate": "2025-11-28",
-        "exitDate": "2025-12-12",
-        "entry": 292.48,
-        "exit": 292.04,
-        "returnPct": -0.15,
-        "exitReason": "trend_loss"
-      },
-      {
-        "symbol": "TSM",
-        "entryDate": "2026-01-26",
-        "exitDate": "2026-02-04",
-        "entry": 332.79,
-        "exit": 319.49,
-        "returnPct": -4,
-        "exitReason": "stop"
-      },
-      {
-        "symbol": "TSM",
-        "entryDate": "2026-03-26",
-        "exitDate": "2026-03-26",
-        "entry": 339.82,
-        "exit": 342.37,
-        "returnPct": 0.75,
-        "exitReason": "stop"
-      },
-      {
-        "symbol": "TSM",
-        "entryDate": "2026-05-07",
-        "exitDate": "2026-05-08",
-        "entry": 418.09,
-        "exit": 413.14,
-        "returnPct": -1.18,
-        "exitReason": "time"
-      }
-    ]
-  },
-  {
     "symbol": "CELH",
     "trades": 11,
     "winRate": 45.5,
@@ -2147,6 +1931,222 @@
         "exit": 112.9,
         "returnPct": -4.63,
         "exitReason": "stop"
+      }
+    ]
+  },
+  {
+    "symbol": "TSM",
+    "trades": 23,
+    "winRate": 39.1,
+    "avgReturnPct": 1.32,
+    "profitFactor": 1.96,
+    "tradeLog": [
+      {
+        "symbol": "TSM",
+        "entryDate": "2022-01-12",
+        "exitDate": "2022-01-13",
+        "entry": 130.5,
+        "exit": 141.54,
+        "returnPct": 8.46,
+        "exitReason": "target"
+      },
+      {
+        "symbol": "TSM",
+        "entryDate": "2023-02-10",
+        "exitDate": "2023-02-15",
+        "entry": 95.95,
+        "exit": 92.17,
+        "returnPct": -3.94,
+        "exitReason": "stop"
+      },
+      {
+        "symbol": "TSM",
+        "entryDate": "2023-03-22",
+        "exitDate": "2023-04-05",
+        "entry": 93.5,
+        "exit": 90.2,
+        "returnPct": -3.53,
+        "exitReason": "trend_loss"
+      },
+      {
+        "symbol": "TSM",
+        "entryDate": "2023-06-12",
+        "exitDate": "2023-06-26",
+        "entry": 104.34,
+        "exit": 100.11,
+        "returnPct": -4.05,
+        "exitReason": "trend_loss"
+      },
+      {
+        "symbol": "TSM",
+        "entryDate": "2023-07-31",
+        "exitDate": "2023-07-31",
+        "entry": 99.18,
+        "exit": 99.06,
+        "returnPct": -0.12,
+        "exitReason": "stop"
+      },
+      {
+        "symbol": "TSM",
+        "entryDate": "2023-12-07",
+        "exitDate": "2023-12-14",
+        "entry": 97.96,
+        "exit": 103.44,
+        "returnPct": 5.6,
+        "exitReason": "target"
+      },
+      {
+        "symbol": "TSM",
+        "entryDate": "2024-01-17",
+        "exitDate": "2024-01-18",
+        "entry": 100.87,
+        "exit": 107.82,
+        "returnPct": 6.89,
+        "exitReason": "target"
+      },
+      {
+        "symbol": "TSM",
+        "entryDate": "2024-02-23",
+        "exitDate": "2024-03-04",
+        "entry": 130.5,
+        "exit": 140.44,
+        "returnPct": 7.62,
+        "exitReason": "target"
+      },
+      {
+        "symbol": "TSM",
+        "entryDate": "2024-04-02",
+        "exitDate": "2024-04-15",
+        "entry": 140.38,
+        "exit": 140.14,
+        "returnPct": -0.17,
+        "exitReason": "trend_loss"
+      },
+      {
+        "symbol": "TSM",
+        "entryDate": "2024-05-07",
+        "exitDate": "2024-05-22",
+        "entry": 141.87,
+        "exit": 156.31,
+        "returnPct": 10.18,
+        "exitReason": "target"
+      },
+      {
+        "symbol": "TSM",
+        "entryDate": "2024-07-03",
+        "exitDate": "2024-07-08",
+        "entry": 177.99,
+        "exit": 191.94,
+        "returnPct": 7.84,
+        "exitReason": "target"
+      },
+      {
+        "symbol": "TSM",
+        "entryDate": "2024-09-03",
+        "exitDate": "2024-09-03",
+        "entry": 168,
+        "exit": 167.08,
+        "returnPct": -0.55,
+        "exitReason": "stop"
+      },
+      {
+        "symbol": "TSM",
+        "entryDate": "2024-10-08",
+        "exitDate": "2024-10-17",
+        "entry": 184.96,
+        "exit": 200.58,
+        "returnPct": 8.44,
+        "exitReason": "target"
+      },
+      {
+        "symbol": "TSM",
+        "entryDate": "2024-12-03",
+        "exitDate": "2024-12-10",
+        "entry": 193.5,
+        "exit": 191.94,
+        "returnPct": -0.81,
+        "exitReason": "trend_loss"
+      },
+      {
+        "symbol": "TSM",
+        "entryDate": "2025-01-17",
+        "exitDate": "2025-01-27",
+        "entry": 215.17,
+        "exit": 201.82,
+        "returnPct": -6.2,
+        "exitReason": "stop"
+      },
+      {
+        "symbol": "TSM",
+        "entryDate": "2025-06-05",
+        "exitDate": "2025-06-11",
+        "entry": 204.88,
+        "exit": 217.3,
+        "returnPct": 6.06,
+        "exitReason": "target"
+      },
+      {
+        "symbol": "TSM",
+        "entryDate": "2025-07-16",
+        "exitDate": "2025-08-01",
+        "entry": 236.4,
+        "exit": 235.21,
+        "returnPct": -0.5,
+        "exitReason": "trend_loss"
+      },
+      {
+        "symbol": "TSM",
+        "entryDate": "2025-08-27",
+        "exitDate": "2025-09-02",
+        "entry": 236.87,
+        "exit": 230.15,
+        "returnPct": -2.84,
+        "exitReason": "stop"
+      },
+      {
+        "symbol": "TSM",
+        "entryDate": "2025-10-14",
+        "exitDate": "2025-10-22",
+        "entry": 295.63,
+        "exit": 288.88,
+        "returnPct": -2.28,
+        "exitReason": "trend_loss"
+      },
+      {
+        "symbol": "TSM",
+        "entryDate": "2025-11-28",
+        "exitDate": "2025-12-12",
+        "entry": 292.48,
+        "exit": 292.04,
+        "returnPct": -0.15,
+        "exitReason": "trend_loss"
+      },
+      {
+        "symbol": "TSM",
+        "entryDate": "2026-01-26",
+        "exitDate": "2026-02-04",
+        "entry": 332.79,
+        "exit": 319.49,
+        "returnPct": -4,
+        "exitReason": "stop"
+      },
+      {
+        "symbol": "TSM",
+        "entryDate": "2026-03-26",
+        "exitDate": "2026-03-26",
+        "entry": 339.82,
+        "exit": 342.37,
+        "returnPct": 0.75,
+        "exitReason": "stop"
+      },
+      {
+        "symbol": "TSM",
+        "entryDate": "2026-05-07",
+        "exitDate": "2026-05-08",
+        "entry": 418.09,
+        "exit": 408.07,
+        "returnPct": -2.4,
+        "exitReason": "time"
       }
     ]
   },
@@ -3901,7 +3901,7 @@
     "trades": 24,
     "winRate": 45.8,
     "avgReturnPct": 0.58,
-    "profitFactor": 1.43,
+    "profitFactor": 1.44,
     "tradeLog": [
       {
         "symbol": "CW",
@@ -4115,8 +4115,8 @@
         "entryDate": "2026-05-01",
         "exitDate": "2026-05-08",
         "entry": 719.17,
-        "exit": 725.03,
-        "returnPct": 0.81,
+        "exit": 725.6,
+        "returnPct": 0.89,
         "exitReason": "time"
       }
     ]
@@ -4125,8 +4125,8 @@
     "symbol": "FIX",
     "trades": 24,
     "winRate": 37.5,
-    "avgReturnPct": 0.9,
-    "profitFactor": 1.38,
+    "avgReturnPct": 0.93,
+    "profitFactor": 1.4,
     "tradeLog": [
       {
         "symbol": "FIX",
@@ -4340,8 +4340,8 @@
         "entryDate": "2026-04-28",
         "exitDate": "2026-05-08",
         "entry": 1740,
-        "exit": 1941.07,
-        "returnPct": 11.56,
+        "exit": 1952.95,
+        "returnPct": 12.24,
         "exitReason": "time"
       }
     ]
