@@ -1,7 +1,10 @@
 const YAHOO_CHART_URL = "https://query1.finance.yahoo.com/v8/finance/chart";
 const YAHOO_OPTIONS_URL = "https://query2.finance.yahoo.com/v7/finance/options";
 const YAHOO_SEARCH_URL = "https://query1.finance.yahoo.com/v1/finance/search";
+const SEC_TICKERS_URL = "https://www.sec.gov/files/company_tickers.json";
+const SEC_COMPANY_FACTS_URL = "https://data.sec.gov/api/xbrl/companyfacts";
 let yahooAuth = null;
+let secTickerMap = null;
 
 async function getYahooAuth() {
   if (yahooAuth) return yahooAuth;
@@ -136,4 +139,84 @@ export async function fetchYahooNews(symbol, count = 8) {
         : null,
       relatedTickers: item.relatedTickers ?? [],
     }));
+}
+
+export async function fetchYahooSearchNews(query, count = 12) {
+  const url = `${YAHOO_SEARCH_URL}?q=${encodeURIComponent(query)}&quotesCount=0&newsCount=${count}`;
+  const response = await fetch(url, {
+    headers: { "User-Agent": "Mozilla/5.0" },
+  });
+  if (!response.ok) {
+    throw new Error(`${query} news request failed: ${response.status}`);
+  }
+  const payload = await response.json();
+  return (payload.news ?? []).map((item) => ({
+    title: item.title,
+    publisher: item.publisher,
+    link: item.link,
+    publishedAt: item.providerPublishTime
+      ? new Date(item.providerPublishTime * 1000).toISOString()
+      : null,
+    relatedTickers: item.relatedTickers ?? [],
+  }));
+}
+
+export async function fetchYahooSymbolSearch(query, count = 12) {
+  const cleanQuery = String(query ?? "").trim();
+  if (!cleanQuery) return [];
+  const url = `${YAHOO_SEARCH_URL}?q=${encodeURIComponent(cleanQuery)}&quotesCount=${count}&newsCount=0`;
+  const response = await fetch(url, {
+    headers: { "User-Agent": "Mozilla/5.0" },
+  });
+  if (!response.ok) {
+    throw new Error(`${cleanQuery} symbol search failed: ${response.status}`);
+  }
+  const payload = await response.json();
+  return (payload.quotes ?? [])
+    .filter((quote) => quote.symbol && !String(quote.symbol).includes("="))
+    .map((quote) => ({
+      symbol: String(quote.symbol ?? "").toUpperCase(),
+      name: quote.longname || quote.shortname || quote.name || quote.symbol,
+      exchange: quote.exchDisp || quote.fullExchangeName || quote.exchange || "n/a",
+      assetType: quote.quoteType || quote.typeDisp || "n/a",
+      sector: quote.sector || quote.industry || "n/a",
+      score: quote.score ?? 0,
+    }));
+}
+
+async function fetchSecTickerMap() {
+  if (secTickerMap) return secTickerMap;
+  const response = await fetch(SEC_TICKERS_URL, {
+    headers: { "User-Agent": "Trading-System local research dashboard contact@example.com" },
+  });
+  if (!response.ok) {
+    throw new Error(`SEC ticker map request failed: ${response.status}`);
+  }
+  const payload = await response.json();
+  secTickerMap = new Map(
+    Object.values(payload).map((row) => [
+      String(row.ticker ?? "").toUpperCase(),
+      {
+        cik: String(row.cik_str ?? "").padStart(10, "0"),
+        title: row.title,
+      },
+    ])
+  );
+  return secTickerMap;
+}
+
+export async function fetchSecCompanyFacts(symbol) {
+  const cleanSymbol = String(symbol ?? "").toUpperCase();
+  if (!/^[A-Z.-]+$/.test(cleanSymbol) || cleanSymbol.includes(".")) return null;
+  const tickerMap = await fetchSecTickerMap();
+  const match = tickerMap.get(cleanSymbol);
+  if (!match?.cik) return null;
+  const response = await fetch(`${SEC_COMPANY_FACTS_URL}/CIK${match.cik}.json`, {
+    headers: { "User-Agent": "Trading-System local research dashboard contact@example.com" },
+  });
+  if (!response.ok) {
+    throw new Error(`${cleanSymbol} SEC company facts request failed: ${response.status}`);
+  }
+  const payload = await response.json();
+  return { ...payload, ticker: cleanSymbol, cik: match.cik, companyTitle: match.title };
 }

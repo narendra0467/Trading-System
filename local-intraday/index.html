@@ -1,0 +1,110 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Local Intraday Desk</title>
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <main class="shell">
+      <header class="topbar">
+        <div>
+          <p class="eyebrow">Private Local System</p>
+          <h1>Intraday Trading Desk</h1>
+          <p id="updated" class="muted">Not scanned yet</p>
+        </div>
+        <div class="actions">
+          <button id="scan">Run Scan</button>
+          <button id="load">Load Latest</button>
+        </div>
+      </header>
+
+      <section id="trade-policy" class="policy"></section>
+
+      <section id="summary" class="summary"></section>
+
+      <section>
+        <div class="section-title">
+          <div>
+            <p class="eyebrow">7:00 AM Alberta</p>
+            <h2>Morning Trading Desk Brief</h2>
+          </div>
+        </div>
+        <div id="morning-brief" class="desk-brief"></div>
+      </section>
+
+      <section>
+        <div class="section-title">
+          <div>
+            <p class="eyebrow">Market First</p>
+            <h2>Index Tape</h2>
+          </div>
+        </div>
+        <div id="index-tape" class="index-tape"></div>
+      </section>
+
+      <section>
+        <div class="section-title">
+          <div>
+            <p class="eyebrow">Approved Only</p>
+            <h2>Trade Slots</h2>
+          </div>
+          <span id="status" class="status">Ready</span>
+        </div>
+        <div id="approved-cards" class="trade-slots"></div>
+      </section>
+
+      <section>
+        <div class="section-title">
+          <div>
+            <p class="eyebrow">A+ / Watch / No Trade</p>
+            <h2>Trading Desk v2</h2>
+          </div>
+        </div>
+        <div id="v2-trade-cards" class="v2-board"></div>
+      </section>
+
+      <section>
+        <div class="section-title">
+          <div>
+            <p class="eyebrow">Do Not Chase</p>
+            <h2>Watchlist</h2>
+          </div>
+        </div>
+        <div id="watch-cards" class="watch-grid"></div>
+      </section>
+
+      <section>
+        <div class="section-title">
+          <div>
+            <p class="eyebrow">Risk Context</p>
+            <h2>Events, Sectors, Movers</h2>
+          </div>
+        </div>
+        <div id="desk-context" class="context-grid"></div>
+      </section>
+
+      <section>
+        <div class="section-title">
+          <div>
+            <p class="eyebrow">Paper Tracking</p>
+            <h2>Signal Results</h2>
+          </div>
+        </div>
+        <div id="paper-results" class="paper-grid"></div>
+      </section>
+
+      <section>
+        <div class="section-title">
+          <div>
+            <p class="eyebrow">Full Board</p>
+            <h2>Scanner Results</h2>
+          </div>
+        </div>
+        <div id="table" class="table-wrap"></div>
+      </section>
+    </main>
+    <script src="./app.js"></script>
+  </body>
+</html>

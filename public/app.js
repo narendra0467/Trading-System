@@ -26,6 +26,7 @@ const dateTime = (value) => {
         timeZoneName: "short",
       });
 };
+let latestAnalyzerPrintTitle = "Stock analysis report";
 
 function pill(value) {
   const text = String(value ?? "");
@@ -176,36 +177,36 @@ function renderCoachCards(optionsAlerts, optionsScan) {
 function renderLeapsCards(leapsAlerts) {
   const target = document.getElementById("leaps-cards");
   const cards = (leapsAlerts ?? []).slice(0, 8).map((row) => `
-    <article class="coach-card ${row.direction === "CALL" ? "coach-card--bullish" : "coach-card--bearish"}">
+    <article class="coach-card ${row.status === "Ready for Starter" ? "coach-card--bullish" : row.status === "Avoid" ? "coach-card--bearish" : "coach-card--neutral"}">
       <div class="coach-head">
         <div>
           <span class="symbol">${row.symbol}</span>
-          ${pill(row.decision)}
+          ${pill(row.status || row.decision)}
         </div>
-        <strong>Grade ${row.qualityGrade || "n/a"} / ${row.score ?? "n/a"}</strong>
+        <strong>${row.leapsOpportunityScore ?? row.score ?? "n/a"}/100</strong>
       </div>
-      <p class="action">${row.tradePlan || row.fundManagerRead || "No LEAPS trade plan available."}</p>
+      <p class="action">${row.finalResearchVerdict || row.whyOpportunityExists || row.tradePlan || "No LEAPS trade plan available."}</p>
       <div class="explain-grid">
-        <div><span>Contract</span><strong>${row.direction} ${row.strike}</strong></div>
-        <div><span>Expiration</span><strong>${row.expiration} (${row.dte}d)</strong></div>
-        <div><span>Mid / Cost</span><strong>${money(row.mid)} / ${wholeMoney(row.cost)}</strong></div>
-        <div><span>Breakeven</span><strong>${money(row.breakeven)} (${row.breakevenMovePct}%)</strong></div>
+        <div><span>Underlying score</span><strong>${row.underlyingScore ?? "n/a"}</strong></div>
+        <div><span>Risk score</span><strong>${row.riskScore ?? "n/a"}</strong></div>
+        <div><span>Pullback</span><strong>${row.pullbackClassification || "n/a"}</strong></div>
+        <div><span>DCA</span><strong>${row.dcaSuitability || "n/a"}</strong></div>
       </div>
       <div class="explain-grid">
         <div><span>Stock Now</span><strong>${money(row.currentPrice)}</strong></div>
-        <div><span>Stock Target</span><strong>${money(row.targetStock)}</strong></div>
-        <div><span>Danger Level</span><strong>${money(row.stopStock)}</strong></div>
-        <div><span>Spread / OI</span><strong>${row.spreadPct}% / ${row.openInterest}</strong></div>
+        <div><span>Best contract</span><strong>${row.bestContractCandidate || "n/a"}</strong></div>
+        <div><span>Delta</span><strong>${row.delta ?? row.preferredDelta ?? "n/a"}</strong></div>
+        <div><span>Spread / OI</span><strong>${row.spreadPct ?? "n/a"}% / ${row.openInterest ?? "n/a"}</strong></div>
       </div>
       <ul class="plain-list">
-        <li>${row.positionRead || "Risk is the premium paid."}</li>
-        <li>Fund manager read: ${row.fundManagerRead || "No manager read."}</li>
-        <li>Why: ${row.reasons || row.reason || "No reasons available."}</li>
-        <li>Risks: ${row.risks || "No risk notes available."}</li>
+        <li>This is calls-only, long-dated option research. It is not a buy/sell recommendation.</li>
+        <li>Preferred expiry: ${row.preferredExpiryRange || "12-24 months preferred; 6 months minimum"}.</li>
+        <li>Bull case: ${row.bullCase || "No bull case available."}</li>
+        <li>Bear case: ${row.bearCase || row.reason || "No bear case available."}</li>
       </ul>
     </article>
   `);
-  target.innerHTML = cards.length ? cards.join("") : `<p class="empty">No LEAPS ideas passed the long-dated option filters yet.</p>`;
+  target.innerHTML = cards.length ? cards.join("") : `<p class="empty">No high-quality LEAPS candidates today.</p>`;
 }
 
 function renderSwingSummary(stockScan, stockAlerts) {
@@ -325,6 +326,15 @@ function scoreTone(score, inverse = false) {
   return "bad";
 }
 
+function riskLevel(score) {
+  const number = Number(score);
+  if (!Number.isFinite(number)) return "Unavailable";
+  if (number < 35) return "Low";
+  if (number < 55) return "Moderate";
+  if (number < 75) return "Elevated";
+  return "Very high";
+}
+
 function reportMeter(label, score, helper, inverse = false) {
   const number = Number(score);
   const value = Number.isFinite(number) ? Math.max(0, Math.min(100, number)) : 0;
@@ -349,6 +359,127 @@ function metricCard(row) {
   `;
 }
 
+function kpiCard(row) {
+  if (!row) return "";
+  return `
+    <div class="kpi-card kpi-card--${row.status || "unavailable"}" title="${escapeHtml(row.tooltip || row.note || "")}">
+      <span>${escapeHtml(row.label)}</span>
+      <strong>${escapeHtml(row.display)}</strong>
+    </div>
+  `;
+}
+
+function advisorCard(row) {
+  if (!row) return "";
+  return `
+    <div class="metric-card metric-card--${row.status || "near"}">
+      <span>${escapeHtml(row.label)}</span>
+      <p>${escapeHtml(row.value)}</p>
+    </div>
+  `;
+}
+
+function riskHeatCell(row) {
+  const score = Number(row.score);
+  const tone = score >= 70 ? "fail" : score >= 45 ? "near" : "pass";
+  return `
+    <div class="risk-heat risk-heat--${tone}">
+      <span>${escapeHtml(row.label)}</span>
+      <strong>${Number.isFinite(score) ? Math.round(score) : "n/a"}/100</strong>
+      <p>${escapeHtml(row.note || "")}</p>
+    </div>
+  `;
+}
+
+function hiddenScoreBar(item) {
+  const score = Number(item.score);
+  return `
+    <div>
+      <div><span>${escapeHtml(item.label)} (${item.weight ?? ""}${item.weight ? " pts" : ""})</span><strong>${Number.isFinite(score) ? Math.round(score) : "n/a"}/100</strong></div>
+      <div class="meter-track"><span style="width:${Math.max(0, Math.min(100, score || 0))}%"></span></div>
+      <p>${escapeHtml(item.note || "")}</p>
+    </div>
+  `;
+}
+
+function proofPill(passed) {
+  return `<span class="growth-status growth-status--${passed ? "pass" : "fail"}">${passed ? "PROOF" : "NOT YET"}</span>`;
+}
+
+function renderHiddenMultibagger(result) {
+  const hunter = result.hiddenMultibagger;
+  if (!hunter) return "";
+  return `
+    <section class="hidden-hunter">
+      <div class="section-title">
+        <div>
+          <p class="eyebrow">Asymmetric Research</p>
+          <h3>Hidden Multibagger Hunter</h3>
+          <p class="muted">Separates real business progress from hype. This is not a buy/sell recommendation.</p>
+        </div>
+        <span class="growth-status growth-status--${hunter.score >= 70 ? "pass" : hunter.score >= 50 ? "near" : "fail"}">${escapeHtml(hunter.classification)}</span>
+      </div>
+      <div class="kpi-strip">
+        ${reportMeter("Multibagger Potential", hunter.score, "Early-stage upside score from growth, TAM, margins, leverage, survival, dilution, moat, catalysts, and under-the-radar status.")}
+        ${reportMeter("Multibagger Risk", hunter.riskScore, "Separate downside score for dilution, burn, balance sheet, valuation, hype, liquidity, filings, and insider risk.", true)}
+        ${reportMeter("Under-the-Radar", hunter.underRadarScore, "Higher means the company appears less discovered by analysts, institutions, media, or trading volume.")}
+      </div>
+      <div class="hidden-thesis-grid">
+        <div><span>Classification read</span><p>${escapeHtml(hunter.classificationReason || "Use this as a research filter, not a buy/sell recommendation.")}</p></div>
+        <div><span>Upside case</span><p>${escapeHtml(hunter.upsideCase)}</p></div>
+        <div><span>Downside case</span><p>${escapeHtml(hunter.downsideCase)}</p></div>
+      </div>
+      <h3>Multibagger Score Breakdown</h3>
+      <div class="score-bars hidden-score-bars">${(hunter.scoreBreakdown ?? []).map(hiddenScoreBar).join("")}</div>
+      <h3>Early Proof Checklist</h3>
+      <div class="proof-grid">
+        ${(hunter.earlyProof ?? []).map((item) => `
+          <div>
+            <span>${escapeHtml(item.label)}</span>
+            <strong>${escapeHtml(item.value)}</strong>
+            ${proofPill(item.passed)}
+          </div>
+        `).join("")}
+      </div>
+      <h3>Under-the-Radar Checks</h3>
+      <div class="metric-card-grid metric-card-grid--advisor">
+        ${(hunter.underRadarFactors ?? []).map((item) => advisorCard({ label: `${item.label}: ${Number.isFinite(Number(item.score)) ? Math.round(item.score) : "n/a"}/100`, status: item.score >= 70 ? "pass" : item.score >= 45 ? "near" : "fail", value: `${item.value}. ${item.note}` })).join("")}
+      </div>
+      <h3>Multibagger Risk Map</h3>
+      <div class="risk-heatmap">${(hunter.riskBreakdown ?? []).map(riskHeatCell).join("")}</div>
+      <h3>What Must Happen For The Thesis To Become Real</h3>
+      <ul class="plain-list">${(hunter.mustHappen ?? []).map((item) => `<li>${escapeHtml(item)}</li>`).join("")}</ul>
+      <p class="muted">${escapeHtml(hunter.caveat || "")}</p>
+    </section>
+  `;
+}
+
+function peerTable(rows = []) {
+  if (!rows.length) return `<p class="empty">Peer data was unavailable.</p>`;
+  return `
+    <div class="table-wrap peer-table">
+      <table>
+        <thead><tr><th>Peer</th><th>Market Cap</th><th>Rev Growth</th><th>Gross Margin</th><th>Op Margin</th><th>P/E</th><th>Fwd P/E</th><th>P/S</th><th>EV/EBITDA</th></tr></thead>
+        <tbody>
+          ${rows.map((row) => `
+            <tr class="${row.isTarget ? "peer-target" : ""}">
+              <td><strong>${escapeHtml(row.symbol)}</strong><small>${escapeHtml(row.name || "")}</small></td>
+              <td>${bigMoney(row.marketCap)}</td>
+              <td>${pct(row.revenueGrowth)}</td>
+              <td>${pct(row.grossMargin)}</td>
+              <td>${pct(row.operatingMargin)}</td>
+              <td>${format(row.trailingPE)}</td>
+              <td>${format(row.forwardPE)}</td>
+              <td>${format(row.ps)}</td>
+              <td>${format(row.evEbitda)}</td>
+            </tr>
+          `).join("")}
+        </tbody>
+      </table>
+    </div>
+  `;
+}
+
 function rowsByLabel(checklist, labels) {
   return labels.map((label) => checklist?.rows?.find((row) => row.label === label)).filter(Boolean);
 }
@@ -367,25 +498,46 @@ function renderReportSection(result) {
   const valuationRows = rowsByLabel(checklist, ["P/E Ratio", "Forward P/E", "PEG Ratio", "P/B Ratio", "P/S Ratio", "Enterprise Value / EBITDA"]);
   const healthRows = rowsByLabel(checklist, ["Gross Profit Margin", "Operating Profit Margin", "Net Profit Margin", "EBITDA Margin", "FCF Margin", "Return on Equity"]);
   const growthRows = rowsByLabel(checklist, ["1-Year Revenue Growth", "3-Year Revenue CAGR", "5-Year Revenue CAGR", "EPS Growth", "Return on Assets", "P/FCF"]);
+  const advisorRows = result.advisorChecks ?? [];
+  const kpiRows = result.kpiRows ?? [];
+  const riskRows = result.riskBreakdown ?? [];
+  const dataQuality = result.dataQuality ?? {};
   return `
-    <article class="analyzer-detail investor-report">
+    <article class="analyzer-detail investor-report" id="printable-analyzer-report">
       <div class="section-title">
         <div>
           <p class="eyebrow">Interactive Investor Report</p>
           <h2>${escapeHtml(result.symbol)} Stock Analysis</h2>
+          <p class="muted">Latest live Yahoo Finance data as of ${dateTime(result.asOf)}.</p>
         </div>
-        <span class="growth-status growth-status--${checklist?.isGrowthStock ? "pass" : "fail"}">${checklist?.isGrowthStock ? "Growth stock" : "Not confirmed"}</span>
+        <div class="report-actions">
+          <span class="growth-status growth-status--${checklist?.isGrowthStock ? "pass" : "fail"}">${checklist?.isGrowthStock ? "Growth stock" : "Not confirmed"}</span>
+          <button type="button" class="print-report-button" data-toggle-report-theme>Dark / Light</button>
+          <button type="button" class="print-report-button" data-print-analyzer>Download PDF</button>
+        </div>
       </div>
       <div class="kpi-strip">
         ${reportMeter("Overall Score", reportScores.overallScore, "Revenue growth versus what the stock price already demands.")}
         ${reportMeter("Growth Potential", reportScores.growthPotential, "Higher means the company has growth plus enough chart/analyst support.")}
-        ${reportMeter("Risk Analysis", reportScores.riskScore, "Higher means more things can go wrong.", true)}
+        ${reportMeter("Risk Analysis", reportScores.riskScore, `${result.riskLevel || riskLevel(reportScores.riskScore)} risk. Higher means more things can go wrong, but quality and balance sheet strength reduce the score.`, true)}
+      </div>
+      <div class="report-snapshot">
+        <div><span>Research view</span><strong>${escapeHtml(result.investigateFurther || result.finalAction || "Research only")}</strong><p>No buy/sell call. This separates company quality, valuation, risk, growth potential, and timing.</p></div>
+        <div><span>Quality profile</span><strong>${escapeHtml(result.fundamentals?.rating || "n/a")}</strong><p>${escapeHtml(result.business?.ownershipStyle || "Watchlist candidate")}</p></div>
+        <div><span>Valuation profile</span><strong>${escapeHtml(result.valuation?.rating || "n/a")}</strong><p>Premium multiples are risk, not automatic danger when quality and growth are strong.</p></div>
+        <div><span>Risk level</span><strong>${escapeHtml(result.riskLevel || riskLevel(reportScores.riskScore))}</strong><p>Built from valuation, balance sheet, dilution, execution, competition, news, and trend risk.</p></div>
       </div>
       <div class="decision-strip">
-        <div><span>Final Action</span><strong>${escapeHtml(result.finalAction || result.decision)}</strong><p>Plain-English action after growth, valuation, trend, analyst tone, and news tape.</p></div>
+        <div><span>Would I investigate this further?</span><strong>${escapeHtml(result.investigateFurther || result.finalAction || "Research only")}</strong><p>Not a buy/sell recommendation. Use this as a research priority label.</p></div>
         <div><span>Moat Score</span><strong>${Number.isFinite(Number(moat.score)) ? Math.round(moat.score) : "n/a"}/100</strong><p>${escapeHtml(moat.rating || "Moat evidence not available.")}</p></div>
         <div><span>News / Catalyst Tape</span><strong>${escapeHtml(newsEngine.tone || "n/a")}</strong><p>${Number(newsEngine.catalystCount ?? 0)} catalyst headlines, ${Number(newsEngine.bullishCount ?? 0)} bullish, ${Number(newsEngine.bearishCount ?? 0)} bearish.</p></div>
       </div>
+      <div class="data-quality">
+        <div><span>Data date</span><strong>${escapeHtml(dateTime(dataQuality.marketDataDate || result.asOf))}</strong></div>
+        <div><span>Latest quarter used</span><strong>${escapeHtml(dataQuality.latestQuarterUsed || "Unavailable")}</strong></div>
+        <div><span>SEC / filing cross-check</span><strong>${escapeHtml(dataQuality.secCrossCheck || "Unavailable")}</strong></div>
+      </div>
+      <div class="kpi-ticker-strip">${kpiRows.map(kpiCard).join("")}</div>
       <div class="score-bars">
         ${(reportScores.weighting ?? []).map((item) => `
           <div>
@@ -395,14 +547,29 @@ function renderReportSection(result) {
           </div>
         `).join("")}
       </div>
-      <div class="report-grid">
-        <div><span>Business Model</span><p>${escapeHtml(report.businessModel || "Business model was not available.")}</p></div>
-        <div><span>Moat and Competition</span><p>${escapeHtml(report.moat || "Moat read was not available.")}</p><strong>${(report.competitors ?? []).map(escapeHtml).join(" / ") || "n/a"}</strong></div>
-        <div><span>Technology Advantage</span><p>${escapeHtml(report.technologyAdvantage || "Technology advantage was not confirmed.")}</p></div>
-        <div><span>Catalysts: Next 12 Months</span><ul class="plain-list">${(report.catalysts ?? []).map((item) => `<li>${escapeHtml(item)}</li>`).join("") || "<li>No specific catalysts found.</li>"}</ul></div>
-        <div><span>Asymmetry Check</span><p>${escapeHtml(report.asymmetry || "Asymmetry read was not available.")}</p></div>
-        <div><span>Deals / Backlog / Partnerships</span><p>${escapeHtml(report.partnerships || "Partnership data was not available.")}</p></div>
-      </div>
+      <details class="report-section" open><summary>1. Business Model</summary><p>${escapeHtml(report.businessModel || "Business model was not available.")}</p></details>
+      <details class="report-section" open><summary>2. Moat and Competition</summary><p>${escapeHtml(report.moat || "Moat read was not available.")}</p><p><strong>Peers:</strong> ${(report.competitors ?? []).map(escapeHtml).join(" / ") || "n/a"}</p><p>${escapeHtml(report.technologyAdvantage || "Technology advantage was not confirmed.")}</p></details>
+      <details class="report-section" open><summary>3-5. Financial Quality, Growth, Valuation</summary>
+        <h3>Financial Health</h3><div class="metric-card-grid">${healthRows.map(metricCard).join("")}</div>
+        <h3>Growth</h3><div class="metric-card-grid">${growthRows.map(metricCard).join("")}</div>
+        <h3>Valuation</h3><div class="metric-card-grid">${valuationRows.map(metricCard).join("")}</div>
+      </details>
+      <details class="report-section"><summary>6-7. Balance Sheet and Dilution Risk</summary><div class="metric-card-grid metric-card-grid--advisor">${advisorRows.slice(0, 8).map(advisorCard).join("")}</div></details>
+      <details class="report-section" open><summary>8-9. Catalysts, Deals, Backlog, Partnerships</summary><ul class="plain-list">${(report.catalysts ?? []).map((item) => `<li>${escapeHtml(item)}</li>`).join("") || "<li>No specific catalysts found.</li>"}</ul><p>${escapeHtml(report.partnerships || "Partnership data was not available.")}</p></details>
+      <details class="report-section" open><summary>10. Asymmetry Check</summary><p>${escapeHtml(report.asymmetry || "Asymmetry read was not available.")}</p></details>
+      ${renderHiddenMultibagger(result)}
+      <details class="report-section" open><summary>13. Technical Trend Snapshot</summary><div class="metric-card-grid metric-card-grid--advisor">
+        ${advisorCard({ label: "Trend", status: result.technical?.score >= 60 ? "pass" : result.technical?.score >= 45 ? "near" : "fail", value: `${result.technical?.rating || "n/a"} trend. Price ${money(result.technical?.close)}, EMA50 ${money(result.technical?.ema50)}, EMA150 ${money(result.technical?.ema150)}.` })}
+        ${advisorCard({ label: "Momentum", status: result.technical?.rsi14 >= 50 ? "pass" : "near", value: `RSI ${result.technical?.rsi14 ?? "n/a"}, ADX ${result.technical?.adx14 ?? "n/a"}, relative strength ${result.technical?.relativeStrength60 ?? "n/a"}%.` })}
+        ${advisorCard({ label: "Support / Resistance", status: "near", value: `Chart stop near ${money(result.technical?.stop)}; target zone near ${money(result.technical?.target)}; 55-day high ${money(result.technical?.high55)}.` })}
+      </div></details>
+      <details class="report-section" open><summary>14. Red Flags</summary><ul class="plain-list">${[...(result.risks ?? []), ...(dataQuality.missingOrEstimatedValues ?? []).map((item) => `Missing/estimated: ${item}`)].slice(0, 12).map((item) => `<li>${escapeHtml(item)}</li>`).join("") || "<li>No major red flags from available fields.</li>"}</ul></details>
+      <h3>Peer Comparison</h3>
+      ${peerTable(result.peerComparison ?? [])}
+      <h3>Risk Heatmap</h3>
+      <div class="risk-heatmap">${riskRows.map(riskHeatCell).join("")}</div>
+      <h3>Advisor Add-ons</h3>
+      <div class="metric-card-grid metric-card-grid--advisor">${advisorRows.map(advisorCard).join("")}</div>
       <div class="analyzer-columns">
         <div>
           <h3>Moat Evidence</h3>
@@ -443,12 +610,11 @@ function renderReportSection(result) {
         <div class="thesis-card thesis-card--bear"><h3>Bear Case</h3><p>${escapeHtml(report.bearCase || "Bear case was not available.")}</p></div>
       </div>
       <p class="action">${escapeHtml(report.shortAnalysis || checklist?.summary || "Use this as a research starting point.")}</p>
-      <h3>Valuation</h3>
-      <div class="metric-card-grid">${valuationRows.map(metricCard).join("")}</div>
-      <h3>Financial Health</h3>
-      <div class="metric-card-grid">${healthRows.map(metricCard).join("")}</div>
-      <h3>Growth</h3>
-      <div class="metric-card-grid">${growthRows.map(metricCard).join("")}</div>
+      <div class="final-summary-card">
+        <span>15. Final Short Analysis</span>
+        <p>${escapeHtml(report.shortAnalysis || "Use this as a research starting point.")}</p>
+        <p>${escapeHtml(dataQuality.caveat || "This is an analytical research report, not financial advice.")}</p>
+      </div>
     </article>
   `;
 }
@@ -503,115 +669,17 @@ function renderAnalyzer(result) {
     target.innerHTML = "";
     return;
   }
-  const sections = [
-    ["Technical", result.technical.score, result.technical.rating],
-    ["Fundamental", result.fundamentals.score, result.fundamentals.rating],
-    ["Valuation", result.valuation.score, result.valuation.rating],
-    ["Analysts", result.analysts.score, result.analysts.rating],
-  ];
-  target.innerHTML = `
-    ${renderReportSection(result)}
-    <article class="coach-card ${analyzerDecisionClass(result.decision)} analyzer-card">
-      <div class="coach-head">
-        <div>
-          <span class="symbol">${result.symbol}</span>
-          ${pill(result.decision)}
-        </div>
-        <strong>Grade ${result.qualityGrade} / ${result.totalScore}/100</strong>
-      </div>
-      <p class="action">${result.managerRead}</p>
-      <article class="business-read">
-        <div>
-          <span>Business Theme</span>
-          <strong>${escapeHtml(result.business?.theme || "n/a")}</strong>
-          <p>${escapeHtml(result.business?.plainEnglish || "Business profile was not available from the data source.")}</p>
-        </div>
-        <div>
-          <span>Beginner View</span>
-          <strong>${escapeHtml(result.business?.ownershipStyle || "Review candidate")}</strong>
-          <p>${escapeHtml(result.business?.beginnerRead || "Use this as a research starting point, not a blind trade.")}</p>
-        </div>
-      </article>
-      <div class="explain-grid">
-        <div><span>Price</span><strong>${money(result.currentPrice)}</strong></div>
-        <div><span>Market Cap</span><strong>${bigMoney(result.marketCap)}</strong></div>
-        <div><span>Exchange</span><strong>${format(result.exchange)}</strong></div>
-        <div><span>Benchmark</span><strong>${format(result.benchmark)}</strong></div>
-      </div>
-      <div class="score-grid">
-        ${sections.map(([label, score, rating]) => `
-          <div>
-            <span>${label}</span>
-            <strong>${score}/100</strong>
-            <p>${rating}</p>
-          </div>
-        `).join("")}
-      </div>
-      <div class="analyzer-columns">
-        <div>
-          <h3>Why It Works</h3>
-          <ul class="plain-list">${(result.strengths ?? []).map((item) => `<li>${item}</li>`).join("") || "<li>No strong positives found.</li>"}</ul>
-        </div>
-        <div>
-          <h3>Risks</h3>
-          <ul class="plain-list">${(result.risks ?? []).map((item) => `<li>${item}</li>`).join("") || "<li>No major risk flags from available fields.</li>"}</ul>
-        </div>
-      </div>
-    </article>
-    ${renderGrowthChecklist(result)}
-    <article class="analyzer-detail">
-      <h2>Investor Read</h2>
-      <div class="explain-grid">
-        <div><span>Company</span><strong>${escapeHtml(result.name)}</strong></div>
-        <div><span>Sector</span><strong>${escapeHtml(result.business?.sector || result.fundamentals.sector || "n/a")}</strong></div>
-        <div><span>Industry</span><strong>${escapeHtml(result.business?.industry || result.fundamentals.industry || "n/a")}</strong></div>
-        <div><span>Employees</span><strong>${wholeNumber(result.business?.employees)}</strong></div>
-      </div>
-      <div class="analyzer-columns">
-        <div>
-          <h3>Beginner Checklist</h3>
-          <ul class="plain-list">${(result.business?.investorChecklist ?? []).map((item) => `<li>${escapeHtml(item)}</li>`).join("") || "<li>Checklist was not available.</li>"}</ul>
-        </div>
-        <div>
-          <h3>How I Would Use It</h3>
-          <ul class="plain-list">
-            <li>Do not buy only because the grade is high. Confirm the business, price, and chart.</li>
-            <li>For long-term investing, prefer high fundamentals plus fair valuation. For trades, respect the stop.</li>
-            <li>If you cannot explain how the company makes money, keep it on the watchlist until you can.</li>
-          </ul>
-        </div>
-      </div>
-    </article>
-    <article class="analyzer-detail">
-      <h2>Score Breakdown</h2>
-      <div class="explain-grid">
-        <div><span>Revenue Growth</span><strong>${pct(result.fundamentals.revenueGrowth)}</strong></div>
-        <div><span>Operating Margin</span><strong>${pct(result.fundamentals.operatingMargins)}</strong></div>
-        <div><span>Free Cash Flow</span><strong>${bigMoney(result.fundamentals.freeCashflow)}</strong></div>
-        <div><span>Debt / Equity</span><strong>${format(result.fundamentals.debtToEquity)}</strong></div>
-        <div><span>Forward P/E</span><strong>${format(result.valuation.forwardPE)}</strong></div>
-        <div><span>PEG</span><strong>${format(result.valuation.pegRatio)}</strong></div>
-        <div><span>Analyst View</span><strong>${format(result.analysts.recommendationKey)}</strong></div>
-        <div><span>Analyst Upside</span><strong>${pct(result.valuation.analystUpside)}</strong></div>
-      </div>
-      <div class="explain-grid">
-        <div><span>EMA20</span><strong>${money(result.technical.ema20)}</strong></div>
-        <div><span>EMA50</span><strong>${money(result.technical.ema50)}</strong></div>
-        <div><span>RSI</span><strong>${format(result.technical.rsi14)}</strong></div>
-        <div><span>Stop / Target</span><strong>${money(result.technical.stop)} / ${money(result.technical.target)}</strong></div>
-      </div>
-    </article>
-  `;
-  document.querySelectorAll("[data-growth-filter]").forEach((button) => {
-    button.addEventListener("click", () => {
-      const filter = button.dataset.growthFilter;
-      document.querySelectorAll("[data-growth-filter]").forEach((item) => item.classList.toggle("active", item === button));
-      document.querySelectorAll("[data-growth-row]").forEach((row) => {
-        row.style.display = filter === "all" || row.dataset.growthRow === filter ? "" : "none";
-      });
-    });
+  latestAnalyzerPrintTitle = `${result.symbol} stock analysis`;
+  target.innerHTML = renderReportSection(result);
+  document.querySelector("[data-toggle-report-theme]")?.addEventListener("click", () => {
+    document.getElementById("printable-analyzer-report")?.classList.toggle("investor-report--light");
   });
-  document.querySelector('[data-growth-filter="all"]')?.classList.add("active");
+  document.querySelector("[data-print-analyzer]")?.addEventListener("click", () => {
+    document.title = latestAnalyzerPrintTitle;
+    document.body.classList.add("printing-analyzer");
+    window.print();
+    setTimeout(() => document.body.classList.remove("printing-analyzer"), 800);
+  });
 }
 
 let analyzerCachePromise = null;
@@ -634,6 +702,9 @@ function analyzerOptionsFromCache(cache) {
     .map((row) => ({
       symbol: String(row.symbol ?? "").toUpperCase(),
       name: row.name || row.symbol || "",
+      exchange: row.exchange || "Cached",
+      assetType: row.assetType || "Equity",
+      sector: row.sector || row.businessModel?.sector || "n/a",
       decision: row.decision || "Cached",
       score: row.totalScore,
     }))
@@ -641,27 +712,94 @@ function analyzerOptionsFromCache(cache) {
     .sort((a, b) => a.symbol.localeCompare(b.symbol));
 }
 
+function compactText(value) {
+  return String(value ?? "").trim();
+}
+
+function isUsListedMatch(row) {
+  const symbol = compactText(row.symbol).toUpperCase();
+  const exchange = compactText(row.exchange).toLowerCase();
+  const assetType = compactText(row.assetType).toLowerCase();
+  if (!symbol || symbol.includes(".") || symbol.includes("=")) return false;
+  if (assetType && !/(equity|stock|etf)/i.test(assetType)) return false;
+  return /(nasdaq|nyse|amex|arca|nms|ngm|ncm|nyq|pcx|ase)/i.test(exchange) || exchange === "cached";
+}
+
+function fuzzyContains(text, query) {
+  let cursor = 0;
+  for (const char of query) {
+    cursor = text.indexOf(char, cursor);
+    if (cursor === -1) return false;
+    cursor += 1;
+  }
+  return true;
+}
+
 function scoreAnalyzerMatch(option, query) {
   const clean = query.trim().toLowerCase();
   if (!clean) return -1;
-  const symbol = option.symbol.toLowerCase();
-  const name = option.name.toLowerCase();
+  const symbol = compactText(option.symbol).toLowerCase();
+  const name = compactText(option.name).toLowerCase();
   const words = name.split(/[^a-z0-9.]+/).filter(Boolean);
-  if (symbol === clean || name === clean) return 100;
-  if (symbol.startsWith(clean)) return 90;
-  if (words.some((word) => word.startsWith(clean))) return 82;
-  if (name.startsWith(clean)) return 78;
-  if (symbol.includes(clean)) return 60;
-  if (name.includes(clean)) return 50;
+  if (symbol === clean) return 1000;
+  if (symbol.startsWith(clean)) return 900;
+  if (name === clean) return 820;
+  if (words.some((word) => word.startsWith(clean))) return 760;
+  if (name.startsWith(clean)) return 720;
+  if (symbol.includes(clean)) return 600;
+  if (name.includes(clean)) return 520;
+  if (fuzzyContains(symbol, clean)) return 340;
+  if (fuzzyContains(name, clean)) return 280;
   return -1;
 }
 
-function searchAnalyzerOptions(query, cache, limit = 8) {
-  return analyzerOptionsFromCache(cache)
+function rankAnalyzerMatches(rows, query, limit = 12) {
+  const seen = new Set();
+  return (rows ?? [])
+    .map((option) => ({
+      symbol: compactText(option.symbol).toUpperCase(),
+      name: compactText(option.name || option.shortname || option.longname || option.symbol),
+      exchange: compactText(option.exchange || option.exchDisp || option.fullExchangeName || "n/a"),
+      assetType: compactText(option.assetType || option.quoteType || option.typeDisp || "n/a"),
+      sector: compactText(option.sector || "n/a"),
+      decision: option.decision,
+      score: option.score,
+    }))
+    .filter((option) => option.symbol && !seen.has(option.symbol) && seen.add(option.symbol))
     .map((option) => ({ ...option, matchScore: scoreAnalyzerMatch(option, query) }))
     .filter((option) => option.matchScore >= 0)
     .sort((a, b) => b.matchScore - a.matchScore || Number(b.score ?? 0) - Number(a.score ?? 0) || a.symbol.localeCompare(b.symbol))
     .slice(0, limit);
+}
+
+function searchAnalyzerOptions(query, cache, limit = 8) {
+  return rankAnalyzerMatches(analyzerOptionsFromCache(cache), query, limit);
+}
+
+async function searchAnalyzerSymbols(query, limit = 12) {
+  const clean = query.trim();
+  if (!clean) return [];
+  const response = await fetch(`/api/search-symbols?q=${encodeURIComponent(clean)}`, { cache: "no-store" });
+  const contentType = response.headers.get("content-type") ?? "";
+  if (!contentType.includes("application/json")) {
+    throw new Error("Symbol search did not return JSON.");
+  }
+  const payload = await response.json();
+  if (!response.ok || payload.error) {
+    throw new Error(payload.error || "Symbol search failed.");
+  }
+  return rankAnalyzerMatches(payload.results ?? [], clean, limit);
+}
+
+async function searchAnalyzerSymbolsWithFallback(query, limit = 12) {
+  try {
+    const liveMatches = await searchAnalyzerSymbols(query, limit);
+    if (liveMatches.length) return liveMatches;
+  } catch {
+    // Fall back to the published analyzer cache when the local live API is unavailable.
+  }
+  const cache = await loadAnalyzerCache();
+  return searchAnalyzerOptions(query, cache, limit);
 }
 
 function setAnalyzerInput(symbol) {
@@ -682,8 +820,7 @@ async function renderAnalyzerSuggestions() {
     return;
   }
   try {
-    const cache = await loadAnalyzerCache();
-    const matches = searchAnalyzerOptions(query, cache);
+    const matches = await searchAnalyzerSymbolsWithFallback(query, 8);
     if (!matches.length) {
       target.classList.remove("analyzer-suggestions--open");
       target.innerHTML = "";
@@ -693,7 +830,7 @@ async function renderAnalyzerSuggestions() {
       <button class="analyzer-suggestion" type="button" data-symbol="${escapeHtml(row.symbol)}">
         <strong>${escapeHtml(row.symbol)}</strong>
         <span>${escapeHtml(row.name)}</span>
-        <small>${escapeHtml(row.decision)} ${Number.isFinite(Number(row.score)) ? `${row.score}/100` : ""}</small>
+        <small>${escapeHtml(row.exchange)} | ${escapeHtml(row.assetType)}${row.sector && row.sector !== "n/a" ? ` | ${escapeHtml(row.sector)}` : ""}</small>
       </button>
     `).join("");
     target.classList.add("analyzer-suggestions--open");
@@ -703,20 +840,71 @@ async function renderAnalyzerSuggestions() {
   }
 }
 
-async function resolveAnalyzerSymbol(rawInput) {
+function exactTickerIntent(query) {
+  const raw = query.trim();
+  if (!/^[A-Za-z][A-Za-z0-9.-]{0,9}$/.test(raw)) return false;
+  return raw === raw.toUpperCase() || raw.length >= 4;
+}
+
+function getDirectAnalyzerMatch(query, matches) {
+  const clean = query.trim().toUpperCase();
+  if (!exactTickerIntent(query)) return null;
+  return matches.find((row) => row.symbol === clean && isUsListedMatch(row)) ?? null;
+}
+
+function renderAnalyzerMatchList(query, matches) {
+  const target = document.getElementById("analyzer-result");
+  if (!matches.length) {
+    target.innerHTML = `
+      <article class="analyzer-detail">
+        <h2>No ticker matches found</h2>
+        <p class="empty">I could not find a Yahoo Finance symbol for "${escapeHtml(query)}". Try the ticker or a more complete company name.</p>
+      </article>
+    `;
+    return;
+  }
+  target.innerHTML = `
+    <article class="analyzer-detail ticker-resolver">
+      <h2>Select ticker</h2>
+      <p class="analyzer-note">"${escapeHtml(query)}" matched multiple symbols. Pick the exact company first, then I will generate the full stock analysis report.</p>
+      <div class="ticker-choice-list">
+        ${matches.map((row) => `
+          <button class="ticker-choice" type="button" data-analyzer-pick="${escapeHtml(row.symbol)}">
+            <strong>${escapeHtml(row.symbol)}</strong>
+            <span>${escapeHtml(row.name)}</span>
+            <small>${escapeHtml(row.exchange)}</small>
+            <small>${escapeHtml(row.assetType)}</small>
+            <small>${escapeHtml(row.sector || "n/a")}</small>
+          </button>
+        `).join("")}
+      </div>
+    </article>
+  `;
+}
+
+async function resolveOrShowAnalyzerMatches(rawInput) {
   const input = document.getElementById("analyzer-symbol");
   const selected = input.dataset.symbol;
-  if (selected) return selected;
+  if (selected) {
+    analyzeTicker(selected);
+    return;
+  }
   const query = rawInput.trim();
-  const explicitSymbol = query.match(/^[A-Z0-9.-]+/i)?.[0]?.toUpperCase();
+  const target = document.getElementById("analyzer-result");
+  if (!query) return;
+  target.innerHTML = `<p class="empty">Searching tickers for ${escapeHtml(query)}...</p>`;
   try {
-    const cache = await loadAnalyzerCache();
-    const exact = analyzerOptionsFromCache(cache).find((row) => row.symbol === query.toUpperCase() || row.name.toLowerCase() === query.toLowerCase());
-    if (exact) return exact.symbol;
-    const best = searchAnalyzerOptions(query, cache, 1)[0];
-    return best?.symbol || explicitSymbol || query.toUpperCase();
-  } catch {
-    return explicitSymbol || query.toUpperCase();
+    const matches = await searchAnalyzerSymbolsWithFallback(query, 12);
+    const direct = getDirectAnalyzerMatch(query, matches);
+    if (direct) {
+      setAnalyzerInput(direct.symbol);
+      analyzeTicker(direct.symbol);
+      return;
+    }
+    renderAnalyzerMatchList(query, matches);
+  } catch (error) {
+    const fallbackSymbol = query.match(/^[A-Z0-9.-]+/i)?.[0]?.toUpperCase();
+    target.innerHTML = `<p class="empty">${escapeHtml(error.message)}${fallbackSymbol ? ` Try selecting a suggestion or enter a full ticker such as ${escapeHtml(fallbackSymbol)}.` : ""}</p>`;
   }
 }
 
@@ -851,6 +1039,76 @@ function renderHighRiskCards(rows) {
   target.innerHTML = cards.length ? cards.join("") : `<p class="empty">Run npm run highrisk:scan first.</p>`;
 }
 
+function daysOld(value) {
+  const date = new Date(value);
+  if (Number.isNaN(date.getTime())) return null;
+  return Math.floor((Date.now() - date.getTime()) / (24 * 60 * 60 * 1000));
+}
+
+function renderHiddenMultibaggerDashboard(report) {
+  const summaryTarget = document.getElementById("hidden-summary");
+  const cardsTarget = document.getElementById("hidden-cards");
+  const rows = report?.candidates ?? [];
+  const ageDays = daysOld(report?.generatedAt);
+  const isStale = Number.isFinite(ageDays) && ageDays > 7;
+  const top = rows[0];
+  summaryTarget.innerHTML = `
+    <article class="bias-card ${isStale ? "bias-card--bearish" : "bias-card--bullish"}">
+      <span>Refresh Status</span>
+      <strong>${Number.isFinite(ageDays) ? `${ageDays} day${ageDays === 1 ? "" : "s"} old` : "Not scanned"}</strong>
+      <p>${isStale ? "Older than one week. Run npm run hidden:scan before relying on this watchlist." : "Fresh enough for weekly research review."} Auto-refresh runs Mondays at 7:00 AM Alberta time when the dashboard server is open.</p>
+    </article>
+    <article class="bias-card">
+      <span>Watchlist</span>
+      <strong>${rows.length} candidates</strong>
+      <p>${report?.scanned ?? 0} seed stocks scanned. ${report?.investorMode ? "Investor mode is on." : "This is research only, not a buy/sell list."}</p>
+    </article>
+    <article class="bias-card">
+      <span>Top Candidate</span>
+      <strong>${top ? `${top.symbol} ${Math.round(top.score)}/100` : "No candidate"}</strong>
+      <p>${top?.researchTier || top?.classification || "Run npm run hidden:scan to generate this section."}</p>
+    </article>
+  `;
+
+  cardsTarget.innerHTML = rows.slice(0, 6).map((row) => `
+    <article class="coach-card hidden-card">
+      <div class="coach-head">
+        <div>
+          <span class="symbol">${escapeHtml(row.symbol)}</span>
+          ${pill(row.researchTier || row.classification)}
+        </div>
+        <strong>${Math.round(row.score)}/100</strong>
+      </div>
+      <p class="action">${escapeHtml(row.name)}: ${escapeHtml(row.investorRead || row.bullCase || "Research candidate.")}</p>
+      <div class="explain-grid">
+        <div><span>Market cap</span><strong>${escapeHtml(row.marketCapDisplay)}</strong></div>
+        <div><span>Rev growth</span><strong>${escapeHtml(row.revenueGrowthDisplay)}</strong></div>
+        <div><span>Risk</span><strong>${Math.round(row.riskScore)}/100</strong></div>
+        <div><span>Research gates</span><strong>${Math.round(row.gateScore ?? 0)}/100</strong></div>
+      </div>
+      <ul class="plain-list">
+        <li>Bear case: ${escapeHtml(row.bearCase || "Unavailable.")}</li>
+        <li>Catalyst: ${escapeHtml(row.catalyst || "No confirmed catalyst found.")}</li>
+        <li>Verdict: ${escapeHtml(row.researchTier || row.verdict || row.classification || "Research only.")}</li>
+      </ul>
+    </article>
+  `).join("") || `<p class="empty">Run npm run hidden:scan to generate hidden multibagger candidates.</p>`;
+
+  renderTable("hidden-table", rows.slice(0, 20), [
+    { key: "symbol", label: "Ticker" },
+    { key: "name", label: "Company" },
+    { key: "sector", label: "Sector" },
+    { key: "marketCapDisplay", label: "Market Cap" },
+    { key: "revenueGrowthDisplay", label: "Rev Growth" },
+    { key: "revenueCagr3Display", label: "3Y CAGR" },
+    { key: "gateScore", label: "Gates", formatter: (value) => `${Math.round(Number(value) || 0)}/100` },
+    { key: "score", label: "Score", formatter: (value) => `${Math.round(Number(value) || 0)}/100` },
+    { key: "riskScore", label: "Risk", formatter: (value) => `${Math.round(Number(value) || 0)}/100` },
+    { key: "researchTier", label: "Research Tier", pill: true },
+    { key: "catalyst", label: "Catalyst" },
+  ]);
+}
+
 function renderLongTermStarterPack(pack) {
   const summaryTarget = document.getElementById("longterm-summary");
   const rulesTarget = document.getElementById("longterm-rules");
@@ -939,9 +1197,9 @@ function renderTable(targetId, rows, columns) {
 }
 
 async function loadDashboard() {
-  let response = await fetch(`./dashboard.json?v=${Date.now()}`, { cache: "no-store" });
+  let response = await fetch(`/api/dashboard?v=${Date.now()}`, { cache: "no-store" });
   if (!response.ok || !(response.headers.get("content-type") ?? "").includes("application/json")) {
-    response = await fetch("/api/dashboard", { cache: "no-store" });
+    response = await fetch(`./dashboard.json?v=${Date.now()}`, { cache: "no-store" });
   }
   if (!response.ok || !(response.headers.get("content-type") ?? "").includes("application/json")) {
     throw new Error("Dashboard data is not available.");
@@ -950,16 +1208,18 @@ async function loadDashboard() {
   document.getElementById("updated-line").textContent = `Last refreshed: ${dateTime(data.updatedAt)}`;
   const regime = data.marketRegime;
   document.getElementById("regime").innerHTML = regime ? `
-    <div class="metric"><span>Regime</span><strong>${pill(regime.regime)}</strong></div>
-    <div class="metric"><span>Score</span><strong>${regime.score}</strong></div>
-    <div class="metric"><span>VIX</span><strong>${regime.vix ?? "n/a"}</strong></div>
-    <div class="metric"><span>Read</span><strong>${regime.reason}</strong></div>
-  ` : `<div class="metric"><span>Regime</span><strong>No scan yet</strong></div>`;
+    <div class="metric"><span>Market mode</span><strong>${pill(regime.regime)}</strong></div>
+    <div class="metric"><span>Breadth score</span><strong>${regime.score}</strong></div>
+    <div class="metric"><span>VIX volatility</span><strong>${regime.vix ?? "n/a"}</strong></div>
+    <div class="metric"><span>Trade read</span><strong>${regime.reason}</strong></div>
+  ` : `<div class="metric"><span>Market mode</span><strong>No scan yet</strong></div>`;
 
   renderCoachCards(data.optionsAlerts, data.optionsScan);
-  renderLeapsCards(data.leapsAlerts);
+  const leapsRows = data.leapsReport?.top10?.length ? data.leapsReport.top10 : data.leapsAlerts;
+  renderLeapsCards(leapsRows);
   renderHighRiskSummary(data.highRiskSummary, data.highRiskAlerts);
   renderHighRiskCards(data.highRiskAlerts);
+  renderHiddenMultibaggerDashboard(data.hiddenMultibagger);
   renderLongTermStarterPack(data.longTermStarterPack);
 
   const longOptions = (data.optionsScan ?? []).filter((row) => ["BUY_CALL", "BUY_PUT"].includes(row.beginnerStrategy));
@@ -978,25 +1238,29 @@ async function loadDashboard() {
     { key: "beginnerAction", label: "Beginner Read", formatter: (value) => value || "Watch only. No trade approved." },
   ]);
 
-  renderTable("leaps-table", data.leapsScan, [
+  renderTable("leaps-table", data.leapsReport?.top10?.length ? data.leapsReport.top10 : data.leapsScan, [
     { key: "symbol", label: "Symbol" },
-    { key: "direction", label: "Side", pill: true },
+    { key: "status", label: "Status", pill: true },
     { key: "decision", label: "Decision", pill: true },
-    { key: "score", label: "Score" },
-    { key: "stockScore", label: "Stock Score" },
+    { key: "leapsOpportunityScore", label: "LEAPS Score" },
+    { key: "underlyingScore", label: "Underlying" },
+    { key: "riskScore", label: "Risk" },
     { key: "currentPrice", label: "Stock", formatter: money },
+    { key: "pullbackClassification", label: "Pullback" },
+    { key: "dcaSuitability", label: "DCA" },
+    { key: "bestContractCandidate", label: "Best Contract" },
+    { key: "optionLiquidityStatus", label: "Liquidity", pill: true },
     { key: "strike", label: "Strike" },
     { key: "expiration", label: "Exp" },
     { key: "dte", label: "DTE" },
     { key: "mid", label: "Mid", formatter: money },
-    { key: "cost", label: "1 Contract", formatter: wholeMoney },
+    { key: "delta", label: "Delta" },
+    { key: "impliedVolatility", label: "IV %" },
     { key: "breakeven", label: "Breakeven", formatter: money },
     { key: "breakevenMovePct", label: "BE Move %" },
     { key: "spreadPct", label: "Spread %" },
     { key: "openInterest", label: "OI" },
-    { key: "targetStock", label: "Stock Target", formatter: money },
-    { key: "stopStock", label: "Danger", formatter: money },
-    { key: "fundManagerRead", label: "Manager Read" },
+    { key: "finalResearchVerdict", label: "Verdict" },
   ]);
 
   renderTable("longterm-table", data.longTermStarterPack?.holdings, [
@@ -1038,8 +1302,7 @@ async function loadDashboard() {
 document.getElementById("refresh").addEventListener("click", loadDashboard);
 document.getElementById("analyzer-form").addEventListener("submit", async (event) => {
   event.preventDefault();
-  const symbol = await resolveAnalyzerSymbol(document.getElementById("analyzer-symbol").value);
-  if (symbol) analyzeTicker(symbol);
+  await resolveOrShowAnalyzerMatches(document.getElementById("analyzer-symbol").value);
 });
 document.getElementById("analyzer-symbol").addEventListener("input", renderAnalyzerSuggestions);
 document.getElementById("analyzer-symbol").addEventListener("focus", renderAnalyzerSuggestions);
@@ -1048,6 +1311,12 @@ document.getElementById("analyzer-suggestions").addEventListener("click", (event
   if (!button) return;
   setAnalyzerInput(button.dataset.symbol);
   analyzeTicker(button.dataset.symbol);
+});
+document.getElementById("analyzer-result").addEventListener("click", (event) => {
+  const button = event.target.closest("[data-analyzer-pick]");
+  if (!button) return;
+  setAnalyzerInput(button.dataset.analyzerPick);
+  analyzeTicker(button.dataset.analyzerPick);
 });
 document.addEventListener("click", (event) => {
   if (!event.target.closest(".analyzer-form")) {

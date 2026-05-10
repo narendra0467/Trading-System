@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Trading System</title>
-    <link rel="stylesheet" href="./styles.css?v=20260505-analyst" />
+    <link rel="stylesheet" href="./styles.css?v=20260510-leaps-live-api" />
   </head>
   <body>
     <main class="shell">
@@ -23,6 +23,7 @@
         <button class="tab-button tab-button--active" data-tab="options">Stock Options</button>
         <button class="tab-button" data-tab="leaps">LEAPS</button>
         <button class="tab-button" data-tab="analyzer">Stock Analyzer</button>
+        <button class="tab-button" data-tab="hidden">Hidden Hunters</button>
         <button class="tab-button" data-tab="moonshots">High Risk</button>
         <button class="tab-button" data-tab="longterm">15-Year Core</button>
       </nav>
@@ -51,8 +52,9 @@
           <div class="section-title">
             <div>
               <p class="eyebrow">Long-Dated Options</p>
-              <h2>LEAPS Manager Ideas</h2>
+              <h2>LEAPS Call Opportunity Desk</h2>
             </div>
+            <a class="report-link" href="./reports/leaps_call_opportunity_desk.html" target="_blank" rel="noreferrer">Open Full Report</a>
           </div>
           <div id="leaps-cards" class="coach-grid"></div>
         </section>
@@ -81,6 +83,26 @@
           </form>
           <p class="analyzer-note">Works live on the local dashboard server. U.S. tickers use regular symbols; Canadian tickers usually need suffixes like .TO, .V, .NE, or .CN.</p>
           <div id="analyzer-result"></div>
+        </section>
+      </section>
+
+      <section class="tab-panel" id="tab-hidden">
+        <section class="coach">
+          <div class="section-title">
+            <div>
+              <p class="eyebrow">Research Watchlist Only</p>
+              <h2>Hidden Multibagger Discovery Scanner</h2>
+            </div>
+            <a class="report-link" href="./reports/hidden_multibagger_discovery_scanner.html" target="_blank" rel="noreferrer">Open Full Report</a>
+          </div>
+          <div class="trader-cockpit" id="hidden-summary"></div>
+          <div id="hidden-cards" class="coach-grid"></div>
+        </section>
+        <section class="grid grid--single">
+          <article>
+            <h2>Top Hidden Multibagger Watchlist</h2>
+            <div id="hidden-table" class="table-wrap"></div>
+          </article>
         </section>
       </section>
 
@@ -125,6 +147,6 @@
       </section>
 
     </main>
-    <script src="./app.js?v=20260506-search"></script>
+    <script src="./app.js?v=20260510-leaps-live-api"></script>
   </body>
 </html>

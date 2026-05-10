@@ -359,7 +359,7 @@ button {
 
 .tabs {
   display: grid;
-  grid-template-columns: repeat(5, minmax(0, 1fr));
+  grid-template-columns: repeat(6, minmax(0, 1fr));
   gap: 10px;
   margin-bottom: 16px;
 }
@@ -383,6 +383,23 @@ button {
 
 .tab-panel--active {
   display: block;
+}
+
+.report-link {
+  border: 1px solid rgba(114, 210, 255, 0.4);
+  background: rgba(114, 210, 255, 0.1);
+  border-radius: 6px;
+  color: #e8f7ff;
+  display: inline-flex;
+  font-size: 13px;
+  font-weight: 900;
+  padding: 9px 12px;
+  text-decoration: none;
+}
+
+.hidden-card {
+  border-color: rgba(16, 185, 129, 0.28);
+  background: linear-gradient(180deg, rgba(16, 185, 129, 0.1), rgba(13, 19, 28, 0.96));
 }
 
 .metric span {
@@ -510,6 +527,7 @@ th {
   border-radius: 0;
   background: transparent;
   color: #e8f7ff;
+  cursor: pointer;
   padding: 10px 12px;
   text-align: left;
 }
@@ -542,6 +560,55 @@ th {
   color: #9aa7b7;
   font-size: 13px;
   margin-bottom: 14px;
+}
+
+.ticker-choice-list {
+  display: grid;
+  gap: 8px;
+  margin-top: 12px;
+}
+
+.ticker-choice {
+  display: grid;
+  grid-template-columns: 92px minmax(0, 1.4fr) 130px 110px 150px;
+  gap: 10px;
+  align-items: center;
+  border: 1px solid rgba(114, 210, 255, 0.18);
+  border-radius: 8px;
+  background: rgba(13, 19, 28, 0.72);
+  color: #e8f7ff;
+  cursor: pointer;
+  padding: 11px 12px;
+  text-align: left;
+}
+
+.ticker-choice:hover,
+.ticker-choice:focus {
+  border-color: rgba(114, 210, 255, 0.52);
+  background: rgba(114, 210, 255, 0.1);
+}
+
+.ticker-choice strong {
+  color: #ffffff;
+  font-size: 14px;
+}
+
+.ticker-choice span {
+  min-width: 0;
+  overflow: hidden;
+  color: #c9d6e4;
+  font-weight: 700;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.ticker-choice small {
+  min-width: 0;
+  overflow: hidden;
+  color: #88a0b7;
+  font-size: 12px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 .analyzer-card,
@@ -663,6 +730,254 @@ th {
 .growth-status--unavailable {
   background: rgba(148, 163, 184, 0.15);
   color: #cbd5e1;
+}
+
+.report-actions {
+  align-items: flex-end;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.print-report-button {
+  border-color: rgba(114, 210, 255, 0.42);
+  background: rgba(114, 210, 255, 0.1);
+}
+
+.investor-report {
+  border: 1px solid rgba(114, 210, 255, 0.18);
+  border-radius: 12px;
+  background:
+    linear-gradient(135deg, rgba(7, 16, 29, 0.98), rgba(17, 24, 39, 0.98) 45%, rgba(12, 34, 48, 0.96));
+  box-shadow: 0 24px 70px rgba(0, 0, 0, 0.32);
+  overflow: hidden;
+  padding: 16px;
+}
+
+.investor-report > .section-title:first-child {
+  border: 1px solid rgba(114, 210, 255, 0.22);
+  border-radius: 10px;
+  background:
+    linear-gradient(135deg, rgba(114, 210, 255, 0.16), rgba(16, 185, 129, 0.1) 55%, rgba(245, 158, 11, 0.1));
+  margin-bottom: 12px;
+  padding: 16px;
+}
+
+.investor-report > .section-title:first-child h2 {
+  font-size: 38px;
+  letter-spacing: 0;
+  line-height: 1;
+}
+
+.investor-report--light {
+  background: #f8fafc;
+  color: #111827;
+}
+
+.investor-report--light h2,
+.investor-report--light h3,
+.investor-report--light strong {
+  color: #0f172a;
+}
+
+.investor-report--light p,
+.investor-report--light li,
+.investor-report--light span,
+.investor-report--light small {
+  color: #334155;
+}
+
+.data-quality,
+.report-snapshot,
+.kpi-ticker-strip,
+.risk-heatmap {
+  display: grid;
+  gap: 8px;
+  margin: 12px 0;
+}
+
+.data-quality {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.report-snapshot {
+  grid-template-columns: 1.25fr 1fr 1fr 1fr;
+}
+
+.data-quality div,
+.report-snapshot div,
+.kpi-card,
+.risk-heat,
+.report-section {
+  border: 1px solid rgba(148, 163, 184, 0.14);
+  border-radius: 8px;
+  background: rgba(148, 163, 184, 0.06);
+  padding: 10px;
+}
+
+.data-quality span,
+.report-snapshot span,
+.kpi-card span,
+.risk-heat span,
+.final-summary-card span {
+  color: #9aa7b7;
+  display: block;
+  font-size: 11px;
+  font-weight: 900;
+  letter-spacing: 0.04em;
+  margin-bottom: 5px;
+  text-transform: uppercase;
+}
+
+.data-quality strong,
+.report-snapshot strong,
+.kpi-card strong,
+.risk-heat strong {
+  color: #f4fbff;
+  display: block;
+}
+
+.report-snapshot p {
+  color: #b8c3d2;
+  font-size: 12px;
+  line-height: 1.45;
+  margin-top: 6px;
+}
+
+.kpi-ticker-strip {
+  grid-template-columns: repeat(7, minmax(120px, 1fr));
+}
+
+.kpi-card--pass,
+.risk-heat--pass {
+  border-color: rgba(16, 185, 129, 0.32);
+  background: rgba(16, 185, 129, 0.08);
+}
+
+.kpi-card--near,
+.risk-heat--near {
+  border-color: rgba(245, 158, 11, 0.32);
+  background: rgba(245, 158, 11, 0.08);
+}
+
+.kpi-card--fail,
+.risk-heat--fail {
+  border-color: rgba(239, 68, 68, 0.32);
+  background: rgba(239, 68, 68, 0.08);
+}
+
+.kpi-card--unavailable {
+  border-color: rgba(148, 163, 184, 0.24);
+  background: rgba(148, 163, 184, 0.06);
+}
+
+.report-section {
+  margin: 10px 0;
+}
+
+.report-section summary {
+  color: #f4fbff;
+  cursor: pointer;
+  font-weight: 900;
+}
+
+.report-section p {
+  color: #b8c3d2;
+  line-height: 1.5;
+  margin-top: 8px;
+}
+
+.hidden-hunter {
+  border: 1px solid rgba(16, 185, 129, 0.24);
+  border-radius: 10px;
+  background:
+    linear-gradient(135deg, rgba(16, 185, 129, 0.1), rgba(15, 23, 42, 0.72) 42%, rgba(245, 158, 11, 0.08));
+  margin: 14px 0;
+  padding: 14px;
+}
+
+.hidden-thesis-grid,
+.proof-grid {
+  display: grid;
+  gap: 10px;
+  margin: 12px 0;
+}
+
+.hidden-thesis-grid {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.proof-grid {
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+}
+
+.hidden-thesis-grid div,
+.proof-grid div {
+  border: 1px solid rgba(148, 163, 184, 0.16);
+  border-radius: 8px;
+  background: rgba(148, 163, 184, 0.06);
+  padding: 10px;
+}
+
+.hidden-thesis-grid span,
+.proof-grid span {
+  color: #9aa7b7;
+  display: block;
+  font-size: 11px;
+  font-weight: 900;
+  letter-spacing: 0.04em;
+  margin-bottom: 5px;
+  text-transform: uppercase;
+}
+
+.hidden-thesis-grid p,
+.proof-grid strong {
+  color: #d8e4ef;
+  display: block;
+  line-height: 1.45;
+}
+
+.hidden-score-bars {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.risk-heatmap {
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+
+.risk-heat p {
+  color: #b8c3d2;
+  font-size: 12px;
+  margin-top: 5px;
+}
+
+.peer-table table {
+  min-width: 920px;
+}
+
+.peer-table small {
+  color: #9aa7b7;
+  display: block;
+  font-size: 11px;
+  margin-top: 3px;
+}
+
+.peer-target {
+  background: rgba(114, 210, 255, 0.08);
+}
+
+.final-summary-card {
+  border: 1px solid rgba(114, 210, 255, 0.18);
+  border-radius: 8px;
+  background: rgba(114, 210, 255, 0.06);
+  margin-top: 14px;
+  padding: 12px;
+}
+
+.final-summary-card p {
+  color: #d8e4ef;
+  line-height: 1.55;
+  margin-top: 7px;
 }
 
 .growth-table table {
@@ -849,6 +1164,10 @@ th {
   gap: 10px;
 }
 
+.metric-card-grid--advisor {
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+
 .metric-card {
   min-height: 118px;
 }
@@ -933,6 +1252,12 @@ th {
   .report-grid,
   .news-grid,
   .metric-card-grid,
+  .data-quality,
+  .report-snapshot,
+  .hidden-thesis-grid,
+  .proof-grid,
+  .kpi-ticker-strip,
+  .risk-heatmap,
   .analyzer-form {
     grid-template-columns: 1fr;
   }
@@ -945,4 +1270,165 @@ th {
     grid-column: 2;
   }
 
+  .ticker-choice {
+    grid-template-columns: 76px minmax(0, 1fr);
+  }
+
+  .ticker-choice small {
+    grid-column: 2;
+  }
+
+}
+
+@media print {
+  @page {
+    margin: 0.35in;
+    size: letter;
+  }
+
+  * {
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+  }
+
+  body {
+    background: #07101d !important;
+    color: #f4fbff !important;
+  }
+
+  .topbar,
+  .regime,
+  .tabs,
+  .tab-panel:not(#tab-analyzer),
+  #tab-analyzer > .coach > .section-title,
+  .analyzer-form,
+  .analyzer-note,
+  .analyzer-card,
+  .growth-checklist,
+  .ticker-resolver,
+  #tab-analyzer .analyzer-detail:not(.investor-report),
+  .print-report-button {
+    display: none !important;
+  }
+
+  main.shell,
+  .tab-panel,
+  .coach,
+  .analyzer-detail,
+  .investor-report {
+    border: 0 !important;
+    box-shadow: none !important;
+    margin: 0 !important;
+    max-width: none !important;
+    padding: 12px !important;
+    width: 100% !important;
+  }
+
+  .investor-report,
+  .report-meter,
+  .score-bars div,
+  .decision-strip div,
+  .news-grid div,
+  .metric-card,
+  .report-grid div,
+  .thesis-card,
+  .hidden-hunter,
+  .hidden-thesis-grid div,
+  .proof-grid div,
+  .news-panel {
+    color: #f4fbff !important;
+    break-inside: avoid;
+  }
+
+  .investor-report {
+    background:
+      linear-gradient(135deg, #07101d, #111827 48%, #0c2230) !important;
+  }
+
+  .investor-report > .section-title:first-child {
+    background:
+      linear-gradient(135deg, rgba(114, 210, 255, 0.2), rgba(16, 185, 129, 0.12) 55%, rgba(245, 158, 11, 0.12)) !important;
+    border-color: rgba(114, 210, 255, 0.32) !important;
+    padding: 16px !important;
+  }
+
+  .report-meter,
+  .score-bars div,
+  .metric-card,
+  .report-grid div,
+  .kpi-card,
+  .risk-heat,
+  .report-section,
+  .data-quality div,
+  .report-snapshot div,
+  .hidden-hunter,
+  .hidden-thesis-grid div,
+  .proof-grid div,
+  .final-summary-card {
+    background: rgba(15, 23, 42, 0.74) !important;
+    border-color: rgba(148, 163, 184, 0.22) !important;
+  }
+
+  .kpi-card--pass,
+  .risk-heat--pass {
+    background: rgba(16, 185, 129, 0.14) !important;
+    border-color: rgba(16, 185, 129, 0.42) !important;
+  }
+
+  .kpi-card--near,
+  .risk-heat--near {
+    background: rgba(245, 158, 11, 0.14) !important;
+    border-color: rgba(245, 158, 11, 0.42) !important;
+  }
+
+  .kpi-card--fail,
+  .risk-heat--fail {
+    background: rgba(239, 68, 68, 0.14) !important;
+    border-color: rgba(239, 68, 68, 0.42) !important;
+  }
+
+  .decision-strip div,
+  .news-grid div,
+  .thesis-card,
+  .news-panel {
+    background: rgba(12, 34, 48, 0.78) !important;
+    border-color: rgba(114, 210, 255, 0.22) !important;
+  }
+
+  .investor-report span,
+  .investor-report p,
+  .investor-report li,
+  .investor-report small,
+  .muted {
+    color: #b8c3d2 !important;
+  }
+
+  .investor-report strong,
+  .investor-report h2,
+  .investor-report h3,
+  .news-grid a {
+    color: #f8fbff !important;
+  }
+
+  .investor-report .eyebrow,
+  .decision-strip span,
+  .news-grid span {
+    color: #72d2ff !important;
+  }
+
+  .kpi-strip,
+  .score-bars,
+  .decision-strip,
+  .report-grid,
+  .news-grid,
+  .data-quality,
+  .report-snapshot,
+  .hidden-thesis-grid,
+  .proof-grid,
+  .kpi-ticker-strip,
+  .risk-heatmap,
+  .metric-card-grid,
+  .metric-card-grid--advisor {
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+  }
 }

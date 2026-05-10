@@ -1,0 +1,282 @@
+{
+  "metrics": [
+    {
+      "label": "Gross Profit Margin",
+      "value": 83.507,
+      "display": "83.51%",
+      "ideal": "20% - 50%",
+      "status": "fail",
+      "note": "SOFI screens above the ideal range; for a fintech/lender this can be less comparable than for normal product companies."
+    },
+    {
+      "label": "Operating Profit Margin",
+      "value": 18.283,
+      "display": "18.28%",
+      "ideal": "10% - 30%",
+      "status": "pass",
+      "note": "Shows operating leverage; current margin fits your ideal band."
+    },
+    {
+      "label": "Net Profit Margin",
+      "value": 14.761,
+      "display": "14.76%",
+      "ideal": "5% - 20%",
+      "status": "pass",
+      "note": "Profitability now fits your desired band."
+    },
+    {
+      "label": "1-Year Revenue Growth",
+      "value": 42.5,
+      "display": "42.5%",
+      "ideal": "20%+",
+      "status": "pass",
+      "note": "Growth rate from current Yahoo financialData/revenue estimate fields."
+    },
+    {
+      "label": "3-Year Revenue CAGR",
+      "value": 32.5975,
+      "display": "32.6%",
+      "ideal": "20%+",
+      "status": "pass",
+      "note": "Uses annual revenue from 2022-12-31 to 2025-12-31."
+    },
+    {
+      "label": "5-Year Revenue CAGR",
+      "value": null,
+      "display": "Unavailable",
+      "ideal": "20%+",
+      "status": "unavailable",
+      "note": "Yahoo statement history returned only four annual revenue points in this feed."
+    },
+    {
+      "label": "EPS Growth",
+      "value": 55.93,
+      "display": "55.93%",
+      "ideal": "20%+",
+      "status": "pass",
+      "note": "Uses current-year earnings growth estimate when available."
+    },
+    {
+      "label": "EBITDA Margin",
+      "value": null,
+      "display": "Unavailable",
+      "ideal": "20%+",
+      "status": "unavailable",
+      "note": "Unavailable because Yahoo did not provide EBITDA for SOFI in this response."
+    },
+    {
+      "label": "FCF Margin",
+      "value": null,
+      "display": "Unavailable",
+      "ideal": "10% - 15%+",
+      "status": "unavailable",
+      "note": "Unavailable because Yahoo did not provide free cash flow for SOFI in this response."
+    },
+    {
+      "label": "P/E Ratio",
+      "value": 36.2222,
+      "display": "36.22x",
+      "ideal": "20x - 40x",
+      "status": "pass",
+      "note": "Trailing valuation fits the preferred growth-stock band."
+    },
+    {
+      "label": "Forward P/E",
+      "value": 20.7313,
+      "display": "20.73x",
+      "ideal": "20x - 30x",
+      "status": "pass",
+      "note": "Forward valuation fits the preferred band."
+    },
+    {
+      "label": "PEG Ratio",
+      "value": 1.01,
+      "display": "1.01x",
+      "ideal": "0.5x - 1.5x",
+      "status": "pass",
+      "note": "PEG supports growth-at-a-reasonable-price if estimates hold."
+    },
+    {
+      "label": "P/B Ratio",
+      "value": 1.9743,
+      "display": "1.97x",
+      "ideal": "0.5x - 1.5x",
+      "status": "fail",
+      "note": "Above your ideal range; for financial firms, book value matters more than for software names."
+    },
+    {
+      "label": "P/S Ratio",
+      "value": 5.3496,
+      "display": "5.35x",
+      "ideal": "1.0x - 5.0x",
+      "status": "near",
+      "note": "Slightly above your preferred range using market cap divided by TTM revenue."
+    },
+    {
+      "label": "Enterprise Value / EBITDA",
+      "value": null,
+      "display": "Unavailable",
+      "ideal": "10x - 20x",
+      "status": "unavailable",
+      "note": "Unavailable because EBITDA was not available."
+    },
+    {
+      "label": "P/FCF",
+      "value": null,
+      "display": "Unavailable",
+      "ideal": "Below 10x",
+      "status": "unavailable",
+      "note": "Unavailable because free cash flow was not available."
+    },
+    {
+      "label": "Return on Equity",
+      "value": 6.597,
+      "display": "6.6%",
+      "ideal": "12% - 20%+",
+      "status": "fail",
+      "note": "Below ideal; SOFI is profitable but returns are still maturing."
+    },
+    {
+      "label": "Return on Assets",
+      "value": 1.262,
+      "display": "1.26%",
+      "ideal": "5% - 10%+",
+      "status": "fail",
+      "note": "Below ideal; common risk for lending/fintech balance-sheet businesses."
+    }
+  ],
+  "riskScore": 73,
+  "growthVerdict": {
+    "isGrowthStock": true,
+    "reasons": [
+      "Revenue growth screens above 20% and 3-year revenue CAGR is 32.6%.",
+      "EPS growth estimate screens above 20% at 55.93%.",
+      "SOFI is still not a mature quality compounder because ROE and ROA are below your ideal ranges.",
+      "Checklist pass count: 8/18, with unavailable fields shown separately."
+    ]
+  },
+  "shortAnalysis": "SOFI qualifies as a growth stock based on revenue growth and expected EPS growth, but it is not a low-risk quality stock yet. The best positives are revenue growth, operating/net margin progress, forward P/E, and PEG. The biggest concerns are below-ideal ROE/ROA, valuation slightly above your P/S and P/B ranges, and unavailable EBITDA/FCF fields in the data feed. Risk score: 73/100.",
+  "analyzer": {
+    "symbol": "SOFI",
+    "name": "SoFi Technologies, Inc.",
+    "exchange": "NasdaqGS",
+    "currency": "USD",
+    "decision": "HOLD / WAIT",
+    "totalScore": 48,
+    "qualityGrade": "D",
+    "currentPrice": 16.3,
+    "marketCap": 20908580864,
+    "benchmark": "QQQ",
+    "technical": {
+      "score": 9,
+      "rating": "Weak",
+      "close": 16.3,
+      "ema20": 17.18,
+      "ema50": 18.13,
+      "ema150": 20.72,
+      "rsi14": 38.9,
+      "adx14": 31.8,
+      "atr14": 0.84,
+      "high55": 19.54,
+      "stop": 14.62,
+      "target": 21.35,
+      "relativeStrength60": -36.91,
+      "reasons": [],
+      "risks": [
+        "price is below the 50-day trend line",
+        "RSI momentum is weak",
+        "underperforming benchmark"
+      ]
+    },
+    "fundamentals": {
+      "score": 68,
+      "rating": "Good",
+      "sector": "Financial Services",
+      "industry": "Credit Services",
+      "revenueGrowth": 42.5,
+      "earningsGrowth": 101.2,
+      "grossMargins": 83.5,
+      "operatingMargins": 18.3,
+      "profitMargins": 14.8,
+      "returnOnEquity": 6.6,
+      "debtToEquity": 17.7,
+      "currentRatio": 1.12,
+      "freeCashflow": null,
+      "totalCash": 3401019904,
+      "totalDebt": 1914705024,
+      "reasons": [
+        "revenue growth is strong",
+        "earnings growth is strong",
+        "gross margins are high",
+        "operating margins are healthy",
+        "company is profitable",
+        "cash is greater than debt"
+      ],
+      "risks": []
+    },
+    "valuation": {
+      "score": 65,
+      "rating": "Fair",
+      "forwardPE": 20.7,
+      "trailingPE": 36.2,
+      "pegRatio": 1.01,
+      "priceToSales": null,
+      "enterpriseToEbitda": null,
+      "dividendYield": 0,
+      "analystUpside": 33.1,
+      "targetMeanPrice": 21.7,
+      "reasons": [
+        "PEG ratio supports growth valuation",
+        "analyst target implies upside"
+      ],
+      "risks": []
+    },
+    "analysts": {
+      "score": 73,
+      "rating": "Bullish",
+      "recommendationMean": 2.71,
+      "recommendationKey": "hold",
+      "numberOfAnalystOpinions": 20,
+      "buyCount": 8,
+      "holdCount": 12,
+      "sellCount": 4,
+      "reasons": [
+        "analyst consensus is hold"
+      ],
+      "risks": []
+    },
+    "strengths": [
+      "revenue growth is strong",
+      "earnings growth is strong",
+      "gross margins are high",
+      "PEG ratio supports growth valuation",
+      "analyst target implies upside",
+      "analyst consensus is hold"
+    ],
+    "risks": [
+      "price is below the 50-day trend line",
+      "RSI momentum is weak",
+      "underperforming benchmark"
+    ],
+    "business": {
+      "sector": "Financial Services",
+      "industry": "Credit Services",
+      "country": "United States",
+      "employees": null,
+      "website": "https://www.sofi.com",
+      "theme": "financial services",
+      "plainEnglish": "SoFi Technologies, Inc. is classified in Financial Services / Credit Services. For a beginner, think of it as a financial services name, then judge whether growth, profits, balance sheet, valuation, and chart all support owning it.",
+      "ownershipStyle": "Quality watchlist candidate",
+      "beginnerRead": "Beginner read: okay to study or hold if you already own it, but I would wait for either better price action or a better valuation before adding.",
+      "investorChecklist": [
+        "Action: HOLD / WAIT. Use the score as a filter, then read the business and risk notes.",
+        "Risk plan: chart danger level near 14.62; first upside target near 21.35.",
+        "Business quality: Good. Look for revenue growth, margins, cash flow, and debt risk.",
+        "Valuation: Fair. Great companies can still be bad buys if the price is stretched.",
+        "Analyst tone: hold; use this as background, not as a blind buy signal."
+      ]
+    },
+    "managerRead": "HOLD / WAIT: SOFI scores 48/100. Technicals are weak, fundamentals are good, valuation is fair, and analyst sentiment is bullish.",
+    "asOf": "2026-05-06T22:05:37.833Z"
+  }
+}

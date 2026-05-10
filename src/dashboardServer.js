@@ -1,9 +1,11 @@
 import fs from "node:fs";
 import http from "node:http";
 import path from "node:path";
+import { spawn } from "node:child_process";
 import { fileURLToPath } from "node:url";
 
 import { buildDashboardData } from "./dashboardData.js";
+import { fetchYahooSymbolSearch } from "./marketData.js";
 import { analyzeStock } from "./stockAnalyzer.js";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
@@ -13,6 +15,27 @@ const reportsDir = path.join(rootDir, "reports");
 const dataDir = path.join(rootDir, "data");
 const port = Number(process.env.PORT || 5050);
 const host = process.env.HOST || "0.0.0.0";
+const hiddenScanTimeZone = process.env.HIDDEN_SCAN_TIMEZONE || "America/Edmonton";
+const hiddenScanDay = Number(process.env.HIDDEN_SCAN_DAY || "1");
+const hiddenScanHour = Number(process.env.HIDDEN_SCAN_HOUR || "7");
+const hiddenScanMinuteWindow = Number(process.env.HIDDEN_SCAN_MINUTE_WINDOW || "10");
+const hiddenScanEnabled = !["0", "false", "off"].includes(String(process.env.HIDDEN_SCAN_SCHEDULED || "true").toLowerCase());
+const leapsScanTimeZone = process.env.LEAPS_SCAN_TIMEZONE || "America/Edmonton";
+const leapsScanEnabled = !["0", "false", "off"].includes(String(process.env.LEAPS_SCAN_SCHEDULED || "true").toLowerCase());
+let hiddenScanRunning = false;
+let lastHiddenScanKey = "";
+let leapsScanRunning = false;
+let lastLeapsScanKey = "";
+
+const weekdayIndex = {
+  Sun: 0,
+  Mon: 1,
+  Tue: 2,
+  Wed: 3,
+  Thu: 4,
+  Fri: 5,
+  Sat: 6,
+};
 
 function sendJson(response, payload) {
   response.writeHead(200, {
@@ -55,6 +78,137 @@ function serveStatic(response, requestPath) {
   response.end(fs.readFileSync(filePath));
 }
 
+function serveReport(response, requestPath) {
+  const relativePath = requestPath.replace(/^\/reports\//, "");
+  const filePath = path.normalize(path.join(reportsDir, relativePath));
+  if (!filePath.startsWith(reportsDir) || !fs.existsSync(filePath)) {
+    response.writeHead(404);
+    response.end("Report not found");
+    return;
+  }
+  const extension = path.extname(filePath);
+  const contentType =
+    extension === ".html"
+      ? "text/html"
+      : extension === ".json"
+        ? "application/json"
+        : extension === ".csv"
+          ? "text/csv"
+          : "text/plain";
+  response.writeHead(200, { "Content-Type": contentType });
+  response.end(fs.readFileSync(filePath));
+}
+
+function localTimeParts(date = new Date(), timeZone = hiddenScanTimeZone) {
+  const formatter = new Intl.DateTimeFormat("en-CA", {
+    timeZone,
+    weekday: "short",
+    year: "numeric",
+    month: "2-digit",
+    day: "2-digit",
+    hour: "2-digit",
+    minute: "2-digit",
+    hourCycle: "h23",
+  });
+  const parts = Object.fromEntries(formatter.formatToParts(date).map((part) => [part.type, part.value]));
+  return {
+    dayIndex: weekdayIndex[parts.weekday] ?? -1,
+    dateKey: `${parts.year}-${parts.month}-${parts.day}`,
+    hour: Number(parts.hour),
+    minute: Number(parts.minute),
+  };
+}
+
+function runHiddenMultibaggerScan(reason = "manual") {
+  if (hiddenScanRunning) {
+    console.log("Hidden multibagger scan skipped; previous scan is still running.");
+    return;
+  }
+  hiddenScanRunning = true;
+  const npmCommand = process.platform === "win32" ? "npm.cmd" : "npm";
+  console.log(`Starting hidden multibagger scan (${reason})...`);
+  const child = spawn(npmCommand, ["run", "hidden:scan"], {
+    cwd: rootDir,
+    env: process.env,
+    stdio: "inherit",
+  });
+  child.on("exit", (code) => {
+    hiddenScanRunning = false;
+    console.log(`Hidden multibagger scan finished with exit code ${code}.`);
+  });
+  child.on("error", (error) => {
+    hiddenScanRunning = false;
+    console.error(`Hidden multibagger scan failed to start: ${error.message}`);
+  });
+}
+
+function runNpmScript(script, label, onDone) {
+  const npmCommand = process.platform === "win32" ? "npm.cmd" : "npm";
+  console.log(`Starting ${label}...`);
+  const child = spawn(npmCommand, ["run", script], {
+    cwd: rootDir,
+    env: process.env,
+    stdio: "inherit",
+  });
+  child.on("exit", (code) => {
+    console.log(`${label} finished with exit code ${code}.`);
+    onDone?.();
+  });
+  child.on("error", (error) => {
+    console.error(`${label} failed to start: ${error.message}`);
+    onDone?.();
+  });
+}
+
+function runLeapsScan(reason = "manual") {
+  if (leapsScanRunning) {
+    console.log("LEAPS scan skipped; previous LEAPS scan is still running.");
+    return;
+  }
+  leapsScanRunning = true;
+  runNpmScript("leaps:scan", `LEAPS scan (${reason})`, () => {
+    leapsScanRunning = false;
+  });
+}
+
+function scheduledHiddenScanTick(now = new Date()) {
+  if (!hiddenScanEnabled) return;
+  const parts = localTimeParts(now);
+  const inWindow = parts.dayIndex === hiddenScanDay &&
+    parts.hour === hiddenScanHour &&
+    parts.minute >= 0 &&
+    parts.minute < hiddenScanMinuteWindow;
+  if (!inWindow || lastHiddenScanKey === parts.dateKey) return;
+  lastHiddenScanKey = parts.dateKey;
+  runHiddenMultibaggerScan(`weekly Monday 7 AM ${hiddenScanTimeZone}`);
+}
+
+function scheduledLeapsScanTick(now = new Date()) {
+  if (!leapsScanEnabled) return;
+  const parts = localTimeParts(now, leapsScanTimeZone);
+  if (parts.dayIndex === 0 || parts.dayIndex === 6) return;
+  const slots = [];
+  if (parts.hour === 7 && parts.minute < 10) {
+    slots.push("daily-7am-risk-check");
+  }
+  if (parts.hour === 14 && parts.minute >= 10 && parts.minute < 25) {
+    slots.push("daily-after-close-health-check");
+  }
+  if (parts.dayIndex === 5 && parts.hour === 14 && parts.minute >= 30 && parts.minute < 45) {
+    slots.push("friday-weekly-deep-review");
+  }
+  if (parts.dayIndex === 1 && Number(parts.dateKey.slice(-2)) <= 7 && parts.hour === 7 && parts.minute >= 30 && parts.minute < 45) {
+    slots.push("monthly-concentration-replacement-review");
+  }
+  for (const slot of slots) {
+    const key = `${parts.dateKey}|${slot}`;
+    if (lastLeapsScanKey === key) continue;
+    lastLeapsScanKey = key;
+    runLeapsScan(`${slot} ${leapsScanTimeZone}`);
+    break;
+  }
+}
+
 const server = http.createServer((request, response) => {
   const url = new URL(request.url, `http://localhost:${port}`);
   if (request.method === "OPTIONS") {
@@ -77,9 +231,31 @@ const server = http.createServer((request, response) => {
       .catch((error) => sendError(response, error.message));
     return;
   }
+  if (url.pathname === "/api/search-symbols") {
+    const query = url.searchParams.get("q") ?? "";
+    fetchYahooSymbolSearch(query)
+      .then((results) => sendJson(response, { query, results }))
+      .catch((error) => sendError(response, error.message));
+    return;
+  }
+  if (url.pathname === "/api/leaps/scan") {
+    runLeapsScan("manual API request");
+    sendJson(response, { ok: true, message: "LEAPS scan started. Refresh the dashboard in a minute or two." });
+    return;
+  }
+  if (url.pathname.startsWith("/reports/")) {
+    serveReport(response, url.pathname);
+    return;
+  }
   serveStatic(response, url.pathname);
 });
 
 server.listen(port, host, () => {
   console.log(`Trading dashboard running at http://127.0.0.1:${port}`);
+  console.log(`Hidden multibagger weekly refresh: ${hiddenScanEnabled ? `enabled for Monday 7:00 AM ${hiddenScanTimeZone}` : "disabled"}`);
+  console.log(`LEAPS scheduled refresh: ${leapsScanEnabled ? `enabled for 7:00 AM, after close, Friday review, and monthly review in ${leapsScanTimeZone}` : "disabled"}`);
+  scheduledHiddenScanTick();
+  scheduledLeapsScanTick();
+  setInterval(scheduledHiddenScanTick, 60 * 1000);
+  setInterval(scheduledLeapsScanTick, 60 * 1000);
 });
