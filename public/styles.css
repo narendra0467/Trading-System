@@ -349,6 +349,11 @@ button {
   cursor: pointer;
 }
 
+button:disabled {
+  cursor: wait;
+  opacity: 0.65;
+}
+
 .regime {
   display: grid;
   grid-template-columns: repeat(4, minmax(0, 1fr));
@@ -411,6 +416,13 @@ button {
 
 .metric strong {
   font-size: 20px;
+}
+
+.metric p {
+  color: #9aa7b7;
+  font-size: 12px;
+  line-height: 1.45;
+  margin: 6px 0 0;
 }
 
 .grid {

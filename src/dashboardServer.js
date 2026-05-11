@@ -26,6 +26,14 @@ let hiddenScanRunning = false;
 let lastHiddenScanKey = "";
 let leapsScanRunning = false;
 let lastLeapsScanKey = "";
+let dashboardRefreshRunning = false;
+let dashboardRefreshStatus = {
+  running: false,
+  lastStartedAt: null,
+  lastFinishedAt: null,
+  lastExitCode: null,
+  lastError: null,
+};
 
 const weekdayIndex = {
   Sun: 0,
@@ -160,6 +168,50 @@ function runNpmScript(script, label, onDone) {
   });
 }
 
+function runDashboardRefresh(reason = "manual") {
+  if (dashboardRefreshRunning) {
+    return { started: false, running: true, message: "Dashboard refresh is already running." };
+  }
+  dashboardRefreshRunning = true;
+  dashboardRefreshStatus = {
+    running: true,
+    lastStartedAt: new Date().toISOString(),
+    lastFinishedAt: null,
+    lastExitCode: null,
+    lastError: null,
+  };
+  const npmCommand = process.platform === "win32" ? "npm.cmd" : "npm";
+  console.log(`Starting dashboard refresh (${reason})...`);
+  const child = spawn(npmCommand, ["run", "refresh:all"], {
+    cwd: rootDir,
+    env: process.env,
+    stdio: "inherit",
+  });
+  child.on("exit", (code) => {
+    dashboardRefreshRunning = false;
+    dashboardRefreshStatus = {
+      ...dashboardRefreshStatus,
+      running: false,
+      lastFinishedAt: new Date().toISOString(),
+      lastExitCode: code,
+      lastError: code === 0 ? null : `refresh:all exited with code ${code}`,
+    };
+    console.log(`Dashboard refresh finished with exit code ${code}.`);
+  });
+  child.on("error", (error) => {
+    dashboardRefreshRunning = false;
+    dashboardRefreshStatus = {
+      ...dashboardRefreshStatus,
+      running: false,
+      lastFinishedAt: new Date().toISOString(),
+      lastExitCode: null,
+      lastError: error.message,
+    };
+    console.error(`Dashboard refresh failed to start: ${error.message}`);
+  });
+  return { started: true, running: true, message: "Dashboard refresh started. This can take a few minutes." };
+}
+
 function runLeapsScan(reason = "manual") {
   if (leapsScanRunning) {
     console.log("LEAPS scan skipped; previous LEAPS scan is still running.");
@@ -241,6 +293,14 @@ const server = http.createServer((request, response) => {
   if (url.pathname === "/api/leaps/scan") {
     runLeapsScan("manual API request");
     sendJson(response, { ok: true, message: "LEAPS scan started. Refresh the dashboard in a minute or two." });
+    return;
+  }
+  if (url.pathname === "/api/refresh") {
+    sendJson(response, { ok: true, ...runDashboardRefresh("manual API request") });
+    return;
+  }
+  if (url.pathname === "/api/refresh/status") {
+    sendJson(response, { ok: true, ...dashboardRefreshStatus });
     return;
   }
   if (url.pathname.startsWith("/reports/")) {

@@ -1202,7 +1202,7 @@ function renderTable(targetId, rows, columns) {
   `;
 }
 
-async function loadDashboard() {
+async function loadDashboard(statusPrefix = "") {
   let response = await fetch(`/api/dashboard?v=${Date.now()}`, { cache: "no-store" });
   if (!response.ok || !(response.headers.get("content-type") ?? "").includes("application/json")) {
     response = await fetch(`./dashboard.json?v=${Date.now()}`, { cache: "no-store" });
@@ -1211,13 +1211,13 @@ async function loadDashboard() {
     throw new Error("Dashboard data is not available.");
   }
   const data = await response.json();
-  document.getElementById("updated-line").textContent = `Last refreshed: ${dateTime(data.updatedAt)}`;
+  document.getElementById("updated-line").textContent = `${statusPrefix}Last refreshed: ${dateTime(data.updatedAt)}`;
   const regime = data.marketRegime;
   document.getElementById("regime").innerHTML = regime ? `
-    <div class="metric"><span>Market mode</span><strong>${pill(regime.regime)}</strong></div>
-    <div class="metric"><span>Breadth score</span><strong>${regime.score}</strong></div>
-    <div class="metric"><span>VIX volatility</span><strong>${regime.vix ?? "n/a"}</strong></div>
-    <div class="metric"><span>Trade read</span><strong>${regime.reason}</strong></div>
+    <div class="metric"><span>Purpose</span><strong>Market permission filter</strong><p>Decides whether the desk should trade normally, trade smaller, or stay defensive.</p></div>
+    <div class="metric"><span>Market mode</span><strong>${pill(regime.regime)}</strong><p>Broad tape read before individual setups.</p></div>
+    <div class="metric"><span>Breadth / volatility</span><strong>${regime.score} / ${regime.vix ?? "n/a"}</strong><p>Breadth score and VIX risk check.</p></div>
+    <div class="metric"><span>Trade read</span><strong>${regime.reason}</strong><p>This is a gate, not a standalone trade signal.</p></div>
   ` : `<div class="metric"><span>Market mode</span><strong>No scan yet</strong></div>`;
 
   renderCoachCards(data.optionsAlerts, data.optionsScan);
@@ -1305,7 +1305,49 @@ async function loadDashboard() {
 
 }
 
-document.getElementById("refresh").addEventListener("click", loadDashboard);
+async function waitForRefreshToFinish() {
+  for (let attempt = 0; attempt < 45; attempt += 1) {
+    await new Promise((resolve) => setTimeout(resolve, 4000));
+    const response = await fetch(`/api/refresh/status?v=${Date.now()}`, { cache: "no-store" });
+    if (!response.ok || !(response.headers.get("content-type") ?? "").includes("application/json")) return null;
+    const status = await response.json();
+    if (!status.running) return status;
+    document.getElementById("updated-line").textContent = `Refresh running... started ${dateTime(status.lastStartedAt)}`;
+  }
+  return { running: true, lastError: "Refresh is still running. Check again in a minute." };
+}
+
+async function manualRefreshDashboard() {
+  const button = document.getElementById("refresh");
+  const originalText = button.textContent;
+  button.disabled = true;
+  button.textContent = "Refreshing...";
+  document.getElementById("updated-line").textContent = "Starting refresh...";
+  try {
+    const response = await fetch(`/api/refresh?v=${Date.now()}`, { cache: "no-store" });
+    const isJson = response.ok && (response.headers.get("content-type") ?? "").includes("application/json");
+    if (!isJson) {
+      await loadDashboard("Static reload only. Start npm run dashboard locally for live refresh. ");
+      return;
+    }
+    const payload = await response.json();
+    document.getElementById("updated-line").textContent = payload.message || "Refresh started...";
+    const status = await waitForRefreshToFinish();
+    const prefix = status?.lastError
+      ? `Refresh issue: ${status.lastError}. `
+      : status?.running
+        ? "Refresh still running. "
+        : "Live refresh complete. ";
+    await loadDashboard(prefix);
+  } catch (error) {
+    await loadDashboard(`Refresh failed: ${error.message}. `);
+  } finally {
+    button.disabled = false;
+    button.textContent = originalText;
+  }
+}
+
+document.getElementById("refresh").addEventListener("click", manualRefreshDashboard);
 document.getElementById("analyzer-form").addEventListener("submit", async (event) => {
   event.preventDefault();
   await resolveOrShowAnalyzerMatches(document.getElementById("analyzer-symbol").value);
