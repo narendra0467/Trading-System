@@ -117,7 +117,14 @@ function renderSignalCard(row, mode = "full") {
   const symbol = cardSymbol(row);
   const direction = cardDirection(row);
   const confidence = row.confidenceScore ?? row.confidenceRating ?? row.score ?? 0;
+  const setupScore = row.setupConfidenceScore;
   const risk = row.riskScore ?? "Pending";
+  const badgeText = tier === "Watch for Trigger" ? `Ready ${fmt(confidence)}` : tier === "No Trade" ? `Risk ${fmt(risk)}` : `${fmt(confidence)}%`;
+  const verdict = tier === "Watch for Trigger"
+    ? `Waiting for: ${cardTrigger(row)}`
+    : noTrade
+      ? shortText(cardNoTrade(row), 180)
+      : shortText(cardWhy(row), 180);
   return `
     <article class="signal-card ${signalTone(tier)}">
       <div class="signal-head">
@@ -127,22 +134,22 @@ function renderSignalCard(row, mode = "full") {
         </div>
         <div class="signal-badges">
           <b>${cleanTierLabel(tier)}</b>
-          <em>${fmt(confidence)}%</em>
+          <em>${badgeText}</em>
         </div>
       </div>
-      <p class="signal-verdict">${noTrade ? shortText(cardNoTrade(row), 180) : shortText(cardWhy(row), 180)}</p>
+      <p class="signal-verdict">${verdict}</p>
       <div class="signal-ticket">
         <div><span>Direction</span><strong>${direction}</strong></div>
         <div><span>Entry</span><strong>${typeof cardEntry(row) === "number" ? money(cardEntry(row)) : fmt(cardEntry(row))}</strong></div>
         <div><span>Stop</span><strong>${money(cardStop(row))}</strong></div>
         <div><span>Target</span><strong>${money(cardTarget(row))}</strong></div>
         <div><span>R/R</span><strong>${fmt(row.riskReward ?? row.rewardRisk)}</strong></div>
-        <div><span>Risk</span><strong>${fmt(risk)}</strong></div>
+        <div><span>${tier === "Watch for Trigger" ? "Setup" : "Risk"}</span><strong>${tier === "Watch for Trigger" && setupScore != null ? fmt(setupScore) : fmt(risk)}</strong></div>
       </div>
-      ${mode === "compact" ? "" : `
+      ${mode === "compact" && tier !== "Watch for Trigger" ? "" : `
         <div class="signal-next">
-          <span>${noTrade ? "No-trade reason" : tier === "Watch for Trigger" ? "Trigger needed" : "Execution note"}</span>
-          <p>${shortText(noTrade ? cardNoTrade(row) : cardTrigger(row), 260)}</p>
+          <span>${noTrade ? "No-trade reason" : tier === "Watch for Trigger" ? "Why not A+ yet" : "Execution note"}</span>
+          <p>${shortText(noTrade ? cardNoTrade(row) : tier === "Watch for Trigger" ? row.executionReason || cardTrigger(row) : cardTrigger(row), 260)}</p>
         </div>
       `}
     </article>

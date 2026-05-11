@@ -1230,9 +1230,20 @@ function scoreIntradaySymbol(record, rows, context = {}) {
   const confidence = score >= 85 ? "High" : score >= 75 ? "Good" : score >= 65 ? "Starter" : "Low";
   const reasons = isLong ? longReasons : shortReasons;
   const vwapDistancePct = ((latest.close / vwapNow) - 1) * 100;
+  const setupConfidenceScore = quality.rating;
+  const readinessScore = executionReadinessScore({
+    decisionCode,
+    setupConfidence: setupConfidenceScore,
+    execution,
+    marketCheck,
+    candleCheck,
+    retestCheck,
+    eventLevel: eventPolicy.level,
+    mtfAligned,
+  });
   const signalTier = signalTierFromScore({
     decisionCode,
-    confidenceRating: quality.rating,
+    confidenceRating: readinessScore,
     rewardRisk,
     execution,
     signal,
@@ -1312,7 +1323,8 @@ function scoreIntradaySymbol(record, rows, context = {}) {
     setupSignal,
     decisionCode,
     signalTier,
-    confidenceScore: quality.rating,
+    confidenceScore: readinessScore,
+    setupConfidenceScore,
     riskScore,
     tradeCardDirection,
     bias,
@@ -1320,7 +1332,7 @@ function scoreIntradaySymbol(record, rows, context = {}) {
     action,
     direction,
     confidence,
-    confidenceRating: quality.rating,
+    confidenceRating: readinessScore,
     tradeGrade: execution.grade || quality.grade,
     rawTradeGrade: quality.grade,
     executionLabel: execution.label,
@@ -1438,6 +1450,21 @@ function signalTierFromScore({ decisionCode, confidenceRating, rewardRisk, execu
   if (confidenceRating >= 70 && signal !== "NO_TRADE") return "Watch for Trigger";
   if (confidenceRating >= 55 && signal !== "NO_TRADE") return "Watch for Trigger";
   return "No Trade";
+}
+
+function executionReadinessScore({ decisionCode, setupConfidence, execution, marketCheck, candleCheck, retestCheck, eventLevel, mtfAligned }) {
+  if (decisionCode === "TRADE_NOW") return setupConfidence;
+  if (decisionCode === "WAIT") {
+    let cap = execution?.grade === "A" ? 84 : 74;
+    if (!marketCheck?.confirmed) cap -= 8;
+    if (!candleCheck?.confirmed) cap -= 8;
+    if (!retestCheck?.passed) cap -= 8;
+    if (eventLevel === "MEDIUM") cap -= 5;
+    if (eventLevel === "HIGH") cap -= 18;
+    if (mtfAligned < 1) cap = Math.min(cap, 64);
+    return Math.max(50, Math.min(setupConfidence, cap));
+  }
+  return Math.min(setupConfidence, eventLevel === "HIGH" ? 45 : 54);
 }
 
 function riskScoreFromRow({ rewardRisk, chopRisk, eventLevel, volumeRatio, vwapDistancePct }) {
