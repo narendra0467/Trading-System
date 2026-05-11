@@ -43,7 +43,7 @@ function renderSummary(summary, alerts) {
   target.innerHTML = `
     <article class="metric"><span>Scanned</span><strong>${summary.scanned}</strong><p class="muted">Indexes plus high-liquidity names.</p></article>
     <article class="metric"><span>Daily Slots</span><strong>${summary.approvedTradeSlots || 0}/${summary.dailyTradeLimit || 3}</strong><p class="muted">${summary.tradeSlotsRemaining ?? 0} slots left. Stop after 2 losses.</p></article>
-    <article class="metric"><span>Best Idea</span><strong>${summary.bestIdea ? summary.bestIdea.symbol : "Wait"}</strong><p class="muted">${summary.bestIdea?.action || summary.rule}</p></article>
+    <article class="metric"><span>Best Idea</span><strong>${summary.bestIdea ? summary.bestIdea.symbol : "Wait"}</strong><p class="muted">${summary.bestIdea?.finalAction || summary.rule}</p></article>
     <article class="metric"><span>Breadth</span><strong>${summary.marketBreadth?.aboveVwap ?? 0} above VWAP</strong><p class="muted">${summary.marketBreadth?.callBias ?? 0} call bias / ${summary.marketBreadth?.putBias ?? 0} put bias.</p></article>
   `;
 }
@@ -144,6 +144,10 @@ function actionLabel(row, tier = cardTier(row)) {
   return row.optionDirection === "PUT" || row.direction === "Short" ? "Confirmed put contract plan" : "Confirmed call contract plan";
 }
 
+function finalLabel(row) {
+  return String(actionLabel(row)).toUpperCase();
+}
+
 function contractTitle(row) {
   if (row.optionContractLabel && row.optionContract) return `${row.optionContractLabel} - ${row.optionContract}`;
   return row.optionContractLabel || row.optionContract || optionTitle(row);
@@ -153,8 +157,8 @@ function contractCommand(row, tier) {
   if (!hasOptionContract(row)) {
     return "Stock setup only - option contract not validated.";
   }
-  if (tier === "A+ Trade") return `Confirmed contract plan: ${contractTitle(row)}`;
-  if (tier === "Watch for Trigger") return `Conditional contract to check after trigger confirms: ${contractTitle(row)}`;
+  if (finalLabel(row) === "ENTRY ALLOWED") return `Validated contract plan: ${contractTitle(row)}`;
+  if (tier === "Watch for Trigger") return `Conditional contract to check after all hard gates pass: ${contractTitle(row)}`;
   return `Do not trade. Reference contract only: ${contractTitle(row)}`;
 }
 
@@ -164,10 +168,20 @@ function contractStats(row) {
     ["Bid", money(row.optionBid)],
     ["Ask", money(row.optionAsk)],
     ["Mid", money(row.optionMid)],
+    ["DTE", fmt(row.optionDte)],
+    ["Mode", row.optionRiskMode || row.optionMode || "Pending"],
     ["Max Risk", Number.isFinite(Number(row.optionEstimatedCost)) ? `$${Number(row.optionEstimatedCost).toFixed(0)}` : "Pending"],
     ["Spread", Number.isFinite(Number(row.optionSpreadPct)) ? `${Number(row.optionSpreadPct).toFixed(1)}%` : "Pending"],
     ["Vol/OI", `${fmt(row.optionVolume)}/${fmt(row.optionOpenInterest)}`],
     ["IV", Number.isFinite(Number(row.optionIV)) ? `${Number(row.optionIV).toFixed(1)}%` : "Pending"],
+    ["Delta", Number.isFinite(Number(row.optionDelta)) ? Number(row.optionDelta).toFixed(3) : "Pending"],
+    ["Gamma", Number.isFinite(Number(row.optionGamma)) ? Number(row.optionGamma).toFixed(4) : "Pending"],
+    ["Theta", Number.isFinite(Number(row.optionTheta)) ? Number(row.optionTheta).toFixed(3) : "Pending"],
+    ["Vega", Number.isFinite(Number(row.optionVega)) ? Number(row.optionVega).toFixed(3) : "Pending"],
+    ["At Stop", money(row.optionValueAtStop)],
+    ["At T1", money(row.optionValueAtTarget1)],
+    ["At T2", money(row.optionValueAtTarget2)],
+    ["Planned Loss", Number.isFinite(Number(row.plannedLossIfStopped)) ? `$${Number(row.plannedLossIfStopped).toFixed(0)}` : "Pending"],
     ["Quality", row.optionContractScore ? `${row.optionContractScore}/100` : "Pending"],
   ];
   return `<div class="contract-stats">${stats.map(([label, value]) => `<div><span>${label}</span><strong>${value}</strong></div>`).join("")}</div>`;
@@ -224,10 +238,10 @@ function renderSignalCard(row, mode = "full") {
   const symbol = cardSymbol(row);
   const direction = cardDirection(row);
   const confidence = row.confidenceScore ?? row.confidenceRating ?? row.score ?? 0;
-  const setupScore = row.setupConfidenceScore;
   const risk = row.riskScore ?? "Pending";
-  const status = tier === "A+ Trade" ? "READY" : tier === "Watch for Trigger" ? "WAIT" : "NO TRADE";
-  const title = tier === "A+ Trade" ? "A+ TRADE" : tier === "Watch for Trigger" ? "STRONG WATCH" : "NO TRADE";
+  const final = finalLabel(row);
+  const status = row.tradePermission || (final === "ENTRY ALLOWED" ? "Entry Allowed" : noTrade ? "No Entry" : "Conditional Plan Only");
+  const title = final;
   const subtitle = tier === "Watch for Trigger"
     ? row.executionReason || cardTrigger(row)
     : noTrade
@@ -242,12 +256,12 @@ function renderSignalCard(row, mode = "full") {
           <span>${cardCompany(row)}</span>
         </div>
         <div class="signal-badges">
-          <b>${setupBadge(row)}</b>
+          <b>Setup ${row.setupQualityGrade || setupBadge(row)}</b>
           <em>${status}</em>
         </div>
       </div>
       <div class="signal-thesis">
-        <span>${cleanTierLabel(tier)}</span>
+        <span>Execution Status: ${row.executionStatus || (noTrade ? "Avoid" : "Waiting")}</span>
         <strong>${title}</strong>
         <p>${shortText(subtitle, 240)}</p>
       </div>
@@ -263,6 +277,7 @@ function renderSignalCard(row, mode = "full") {
         <div><span>Stop</span><strong>${money(cardStop(row))}</strong></div>
         <div><span>Target 1</span><strong>${money(cardTarget(row))}</strong></div>
         <div><span>Target 2</span><strong>${money(row.target2)}</strong></div>
+        <div><span>Cancel Level</span><strong>${money(cardStop(row))}</strong></div>
         <div><span>R/R T1</span><strong>${rrLabel(row.riskReward ?? row.rewardRisk)}</strong></div>
         <div><span>R/R T2</span><strong>${rrToTarget(row, row.target2)}</strong></div>
         <div><span>Risk</span><strong>${fmt(risk)}/100</strong></div>
@@ -270,19 +285,19 @@ function renderSignalCard(row, mode = "full") {
       <p class="signal-read">${shortText(row.traderRead || row.tradeDecision || cardWhy(row), mode === "compact" ? 220 : 420)}</p>
       ${compact && noTrade ? "" : `
         <div class="signal-next">
-          <span>${noTrade ? "No-trade reason" : tier === "Watch for Trigger" ? "Exact trigger needed" : "Execution trigger"}</span>
-          <p>${shortText(noTrade ? cardNoTrade(row) : triggerCommand(row, tier), compact ? 260 : 360)}</p>
+          <span>${noTrade ? "No-trade reason" : "Exact trigger / reason for waiting"}</span>
+          <p>${shortText(noTrade ? cardNoTrade(row) : `${triggerCommand(row, tier)} ${row.reasonForWaiting ? `Waiting because: ${row.reasonForWaiting}.` : ""}`, compact ? 300 : 420)}</p>
         </div>
       `}
       ${compact ? "" : `
         <div class="signal-management">
           <div>
-            <span>Invalidation</span>
+            <span>Cancel / Invalidation</span>
             <p>${shortText(row.invalidationReason || row.stopPlan || cardNoTrade(row), 260)}</p>
           </div>
           <div>
-            <span>Signal Expiration</span>
-            <p>${signalExpiry(row, tier)}</p>
+            <span>Upgrade To Entry Allowed</span>
+            <p>${shortText(row.upgradeToEntryAllowed || signalExpiry(row, tier), 280)}</p>
           </div>
           <div>
             <span>Management Plan</span>
@@ -296,16 +311,24 @@ function renderSignalCard(row, mode = "full") {
 }
 
 function bestSignalRows(summary, alerts = [], results = []) {
-  const active = summary?.activeTradeCards ?? [];
-  const watch = summary?.watchForTriggerCards ?? [];
-  const noTrade = summary?.noTradeCards ?? [];
-  if (active.length || watch.length || noTrade.length) return { active, watch, noTrade };
+  const primary = [
+    ...(summary?.activeTradeCards ?? []),
+    ...(summary?.watchForTriggerCards ?? []),
+    ...(summary?.noTradeCards ?? []),
+  ];
+  if (primary.length) {
+    return {
+      active: primary.filter((row) => finalLabel(row) === "ENTRY ALLOWED"),
+      watch: primary.filter((row) => ["CONDITIONAL PLAN ONLY - WAIT FOR TRIGGER", "STRONG WATCH - DO NOT CHASE"].includes(finalLabel(row))),
+      noTrade: primary.filter((row) => ["NO TRADE", "AVOID"].includes(finalLabel(row))),
+    };
+  }
 
   const source = alerts.length ? alerts : results;
   return {
-    active: source.filter((row) => row.signalTier === "A+ Trade" || row.tradeSlotApproved).slice(0, 3),
-    watch: source.filter((row) => row.signalTier === "Watch for Trigger" || row.decisionCode === "WAIT").slice(0, 6),
-    noTrade: source.filter((row) => row.signalTier === "No Trade" || row.decisionCode === "NO_TRADE").slice(0, 8),
+    active: source.filter((row) => finalLabel(row) === "ENTRY ALLOWED").slice(0, 3),
+    watch: source.filter((row) => ["CONDITIONAL PLAN ONLY - WAIT FOR TRIGGER", "STRONG WATCH - DO NOT CHASE"].includes(finalLabel(row))).slice(0, 6),
+    noTrade: source.filter((row) => ["NO TRADE", "AVOID"].includes(finalLabel(row))).slice(0, 8),
   };
 }
 
@@ -325,9 +348,9 @@ function renderSignalBoard(summary, alerts = [], results = []) {
   const headline = marketClosed
     ? "Market closed. No live trades."
     : active.length
-      ? "A+ setup available. Check broker spread before entry."
+      ? "Entry allowed setup available. Check broker spread before entry."
       : watch.length
-        ? "Watch only. Wait for trigger confirmation."
+        ? "Conditional plans only. Wait for trigger confirmation."
         : "No Trade. Preserve capital.";
 
   target.innerHTML = `
@@ -340,8 +363,8 @@ function renderSignalBoard(summary, alerts = [], results = []) {
       <div class="command-metrics">
         ${miniLevel("Market", brief?.marketCondition || summary.marketCondition)}
         ${miniLevel("Event Risk", brief?.eventRisk || summary.eventRisk)}
-        ${miniLevel("A+", active.length)}
-        ${miniLevel("Watch", watch.length)}
+        ${miniLevel("Entry", active.length)}
+        ${miniLevel("Plans", watch.length)}
         ${miniLevel("No Trade", noTrade.length)}
       </div>
     </section>
@@ -355,11 +378,11 @@ function renderSignalBoard(summary, alerts = [], results = []) {
 
     <section class="signal-columns">
       <div>
-        <h3>A+ Trades</h3>
-        ${visibleActive.length ? visibleActive.map((row) => renderSignalCard(row, "compact")).join("") : `<p class="empty compact-empty">No A+ setups. Good.</p>`}
+        <h3>Entry Allowed</h3>
+        ${visibleActive.length ? visibleActive.map((row) => renderSignalCard(row, "compact")).join("") : `<p class="empty compact-empty">No entries allowed. Good.</p>`}
       </div>
       <div>
-        <h3>Strong Watch</h3>
+        <h3>Conditional Plans</h3>
         ${visibleWatch.length ? visibleWatch.map((row) => renderSignalCard(row, "compact")).join("") : `<p class="empty compact-empty">No actionable watch triggers right now.</p>`}
       </div>
       <div>
@@ -388,8 +411,8 @@ function renderMorningBrief(summary) {
       </div>
       <div class="brief-meters">
         ${miniLevel("Event Risk", brief.eventRisk)}
-        ${miniLevel("A+ Setups", brief.counts?.aPlus ?? 0)}
-        ${miniLevel("Watch", brief.counts?.watch ?? 0)}
+        ${miniLevel("Entry Allowed", brief.counts?.aPlus ?? 0)}
+        ${miniLevel("Plans", brief.counts?.watch ?? 0)}
         ${miniLevel("No Trade", brief.counts?.noTrade ?? 0)}
       </div>
     </article>
@@ -716,8 +739,13 @@ function renderTable(rows) {
     ["symbol", "Symbol"],
     ["decisionCode", "Decision"],
     ["signalTier", "Tier"],
+    ["setupQualityGrade", "Setup Quality"],
+    ["executionStatus", "Execution"],
+    ["tradePermission", "Permission"],
     ["signal", "Signal"],
     ["finalAction", "Final Action"],
+    ["reasonForWaiting", "Waiting Reason"],
+    ["upgradeToEntryAllowed", "Upgrade Path"],
     ["confidence", "Confidence"],
     ["confidenceRating", "Rating"],
     ["riskScore", "Risk Score"],

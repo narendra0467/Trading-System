@@ -16,6 +16,7 @@ const PREP_START_MINUTES = 9 * 60;
 const MARKET_OPEN_MINUTES = 9 * 60 + 30;
 const MARKET_CLOSE_MINUTES = 16 * 60;
 const MAX_LIVE_CANDLE_AGE_MINUTES = 45;
+const INTRADAY_OPTION_MODE = process.env.INTRADAY_OPTION_MODE || "safe";
 
 function exchangeParts(date = new Date()) {
   const parts = new Intl.DateTimeFormat("en-US", {
@@ -259,10 +260,57 @@ function spreadPct(contract) {
   return (contract.ask - contract.bid) / mid;
 }
 
+function normalPdf(value) {
+  return Math.exp(-0.5 * value * value) / Math.sqrt(2 * Math.PI);
+}
+
+function normalCdf(value) {
+  const sign = value < 0 ? -1 : 1;
+  const x = Math.abs(value) / Math.sqrt(2);
+  const t = 1 / (1 + 0.3275911 * x);
+  const erf = 1 - (((((1.061405429 * t - 1.453152027) * t) + 1.421413741) * t - 0.284496736) * t + 0.254829592) * t * Math.exp(-x * x);
+  return 0.5 * (1 + sign * erf);
+}
+
+function estimateOptionGreeks({ underlying, strike, dte, iv, direction }) {
+  if (![underlying, strike, dte, iv].every(Number.isFinite) || underlying <= 0 || strike <= 0 || dte <= 0 || iv <= 0) {
+    return { delta: null, gamma: null, theta: null, vega: null };
+  }
+  const t = Math.max(dte / 365, 1 / 365);
+  const r = 0.045;
+  const sigma = iv > 3 ? iv / 100 : iv;
+  const d1 = (Math.log(underlying / strike) + (r + 0.5 * sigma * sigma) * t) / (sigma * Math.sqrt(t));
+  const d2 = d1 - sigma * Math.sqrt(t);
+  const call = direction === "CALL";
+  const delta = call ? normalCdf(d1) : normalCdf(d1) - 1;
+  const gamma = normalPdf(d1) / (underlying * sigma * Math.sqrt(t));
+  const thetaCall = (-(underlying * normalPdf(d1) * sigma) / (2 * Math.sqrt(t)) - r * strike * Math.exp(-r * t) * normalCdf(d2)) / 365;
+  const thetaPut = (-(underlying * normalPdf(d1) * sigma) / (2 * Math.sqrt(t)) + r * strike * Math.exp(-r * t) * normalCdf(-d2)) / 365;
+  const vega = underlying * normalPdf(d1) * Math.sqrt(t) / 100;
+  return {
+    delta: round(delta, 3),
+    gamma: round(gamma, 4),
+    theta: round(call ? thetaCall : thetaPut, 3),
+    vega: round(vega, 3),
+  };
+}
+
+function estimateOptionValue(mid, delta, underlying, level, direction) {
+  if (![mid, delta, underlying, level].every(Number.isFinite)) return null;
+  const move = direction === "CALL" ? level - underlying : underlying - level;
+  return round(Math.max(0.01, mid + Math.abs(delta) * move), 2);
+}
+
 function chooseIntradayExpiration(expirations) {
+  const ranges = {
+    safe: [7, 21],
+    swing: [30, 60],
+    scalp: [1, 7],
+  };
+  const [minDte, maxDte] = ranges[INTRADAY_OPTION_MODE] ?? ranges.safe;
   return expirations
     .map((expiration) => ({ expiration, dte: daysToExpiration(expiration) }))
-    .filter(({ dte }) => dte >= 1 && dte <= 14)
+    .filter(({ dte }) => dte >= minDte && dte <= maxDte)
     .sort((a, b) => a.dte - b.dte)[0] ?? null;
 }
 
@@ -843,7 +891,7 @@ async function enrichOptionContract(row) {
     const expirations = await fetchOptionExpirations(row.symbol);
     const expirationMeta = chooseIntradayExpiration(expirations);
     if (!expirationMeta) {
-      return { ...row, optionQuality: "No weekly expiry found", contractDecision: "Use stock levels only; no contract approved." };
+      return { ...row, optionQuality: "No approved expiry found", contractDecision: `Use stock levels only; no ${INTRADAY_OPTION_MODE} mode contract approved.` };
     }
     const chain = await fetchOptionChain(row.symbol, expirationMeta.expiration);
     const contracts = row.direction === "CALL" ? chain?.calls ?? [] : chain?.puts ?? [];
@@ -858,6 +906,18 @@ async function enrichOptionContract(row) {
     });
     const mid = midPrice(contract);
     const spread = spreadPct(contract);
+    const underlying = chain?.underlyingPrice ?? row.close;
+    const ivRaw = Number.isFinite(contract.impliedVolatility) ? contract.impliedVolatility : null;
+    const greeks = estimateOptionGreeks({
+      underlying,
+      strike: contract.strike,
+      dte: expirationMeta.dte,
+      iv: ivRaw,
+      direction: row.direction,
+    });
+    const stopOptionValue = estimateOptionValue(mid, greeks.delta, underlying, row.stockStop ?? row.stopLoss ?? row.stop, row.direction);
+    const target1OptionValue = estimateOptionValue(mid, greeks.delta, underlying, row.stockTarget ?? row.target1 ?? row.target, row.direction);
+    const target2OptionValue = estimateOptionValue(mid, greeks.delta, underlying, row.target2, row.direction);
     const quality =
       spread <= 0.12 && ((contract.volume ?? 0) >= 100 || (contract.openInterest ?? 0) >= 250)
         ? "Good"
@@ -874,13 +934,23 @@ async function enrichOptionContract(row) {
       ...row,
       optionExpiration: new Date(expirationMeta.expiration * 1000).toISOString().slice(0, 10),
       optionDte: expirationMeta.dte,
+      optionMode: INTRADAY_OPTION_MODE,
+      optionRiskMode: expirationMeta.dte <= 7 ? "HIGH RISK - same-day exit plan required" : INTRADAY_OPTION_MODE === "swing" ? "Swing Mode" : "Safer Intraday Mode",
       optionContract: contract.contractSymbol,
       optionStrike: contract.strike,
       optionBid: round(contract.bid),
       optionAsk: round(contract.ask),
       optionMid: round(mid),
-      optionIV: Number.isFinite(contract.impliedVolatility) ? round(contract.impliedVolatility * 100, 1) : null,
-      optionDelta: null,
+      optionIV: Number.isFinite(ivRaw) ? round(ivRaw * 100, 1) : null,
+      optionDelta: greeks.delta,
+      optionGamma: greeks.gamma,
+      optionTheta: greeks.theta,
+      optionVega: greeks.vega,
+      optionValueAtStop: stopOptionValue,
+      optionValueAtTarget1: target1OptionValue,
+      optionValueAtTarget2: target2OptionValue,
+      plannedLossIfStopped: Number.isFinite(stopOptionValue) && Number.isFinite(mid) ? round((mid - stopOptionValue) * 100, 0) : null,
+      maxPremiumRisk: round(mid * 100, 0),
       optionEstimatedCost: round(mid * 100, 0),
       optionSpreadPct: round(spread * 100, 1),
       optionVolume: contract.volume ?? 0,
@@ -1441,6 +1511,87 @@ function signalTierFromScore({ decisionCode, confidenceRating, rewardRisk, execu
   return "No Trade";
 }
 
+function executionStatusFromChecks(checks, chaseRisk, tier) {
+  if (tier === "No Trade") return "Avoid";
+  if (checks.every((check) => check.passed)) return "Confirmed";
+  if (chaseRisk.active) return "Waiting";
+  return "Waiting";
+}
+
+function setupQualityFromRow(row) {
+  return row.rawTradeGrade || row.tradeGrade || qualityLabel(Number(row.setupConfidenceScore ?? row.confidenceScore ?? 0));
+}
+
+function hardGateChecks(row) {
+  const tier = normalizedSignalTier(row);
+  const optionValidated = hasValidatedOption(row)
+    && Number(row.optionContractScore ?? 0) >= 72
+    && Number(row.optionSpreadPct ?? 999) <= 10
+    && (Number(row.optionVolume ?? 0) >= 50 || Number(row.optionOpenInterest ?? 0) >= 250);
+  const setupQuality = setupQualityFromRow(row);
+  const setupIsA = ["A+", "A"].includes(setupQuality);
+  const marketAligned = row.marketConfirmation === "SPY + QQQ agree"
+    || (/SPY: Aligned/.test(row.marketConfirmationReason ?? "") && !/QQQ: .*opposite/i.test(row.marketConfirmationReason ?? ""));
+  const mediumEventOk = row.eventRiskLevel !== "MEDIUM" || setupQuality === "A+";
+  return [
+    { name: "market alignment", passed: marketAligned },
+    { name: "15-minute setup quality", passed: tier !== "No Trade" && setupIsA && row.setupType !== "No clean setup" },
+    { name: "5-minute trigger confirmation", passed: row.candleConfirmation === "5m close confirmed" },
+    { name: "volume expansion", passed: Number(row.volumeRatio ?? row.relativeVolume ?? 0) >= 1 },
+    { name: "VWAP extension control", passed: Math.abs(Number(row.vwapDistancePct ?? 999)) <= 1.5 },
+    { name: "Option contract validated", passed: optionValidated },
+    { name: "Risk/reward is at least 2:1", passed: Number(row.riskReward ?? row.rewardRisk ?? 0) >= 2 },
+    { name: "event risk clearance", passed: row.eventRiskLevel !== "HIGH" && mediumEventOk },
+    { name: "spread/liquidity quality", passed: optionValidated },
+  ];
+}
+
+function chaseRiskFromRow(row) {
+  const reasons = [];
+  const vwapDistance = Math.abs(Number(row.vwapDistancePct ?? 0));
+  const entry = Number(row.stockEntryTrigger ?? row.trigger);
+  const target1 = Number(row.target1 ?? row.target);
+  const stop = Number(row.stopLoss ?? row.stop);
+  const risk = Number.isFinite(entry) && Number.isFinite(stop) ? Math.abs(entry - stop) : null;
+  const rewardToTarget = Number.isFinite(entry) && Number.isFinite(target1) ? Math.abs(target1 - entry) : null;
+  if (vwapDistance > 1.5) reasons.push(`price is ${round(vwapDistance, 2)}% from VWAP`);
+  if (Number.isFinite(risk) && Number.isFinite(rewardToTarget) && rewardToTarget <= risk * 1.15) reasons.push("entry is too close to target 1");
+  if (row.tradeCardDirection === "Long" && Number(row.rangePosition ?? 0) >= 82 && row.retestEntry !== "Retest acceptable") reasons.push("near day high without a clean retest");
+  if (row.retestEntry === "Avoid chase") reasons.push(row.retestEntryReason || "5-minute move is extended");
+  return { active: reasons.length > 0, reasons };
+}
+
+function finalOutputLabel(row, tier = normalizedSignalTier(row)) {
+  const checks = hardGateChecks(row);
+  const chaseRisk = chaseRiskFromRow(row);
+  if (tier === "No Trade") return row.riskScore >= 85 ? "AVOID" : "NO TRADE";
+  if (checks.every((check) => check.passed)) return "ENTRY ALLOWED";
+  if (chaseRisk.active) return "STRONG WATCH - DO NOT CHASE";
+  return "CONDITIONAL PLAN ONLY - WAIT FOR TRIGGER";
+}
+
+function tradePermissionFromLabel(label) {
+  if (label === "ENTRY ALLOWED") return "Entry Allowed";
+  if (label === "NO TRADE" || label === "AVOID") return "No Entry";
+  return "Conditional Plan Only";
+}
+
+function upgradePath(row) {
+  const missing = hardGateChecks(row).filter((check) => !check.passed).map((check) => check.name);
+  if (!missing.length) return "All hard gates passed. Re-check live quote and broker spread before acting.";
+  return `Upgrade requires: ${missing.slice(0, 5).join("; ")}.`;
+}
+
+function waitingReason(row, hardGates, chaseRisk, finalAction) {
+  if (finalAction === "ENTRY ALLOWED") return "";
+  const missing = hardGates.filter((check) => !check.passed).map((check) => check.name);
+  const parts = [
+    missing.length ? `Missing: ${missing.slice(0, 5).join("; ")}` : "",
+    chaseRisk.reasons.length ? `Chase risk: ${chaseRisk.reasons.slice(0, 4).join("; ")}` : "",
+  ].filter(Boolean);
+  return parts.join(". ");
+}
+
 function executionReadinessScore({ decisionCode, setupConfidence, execution, marketCheck, candleCheck, retestCheck, eventLevel, mtfAligned }) {
   if (decisionCode === "TRADE_NOW") return setupConfidence;
   if (decisionCode === "WAIT") {
@@ -1579,40 +1730,63 @@ function hasValidatedOption(row) {
 }
 
 function finalActionLabel(row, tier = normalizedSignalTier(row)) {
-  if (tier === "Watch for Trigger") return "Conditional Plan Only - No Entry Yet";
-  if (tier === "No Trade") return "No Entry - No Trade";
-  if (!hasValidatedOption(row)) return "Stock setup only - option contract not validated";
-  return row.direction === "PUT" ? "Confirmed put contract plan" : "Confirmed call contract plan";
+  return finalOutputLabel(row, tier);
 }
 
 function displayContractHint(row, tier = normalizedSignalTier(row)) {
   if (!hasValidatedOption(row)) return "Stock setup only - option contract not validated.";
   const side = row.direction === "PUT" ? "put" : "call";
   const hint = `${row.optionContractLabel} near ${round(row.optionMid)} mid. Cost about $${round(row.optionEstimatedCost, 0)} per contract.`;
-  if (tier === "Watch for Trigger") return `Conditional ${side} contract to check only after trigger confirmation: ${hint}`;
-  if (tier === "No Trade") return `Reference ${side} contract only; no entry is allowed: ${hint}`;
-  return `Confirmed ${side} contract plan after all entry checks pass: ${hint}`;
+  const label = finalOutputLabel(row, tier);
+  if (label === "ENTRY ALLOWED") return `Validated ${side} contract plan: ${hint}`;
+  if (label === "NO TRADE" || label === "AVOID") return `Reference ${side} contract only; no entry is allowed: ${hint}`;
+  return `Conditional ${side} contract to check only after all hard gates pass: ${hint}`;
 }
 
 function publicSignalRow(row) {
   const tier = normalizedSignalTier(row);
+  const finalAction = finalActionLabel(row, tier);
+  const hardGates = hardGateChecks(row);
+  const chaseRisk = chaseRiskFromRow(row);
   return {
     ...row,
     signalTier: tier,
-    finalAction: finalActionLabel(row, tier),
-    optionSide: finalActionLabel(row, tier),
+    setupQualityGrade: setupQualityFromRow(row),
+    executionStatus: executionStatusFromChecks(hardGates, chaseRisk, tier),
+    tradePermission: tradePermissionFromLabel(finalAction),
+    finalAction,
+    action: finalAction,
+    beginnerRead: `${row.direction || row.tradeCardDirection || "Trade"} setup: ${finalAction}.`,
+    optionSide: finalAction,
     optionDirection: row.direction,
+    hardGates,
+    chaseRiskReasons: chaseRisk.reasons,
+    reasonForWaiting: waitingReason(row, hardGates, chaseRisk, finalAction),
+    upgradeToEntryAllowed: upgradePath(row),
+    cancelSetupIf: row.invalidationReason || row.noTradeReason,
     contractHint: displayContractHint(row, tier),
   };
 }
 
 function tradeCardView(row) {
   const tier = normalizedSignalTier(row);
+  const finalAction = finalActionLabel(row, tier);
+  const hardGates = hardGateChecks(row);
+  const chaseRisk = chaseRiskFromRow(row);
   return {
     ticker: row.symbol,
     companyName: row.name,
     direction: row.tradeCardDirection,
     signalTier: tier,
+    setupQualityGrade: setupQualityFromRow(row),
+    executionStatus: executionStatusFromChecks(hardGates, chaseRisk, tier),
+    tradePermission: tradePermissionFromLabel(finalAction),
+    finalAction,
+    hardGates,
+    chaseRiskReasons: chaseRisk.reasons,
+    reasonForWaiting: waitingReason(row, hardGates, chaseRisk, finalAction),
+    upgradeToEntryAllowed: upgradePath(row),
+    cancelSetupIf: row.invalidationReason || row.noTradeReason,
     confidenceScore: row.confidenceScore,
     setupConfidenceScore: row.setupConfidenceScore,
     riskScore: row.riskScore,
@@ -1634,11 +1808,12 @@ function tradeCardView(row) {
     tradeStatus: row.tradeStatus,
     bias: row.bias,
     setupType: row.setupType,
-    finalAction: finalActionLabel(row, tier),
-    optionSide: finalActionLabel(row, tier),
+    optionSide: finalAction,
     optionDirection: row.direction,
     optionExpiration: row.optionExpiration,
     optionDte: row.optionDte,
+    optionMode: row.optionMode,
+    optionRiskMode: row.optionRiskMode,
     optionContract: row.optionContract,
     optionStrike: row.optionStrike,
     optionBid: row.optionBid,
@@ -1646,6 +1821,14 @@ function tradeCardView(row) {
     optionMid: row.optionMid,
     optionIV: row.optionIV,
     optionDelta: row.optionDelta,
+    optionGamma: row.optionGamma,
+    optionTheta: row.optionTheta,
+    optionVega: row.optionVega,
+    optionValueAtStop: row.optionValueAtStop,
+    optionValueAtTarget1: row.optionValueAtTarget1,
+    optionValueAtTarget2: row.optionValueAtTarget2,
+    plannedLossIfStopped: row.plannedLossIfStopped,
+    maxPremiumRisk: row.maxPremiumRisk,
     optionEstimatedCost: row.optionEstimatedCost,
     optionSpreadPct: row.optionSpreadPct,
     optionVolume: row.optionVolume,
@@ -1714,10 +1897,11 @@ function buildMorningBrief({ results, eventPolicy, sessionPolicy, now }) {
       bias: row.bias,
       tradeStatus: row.tradeStatus || "Do Not Trade",
       signalTier: normalizedSignalTier(row),
+      finalAction: row.finalAction,
     }));
-  const aPlus = results.filter((row) => normalizedSignalTier(row) === "A+ Trade");
-  const watch = results.filter((row) => normalizedSignalTier(row) === "Watch for Trigger");
-  const noTrade = results.filter((row) => normalizedSignalTier(row) === "No Trade");
+  const aPlus = results.filter((row) => row.finalAction === "ENTRY ALLOWED");
+  const watch = results.filter((row) => ["CONDITIONAL PLAN ONLY - WAIT FOR TRIGGER", "STRONG WATCH - DO NOT CHASE"].includes(row.finalAction));
+  const noTrade = results.filter((row) => ["NO TRADE", "AVOID"].includes(row.finalAction) || normalizedSignalTier(row) === "No Trade");
   return {
     generatedAt: now.toISOString(),
     title: "Morning Trading Desk Brief",
@@ -1752,12 +1936,17 @@ function buildMorningBrief({ results, eventPolicy, sessionPolicy, now }) {
         relativeVolume: row.relativeVolume ?? row.volumeRatio,
         bias: row.bias,
         signalTier: row.signalTier,
+        finalAction: row.finalAction,
         reason: row.whyTradeExists || row.reason,
       })),
     technicalScoreTable: ranked.map((row) => ({
       ticker: row.symbol,
       companyName: row.name,
       signalTier: row.signalTier,
+      finalAction: row.finalAction,
+      setupQualityGrade: row.setupQualityGrade,
+      executionStatus: row.executionStatus,
+      tradePermission: row.tradePermission,
       confidenceScore: row.confidenceScore,
       riskScore: row.riskScore,
       close: row.close,
@@ -1805,7 +1994,7 @@ export function updateIntradayPaperLog(scan, reportDir = "local-reports") {
       ticker: row.symbol,
       setupType: row.setupType,
       signalTier: row.signalTier,
-      entryTriggerAppeared: row.signalTier === "A+ Trade",
+      entryTriggerAppeared: row.finalAction === "ENTRY ALLOWED",
       entryPrice: row.stockEntryTrigger ?? row.trigger,
       stopPrice: row.stopLoss ?? row.stop,
       target1: row.target1 ?? row.target,
@@ -1932,15 +2121,14 @@ export async function scanIntraday({
   }
   const enrichedBySymbol = new Map(tradeIdeas.map((row) => [row.symbol, row]));
   const finalResults = results.map((row) => enrichedBySymbol.get(row.symbol) ?? row);
-  const approvedTrades = tradeIdeas.filter((row) => row.tradeSlotApproved === true);
   const publicFinalResults = finalResults.map(publicSignalRow);
   const publicTradeIdeas = tradeIdeas.map(publicSignalRow);
-  const publicApprovedTrades = approvedTrades.map(publicSignalRow);
+  const publicApprovedTrades = publicTradeIdeas.filter((row) => row.finalAction === "ENTRY ALLOWED");
   const hideLiveIdeas = ["WEEKEND", "CLOSED", "AFTER_HOURS"].includes(sessionPolicy.phase);
-  const morningBrief = buildMorningBrief({ results: finalResults, eventPolicy, sessionPolicy, now });
-  const aPlusSetups = publicFinalResults.filter((row) => row.signalTier === "A+ Trade");
-  const watchSetups = publicFinalResults.filter((row) => row.signalTier === "Watch for Trigger");
-  const noTradeSetups = publicFinalResults.filter((row) => row.signalTier === "No Trade");
+  const morningBrief = buildMorningBrief({ results: publicFinalResults, eventPolicy, sessionPolicy, now });
+  const aPlusSetups = publicFinalResults.filter((row) => row.finalAction === "ENTRY ALLOWED");
+  const watchSetups = publicFinalResults.filter((row) => ["CONDITIONAL PLAN ONLY - WAIT FOR TRIGGER", "STRONG WATCH - DO NOT CHASE"].includes(row.finalAction));
+  const noTradeSetups = publicFinalResults.filter((row) => ["NO TRADE", "AVOID"].includes(row.finalAction));
   const summary = {
     updatedAt: new Date().toISOString(),
     range,
@@ -1949,9 +2137,9 @@ export async function scanIntraday({
     decisionCadence: "15-minute primary signals; 5-minute only for timing confirmation",
     nextReviewMinutes: 15,
     dailyTradeLimit: MAX_DAILY_TRADES,
-    approvedTradeSlots: approvedTrades.length,
-    tradeSlotsRemaining: Math.max(0, MAX_DAILY_TRADES - approvedTrades.length),
-    disciplineMode: "2-3 trades max. Only A+ setups can use a trade slot. Watch means wait for a trigger; No Trade is a valid professional output.",
+    approvedTradeSlots: publicApprovedTrades.length,
+    tradeSlotsRemaining: Math.max(0, MAX_DAILY_TRADES - publicApprovedTrades.length),
+    disciplineMode: "2-3 trades max. Entry Allowed requires every hard gate to pass. Conditional plans are not entries.",
     eventPolicy,
     sessionPolicy,
     morningBrief,
