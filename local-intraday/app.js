@@ -78,6 +78,7 @@ function renderMorningBrief(summary) {
     return;
   }
   const topTickers = brief.topTickers?.slice(0, 5) ?? [];
+  const priceLevel = (value) => Number.isFinite(Number(value)) ? money(value) : "Pending";
   target.innerHTML = `
     <article class="brief-hero">
       <div>
@@ -94,19 +95,19 @@ function renderMorningBrief(summary) {
     </article>
     <div class="top-watch">
       ${topTickers.map((row) => `
-        <article class="watch-row ${tierClass(row.signalTier)}">
+        <article class="watch-row ${tierClass(row.signalTier || "No Trade")}">
           <div>
             <strong>${row.ticker}</strong>
             <span>${row.companyName || ""}</span>
           </div>
           <p>${row.reason || "No catalyst note yet."}</p>
           <div class="levels levels--compact">
-            ${miniLevel("Tier", row.signalTier)}
-            ${miniLevel("Bias", row.bias)}
-            ${miniLevel("RVOL", row.relativeVolume)}
-            ${miniLevel("Status", row.tradeStatus)}
-            ${miniLevel("Support", row.keySupport, money)}
-            ${miniLevel("Resistance", row.keyResistance, money)}
+            ${miniLevel("Tier", row.signalTier || "No Trade")}
+            ${miniLevel("Bias", row.bias || "Neutral")}
+            ${miniLevel("RVOL", row.relativeVolume ?? "Pending")}
+            ${miniLevel("Status", row.tradeStatus || "Do Not Trade")}
+            ${miniLevel("Support", row.keySupport, priceLevel)}
+            ${miniLevel("Resistance", row.keyResistance, priceLevel)}
           </div>
         </article>
       `).join("") || `<p class="empty">No top tickers yet.</p>`}
@@ -122,7 +123,8 @@ function renderMorningBrief(summary) {
 }
 
 function miniLevel(label, value, formatter = fmt) {
-  return `<div><span>${label}</span><strong>${formatter(value)}</strong></div>`;
+  const display = value === null || value === undefined || value === "" ? "Pending" : formatter(value);
+  return `<div><span>${label}</span><strong>${display}</strong></div>`;
 }
 
 function optionChecklist(row) {

@@ -922,8 +922,48 @@ async function enrichOptionContract(row) {
 function scoreIntradaySymbol(record, rows, context = {}) {
   const benchmarkRows = context.benchmarkRows ?? [];
   const symbol = record.symbol;
-  if (rows.length < 6) {
-    return { symbol, name: record.name, group: record.group, signal: "NO_DATA", action: "No trade", score: 0, reason: `Only ${rows.length} intraday candles so far; wait for the opening range to form` };
+  if (rows.length < 2) {
+    const needed = 2 - rows.length;
+    const reason = `Only ${rows.length} intraday candle${rows.length === 1 ? "" : "s"} so far; need ${needed} more completed 15-minute candle${needed === 1 ? "" : "s"} before the opening range is usable.`;
+    return {
+      symbol,
+      name: record.name,
+      group: record.group,
+      signal: "NO_DATA",
+      setupSignal: "NO_DATA",
+      decisionCode: "NO_TRADE",
+      signalTier: "No Trade",
+      confidenceScore: 0,
+      confidenceRating: 0,
+      riskScore: 100,
+      tradeGrade: "D",
+      tradeCardDirection: "Long / Short",
+      bias: "Neutral",
+      tradeStatus: "Do Not Trade",
+      action: "No trade",
+      tradeDecision: "No trade. Opening range is still forming.",
+      tradeSlotApproved: false,
+      setupType: "Opening range pending",
+      whyTradeExists: reason,
+      noTradeReason: reason,
+      triggerNeeded: "Wait for at least two completed 15-minute candles, then require a 5-minute confirmation trigger.",
+      invalidationReason: "No trade thesis exists until the opening range is formed.",
+      entryZone: "Wait for opening range",
+      stopLoss: null,
+      target1: null,
+      target2: null,
+      riskReward: null,
+      maxLossIfWrong: "No position",
+      reason,
+      score: 0,
+      sessionPhase: sessionPhase(rows),
+      sessionPhaseLive: context.sessionPolicy?.phase,
+      sessionStatus: context.sessionPolicy?.label,
+      sessionRule: context.sessionPolicy?.reason,
+      eventRiskLevel: context.eventPolicy?.level,
+      eventRiskHeadline: context.eventPolicy?.headline,
+      eventRiskRule: context.eventPolicy?.rule,
+    };
   }
 
   const closes = rows.map((row) => row.close);
@@ -1448,6 +1488,10 @@ function signalTierRank(row) {
   return 0;
 }
 
+function normalizedSignalTier(row) {
+  return row.signalTier || (row.signal && row.signal !== "NO_DATA" && row.signal !== "NO_TRADE" ? "Watch for Trigger" : "No Trade");
+}
+
 function eventRiskLabel(eventPolicy) {
   if (eventPolicy?.level === "HIGH") return "High";
   if (eventPolicy?.level === "MEDIUM") return "Medium";
@@ -1519,7 +1563,7 @@ function tradeCardView(row) {
     ticker: row.symbol,
     companyName: row.name,
     direction: row.tradeCardDirection,
-    signalTier: row.signalTier,
+    signalTier: normalizedSignalTier(row),
     confidenceScore: row.confidenceScore,
     riskScore: row.riskScore,
     whyThisTradeExists: row.whyTradeExists,
@@ -1563,12 +1607,12 @@ function buildMorningBrief({ results, eventPolicy, sessionPolicy, now }) {
       keySupport: row.keySupport,
       keyResistance: row.keyResistance,
       bias: row.bias,
-      tradeStatus: row.tradeStatus,
-      signalTier: row.signalTier,
+      tradeStatus: row.tradeStatus || "Do Not Trade",
+      signalTier: normalizedSignalTier(row),
     }));
-  const aPlus = results.filter((row) => row.signalTier === "A+ Trade");
-  const watch = results.filter((row) => row.signalTier === "Watch for Trigger");
-  const noTrade = results.filter((row) => row.signalTier === "No Trade");
+  const aPlus = results.filter((row) => normalizedSignalTier(row) === "A+ Trade");
+  const watch = results.filter((row) => normalizedSignalTier(row) === "Watch for Trigger");
+  const noTrade = results.filter((row) => normalizedSignalTier(row) === "No Trade");
   return {
     generatedAt: now.toISOString(),
     title: "Morning Trading Desk Brief",
