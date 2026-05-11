@@ -111,6 +111,27 @@ function cardNoTrade(row) {
   return row.noTradeReason || row.eventRiskRule || row.reason || "No clean professional edge.";
 }
 
+function setupBadge(row) {
+  const grade = row.rawTradeGrade || row.tradeGrade || "D";
+  const setup = row.setupConfidenceScore ?? row.score ?? row.confidenceScore ?? 0;
+  return `${grade}/${fmt(setup)}`;
+}
+
+function optionTitle(row) {
+  if (row.optionContractLabel) return row.optionContractLabel;
+  if (row.optionSide && row.optionStrike && row.optionExpiration) {
+    const side = String(row.optionSide).replace("BUY ", "").toLowerCase();
+    return `${row.optionExpiration} ${row.optionStrike} ${side}`;
+  }
+  return row.optionSide || "Stock level only";
+}
+
+function optionRead(row) {
+  if (row.contractHint) return row.contractHint;
+  if (row.skipRule) return row.skipRule;
+  return "Confirm live bid/ask in broker before entry. Use limit orders only.";
+}
+
 function renderSignalCard(row, mode = "full") {
   const tier = cardTier(row);
   const noTrade = tier === "No Trade";
@@ -119,12 +140,13 @@ function renderSignalCard(row, mode = "full") {
   const confidence = row.confidenceScore ?? row.confidenceRating ?? row.score ?? 0;
   const setupScore = row.setupConfidenceScore;
   const risk = row.riskScore ?? "Pending";
-  const badgeText = tier === "Watch for Trigger" ? `Ready ${fmt(confidence)}` : tier === "No Trade" ? `Risk ${fmt(risk)}` : `${fmt(confidence)}%`;
-  const verdict = tier === "Watch for Trigger"
-    ? `Waiting for: ${cardTrigger(row)}`
+  const status = tier === "A+ Trade" ? "READY" : tier === "Watch for Trigger" ? "WAIT" : "NO TRADE";
+  const title = tier === "A+ Trade" ? "A+ TRADE" : tier === "Watch for Trigger" ? "STRONG WATCH" : "NO TRADE";
+  const subtitle = tier === "Watch for Trigger"
+    ? row.executionReason || cardTrigger(row)
     : noTrade
-      ? shortText(cardNoTrade(row), 180)
-      : shortText(cardWhy(row), 180);
+      ? cardNoTrade(row)
+      : cardWhy(row);
   return `
     <article class="signal-card ${signalTone(tier)}">
       <div class="signal-head">
@@ -133,25 +155,34 @@ function renderSignalCard(row, mode = "full") {
           <span>${cardCompany(row)}</span>
         </div>
         <div class="signal-badges">
-          <b>${cleanTierLabel(tier)}</b>
-          <em>${badgeText}</em>
+          <b>${setupBadge(row)}</b>
+          <em>${status}</em>
         </div>
       </div>
-      <p class="signal-verdict">${verdict}</p>
+      <div class="signal-thesis">
+        <span>${cleanTierLabel(tier)}</span>
+        <strong>${title}</strong>
+        <p>${shortText(subtitle, 240)}</p>
+      </div>
+      <div class="option-idea">
+        <span>${row.optionSide || (direction === "Short" ? "PUT IDEA" : "CALL IDEA")}</span>
+        <strong>${optionTitle(row)}</strong>
+        <p>${shortText(optionRead(row), 160)}</p>
+      </div>
       <div class="signal-ticket">
-        <div><span>Direction</span><strong>${direction}</strong></div>
-        <div><span>Entry</span><strong>${typeof cardEntry(row) === "number" ? money(cardEntry(row)) : fmt(cardEntry(row))}</strong></div>
         <div><span>Stop</span><strong>${money(cardStop(row))}</strong></div>
         <div><span>Target</span><strong>${money(cardTarget(row))}</strong></div>
         <div><span>R/R</span><strong>${fmt(row.riskReward ?? row.rewardRisk)}</strong></div>
-        <div><span>${tier === "Watch for Trigger" ? "Setup" : "Risk"}</span><strong>${tier === "Watch for Trigger" && setupScore != null ? fmt(setupScore) : fmt(risk)}</strong></div>
+        <div><span>Ready</span><strong>${fmt(confidence)}/100</strong></div>
       </div>
+      <p class="signal-read">${shortText(row.traderRead || row.tradeDecision || cardWhy(row), mode === "compact" ? 220 : 420)}</p>
       ${mode === "compact" && tier !== "Watch for Trigger" ? "" : `
         <div class="signal-next">
-          <span>${noTrade ? "No-trade reason" : tier === "Watch for Trigger" ? "Why not A+ yet" : "Execution note"}</span>
-          <p>${shortText(noTrade ? cardNoTrade(row) : tier === "Watch for Trigger" ? row.executionReason || cardTrigger(row) : cardTrigger(row), 260)}</p>
+          <span>${noTrade ? "No-trade reason" : tier === "Watch for Trigger" ? "Trigger / missing confirmation" : "Execution note"}</span>
+          <p>${shortText(noTrade ? cardNoTrade(row) : cardTrigger(row), 260)}</p>
         </div>
       `}
+      <p class="signal-footer">${shortText(row.reason || row.confidenceNotes || "", 220)}</p>
     </article>
   `;
 }

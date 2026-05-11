@@ -756,17 +756,17 @@ th {
   padding: 5px 9px;
 }
 
-.signal--aplus .signal-badges b {
+.signal-badges b {
   background: rgba(34, 197, 94, 0.2);
   color: #86efac;
 }
 
-.signal--watch .signal-badges b {
+.signal--watch .signal-badges em {
   background: rgba(251, 191, 36, 0.2);
   color: #fde68a;
 }
 
-.signal--no .signal-badges b {
+.signal--no .signal-badges em {
   background: rgba(251, 113, 133, 0.17);
   color: #fecdd3;
 }
@@ -774,6 +774,56 @@ th {
 .signal-badges em {
   background: rgba(148, 163, 184, 0.14);
   color: #dbeafe;
+}
+
+.signal-thesis {
+  border: 1px solid rgba(251, 191, 36, 0.38);
+  background: rgba(251, 191, 36, 0.08);
+  border-radius: 8px;
+  margin: 12px 0;
+  padding: 12px;
+}
+
+.signal--aplus .signal-thesis {
+  border-color: rgba(34, 197, 94, 0.42);
+  background: rgba(34, 197, 94, 0.09);
+}
+
+.signal--no .signal-thesis {
+  border-color: rgba(251, 113, 133, 0.3);
+  background: rgba(251, 113, 133, 0.08);
+}
+
+.signal-thesis strong {
+  display: block;
+  font-size: 20px;
+  margin: 5px 0;
+}
+
+.signal-thesis p,
+.option-idea p,
+.signal-read {
+  color: #c8d5e3;
+  line-height: 1.45;
+  margin: 0;
+}
+
+.option-idea {
+  border: 1px solid rgba(56, 189, 248, 0.28);
+  background: rgba(56, 189, 248, 0.07);
+  border-radius: 8px;
+  margin: 12px 0;
+  padding: 12px;
+}
+
+.option-idea span {
+  color: var(--blue);
+}
+
+.option-idea strong {
+  display: block;
+  font-size: 20px;
+  margin: 5px 0;
 }
 
 .signal-verdict {
@@ -787,7 +837,7 @@ th {
 .signal-ticket {
   display: grid;
   gap: 8px;
-  grid-template-columns: repeat(6, minmax(0, 1fr));
+  grid-template-columns: repeat(4, minmax(0, 1fr));
 }
 
 .signal-ticket div {
@@ -803,10 +853,6 @@ th {
   margin-top: 5px;
 }
 
-.signal-columns .signal-ticket {
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-}
-
 .signal-next {
   border-top: 1px solid var(--line);
   margin-top: 12px;
@@ -817,6 +863,15 @@ th {
   color: #b9c9d8;
   line-height: 1.45;
   margin: 5px 0 0;
+}
+
+.signal-footer {
+  border-top: 1px solid var(--line);
+  color: #d3deea;
+  font-size: 12px;
+  line-height: 1.45;
+  margin: 12px 0 0;
+  padding-top: 10px;
 }
 
 .compact-empty {
