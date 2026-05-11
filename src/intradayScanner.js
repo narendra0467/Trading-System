@@ -437,25 +437,12 @@ function recentNews(items, now = new Date(), hours = 36) {
 
 function macroNewsImpact(item) {
   const title = String(item.title ?? "").toLowerCase();
-  const highPatterns = [
-    /\bcpi\b/,
-    /\binflation\b/,
-    /\bfomc\b/,
-    /\bfed decision\b/,
-    /\brate decision\b/,
-    /\bpowell\b/,
-    /\bjobs report\b/,
-    /\bnonfarm\b/,
-    /\bpayrolls?\b/,
-    /\bpce\b/,
-    /\btariffs?\b/,
-    /\bwar\b/,
-    /\bgeopolitical\b/,
-    /\bmissile\b/,
-    /\binvasion\b/,
-  ];
-  const mediumPatterns = [/\bfed\b/, /\brates\b/, /\btreasury yields\b/, /\boil prices\b/, /\brecession\b/];
-  if (highPatterns.some((pattern) => pattern.test(title))) return "high";
+  const scheduledMacro = /\b(cpi|ppi|pce|fomc|fed decision|rate decision|jobs report|nonfarm|payrolls?)\b/.test(title);
+  const releaseContext = /\b(today|tomorrow|due|release|released|report|data|decision|meeting|speech|testimony|hotter|cooler|beats|misses|comes in|unexpected)\b/.test(title);
+  const geopoliticalShock = /\b(war|geopolitical|missile|invasion|attack|escalation)\b/.test(title);
+  const highPatterns = [/\btariffs?\b/];
+  const mediumPatterns = [/\bcpi\b/, /\binflation\b/, /\bfed\b/, /\bpowell\b/, /\brates\b/, /\btreasury yields\b/, /\boil prices\b/, /\brecession\b/];
+  if ((scheduledMacro && releaseContext) || geopoliticalShock || highPatterns.some((pattern) => pattern.test(title))) return "high";
   if (mediumPatterns.some((pattern) => pattern.test(title))) return "medium";
   return null;
 }
@@ -1592,7 +1579,13 @@ function tradeCardView(row) {
     direction: row.tradeCardDirection,
     signalTier: normalizedSignalTier(row),
     confidenceScore: row.confidenceScore,
+    setupConfidenceScore: row.setupConfidenceScore,
     riskScore: row.riskScore,
+    rawTradeGrade: row.rawTradeGrade,
+    tradeGrade: row.tradeGrade,
+    executionLabel: row.executionLabel,
+    executionReason: row.executionReason,
+    tradeDecision: row.tradeDecision,
     whyThisTradeExists: row.whyTradeExists,
     entryZone: row.entryZone,
     stopLoss: row.stopLoss,
@@ -1606,6 +1599,52 @@ function tradeCardView(row) {
     tradeStatus: row.tradeStatus,
     bias: row.bias,
     setupType: row.setupType,
+    optionSide: row.optionSide,
+    optionExpiration: row.optionExpiration,
+    optionDte: row.optionDte,
+    optionContract: row.optionContract,
+    optionStrike: row.optionStrike,
+    optionBid: row.optionBid,
+    optionAsk: row.optionAsk,
+    optionMid: row.optionMid,
+    optionEstimatedCost: row.optionEstimatedCost,
+    optionSpreadPct: row.optionSpreadPct,
+    optionVolume: row.optionVolume,
+    optionOpenInterest: row.optionOpenInterest,
+    optionContractScore: row.optionContractScore,
+    optionContractGrade: row.optionContractGrade,
+    optionContractLabel: row.optionContractLabel,
+    optionQuality: row.optionQuality,
+    contractHint: row.contractHint,
+    contractDecision: row.contractDecision,
+    contractWhy: row.contractWhy,
+    stockEntryTrigger: row.stockEntryTrigger,
+    stockStop: row.stockStop,
+    stockTarget: row.stockTarget,
+    targetPlan: row.targetPlan,
+    stopPlan: row.stopPlan,
+    skipRule: row.skipRule,
+    traderRead: row.traderRead,
+    reason: row.reason,
+    confidenceNotes: row.confidenceNotes,
+    marketConfirmationReason: row.marketConfirmationReason,
+    marketConfirmation: row.marketConfirmation,
+    candleConfirmation: row.candleConfirmation,
+    retestEntry: row.retestEntry,
+    timeWindow: row.timeWindow,
+    candleConfirmationReason: row.candleConfirmationReason,
+    retestEntryReason: row.retestEntryReason,
+    eventRiskHeadline: row.eventRiskHeadline,
+    eventRiskRule: row.eventRiskRule,
+    riskRule: row.riskRule,
+    profitRule: row.profitRule,
+    brokerCheckRequired: row.brokerCheckRequired,
+    optionContractPositives: row.optionContractPositives,
+    optionContractRisks: row.optionContractRisks,
+    keySupport: row.keySupport,
+    keyResistance: row.keyResistance,
+    vwap: row.vwap,
+    trigger: row.trigger,
   };
 }
 

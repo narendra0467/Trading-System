@@ -826,6 +826,26 @@ th {
   margin: 5px 0;
 }
 
+.contract-stats {
+  display: grid;
+  gap: 7px;
+  grid-template-columns: repeat(6, minmax(0, 1fr));
+  margin-top: 12px;
+}
+
+.contract-stats div {
+  background: rgba(3, 7, 18, 0.28);
+  border: 1px solid rgba(56, 189, 248, 0.16);
+  border-radius: 7px;
+  padding: 8px;
+}
+
+.contract-stats strong {
+  font-size: 13px;
+  line-height: 1.15;
+  margin: 4px 0 0;
+}
+
 .signal-verdict {
   color: #d8e6f2;
   font-size: 16px;
@@ -861,6 +881,27 @@ th {
 
 .signal-next p {
   color: #b9c9d8;
+  line-height: 1.45;
+  margin: 5px 0 0;
+}
+
+.signal-management {
+  display: grid;
+  gap: 8px;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  margin-top: 12px;
+}
+
+.signal-management div {
+  border: 1px solid rgba(148, 163, 184, 0.16);
+  background: rgba(255, 255, 255, 0.035);
+  border-radius: 8px;
+  padding: 10px;
+}
+
+.signal-management p {
+  color: #c8d5e3;
+  font-size: 12px;
   line-height: 1.45;
   margin: 5px 0 0;
 }
@@ -901,7 +942,7 @@ th {
 @media (max-width: 900px) {
   .topbar, .section-title { align-items: flex-start; flex-direction: column; }
   .actions { align-items: stretch; flex-direction: column; width: 100%; }
-  .summary, .trade-slots, .watch-grid, .index-tape, .brief-hero, .brief-meters, .top-watch, .v2-board, .context-grid, .paper-grid, .command-strip, .command-metrics, .signal-columns, .signal-ticket { grid-template-columns: 1fr; }
+  .summary, .trade-slots, .watch-grid, .index-tape, .brief-hero, .brief-meters, .top-watch, .v2-board, .context-grid, .paper-grid, .command-strip, .command-metrics, .signal-columns, .signal-ticket, .contract-stats, .signal-management { grid-template-columns: 1fr; }
   .rule-checks { grid-template-columns: 1fr; }
   .levels { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .levels--compact { grid-template-columns: repeat(2, minmax(0, 1fr)); }

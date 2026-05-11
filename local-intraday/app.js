@@ -132,6 +132,84 @@ function optionRead(row) {
   return "Confirm live bid/ask in broker before entry. Use limit orders only.";
 }
 
+function hasOptionContract(row) {
+  return Boolean(row.optionContract || row.optionContractLabel || row.optionMid || row.optionBid || row.optionAsk);
+}
+
+function contractTitle(row) {
+  if (row.optionContractLabel && row.optionContract) return `${row.optionContractLabel} - ${row.optionContract}`;
+  return row.optionContractLabel || row.optionContract || optionTitle(row);
+}
+
+function contractCommand(row, tier) {
+  if (!hasOptionContract(row)) {
+    return tier === "A+ Trade"
+      ? "No option contract passed liquidity checks yet. Use stock levels only until broker confirms a liquid contract."
+      : "No option contract is approved yet. Wait for trigger and confirm a tight, liquid contract in broker.";
+  }
+  if (tier === "A+ Trade") return `Trade contract to check: ${contractTitle(row)}`;
+  if (tier === "Watch for Trigger") return `Do not buy yet. If trigger confirms, check: ${contractTitle(row)}`;
+  return `Do not trade. Reference contract only: ${contractTitle(row)}`;
+}
+
+function contractStats(row) {
+  if (!hasOptionContract(row)) return "";
+  const stats = [
+    ["Bid", money(row.optionBid)],
+    ["Ask", money(row.optionAsk)],
+    ["Mid", money(row.optionMid)],
+    ["Est. Cost", Number.isFinite(Number(row.optionEstimatedCost)) ? `$${Number(row.optionEstimatedCost).toFixed(0)}` : "Pending"],
+    ["Spread", Number.isFinite(Number(row.optionSpreadPct)) ? `${Number(row.optionSpreadPct).toFixed(1)}%` : "Pending"],
+    ["Vol/OI", `${fmt(row.optionVolume)}/${fmt(row.optionOpenInterest)}`],
+  ];
+  return `<div class="contract-stats">${stats.map(([label, value]) => `<div><span>${label}</span><strong>${value}</strong></div>`).join("")}</div>`;
+}
+
+function triggerCommand(row, tier) {
+  if (tier === "A+ Trade") {
+    return row.executionReason || row.candleConfirmationReason || "Trigger confirmed. Re-check live spread before entry.";
+  }
+  if (tier === "Watch for Trigger") {
+    return row.triggerNeeded || row.bestTriggerToWaitFor || row.candleConfirmationReason || "Wait for a completed 5-minute confirmation candle.";
+  }
+  return row.noTradeReason || "No executable trigger.";
+}
+
+function parseEntryValue(row) {
+  const raw = row.stockEntryTrigger ?? row.trigger ?? row.entryZone;
+  if (Number.isFinite(Number(raw))) return Number(raw);
+  const match = String(raw || "").match(/\d+(?:\.\d+)?/);
+  return match ? Number(match[0]) : null;
+}
+
+function rrToTarget(row, target) {
+  const entry = parseEntryValue(row);
+  const stop = Number(cardStop(row));
+  const nextTarget = Number(target);
+  if (![entry, stop, nextTarget].every(Number.isFinite)) return "Pending";
+  const risk = Math.abs(entry - stop);
+  if (!risk) return "Pending";
+  return `${(Math.abs(nextTarget - entry) / risk).toFixed(2)}:1`;
+}
+
+function rrLabel(value) {
+  return Number.isFinite(Number(value)) ? `${Number(value).toFixed(2)}:1` : "Pending";
+}
+
+function signalExpiry(row, tier) {
+  if (tier === "No Trade") return "Inactive until the next scan finds a clean setup.";
+  const vwapText = Number.isFinite(Number(row.vwap)) ? `VWAP ${money(row.vwap)}` : "VWAP";
+  return `Valid only until the next 15-minute review and only while price respects ${vwapText}, stop, and trigger structure.`;
+}
+
+function managementPlan(row, tier) {
+  if (tier === "No Trade") return row.noTradeReason || "Do not enter. Wait for a new scan or a clean trigger.";
+  const targetPlan = row.targetPlan || "Take partial profit near target 1 only if momentum stays clean.";
+  const stopPlan = row.stopPlan || `Exit if price violates ${money(cardStop(row))}.`;
+  const profitRule = row.profitRule || "After target 1, reduce risk and let only the remainder try for target 2.";
+  return `${targetPlan} ${stopPlan} ${profitRule}`;
+}
+
 function renderSignalCard(row, mode = "full") {
   const tier = cardTier(row);
   const noTrade = tier === "No Trade";
@@ -147,6 +225,7 @@ function renderSignalCard(row, mode = "full") {
     : noTrade
       ? cardNoTrade(row)
       : cardWhy(row);
+  const compact = mode === "compact";
   return `
     <article class="signal-card ${signalTone(tier)}">
       <div class="signal-head">
@@ -165,21 +244,42 @@ function renderSignalCard(row, mode = "full") {
         <p>${shortText(subtitle, 240)}</p>
       </div>
       <div class="option-idea">
-        <span>${row.optionSide || (direction === "Short" ? "PUT IDEA" : "CALL IDEA")}</span>
-        <strong>${optionTitle(row)}</strong>
-        <p>${shortText(optionRead(row), 160)}</p>
+        <span>${noTrade ? "NO OPTION TRADE" : row.optionSide || (direction === "Short" ? "BUY PUT" : "BUY CALL")}</span>
+        <strong>${contractCommand(row, tier)}</strong>
+        <p>${shortText(optionRead(row), compact ? 180 : 260)}</p>
+        ${contractStats(row)}
       </div>
       <div class="signal-ticket">
+        <div><span>Entry Zone</span><strong>${fmt(cardEntry(row))}</strong></div>
+        <div><span>Trigger</span><strong>${fmt(row.stockEntryTrigger ?? row.trigger ?? "Wait")}</strong></div>
         <div><span>Stop</span><strong>${money(cardStop(row))}</strong></div>
-        <div><span>Target</span><strong>${money(cardTarget(row))}</strong></div>
-        <div><span>R/R</span><strong>${fmt(row.riskReward ?? row.rewardRisk)}</strong></div>
-        <div><span>Ready</span><strong>${fmt(confidence)}/100</strong></div>
+        <div><span>Target 1</span><strong>${money(cardTarget(row))}</strong></div>
+        <div><span>Target 2</span><strong>${money(row.target2)}</strong></div>
+        <div><span>R/R T1</span><strong>${rrLabel(row.riskReward ?? row.rewardRisk)}</strong></div>
+        <div><span>R/R T2</span><strong>${rrToTarget(row, row.target2)}</strong></div>
+        <div><span>Risk</span><strong>${fmt(risk)}/100</strong></div>
       </div>
       <p class="signal-read">${shortText(row.traderRead || row.tradeDecision || cardWhy(row), mode === "compact" ? 220 : 420)}</p>
-      ${mode === "compact" && tier !== "Watch for Trigger" ? "" : `
+      ${compact && noTrade ? "" : `
         <div class="signal-next">
-          <span>${noTrade ? "No-trade reason" : tier === "Watch for Trigger" ? "Trigger / missing confirmation" : "Execution note"}</span>
-          <p>${shortText(noTrade ? cardNoTrade(row) : cardTrigger(row), 260)}</p>
+          <span>${noTrade ? "No-trade reason" : tier === "Watch for Trigger" ? "Exact trigger needed" : "Execution trigger"}</span>
+          <p>${shortText(noTrade ? cardNoTrade(row) : triggerCommand(row, tier), compact ? 260 : 360)}</p>
+        </div>
+      `}
+      ${compact ? "" : `
+        <div class="signal-management">
+          <div>
+            <span>Invalidation</span>
+            <p>${shortText(row.invalidationReason || row.stopPlan || cardNoTrade(row), 260)}</p>
+          </div>
+          <div>
+            <span>Signal Expiration</span>
+            <p>${signalExpiry(row, tier)}</p>
+          </div>
+          <div>
+            <span>Management Plan</span>
+            <p>${shortText(managementPlan(row, tier), 320)}</p>
+          </div>
         </div>
       `}
       <p class="signal-footer">${shortText(row.reason || row.confidenceNotes || "", 220)}</p>
@@ -208,6 +308,9 @@ function renderSignalBoard(summary, alerts = [], results = []) {
     return;
   }
   const { active, watch, noTrade } = bestSignalRows(summary, alerts, results);
+  const visibleActive = active.slice(0, 3);
+  const visibleWatch = watch.slice(0, Math.max(0, 5 - visibleActive.length));
+  const visibleNoTrade = visibleActive.length || visibleWatch.length ? [] : noTrade.slice(0, 3);
   const brief = summary.morningBrief;
   const best = active[0] || watch[0] || noTrade[0];
   const marketClosed = ["WEEKEND", "CLOSED", "AFTER_HOURS"].includes(summary.sessionPolicy?.phase);
@@ -245,15 +348,15 @@ function renderSignalBoard(summary, alerts = [], results = []) {
     <section class="signal-columns">
       <div>
         <h3>A+ Trades</h3>
-        ${active.length ? active.slice(0, 3).map((row) => renderSignalCard(row, "compact")).join("") : `<p class="empty compact-empty">No A+ setups. Good.</p>`}
+        ${visibleActive.length ? visibleActive.map((row) => renderSignalCard(row, "compact")).join("") : `<p class="empty compact-empty">No A+ setups. Good.</p>`}
       </div>
       <div>
-        <h3>Watch For Trigger</h3>
-        ${watch.length ? watch.slice(0, 5).map((row) => renderSignalCard(row, "compact")).join("") : `<p class="empty compact-empty">No watch triggers right now.</p>`}
+        <h3>Strong Watch</h3>
+        ${visibleWatch.length ? visibleWatch.map((row) => renderSignalCard(row, "compact")).join("") : `<p class="empty compact-empty">No actionable watch triggers right now.</p>`}
       </div>
       <div>
-        <h3>No Trade</h3>
-        ${noTrade.length ? noTrade.slice(0, 5).map((row) => renderSignalCard(row, "compact")).join("") : `<p class="empty compact-empty">No rejected setups yet.</p>`}
+        <h3>Rejected / No Trade</h3>
+        ${visibleNoTrade.length ? visibleNoTrade.map((row) => renderSignalCard(row, "compact")).join("") : `<p class="empty compact-empty">Weak no-trade names hidden. Full scan is in Debug Data.</p>`}
       </div>
     </section>
   `;
