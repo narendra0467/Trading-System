@@ -939,6 +939,36 @@ th {
   font-weight: 900;
 }
 
+.performance-panel {
+  background: rgba(255, 255, 255, 0.025);
+}
+
+.performance-panel summary {
+  align-items: center;
+  display: flex;
+  gap: 10px;
+  justify-content: space-between;
+}
+
+.performance-panel summary span {
+  color: var(--blue);
+  font-size: 12px;
+  text-transform: uppercase;
+}
+
+.performance-panel summary strong {
+  color: var(--text);
+  font-size: 18px;
+}
+
+.panel-note {
+  margin: 12px 0 0;
+}
+
+.performance-panel .paper-grid {
+  margin-bottom: 0;
+}
+
 @media (max-width: 900px) {
   .topbar, .section-title { align-items: flex-start; flex-direction: column; }
   .actions { align-items: stretch; flex-direction: column; width: 100%; }
