@@ -1065,8 +1065,8 @@ function renderHiddenMultibaggerDashboard(report) {
     </article>
     <article class="bias-card">
       <span>Top Candidate</span>
-      <strong>${top ? `${top.symbol} ${Math.round(top.score)}/100` : "No candidate"}</strong>
-      <p>${top?.researchTier || top?.classification || "Run npm run hidden:scan to generate this section."}</p>
+      <strong>${top ? `${top.symbol} ${Math.round(top.researchDeskScore ?? top.score)}/100` : "No candidate"}</strong>
+      <p>${top?.positionSizingCategory || top?.researchTier || top?.classification || "Run npm run hidden:scan to generate this section."}</p>
     </article>
   `;
 
@@ -1075,21 +1075,22 @@ function renderHiddenMultibaggerDashboard(report) {
       <div class="coach-head">
         <div>
           <span class="symbol">${escapeHtml(row.symbol)}</span>
-          ${pill(row.researchTier || row.classification)}
+          ${pill(row.positionSizingCategory || row.researchTier || row.classification)}
         </div>
-        <strong>${Math.round(row.score)}/100</strong>
+        <strong>${Math.round(row.researchDeskScore ?? row.score)}/100</strong>
       </div>
-      <p class="action">${escapeHtml(row.name)}: ${escapeHtml(row.investorRead || row.bullCase || "Research candidate.")}</p>
+      <p class="action">${escapeHtml(row.name)}: ${escapeHtml(row.bestPracticalApproach || row.investorRead || row.bullCase || "Research candidate.")}</p>
       <div class="explain-grid">
         <div><span>Market cap</span><strong>${escapeHtml(row.marketCapDisplay)}</strong></div>
-        <div><span>Rev growth</span><strong>${escapeHtml(row.revenueGrowthDisplay)}</strong></div>
-        <div><span>Risk</span><strong>${Math.round(row.riskScore)}/100</strong></div>
-        <div><span>Research gates</span><strong>${Math.round(row.gateScore ?? 0)}/100</strong></div>
+        <div><span>3x path</span><strong>${escapeHtml(row.multibaggerPath?.path3 || "n/a")}</strong></div>
+        <div><span>Proof</span><strong>${Math.round(row.proofScore ?? 0)}/100</strong></div>
+        <div><span>Entry</span><strong>${escapeHtml(row.entryQuality?.classification || "n/a")}</strong></div>
       </div>
       <ul class="plain-list">
-        <li>Bear case: ${escapeHtml(row.bearCase || "Unavailable.")}</li>
+        <li>Risk: ${Math.round(row.riskScore)}/100. Hidden factor: ${Math.round(row.hiddenFactorScore ?? 0)}/100.</li>
+        <li>Kill criteria: ${escapeHtml(row.killCriteria?.[0] || "Monitor revenue, margin, dilution, and balance-sheet deterioration.")}</li>
         <li>Catalyst: ${escapeHtml(row.catalyst || "No confirmed catalyst found.")}</li>
-        <li>Verdict: ${escapeHtml(row.researchTier || row.verdict || row.classification || "Research only.")}</li>
+        <li>Verdict: ${escapeHtml(row.finalResearchVerdict || row.researchTier || row.verdict || row.classification || "Research only.")}</li>
       </ul>
     </article>
   `).join("") || `<p class="empty">Run npm run hidden:scan to generate hidden multibagger candidates.</p>`;
@@ -1101,10 +1102,15 @@ function renderHiddenMultibaggerDashboard(report) {
     { key: "marketCapDisplay", label: "Market Cap" },
     { key: "revenueGrowthDisplay", label: "Rev Growth" },
     { key: "revenueCagr3Display", label: "3Y CAGR" },
+    { key: "researchDeskScore", label: "Desk", formatter: (value) => `${Math.round(Number(value) || 0)}/100` },
+    { key: "proofScore", label: "Proof", formatter: (value) => `${Math.round(Number(value) || 0)}/100` },
+    { key: "hiddenFactorScore", label: "Hidden", formatter: (value) => `${Math.round(Number(value) || 0)}/100` },
+    { key: "multibaggerPath", label: "3x Path", formatter: (value) => value?.path3 || "n/a", pill: true },
+    { key: "entryQuality", label: "Entry", formatter: (value) => value?.classification || "n/a", pill: true },
     { key: "gateScore", label: "Gates", formatter: (value) => `${Math.round(Number(value) || 0)}/100` },
     { key: "score", label: "Score", formatter: (value) => `${Math.round(Number(value) || 0)}/100` },
     { key: "riskScore", label: "Risk", formatter: (value) => `${Math.round(Number(value) || 0)}/100` },
-    { key: "researchTier", label: "Research Tier", pill: true },
+    { key: "positionSizingCategory", label: "Category", pill: true },
     { key: "catalyst", label: "Catalyst" },
   ]);
 }

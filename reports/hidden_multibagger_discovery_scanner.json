@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-05-10T04:23:11.143Z",
+  "generatedAt": "2026-05-11T00:46:49.757Z",
   "qualityMode": true,
   "investorMode": true,
   "scanned": 78,
@@ -66,7 +66,7 @@
       ],
       "verdict": "Early Quality Compounder: The setup has enough business progress and survivability to deserve deeper research.",
       "dataQuality": {
-        "marketDataDate": "2026-05-10T04:22:49.064Z",
+        "marketDataDate": "2026-05-11T00:46:34.468Z",
         "latestQuarterUsed": "2026-05-05",
         "secCrossCheck": "SEC company facts loaded for CIK 0001841408. Use EDGAR filing links for final verification.",
         "missingOrEstimatedValues": [
@@ -352,6 +352,262 @@
       "researchTier": "Deep Research Candidate",
       "gateScore": 90,
       "investorRead": "Worth serious due diligence before it earns watchlist capital. The data clears the first institutional screen, but filings still decide.",
+      "proofScore": 74,
+      "proofComponents": [
+        {
+          "label": "Real revenue growth",
+          "weight": 16,
+          "score": 95,
+          "read": "46.7%"
+        },
+        {
+          "label": "Gross margin stability",
+          "weight": 11,
+          "score": 100,
+          "read": "72.1%"
+        },
+        {
+          "label": "Operating margin improvement",
+          "weight": 14,
+          "score": 52,
+          "read": "Operating margin trend 0 pts."
+        },
+        {
+          "label": "Free cash flow improvement",
+          "weight": 12,
+          "score": 70,
+          "read": "$0"
+        },
+        {
+          "label": "Revenue per share growth",
+          "weight": 11,
+          "score": 42,
+          "read": "Needs share history verification"
+        },
+        {
+          "label": "Customer/backlog proof",
+          "weight": 10,
+          "score": 82,
+          "read": "Verify source documents"
+        },
+        {
+          "label": "Management execution",
+          "weight": 10,
+          "score": 81,
+          "read": "Worth serious due diligence before it earns watchlist capital. The data clears the first institutional screen, but filings still decide."
+        },
+        {
+          "label": "Insider/institutional confidence",
+          "weight": 8,
+          "score": 56,
+          "read": "Institutions: 97.65%; insiders: 10.93%."
+        },
+        {
+          "label": "Story becoming real",
+          "weight": 8,
+          "score": 85,
+          "read": "7 early proof signals passed."
+        }
+      ],
+      "hiddenFactorScore": 61,
+      "hiddenFactorComponents": [
+        {
+          "label": "Low analyst coverage",
+          "weight": 15,
+          "score": 70,
+          "read": "8"
+        },
+        {
+          "label": "Low media coverage",
+          "weight": 12,
+          "score": 38,
+          "read": "8 recent Yahoo items."
+        },
+        {
+          "label": "Low retail hype",
+          "weight": 14,
+          "score": 45,
+          "read": "Headline and short-interest proxy; verify social/media manually."
+        },
+        {
+          "label": "Low but improving institutional ownership",
+          "weight": 12,
+          "score": 36,
+          "read": "97.65%"
+        },
+        {
+          "label": "Recently improving fundamentals",
+          "weight": 16,
+          "score": 80,
+          "read": "Uses growth, leverage, and survivability."
+        },
+        {
+          "label": "Small/mid-cap status",
+          "weight": 11,
+          "score": 78,
+          "read": "$3.26B"
+        },
+        {
+          "label": "Misunderstood business model",
+          "weight": 10,
+          "score": 66,
+          "read": "consumer fintech"
+        },
+        {
+          "label": "Inflection not fully priced",
+          "weight": 10,
+          "score": 74,
+          "read": "Score/risk balance proxy; verify valuation manually."
+        }
+      ],
+      "multibaggerPath": {
+        "currentMarketCap": "$3.26B",
+        "threeXMarketCap": "$9.78B",
+        "fiveXMarketCap": "$16.3B",
+        "tenXMarketCap": "$32.59B",
+        "path3": "realistic",
+        "path5": "stretched",
+        "path10": "stretched",
+        "operational3x": "Sustain above-market revenue growth, keep dilution controlled, and show margin or FCF improvement over the next several quarters.",
+        "operational5x": "Compound revenue for multiple years, prove operating leverage, convert catalysts into measurable revenue, and avoid balance-sheet stress.",
+        "operational10x": "Become a category leader in a large market with durable margins, strong execution, limited dilution, and a valuation re-rating backed by fundamentals.",
+        "overall": "credible early path"
+      },
+      "dilutionResearch": {
+        "shareCountGrowth1y": "Unavailable",
+        "shareCountGrowth3y": "Unavailable - verify in SEC filings",
+        "shareCountGrowth5y": "Unavailable - verify in SEC filings",
+        "stockBasedCompensation": "Unavailable in scanner feed - check latest 10-K/10-Q",
+        "revenuePerShareTrend": "Needs share history verification",
+        "recentOfferingsOrConvertibles": "No offering/convertible flag found in available feed.",
+        "dilutionRisk": "Low",
+        "read": "High if cash runway is weak or share growth is heavy."
+      },
+      "inflectionSignal": {
+        "classification": "Early inflection",
+        "signals": [
+          {
+            "label": "Revenue acceleration",
+            "passed": true,
+            "value": "46.7%"
+          },
+          {
+            "label": "Margin expansion",
+            "passed": true,
+            "value": "Operating margin trend 0 pts."
+          },
+          {
+            "label": "Operating loss narrowing",
+            "passed": false,
+            "value": "0 pts"
+          },
+          {
+            "label": "Free cash flow improvement",
+            "passed": false,
+            "value": "$0"
+          },
+          {
+            "label": "First profitable quarter",
+            "passed": false,
+            "value": "Headline proxy - verify earnings release."
+          },
+          {
+            "label": "Backlog growth",
+            "passed": false,
+            "value": "Headline/report proxy."
+          },
+          {
+            "label": "Product adoption",
+            "passed": false,
+            "value": "Headline/report proxy."
+          },
+          {
+            "label": "Major customer wins",
+            "passed": true,
+            "value": "Verify source documents"
+          },
+          {
+            "label": "Sector tailwind",
+            "passed": true,
+            "value": "consumer fintech"
+          },
+          {
+            "label": "Valuation reset after selloff",
+            "passed": true,
+            "value": "Attractive"
+          }
+        ]
+      },
+      "catalystTimelineDesk": {
+        "next3Months": [
+          {
+            "text": "Next earnings window shown by Yahoo: 2026-05-05.",
+            "strength": "Strong"
+          }
+        ],
+        "next6Months": [
+          {
+            "text": "Growth itself is a catalyst if management keeps beating expectations.",
+            "strength": "Weak"
+          },
+          {
+            "text": "Analyst target is above current price, so estimate revisions matter.",
+            "strength": "Medium"
+          }
+        ],
+        "next12Months": [
+          {
+            "text": "Recent Yahoo headline catalyst: Dave Inc. Q1 2026 Earnings Call Summary",
+            "strength": "Strong"
+          },
+          {
+            "text": "Recent Yahoo headline catalyst: B. Riley Adjusts Price Target on Dave to $358 From $303, Maintains Buy Rating",
+            "strength": "Weak"
+          }
+        ],
+        "next24Months": [
+          {
+            "text": "Recent Yahoo headline catalyst: Dave Q1 Earnings Call Highlights",
+            "strength": "Strong"
+          },
+          {
+            "text": "Dave Inc. Q1 2026 Earnings Call Summary",
+            "strength": "Strong"
+          },
+          {
+            "text": "B. Riley Adjusts Price Target on Dave to $358 From $303, Maintains Buy Rating",
+            "strength": "Weak"
+          },
+          {
+            "text": "Next two to four earnings reports must confirm growth, margin, cash flow, and dilution trends.",
+            "strength": "Strong"
+          }
+        ]
+      },
+      "entryQuality": {
+        "classification": "Ready for starter",
+        "priceVs50Day": "12% vs 50-day EMA",
+        "priceVs200Day": "22.3% vs long-term EMA proxy",
+        "rsi": 49.4,
+        "support": "$228.96",
+        "resistance": "$338.44",
+        "volumeTrend": "Strong",
+        "highLowLocation": "90.9% of 55-day high",
+        "earningsReaction": "Earnings/guidance language found - wait for confirmation if volatility is elevated."
+      },
+      "killCriteria": [
+        "Revenue growth drops materially below the current 46.7% trajectory or misses the growth thesis for two quarters.",
+        "Gross margin or operating leverage deteriorates instead of improving with scale.",
+        "Free cash flow worsens and cash runway becomes dependent on unfavorable financing.",
+        "Dilution accelerates beyond the current read: Unavailable.",
+        "A major customer, backlog, product, or partnership catalyst fails to convert into real revenue.",
+        "The stock breaks major long-term support near $228.96 and fails to recover.",
+        "Balance sheet risk, filing/reporting risk, or hype/promotion risk moves into the red zone."
+      ],
+      "positionSizingCategory": "Small speculative basket candidate",
+      "finalResearchVerdict": "Research candidate",
+      "bestPracticalApproach": "Use basket discipline: top 20 watchlist, top 5 deep research, top 3 starter candidates, add only after proof improves.",
+      "researchDeskScore": 77,
       "initialFilterPass": true,
       "qualityModePass": true,
       "investorModePass": true
@@ -421,7 +677,7 @@
       ],
       "verdict": "Early Quality Compounder: The setup has enough business progress and survivability to deserve deeper research.",
       "dataQuality": {
-        "marketDataDate": "2026-05-10T04:23:00.995Z",
+        "marketDataDate": "2026-05-11T00:46:43.331Z",
         "latestQuarterUsed": "2026-08-06",
         "secCrossCheck": "SEC company facts loaded for CIK 0001800667. Use EDGAR filing links for final verification.",
         "missingOrEstimatedValues": [
@@ -708,6 +964,262 @@
       "researchTier": "Deep Research Candidate",
       "gateScore": 85,
       "investorRead": "Worth serious due diligence before it earns watchlist capital. The data clears the first institutional screen, but filings still decide.",
+      "proofScore": 71,
+      "proofComponents": [
+        {
+          "label": "Real revenue growth",
+          "weight": 16,
+          "score": 78,
+          "read": "25.2%"
+        },
+        {
+          "label": "Gross margin stability",
+          "weight": 11,
+          "score": 100,
+          "read": "76.8%"
+        },
+        {
+          "label": "Operating margin improvement",
+          "weight": 14,
+          "score": 52,
+          "read": "Operating margin trend 0 pts."
+        },
+        {
+          "label": "Free cash flow improvement",
+          "weight": 12,
+          "score": 70,
+          "read": "$0"
+        },
+        {
+          "label": "Revenue per share growth",
+          "weight": 11,
+          "score": 42,
+          "read": "Needs share history verification"
+        },
+        {
+          "label": "Customer/backlog proof",
+          "weight": 10,
+          "score": 82,
+          "read": "Verify source documents"
+        },
+        {
+          "label": "Management execution",
+          "weight": 10,
+          "score": 77,
+          "read": "Worth serious due diligence before it earns watchlist capital. The data clears the first institutional screen, but filings still decide."
+        },
+        {
+          "label": "Insider/institutional confidence",
+          "weight": 8,
+          "score": 52,
+          "read": "Institutions: 95.66%; insiders: 11.57%."
+        },
+        {
+          "label": "Story becoming real",
+          "weight": 8,
+          "score": 85,
+          "read": "7 early proof signals passed."
+        }
+      ],
+      "hiddenFactorScore": 52,
+      "hiddenFactorComponents": [
+        {
+          "label": "Low analyst coverage",
+          "weight": 15,
+          "score": 25,
+          "read": "20"
+        },
+        {
+          "label": "Low media coverage",
+          "weight": 12,
+          "score": 38,
+          "read": "8 recent Yahoo items."
+        },
+        {
+          "label": "Low retail hype",
+          "weight": 14,
+          "score": 45,
+          "read": "Headline and short-interest proxy; verify social/media manually."
+        },
+        {
+          "label": "Low but improving institutional ownership",
+          "weight": 12,
+          "score": 36,
+          "read": "95.66%"
+        },
+        {
+          "label": "Recently improving fundamentals",
+          "weight": 16,
+          "score": 80,
+          "read": "Uses growth, leverage, and survivability."
+        },
+        {
+          "label": "Small/mid-cap status",
+          "weight": 11,
+          "score": 58,
+          "read": "$8.55B"
+        },
+        {
+          "label": "Misunderstood business model",
+          "weight": 10,
+          "score": 66,
+          "read": "developer software"
+        },
+        {
+          "label": "Inflection not fully priced",
+          "weight": 10,
+          "score": 74,
+          "read": "Score/risk balance proxy; verify valuation manually."
+        }
+      ],
+      "multibaggerPath": {
+        "currentMarketCap": "$8.55B",
+        "threeXMarketCap": "$25.64B",
+        "fiveXMarketCap": "$42.74B",
+        "tenXMarketCap": "$85.48B",
+        "path3": "realistic",
+        "path5": "stretched",
+        "path10": "unrealistic",
+        "operational3x": "Sustain above-market revenue growth, keep dilution controlled, and show margin or FCF improvement over the next several quarters.",
+        "operational5x": "Compound revenue for multiple years, prove operating leverage, convert catalysts into measurable revenue, and avoid balance-sheet stress.",
+        "operational10x": "Become a category leader in a large market with durable margins, strong execution, limited dilution, and a valuation re-rating backed by fundamentals.",
+        "overall": "credible early path"
+      },
+      "dilutionResearch": {
+        "shareCountGrowth1y": "Unavailable",
+        "shareCountGrowth3y": "Unavailable - verify in SEC filings",
+        "shareCountGrowth5y": "Unavailable - verify in SEC filings",
+        "stockBasedCompensation": "Unavailable in scanner feed - check latest 10-K/10-Q",
+        "revenuePerShareTrend": "Needs share history verification",
+        "recentOfferingsOrConvertibles": "No offering/convertible flag found in available feed.",
+        "dilutionRisk": "Low",
+        "read": "High if cash runway is weak or share growth is heavy."
+      },
+      "inflectionSignal": {
+        "classification": "No clear inflection",
+        "signals": [
+          {
+            "label": "Revenue acceleration",
+            "passed": true,
+            "value": "25.2%"
+          },
+          {
+            "label": "Margin expansion",
+            "passed": true,
+            "value": "Operating margin trend 0 pts."
+          },
+          {
+            "label": "Operating loss narrowing",
+            "passed": false,
+            "value": "0 pts"
+          },
+          {
+            "label": "Free cash flow improvement",
+            "passed": false,
+            "value": "$0"
+          },
+          {
+            "label": "First profitable quarter",
+            "passed": false,
+            "value": "Headline proxy - verify earnings release."
+          },
+          {
+            "label": "Backlog growth",
+            "passed": false,
+            "value": "Headline/report proxy."
+          },
+          {
+            "label": "Product adoption",
+            "passed": false,
+            "value": "Headline/report proxy."
+          },
+          {
+            "label": "Major customer wins",
+            "passed": true,
+            "value": "Verify source documents"
+          },
+          {
+            "label": "Sector tailwind",
+            "passed": false,
+            "value": "developer software"
+          },
+          {
+            "label": "Valuation reset after selloff",
+            "passed": false,
+            "value": "Expensive but possible"
+          }
+        ]
+      },
+      "catalystTimelineDesk": {
+        "next3Months": [
+          {
+            "text": "Next earnings window shown by Yahoo: 2026-08-06.",
+            "strength": "Strong"
+          }
+        ],
+        "next6Months": [
+          {
+            "text": "Growth itself is a catalyst if management keeps beating expectations.",
+            "strength": "Weak"
+          },
+          {
+            "text": "Analyst target is above current price, so estimate revisions matter.",
+            "strength": "Medium"
+          }
+        ],
+        "next12Months": [
+          {
+            "text": "Recent Yahoo headline catalyst: Compared to Estimates, JFrog (FROG) Q1 Earnings: A Look at Key Metrics",
+            "strength": "Strong"
+          },
+          {
+            "text": "Recent Yahoo headline catalyst: JFrog Stock Soars After Earnings. CEO Says AI Will Drive More Demand.",
+            "strength": "Strong"
+          }
+        ],
+        "next24Months": [
+          {
+            "text": "Recent Yahoo headline catalyst: UBS Adjusts Price Target on JFrog to $80 From $60, Maintains Buy Rating",
+            "strength": "Weak"
+          },
+          {
+            "text": "Compared to Estimates, JFrog (FROG) Q1 Earnings: A Look at Key Metrics",
+            "strength": "Strong"
+          },
+          {
+            "text": "JFrog Stock Soars After Earnings. CEO Says AI Will Drive More Demand.",
+            "strength": "Strong"
+          },
+          {
+            "text": "Next two to four earnings reports must confirm growth, margin, cash flow, and dilution trends.",
+            "strength": "Strong"
+          }
+        ]
+      },
+      "entryQuality": {
+        "classification": "Too extended",
+        "priceVs50Day": "45.5% vs 50-day EMA",
+        "priceVs200Day": "43.5% vs long-term EMA proxy",
+        "rsi": 92.3,
+        "support": "$61.53",
+        "resistance": "$97.61",
+        "volumeTrend": "Strong",
+        "highLowLocation": "100% of 55-day high",
+        "earningsReaction": "Earnings/guidance language found - wait for confirmation if volatility is elevated."
+      },
+      "killCriteria": [
+        "Revenue growth drops materially below the current 25.2% trajectory or misses the growth thesis for two quarters.",
+        "Gross margin or operating leverage deteriorates instead of improving with scale.",
+        "Free cash flow worsens and cash runway becomes dependent on unfavorable financing.",
+        "Dilution accelerates beyond the current read: Unavailable.",
+        "A major customer, backlog, product, or partnership catalyst fails to convert into real revenue.",
+        "The stock breaks major long-term support near $61.53 and fails to recover.",
+        "Balance sheet risk, filing/reporting risk, or hype/promotion risk moves into the red zone."
+      ],
+      "positionSizingCategory": "Small speculative basket candidate",
+      "finalResearchVerdict": "Deep research candidate",
+      "bestPracticalApproach": "Use basket discipline: top 20 watchlist, top 5 deep research, top 3 starter candidates, add only after proof improves.",
+      "researchDeskScore": 73,
       "initialFilterPass": true,
       "qualityModePass": true,
       "investorModePass": true
@@ -733,8 +1245,8 @@
       "institutionalOwnership": "87.4%",
       "insiderOwnership": "13.39%",
       "catalyst": "Next earnings window shown by Yahoo: 2026-08-05.",
-      "score": 75,
-      "riskScore": 41,
+      "score": 78,
+      "riskScore": 39,
       "underRadarScore": 61,
       "classification": "Early Quality Compounder",
       "classificationReason": "The setup has enough business progress and survivability to deserve deeper research.",
@@ -747,7 +1259,8 @@
         "Revenue growth above 25%: 34.2%",
         "3-year revenue CAGR above 20%: 32.34%",
         "Gross margin stable or improving: 44.23%",
-        "Strong cash runway: Unavailable",
+        "Low dilution: Unavailable",
+        "Strong cash runway: 8.9 years",
         "Real signed customers or backlog: Verify source documents",
         "Clear catalyst in next 12-24 months: 6 listed"
       ],
@@ -773,7 +1286,7 @@
       ],
       "verdict": "Early Quality Compounder: The setup has enough business progress and survivability to deserve deeper research.",
       "dataQuality": {
-        "marketDataDate": "2026-05-10T04:22:55.338Z",
+        "marketDataDate": "2026-05-11T00:46:39.358Z",
         "latestQuarterUsed": "2026-08-05",
         "secCrossCheck": "SEC company facts loaded for CIK 0001680062. Use EDGAR filing links for final verification.",
         "missingOrEstimatedValues": [
@@ -781,26 +1294,24 @@
           "FCF Growth",
           "Revenue / Share Growth",
           "Shares Outstanding Growth",
-          "FCF Margin",
-          "PEG Ratio",
-          "P/FCF"
+          "PEG Ratio"
         ],
         "caveat": "This is an analytical research report, not financial advice. Missing and estimated fields are explicitly flagged when Yahoo/SEC data is incomplete."
       },
       "riskBreakdown": [
         {
           "label": "Dilution risk",
-          "score": 50,
+          "score": 32,
           "note": "High if cash runway is weak or share growth is heavy."
         },
         {
           "label": "Cash burn risk",
-          "score": 25,
-          "note": "FCF unavailable."
+          "score": 45,
+          "note": "FCF $-142.4M."
         },
         {
           "label": "Balance sheet risk",
-          "score": 45,
+          "score": 25,
           "note": "Cash $1.27B vs debt $337.1M."
         },
         {
@@ -862,13 +1373,13 @@
         {
           "label": "Balance sheet survival",
           "weight": 10,
-          "score": 68,
-          "note": "Uses cash, debt, liquidity, and FCF."
+          "score": 82,
+          "note": "Cash runway around 8.9 years."
         },
         {
           "label": "Dilution control",
           "weight": 10,
-          "score": 50,
+          "score": 68,
           "note": "Uses share trend when available; otherwise cash runway and insider alignment."
         },
         {
@@ -923,13 +1434,13 @@
         },
         {
           "label": "Low dilution",
-          "passed": false,
+          "passed": true,
           "value": "Unavailable"
         },
         {
           "label": "Strong cash runway",
           "passed": true,
-          "value": "Unavailable"
+          "value": "8.9 years"
         },
         {
           "label": "Real signed customers or backlog",
@@ -1016,13 +1527,13 @@
           },
           {
             "label": "Balance sheet survival",
-            "status": "warn",
-            "note": "The company should be able to fund the next stage without desperate financing. Score 68/100."
+            "status": "pass",
+            "note": "The company should be able to fund the next stage without desperate financing. Score 82/100."
           },
           {
             "label": "Dilution control",
-            "status": "fail",
-            "note": "Revenue per share and share-count discipline matter more than headline revenue. Score 50/100."
+            "status": "warn",
+            "note": "Revenue per share and share-count discipline matter more than headline revenue. Score 68/100."
           },
           {
             "label": "Moat or uniqueness",
@@ -1041,9 +1552,9 @@
           }
         ],
         "hardFlags": [],
-        "gateScore": 74,
-        "tier": "Watchlist - Needs Proof",
-        "investorRead": "Interesting, but not proven enough. Track the next two quarters and demand better evidence before upgrading.",
+        "gateScore": 85,
+        "tier": "Deep Research Candidate",
+        "investorRead": "Worth serious due diligence before it earns watchlist capital. The data clears the first institutional screen, but filings still decide.",
         "filingHomework": [
           "Read the latest 10-K and 10-Q revenue footnotes: product mix, geography, customer concentration, and one-time revenue.",
           "Verify share count, stock-based compensation, convertibles, warrants, ATM programs, and revenue per share trend.",
@@ -1058,9 +1569,265 @@
           "Valuation resets enough that upside is not dependent on perfect execution."
         ]
       },
-      "researchTier": "Watchlist - Needs Proof",
-      "gateScore": 74,
-      "investorRead": "Interesting, but not proven enough. Track the next two quarters and demand better evidence before upgrading.",
+      "researchTier": "Deep Research Candidate",
+      "gateScore": 85,
+      "investorRead": "Worth serious due diligence before it earns watchlist capital. The data clears the first institutional screen, but filings still decide.",
+      "proofScore": 69,
+      "proofComponents": [
+        {
+          "label": "Real revenue growth",
+          "weight": 16,
+          "score": 78,
+          "read": "34.2%"
+        },
+        {
+          "label": "Gross margin stability",
+          "weight": 11,
+          "score": 82,
+          "read": "44.2%"
+        },
+        {
+          "label": "Operating margin improvement",
+          "weight": 14,
+          "score": 52,
+          "read": "Operating margin trend 0 pts."
+        },
+        {
+          "label": "Free cash flow improvement",
+          "weight": 12,
+          "score": 70,
+          "read": "$0"
+        },
+        {
+          "label": "Revenue per share growth",
+          "weight": 11,
+          "score": 42,
+          "read": "Needs share history verification"
+        },
+        {
+          "label": "Customer/backlog proof",
+          "weight": 10,
+          "score": 82,
+          "read": "Verify source documents"
+        },
+        {
+          "label": "Management execution",
+          "weight": 10,
+          "score": 76,
+          "read": "Worth serious due diligence before it earns watchlist capital. The data clears the first institutional screen, but filings still decide."
+        },
+        {
+          "label": "Insider/institutional confidence",
+          "weight": 8,
+          "score": 61,
+          "read": "Institutions: 87.4%; insiders: 13.39%."
+        },
+        {
+          "label": "Story becoming real",
+          "weight": 8,
+          "score": 85,
+          "read": "7 early proof signals passed."
+        }
+      ],
+      "hiddenFactorScore": 61,
+      "hiddenFactorComponents": [
+        {
+          "label": "Low analyst coverage",
+          "weight": 15,
+          "score": 70,
+          "read": "7"
+        },
+        {
+          "label": "Low media coverage",
+          "weight": 12,
+          "score": 38,
+          "read": "8 recent Yahoo items."
+        },
+        {
+          "label": "Low retail hype",
+          "weight": 14,
+          "score": 45,
+          "read": "Headline and short-interest proxy; verify social/media manually."
+        },
+        {
+          "label": "Low but improving institutional ownership",
+          "weight": 12,
+          "score": 36,
+          "read": "87.4%"
+        },
+        {
+          "label": "Recently improving fundamentals",
+          "weight": 16,
+          "score": 80,
+          "read": "Uses growth, leverage, and survivability."
+        },
+        {
+          "label": "Small/mid-cap status",
+          "weight": 11,
+          "score": 78,
+          "read": "$3.96B"
+        },
+        {
+          "label": "Misunderstood business model",
+          "weight": 10,
+          "score": 66,
+          "read": "semiconductor equipment"
+        },
+        {
+          "label": "Inflection not fully priced",
+          "weight": 10,
+          "score": 74,
+          "read": "Score/risk balance proxy; verify valuation manually."
+        }
+      ],
+      "multibaggerPath": {
+        "currentMarketCap": "$3.96B",
+        "threeXMarketCap": "$11.89B",
+        "fiveXMarketCap": "$19.81B",
+        "tenXMarketCap": "$39.63B",
+        "path3": "realistic",
+        "path5": "stretched",
+        "path10": "stretched",
+        "operational3x": "Sustain above-market revenue growth, keep dilution controlled, and show margin or FCF improvement over the next several quarters.",
+        "operational5x": "Compound revenue for multiple years, prove operating leverage, convert catalysts into measurable revenue, and avoid balance-sheet stress.",
+        "operational10x": "Become a category leader in a large market with durable margins, strong execution, limited dilution, and a valuation re-rating backed by fundamentals.",
+        "overall": "credible early path"
+      },
+      "dilutionResearch": {
+        "shareCountGrowth1y": "Unavailable",
+        "shareCountGrowth3y": "Unavailable - verify in SEC filings",
+        "shareCountGrowth5y": "Unavailable - verify in SEC filings",
+        "stockBasedCompensation": "Unavailable in scanner feed - check latest 10-K/10-Q",
+        "revenuePerShareTrend": "Needs share history verification",
+        "recentOfferingsOrConvertibles": "No offering/convertible flag found in available feed.",
+        "dilutionRisk": "Low",
+        "read": "High if cash runway is weak or share growth is heavy."
+      },
+      "inflectionSignal": {
+        "classification": "Early inflection",
+        "signals": [
+          {
+            "label": "Revenue acceleration",
+            "passed": true,
+            "value": "34.2%"
+          },
+          {
+            "label": "Margin expansion",
+            "passed": true,
+            "value": "Operating margin trend 0 pts."
+          },
+          {
+            "label": "Operating loss narrowing",
+            "passed": false,
+            "value": "0 pts"
+          },
+          {
+            "label": "Free cash flow improvement",
+            "passed": false,
+            "value": "$0"
+          },
+          {
+            "label": "First profitable quarter",
+            "passed": false,
+            "value": "Headline proxy - verify earnings release."
+          },
+          {
+            "label": "Backlog growth",
+            "passed": false,
+            "value": "Headline/report proxy."
+          },
+          {
+            "label": "Product adoption",
+            "passed": false,
+            "value": "Headline/report proxy."
+          },
+          {
+            "label": "Major customer wins",
+            "passed": true,
+            "value": "Verify source documents"
+          },
+          {
+            "label": "Sector tailwind",
+            "passed": true,
+            "value": "semiconductor equipment"
+          },
+          {
+            "label": "Valuation reset after selloff",
+            "passed": false,
+            "value": "Expensive but possible"
+          }
+        ]
+      },
+      "catalystTimelineDesk": {
+        "next3Months": [
+          {
+            "text": "Next earnings window shown by Yahoo: 2026-08-05.",
+            "strength": "Strong"
+          }
+        ],
+        "next6Months": [
+          {
+            "text": "Growth itself is a catalyst if management keeps beating expectations.",
+            "strength": "Weak"
+          },
+          {
+            "text": "Analyst target is above current price, so estimate revisions matter.",
+            "strength": "Medium"
+          }
+        ],
+        "next12Months": [
+          {
+            "text": "Recent Yahoo headline catalyst: ACMR Q1 Earnings Beat Estimates on ECP Strength and Packaging Demand",
+            "strength": "Strong"
+          },
+          {
+            "text": "Recent Yahoo headline catalyst: ACM Research (ACMR) Q1 2026 Earnings Transcript",
+            "strength": "Strong"
+          }
+        ],
+        "next24Months": [
+          {
+            "text": "Recent Yahoo headline catalyst: ACM Research, Inc. Q1 2026 Earnings Call Summary",
+            "strength": "Strong"
+          },
+          {
+            "text": "ACMR Q1 Earnings Beat Estimates on ECP Strength and Packaging Demand",
+            "strength": "Strong"
+          },
+          {
+            "text": "ACM Research (ACMR) Q1 2026 Earnings Transcript",
+            "strength": "Strong"
+          },
+          {
+            "text": "Next two to four earnings reports must confirm growth, margin, cash flow, and dilution trends.",
+            "strength": "Strong"
+          }
+        ]
+      },
+      "entryQuality": {
+        "classification": "Too extended",
+        "priceVs50Day": "18.2% vs 50-day EMA",
+        "priceVs200Day": "30.8% vs long-term EMA proxy",
+        "rsi": 75.3,
+        "support": "$51.02",
+        "resistance": "$86.35",
+        "volumeTrend": "Strong",
+        "highLowLocation": "87.4% of 55-day high",
+        "earningsReaction": "Earnings/guidance language found - wait for confirmation if volatility is elevated."
+      },
+      "killCriteria": [
+        "Revenue growth drops materially below the current 34.2% trajectory or misses the growth thesis for two quarters.",
+        "Gross margin or operating leverage deteriorates instead of improving with scale.",
+        "Free cash flow worsens and cash runway becomes dependent on unfavorable financing.",
+        "Dilution accelerates beyond the current read: Unavailable.",
+        "A major customer, backlog, product, or partnership catalyst fails to convert into real revenue.",
+        "The stock breaks major long-term support near $51.02 and fails to recover.",
+        "Balance sheet risk, filing/reporting risk, or hype/promotion risk moves into the red zone."
+      ],
+      "positionSizingCategory": "Small speculative basket candidate",
+      "finalResearchVerdict": "Deep research candidate",
+      "bestPracticalApproach": "Use basket discipline: top 20 watchlist, top 5 deep research, top 3 starter candidates, add only after proof improves.",
+      "researchDeskScore": 73,
       "initialFilterPass": true,
       "qualityModePass": true,
       "investorModePass": true
@@ -1125,7 +1892,7 @@
       ],
       "verdict": "Early Quality Compounder: The setup has enough business progress and survivability to deserve deeper research.",
       "dataQuality": {
-        "marketDataDate": "2026-05-10T04:22:43.723Z",
+        "marketDataDate": "2026-05-11T00:46:30.292Z",
         "latestQuarterUsed": "2026-05-11",
         "secCrossCheck": "SEC company facts loaded for CIK 0001773751. Use EDGAR filing links for final verification.",
         "missingOrEstimatedValues": [
@@ -1410,6 +2177,246 @@
       "researchTier": "Watchlist - Needs Proof",
       "gateScore": 79,
       "investorRead": "Interesting, but not proven enough. Track the next two quarters and demand better evidence before upgrading.",
+      "proofScore": 70,
+      "proofComponents": [
+        {
+          "label": "Real revenue growth",
+          "weight": 16,
+          "score": 78,
+          "read": "28.4%"
+        },
+        {
+          "label": "Gross margin stability",
+          "weight": 11,
+          "score": 100,
+          "read": "73.8%"
+        },
+        {
+          "label": "Operating margin improvement",
+          "weight": 14,
+          "score": 52,
+          "read": "Operating margin trend 0 pts."
+        },
+        {
+          "label": "Free cash flow improvement",
+          "weight": 12,
+          "score": 70,
+          "read": "$0"
+        },
+        {
+          "label": "Revenue per share growth",
+          "weight": 11,
+          "score": 42,
+          "read": "Needs share history verification"
+        },
+        {
+          "label": "Customer/backlog proof",
+          "weight": 10,
+          "score": 82,
+          "read": "Verify source documents"
+        },
+        {
+          "label": "Management execution",
+          "weight": 10,
+          "score": 72,
+          "read": "Interesting, but not proven enough. Track the next two quarters and demand better evidence before upgrading."
+        },
+        {
+          "label": "Insider/institutional confidence",
+          "weight": 8,
+          "score": 45,
+          "read": "Institutions: 88.48%; insiders: 5.42%."
+        },
+        {
+          "label": "Story becoming real",
+          "weight": 8,
+          "score": 85,
+          "read": "6 early proof signals passed."
+        }
+      ],
+      "hiddenFactorScore": 55,
+      "hiddenFactorComponents": [
+        {
+          "label": "Low analyst coverage",
+          "weight": 15,
+          "score": 48,
+          "read": "14"
+        },
+        {
+          "label": "Low media coverage",
+          "weight": 12,
+          "score": 38,
+          "read": "8 recent Yahoo items."
+        },
+        {
+          "label": "Low retail hype",
+          "weight": 14,
+          "score": 45,
+          "read": "Headline and short-interest proxy; verify social/media manually."
+        },
+        {
+          "label": "Low but improving institutional ownership",
+          "weight": 12,
+          "score": 36,
+          "read": "88.48%"
+        },
+        {
+          "label": "Recently improving fundamentals",
+          "weight": 16,
+          "score": 77,
+          "read": "Uses growth, leverage, and survivability."
+        },
+        {
+          "label": "Small/mid-cap status",
+          "weight": 11,
+          "score": 58,
+          "read": "$6.53B"
+        },
+        {
+          "label": "Misunderstood business model",
+          "weight": 10,
+          "score": 66,
+          "read": "digital health"
+        },
+        {
+          "label": "Inflection not fully priced",
+          "weight": 10,
+          "score": 74,
+          "read": "Score/risk balance proxy; verify valuation manually."
+        }
+      ],
+      "multibaggerPath": {
+        "currentMarketCap": "$6.53B",
+        "threeXMarketCap": "$19.6B",
+        "fiveXMarketCap": "$32.66B",
+        "tenXMarketCap": "$65.32B",
+        "path3": "realistic",
+        "path5": "stretched",
+        "path10": "unrealistic",
+        "operational3x": "Sustain above-market revenue growth, keep dilution controlled, and show margin or FCF improvement over the next several quarters.",
+        "operational5x": "Compound revenue for multiple years, prove operating leverage, convert catalysts into measurable revenue, and avoid balance-sheet stress.",
+        "operational10x": "Become a category leader in a large market with durable margins, strong execution, limited dilution, and a valuation re-rating backed by fundamentals.",
+        "overall": "credible early path"
+      },
+      "dilutionResearch": {
+        "shareCountGrowth1y": "Unavailable",
+        "shareCountGrowth3y": "Unavailable - verify in SEC filings",
+        "shareCountGrowth5y": "Unavailable - verify in SEC filings",
+        "stockBasedCompensation": "Unavailable in scanner feed - check latest 10-K/10-Q",
+        "revenuePerShareTrend": "Needs share history verification",
+        "recentOfferingsOrConvertibles": "No offering/convertible flag found in available feed.",
+        "dilutionRisk": "Medium",
+        "read": "High if cash runway is weak or share growth is heavy."
+      },
+      "inflectionSignal": {
+        "classification": "Early inflection",
+        "signals": [
+          {
+            "label": "Revenue acceleration",
+            "passed": true,
+            "value": "28.4%"
+          },
+          {
+            "label": "Margin expansion",
+            "passed": true,
+            "value": "Operating margin trend 0 pts."
+          },
+          {
+            "label": "Operating loss narrowing",
+            "passed": false,
+            "value": "0 pts"
+          },
+          {
+            "label": "Free cash flow improvement",
+            "passed": false,
+            "value": "$0"
+          },
+          {
+            "label": "First profitable quarter",
+            "passed": false,
+            "value": "Headline proxy - verify earnings release."
+          },
+          {
+            "label": "Backlog growth",
+            "passed": false,
+            "value": "Headline/report proxy."
+          },
+          {
+            "label": "Product adoption",
+            "passed": false,
+            "value": "Headline/report proxy."
+          },
+          {
+            "label": "Major customer wins",
+            "passed": true,
+            "value": "Verify source documents"
+          },
+          {
+            "label": "Sector tailwind",
+            "passed": true,
+            "value": "digital health"
+          },
+          {
+            "label": "Valuation reset after selloff",
+            "passed": false,
+            "value": "Stretched"
+          }
+        ]
+      },
+      "catalystTimelineDesk": {
+        "next3Months": [
+          {
+            "text": "Next earnings window shown by Yahoo: 2026-05-11.",
+            "strength": "Strong"
+          }
+        ],
+        "next6Months": [
+          {
+            "text": "Growth itself is a catalyst if management keeps beating expectations.",
+            "strength": "Weak"
+          },
+          {
+            "text": "Recent Yahoo headline catalyst: Can Platform Expansion Support Hims & Hers Stock Before Q1 Earnings?",
+            "strength": "Strong"
+          }
+        ],
+        "next12Months": [
+          {
+            "text": "Can Platform Expansion Support Hims & Hers Stock Before Q1 Earnings?",
+            "strength": "Strong"
+          }
+        ],
+        "next24Months": [
+          {
+            "text": "Next two to four earnings reports must confirm growth, margin, cash flow, and dilution trends.",
+            "strength": "Strong"
+          }
+        ]
+      },
+      "entryQuality": {
+        "classification": "Ready for starter",
+        "priceVs50Day": "12.9% vs 50-day EMA",
+        "priceVs200Day": "-5.9% vs long-term EMA proxy",
+        "rsi": 58.5,
+        "support": "$25.03",
+        "resistance": "$37.99",
+        "volumeTrend": "Constructive",
+        "highLowLocation": "91.2% of 55-day high",
+        "earningsReaction": "Earnings/guidance language found - wait for confirmation if volatility is elevated."
+      },
+      "killCriteria": [
+        "Revenue growth drops materially below the current 28.4% trajectory or misses the growth thesis for two quarters.",
+        "Gross margin or operating leverage deteriorates instead of improving with scale.",
+        "Free cash flow worsens and cash runway becomes dependent on unfavorable financing.",
+        "Dilution accelerates beyond the current read: Unavailable.",
+        "A major customer, backlog, product, or partnership catalyst fails to convert into real revenue.",
+        "The stock breaks major long-term support near $25.03 and fails to recover.",
+        "Balance sheet risk, filing/reporting risk, or hype/promotion risk moves into the red zone."
+      ],
+      "positionSizingCategory": "Small speculative basket candidate",
+      "finalResearchVerdict": "Watchlist only",
+      "bestPracticalApproach": "Use basket discipline: top 20 watchlist, top 5 deep research, top 3 starter candidates, add only after proof improves.",
+      "researchDeskScore": 70,
       "initialFilterPass": true,
       "qualityModePass": true,
       "investorModePass": true
@@ -1478,7 +2485,7 @@
       ],
       "verdict": "Early Quality Compounder: The setup has enough business progress and survivability to deserve deeper research.",
       "dataQuality": {
-        "marketDataDate": "2026-05-10T04:23:08.785Z",
+        "marketDataDate": "2026-05-11T00:46:48.545Z",
         "latestQuarterUsed": "2026-05-20",
         "secCrossCheck": "SEC company facts loaded for CIK 0001600033. Use EDGAR filing links for final verification.",
         "missingOrEstimatedValues": [
@@ -1763,6 +2770,262 @@
       "researchTier": "Watchlist - Needs Proof",
       "gateScore": 74,
       "investorRead": "Interesting, but not proven enough. Track the next two quarters and demand better evidence before upgrading.",
+      "proofScore": 70,
+      "proofComponents": [
+        {
+          "label": "Real revenue growth",
+          "weight": 16,
+          "score": 78,
+          "read": "37.8%"
+        },
+        {
+          "label": "Gross margin stability",
+          "weight": 11,
+          "score": 100,
+          "read": "61%"
+        },
+        {
+          "label": "Operating margin improvement",
+          "weight": 14,
+          "score": 52,
+          "read": "Operating margin trend 0 pts."
+        },
+        {
+          "label": "Free cash flow improvement",
+          "weight": 12,
+          "score": 70,
+          "read": "$0"
+        },
+        {
+          "label": "Revenue per share growth",
+          "weight": 11,
+          "score": 42,
+          "read": "Needs share history verification"
+        },
+        {
+          "label": "Customer/backlog proof",
+          "weight": 10,
+          "score": 82,
+          "read": "Verify source documents"
+        },
+        {
+          "label": "Management execution",
+          "weight": 10,
+          "score": 71,
+          "read": "Interesting, but not proven enough. Track the next two quarters and demand better evidence before upgrading."
+        },
+        {
+          "label": "Insider/institutional confidence",
+          "weight": 8,
+          "score": 51,
+          "read": "Institutions: 105.55%; insiders: 2.33%."
+        },
+        {
+          "label": "Story becoming real",
+          "weight": 8,
+          "score": 85,
+          "read": "6 early proof signals passed."
+        }
+      ],
+      "hiddenFactorScore": 57,
+      "hiddenFactorComponents": [
+        {
+          "label": "Low analyst coverage",
+          "weight": 15,
+          "score": 48,
+          "read": "15"
+        },
+        {
+          "label": "Low media coverage",
+          "weight": 12,
+          "score": 38,
+          "read": "8 recent Yahoo items."
+        },
+        {
+          "label": "Low retail hype",
+          "weight": 14,
+          "score": 45,
+          "read": "Headline and short-interest proxy; verify social/media manually."
+        },
+        {
+          "label": "Low but improving institutional ownership",
+          "weight": 12,
+          "score": 36,
+          "read": "105.55%"
+        },
+        {
+          "label": "Recently improving fundamentals",
+          "weight": 16,
+          "score": 77,
+          "read": "Uses growth, leverage, and survivability."
+        },
+        {
+          "label": "Small/mid-cap status",
+          "weight": 11,
+          "score": 78,
+          "read": "$3.59B"
+        },
+        {
+          "label": "Misunderstood business model",
+          "weight": 10,
+          "score": 66,
+          "read": "consumer brand"
+        },
+        {
+          "label": "Inflection not fully priced",
+          "weight": 10,
+          "score": 74,
+          "read": "Score/risk balance proxy; verify valuation manually."
+        }
+      ],
+      "multibaggerPath": {
+        "currentMarketCap": "$3.59B",
+        "threeXMarketCap": "$10.78B",
+        "fiveXMarketCap": "$17.97B",
+        "tenXMarketCap": "$35.94B",
+        "path3": "realistic",
+        "path5": "stretched",
+        "path10": "unrealistic",
+        "operational3x": "Sustain above-market revenue growth, keep dilution controlled, and show margin or FCF improvement over the next several quarters.",
+        "operational5x": "Compound revenue for multiple years, prove operating leverage, convert catalysts into measurable revenue, and avoid balance-sheet stress.",
+        "operational10x": "Become a category leader in a large market with durable margins, strong execution, limited dilution, and a valuation re-rating backed by fundamentals.",
+        "overall": "credible early path"
+      },
+      "dilutionResearch": {
+        "shareCountGrowth1y": "Unavailable",
+        "shareCountGrowth3y": "Unavailable - verify in SEC filings",
+        "shareCountGrowth5y": "Unavailable - verify in SEC filings",
+        "stockBasedCompensation": "Unavailable in scanner feed - check latest 10-K/10-Q",
+        "revenuePerShareTrend": "Needs share history verification",
+        "recentOfferingsOrConvertibles": "No offering/convertible flag found in available feed.",
+        "dilutionRisk": "Medium",
+        "read": "High if cash runway is weak or share growth is heavy."
+      },
+      "inflectionSignal": {
+        "classification": "No clear inflection",
+        "signals": [
+          {
+            "label": "Revenue acceleration",
+            "passed": true,
+            "value": "37.8%"
+          },
+          {
+            "label": "Margin expansion",
+            "passed": true,
+            "value": "Operating margin trend 0 pts."
+          },
+          {
+            "label": "Operating loss narrowing",
+            "passed": false,
+            "value": "0 pts"
+          },
+          {
+            "label": "Free cash flow improvement",
+            "passed": false,
+            "value": "$0"
+          },
+          {
+            "label": "First profitable quarter",
+            "passed": false,
+            "value": "Headline proxy - verify earnings release."
+          },
+          {
+            "label": "Backlog growth",
+            "passed": false,
+            "value": "Headline/report proxy."
+          },
+          {
+            "label": "Product adoption",
+            "passed": false,
+            "value": "Headline/report proxy."
+          },
+          {
+            "label": "Major customer wins",
+            "passed": true,
+            "value": "Verify source documents"
+          },
+          {
+            "label": "Sector tailwind",
+            "passed": false,
+            "value": "consumer brand"
+          },
+          {
+            "label": "Valuation reset after selloff",
+            "passed": false,
+            "value": "Attractive"
+          }
+        ]
+      },
+      "catalystTimelineDesk": {
+        "next3Months": [
+          {
+            "text": "Next earnings window shown by Yahoo: 2026-05-20.",
+            "strength": "Strong"
+          }
+        ],
+        "next6Months": [
+          {
+            "text": "Growth itself is a catalyst if management keeps beating expectations.",
+            "strength": "Weak"
+          },
+          {
+            "text": "Analyst target is above current price, so estimate revisions matter.",
+            "strength": "Medium"
+          }
+        ],
+        "next12Months": [
+          {
+            "text": "Recent Yahoo headline catalyst: Nu Skin Enterprises (NUS) Q1 Earnings and Revenues Lag Estimates",
+            "strength": "Strong"
+          },
+          {
+            "text": "Recent Yahoo headline catalyst: e.l.f. Beauty Announces Earnings Release Date for Fourth Quarter Fiscal 2026 Results",
+            "strength": "Strong"
+          }
+        ],
+        "next24Months": [
+          {
+            "text": "Recent Yahoo headline catalyst: Roblox downgraded, Hershey upgraded: Wall Street's top analyst calls",
+            "strength": "Medium"
+          },
+          {
+            "text": "Nu Skin Enterprises (NUS) Q1 Earnings and Revenues Lag Estimates",
+            "strength": "Strong"
+          },
+          {
+            "text": "e.l.f. Beauty Announces Earnings Release Date for Fourth Quarter Fiscal 2026 Results",
+            "strength": "Strong"
+          },
+          {
+            "text": "Next two to four earnings reports must confirm growth, margin, cash flow, and dilution trends.",
+            "strength": "Strong"
+          }
+        ]
+      },
+      "entryQuality": {
+        "classification": "Broken chart",
+        "priceVs50Day": "-11.3% vs 50-day EMA",
+        "priceVs200Day": "-25.7% vs long-term EMA proxy",
+        "rsi": 41.2,
+        "support": "$55.26",
+        "resistance": "$77.67",
+        "volumeTrend": "Weak",
+        "highLowLocation": "64.2% of 55-day high",
+        "earningsReaction": "Earnings/guidance language found - wait for confirmation if volatility is elevated."
+      },
+      "killCriteria": [
+        "Revenue growth drops materially below the current 37.8% trajectory or misses the growth thesis for two quarters.",
+        "Gross margin or operating leverage deteriorates instead of improving with scale.",
+        "Free cash flow worsens and cash runway becomes dependent on unfavorable financing.",
+        "Dilution accelerates beyond the current read: Unavailable.",
+        "A major customer, backlog, product, or partnership catalyst fails to convert into real revenue.",
+        "The stock breaks major long-term support near $55.26 and fails to recover.",
+        "Balance sheet risk, filing/reporting risk, or hype/promotion risk moves into the red zone."
+      ],
+      "positionSizingCategory": "Small speculative basket candidate",
+      "finalResearchVerdict": "Watchlist only",
+      "bestPracticalApproach": "Use basket discipline: top 20 watchlist, top 5 deep research, top 3 starter candidates, add only after proof improves.",
+      "researchDeskScore": 69,
       "initialFilterPass": true,
       "qualityModePass": true,
       "investorModePass": true
@@ -1829,7 +3092,7 @@
       ],
       "verdict": "Early Quality Compounder: The setup has enough business progress and survivability to deserve deeper research.",
       "dataQuality": {
-        "marketDataDate": "2026-05-10T04:23:08.489Z",
+        "marketDataDate": "2026-05-11T00:46:48.210Z",
         "latestQuarterUsed": "2026-05-07",
         "secCrossCheck": "SEC company facts loaded for CIK 0001341766. Use EDGAR filing links for final verification.",
         "missingOrEstimatedValues": [
@@ -2116,6 +3379,262 @@
       "researchTier": "Watchlist - Needs Proof",
       "gateScore": 74,
       "investorRead": "Interesting, but not proven enough. Track the next two quarters and demand better evidence before upgrading.",
+      "proofScore": 70,
+      "proofComponents": [
+        {
+          "label": "Real revenue growth",
+          "weight": 16,
+          "score": 95,
+          "read": "137.7%"
+        },
+        {
+          "label": "Gross margin stability",
+          "weight": 11,
+          "score": 82,
+          "read": "50.4%"
+        },
+        {
+          "label": "Operating margin improvement",
+          "weight": 14,
+          "score": 52,
+          "read": "Operating margin trend 0 pts."
+        },
+        {
+          "label": "Free cash flow improvement",
+          "weight": 12,
+          "score": 70,
+          "read": "$0"
+        },
+        {
+          "label": "Revenue per share growth",
+          "weight": 11,
+          "score": 42,
+          "read": "Needs share history verification"
+        },
+        {
+          "label": "Customer/backlog proof",
+          "weight": 10,
+          "score": 82,
+          "read": "Verify source documents"
+        },
+        {
+          "label": "Management execution",
+          "weight": 10,
+          "score": 71,
+          "read": "Interesting, but not proven enough. Track the next two quarters and demand better evidence before upgrading."
+        },
+        {
+          "label": "Insider/institutional confidence",
+          "weight": 8,
+          "score": 52,
+          "read": "Institutions: 68.06%; insiders: 28.6%."
+        },
+        {
+          "label": "Story becoming real",
+          "weight": 8,
+          "score": 70,
+          "read": "5 early proof signals passed."
+        }
+      ],
+      "hiddenFactorScore": 51,
+      "hiddenFactorComponents": [
+        {
+          "label": "Low analyst coverage",
+          "weight": 15,
+          "score": 25,
+          "read": "21"
+        },
+        {
+          "label": "Low media coverage",
+          "weight": 12,
+          "score": 38,
+          "read": "8 recent Yahoo items."
+        },
+        {
+          "label": "Low retail hype",
+          "weight": 14,
+          "score": 45,
+          "read": "Headline and short-interest proxy; verify social/media manually."
+        },
+        {
+          "label": "Low but improving institutional ownership",
+          "weight": 12,
+          "score": 36,
+          "read": "68.06%"
+        },
+        {
+          "label": "Recently improving fundamentals",
+          "weight": 16,
+          "score": 75,
+          "read": "Uses growth, leverage, and survivability."
+        },
+        {
+          "label": "Small/mid-cap status",
+          "weight": 11,
+          "score": 58,
+          "read": "$8.25B"
+        },
+        {
+          "label": "Misunderstood business model",
+          "weight": 10,
+          "score": 66,
+          "read": "consumer brand"
+        },
+        {
+          "label": "Inflection not fully priced",
+          "weight": 10,
+          "score": 74,
+          "read": "Score/risk balance proxy; verify valuation manually."
+        }
+      ],
+      "multibaggerPath": {
+        "currentMarketCap": "$8.25B",
+        "threeXMarketCap": "$24.76B",
+        "fiveXMarketCap": "$41.27B",
+        "tenXMarketCap": "$82.55B",
+        "path3": "stretched",
+        "path5": "stretched",
+        "path10": "unrealistic",
+        "operational3x": "Sustain above-market revenue growth, keep dilution controlled, and show margin or FCF improvement over the next several quarters.",
+        "operational5x": "Compound revenue for multiple years, prove operating leverage, convert catalysts into measurable revenue, and avoid balance-sheet stress.",
+        "operational10x": "Become a category leader in a large market with durable margins, strong execution, limited dilution, and a valuation re-rating backed by fundamentals.",
+        "overall": "needs more proof"
+      },
+      "dilutionResearch": {
+        "shareCountGrowth1y": "Unavailable",
+        "shareCountGrowth3y": "Unavailable - verify in SEC filings",
+        "shareCountGrowth5y": "Unavailable - verify in SEC filings",
+        "stockBasedCompensation": "Unavailable in scanner feed - check latest 10-K/10-Q",
+        "revenuePerShareTrend": "Needs share history verification",
+        "recentOfferingsOrConvertibles": "No offering/convertible flag found in available feed.",
+        "dilutionRisk": "Medium",
+        "read": "High if cash runway is weak or share growth is heavy."
+      },
+      "inflectionSignal": {
+        "classification": "No clear inflection",
+        "signals": [
+          {
+            "label": "Revenue acceleration",
+            "passed": true,
+            "value": "137.7%"
+          },
+          {
+            "label": "Margin expansion",
+            "passed": true,
+            "value": "Operating margin trend 0 pts."
+          },
+          {
+            "label": "Operating loss narrowing",
+            "passed": false,
+            "value": "0 pts"
+          },
+          {
+            "label": "Free cash flow improvement",
+            "passed": false,
+            "value": "$0"
+          },
+          {
+            "label": "First profitable quarter",
+            "passed": false,
+            "value": "Headline proxy - verify earnings release."
+          },
+          {
+            "label": "Backlog growth",
+            "passed": false,
+            "value": "Headline/report proxy."
+          },
+          {
+            "label": "Product adoption",
+            "passed": false,
+            "value": "Headline/report proxy."
+          },
+          {
+            "label": "Major customer wins",
+            "passed": true,
+            "value": "Verify source documents"
+          },
+          {
+            "label": "Sector tailwind",
+            "passed": false,
+            "value": "consumer brand"
+          },
+          {
+            "label": "Valuation reset after selloff",
+            "passed": false,
+            "value": "Attractive"
+          }
+        ]
+      },
+      "catalystTimelineDesk": {
+        "next3Months": [
+          {
+            "text": "Next earnings window shown by Yahoo: 2026-05-07.",
+            "strength": "Strong"
+          }
+        ],
+        "next6Months": [
+          {
+            "text": "Growth itself is a catalyst if management keeps beating expectations.",
+            "strength": "Weak"
+          },
+          {
+            "text": "Analyst target is above current price, so estimate revisions matter.",
+            "strength": "Medium"
+          }
+        ],
+        "next12Months": [
+          {
+            "text": "Recent Yahoo headline catalyst: Monster and Celsius Earnings Show Energy-Drink Fatigue Is Far From Over",
+            "strength": "Strong"
+          },
+          {
+            "text": "Recent Yahoo headline catalyst: Celsius Holdings Q1 Earnings Beat Estimates, Revenues Increase Y/Y",
+            "strength": "Strong"
+          }
+        ],
+        "next24Months": [
+          {
+            "text": "Recent Yahoo headline catalyst: Deutsche Bank Adjusts Celsius Price Target to $44 From $41, Maintains Buy Rating",
+            "strength": "Weak"
+          },
+          {
+            "text": "Monster and Celsius Earnings Show Energy-Drink Fatigue Is Far From Over",
+            "strength": "Strong"
+          },
+          {
+            "text": "Celsius Holdings Q1 Earnings Beat Estimates, Revenues Increase Y/Y",
+            "strength": "Strong"
+          },
+          {
+            "text": "Next two to four earnings reports must confirm growth, margin, cash flow, and dilution trends.",
+            "strength": "Strong"
+          }
+        ]
+      },
+      "entryQuality": {
+        "classification": "Broken chart",
+        "priceVs50Day": "-13.6% vs 50-day EMA",
+        "priceVs200Day": "-24.6% vs long-term EMA proxy",
+        "rsi": 38.7,
+        "support": "$28.23",
+        "resistance": "$44.48",
+        "volumeTrend": "Weak",
+        "highLowLocation": "59.7% of 55-day high",
+        "earningsReaction": "Earnings/guidance language found - wait for confirmation if volatility is elevated."
+      },
+      "killCriteria": [
+        "Revenue growth drops materially below the current 137.7% trajectory or misses the growth thesis for two quarters.",
+        "Gross margin or operating leverage deteriorates instead of improving with scale.",
+        "Free cash flow worsens and cash runway becomes dependent on unfavorable financing.",
+        "Dilution accelerates beyond the current read: Unavailable.",
+        "A major customer, backlog, product, or partnership catalyst fails to convert into real revenue.",
+        "The stock breaks major long-term support near $28.23 and fails to recover.",
+        "Balance sheet risk, filing/reporting risk, or hype/promotion risk moves into the red zone."
+      ],
+      "positionSizingCategory": "Small speculative basket candidate",
+      "finalResearchVerdict": "Watchlist only",
+      "bestPracticalApproach": "Use basket discipline: top 20 watchlist, top 5 deep research, top 3 starter candidates, add only after proof improves.",
+      "researchDeskScore": 68,
       "initialFilterPass": true,
       "qualityModePass": true,
       "investorModePass": true
@@ -2179,7 +3698,7 @@
       ],
       "verdict": "Early Quality Compounder: The setup has enough business progress and survivability to deserve deeper research.",
       "dataQuality": {
-        "marketDataDate": "2026-05-10T04:23:01.630Z",
+        "marketDataDate": "2026-05-11T00:46:43.872Z",
         "latestQuarterUsed": "2026-05-28",
         "secCrossCheck": "SEC company facts loaded for CIK 0001583708. Use EDGAR filing links for final verification.",
         "missingOrEstimatedValues": [
@@ -2466,6 +3985,250 @@
       "researchTier": "Watchlist - Needs Proof",
       "gateScore": 74,
       "investorRead": "Interesting, but not proven enough. Track the next two quarters and demand better evidence before upgrading.",
+      "proofScore": 65,
+      "proofComponents": [
+        {
+          "label": "Real revenue growth",
+          "weight": 16,
+          "score": 55,
+          "read": "20.2%"
+        },
+        {
+          "label": "Gross margin stability",
+          "weight": 11,
+          "score": 100,
+          "read": "74.1%"
+        },
+        {
+          "label": "Operating margin improvement",
+          "weight": 14,
+          "score": 52,
+          "read": "Operating margin trend 0 pts."
+        },
+        {
+          "label": "Free cash flow improvement",
+          "weight": 12,
+          "score": 70,
+          "read": "$0"
+        },
+        {
+          "label": "Revenue per share growth",
+          "weight": 11,
+          "score": 42,
+          "read": "Needs share history verification"
+        },
+        {
+          "label": "Customer/backlog proof",
+          "weight": 10,
+          "score": 82,
+          "read": "Verify source documents"
+        },
+        {
+          "label": "Management execution",
+          "weight": 10,
+          "score": 70,
+          "read": "Interesting, but not proven enough. Track the next two quarters and demand better evidence before upgrading."
+        },
+        {
+          "label": "Insider/institutional confidence",
+          "weight": 8,
+          "score": 47,
+          "read": "Institutions: 88.97%; insiders: 1.55%."
+        },
+        {
+          "label": "Story becoming real",
+          "weight": 8,
+          "score": 70,
+          "read": "5 early proof signals passed."
+        }
+      ],
+      "hiddenFactorScore": 50,
+      "hiddenFactorComponents": [
+        {
+          "label": "Low analyst coverage",
+          "weight": 15,
+          "score": 25,
+          "read": "34"
+        },
+        {
+          "label": "Low media coverage",
+          "weight": 12,
+          "score": 38,
+          "read": "8 recent Yahoo items."
+        },
+        {
+          "label": "Low retail hype",
+          "weight": 14,
+          "score": 45,
+          "read": "Headline and short-interest proxy; verify social/media manually."
+        },
+        {
+          "label": "Low but improving institutional ownership",
+          "weight": 12,
+          "score": 36,
+          "read": "88.97%"
+        },
+        {
+          "label": "Recently improving fundamentals",
+          "weight": 16,
+          "score": 69,
+          "read": "Uses growth, leverage, and survivability."
+        },
+        {
+          "label": "Small/mid-cap status",
+          "weight": 11,
+          "score": 58,
+          "read": "$5.65B"
+        },
+        {
+          "label": "Misunderstood business model",
+          "weight": 10,
+          "score": 66,
+          "read": "cybersecurity"
+        },
+        {
+          "label": "Inflection not fully priced",
+          "weight": 10,
+          "score": 74,
+          "read": "Score/risk balance proxy; verify valuation manually."
+        }
+      ],
+      "multibaggerPath": {
+        "currentMarketCap": "$5.65B",
+        "threeXMarketCap": "$16.94B",
+        "fiveXMarketCap": "$28.23B",
+        "tenXMarketCap": "$56.45B",
+        "path3": "stretched",
+        "path5": "stretched",
+        "path10": "unrealistic",
+        "operational3x": "Sustain above-market revenue growth, keep dilution controlled, and show margin or FCF improvement over the next several quarters.",
+        "operational5x": "Compound revenue for multiple years, prove operating leverage, convert catalysts into measurable revenue, and avoid balance-sheet stress.",
+        "operational10x": "Become a category leader in a large market with durable margins, strong execution, limited dilution, and a valuation re-rating backed by fundamentals.",
+        "overall": "needs more proof"
+      },
+      "dilutionResearch": {
+        "shareCountGrowth1y": "Unavailable",
+        "shareCountGrowth3y": "Unavailable - verify in SEC filings",
+        "shareCountGrowth5y": "Unavailable - verify in SEC filings",
+        "stockBasedCompensation": "Unavailable in scanner feed - check latest 10-K/10-Q",
+        "revenuePerShareTrend": "Needs share history verification",
+        "recentOfferingsOrConvertibles": "No offering/convertible flag found in available feed.",
+        "dilutionRisk": "Medium",
+        "read": "High if cash runway is weak or share growth is heavy."
+      },
+      "inflectionSignal": {
+        "classification": "Early inflection",
+        "signals": [
+          {
+            "label": "Revenue acceleration",
+            "passed": true,
+            "value": "20.2%"
+          },
+          {
+            "label": "Margin expansion",
+            "passed": true,
+            "value": "Operating margin trend 0 pts."
+          },
+          {
+            "label": "Operating loss narrowing",
+            "passed": false,
+            "value": "0 pts"
+          },
+          {
+            "label": "Free cash flow improvement",
+            "passed": false,
+            "value": "$0"
+          },
+          {
+            "label": "First profitable quarter",
+            "passed": false,
+            "value": "Headline proxy - verify earnings release."
+          },
+          {
+            "label": "Backlog growth",
+            "passed": false,
+            "value": "Headline/report proxy."
+          },
+          {
+            "label": "Product adoption",
+            "passed": true,
+            "value": "Headline/report proxy."
+          },
+          {
+            "label": "Major customer wins",
+            "passed": true,
+            "value": "Verify source documents"
+          },
+          {
+            "label": "Sector tailwind",
+            "passed": true,
+            "value": "cybersecurity"
+          },
+          {
+            "label": "Valuation reset after selloff",
+            "passed": false,
+            "value": "Expensive but possible"
+          }
+        ]
+      },
+      "catalystTimelineDesk": {
+        "next3Months": [
+          {
+            "text": "Next earnings window shown by Yahoo: 2026-05-28.",
+            "strength": "Strong"
+          }
+        ],
+        "next6Months": [
+          {
+            "text": "Growth itself is a catalyst if management keeps beating expectations.",
+            "strength": "Weak"
+          },
+          {
+            "text": "Analyst target is above current price, so estimate revisions matter.",
+            "strength": "Medium"
+          }
+        ],
+        "next12Months": [
+          {
+            "text": "Recent Yahoo headline catalyst: SentinelOne (S) Launches Wayfinder Frontier AI for Proactive Security",
+            "strength": "Medium"
+          },
+          {
+            "text": "SentinelOne (S) Launches Wayfinder Frontier AI for Proactive Security",
+            "strength": "Medium"
+          }
+        ],
+        "next24Months": [
+          {
+            "text": "Next two to four earnings reports must confirm growth, margin, cash flow, and dilution trends.",
+            "strength": "Strong"
+          }
+        ]
+      },
+      "entryQuality": {
+        "classification": "Too extended",
+        "priceVs50Day": "16.3% vs 50-day EMA",
+        "priceVs200Day": "10.2% vs long-term EMA proxy",
+        "rsi": 74.5,
+        "support": "$15.09",
+        "resistance": "$21.1",
+        "volumeTrend": "Strong",
+        "highLowLocation": "100% of 55-day high",
+        "earningsReaction": "Earnings/guidance language found - wait for confirmation if volatility is elevated."
+      },
+      "killCriteria": [
+        "Revenue growth drops materially below the current 20.2% trajectory or misses the growth thesis for two quarters.",
+        "Gross margin or operating leverage deteriorates instead of improving with scale.",
+        "Free cash flow worsens and cash runway becomes dependent on unfavorable financing.",
+        "Dilution accelerates beyond the current read: Unavailable.",
+        "A major customer, backlog, product, or partnership catalyst fails to convert into real revenue.",
+        "The stock breaks major long-term support near $15.09 and fails to recover.",
+        "Balance sheet risk, filing/reporting risk, or hype/promotion risk moves into the red zone."
+      ],
+      "positionSizingCategory": "Small speculative basket candidate",
+      "finalResearchVerdict": "Watchlist only",
+      "bestPracticalApproach": "Use basket discipline: top 20 watchlist, top 5 deep research, top 3 starter candidates, add only after proof improves.",
+      "researchDeskScore": 66,
       "initialFilterPass": true,
       "qualityModePass": true,
       "investorModePass": true

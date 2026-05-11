@@ -34,6 +34,10 @@ function pct(value) {
   return Number.isFinite(value) ? `${round(value, 1)}%` : "Unavailable";
 }
 
+function clamp(value, min = 0, max = 100) {
+  return Math.max(min, Math.min(max, Number.isFinite(value) ? value : min));
+}
+
 function escapeHtml(value) {
   return String(value ?? "")
     .replaceAll("&", "&amp;")
@@ -44,7 +48,7 @@ function escapeHtml(value) {
 }
 
 function csvEscape(value) {
-  const text = String(value ?? "");
+  const text = value && typeof value === "object" ? JSON.stringify(value) : String(value ?? "");
   return /[",\n]/.test(text) ? `"${text.replace(/"/g, '""')}"` : text;
 }
 
@@ -70,6 +74,14 @@ function hiddenRiskScore(result, label) {
 
 function underRadarValue(result, label) {
   return result.hiddenMultibagger?.underRadarFactors?.find((row) => row.label === label)?.value ?? "Unavailable";
+}
+
+function fieldStatus(row, label) {
+  return row.raw?.growthChecklist?.rows?.find((item) => item.label === label)?.status ?? null;
+}
+
+function proofValue(row, label) {
+  return row.earlyProof?.find((item) => item.label === label)?.value ?? "Unavailable";
 }
 
 function latestCatalyst(result) {
@@ -151,6 +163,7 @@ function candidateFromAnalysis(result, seed = {}) {
   candidate.researchTier = candidate.institutionalReview.tier;
   candidate.gateScore = candidate.institutionalReview.gateScore;
   candidate.investorRead = candidate.institutionalReview.investorRead;
+  buildResearchDesk(candidate);
   return candidate;
 }
 
@@ -292,6 +305,284 @@ function buildInstitutionalReview(row) {
   return { gates, hardFlags, gateScore, tier, investorRead, filingHomework, nextReviewTriggers };
 }
 
+function weightedScore(items) {
+  const totalWeight = items.reduce((sum, item) => sum + item.weight, 0);
+  if (!totalWeight) return 0;
+  return clamp(Math.round(items.reduce((sum, item) => sum + item.score * item.weight, 0) / totalWeight));
+}
+
+function buildProofScore(row) {
+  const components = [
+    {
+      label: "Real revenue growth",
+      weight: 16,
+      score: Number.isFinite(row.revenueGrowth) ? row.revenueGrowth >= 40 ? 95 : row.revenueGrowth >= 25 ? 78 : row.revenueGrowth >= 15 ? 55 : 25 : 35,
+      read: row.revenueGrowthDisplay,
+    },
+    {
+      label: "Gross margin stability",
+      weight: 11,
+      score: rowScore(row, "Gross margin quality") ?? 45,
+      read: row.grossMarginDisplay,
+    },
+    {
+      label: "Operating margin improvement",
+      weight: 14,
+      score: rowScore(row, "Operating leverage") ?? 45,
+      read: row.scoreBreakdown?.find((item) => item.label === "Operating leverage")?.note ?? "Operating leverage trend unavailable.",
+    },
+    {
+      label: "Free cash flow improvement",
+      weight: 12,
+      score: /positive|improving|\$|%|pass/i.test(String(row.fcfTrend)) ? 70 : row.earlyProof?.some((item) => item.label === "FCF improving" && item.passed) ? 78 : 42,
+      read: row.fcfTrend,
+    },
+    {
+      label: "Revenue per share growth",
+      weight: 11,
+      score: row.earlyProof?.some((item) => item.label === "Revenue per share growing" && item.passed) ? 82 : fieldStatus(row, "Shares Outstanding Growth") === "pass" ? 70 : 42,
+      read: proofValue(row, "Revenue per share growing"),
+    },
+    {
+      label: "Customer/backlog proof",
+      weight: 10,
+      score: row.earlyProof?.some((item) => item.label === "Real signed customers or backlog" && item.passed) ? 82 : /contract|deal|customer|backlog|government|award/i.test(row.catalyst) ? 64 : 38,
+      read: proofValue(row, "Real signed customers or backlog"),
+    },
+    {
+      label: "Management execution",
+      weight: 10,
+      score: clamp(Math.round(((row.gateScore ?? 45) * 0.5) + ((100 - (row.riskScore ?? 70)) * 0.3) + ((row.score ?? 45) * 0.2))),
+      read: row.investorRead,
+    },
+    {
+      label: "Insider/institutional confidence",
+      weight: 8,
+      score: rowScore(row, "Under-the-radar factor") ?? row.underRadarScore ?? 45,
+      read: `Institutions: ${row.institutionalOwnership}; insiders: ${row.insiderOwnership}.`,
+    },
+    {
+      label: "Story becoming real",
+      weight: 8,
+      score: row.proof?.length >= 6 ? 85 : row.proof?.length >= 4 ? 70 : row.proof?.length >= 2 ? 55 : 35,
+      read: `${row.proof?.length ?? 0} early proof signals passed.`,
+    },
+  ];
+  return { score: weightedScore(components), components };
+}
+
+function buildHiddenFactorScore(row) {
+  const analystCount = Number(row.analystCoverage);
+  const marketCapScore = Number.isFinite(row.marketCap)
+    ? row.marketCap < 1_500_000_000 ? 90 : row.marketCap < 4_000_000_000 ? 78 : row.marketCap < 10_000_000_000 ? 58 : 30
+    : 45;
+  const mediaCount = row.raw?.newsEngine?.items?.length ?? 0;
+  const riskHype = rowRisk(row, "Hype / promotion risk");
+  const components = [
+    { label: "Low analyst coverage", weight: 15, score: Number.isFinite(analystCount) ? analystCount <= 3 ? 90 : analystCount <= 8 ? 70 : analystCount <= 15 ? 48 : 25 : 45, read: row.analystCoverageDisplay },
+    { label: "Low media coverage", weight: 12, score: mediaCount <= 2 ? 82 : mediaCount <= 5 ? 65 : 38, read: `${mediaCount} recent Yahoo items.` },
+    { label: "Low retail hype", weight: 14, score: Number.isFinite(riskHype) ? 100 - riskHype : 55, read: row.riskBreakdown?.find((item) => item.label === "Hype / promotion risk")?.note ?? "Hype proxy unavailable." },
+    { label: "Low but improving institutional ownership", weight: 12, score: row.underRadarFactors?.find((item) => item.label === "Institutional ownership")?.score ?? 55, read: row.institutionalOwnership },
+    { label: "Recently improving fundamentals", weight: 16, score: clamp(Math.round((rowScore(row, "Revenue acceleration") ?? 45) * 0.45 + (rowScore(row, "Operating leverage") ?? 45) * 0.35 + (rowScore(row, "Balance sheet survival") ?? 45) * 0.2)), read: "Uses growth, leverage, and survivability." },
+    { label: "Small/mid-cap status", weight: 11, score: marketCapScore, read: row.marketCapDisplay },
+    { label: "Misunderstood business model", weight: 10, score: /n\/a|unavailable/i.test(row.theme) ? 42 : 66, read: row.theme },
+    { label: "Inflection not fully priced", weight: 10, score: row.score >= 70 && row.riskScore <= 60 ? 74 : row.score >= 60 ? 58 : 38, read: "Score/risk balance proxy; verify valuation manually." },
+  ];
+  return { score: weightedScore(components), components };
+}
+
+function pathLabel(row, multiple, proofScore, hiddenFactorScore) {
+  const growth = Number.isFinite(row.revenueGrowth) ? row.revenueGrowth : 0;
+  const cap = Number.isFinite(row.marketCap) ? row.marketCap : Infinity;
+  const risk = row.riskScore ?? 100;
+  const base = (row.score ?? 0) * 0.34 + proofScore * 0.28 + hiddenFactorScore * 0.16 + (100 - risk) * 0.14 + (row.gateScore ?? 0) * 0.08;
+  if (multiple === 3) {
+    if (base >= 68 && growth >= 20 && risk <= 68) return "realistic";
+    if (base >= 54 && risk <= 78) return "stretched";
+    return "unrealistic";
+  }
+  if (multiple === 5) {
+    if (base >= 78 && growth >= 30 && risk <= 58 && cap <= 5_000_000_000) return "realistic";
+    if (base >= 63 && growth >= 20 && risk <= 72) return "stretched";
+    return "unrealistic";
+  }
+  if (base >= 86 && growth >= 40 && proofScore >= 78 && hiddenFactorScore >= 60 && risk <= 48 && cap <= 2_000_000_000) return "realistic";
+  if (base >= 70 && growth >= 25 && risk <= 65 && cap <= 5_000_000_000) return "stretched";
+  return "unrealistic";
+}
+
+function buildMultibaggerPath(row, proofScore, hiddenFactorScore) {
+  const current = row.marketCap;
+  const path3 = pathLabel(row, 3, proofScore, hiddenFactorScore);
+  const path5 = pathLabel(row, 5, proofScore, hiddenFactorScore);
+  const path10 = pathLabel(row, 10, proofScore, hiddenFactorScore);
+  return {
+    currentMarketCap: money(current),
+    threeXMarketCap: money(Number.isFinite(current) ? current * 3 : null),
+    fiveXMarketCap: money(Number.isFinite(current) ? current * 5 : null),
+    tenXMarketCap: money(Number.isFinite(current) ? current * 10 : null),
+    path3,
+    path5,
+    path10,
+    operational3x: "Sustain above-market revenue growth, keep dilution controlled, and show margin or FCF improvement over the next several quarters.",
+    operational5x: "Compound revenue for multiple years, prove operating leverage, convert catalysts into measurable revenue, and avoid balance-sheet stress.",
+    operational10x: "Become a category leader in a large market with durable margins, strong execution, limited dilution, and a valuation re-rating backed by fundamentals.",
+    overall: path3 === "realistic" && path5 !== "unrealistic" ? "credible early path" : path3 === "stretched" ? "needs more proof" : "not proven yet",
+  };
+}
+
+function buildDilutionResearch(row) {
+  const dilutionRisk = rowRisk(row, "Dilution risk");
+  const dilutionControl = rowScore(row, "Dilution control");
+  const riskLabel = Number.isFinite(dilutionRisk)
+    ? dilutionRisk >= 65 ? "High" : dilutionRisk >= 45 ? "Medium" : "Low"
+    : dilutionControl >= 70 ? "Low" : dilutionControl >= 50 ? "Medium" : "High";
+  return {
+    shareCountGrowth1y: row.dilutionTrend || "Unavailable",
+    shareCountGrowth3y: "Unavailable - verify in SEC filings",
+    shareCountGrowth5y: "Unavailable - verify in SEC filings",
+    stockBasedCompensation: "Unavailable in scanner feed - check latest 10-K/10-Q",
+    revenuePerShareTrend: proofValue(row, "Revenue per share growing"),
+    recentOfferingsOrConvertibles: row.redFlags?.find((item) => /offering|convertible|warrant|atm|dilut/i.test(item)) || "No offering/convertible flag found in available feed.",
+    dilutionRisk: riskLabel,
+    read: row.dilutionCheck,
+  };
+}
+
+function buildInflectionSignal(row) {
+  const signals = [
+    { label: "Revenue acceleration", passed: row.revenueGrowth >= 25 || rowScore(row, "Revenue acceleration") >= 70, value: row.revenueGrowthDisplay },
+    { label: "Margin expansion", passed: rowScore(row, "Operating leverage") >= 70 || rowScore(row, "Gross margin quality") >= 75, value: row.scoreBreakdown?.find((item) => item.label === "Operating leverage")?.note ?? "Unavailable" },
+    { label: "Operating loss narrowing", passed: row.earlyProof?.some((item) => item.label === "Operating losses narrowing / leverage improving" && item.passed), value: proofValue(row, "Operating losses narrowing / leverage improving") },
+    { label: "Free cash flow improvement", passed: row.earlyProof?.some((item) => item.label === "FCF improving" && item.passed), value: proofValue(row, "FCF improving") },
+    { label: "First profitable quarter", passed: /profit|profitable|positive earnings/i.test(`${row.catalyst} ${row.raw?.newsEngine?.items?.map((item) => item.title).join(" ")}`), value: "Headline proxy - verify earnings release." },
+    { label: "Backlog growth", passed: /backlog|bookings|remaining performance/i.test(`${row.catalyst} ${row.businessModel}`), value: "Headline/report proxy." },
+    { label: "Product adoption", passed: /customer|adoption|users|deployment|contract/i.test(`${row.catalyst} ${row.raw?.newsEngine?.items?.map((item) => item.title).join(" ")}`), value: "Headline/report proxy." },
+    { label: "Major customer wins", passed: row.earlyProof?.some((item) => item.label === "Real signed customers or backlog" && item.passed), value: proofValue(row, "Real signed customers or backlog") },
+    { label: "Sector tailwind", passed: /ai|cloud|semiconductor|cyber|energy|defense|data|automation|fintech|healthcare/i.test(`${row.theme} ${row.sector} ${row.catalyst}`), value: row.theme },
+    { label: "Valuation reset after selloff", passed: row.raw?.technical?.score >= 45 && row.raw?.valuation?.score >= 55, value: row.raw?.valuation?.rating ?? "Unavailable" },
+  ];
+  const passed = signals.filter((item) => item.passed).length;
+  const risk = row.riskScore ?? 100;
+  const classification = passed >= 6 && risk <= 65
+    ? "Strong inflection"
+    : passed >= 4
+      ? "Early inflection"
+      : row.score < 45 || risk > 82
+        ? "Broken inflection"
+        : "No clear inflection";
+  return { classification, signals };
+}
+
+function catalystStrength(text) {
+  if (/contract|revenue|backlog|order|award|guidance|approval|customer|signed|earnings/i.test(text)) return "Strong";
+  if (/partnership|launch|pilot|expansion|analyst|upgrade|tailwind|product/i.test(text)) return "Medium";
+  return "Weak";
+}
+
+function buildCatalystTimeline(row) {
+  const rawItems = [
+    ...(row.raw?.report?.catalysts ?? []),
+    ...(row.raw?.newsEngine?.items ?? []).filter((item) => item.catalyst).map((item) => item.title),
+  ].filter(Boolean);
+  const unique = [...new Set(rawItems)].slice(0, 8);
+  const first = unique[0] || row.catalyst || "No confirmed catalyst found in available feed.";
+  return {
+    next3Months: [{ text: first, strength: catalystStrength(first) }],
+    next6Months: unique.slice(1, 3).map((text) => ({ text, strength: catalystStrength(text) })),
+    next12Months: unique.slice(3, 5).map((text) => ({ text, strength: catalystStrength(text) })),
+    next24Months: [
+      ...unique.slice(5, 8).map((text) => ({ text, strength: catalystStrength(text) })),
+      { text: "Next two to four earnings reports must confirm growth, margin, cash flow, and dilution trends.", strength: "Strong" },
+    ],
+  };
+}
+
+function buildEntryQuality(row) {
+  const technical = row.raw?.technical ?? {};
+  const close = technical.close;
+  const ma50 = technical.ema50;
+  const ma200 = technical.ema150 ?? technical.ema200;
+  const rsi = technical.rsi14;
+  const high = technical.high55;
+  const support = Number.isFinite(technical.stop) ? technical.stop : ma50;
+  const resistance = Number.isFinite(technical.target) ? technical.target : high;
+  const over50 = Number.isFinite(close) && Number.isFinite(ma50) ? close >= ma50 : null;
+  const overLong = Number.isFinite(close) && Number.isFinite(ma200) ? close >= ma200 : null;
+  const extended = Number.isFinite(rsi) && rsi >= 72;
+  const nearHigh = Number.isFinite(close) && Number.isFinite(high) ? close >= high * 0.96 : false;
+  const recentEarnings = /earnings|guidance|quarter/i.test(row.catalyst);
+  let classification = "Wait for pullback";
+  if ((row.riskScore ?? 100) > 78 || row.score < 50) classification = "Avoid";
+  else if (over50 === false && overLong === false) classification = "Broken chart";
+  else if (extended || nearHigh) classification = "Too extended";
+  else if (recentEarnings && row.riskScore > 55) classification = "Wait for earnings";
+  else if ((row.gateScore ?? 0) >= 70 && (row.proofScore ?? 0) >= 65 && (over50 || technical.score >= 60)) classification = "Ready for starter";
+  return {
+    classification,
+    priceVs50Day: Number.isFinite(close) && Number.isFinite(ma50) ? `${pct(((close - ma50) / ma50) * 100)} vs 50-day EMA` : "Unavailable",
+    priceVs200Day: Number.isFinite(close) && Number.isFinite(ma200) ? `${pct(((close - ma200) / ma200) * 100)} vs long-term EMA proxy` : "Unavailable",
+    rsi: Number.isFinite(rsi) ? round(rsi, 1) : "Unavailable",
+    support: Number.isFinite(support) ? `$${round(support, 2)}` : "Unavailable",
+    resistance: Number.isFinite(resistance) ? `$${round(resistance, 2)}` : "Unavailable",
+    volumeTrend: technical.rating ?? "Unavailable",
+    highLowLocation: Number.isFinite(close) && Number.isFinite(high) ? `${pct((close / high) * 100)} of 55-day high` : "Unavailable",
+    earningsReaction: recentEarnings ? "Earnings/guidance language found - wait for confirmation if volatility is elevated." : "No near-term earnings reaction found in scanner feed.",
+  };
+}
+
+function buildKillCriteria(row) {
+  return [
+    `Revenue growth drops materially below the current ${row.revenueGrowthDisplay} trajectory or misses the growth thesis for two quarters.`,
+    "Gross margin or operating leverage deteriorates instead of improving with scale.",
+    "Free cash flow worsens and cash runway becomes dependent on unfavorable financing.",
+    `Dilution accelerates beyond the current read: ${row.dilutionTrend}.`,
+    "A major customer, backlog, product, or partnership catalyst fails to convert into real revenue.",
+    `The stock breaks major long-term support near ${row.entryQuality?.support ?? "key support"} and fails to recover.`,
+    "Balance sheet risk, filing/reporting risk, or hype/promotion risk moves into the red zone.",
+  ];
+}
+
+function positionSizingCategory(row) {
+  if (row.researchTier === "Reject / Too Many Red Flags" || row.score < 55 || row.riskScore > 75) return "Avoid";
+  if (row.proofScore >= 78 && row.riskScore <= 45 && row.multibaggerPath?.path3 === "realistic") return "Core-quality growth candidate";
+  if (row.proofScore >= 60 && row.riskScore <= 68 && row.multibaggerPath?.path3 !== "unrealistic") return "Small speculative basket candidate";
+  return "Watchlist only";
+}
+
+function finalResearchVerdict(row) {
+  if (row.positionSizingCategory === "Avoid") return "Avoid";
+  if (row.researchTier === "Deep Research Candidate" && row.entryQuality?.classification === "Ready for starter") return "Research candidate";
+  if (row.researchTier === "Deep Research Candidate") return "Deep research candidate";
+  return "Watchlist only";
+}
+
+function buildResearchDesk(row) {
+  const proof = buildProofScore(row);
+  const hiddenFactor = buildHiddenFactorScore(row);
+  row.proofScore = proof.score;
+  row.proofComponents = proof.components;
+  row.hiddenFactorScore = hiddenFactor.score;
+  row.hiddenFactorComponents = hiddenFactor.components;
+  row.multibaggerPath = buildMultibaggerPath(row, proof.score, hiddenFactor.score);
+  row.dilutionResearch = buildDilutionResearch(row);
+  row.inflectionSignal = buildInflectionSignal(row);
+  row.catalystTimelineDesk = buildCatalystTimeline(row);
+  row.entryQuality = buildEntryQuality(row);
+  row.killCriteria = buildKillCriteria(row);
+  row.positionSizingCategory = positionSizingCategory(row);
+  row.finalResearchVerdict = finalResearchVerdict(row);
+  row.bestPracticalApproach = row.positionSizingCategory === "Core-quality growth candidate"
+    ? "Deep-research first; track as a top candidate and only size up after proof improves."
+    : row.positionSizingCategory === "Small speculative basket candidate"
+      ? "Use basket discipline: top 20 watchlist, top 5 deep research, top 3 starter candidates, add only after proof improves."
+      : row.positionSizingCategory === "Watchlist only"
+        ? "Do not force it. Wait for cleaner proof, better entry quality, or lower risk."
+        : "Avoid until red flags clear and the business thesis becomes investable.";
+  row.researchDeskScore = clamp(Math.round((row.score ?? 0) * 0.35 + proof.score * 0.25 + hiddenFactor.score * 0.15 + (row.gateScore ?? 0) * 0.15 + (100 - (row.riskScore ?? 100)) * 0.1));
+  return row;
+}
+
 function passesInvestorMode(row) {
   if (!passesQualityMode(row)) return false;
   if ((row.institutionalReview?.hardFlags ?? []).some((item) => /very high|Failed|too weak|too high/i.test(item))) return false;
@@ -315,26 +606,44 @@ function scoreTone(score, inverse = false) {
   return "fail";
 }
 
+function labelTone(label) {
+  if (/realistic|ready|core|research candidate|strong|low|healthy/i.test(String(label))) return "pass";
+  if (/stretched|wait|watch|medium|early|small speculative|needs/i.test(String(label))) return "near";
+  if (/unrealistic|avoid|broken|high|too extended/i.test(String(label))) return "fail";
+  return "near";
+}
+
+function listItems(items, fallback = "Unavailable.") {
+  const rows = (items ?? []).filter(Boolean);
+  return (rows.length ? rows : [fallback]).map((item) => `<li>${escapeHtml(item)}</li>`).join("");
+}
+
+function timelineItems(items) {
+  const rows = (items ?? []).filter(Boolean);
+  return rows.map((item) => `<li><strong>${escapeHtml(item.strength)}:</strong> ${escapeHtml(item.text)}</li>`).join("") || "<li>Unavailable.</li>";
+}
+
 function buildHtml({ rows, topFive, errors, qualityMode, investorMode, scanned, generatedAt }) {
   const payload = JSON.stringify({ rows, topFive, errors, qualityMode, investorMode, scanned, generatedAt }).replaceAll("</", "<\\/");
   const tableRows = rows.map((row) => `
-    <tr data-sector="${escapeHtml(row.sector)}" data-score="${row.score}" data-risk="${row.riskScore}" data-market-cap="${row.marketCap}" data-quality="${row.qualityModePass ? "true" : "false"}" data-tier="${escapeHtml(row.researchTier)}">
+    <tr data-sector="${escapeHtml(row.sector)}" data-score="${row.researchDeskScore ?? row.score}" data-risk="${row.riskScore}" data-market-cap="${row.marketCap}" data-quality="${row.qualityModePass ? "true" : "false"}" data-tier="${escapeHtml(row.researchTier)}">
       <td><strong>${escapeHtml(row.symbol)}</strong><small>${escapeHtml(row.name)}</small></td>
       <td>${escapeHtml(row.sector)}</td>
-      <td><span class="pill ${scoreTone(row.gateScore)}">${escapeHtml(row.researchTier)}</span><small>Gate ${Math.round(row.gateScore ?? 0)}/100</small></td>
+      <td><span class="pill ${scoreTone(row.researchDeskScore)}">${Math.round(row.researchDeskScore ?? row.score)}</span><small>Research Desk</small></td>
+      <td><span class="pill ${scoreTone(row.riskScore, true)}">${Math.round(row.riskScore)}</span></td>
+      <td><span class="pill ${labelTone(row.positionSizingCategory)}">${escapeHtml(row.positionSizingCategory)}</span><small>${escapeHtml(row.finalResearchVerdict)}</small></td>
+      <td><span class="pill ${labelTone(row.multibaggerPath?.path3)}">3x ${escapeHtml(row.multibaggerPath?.path3)}</span><small>5x ${escapeHtml(row.multibaggerPath?.path5)} / 10x ${escapeHtml(row.multibaggerPath?.path10)}</small></td>
+      <td><span class="pill ${scoreTone(row.proofScore)}">${Math.round(row.proofScore ?? 0)}</span><small>Proof</small></td>
+      <td><span class="pill ${scoreTone(row.hiddenFactorScore)}">${Math.round(row.hiddenFactorScore ?? 0)}</span><small>Hidden Factor</small></td>
+      <td><span class="pill ${labelTone(row.inflectionSignal?.classification)}">${escapeHtml(row.inflectionSignal?.classification)}</span></td>
+      <td><span class="pill ${labelTone(row.entryQuality?.classification)}">${escapeHtml(row.entryQuality?.classification)}</span></td>
       <td>${escapeHtml(row.marketCapDisplay)}</td>
       <td>${escapeHtml(row.revenueGrowthDisplay)}</td>
       <td>${escapeHtml(row.revenueCagr3Display)}</td>
       <td>${escapeHtml(row.grossMarginDisplay)}</td>
-      <td>${escapeHtml(row.fcfTrend)}</td>
       <td>${escapeHtml(row.dilutionTrend)}</td>
       <td>${escapeHtml(row.cashDebt)}</td>
-      <td>${escapeHtml(row.analystCoverageDisplay)}</td>
-      <td>${escapeHtml(row.institutionalOwnership)}</td>
-      <td>${escapeHtml(row.insiderOwnership)}</td>
       <td>${escapeHtml(row.catalyst)}</td>
-      <td><span class="pill ${scoreTone(row.score)}">${Math.round(row.score)}</span></td>
-      <td><span class="pill ${scoreTone(row.riskScore, true)}">${Math.round(row.riskScore)}</span></td>
       <td>${escapeHtml(row.bullCase)}</td>
       <td>${escapeHtml(row.bearCase)}</td>
     </tr>
@@ -342,41 +651,85 @@ function buildHtml({ rows, topFive, errors, qualityMode, investorMode, scanned, 
   const cards = topFive.map((row, index) => `
     <details class="candidate-card" open>
       <summary>
-        <span>#${index + 1} ${escapeHtml(row.symbol)} - ${escapeHtml(row.researchTier)}</span>
-        <strong>${Math.round(row.score)}/100 score | ${Math.round(row.riskScore)}/100 risk | ${Math.round(row.gateScore ?? 0)}/100 gates</strong>
+        <span>#${index + 1} ${escapeHtml(row.symbol)} - ${escapeHtml(row.name)}</span>
+        <strong>${Math.round(row.researchDeskScore ?? row.score)}/100 desk | ${Math.round(row.riskScore)}/100 risk | ${escapeHtml(row.finalResearchVerdict)}</strong>
       </summary>
-      <div class="card-grid">
-        <div><span>Business model</span><p>${escapeHtml(row.businessModel)}</p></div>
-        <div><span>Why under the radar</span><p>${escapeHtml(row.whyUnderRadar)}</p></div>
-        <div><span>Why it could become a multibagger</span><p>${escapeHtml(row.multibaggerWhy)}</p></div>
-        <div><span>Top 1% investor read</span><p>${escapeHtml(row.investorRead)}</p></div>
+      <div class="score-strip">
+        <div><span>Hidden Score</span><strong>${Math.round(row.score)}</strong></div>
+        <div><span>Proof Score</span><strong>${Math.round(row.proofScore ?? 0)}</strong></div>
+        <div><span>Hidden Factor</span><strong>${Math.round(row.hiddenFactorScore ?? 0)}</strong></div>
+        <div><span>Research Gates</span><strong>${Math.round(row.gateScore ?? 0)}</strong></div>
+        <div><span>Category</span><strong>${escapeHtml(row.positionSizingCategory)}</strong></div>
       </div>
-      <h3>Institutional Research Gates</h3>
-      <div class="risk-grid">${(row.institutionalReview?.gates ?? []).map((item) => `<div class="${item.status === "pass" ? "pass" : item.status === "warn" ? "near" : "fail"}"><span>${escapeHtml(item.label)}</span><strong>${escapeHtml(item.status.toUpperCase())}</strong><p>${escapeHtml(item.note)}</p></div>`).join("")}</div>
+      <div class="card-grid">
+        <div><span>Why it is interesting</span><p>${escapeHtml(row.multibaggerWhy)}</p></div>
+        <div><span>Why it may be hidden</span><p>${escapeHtml(row.whyUnderRadar)}</p></div>
+        <div><span>Business model</span><p>${escapeHtml(row.businessModel)}</p></div>
+        <div><span>Best practical approach</span><p>${escapeHtml(row.bestPracticalApproach)}</p></div>
+      </div>
+      <h3>Multibagger Path</h3>
+      <div class="path-grid">
+        <div><span>Current market cap</span><strong>${escapeHtml(row.multibaggerPath?.currentMarketCap)}</strong><p>Today&apos;s base.</p></div>
+        <div class="${labelTone(row.multibaggerPath?.path3)}"><span>3x path</span><strong>${escapeHtml(row.multibaggerPath?.threeXMarketCap)}</strong><p>${escapeHtml(row.multibaggerPath?.path3)}: ${escapeHtml(row.multibaggerPath?.operational3x)}</p></div>
+        <div class="${labelTone(row.multibaggerPath?.path5)}"><span>5x path</span><strong>${escapeHtml(row.multibaggerPath?.fiveXMarketCap)}</strong><p>${escapeHtml(row.multibaggerPath?.path5)}: ${escapeHtml(row.multibaggerPath?.operational5x)}</p></div>
+        <div class="${labelTone(row.multibaggerPath?.path10)}"><span>10x path</span><strong>${escapeHtml(row.multibaggerPath?.tenXMarketCap)}</strong><p>${escapeHtml(row.multibaggerPath?.path10)}: ${escapeHtml(row.multibaggerPath?.operational10x)}</p></div>
+      </div>
       <div class="two">
         <section>
-          <h3>Proof Already Visible</h3>
-          <ul>${(row.proof.length ? row.proof : ["Proof is limited or unavailable."]).map((item) => `<li>${escapeHtml(item)}</li>`).join("")}</ul>
-          <h3>What Has To Happen Next</h3>
-          <ul>${row.mustHappen.map((item) => `<li>${escapeHtml(item)}</li>`).join("")}</ul>
-          <h3>Catalyst Timeline: 12-24 Months</h3>
-          <ul>${(row.catalystTimeline.length ? row.catalystTimeline : ["No verified catalyst timeline from available feed."]).map((item) => `<li>${escapeHtml(item)}</li>`).join("")}</ul>
-          <h3>Upgrade Triggers</h3>
-          <ul>${(row.institutionalReview?.nextReviewTriggers ?? []).map((item) => `<li>${escapeHtml(item)}</li>`).join("")}</ul>
+          <h3>Proof</h3>
+          <div class="risk-grid compact">${(row.proofComponents ?? []).map((item) => `<div class="${scoreTone(item.score)}"><span>${escapeHtml(item.label)}</span><strong>${Math.round(item.score)}/100</strong><p>${escapeHtml(item.read)}</p></div>`).join("")}</div>
+          <h3>Inflection Signal: ${escapeHtml(row.inflectionSignal?.classification)}</h3>
+          <ul>${listItems((row.inflectionSignal?.signals ?? []).filter((item) => item.passed).map((item) => `${item.label}: ${item.value}`), "No strong inflection signal found yet.")}</ul>
+          <h3>Dilution Check</h3>
+          <ul>
+            <li>1-year share growth: ${escapeHtml(row.dilutionResearch?.shareCountGrowth1y)}</li>
+            <li>3-year share growth: ${escapeHtml(row.dilutionResearch?.shareCountGrowth3y)}</li>
+            <li>5-year share growth: ${escapeHtml(row.dilutionResearch?.shareCountGrowth5y)}</li>
+            <li>Stock-based compensation: ${escapeHtml(row.dilutionResearch?.stockBasedCompensation)}</li>
+            <li>Revenue per share: ${escapeHtml(row.dilutionResearch?.revenuePerShareTrend)}</li>
+            <li>Recent offerings/convertibles: ${escapeHtml(row.dilutionResearch?.recentOfferingsOrConvertibles)}</li>
+            <li>Dilution risk: ${escapeHtml(row.dilutionResearch?.dilutionRisk)}</li>
+          </ul>
         </section>
         <section>
-          <h3>Hard Flags</h3>
-          <ul>${((row.institutionalReview?.hardFlags?.length ? row.institutionalReview.hardFlags : row.redFlags).length ? (row.institutionalReview?.hardFlags?.length ? row.institutionalReview.hardFlags : row.redFlags) : ["No hard rejection flags from available fields."]).map((item) => `<li>${escapeHtml(item)}</li>`).join("")}</ul>
-          <h3>Dilution Check</h3>
-          <p>${escapeHtml(row.dilutionCheck)}</p>
-          <h3>Balance Sheet Check</h3>
-          <p>${escapeHtml(row.balanceSheetCheck)}</p>
-          <h3>Filing Homework</h3>
-          <ul>${(row.institutionalReview?.filingHomework ?? []).map((item) => `<li>${escapeHtml(item)}</li>`).join("")}</ul>
+          <h3>Catalyst Timeline</h3>
+          <div class="timeline">
+            <div><span>Next 3 months</span><ul>${timelineItems(row.catalystTimelineDesk?.next3Months)}</ul></div>
+            <div><span>Next 6 months</span><ul>${timelineItems(row.catalystTimelineDesk?.next6Months)}</ul></div>
+            <div><span>Next 12 months</span><ul>${timelineItems(row.catalystTimelineDesk?.next12Months)}</ul></div>
+            <div><span>Next 24 months</span><ul>${timelineItems(row.catalystTimelineDesk?.next24Months)}</ul></div>
+          </div>
+          <h3>Entry Quality: ${escapeHtml(row.entryQuality?.classification)}</h3>
+          <ul>
+            <li>Price vs 50-day: ${escapeHtml(row.entryQuality?.priceVs50Day)}</li>
+            <li>Price vs 200-day / long trend: ${escapeHtml(row.entryQuality?.priceVs200Day)}</li>
+            <li>RSI: ${escapeHtml(row.entryQuality?.rsi)}</li>
+            <li>Support: ${escapeHtml(row.entryQuality?.support)}</li>
+            <li>Resistance: ${escapeHtml(row.entryQuality?.resistance)}</li>
+            <li>52-week/high-low proxy: ${escapeHtml(row.entryQuality?.highLowLocation)}</li>
+            <li>Recent earnings reaction: ${escapeHtml(row.entryQuality?.earningsReaction)}</li>
+          </ul>
           <div class="bullbear">
             <div><span>Bull case</span><p>${escapeHtml(row.bullCase)}</p></div>
             <div><span>Bear case</span><p>${escapeHtml(row.bearCase)}</p></div>
           </div>
+        </section>
+      </div>
+      <div class="two">
+        <section>
+          <h3>Kill Criteria</h3>
+          <ul>${listItems(row.killCriteria, "No kill criteria generated.")}</ul>
+        </section>
+        <section>
+          <h3>Final Verdict</h3>
+          <p>${escapeHtml(row.finalResearchVerdict)}. ${escapeHtml(row.investorRead)}</p>
+          <h3>Basket Discipline</h3>
+          <ul>
+            <li>Top 20 watchlist.</li>
+            <li>Top 5 deep research.</li>
+            <li>Top 3 starter candidates only after proof improves.</li>
+            <li>Remove if thesis breaks.</li>
+          </ul>
         </section>
       </div>
       <h3>Risk Heatmap</h3>
@@ -389,7 +742,7 @@ function buildHtml({ rows, topFive, errors, qualityMode, investorMode, scanned, 
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Hidden Multibagger Discovery Scanner</title>
+    <title>Multibagger Research Desk</title>
     <style>
       :root { color-scheme: dark; --bg:#071019; --panel:#101820; --panel2:#132232; --line:#26364a; --text:#f4fbff; --muted:#9db0c4; --green:#22c55e; --amber:#f59e0b; --red:#fb7185; --blue:#38bdf8; }
       body.light { color-scheme: light; --bg:#f8fafc; --panel:#ffffff; --panel2:#eef5fb; --line:#cbd5e1; --text:#0f172a; --muted:#475569; }
@@ -412,7 +765,7 @@ function buildHtml({ rows, topFive, errors, qualityMode, investorMode, scanned, 
       .summary { display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); margin-top:16px; }
       .metric, .panel { padding:14px; }
       .metric { border:1px solid rgba(148,163,184,.18); border-radius:8px; background:rgba(15,23,42,.34); }
-      .metric span, .card-grid span, .bullbear span, .risk-grid span { color:var(--muted); display:block; font-size:11px; font-weight:900; text-transform:uppercase; letter-spacing:.04em; margin-bottom:6px; }
+      .metric span, .card-grid span, .bullbear span, .risk-grid span, .path-grid span, .score-strip span, .timeline span { color:var(--muted); display:block; font-size:11px; font-weight:900; text-transform:uppercase; letter-spacing:.04em; margin-bottom:6px; }
       .metric strong { display:block; font-size:26px; }
       .toolbar { margin:18px 0 10px; }
       .toolbar input { min-width:280px; }
@@ -429,15 +782,21 @@ function buildHtml({ rows, topFive, errors, qualityMode, investorMode, scanned, 
       .candidate-card { margin-top:14px; padding:0; overflow:hidden; }
       .candidate-card summary { align-items:center; cursor:pointer; display:flex; justify-content:space-between; gap:12px; padding:15px; }
       .candidate-card summary span { font-size:17px; font-weight:900; }
-      .card-grid, .two, .risk-grid, .bullbear { display:grid; gap:10px; padding:0 15px 15px; }
+      .card-grid, .two, .risk-grid, .bullbear, .score-strip, .path-grid { display:grid; gap:10px; padding:0 15px 15px; }
       .card-grid { grid-template-columns:repeat(4,minmax(0,1fr)); }
+      .score-strip { grid-template-columns:repeat(5,minmax(0,1fr)); padding-top:2px; }
+      .score-strip div, .path-grid div, .timeline div { border:1px solid var(--line); border-radius:8px; background:rgba(148,163,184,.06); padding:10px; }
+      .score-strip strong, .path-grid strong { display:block; font-size:20px; }
+      .path-grid { grid-template-columns:repeat(4,minmax(0,1fr)); }
       .two { grid-template-columns:1fr 1fr; }
       .risk-grid { grid-template-columns:repeat(3,minmax(0,1fr)); }
+      .risk-grid.compact { grid-template-columns:repeat(2,minmax(0,1fr)); padding:0; }
       .bullbear { grid-template-columns:1fr 1fr; padding:0; margin-top:10px; }
       .card-grid div, .risk-grid div, .bullbear div { border:1px solid var(--line); border-radius:8px; background:rgba(148,163,184,.06); padding:10px; }
+      .timeline { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:10px; }
       ul { margin:0; padding-left:18px; }
       .hidden { display:none; }
-      @media (max-width:900px) { .summary, .card-grid, .two, .risk-grid, .bullbear { grid-template-columns:1fr; } h1 { font-size:32px; } }
+      @media (max-width:900px) { .summary, .card-grid, .two, .risk-grid, .bullbear, .score-strip, .path-grid, .timeline { grid-template-columns:1fr; } h1 { font-size:32px; } }
       @media print { * { print-color-adjust:exact; -webkit-print-color-adjust:exact; } .toolbar, button { display:none!important; } body { background:#071019!important; } .shell { width:100%; padding:0; } .candidate-card, .panel, .hero { break-inside:avoid; } }
     </style>
   </head>
@@ -447,20 +806,20 @@ function buildHtml({ rows, topFive, errors, qualityMode, investorMode, scanned, 
         <div class="hero-top">
           <div>
             <p class="eyebrow">Research Watchlist Only</p>
-            <h1>Hidden Multibagger Discovery Scanner</h1>
-            <p class="muted">Generated ${escapeHtml(generatedAt)}. U.S.-listed common-stock seed universe screened for under-the-radar early-stage multibagger potential. No buy/sell recommendations.</p>
+            <h1>Multibagger Research Desk</h1>
+            <p class="muted">Generated ${escapeHtml(generatedAt)}. U.S.-listed common-stock seed universe screened for realistic 3x, 5x, and 10x paths using proof, hidden-factor, dilution, inflection, entry-quality, and kill-criteria logic. No buy/sell recommendations.</p>
           </div>
           <button id="theme">Dark / Light</button>
         </div>
         <div class="summary">
           <div class="metric"><span>Scanned</span><strong>${scanned}</strong><p>Seed candidates reviewed</p></div>
           <div class="metric"><span>Passed Filters</span><strong>${rows.length}</strong><p>${investorMode ? "Investor mode enabled" : qualityMode ? "Quality mode enabled" : "Standard mode"}</p></div>
-          <div class="metric"><span>Top Score</span><strong>${rows[0] ? Math.round(rows[0].score) : "n/a"}</strong><p>Hidden Multibagger Score</p></div>
+          <div class="metric"><span>Top Desk Score</span><strong>${rows[0] ? Math.round(rows[0].researchDeskScore ?? rows[0].score) : "n/a"}</strong><p>Research score blends hidden score, proof, gates, and risk</p></div>
           <div class="metric"><span>Data Caveat</span><strong>${errors.length}</strong><p>Symbols with missing/error data</p></div>
         </div>
       </section>
       <section class="panel" style="margin-top:14px">
-        <p class="muted">This report avoids promotion and flags uncertainty. Investor Mode is the default: a candidate must clear quality checks, institutional research gates, and hard risk flags before it appears. SEC company facts and Yahoo SEC filing links are used when available, but investor-grade verification still requires reading the latest 10-K/10-Q/8-K.</p>
+        <p class="muted">This report avoids promotion and flags uncertainty. Investor Mode is the default: a candidate must clear quality checks, institutional research gates, and hard risk flags before it appears. The desk does not try to pick one magic winner: it builds a top 20 watchlist, top 5 deep-research list, and top 3 starter-candidate shortlist, then removes names when the thesis breaks.</p>
       </section>
       <div class="toolbar">
         <input id="search" placeholder="Search ticker, company, sector, catalyst..." />
@@ -474,7 +833,7 @@ function buildHtml({ rows, topFive, errors, qualityMode, investorMode, scanned, 
       <section class="table-wrap">
         <table id="candidate-table">
           <thead><tr>
-            ${["Ticker","Sector","IC Tier","Market Cap","Rev Growth","3Y CAGR","Gross Margin","FCF Trend","Dilution","Cash/Debt","Analysts","Institutions","Insiders","Catalyst","Score","Risk","Bull Case","Bear Case"].map((header) => `<th>${header}</th>`).join("")}
+            ${["Ticker","Sector","Desk Score","Risk","Category","Path","Proof","Hidden","Inflection","Entry","Market Cap","Rev Growth","3Y CAGR","Gross Margin","Dilution","Cash/Debt","Catalyst","Bull Case","Bear Case"].map((header) => `<th>${header}</th>`).join("")}
           </tr></thead>
           <tbody>${tableRows}</tbody>
         </table>
@@ -563,7 +922,7 @@ async function main() {
     }
   }
 
-  rows.sort((a, b) => Number(b.score) - Number(a.score) || Number(a.riskScore) - Number(b.riskScore) || a.symbol.localeCompare(b.symbol));
+  rows.sort((a, b) => Number(b.researchDeskScore ?? b.score) - Number(a.researchDeskScore ?? a.score) || Number(a.riskScore) - Number(b.riskScore) || a.symbol.localeCompare(b.symbol));
   const topRows = rows.slice(0, 20);
   const topFive = topRows.slice(0, 5);
   const generatedAt = new Date().toISOString();
@@ -591,13 +950,17 @@ async function main() {
 
   console.table(topRows.slice(0, 20).map((row) => ({
     symbol: row.symbol,
+    desk: Math.round(row.researchDeskScore ?? row.score),
     score: Math.round(row.score),
+    proof: Math.round(row.proofScore ?? 0),
+    hidden: Math.round(row.hiddenFactorScore ?? 0),
     risk: Math.round(row.riskScore),
     cap: row.marketCapDisplay,
     growth: row.revenueGrowthDisplay,
     cagr: row.revenueCagr3Display,
-    gates: Math.round(row.gateScore ?? 0),
-    tier: row.researchTier,
+    path3x: row.multibaggerPath?.path3,
+    entry: row.entryQuality?.classification,
+    category: row.positionSizingCategory,
   })));
   console.log(`Wrote ${path.join(reportDir, "hidden_multibagger_discovery_scanner.html")}`);
 }
