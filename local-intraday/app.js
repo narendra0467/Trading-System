@@ -119,8 +119,8 @@ function setupBadge(row) {
 
 function optionTitle(row) {
   if (row.optionContractLabel) return row.optionContractLabel;
-  if (row.optionSide && row.optionStrike && row.optionExpiration) {
-    const side = String(row.optionSide).replace("BUY ", "").toLowerCase();
+  if (row.optionDirection && row.optionStrike && row.optionExpiration) {
+    const side = String(row.optionDirection).replace("BUY ", "").toLowerCase();
     return `${row.optionExpiration} ${row.optionStrike} ${side}`;
   }
   return row.optionSide || "Stock level only";
@@ -136,6 +136,14 @@ function hasOptionContract(row) {
   return Boolean(row.optionContract || row.optionContractLabel || row.optionMid || row.optionBid || row.optionAsk);
 }
 
+function actionLabel(row, tier = cardTier(row)) {
+  if (row.finalAction) return row.finalAction;
+  if (tier === "Watch for Trigger") return "Conditional Plan Only - No Entry Yet";
+  if (tier === "No Trade") return "No Entry - No Trade";
+  if (!hasOptionContract(row)) return "Stock setup only - option contract not validated";
+  return row.optionDirection === "PUT" || row.direction === "Short" ? "Confirmed put contract plan" : "Confirmed call contract plan";
+}
+
 function contractTitle(row) {
   if (row.optionContractLabel && row.optionContract) return `${row.optionContractLabel} - ${row.optionContract}`;
   return row.optionContractLabel || row.optionContract || optionTitle(row);
@@ -143,12 +151,10 @@ function contractTitle(row) {
 
 function contractCommand(row, tier) {
   if (!hasOptionContract(row)) {
-    return tier === "A+ Trade"
-      ? "No option contract passed liquidity checks yet. Use stock levels only until broker confirms a liquid contract."
-      : "No option contract is approved yet. Wait for trigger and confirm a tight, liquid contract in broker.";
+    return "Stock setup only - option contract not validated.";
   }
-  if (tier === "A+ Trade") return `Trade contract to check: ${contractTitle(row)}`;
-  if (tier === "Watch for Trigger") return `Do not buy yet. If trigger confirms, check: ${contractTitle(row)}`;
+  if (tier === "A+ Trade") return `Confirmed contract plan: ${contractTitle(row)}`;
+  if (tier === "Watch for Trigger") return `Conditional contract to check after trigger confirms: ${contractTitle(row)}`;
   return `Do not trade. Reference contract only: ${contractTitle(row)}`;
 }
 
@@ -158,9 +164,11 @@ function contractStats(row) {
     ["Bid", money(row.optionBid)],
     ["Ask", money(row.optionAsk)],
     ["Mid", money(row.optionMid)],
-    ["Est. Cost", Number.isFinite(Number(row.optionEstimatedCost)) ? `$${Number(row.optionEstimatedCost).toFixed(0)}` : "Pending"],
+    ["Max Risk", Number.isFinite(Number(row.optionEstimatedCost)) ? `$${Number(row.optionEstimatedCost).toFixed(0)}` : "Pending"],
     ["Spread", Number.isFinite(Number(row.optionSpreadPct)) ? `${Number(row.optionSpreadPct).toFixed(1)}%` : "Pending"],
     ["Vol/OI", `${fmt(row.optionVolume)}/${fmt(row.optionOpenInterest)}`],
+    ["IV", Number.isFinite(Number(row.optionIV)) ? `${Number(row.optionIV).toFixed(1)}%` : "Pending"],
+    ["Quality", row.optionContractScore ? `${row.optionContractScore}/100` : "Pending"],
   ];
   return `<div class="contract-stats">${stats.map(([label, value]) => `<div><span>${label}</span><strong>${value}</strong></div>`).join("")}</div>`;
 }
@@ -244,7 +252,7 @@ function renderSignalCard(row, mode = "full") {
         <p>${shortText(subtitle, 240)}</p>
       </div>
       <div class="option-idea">
-        <span>${noTrade ? "NO OPTION TRADE" : row.optionSide || (direction === "Short" ? "BUY PUT" : "BUY CALL")}</span>
+        <span>${actionLabel(row, tier)}</span>
         <strong>${contractCommand(row, tier)}</strong>
         <p>${shortText(optionRead(row), compact ? 180 : 260)}</p>
         ${contractStats(row)}
@@ -520,7 +528,7 @@ function tradeCard(row, compact = false) {
       </div>
 
       <div class="trade-ticket">
-        <span>${fmt(row.optionSide)}</span>
+        <span>${actionLabel(row)}</span>
         <strong>${row.optionContractLabel || `${money(row.stockEntryTrigger || row.trigger)} entry trigger`}</strong>
         <p>${row.skipRule || "Wait for confirmation."}</p>
       </div>
@@ -709,7 +717,7 @@ function renderTable(rows) {
     ["decisionCode", "Decision"],
     ["signalTier", "Tier"],
     ["signal", "Signal"],
-    ["optionSide", "Option"],
+    ["finalAction", "Final Action"],
     ["confidence", "Confidence"],
     ["confidenceRating", "Rating"],
     ["riskScore", "Risk Score"],
@@ -766,7 +774,8 @@ function renderTable(rows) {
       <thead><tr>${columns.map(([, label]) => `<th>${label}</th>`).join("")}</tr></thead>
       <tbody>
         ${rows.map((row) => `<tr>${columns.map(([key]) => {
-          const value = ["close", "vwap", "trigger", "stop", "target"].includes(key) ? money(row[key]) : fmt(row[key]);
+          const rawValue = key === "finalAction" ? actionLabel(row) : row[key];
+          const value = ["close", "vwap", "trigger", "stop", "target"].includes(key) ? money(row[key]) : fmt(rawValue);
           return `<td>${key === "signal" ? pill(row) : key === "confidenceRating" ? grade(row) : value}</td>`;
         }).join("")}</tr>`).join("")}
       </tbody>

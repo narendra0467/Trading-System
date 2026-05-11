@@ -879,6 +879,8 @@ async function enrichOptionContract(row) {
       optionBid: round(contract.bid),
       optionAsk: round(contract.ask),
       optionMid: round(mid),
+      optionIV: Number.isFinite(contract.impliedVolatility) ? round(contract.impliedVolatility * 100, 1) : null,
+      optionDelta: null,
       optionEstimatedCost: round(mid * 100, 0),
       optionSpreadPct: round(spread * 100, 1),
       optionVolume: contract.volume ?? 0,
@@ -891,7 +893,7 @@ async function enrichOptionContract(row) {
       optionContractRisks: contractScore.risks,
       optionQuality: `${quality} / ${contractScore.grade}`,
       contractDecision: `${contractScore.action} ${contractDecision}`,
-      contractHint: `${row.optionSide} ${contract.strike} ${row.direction.toLowerCase()} exp ${new Date(expirationMeta.expiration * 1000).toISOString().slice(0, 10)} near ${round(mid)} mid. Cost about $${round(mid * 100, 0)} per contract.`,
+      contractHint: `${row.direction} contract ${contract.strike} exp ${new Date(expirationMeta.expiration * 1000).toISOString().slice(0, 10)} near ${round(mid)} mid. Cost about $${round(mid * 100, 0)} per contract.`,
       contractWhy: [
         `DTE ${expirationMeta.dte}`,
         `strike ${contract.strike} is ${round(contractScore.moneynessPct, 1)}% from stock`,
@@ -1572,12 +1574,45 @@ function buildSectorStrength(results) {
     .sort((a, b) => Number(b.relativeStrengthPct ?? 0) - Number(a.relativeStrengthPct ?? 0));
 }
 
+function hasValidatedOption(row) {
+  return Boolean(row.optionContract && row.optionContractLabel && Number.isFinite(Number(row.optionBid)) && Number.isFinite(Number(row.optionAsk)));
+}
+
+function finalActionLabel(row, tier = normalizedSignalTier(row)) {
+  if (tier === "Watch for Trigger") return "Conditional Plan Only - No Entry Yet";
+  if (tier === "No Trade") return "No Entry - No Trade";
+  if (!hasValidatedOption(row)) return "Stock setup only - option contract not validated";
+  return row.direction === "PUT" ? "Confirmed put contract plan" : "Confirmed call contract plan";
+}
+
+function displayContractHint(row, tier = normalizedSignalTier(row)) {
+  if (!hasValidatedOption(row)) return "Stock setup only - option contract not validated.";
+  const side = row.direction === "PUT" ? "put" : "call";
+  const hint = `${row.optionContractLabel} near ${round(row.optionMid)} mid. Cost about $${round(row.optionEstimatedCost, 0)} per contract.`;
+  if (tier === "Watch for Trigger") return `Conditional ${side} contract to check only after trigger confirmation: ${hint}`;
+  if (tier === "No Trade") return `Reference ${side} contract only; no entry is allowed: ${hint}`;
+  return `Confirmed ${side} contract plan after all entry checks pass: ${hint}`;
+}
+
+function publicSignalRow(row) {
+  const tier = normalizedSignalTier(row);
+  return {
+    ...row,
+    signalTier: tier,
+    finalAction: finalActionLabel(row, tier),
+    optionSide: finalActionLabel(row, tier),
+    optionDirection: row.direction,
+    contractHint: displayContractHint(row, tier),
+  };
+}
+
 function tradeCardView(row) {
+  const tier = normalizedSignalTier(row);
   return {
     ticker: row.symbol,
     companyName: row.name,
     direction: row.tradeCardDirection,
-    signalTier: normalizedSignalTier(row),
+    signalTier: tier,
     confidenceScore: row.confidenceScore,
     setupConfidenceScore: row.setupConfidenceScore,
     riskScore: row.riskScore,
@@ -1599,7 +1634,9 @@ function tradeCardView(row) {
     tradeStatus: row.tradeStatus,
     bias: row.bias,
     setupType: row.setupType,
-    optionSide: row.optionSide,
+    finalAction: finalActionLabel(row, tier),
+    optionSide: finalActionLabel(row, tier),
+    optionDirection: row.direction,
     optionExpiration: row.optionExpiration,
     optionDte: row.optionDte,
     optionContract: row.optionContract,
@@ -1607,6 +1644,8 @@ function tradeCardView(row) {
     optionBid: row.optionBid,
     optionAsk: row.optionAsk,
     optionMid: row.optionMid,
+    optionIV: row.optionIV,
+    optionDelta: row.optionDelta,
     optionEstimatedCost: row.optionEstimatedCost,
     optionSpreadPct: row.optionSpreadPct,
     optionVolume: row.optionVolume,
@@ -1615,7 +1654,7 @@ function tradeCardView(row) {
     optionContractGrade: row.optionContractGrade,
     optionContractLabel: row.optionContractLabel,
     optionQuality: row.optionQuality,
-    contractHint: row.contractHint,
+    contractHint: displayContractHint(row, tier),
     contractDecision: row.contractDecision,
     contractWhy: row.contractWhy,
     stockEntryTrigger: row.stockEntryTrigger,
@@ -1894,11 +1933,14 @@ export async function scanIntraday({
   const enrichedBySymbol = new Map(tradeIdeas.map((row) => [row.symbol, row]));
   const finalResults = results.map((row) => enrichedBySymbol.get(row.symbol) ?? row);
   const approvedTrades = tradeIdeas.filter((row) => row.tradeSlotApproved === true);
+  const publicFinalResults = finalResults.map(publicSignalRow);
+  const publicTradeIdeas = tradeIdeas.map(publicSignalRow);
+  const publicApprovedTrades = approvedTrades.map(publicSignalRow);
   const hideLiveIdeas = ["WEEKEND", "CLOSED", "AFTER_HOURS"].includes(sessionPolicy.phase);
   const morningBrief = buildMorningBrief({ results: finalResults, eventPolicy, sessionPolicy, now });
-  const aPlusSetups = finalResults.filter((row) => row.signalTier === "A+ Trade");
-  const watchSetups = finalResults.filter((row) => row.signalTier === "Watch for Trigger");
-  const noTradeSetups = finalResults.filter((row) => row.signalTier === "No Trade");
+  const aPlusSetups = publicFinalResults.filter((row) => row.signalTier === "A+ Trade");
+  const watchSetups = publicFinalResults.filter((row) => row.signalTier === "Watch for Trigger");
+  const noTradeSetups = publicFinalResults.filter((row) => row.signalTier === "No Trade");
   const summary = {
     updatedAt: new Date().toISOString(),
     range,
@@ -1947,10 +1989,10 @@ export async function scanIntraday({
     noTradeCount: noTradeSetups.length,
     callTriggers: results.filter((row) => row.signal === "CALL_TRIGGER").length,
     putTriggers: results.filter((row) => row.signal === "PUT_TRIGGER").length,
-    indexTape: finalResults.filter((row) => ["SPY", "QQQ", "IWM"].includes(row.symbol)),
-    bestIdea: hideLiveIdeas ? null : approvedTrades[0] ?? tradeIdeas[0] ?? null,
-    approvedTrades: hideLiveIdeas ? [] : approvedTrades,
-    watchlist: hideLiveIdeas ? [] : tradeIdeas.filter((row) => row.tradeSlotApproved !== true).slice(0, 6),
+    indexTape: publicFinalResults.filter((row) => ["SPY", "QQQ", "IWM"].includes(row.symbol)),
+    bestIdea: hideLiveIdeas ? null : publicApprovedTrades[0] ?? publicTradeIdeas[0] ?? null,
+    approvedTrades: hideLiveIdeas ? [] : publicApprovedTrades,
+    watchlist: hideLiveIdeas ? [] : publicTradeIdeas.filter((row) => row.tradeSlotApproved !== true).slice(0, 6),
     marketBreadth: {
       aboveVwap: finalResults.filter((row) => Number(row.close) > Number(row.vwap)).length,
       belowVwap: finalResults.filter((row) => Number(row.close) < Number(row.vwap)).length,
@@ -1960,5 +2002,5 @@ export async function scanIntraday({
     rule: "Use this as a 15-minute decision assistant. Do not chase between reviews. If event mode is major, no new trades. Stop after 2 losses or 3 total trades.",
   };
 
-  return { summary, results: finalResults, tradeIdeas };
+  return { summary, results: publicFinalResults, tradeIdeas: publicTradeIdeas };
 }
