@@ -1,5 +1,5 @@
-const money = (value) => Number.isFinite(Number(value)) ? `$${Number(value).toFixed(2)}` : "n/a";
-const fmt = (value) => value ?? "n/a";
+const money = (value) => Number.isFinite(Number(value)) ? `$${Number(value).toFixed(2)}` : "Pending";
+const fmt = (value) => value ?? "Pending";
 const displaySignal = (row) => row.setupSignal || row.signal || "";
 const time = (value) => {
   const date = new Date(value);
@@ -32,28 +32,12 @@ function renderSummary(summary, alerts) {
     return;
   }
   document.getElementById("updated").textContent = `Last scan: ${time(summary.updatedAt)}`;
-  const eventNames = (summary.eventPolicy?.events ?? [])
-    .slice(0, 4)
-    .map((event) => event.symbol && event.symbol !== "ALL" ? `${event.symbol}: ${event.event}` : event.event)
-    .join("; ");
-  const earningsNames = (summary.eventPolicy?.earningsEvents ?? [])
-    .slice(0, 4)
-    .map((event) => event.event)
-    .join("; ");
-  const reminderNames = (summary.eventPolicy?.manualReminders ?? [])
-    .slice(0, 3)
-    .map((event) => event.symbol && event.symbol !== "ALL" ? `${event.symbol}: ${event.event}` : event.event)
-    .join("; ");
   document.getElementById("trade-policy").innerHTML = `
     <article class="policy-card policy-card--${String(summary.eventPolicy?.level || "normal").toLowerCase()}">
-      <span>Auto Event Scan</span>
+      <span>Event Policy</span>
       <strong>${fmt(summary.eventPolicy?.headline)}</strong>
       <p>${fmt(summary.eventPolicy?.rule)}</p>
-      ${eventNames ? `<p>Events: ${eventNames}</p>` : ""}
-      ${earningsNames ? `<p>Earnings watch: ${earningsNames}</p>` : ""}
-      ${reminderNames ? `<p>Manual reminders: ${reminderNames}</p>` : ""}
       <p>Cadence: ${summary.decisionCadence || "15-minute primary signals"}; next review in about ${summary.nextReviewMinutes || 15} minutes.</p>
-      <p>Discipline: ${summary.disciplineMode || "2-3 trades max. Only spend slots on clean VWAP trend setups."}</p>
     </article>
   `;
   target.innerHTML = `
@@ -68,6 +52,173 @@ function tierClass(tier) {
   if (tier === "A+ Trade") return "tier--aplus";
   if (tier === "Watch for Trigger") return "tier--watch";
   return "tier--no";
+}
+
+function signalTone(tier) {
+  if (tier === "A+ Trade") return "signal--aplus";
+  if (tier === "Watch for Trigger") return "signal--watch";
+  return "signal--no";
+}
+
+function cleanTierLabel(tier) {
+  if (tier === "A+ Trade") return "A+ Trade";
+  if (tier === "Watch for Trigger") return "Watch";
+  return "No Trade";
+}
+
+function shortText(value, max = 210) {
+  const text = String(value || "").replace(/\s+/g, " ").trim();
+  return text.length > max ? `${text.slice(0, max - 3)}...` : text;
+}
+
+function cardSymbol(row) {
+  return row.ticker || row.symbol || "";
+}
+
+function cardCompany(row) {
+  return row.companyName || row.name || "";
+}
+
+function cardTier(row) {
+  return row.signalTier || (row.tradeSlotApproved ? "A+ Trade" : row.decisionCode === "WAIT" ? "Watch for Trigger" : "No Trade");
+}
+
+function cardDirection(row) {
+  return row.direction || row.tradeCardDirection || (String(row.signal || "").includes("PUT") ? "Short" : String(row.signal || "").includes("CALL") ? "Long" : "Neutral");
+}
+
+function cardEntry(row) {
+  return row.entryZone || row.stockEntryTrigger || row.trigger || "Wait for trigger";
+}
+
+function cardStop(row) {
+  return row.stopLoss ?? row.stockStop ?? row.stop;
+}
+
+function cardTarget(row) {
+  return row.target1 ?? row.stockTarget ?? row.target;
+}
+
+function cardWhy(row) {
+  return row.whyThisTradeExists || row.traderRead || row.tradeDecision || row.reason || row.noTradeReason || "No clean setup yet.";
+}
+
+function cardTrigger(row) {
+  return row.triggerNeeded || row.bestTriggerToWaitFor || row.candleConfirmationReason || row.executionReason || "Wait for a clean 5-minute confirmation.";
+}
+
+function cardNoTrade(row) {
+  return row.noTradeReason || row.eventRiskRule || row.reason || "No clean professional edge.";
+}
+
+function renderSignalCard(row, mode = "full") {
+  const tier = cardTier(row);
+  const noTrade = tier === "No Trade";
+  const symbol = cardSymbol(row);
+  const direction = cardDirection(row);
+  const confidence = row.confidenceScore ?? row.confidenceRating ?? row.score ?? 0;
+  const risk = row.riskScore ?? "Pending";
+  return `
+    <article class="signal-card ${signalTone(tier)}">
+      <div class="signal-head">
+        <div>
+          <strong>${symbol}</strong>
+          <span>${cardCompany(row)}</span>
+        </div>
+        <div class="signal-badges">
+          <b>${cleanTierLabel(tier)}</b>
+          <em>${fmt(confidence)}%</em>
+        </div>
+      </div>
+      <p class="signal-verdict">${noTrade ? shortText(cardNoTrade(row), 180) : shortText(cardWhy(row), 180)}</p>
+      <div class="signal-ticket">
+        <div><span>Direction</span><strong>${direction}</strong></div>
+        <div><span>Entry</span><strong>${typeof cardEntry(row) === "number" ? money(cardEntry(row)) : fmt(cardEntry(row))}</strong></div>
+        <div><span>Stop</span><strong>${money(cardStop(row))}</strong></div>
+        <div><span>Target</span><strong>${money(cardTarget(row))}</strong></div>
+        <div><span>R/R</span><strong>${fmt(row.riskReward ?? row.rewardRisk)}</strong></div>
+        <div><span>Risk</span><strong>${fmt(risk)}</strong></div>
+      </div>
+      ${mode === "compact" ? "" : `
+        <div class="signal-next">
+          <span>${noTrade ? "No-trade reason" : tier === "Watch for Trigger" ? "Trigger needed" : "Execution note"}</span>
+          <p>${shortText(noTrade ? cardNoTrade(row) : cardTrigger(row), 260)}</p>
+        </div>
+      `}
+    </article>
+  `;
+}
+
+function bestSignalRows(summary, alerts = [], results = []) {
+  const active = summary?.activeTradeCards ?? [];
+  const watch = summary?.watchForTriggerCards ?? [];
+  const noTrade = summary?.noTradeCards ?? [];
+  if (active.length || watch.length || noTrade.length) return { active, watch, noTrade };
+
+  const source = alerts.length ? alerts : results;
+  return {
+    active: source.filter((row) => row.signalTier === "A+ Trade" || row.tradeSlotApproved).slice(0, 3),
+    watch: source.filter((row) => row.signalTier === "Watch for Trigger" || row.decisionCode === "WAIT").slice(0, 6),
+    noTrade: source.filter((row) => row.signalTier === "No Trade" || row.decisionCode === "NO_TRADE").slice(0, 8),
+  };
+}
+
+function renderSignalBoard(summary, alerts = [], results = []) {
+  const target = document.getElementById("signal-board");
+  if (!summary) {
+    target.innerHTML = `<p class="empty">Run Scan to build today&apos;s signal board.</p>`;
+    return;
+  }
+  const { active, watch, noTrade } = bestSignalRows(summary, alerts, results);
+  const brief = summary.morningBrief;
+  const best = active[0] || watch[0] || noTrade[0];
+  const marketClosed = ["WEEKEND", "CLOSED", "AFTER_HOURS"].includes(summary.sessionPolicy?.phase);
+  const headline = marketClosed
+    ? "Market closed. No live trades."
+    : active.length
+      ? "A+ setup available. Check broker spread before entry."
+      : watch.length
+        ? "Watch only. Wait for trigger confirmation."
+        : "No Trade. Preserve capital.";
+
+  target.innerHTML = `
+    <section class="command-strip ${active.length ? "command-strip--go" : watch.length ? "command-strip--watch" : "command-strip--no"}">
+      <div>
+        <span>Desk Decision</span>
+        <strong>${headline}</strong>
+        <p>${brief?.marketRead || summary.rule || "Trade only when the 15-minute setup and 5-minute trigger agree."}</p>
+      </div>
+      <div class="command-metrics">
+        ${miniLevel("Market", brief?.marketCondition || summary.marketCondition)}
+        ${miniLevel("Event Risk", brief?.eventRisk || summary.eventRisk)}
+        ${miniLevel("A+", active.length)}
+        ${miniLevel("Watch", watch.length)}
+        ${miniLevel("No Trade", noTrade.length)}
+      </div>
+    </section>
+
+    ${best ? `
+      <section class="primary-signal">
+        <div class="section-kicker">Best Current Read</div>
+        ${renderSignalCard(best)}
+      </section>
+    ` : ""}
+
+    <section class="signal-columns">
+      <div>
+        <h3>A+ Trades</h3>
+        ${active.length ? active.slice(0, 3).map((row) => renderSignalCard(row, "compact")).join("") : `<p class="empty compact-empty">No A+ setups. Good.</p>`}
+      </div>
+      <div>
+        <h3>Watch For Trigger</h3>
+        ${watch.length ? watch.slice(0, 5).map((row) => renderSignalCard(row, "compact")).join("") : `<p class="empty compact-empty">No watch triggers right now.</p>`}
+      </div>
+      <div>
+        <h3>No Trade</h3>
+        ${noTrade.length ? noTrade.slice(0, 5).map((row) => renderSignalCard(row, "compact")).join("") : `<p class="empty compact-empty">No rejected setups yet.</p>`}
+      </div>
+    </section>
+  `;
 }
 
 function renderMorningBrief(summary) {
@@ -488,17 +639,14 @@ async function loadLatest() {
     const response = await fetch("/api/intraday", { cache: "no-store" });
     const data = await response.json();
     renderSummary(data.summary, data.alerts);
-    renderMorningBrief(data.summary);
-    renderIndexTape(data.summary, data.alerts);
-    renderTradeDeck(data.summary, data.alerts);
-    renderV2Board(data.summary);
+    renderSignalBoard(data.summary, data.alerts, data.results);
     renderDeskContext(data.summary);
     renderPaperResults(data.summary, data.paperResults);
     renderTable(data.results?.length ? data.results : data.alerts);
     document.getElementById("status").textContent = "Ready";
   } catch (error) {
     document.getElementById("status").textContent = "Local server/API error";
-    document.getElementById("approved-cards").innerHTML = `<p class="empty">${error.message}. Make sure npm run intraday:dashboard is running.</p>`;
+    document.getElementById("signal-board").innerHTML = `<p class="empty">${error.message}. Make sure npm run intraday:dashboard is running.</p>`;
   }
 }
 
@@ -511,21 +659,18 @@ async function runScan() {
     const data = await response.json();
     if (data.error) {
       document.getElementById("status").textContent = data.error;
-      document.getElementById("approved-cards").innerHTML = `<p class="empty">${data.error}</p>`;
+      document.getElementById("signal-board").innerHTML = `<p class="empty">${data.error}</p>`;
       return;
     }
     renderSummary(data.summary, data.tradeIdeas);
-    renderMorningBrief(data.summary);
-    renderIndexTape(data.summary, data.results);
-    renderTradeDeck(data.summary, data.tradeIdeas);
-    renderV2Board(data.summary);
+    renderSignalBoard(data.summary, data.tradeIdeas, data.results);
     renderDeskContext(data.summary);
     renderPaperResults(data.summary, data.summary?.paperResults);
     renderTable(data.results);
     document.getElementById("status").textContent = "Ready";
   } catch (error) {
     document.getElementById("status").textContent = "Scan failed";
-    document.getElementById("approved-cards").innerHTML = `<p class="empty">${error.message}. Keep the local server running and check network access.</p>`;
+    document.getElementById("signal-board").innerHTML = `<p class="empty">${error.message}. Keep the local server running and check network access.</p>`;
   } finally {
     runScan.active = false;
   }
