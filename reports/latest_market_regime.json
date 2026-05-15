@@ -1,15 +1,15 @@
 {
   "regime": "RISK_ON",
-  "score": 85,
+  "score": 75,
   "bullishSizeMultiplier": 1,
   "bearishSizeMultiplier": 0.5,
-  "vix": 18.12,
+  "vix": 18.43,
   "indexes": [
     {
       "symbol": "SPY",
       "score": 90,
-      "close": 739.12,
-      "rsi14": 63.9,
+      "close": 739.17,
+      "rsi14": 64,
       "adx14": 39.8,
       "above20": true,
       "above50": true,
@@ -30,7 +30,7 @@
     {
       "symbol": "IWM",
       "score": 45,
-      "close": 277.62,
+      "close": 277.6,
       "rsi14": 43.2,
       "adx14": 24.4,
       "above20": false,
