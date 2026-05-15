@@ -4,11 +4,11 @@
   "primaryAction": "BITF.TO: SPEC BUY",
   "topSymbol": "BITF.TO",
   "topReason": "This is the kind of technical risk I would fund from a small speculative sleeve because momentum, relative strength, and volume agree.",
-  "buyCount": 6,
-  "starterCount": 3,
-  "watchCount": 2,
-  "plannedCapital": 4700,
-  "cashReserve": 300,
+  "buyCount": 5,
+  "starterCount": 2,
+  "watchCount": 3,
+  "plannedCapital": 4500,
+  "cashReserve": 500,
   "rules": [
     "This is not retirement money.",
     "Maximum 5-7 names.",
@@ -18,34 +18,34 @@
   ],
   "marketContext": {
     "SPY": {
-      "close": 743.3,
-      "return20": 4.67,
-      "return60": 8.59
+      "close": 739.12,
+      "return20": 4.08,
+      "return60": 7.98
     },
     "QQQ": {
-      "close": 714.94,
-      "return20": 10.19,
-      "return60": 18.47
+      "close": 708.93,
+      "return20": 9.26,
+      "return60": 17.48
     },
     "IWM": {
-      "close": 278.87,
-      "return20": 1.12,
-      "return60": 5.39
+      "close": 277.62,
+      "return20": 0.67,
+      "return60": 4.92
     },
     "ARKK": {
-      "close": 75.87,
-      "return20": -4.24,
-      "return60": 5.02
+      "close": 74.98,
+      "return20": -5.36,
+      "return60": 3.79
     },
     "XIU.TO": {
-      "close": 49.84,
-      "return20": -1.29,
-      "return60": 1.1
+      "close": 49.82,
+      "return20": -1.33,
+      "return60": 1.05
     },
     "XIC.TO": {
-      "close": 54.1,
-      "return20": -1.35,
-      "return60": 0.74
+      "close": 54.08,
+      "return20": -1.39,
+      "return60": 0.71
     }
   }
 }
