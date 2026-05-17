@@ -480,6 +480,168 @@ function peerTable(rows = []) {
   `;
 }
 
+const CLIENT_PEER_RULES = [
+  {
+    pattern: /(beverage|energy drink|non-alcoholic|soft drink|functional drink|celsius|consumer defensive)/i,
+    groups: {
+      directOperating: [["MNST", "Monster Beverage", "Energy drink operating peer."], ["PEP", "PepsiCo", "Beverage distribution and portfolio peer."], ["KDP", "Keurig Dr Pepper", "North American beverage peer."], ["FIZZ", "National Beverage", "Public beverage-brand peer."], ["VITA", "Vita Coco", "Functional beverage peer."]],
+      publicValuation: [["MNST", "Monster Beverage", "Closest scaled energy-drink valuation peer."], ["KO", "Coca-Cola", "Global beverage franchise anchor."], ["PEP", "PepsiCo", "Global beverage/snack anchor."], ["KDP", "Keurig Dr Pepper", "Beverage portfolio comp."], ["FIZZ", "National Beverage", "Smaller beverage comp."]],
+      adjacentStrategic: [["KO", "Coca-Cola", "Strategic distribution and brand benchmark."], ["PEP", "PepsiCo", "Distribution and shelf-space benchmark."], ["", "Red Bull", "Private energy-drink leader; strategic context only."], ["", "Ghost / Alani Nu / Rockstar", "Private or portfolio brands; category context only."]],
+    },
+  },
+  {
+    pattern: /(semiconductor|chip|gpu|processor)/i,
+    groups: {
+      directOperating: [["NVDA", "NVIDIA", "Accelerated compute leader."], ["AMD", "Advanced Micro Devices", "CPU/GPU peer."], ["AVGO", "Broadcom", "Diversified semiconductor peer."]],
+      publicValuation: [["NVDA", "NVIDIA", "Premium AI semiconductor multiple."], ["AVGO", "Broadcom", "Quality semiconductor comp."], ["QCOM", "Qualcomm", "Semiconductor valuation comp."]],
+      adjacentStrategic: [["TSM", "Taiwan Semiconductor", "Foundry benchmark."], ["ASML", "ASML", "Equipment constraint benchmark."], ["INTC", "Intel", "Legacy CPU/foundry contrast."]],
+    },
+  },
+  {
+    pattern: /(software|application|cloud|internet|platform|data|cybersecurity)/i,
+    groups: {
+      directOperating: [["MSFT", "Microsoft", "Software/cloud platform peer."], ["ORCL", "Oracle", "Enterprise software/cloud peer."], ["CRM", "Salesforce", "Application software peer."]],
+      publicValuation: [["MSFT", "Microsoft", "Mega-cap software anchor."], ["ADBE", "Adobe", "High-margin software comp."], ["NOW", "ServiceNow", "Premium workflow software comp."]],
+      adjacentStrategic: [["GOOGL", "Alphabet", "Cloud/AI/ads adjacency."], ["AMZN", "Amazon", "AWS/platform adjacency."], ["META", "Meta Platforms", "AI platform adjacency."]],
+    },
+  },
+  {
+    pattern: /(bank|credit|financial|capital markets|fintech|payments)/i,
+    groups: {
+      directOperating: [["JPM", "JPMorgan Chase", "Scaled banking/financial peer."], ["BAC", "Bank of America", "Large bank peer."], ["C", "Citigroup", "Global bank peer."]],
+      publicValuation: [["JPM", "JPMorgan Chase", "Quality bank anchor."], ["GS", "Goldman Sachs", "Capital-markets comp."], ["MS", "Morgan Stanley", "Capital-markets/wealth comp."]],
+      adjacentStrategic: [["V", "Visa", "Payments adjacency."], ["MA", "Mastercard", "Payments adjacency."], ["PYPL", "PayPal", "Digital payments contrast."]],
+    },
+  },
+  {
+    pattern: /(auto|vehicle|ev|automaker)/i,
+    groups: {
+      directOperating: [["TSLA", "Tesla", "EV operating peer."], ["GM", "General Motors", "Legacy automaker peer."], ["F", "Ford", "Legacy automaker peer."]],
+      publicValuation: [["TSLA", "Tesla", "EV valuation anchor."], ["TM", "Toyota", "Global auto anchor."], ["GM", "General Motors", "U.S. auto comp."]],
+      adjacentStrategic: [["RIVN", "Rivian", "EV challenger."], ["LCID", "Lucid", "EV challenger."], ["UBER", "Uber", "Mobility adjacency."]],
+    },
+  },
+  {
+    pattern: /(retail|marketplace|e-commerce|consumer cyclical|apparel)/i,
+    groups: {
+      directOperating: [["AMZN", "Amazon", "Marketplace/e-commerce peer."], ["WMT", "Walmart", "Retail scale peer."], ["TGT", "Target", "U.S. retail peer."]],
+      publicValuation: [["COST", "Costco", "Premium retail anchor."], ["WMT", "Walmart", "Scaled retail comp."], ["AMZN", "Amazon", "Marketplace/platform comp."]],
+      adjacentStrategic: [["SHOP", "Shopify", "Merchant platform adjacency."], ["MELI", "MercadoLibre", "Marketplace/fintech adjacency."], ["BABA", "Alibaba", "Global marketplace contrast."]],
+    },
+  },
+];
+
+function normalizePeerGroups(result) {
+  const symbol = String(result.symbol ?? "").toUpperCase();
+  const reportGroups = result.report?.peerGroups;
+  const text = [result.name, result.business?.sector, result.business?.industry, result.business?.theme, result.report?.businessModel, result.report?.coreProduct].join(" ");
+  const selected = reportGroups || CLIENT_PEER_RULES.find((rule) => rule.pattern.test(text))?.groups || {
+    directOperating: [["SPY", "S&P 500 ETF", "Broad market benchmark until direct peers are validated."]],
+    publicValuation: [["QQQ", "Nasdaq 100 ETF", "Growth benchmark until valuation peers are validated."]],
+    adjacentStrategic: [],
+  };
+  const convert = (rows = []) => rows
+    .map((row) => Array.isArray(row) ? { symbol: row[0], name: row[1], reason: row[2], isPublic: Boolean(row[0]) } : row)
+    .filter((row) => String(row.symbol ?? "").toUpperCase() !== symbol);
+  return {
+    directOperating: convert(selected.directOperating),
+    publicValuation: convert(selected.publicValuation),
+    adjacentStrategic: convert(selected.adjacentStrategic),
+  };
+}
+
+function peerGroupTable(groups) {
+  const rows = [
+    ["Direct operating peers", groups.directOperating],
+    ["Public valuation peers", groups.publicValuation],
+    ["Adjacent strategic peers", groups.adjacentStrategic],
+  ].flatMap(([group, peers]) => peers.map((peer) => ({ group, ...peer })));
+  return `
+    <div class="table-wrap peer-table">
+      <table>
+        <thead><tr><th>Group</th><th>Ticker</th><th>Company / brand</th><th>Why included</th></tr></thead>
+        <tbody>${rows.map((peer) => `
+          <tr>
+            <td>${escapeHtml(peer.group)}</td>
+            <td><strong>${escapeHtml(peer.symbol || "Private / portfolio")}</strong></td>
+            <td>${escapeHtml(peer.name || "")}</td>
+            <td>${escapeHtml(peer.reason || "Industry context.")}</td>
+          </tr>
+        `).join("")}</tbody>
+      </table>
+    </div>
+  `;
+}
+
+function filteredPeerComparison(result) {
+  const groups = normalizePeerGroups(result);
+  const allowed = new Set([...groups.directOperating, ...groups.publicValuation].map((peer) => String(peer.symbol || "").toUpperCase()).filter(Boolean));
+  return (result.peerComparison ?? []).filter((row) => row.isTarget || allowed.has(String(row.symbol || "").toUpperCase()));
+}
+
+function institutionalMemo(result, context) {
+  const checklist = result.growthChecklist ?? {};
+  const report = result.report ?? {};
+  const technical = result.technical ?? {};
+  const valuation = result.valuation ?? {};
+  const groups = normalizePeerGroups(result);
+  const currentPrice = Number(result.currentPrice ?? technical.close);
+  const support = Number(technical.stop ?? technical.low55);
+  const resistance = Number(technical.target ?? technical.high55);
+  const starter = Number.isFinite(currentPrice) ? currentPrice : null;
+  const pullback = Number.isFinite(support) ? support : Number.isFinite(currentPrice) ? currentPrice * 0.92 : null;
+  const breakout = Number.isFinite(resistance) ? resistance : Number.isFinite(currentPrice) ? currentPrice * 1.08 : null;
+  const fairLow = Number.isFinite(currentPrice) ? currentPrice * (valuation.score >= 55 ? 0.95 : 0.8) : null;
+  const fairHigh = Number.isFinite(currentPrice) ? currentPrice * (checklist.isGrowthStock ? 1.35 : 1.15) : null;
+  return `
+    <section class="institutional-memo">
+      <h3>A. Executive Summary</h3>
+      <div class="report-grid">
+        <div><span>Bull thesis</span><p>${escapeHtml(report.bullCase || "Bull case needs more company-specific proof.")}</p></div>
+        <div><span>Bear thesis</span><p>${escapeHtml(report.bearCase || "Bear case needs more company-specific proof.")}</p></div>
+        <div><span>Base-case view</span><p>${escapeHtml(result.managerRead || report.shortAnalysis || "Use as research, not a buy/sell instruction.")}</p></div>
+        <div><span>Rating / Confidence / Risk</span><p>${escapeHtml(result.investigateFurther || result.decision || "Watchlist")} | Confidence ${Math.round(Number(context.reportScores.overallScore ?? result.totalScore ?? 0))}/100 | Risk ${Math.round(Number(result.riskScore ?? 0))}/100</p></div>
+      </div>
+      <h3>B. Business Model</h3>
+      <p>${escapeHtml(report.businessModel || result.business?.plainEnglish || "Business model unavailable.")}</p>
+      <div class="metric-card-grid metric-card-grid--advisor">
+        ${advisorCard({ label: "Sector / industry", value: `${result.business?.sector || "n/a"} / ${result.business?.industry || "n/a"}` })}
+        ${advisorCard({ label: "Revenue stream", value: report.coreProduct || "Use filings to confirm revenue mix." })}
+        ${advisorCard({ label: "Customer / distribution", value: result.business?.theme || "Use filings to confirm customer and distribution model." })}
+      </div>
+      <h3>C. Industry & Competitive Position</h3>
+      ${peerGroupTable(groups)}
+      <p>${escapeHtml(report.peerValidation || "Peers are grouped by operating relevance first; broad-market or adjacent peers are labeled separately.")}</p>
+      <h3>D. Financial Analysis</h3>
+      <div class="metric-card-grid">${context.healthRows.map(metricCard).join("")}${context.growthRows.map(metricCard).join("")}</div>
+      <h3>E. Valuation</h3>
+      <div class="metric-card-grid">${context.valuationRows.map(metricCard).join("")}</div>
+      <p>Fair value framework: ${money(fairLow)} to ${money(fairHigh)} from current available market data. Missing valuation fields stay marked unavailable.</p>
+      <h3>F. Catalysts</h3>
+      <ul class="plain-list">${(report.catalysts ?? []).slice(0, 8).map((item) => `<li>${escapeHtml(item)}</li>`).join("") || "<li>No specific catalyst found in the published data.</li>"}</ul>
+      <h3>G. Risks</h3>
+      <div class="risk-heatmap">${context.riskRows.map(riskHeatCell).join("")}</div>
+      <h3>H. Technical Analysis</h3>
+      <div class="metric-card-grid metric-card-grid--advisor">
+        ${advisorCard({ label: "Trend", status: technical.score >= 60 ? "pass" : technical.score >= 45 ? "near" : "fail", value: `${technical.rating || "n/a"} trend. Price ${money(currentPrice)}, EMA50 ${money(technical.ema50)}, EMA150 ${money(technical.ema150)}.` })}
+        ${advisorCard({ label: "Momentum", status: technical.rsi14 >= 50 ? "pass" : "near", value: `RSI ${technical.rsi14 ?? "n/a"}, ADX ${technical.adx14 ?? "n/a"}, relative strength ${technical.relativeStrength60 ?? "n/a"}%.` })}
+        ${advisorCard({ label: "Support / resistance", value: `Support/invalidation near ${money(pullback)}; breakout/reference target near ${money(breakout)}.` })}
+      </div>
+      <h3>I. Position Sizing Plan</h3>
+      <table><tbody>
+        <tr><th>Starter position</th><td>20%-25% near ${money(starter)} only if thesis and chart are acceptable.</td></tr>
+        <tr><th>Add on pullback</th><td>25%-30% near ${money(pullback)} if fundamentals remain intact.</td></tr>
+        <tr><th>Add on breakout</th><td>25%-30% above ${money(breakout)} with volume/earnings confirmation.</td></tr>
+        <tr><th>Cash reserve</th><td>20%-30% for volatility, earnings, or better valuation.</td></tr>
+        <tr><th>Invalidation</th><td>Reassess if support breaks or the next filing contradicts the thesis.</td></tr>
+      </tbody></table>
+      <h3>J. Final Verdict</h3>
+      <p>${escapeHtml(report.shortAnalysis || result.managerRead || "Research verdict unavailable.")}</p>
+      <p><strong>What must happen:</strong> Revenue, margins, valuation, and technical trend must support the same thesis; if any are missing, keep it as watchlist research.</p>
+    </section>
+  `;
+}
+
 function rowsByLabel(checklist, labels) {
   return labels.map((label) => checklist?.rows?.find((row) => row.label === label)).filter(Boolean);
 }
@@ -547,8 +709,9 @@ function renderReportSection(result) {
           </div>
         `).join("")}
       </div>
+      ${institutionalMemo(result, { reportScores, valuationRows, healthRows, growthRows, riskRows })}
       <details class="report-section" open><summary>1. Business Model</summary><p>${escapeHtml(report.businessModel || "Business model was not available.")}</p></details>
-      <details class="report-section" open><summary>2. Moat and Competition</summary><p>${escapeHtml(report.moat || "Moat read was not available.")}</p><p><strong>Peers:</strong> ${(report.competitors ?? []).map(escapeHtml).join(" / ") || "n/a"}</p><p>${escapeHtml(report.technologyAdvantage || "Technology advantage was not confirmed.")}</p></details>
+      <details class="report-section" open><summary>2. Moat and Competition</summary><p>${escapeHtml(report.moat || "Moat read was not available.")}</p><p>${escapeHtml(report.technologyAdvantage || "Technology advantage was not confirmed.")}</p></details>
       <details class="report-section" open><summary>3-5. Financial Quality, Growth, Valuation</summary>
         <h3>Financial Health</h3><div class="metric-card-grid">${healthRows.map(metricCard).join("")}</div>
         <h3>Growth</h3><div class="metric-card-grid">${growthRows.map(metricCard).join("")}</div>
@@ -565,7 +728,7 @@ function renderReportSection(result) {
       </div></details>
       <details class="report-section" open><summary>14. Red Flags</summary><ul class="plain-list">${[...(result.risks ?? []), ...(dataQuality.missingOrEstimatedValues ?? []).map((item) => `Missing/estimated: ${item}`)].slice(0, 12).map((item) => `<li>${escapeHtml(item)}</li>`).join("") || "<li>No major red flags from available fields.</li>"}</ul></details>
       <h3>Peer Comparison</h3>
-      ${peerTable(result.peerComparison ?? [])}
+      ${peerTable(filteredPeerComparison(result))}
       <h3>Risk Heatmap</h3>
       <div class="risk-heatmap">${riskRows.map(riskHeatCell).join("")}</div>
       <h3>Advisor Add-ons</h3>

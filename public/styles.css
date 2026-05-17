@@ -899,6 +899,31 @@ th {
   margin-top: 8px;
 }
 
+.institutional-memo {
+  display: grid;
+  gap: 1rem;
+  margin: 1.25rem 0;
+}
+
+.institutional-memo h3 {
+  margin: 0.4rem 0 0;
+  font-size: 1rem;
+  letter-spacing: 0;
+}
+
+.institutional-memo table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.institutional-memo th,
+.institutional-memo td {
+  border-bottom: 1px solid rgba(148, 163, 184, 0.18);
+  padding: 0.7rem;
+  text-align: left;
+  vertical-align: top;
+}
+
 .hidden-hunter {
   border: 1px solid rgba(16, 185, 129, 0.24);
   border-radius: 10px;

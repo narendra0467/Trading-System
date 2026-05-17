@@ -59,20 +59,96 @@ function firstSentences(text, count = 2) {
   return sentences.slice(0, count).join(" ").trim();
 }
 
+const PEER_RULES = [
+  {
+    pattern: /(beverage|energy drink|non-alcoholic|soft drink|functional drink|consumer defensive)/,
+    groups: {
+      directOperating: [["MNST", "Monster Beverage", "Energy drink operating peer."], ["PEP", "PepsiCo", "Beverage distribution and portfolio peer."], ["KDP", "Keurig Dr Pepper", "North American beverage peer."], ["FIZZ", "National Beverage", "Public beverage-brand peer."], ["VITA", "Vita Coco", "Functional beverage peer."]],
+      publicValuation: [["MNST", "Monster Beverage", "Closest scaled energy-drink valuation peer."], ["KO", "Coca-Cola", "Global beverage franchise anchor."], ["PEP", "PepsiCo", "Global beverage/snack anchor."], ["KDP", "Keurig Dr Pepper", "Beverage portfolio comp."], ["FIZZ", "National Beverage", "Smaller beverage comp."]],
+      adjacentStrategic: [["KO", "Coca-Cola", "Strategic distribution and brand benchmark."], ["PEP", "PepsiCo", "Distribution and shelf-space benchmark."], [null, "Red Bull", "Private energy-drink leader; strategic context only."], [null, "Ghost / Alani Nu / Rockstar", "Private or portfolio brands; category context only."]],
+    },
+  },
+  {
+    pattern: /(semiconductor|chip|gpu|processor)/,
+    groups: {
+      directOperating: [["NVDA", "NVIDIA", "Accelerated compute leader."], ["AMD", "Advanced Micro Devices", "CPU/GPU peer."], ["AVGO", "Broadcom", "Diversified semiconductor peer."]],
+      publicValuation: [["NVDA", "NVIDIA", "Premium AI semiconductor multiple."], ["AVGO", "Broadcom", "Quality semiconductor comp."], ["QCOM", "Qualcomm", "Semiconductor valuation comp."]],
+      adjacentStrategic: [["TSM", "Taiwan Semiconductor", "Foundry benchmark."], ["ASML", "ASML", "Equipment constraint benchmark."], ["INTC", "Intel", "Legacy CPU/foundry contrast."]],
+    },
+  },
+  {
+    pattern: /(software|application|cloud|internet|platform|data|cybersecurity)/,
+    groups: {
+      directOperating: [["MSFT", "Microsoft", "Software/cloud platform peer."], ["ORCL", "Oracle", "Enterprise software/cloud peer."], ["CRM", "Salesforce", "Application software peer."]],
+      publicValuation: [["MSFT", "Microsoft", "Mega-cap software anchor."], ["ADBE", "Adobe", "High-margin software comp."], ["NOW", "ServiceNow", "Premium workflow software comp."]],
+      adjacentStrategic: [["GOOGL", "Alphabet", "Cloud/AI/ads adjacency."], ["AMZN", "Amazon", "AWS/platform adjacency."], ["META", "Meta Platforms", "AI platform adjacency."]],
+    },
+  },
+  {
+    pattern: /(bank|credit|financial|capital markets|fintech|payments)/,
+    groups: {
+      directOperating: [["JPM", "JPMorgan Chase", "Scaled banking/financial peer."], ["BAC", "Bank of America", "Large bank peer."], ["C", "Citigroup", "Global bank peer."]],
+      publicValuation: [["JPM", "JPMorgan Chase", "Quality bank anchor."], ["GS", "Goldman Sachs", "Capital-markets comp."], ["MS", "Morgan Stanley", "Capital-markets/wealth comp."]],
+      adjacentStrategic: [["V", "Visa", "Payments adjacency."], ["MA", "Mastercard", "Payments adjacency."], ["PYPL", "PayPal", "Digital payments contrast."]],
+    },
+  },
+  {
+    pattern: /(auto|vehicle|ev|automaker)/,
+    groups: {
+      directOperating: [["TSLA", "Tesla", "EV operating peer."], ["GM", "General Motors", "Legacy automaker peer."], ["F", "Ford", "Legacy automaker peer."]],
+      publicValuation: [["TSLA", "Tesla", "EV valuation anchor."], ["TM", "Toyota", "Global auto anchor."], ["GM", "General Motors", "U.S. auto comp."]],
+      adjacentStrategic: [["RIVN", "Rivian", "EV challenger."], ["LCID", "Lucid", "EV challenger."], ["UBER", "Uber", "Mobility adjacency."]],
+    },
+  },
+  {
+    pattern: /(retail|marketplace|e-commerce|consumer cyclical|apparel)/,
+    groups: {
+      directOperating: [["AMZN", "Amazon", "Marketplace/e-commerce peer."], ["WMT", "Walmart", "Retail scale peer."], ["TGT", "Target", "U.S. retail peer."]],
+      publicValuation: [["COST", "Costco", "Premium retail anchor."], ["WMT", "Walmart", "Scaled retail comp."], ["AMZN", "Amazon", "Marketplace/platform comp."]],
+      adjacentStrategic: [["SHOP", "Shopify", "Merchant platform adjacency."], ["MELI", "MercadoLibre", "Marketplace/fintech adjacency."], ["BABA", "Alibaba", "Global marketplace contrast."]],
+    },
+  },
+  {
+    pattern: /(media|streaming|entertainment|advertising)/,
+    groups: {
+      directOperating: [["NFLX", "Netflix", "Streaming peer."], ["DIS", "Disney", "Media/streaming peer."], ["WBD", "Warner Bros. Discovery", "Media peer."]],
+      publicValuation: [["NFLX", "Netflix", "Streaming valuation anchor."], ["DIS", "Disney", "Diversified media comp."], ["META", "Meta Platforms", "Advertising platform comp."]],
+      adjacentStrategic: [["GOOGL", "Alphabet", "Digital ads/video adjacency."], ["AMZN", "Amazon", "Prime Video/ads adjacency."], ["SPOT", "Spotify", "Subscription media adjacency."]],
+    },
+  },
+  {
+    pattern: /(energy|oil|gas|exploration|integrated oil)/,
+    groups: {
+      directOperating: [["XOM", "Exxon Mobil", "Integrated energy peer."], ["CVX", "Chevron", "Integrated energy peer."], ["COP", "ConocoPhillips", "E&P peer."]],
+      publicValuation: [["XOM", "Exxon Mobil", "Quality energy anchor."], ["CVX", "Chevron", "Integrated energy anchor."], ["EOG", "EOG Resources", "E&P valuation comp."]],
+      adjacentStrategic: [["SLB", "SLB", "Oilfield services adjacency."], ["LNG", "Cheniere", "LNG adjacency."], ["OXY", "Occidental", "E&P/chemicals adjacency."]],
+    },
+  },
+];
+
+function peerGroupsForCompany(sector, industry, symbol, companyName = "", profileSummary = "") {
+  const text = `${sector ?? ""} ${industry ?? ""} ${companyName ?? ""} ${profileSummary ?? ""}`.toLowerCase();
+  const rule = PEER_RULES.find((item) => item.pattern.test(text));
+  const groups = rule?.groups ?? {
+    directOperating: [["SPY", "S&P 500 ETF", "Broad market benchmark until industry peers are validated."], ["QQQ", "Nasdaq 100 ETF", "Growth benchmark until industry peers are validated."], ["IWM", "Russell 2000 ETF", "Small/mid-cap benchmark until industry peers are validated."]],
+    publicValuation: [["SPY", "S&P 500 ETF", "Market multiple anchor."], ["QQQ", "Nasdaq 100 ETF", "Growth multiple anchor."], ["IWM", "Russell 2000 ETF", "Small/mid-cap multiple anchor."]],
+    adjacentStrategic: [],
+  };
+  const normalize = ([peerSymbol, name, reason]) => ({ symbol: peerSymbol, name, reason, isPublic: Boolean(peerSymbol) });
+  const exclude = String(symbol ?? "").toUpperCase();
+  return {
+    directOperating: groups.directOperating.map(normalize).filter((peer) => peer.symbol !== exclude),
+    publicValuation: groups.publicValuation.map(normalize).filter((peer) => peer.symbol !== exclude),
+    adjacentStrategic: groups.adjacentStrategic.map(normalize).filter((peer) => peer.symbol !== exclude),
+  };
+}
+
 function competitorSet(sector, industry, symbol) {
-  const text = `${sector ?? ""} ${industry ?? ""}`.toLowerCase();
-  const candidates = [
-    [/(semiconductor|chip)/, ["NVDA", "AMD", "AVGO", "INTC", "QCOM"]],
-    [/(software|application|internet|cloud)/, ["MSFT", "GOOGL", "AMZN", "ORCL", "CRM"]],
-    [/(bank|credit|financial|capital markets|fintech)/, ["JPM", "BAC", "PYPL"]],
-    [/(auto|vehicle|ev)/, ["TSLA", "GM", "F"]],
-    [/(biotech|pharma|health)/, ["LLY", "MRK", "PFE"]],
-    [/(retail|consumer|apparel)/, ["AMZN", "WMT", "TGT"]],
-    [/(entertainment|streaming|media)/, ["NFLX", "DIS", "WBD"]],
-    [/(energy|oil|gas)/, ["XOM", "CVX", "COP"]],
-  ];
-  const match = candidates.find(([pattern]) => pattern.test(text));
-  return (match?.[1] ?? ["SPY", "QQQ", "IWM"]).filter((item) => item !== symbol).slice(0, 3);
+  const groups = peerGroupsForCompany(sector, industry, symbol);
+  return [
+    ...groups.directOperating,
+    ...groups.publicValuation,
+  ].map((peer) => peer.symbol).filter(Boolean).filter((item, index, rows) => rows.indexOf(item) === index).slice(0, 5);
 }
 
 function technologyAdvantage(theme, profileSummary) {
@@ -718,6 +794,7 @@ function investigateFurtherLabel(reportScores, growthChecklist, technical, valua
 function buildBusinessReport(symbol, companyName, sector, industry, theme, summary, growthChecklist, technical, fundamentals, valuation, analysts, riskScore, newsEngine = null) {
   const profileSummary = summary.assetProfile?.longBusinessSummary ?? "";
   const productRead = firstSentences(profileSummary, 2) || `${companyName} operates in ${sector} / ${industry}. Yahoo did not provide a full business summary.`;
+  const peerGroups = peerGroupsForCompany(sector, industry, symbol, companyName, profileSummary);
   const catalystRead = [
     ...buildCatalystRead(summary, symbol),
     ...(newsEngine?.items ?? [])
@@ -743,7 +820,12 @@ function buildBusinessReport(symbol, companyName, sector, industry, theme, summa
     businessModel,
     coreProduct: productRead,
     moat: `The likely moat is ${theme === "diversified fund / ETF" ? "diversification, brand, liquidity, and low-cost access" : "brand, product ecosystem, customer relationships, execution quality, and scale"}. This dashboard does not claim a proven patent moat unless Yahoo data explicitly supports it.`,
-    competitors: competitorSet(sector, industry, symbol),
+    peerGroups,
+    peerValidation: "Peers are selected from industry-specific rule sets. Adjacent strategic peers are labeled separately and should not be treated as direct operating comps.",
+    competitors: [
+      ...peerGroups.directOperating,
+      ...peerGroups.publicValuation,
+    ].map((peer) => peer.symbol).filter(Boolean).filter((item, index, rows) => rows.indexOf(item) === index).slice(0, 5),
     technologyAdvantage: technologyAdvantage(theme, profileSummary),
     catalysts: catalystRead,
     asymmetry: buildAsymmetryRead(growthChecklist, valuation, technical),
