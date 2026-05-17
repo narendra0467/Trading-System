@@ -652,7 +652,45 @@ function round(value, decimals = 1) {
 }
 
 function renderReportSection(result) {
-  const s = result.seniorScorecard ?? {};
+  // Derive fallback scorecard from existing fields when seniorScorecard is missing (old cache / old API)
+  function deriveFallbackScorecard(r) {
+    const f = r.fundamentals ?? {};
+    const t = r.technical ?? {};
+    const v = r.valuation ?? {};
+    const m = r.moat ?? {};
+    const rs = r.reportScores ?? {};
+    const bq = Math.round(Math.min(100, Math.max(0, f.score ?? 35)));
+    const tq = Math.round(Math.min(100, Math.max(0, t.score ?? 35)));
+    const moatS = Math.round(Math.min(100, Math.max(0, m.score ?? 40)));
+    const growth = Math.round(Math.min(100, Math.max(0, rs.growthPotential ?? r.growthPotential ?? 40)));
+    const vRisk = Number.isFinite(v.score) ? Math.round(Math.min(100, Math.max(0, 100 - v.score))) : 55;
+    const riskS = Math.round(Math.min(100, Math.max(0, rs.riskScore ?? r.riskScore ?? 50)));
+    const analystS = Math.round(Math.min(100, Math.max(0, r.analysts?.score ?? 45)));
+    const total = Math.round(Math.min(100, Math.max(0, r.totalScore ?? 0)));
+    const conf = Math.round(bq * 0.35 + moatS * 0.35 + growth * 0.30);
+    return {
+      overallLongTermScore: total,
+      businessQualityScore: bq,
+      revenueGrowthScore: growth,
+      marginQualityScore: bq,
+      freeCashFlowScore: Math.max(0, bq - 5),
+      balanceSheetScore: 50,
+      moatScore: moatS,
+      managementScore: analystS,
+      valuationRiskScore: vRisk,
+      earningsRiskScore: 45,
+      technicalSetupScore: tq,
+      entryTimingScore: Math.max(0, tq - 8),
+      fiveYearConfidenceScore: Math.min(100, conf),
+      growthPotentialScore: growth,
+      downsideRiskScore: riskS,
+      sharesVsLeapsSuitabilityScore: Math.max(0, total - 20),
+      _isFallback: true,
+    };
+  }
+
+  const rawScorecard = result.seniorScorecard ?? {};
+  const s = Object.keys(rawScorecard).length > 0 ? rawScorecard : deriveFallbackScorecard(result);
   const tp = result.technicalPlan ?? {};
   const ea = result.earningsAnalysis ?? {};
   const fy = result.fiveYearTable ?? {};
@@ -830,7 +868,7 @@ function renderReportSection(result) {
       <!-- SCORECARD -->
       <details class="report-section report-section--open" open>
         <summary>Score Dashboard — 16 Dimensions</summary>
-        <p class="scorecard-legend">Quality/strength scores: higher = better. Risk scores (Valuation Risk, Earnings Risk, Downside Risk): higher = more risky.</p>
+        <p class="scorecard-legend">Quality/strength scores: higher = better. Risk scores (Valuation Risk, Earnings Risk, Downside Risk): higher = more risky.${s._isFallback ? " <em>(Scores estimated from available data — use the live local dashboard for full precision.)</em>" : ""}</p>
         <div class="senior-scorecard-grid">
           ${seniorMeter("Overall Long-Term Score", s.overallLongTermScore, "Weighted composite. Business quality 18%, Revenue growth 14%, Margin/FCF 14%, Moat 14%, Balance Sheet 10%, Management 8%, Valuation risk (inverted) 10%, Earnings risk (inverted) 5%, Technical 7%.")}
           ${seniorMeter("Business Quality", s.businessQualityScore, "Gross margin, operating margin, net margin, ROE. Core measure of profitability and business strength.")}
