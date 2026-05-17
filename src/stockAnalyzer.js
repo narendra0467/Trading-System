@@ -1277,6 +1277,720 @@ async function buildPeerComparison(targetRow, peers) {
   ];
 }
 
+// ─────────────────────────────────────────────────────────────────────────────
+// SENIOR STOCK ANALYZER — Institutional-grade analysis layer
+// ─────────────────────────────────────────────────────────────────────────────
+
+function build5YearFinancialTable(summary) {
+  const income = (summary.incomeStatementHistory?.incomeStatementHistory ?? [])
+    .map((item) => ({
+      date: item.endDate?.fmt,
+      revenue: raw(item.totalRevenue),
+      grossProfit: raw(item.grossProfit),
+      operatingIncome: raw(item.operatingIncome),
+      netIncome: raw(item.netIncome),
+      ebitda: raw(item.ebitda),
+      basicEPS: raw(item.basicEps),
+      dilutedEPS: raw(item.dilutedEps),
+    }))
+    .filter((item) => Number.isFinite(item.revenue))
+    .sort((a, b) => String(a.date).localeCompare(String(b.date)));
+
+  const cashflow = (summary.cashflowStatementHistory?.cashflowStatements ?? [])
+    .map((item) => ({
+      date: item.endDate?.fmt,
+      operatingCF: raw(item.totalCashFromOperatingActivities),
+      capex: raw(item.capitalExpenditures),
+      fcf: raw(item.freeCashFlow) ??
+        (Number.isFinite(raw(item.totalCashFromOperatingActivities)) && Number.isFinite(raw(item.capitalExpenditures))
+          ? raw(item.totalCashFromOperatingActivities) + raw(item.capitalExpenditures)
+          : null),
+    }))
+    .filter((item) => Number.isFinite(item.operatingCF))
+    .sort((a, b) => String(a.date).localeCompare(String(b.date)));
+
+  const financial = summary.financialData ?? {};
+  const stats = summary.defaultKeyStatistics ?? {};
+  const price = summary.price ?? {};
+
+  const rows = income.map((inc, idx) => {
+    const cf = cashflow.find((item) => item.date === inc.date) ?? cashflow[idx] ?? {};
+    const prev = income[idx - 1];
+    const revenueGrowth = prev?.revenue ? round(((inc.revenue - prev.revenue) / prev.revenue) * 100, 1) : null;
+    const grossMarginPct = inc.revenue && inc.grossProfit ? round((inc.grossProfit / inc.revenue) * 100, 1) : null;
+    const opMarginPct = inc.revenue && Number.isFinite(inc.operatingIncome) ? round((inc.operatingIncome / inc.revenue) * 100, 1) : null;
+    const netMarginPct = inc.revenue && Number.isFinite(inc.netIncome) ? round((inc.netIncome / inc.revenue) * 100, 1) : null;
+    const ebitdaMarginPct = inc.revenue && Number.isFinite(inc.ebitda) ? round((inc.ebitda / inc.revenue) * 100, 1) : null;
+    const fcfMarginPct = inc.revenue && Number.isFinite(cf.fcf) ? round((cf.fcf / inc.revenue) * 100, 1) : null;
+    return {
+      year: inc.date,
+      revenue: inc.revenue,
+      revenueGrowth,
+      grossProfit: inc.grossProfit,
+      grossMargin: grossMarginPct,
+      operatingIncome: inc.operatingIncome,
+      operatingMargin: opMarginPct,
+      ebitda: inc.ebitda,
+      ebitdaMargin: ebitdaMarginPct,
+      netIncome: inc.netIncome,
+      netMargin: netMarginPct,
+      eps: inc.dilutedEPS ?? inc.basicEPS,
+      fcf: cf.fcf ?? null,
+      fcfMargin: fcfMarginPct,
+      capex: cf.capex ?? null,
+    };
+  });
+
+  const revGrowthRates = rows.slice(1).map((r) => r.revenueGrowth).filter((v) => v !== null);
+  const allRevPositive = revGrowthRates.length > 0 && revGrowthRates.every((r) => r > 0);
+  const recentAccel = revGrowthRates.length >= 2 && revGrowthRates.at(-1) > revGrowthRates.at(-2);
+  const latest = rows.at(-1);
+  const oldest = rows[0];
+
+  const narrativePoints = [];
+  if (allRevPositive) narrativePoints.push("Revenue has grown consistently across all reported annual periods");
+  else if (revGrowthRates.some((r) => r > 0)) narrativePoints.push("Revenue growth has been mixed — some years showed declines or flattening");
+  else narrativePoints.push("Revenue has been declining or stagnant");
+  if (recentAccel) narrativePoints.push("growth appears to be accelerating in recent periods");
+  else if (revGrowthRates.length >= 2) narrativePoints.push("the growth rate appears to be decelerating or stable");
+  if (latest?.grossMargin && oldest?.grossMargin) {
+    const diff = (latest.grossMargin ?? 0) - (oldest.grossMargin ?? 0);
+    if (diff > 3) narrativePoints.push("gross margins are expanding — a positive sign of pricing power or scale");
+    else if (diff < -3) narrativePoints.push("gross margins have compressed — watch for competitive pressure");
+    else narrativePoints.push("gross margins are relatively stable");
+  }
+  const fcfRows = rows.filter((r) => r.fcf !== null);
+  if (fcfRows.length >= 2) {
+    if (fcfRows.every((r) => r.fcf > 0)) narrativePoints.push("free cash flow has been consistently positive — a key quality signal");
+    else if ((fcfRows.at(-1)?.fcf ?? 0) > 0 && (fcfRows.at(-2)?.fcf ?? 0) <= 0) narrativePoints.push("the company recently turned FCF positive — an improving trajectory");
+    else if ((fcfRows.at(-1)?.fcf ?? 0) < 0) narrativePoints.push("the company is still FCF negative — a risk factor to monitor");
+  }
+
+  const currentRevenue = raw(financial.totalRevenue);
+  const currentFCF = raw(financial.freeCashflow);
+  const currentCash = raw(financial.totalCash);
+  const currentDebt = raw(financial.totalDebt);
+  const currentROE = pctRaw(financial.returnOnEquity);
+  const currentROA = pctRaw(financial.returnOnAssets);
+  const rev3CAGR = income.length >= 4 ? round((cagr(income.at(-4)?.revenue, income.at(-1)?.revenue, 3) ?? 0) * 100, 1) : null;
+  const rev5CAGR = income.length >= 6 ? round((cagr(income.at(-6)?.revenue, income.at(-1)?.revenue, 5) ?? 0) * 100, 1) : null;
+
+  return {
+    rows,
+    rev3CAGR,
+    rev5CAGR,
+    currentRevenue,
+    currentFCF,
+    currentCash,
+    currentDebt,
+    netCash: Number.isFinite(currentCash) && Number.isFinite(currentDebt) ? currentCash - currentDebt : null,
+    currentROE: round(currentROE, 1),
+    currentROA: round(currentROA, 1),
+    narrative: narrativePoints.join(". ") + ".",
+  };
+}
+
+function buildEnhancedTechnicalPlan(technical, summary) {
+  const detail = summary?.summaryDetail ?? {};
+  const close = technical.close;
+  const ema20 = technical.ema20;
+  const ema50 = technical.ema50;
+  const ema150 = technical.ema150;
+  const atr14 = technical.atr14;
+  const high55 = technical.high55;
+  const rsi14 = technical.rsi14;
+  const high52w = raw(detail.fiftyTwoWeekHigh);
+  const low52w = raw(detail.fiftyTwoWeekLow);
+
+  if (!Number.isFinite(close) || !Number.isFinite(atr14) || atr14 <= 0) {
+    return { available: false };
+  }
+
+  let technicalTrend;
+  if (Number.isFinite(ema20) && Number.isFinite(ema50) && Number.isFinite(ema150)) {
+    if (close > ema20 && ema20 > ema50 && ema50 > ema150) technicalTrend = "Bullish";
+    else if (close > ema50 && ema50 > ema150) technicalTrend = "Neutral";
+    else if (close < ema50 && close > ema150) technicalTrend = "Weakening";
+    else technicalTrend = "Bearish";
+  } else {
+    technicalTrend = "Data limited";
+  }
+
+  let entryTiming;
+  if (rsi14 > 75 || (Number.isFinite(high55) && close > high55 * 1.10)) {
+    entryTiming = "Avoid chasing";
+  } else if (Number.isFinite(ema50) && close <= ema50 * 1.03 && close >= ema50 * 0.97) {
+    entryTiming = "Attractive now";
+  } else if (Number.isFinite(ema20) && close <= ema20 * 1.02 && close >= ema20 * 0.98) {
+    entryTiming = "Attractive now";
+  } else if (technicalTrend === "Bearish") {
+    entryTiming = "Avoid until trend repairs";
+  } else if (technicalTrend === "Weakening") {
+    entryTiming = "Wait for pullback";
+  } else if (Number.isFinite(high55) && close > high55) {
+    entryTiming = "Wait for breakout confirmation";
+  } else {
+    entryTiming = "Good for DCA only";
+  }
+
+  const support = Number.isFinite(ema50) ? round(ema50) : round(close * 0.94);
+  const majorSupport = Number.isFinite(ema150) ? round(ema150) : round(close * 0.85);
+  const resistance = Number.isFinite(high55) ? round(high55 * 1.005) : round(close * 1.08);
+  const invalidation = round(Math.max(
+    (Number.isFinite(ema150) ? ema150 - 1.5 * atr14 : close * 0.82),
+    close * 0.75
+  ));
+  const riskAmt = close - invalidation;
+  const idealBuyLow = round(Math.max(support * 0.98, close * 0.93));
+  const idealBuyHigh = round(Math.min(close * 1.01, Number.isFinite(ema20) ? ema20 * 1.02 : close * 1.03));
+  const dcaZoneLow = round(support * 0.96);
+  const dcaZoneHigh = round(support * 1.02);
+  const tp1 = round(close + riskAmt * 1.5);
+  const tp2 = round(close + riskAmt * 3.0);
+  const longTermBullCase = round(close * 2.5);
+  const riskRewardRatio = riskAmt > 0 ? round((tp1 - close) / riskAmt, 1) : null;
+
+  return {
+    available: true,
+    currentPrice: round(close),
+    idealBuyZoneLow: idealBuyLow,
+    idealBuyZoneHigh: idealBuyHigh,
+    dcaZoneLow,
+    dcaZoneHigh,
+    breakoutBuyAbove: Number.isFinite(high55) ? round(high55 * 1.005) : round(close * 1.08),
+    pullbackBuyZoneLow: round(close * 0.92),
+    pullbackBuyZoneHigh: round(close * 0.97),
+    supportLevel: support,
+    majorSupportLevel: majorSupport,
+    resistanceLevel: resistance,
+    invalidationBelow: invalidation,
+    tp1,
+    tp2,
+    longTermBullCase,
+    riskReward: riskRewardRatio !== null ? `${riskRewardRatio}:1` : "n/a",
+    technicalTrend,
+    entryTiming,
+    ema20: round(ema20),
+    ema50: round(ema50),
+    ema150: round(ema150),
+    rsi14: technical.rsi14,
+    atr14: round(atr14),
+    adx14: technical.adx14,
+    high52w: round(high52w),
+    low52w: round(low52w),
+    pctFrom52wHigh: Number.isFinite(high52w) && high52w > 0 ? round(((close - high52w) / high52w) * 100, 1) : null,
+    relativeStrength60: technical.relativeStrength60,
+    macdHistogram: null,
+    volume: null,
+    reasons: technical.reasons ?? [],
+    risks: technical.risks ?? [],
+  };
+}
+
+function buildEarningsWatchList(symbol, theme) {
+  const watchLists = {
+    NVDA: ["Data center revenue and growth rate", "Blackwell GPU demand/ramp status", "Gross margin trajectory", "Hyperscaler capex commentary", "China/export restriction impact"],
+    AAPL: ["iPhone unit demand and ASP", "Services revenue growth and margin", "Gross margin trend", "China market exposure", "AI integration/monetization progress"],
+    MSFT: ["Azure cloud growth rate", "Copilot/AI revenue monetization", "Operating margin", "Capex guidance and AI infrastructure", "Enterprise spending environment"],
+    AMZN: ["AWS revenue growth and margin", "Retail segment operating margin", "Advertising revenue growth", "AI/Bedrock services monetization", "Capex and data center investment"],
+    META: ["Daily/monthly active users and engagement", "Ad pricing and ARPU", "AI spending and capex trajectory", "Reality Labs losses trend", "Regulatory risk update"],
+    GOOGL: ["Search revenue vs AI disruption risk", "YouTube ad revenue growth", "Google Cloud growth and margin", "AI monetization in products", "Regulatory/antitrust developments"],
+    TSLA: ["Vehicle delivery numbers vs expectations", "Auto gross margin trajectory", "Energy storage segment growth", "FSD/Robotaxi progress and timelines", "China competition and market share"],
+    AMAT: ["WFE (equipment spending) outlook", "Orders vs shipments trend", "China revenue as % of total", "AI-driven node complexity demand", "New node customer adoption"],
+    APP: ["Software platform revenue growth", "EBITDA margin expansion", "Advertiser demand and retention", "Privacy/ecosystem dependency risk", "International expansion"],
+    SHOP: ["Gross merchandise value growth", "Subscription vs merchant solutions mix", "Operating margin trajectory", "International expansion progress", "AI tools adoption"],
+  };
+  if (watchLists[symbol]) return watchLists[symbol];
+  const themeStr = String(theme ?? "").toLowerCase();
+  if (themeStr.includes("semiconductor")) return ["Equipment/chip demand trajectory", "Gross margin", "China/export compliance", "AI-driven demand", "Next-gen product ramp"];
+  if (themeStr.includes("software") || themeStr.includes("cloud")) return ["ARR/NRR growth rate", "Gross margin", "Operating leverage trend", "AI product monetization", "Guidance vs consensus"];
+  if (themeStr.includes("financial")) return ["Net interest margin", "Loan growth", "Credit quality/charge-offs", "Expense discipline", "Capital adequacy"];
+  if (themeStr.includes("consumer")) return ["Same-store sales/volume", "Gross margin", "Unit economics", "Consumer spending environment", "Inventory management"];
+  if (themeStr.includes("healthcare") || themeStr.includes("biotech")) return ["Pipeline milestones/approvals", "Revenue growth vs guidance", "Gross margin", "R&D spend efficiency", "Competitive landscape"];
+  return ["Revenue growth vs consensus", "Gross and operating margin trends", "Free cash flow generation", "Forward guidance changes", "Management commentary on demand environment"];
+}
+
+function buildEarningsAnalysis(summary, newsEngine, symbol, theme) {
+  const calendar = summary.calendarEvents ?? {};
+  const earningsEvent = calendar.earnings ?? {};
+  const earningsTrend = summary.earningsTrend?.trend ?? [];
+  const earningsHistory = summary.earningsHistory?.history ?? [];
+  const financial = summary.financialData ?? {};
+
+  const nextEarningsDates = earningsEvent.earningsDate ?? [];
+  const nextEarningsDate = nextEarningsDates[0]?.fmt ?? null;
+  const nextEarningsConfirmed = Boolean(nextEarningsDate);
+
+  let daysUntilEarnings = null;
+  if (nextEarningsDate) {
+    const diff = new Date(nextEarningsDate).getTime() - Date.now();
+    daysUntilEarnings = Math.ceil(diff / (1000 * 60 * 60 * 24));
+  }
+
+  const lastQTrend = earningsTrend.find((t) => t.period === "-1q") ?? earningsTrend.find((t) => t.period === "0q");
+  const currentQTrend = earningsTrend.find((t) => t.period === "0q");
+
+  const lastEarningsEntry = earningsHistory.at(-1);
+  const lastEarningsDate = lastEarningsEntry?.quarter?.fmt ?? null;
+  const epsActual = raw(lastEarningsEntry?.epsActual);
+  const epsEstimate = raw(lastEarningsEntry?.epsEstimate);
+  const epsDiff = raw(lastEarningsEntry?.epsDifference);
+  const epsSurprisePct = raw(lastEarningsEntry?.surprisePercent);
+
+  let epsVsExpectations = "Data unavailable from Yahoo";
+  if (Number.isFinite(epsDiff)) {
+    epsVsExpectations = epsDiff > 0 ? `Beat by $${round(Math.abs(epsDiff), 2)}` : `Missed by $${round(Math.abs(epsDiff), 2)}`;
+  }
+
+  const lastRevenue = raw(financial.totalRevenue);
+  const revEstimate = raw(lastQTrend?.revenueEstimate?.avg);
+  let revVsExpectations = "Unavailable from Yahoo structured data";
+  if (Number.isFinite(lastRevenue) && Number.isFinite(revEstimate) && revEstimate > 0) {
+    const diffPct = ((lastRevenue - revEstimate) / revEstimate) * 100;
+    revVsExpectations = diffPct >= 0 ? `Beat by approximately ${round(diffPct, 1)}%` : `Missed by approximately ${round(Math.abs(diffPct), 1)}%`;
+  }
+
+  const revenueGrowth = raw(financial.revenueGrowth);
+  let guidanceChange = "Guidance data not available in Yahoo structured feed — check company press release";
+  if (Number.isFinite(revenueGrowth)) {
+    if (revenueGrowth > 0.20) guidanceChange = "Revenue trajectory suggests guidance was likely raised or maintained strongly";
+    else if (revenueGrowth > 0.05) guidanceChange = "Revenue pace suggests guidance was maintained or modestly raised";
+    else if (revenueGrowth <= 0) guidanceChange = "Slowing or negative revenue growth may signal cautious or lowered guidance";
+  }
+
+  const beatCount = earningsHistory.filter((e) => (raw(e.epsDifference) ?? 0) > 0).length;
+  const totalCount = earningsHistory.length;
+  const beatRate = totalCount > 0 ? round((beatCount / totalCount) * 100, 1) : null;
+  const consecutiveBeats = (() => {
+    let count = 0;
+    for (const entry of [...earningsHistory].reverse()) {
+      if ((raw(entry.epsDifference) ?? 0) > 0) count++;
+      else break;
+    }
+    return count;
+  })();
+
+  let thesisClassification;
+  if (beatRate !== null && Number.isFinite(revenueGrowth)) {
+    if (beatRate >= 75 && revenueGrowth >= 0.15) thesisClassification = "Thesis Strengthened";
+    else if (beatRate >= 50 && revenueGrowth >= 0) thesisClassification = "Thesis Unchanged";
+    else thesisClassification = "Thesis Weakened";
+  } else if (beatRate !== null) {
+    thesisClassification = beatRate >= 65 ? "Thesis Unchanged" : "Thesis Weakened";
+  } else {
+    thesisClassification = "Insufficient data";
+  }
+
+  const watchNext = buildEarningsWatchList(symbol, theme);
+  const earningsProximate = daysUntilEarnings !== null && daysUntilEarnings <= 10 && daysUntilEarnings >= 0;
+  const earningsRiskLabel = earningsProximate ? "High" : daysUntilEarnings !== null && daysUntilEarnings <= 20 ? "Moderate" : "Low";
+
+  const grossMargins = raw(financial.grossMargins);
+  const operatingMargins = raw(financial.operatingMargins);
+  const grossMarginsComment = Number.isFinite(grossMargins) ? `Gross margin at ${round(grossMargins * 100, 1)}%.` : "Gross margin data unavailable.";
+  const opMarginsComment = Number.isFinite(operatingMargins) ? `Operating margin at ${round(operatingMargins * 100, 1)}%.` : "Operating margin data unavailable.";
+
+  return {
+    nextEarningsDate: nextEarningsDate ?? "Not available from Yahoo",
+    nextEarningsConfirmed,
+    daysUntilEarnings,
+    lastEarningsDate: lastEarningsDate ?? "Not available from Yahoo",
+    lastQuarterRevenue: lastRevenue,
+    revVsExpectations,
+    lastQuarterEPS: epsActual,
+    epsVsExpectations,
+    epsSurprisePct: round(epsSurprisePct, 1),
+    guidanceChange,
+    grossMarginsComment,
+    opMarginsComment,
+    thesisClassification,
+    beatRate,
+    consecutiveBeats,
+    watchNext,
+    earningsProximate,
+    earningsRiskLabel,
+  };
+}
+
+function buildSeniorScorecard({ growthChecklist, technical, fundamentals, valuation, moat, analysts, newsEngine, riskScore, summary, earnings }) {
+  const financial = summary?.financialData ?? {};
+  const gm = fundamentals.grossMargins ?? 0;
+  const om = fundamentals.operatingMargins ?? 0;
+  const pm = fundamentals.profitMargins ?? 0;
+  const roe = fundamentals.returnOnEquity ?? 0;
+  const roa = fundamentals.returnOnAssets ?? 0;
+  const fcfMarginRow = checklistValue(growthChecklist, "FCF Margin");
+  const fcfMarginVal = fcfMarginRow?.value ?? 0;
+  const fcf = raw(financial.freeCashflow);
+  const totalCash = raw(financial.totalCash);
+  const totalDebt = raw(financial.totalDebt);
+  const currentRatio = raw(financial.currentRatio);
+  const debtToEquity = raw(financial.debtToEquity);
+  const forwardPE = valuation.forwardPE;
+  const ps = valuation.priceToSales;
+  const peg = valuation.pegRatio;
+  const revGrowth1y = checklistValue(growthChecklist, "1-Year Revenue Growth")?.value ?? 0;
+  const revCagr3 = checklistValue(growthChecklist, "3-Year Revenue CAGR")?.value ?? 0;
+  const revCagr5 = checklistValue(growthChecklist, "5-Year Revenue CAGR")?.value;
+  const ebitdaRow = checklistValue(growthChecklist, "EBITDA Margin");
+  const ebitdaVal = ebitdaRow?.value ?? 0;
+
+  // 1. Business Quality (0–100)
+  let bq = 30;
+  if (gm > 55) bq += 22; else if (gm > 40) bq += 14; else if (gm > 25) bq += 7; else if (gm > 0) bq += 2;
+  if (om > 25) bq += 22; else if (om > 15) bq += 14; else if (om > 5) bq += 7; else if (om < 0) bq -= 8;
+  if (pm > 20) bq += 15; else if (pm > 10) bq += 9; else if (pm > 0) bq += 4; else if (pm < 0) bq -= 6;
+  if (roe > 25) bq += 11; else if (roe > 15) bq += 7; else if (roe > 8) bq += 4;
+  const businessQualityScore = clamp(Math.round(bq));
+
+  // 2. Revenue Growth (0–100)
+  let rg = 20;
+  if (revGrowth1y >= 30) rg += 40; else if (revGrowth1y >= 20) rg += 30; else if (revGrowth1y >= 10) rg += 18; else if (revGrowth1y >= 3) rg += 8; else if (revGrowth1y < 0) rg -= 5;
+  if (revCagr3 >= 25) rg += 25; else if (revCagr3 >= 15) rg += 16; else if (revCagr3 >= 7) rg += 9; else if (revCagr3 < 0) rg -= 5;
+  if (Number.isFinite(revCagr5) && revCagr5 >= 15) rg += 15; else if (Number.isFinite(revCagr5) && revCagr5 >= 8) rg += 9;
+  const revenueGrowthScore = clamp(Math.round(rg));
+
+  // 3. Margin Quality (0–100)
+  let mq = 25;
+  if (gm > 55) mq += 22; else if (gm > 40) mq += 14; else if (gm > 25) mq += 7;
+  if (om > 25) mq += 22; else if (om > 15) mq += 14; else if (om > 5) mq += 7; else if (om < 0) mq -= 8;
+  if (fcfMarginVal > 20) mq += 18; else if (fcfMarginVal > 10) mq += 12; else if (fcfMarginVal > 0) mq += 6;
+  if (ebitdaVal > 30) mq += 13; else if (ebitdaVal > 18) mq += 8; else if (ebitdaVal > 5) mq += 4;
+  const marginQualityScore = clamp(Math.round(mq));
+
+  // 4. Free Cash Flow (0–100)
+  let fcfScore = 25;
+  if (Number.isFinite(fcf) && fcf > 0) fcfScore += 30; else if (Number.isFinite(fcf) && fcf < 0) fcfScore -= 10;
+  if (fcfMarginVal >= 20) fcfScore += 30; else if (fcfMarginVal >= 12) fcfScore += 20; else if (fcfMarginVal >= 5) fcfScore += 12; else if (fcfMarginVal >= 0) fcfScore += 5;
+  if (checklistValue(growthChecklist, "FCF Growth")?.status === "pass") fcfScore += 15;
+  const freeCashFlowScore = clamp(Math.round(fcfScore));
+
+  // 5. Balance Sheet (0–100)
+  let bs = 40;
+  if (Number.isFinite(totalCash) && Number.isFinite(totalDebt)) {
+    const cashDebt = totalDebt > 0 ? totalCash / totalDebt : 5;
+    if (cashDebt >= 2) bs += 28; else if (cashDebt >= 1) bs += 20; else if (cashDebt >= 0.5) bs += 10; else bs -= 12;
+  }
+  if (Number.isFinite(currentRatio)) {
+    if (currentRatio >= 2.5) bs += 15; else if (currentRatio >= 1.5) bs += 10; else if (currentRatio >= 1) bs += 5; else bs -= 10;
+  }
+  if (Number.isFinite(debtToEquity)) {
+    if (debtToEquity < 30) bs += 10; else if (debtToEquity < 80) bs += 5; else if (debtToEquity > 200) bs -= 12;
+  }
+  if (Number.isFinite(fcf) && fcf > 0) bs += 7;
+  const balanceSheetScore = clamp(Math.round(bs));
+
+  // 6. Moat (0–100)
+  const moatScore = clamp(moat?.score ?? 35);
+
+  // 7. Management / Execution (0–100)
+  let mgmt = 38;
+  if (earnings?.beatRate >= 80) mgmt += 28; else if (earnings?.beatRate >= 65) mgmt += 18; else if (earnings?.beatRate >= 50) mgmt += 10; else if (earnings?.beatRate < 30) mgmt -= 10;
+  if (earnings?.consecutiveBeats >= 4) mgmt += 12; else if (earnings?.consecutiveBeats >= 2) mgmt += 6;
+  if (fundamentals.score >= 70) mgmt += 15; else if (fundamentals.score >= 55) mgmt += 8;
+  if (analysts.score >= 70) mgmt += 10; else if (analysts.score >= 55) mgmt += 5;
+  const managementScore = clamp(Math.round(mgmt));
+
+  // 8. Valuation Risk (0–100, higher = more risky)
+  let vr = 48;
+  if (Number.isFinite(forwardPE)) {
+    if (forwardPE < 12) vr -= 25; else if (forwardPE < 20) vr -= 14; else if (forwardPE > 60) vr += 25; else if (forwardPE > 40) vr += 15; else if (forwardPE > 28) vr += 7;
+  }
+  if (Number.isFinite(ps)) {
+    if (ps < 2) vr -= 12; else if (ps < 5) vr -= 5; else if (ps > 20) vr += 22; else if (ps > 12) vr += 14; else if (ps > 7) vr += 7;
+  }
+  if (Number.isFinite(peg) && peg > 0) {
+    if (peg < 1) vr -= 12; else if (peg < 1.5) vr -= 6; else if (peg > 3.5) vr += 18; else if (peg > 2.5) vr += 10;
+  }
+  if (fundamentals.score >= 75) vr -= 8;
+  if (revenueGrowthScore >= 80) vr -= 5;
+  const valuationRiskScore = clamp(Math.round(vr));
+
+  // 9. Earnings Risk (0–100, higher = more risky)
+  let er = 45;
+  if (earnings?.earningsProximate) er += 35;
+  else if (Number.isFinite(earnings?.daysUntilEarnings) && earnings.daysUntilEarnings <= 20 && earnings.daysUntilEarnings >= 0) er += 18;
+  if (earnings?.thesisClassification === "Thesis Weakened") er += 22;
+  else if (earnings?.thesisClassification === "Thesis Strengthened") er -= 15;
+  if (earnings?.beatRate < 40) er += 18; else if (earnings?.beatRate >= 80) er -= 12;
+  const earningsRiskScore = clamp(Math.round(er));
+
+  // 10. Technical Setup (0–100)
+  const technicalSetupScore = clamp(technical.score ?? 35);
+
+  // 11. Entry Timing (0–100)
+  let et = technical.score >= 70 ? 78 : technical.score >= 55 ? 62 : technical.score >= 40 ? 48 : 28;
+  if (technical.rsi14 > 75) et -= 18; else if (technical.rsi14 < 35) et -= 12; else if (technical.rsi14 >= 45 && technical.rsi14 <= 60) et += 8;
+  const entryTimingScore = clamp(Math.round(et));
+
+  // 12. 5-Year Hold Confidence
+  const fiveYearConfidenceScore = clamp(Math.round(
+    businessQualityScore * 0.30 + moatScore * 0.25 + revenueGrowthScore * 0.22 + balanceSheetScore * 0.12 + managementScore * 0.11
+  ));
+
+  // 13. Growth Potential
+  const growthPotentialScore = clamp(Math.round(
+    revenueGrowthScore * 0.40 + marginQualityScore * 0.22 + freeCashFlowScore * 0.20 + moatScore * 0.18
+  ));
+
+  // 14. Downside Risk (higher = more risky)
+  const downsideRiskScore = clamp(Math.round(
+    valuationRiskScore * 0.30 + earningsRiskScore * 0.20 + (100 - balanceSheetScore) * 0.20 + (100 - businessQualityScore) * 0.15 + (100 - technicalSetupScore) * 0.15
+  ));
+
+  // 15. Shares vs LEAPS Suitability
+  const sharesVsLeapsSuitabilityScore = clamp(Math.round(
+    businessQualityScore * 0.25 + moatScore * 0.20 + fiveYearConfidenceScore * 0.20 + (100 - valuationRiskScore) * 0.15 + technicalSetupScore * 0.10 + entryTimingScore * 0.10
+  ));
+
+  // 0. Overall Long-Term Score (spec weighting)
+  const overallLongTermScore = clamp(Math.round(
+    businessQualityScore * 0.18 +
+    revenueGrowthScore * 0.14 +
+    ((marginQualityScore + freeCashFlowScore) / 2) * 0.14 +
+    moatScore * 0.14 +
+    balanceSheetScore * 0.10 +
+    managementScore * 0.08 +
+    (100 - valuationRiskScore) * 0.10 +
+    (100 - earningsRiskScore) * 0.05 +
+    technicalSetupScore * 0.07
+  ));
+
+  return {
+    overallLongTermScore,
+    businessQualityScore,
+    revenueGrowthScore,
+    marginQualityScore,
+    freeCashFlowScore,
+    balanceSheetScore,
+    moatScore,
+    managementScore,
+    valuationRiskScore,
+    earningsRiskScore,
+    technicalSetupScore,
+    entryTimingScore,
+    fiveYearConfidenceScore,
+    growthPotentialScore,
+    downsideRiskScore,
+    sharesVsLeapsSuitabilityScore,
+  };
+}
+
+function determineFinalRating(scorecard, growthChecklist, valuation, technical, earnings) {
+  const s = scorecard;
+  if (s.overallLongTermScore < 35 || (s.businessQualityScore < 30 && s.revenueGrowthScore < 30)) return "Avoid";
+  if (earnings?.thesisClassification === "Thesis Weakened" && s.businessQualityScore < 58) return "Thesis Weakening";
+  if (s.overallLongTermScore >= 78 && s.businessQualityScore >= 72 && s.moatScore >= 68 && s.fiveYearConfidenceScore >= 74 && s.downsideRiskScore <= 58) return "Core 5-Year Compounder";
+  if (s.overallLongTermScore >= 68 && s.businessQualityScore >= 62 && s.valuationRiskScore >= 70) return "Strong Company, Wait for Better Price";
+  if (s.revenueGrowthScore >= 74 && s.downsideRiskScore >= 62) return "High Growth / High Risk";
+  if (s.overallLongTermScore >= 62 && s.businessQualityScore >= 55) return "DCA Candidate";
+  if (s.overallLongTermScore >= 45) return "Watchlist Only";
+  return "Avoid";
+}
+
+function determineFinalAction(finalRating, technical, earnings, scorecard) {
+  if (Number.isFinite(earnings?.daysUntilEarnings) && earnings.daysUntilEarnings >= 0 && earnings.daysUntilEarnings <= 4) return "Wait after earnings";
+  switch (finalRating) {
+    case "Core 5-Year Compounder":
+      if (technical.score >= 65) return "Buy shares slowly";
+      if (technical.score >= 45) return "DCA shares";
+      return "Wait for pullback";
+    case "Strong Company, Wait for Better Price": return "Wait for pullback";
+    case "DCA Candidate":
+      return technical.score >= 50 ? "DCA shares" : "Wait for pullback";
+    case "High Growth / High Risk":
+      if (scorecard.overallLongTermScore >= 76 && technical.score >= 58) return "LEAPS starter allowed";
+      if (technical.score >= 48) return "Watch after earnings";
+      return "LEAPS watch only";
+    case "Watchlist Only":
+      if (Number.isFinite(earnings?.daysUntilEarnings) && earnings.daysUntilEarnings >= 0 && earnings.daysUntilEarnings <= 30) return "Watch after earnings";
+      return "Wait for pullback";
+    case "Thesis Weakening": return "Watch after earnings";
+    default: return "Avoid";
+  }
+}
+
+function buildSharesVsLeapsDecision(scorecard, technical, valuation, earnings, summary) {
+  const meetsMinimum =
+    scorecard.overallLongTermScore >= 75 &&
+    scorecard.businessQualityScore >= 70 &&
+    scorecard.moatScore >= 70 &&
+    scorecard.freeCashFlowScore >= 48 &&
+    scorecard.balanceSheetScore >= 48;
+  const notTooExpensive = scorecard.valuationRiskScore < 82;
+  const technicalOK = technical.score >= 42;
+  const earningsOK = !earnings?.earningsProximate;
+
+  let sharesDecision;
+  if (scorecard.overallLongTermScore >= 72 && scorecard.entryTimingScore >= 58) sharesDecision = "Buy shares slowly";
+  else if (scorecard.overallLongTermScore >= 64 && scorecard.entryTimingScore >= 42) sharesDecision = "DCA shares";
+  else if (scorecard.overallLongTermScore >= 52) sharesDecision = "Wait for pullback";
+  else sharesDecision = "Avoid shares for now";
+
+  let leapsDecision;
+  if (!meetsMinimum) leapsDecision = "Avoid LEAPS";
+  else if (!earningsOK) leapsDecision = "Wait until after earnings";
+  else if (!notTooExpensive) leapsDecision = "LEAPS too expensive";
+  else if (!technicalOK) leapsDecision = "LEAPS watch only";
+  else if (scorecard.overallLongTermScore >= 82) leapsDecision = "LEAPS starter allowed";
+  else leapsDecision = "Shares better than LEAPS";
+
+  const whyShares = sharesDecision === "Buy shares slowly" || sharesDecision === "DCA shares"
+    ? "Shares are preferred because the company has sufficient business quality and the risk/reward for long-term equity ownership is favorable. For 5-year compounders, shares with no expiry and unlimited upside are the better vehicle."
+    : "Shares suit patient DCA accumulation. Wait for technically sound entry levels before building position size.";
+
+  const whyLeaps = meetsMinimum
+    ? "LEAPS may be considered because the company scores above the quality threshold. Preferred: 12–24 month expiry, delta 0.60–0.80, in-the-money only. Never full size."
+    : "LEAPS are not suitable here because the company does not clear the minimum quality, moat, and balance sheet requirements. The premium carries meaningful risk of going to zero.";
+
+  const reasonsNotMet = [
+    scorecard.overallLongTermScore < 75 ? `overall score ${scorecard.overallLongTermScore}/100 below the 75 minimum` : null,
+    scorecard.businessQualityScore < 70 ? `business quality ${scorecard.businessQualityScore}/100 below 70` : null,
+    scorecard.moatScore < 70 ? `moat score ${scorecard.moatScore}/100 below 70` : null,
+    earnings?.earningsProximate ? "earnings are within 5 trading days" : null,
+    scorecard.valuationRiskScore >= 82 ? "valuation is extreme" : null,
+    !technicalOK ? "technical setup is too weak" : null,
+  ].filter(Boolean);
+
+  return {
+    meetsLeapsMinimum: meetsMinimum,
+    leapsAllowed: meetsMinimum && notTooExpensive && technicalOK && earningsOK,
+    sharesDecision,
+    leapsDecision,
+    whyShares,
+    whyLeaps,
+    tooRiskyReason: reasonsNotMet.length ? reasonsNotMet.join("; ") : "Criteria met",
+    minimumRequirements: {
+      overallScore: scorecard.overallLongTermScore,
+      businessScore: scorecard.businessQualityScore,
+      moatScore: scorecard.moatScore,
+      fcfScore: scorecard.freeCashFlowScore,
+      balanceSheetScore: scorecard.balanceSheetScore,
+      passed: meetsMinimum,
+    },
+    contractPreference: (meetsMinimum && notTooExpensive && technicalOK && earningsOK) ? {
+      preferredExpiry: "12–24 months",
+      minimumExpiry: "6 months (aggressive only)",
+      preferredDelta: "0.60–0.80",
+      note: "Never full-size LEAPS. Premium can go to zero. Starter position only (0.5–1% of portfolio).",
+    } : null,
+  };
+}
+
+function buildPositionSizing(finalRating, scorecard) {
+  let classification, starterPct, coreTargetPct, maxPct;
+  if (finalRating === "Core 5-Year Compounder") {
+    classification = "Core holding"; starterPct = 2.5; coreTargetPct = 10; maxPct = 15;
+  } else if (finalRating === "DCA Candidate") {
+    classification = "Core holding"; starterPct = 2; coreTargetPct = 8; maxPct = 12;
+  } else if (finalRating === "High Growth / High Risk") {
+    classification = "Satellite growth"; starterPct = 1; coreTargetPct = 4; maxPct = 6;
+  } else if (finalRating === "Strong Company, Wait for Better Price") {
+    classification = "Core holding (wait mode)"; starterPct = 0; coreTargetPct = 8; maxPct = 12;
+  } else if (finalRating === "Watchlist Only") {
+    classification = "Watchlist"; starterPct = 0; coreTargetPct = 3; maxPct = 5;
+  } else {
+    classification = "Speculative / avoid"; starterPct = 0; coreTargetPct = 0; maxPct = 2;
+  }
+  const examplePortfolio = 10000;
+  return {
+    classification,
+    examplePortfolio,
+    starterPct,
+    coreTargetPct,
+    maxPct,
+    starterDollar: round(examplePortfolio * starterPct / 100, 0),
+    coreDollar: round(examplePortfolio * coreTargetPct / 100, 0),
+    dcaPlan: starterPct > 0
+      ? `Start with ${starterPct}% (~$${round(examplePortfolio * starterPct / 100, 0)} in a $${examplePortfolio.toLocaleString()} portfolio). Build toward ${coreTargetPct}% over 3–6 months in tranches. Never rush to full size.`
+      : "Wait for better conditions before initiating. Do not buy just because the stock moved.",
+    addOnZones: "Add at key technical support zones (EMA50, EMA150), on earnings-driven pullbacks, or when thesis is confirmed by consecutive beats.",
+    trimConditions: [
+      "Two consecutive quarters: revenue deceleration + guidance cut",
+      "Valuation becomes extreme (forward P/E more than 2x historical average with no growth acceleration)",
+      "Moat or business quality scores drop below 45",
+      "Position exceeds maximum allocation without rebalance",
+    ],
+    leapsNote: "LEAPS: Max 0.5–1% of portfolio per name. Max 2–3% total LEAPS exposure. Never average down on LEAPS. Premium can go to zero.",
+  };
+}
+
+function buildFundManagerVerdict({ symbol, companyName, scorecard, finalRating, finalAction, technicalPlan, valuation, earnings, report, growthChecklist }) {
+  const investable5Years = scorecard.fiveYearConfidenceScore >= 62 && scorecard.businessQualityScore >= 58;
+  const buyNowOrWait = ["Buy shares slowly", "DCA shares"].includes(finalAction)
+    ? "Accumulate slowly in tranches. Do not rush to full size. Use the entry zones provided."
+    : finalAction.toLowerCase().includes("pullback") || finalAction === "Strong Company, Wait for Better Price"
+      ? "Wait for a technically sound pullback. The business quality is there, but price needs to correct."
+      : finalAction.toLowerCase().includes("earnings")
+        ? "Wait until after the next earnings report before adding or initiating a position."
+        : "Do not buy yet. Conditions need to improve before the risk/reward is favorable.";
+
+  const idealEntry = technicalPlan?.available
+    ? `${compactMoney(technicalPlan.idealBuyZoneLow)} – ${compactMoney(technicalPlan.idealBuyZoneHigh)}`
+    : "See technical section";
+  const dcaZoneStr = technicalPlan?.available
+    ? `${compactMoney(technicalPlan.dcaZoneLow)} – ${compactMoney(technicalPlan.dcaZoneHigh)}`
+    : "See technical section";
+  const biggestUpside = growthChecklist.isGrowthStock
+    ? "Revenue continuing to compound above market expectations while operating leverage expands margins"
+    : report?.bullCase ?? "Business improvement and potential valuation re-rating";
+  const biggestRisk = report?.bearCase ??
+    (scorecard.valuationRiskScore >= 72 ? "Valuation contraction if growth decelerates" :
+      scorecard.earningsRiskScore >= 72 ? "Earnings miss risk near upcoming catalyst window" :
+        "Execution and competitive risk in the core business");
+  const watchNext = earnings?.watchNext?.slice(0, 3)?.join("; ") ?? "Revenue growth, margin trends, forward guidance";
+  const sellReduce = [
+    "Two consecutive quarters of revenue deceleration below expectations AND guidance cut",
+    "Gross margin compression of more than 3 percentage points with no clear path to recovery",
+    "Clear moat erosion: loss of key customers, pricing power, or market share to competitors",
+    technicalPlan?.available ? `Close below invalidation at ${compactMoney(technicalPlan.invalidationBelow)} on weekly basis` : "Price breaks major long-term support on heavy volume",
+  ];
+  const buyMore = [
+    "Earnings beat with raised guidance on both revenue and margins",
+    technicalPlan?.available ? `Price pulls back to DCA zone (${compactMoney(technicalPlan.dcaZoneLow)} – ${compactMoney(technicalPlan.dcaZoneHigh)}) with thesis intact` : "Price returns to a technically attractive zone with thesis intact",
+    "New major product cycle, contract, or market expansion directly addresses core thesis",
+    "Valuation becomes materially more attractive (20%+ pullback, same or better earnings outlook)",
+  ];
+
+  const qualWord = scorecard.businessQualityScore >= 72 ? "strong" : scorecard.businessQualityScore >= 55 ? "adequate" : "weak";
+  const growWord = scorecard.revenueGrowthScore >= 72 ? "impressive" : scorecard.revenueGrowthScore >= 52 ? "moderate" : "unproven or slow";
+  const ratingRead = finalRating === "Core 5-Year Compounder" ? "This is a compelling long-term compounder with strong business quality and moat"
+    : finalRating === "Avoid" ? "This does not meet the standards of this system at current levels"
+      : finalRating === "Thesis Weakening" ? "Thesis shows signs of weakening and requires close monitoring"
+        : "This warrants patient accumulation at the right entry zones with disciplined position sizing";
+  const valuationWord = scorecard.valuationRiskScore >= 72 ? "elevated and demanding strong execution" : scorecard.valuationRiskScore <= 38 ? "attractive relative to growth prospects" : "reasonable for a company of this quality";
+  const actionSummary = finalAction === "Avoid" ? "At this time, the risk/reward does not support initiating a position."
+    : `The recommended approach is to ${finalAction.toLowerCase()}, focusing on the entry zones defined in the technical plan.`;
+
+  const plainEnglish = [
+    `${companyName} scores ${scorecard.overallLongTermScore}/100 in the Senior Stock Analyzer — a composite of business quality, growth, moat, balance sheet, valuation, and technical setup.`,
+    `The business quality is ${qualWord} and revenue growth is ${growWord}.`,
+    `${ratingRead}.`,
+    `Current valuation is ${valuationWord}, with valuation risk at ${scorecard.valuationRiskScore}/100 (higher means riskier).`,
+    actionSummary,
+  ].join(" ");
+
+  return {
+    finalRating,
+    finalAction,
+    investable5Years,
+    buyNowOrWait,
+    idealEntryZone: idealEntry,
+    dcaZone: dcaZoneStr,
+    tp1: technicalPlan?.tp1,
+    tp2: technicalPlan?.tp2,
+    invalidationLevel: technicalPlan?.invalidationBelow,
+    sharesVsLeapsDecision: finalAction.toLowerCase().includes("leaps") ? "LEAPS starter allowed with strict sizing rules" : "Shares preferred for long-term position building",
+    biggestUpsideDriver: biggestUpside,
+    biggestRisk,
+    watchNextEarnings: watchNext,
+    sellReduceConditions: sellReduce,
+    buyMoreConditions: buyMore,
+    plainEnglishSummary: plainEnglish,
+  };
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
 export async function analyzeStock(symbolInput) {
   const symbol = symbolInput.trim().toUpperCase();
   if (!symbol) throw new Error("Ticker is required");
@@ -1291,6 +2005,7 @@ export async function analyzeStock(symbolInput) {
       "defaultKeyStatistics",
       "recommendationTrend",
       "earningsTrend",
+      "earningsHistory",
       "assetProfile",
       "incomeStatementHistory",
       "cashflowStatementHistory",
@@ -1359,6 +2074,24 @@ export async function analyzeStock(symbolInput) {
   }, report.competitors ?? []);
   const investigateFurther = investigateFurtherLabel(reportScores, growthChecklist, technical, valuation, newsEngine);
 
+  // ── Senior Analyzer layer ──────────────────────────────────────────────────
+  const earningsAnalysis = buildEarningsAnalysis(summary, newsEngine, symbol, theme);
+  const fiveYearTable = build5YearFinancialTable(summary);
+  const technicalPlan = buildEnhancedTechnicalPlan(technical, summary);
+  const seniorScorecard = buildSeniorScorecard({
+    growthChecklist, technical, fundamentals, valuation, moat, analysts, newsEngine, riskScore, summary, earnings: earningsAnalysis,
+  });
+  const seniorFinalRating = determineFinalRating(seniorScorecard, growthChecklist, valuation, technical, earningsAnalysis);
+  const seniorFinalAction = determineFinalAction(seniorFinalRating, technical, earningsAnalysis, seniorScorecard);
+  const sharesVsLeaps = buildSharesVsLeapsDecision(seniorScorecard, technical, valuation, earningsAnalysis, summary);
+  const positionSizing = buildPositionSizing(seniorFinalRating, seniorScorecard);
+  const fundManagerVerdict = buildFundManagerVerdict({
+    symbol, companyName, scorecard: seniorScorecard, finalRating: seniorFinalRating, finalAction: seniorFinalAction,
+    technicalPlan, valuation, earnings: earningsAnalysis, report, growthChecklist,
+  });
+
+  const detail = summary.summaryDetail ?? {};
+
   return {
     symbol,
     name: companyName,
@@ -1369,6 +2102,8 @@ export async function analyzeStock(symbolInput) {
     qualityGrade: totalScore >= 80 ? "A" : totalScore >= 65 ? "B" : totalScore >= 50 ? "C" : "D",
     currentPrice: raw(price.regularMarketPrice) ?? technical.close,
     marketCap: raw(price.marketCap),
+    high52w: raw(detail.fiftyTwoWeekHigh),
+    low52w: raw(detail.fiftyTwoWeekLow),
     benchmark,
     technical,
     fundamentals,
@@ -1384,6 +2119,7 @@ export async function analyzeStock(symbolInput) {
       website: profile.website ?? "",
       theme,
       plainEnglish,
+      profileSummary: profile.longBusinessSummary ?? "",
       ownershipStyle: ownershipStyle(totalScore, fundamentals, valuation, theme),
       beginnerRead: beginnerRead(decision, technical, fundamentals, valuation, theme),
       investorChecklist: buildInvestorChecklist(decision, technical, fundamentals, valuation, analysts),
@@ -1403,8 +2139,18 @@ export async function analyzeStock(symbolInput) {
     advisorChecks,
     newsEngine,
     investigateFurther,
-    finalAction: investigateFurther,
-    managerRead: `${decision}: ${symbol} scores ${totalScore}/100. Technicals are ${technical.rating.toLowerCase()}, fundamentals are ${fundamentals.rating.toLowerCase()}, valuation is ${valuation.rating.toLowerCase()}, and analyst sentiment is ${analysts.rating.toLowerCase()}.`,
+    // Senior Analyzer fields
+    seniorScorecard,
+    seniorFinalRating,
+    seniorFinalAction,
+    earningsAnalysis,
+    fiveYearTable,
+    technicalPlan,
+    sharesVsLeaps,
+    positionSizing,
+    fundManagerVerdict,
+    finalAction: seniorFinalAction,
+    managerRead: `${seniorFinalRating}: ${symbol} scores ${seniorScorecard.overallLongTermScore}/100 in the Senior Analyzer. Technicals are ${technical.rating.toLowerCase()}, fundamentals are ${fundamentals.rating.toLowerCase()}, valuation is ${valuation.rating.toLowerCase()}.`,
     asOf: new Date().toISOString(),
   };
 }

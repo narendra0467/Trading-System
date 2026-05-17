@@ -26,6 +26,13 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+
+      - name: Inject build version for cache busting
+        run: |
+          BUILD_VERSION="$(date -u +%Y%m%d%H%M)-${GITHUB_SHA:0:7}"
+          sed -i "s/\?v=[^\"]*\"/\?v=${BUILD_VERSION}\"/g" public/index.html
+          echo "Injected build version: ${BUILD_VERSION}"
+
       - uses: actions/configure-pages@v5
       - uses: actions/upload-pages-artifact@v3
         with:

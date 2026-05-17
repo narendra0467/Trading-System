@@ -646,138 +646,455 @@ function rowsByLabel(checklist, labels) {
   return labels.map((label) => checklist?.rows?.find((row) => row.label === label)).filter(Boolean);
 }
 
+// ─── helper: round to N decimal places ───────────────────────────────────────
+function round(value, decimals = 1) {
+  return Number.isFinite(Number(value)) ? Number(Number(value).toFixed(decimals)) : null;
+}
+
 function renderReportSection(result) {
-  const checklist = result.growthChecklist;
+  const s = result.seniorScorecard ?? {};
+  const tp = result.technicalPlan ?? {};
+  const ea = result.earningsAnalysis ?? {};
+  const fy = result.fiveYearTable ?? {};
+  const svl = result.sharesVsLeaps ?? {};
+  const ps = result.positionSizing ?? {};
+  const fmv = result.fundManagerVerdict ?? {};
   const report = result.report ?? {};
+  const technical = result.technical ?? {};
+  const valuation = result.valuation ?? {};
   const moat = result.moat ?? {};
   const newsEngine = result.newsEngine ?? {};
-  const reportScores = result.reportScores ?? {
-    overallScore: result.totalScore,
-    growthPotential: result.growthPotential,
-    riskScore: result.riskScore,
-    weighting: [],
-  };
-  const valuationRows = rowsByLabel(checklist, ["P/E Ratio", "Forward P/E", "PEG Ratio", "P/B Ratio", "P/S Ratio", "Enterprise Value / EBITDA"]);
-  const healthRows = rowsByLabel(checklist, ["Gross Profit Margin", "Operating Profit Margin", "Net Profit Margin", "EBITDA Margin", "FCF Margin", "Return on Equity"]);
-  const growthRows = rowsByLabel(checklist, ["1-Year Revenue Growth", "3-Year Revenue CAGR", "5-Year Revenue CAGR", "EPS Growth", "Return on Assets", "P/FCF"]);
-  const advisorRows = result.advisorChecks ?? [];
-  const kpiRows = result.kpiRows ?? [];
-  const riskRows = result.riskBreakdown ?? [];
   const dataQuality = result.dataQuality ?? {};
+  const checklist = result.growthChecklist ?? {};
+  const advisorRows = result.advisorChecks ?? [];
+  const currentPrice = Number(result.currentPrice ?? technical.close);
+  const finalRating = result.seniorFinalRating ?? result.investigateFurther ?? "Watchlist Only";
+  const finalAction = result.seniorFinalAction ?? result.finalAction ?? "Wait for pullback";
+
+  function ratingClass(rating) {
+    if (["Core 5-Year Compounder", "DCA Candidate"].includes(rating)) return "chip-green";
+    if (["Strong Company, Wait for Better Price", "High Growth / High Risk"].includes(rating)) return "chip-amber";
+    if (["Thesis Weakening", "Avoid"].includes(rating)) return "chip-red";
+    return "chip-neutral";
+  }
+  function actionClass(action) {
+    if (!action) return "chip-neutral";
+    if (["Buy shares slowly", "DCA shares", "LEAPS starter allowed"].includes(action)) return "chip-green";
+    if (["Wait for pullback", "Watch after earnings", "LEAPS watch only"].includes(action)) return "chip-amber";
+    if (action.toLowerCase().includes("avoid")) return "chip-red";
+    return "chip-neutral";
+  }
+  function seniorMeter(label, score, note, inverse = false) {
+    const n = Number(score);
+    const pctVal = Number.isFinite(n) ? Math.max(0, Math.min(100, n)) : 0;
+    const tone = inverse
+      ? (n >= 70 ? "bad" : n >= 45 ? "caution" : "good")
+      : (n >= 70 ? "good" : n >= 45 ? "caution" : "bad");
+    return `
+      <div class="senior-meter senior-meter--${tone}">
+        <div class="senior-meter-head">
+          <span>${escapeHtml(label)}</span>
+          <strong>${Number.isFinite(n) ? Math.round(n) : "n/a"}/100</strong>
+        </div>
+        <div class="meter-track"><span style="width:${pctVal}%"></span></div>
+        <p>${escapeHtml(note)}</p>
+      </div>`;
+  }
+  function buildFYTableHTML(fyData) {
+    if (!fyData.rows?.length) {
+      return `<p class="empty">5-year financial data requires annual income statement history from Yahoo Finance. Data may be limited for some tickers.</p>`;
+    }
+    const hdr = ["Year", "Revenue", "Rev Growth", "Gross Margin", "Op Margin", "Net Margin", "EBITDA Margin", "FCF", "FCF Margin", "Capex"];
+    return `
+      <div class="table-wrap fy-table">
+        <table>
+          <thead><tr>${hdr.map((h) => `<th>${h}</th>`).join("")}</tr></thead>
+          <tbody>
+            ${fyData.rows.map((row) => `
+              <tr>
+                <td><strong>${escapeHtml(String(row.year ?? "n/a"))}</strong></td>
+                <td>${bigMoney(row.revenue)}</td>
+                <td class="${Number(row.revenueGrowth) >= 15 ? "cell-good" : Number(row.revenueGrowth) >= 5 ? "" : "cell-bad"}">${Number.isFinite(Number(row.revenueGrowth)) ? `${Number(row.revenueGrowth).toFixed(1)}%` : "n/a"}</td>
+                <td>${Number.isFinite(Number(row.grossMargin)) ? `${Number(row.grossMargin).toFixed(1)}%` : "n/a"}</td>
+                <td>${Number.isFinite(Number(row.operatingMargin)) ? `${Number(row.operatingMargin).toFixed(1)}%` : "n/a"}</td>
+                <td>${Number.isFinite(Number(row.netMargin)) ? `${Number(row.netMargin).toFixed(1)}%` : "n/a"}</td>
+                <td>${Number.isFinite(Number(row.ebitdaMargin)) ? `${Number(row.ebitdaMargin).toFixed(1)}%` : "n/a"}</td>
+                <td>${bigMoney(row.fcf)}</td>
+                <td>${Number.isFinite(Number(row.fcfMargin)) ? `${Number(row.fcfMargin).toFixed(1)}%` : "n/a"}</td>
+                <td>${bigMoney(row.capex)}</td>
+              </tr>
+            `).join("")}
+          </tbody>
+        </table>
+      </div>`;
+  }
+  function entryPlanCard(plan) {
+    if (!plan?.available) {
+      return `<p class="empty">Insufficient price history for technical entry plan (minimum 160 trading days required).</p>`;
+    }
+    return `
+      <div class="entry-plan-card">
+        <div class="entry-plan-grid">
+          <div class="entry-row"><span>Current Price</span><strong>${money(plan.currentPrice)}</strong></div>
+          <div class="entry-row entry-row--highlight"><span>Ideal Buy Zone</span><strong>${money(plan.idealBuyZoneLow)} – ${money(plan.idealBuyZoneHigh)}</strong></div>
+          <div class="entry-row"><span>DCA Zone</span><strong>${money(plan.dcaZoneLow)} – ${money(plan.dcaZoneHigh)}</strong></div>
+          <div class="entry-row"><span>Breakout Buy Above</span><strong>${money(plan.breakoutBuyAbove)}</strong></div>
+          <div class="entry-row"><span>Pullback Buy Zone</span><strong>${money(plan.pullbackBuyZoneLow)} – ${money(plan.pullbackBuyZoneHigh)}</strong></div>
+          <div class="entry-row"><span>Support (EMA50)</span><strong>${money(plan.supportLevel)}</strong></div>
+          <div class="entry-row"><span>Major Support (EMA150)</span><strong>${money(plan.majorSupportLevel)}</strong></div>
+          <div class="entry-row"><span>Resistance</span><strong>${money(plan.resistanceLevel)}</strong></div>
+          <div class="entry-row entry-row--danger"><span>Invalidation (Stop)</span><strong>Below ${money(plan.invalidationBelow)}</strong></div>
+          <div class="entry-row entry-row--tp1"><span>TP1 — Partial Trim Zone</span><strong>${money(plan.tp1)}</strong></div>
+          <div class="entry-row entry-row--tp2"><span>TP2 — Extended Bull Target</span><strong>${money(plan.tp2)}</strong></div>
+          <div class="entry-row"><span>Long-Term Bull Case</span><strong>${money(plan.longTermBullCase)}</strong></div>
+          <div class="entry-row"><span>Risk / Reward</span><strong>${escapeHtml(plan.riskReward ?? "n/a")}</strong></div>
+        </div>
+        <div class="entry-plan-indicators">
+          <div><span>EMA20</span><strong>${money(plan.ema20)}</strong></div>
+          <div><span>EMA50</span><strong>${money(plan.ema50)}</strong></div>
+          <div><span>EMA150</span><strong>${money(plan.ema150)}</strong></div>
+          <div><span>RSI(14)</span><strong>${plan.rsi14 ?? "n/a"}</strong></div>
+          <div><span>ATR(14)</span><strong>${money(plan.atr14)}</strong></div>
+          <div><span>52W High</span><strong>${money(plan.high52w)}</strong></div>
+          <div><span>52W Low</span><strong>${money(plan.low52w)}</strong></div>
+          <div><span>vs 52W High</span><strong>${Number.isFinite(Number(plan.pctFrom52wHigh)) ? `${Number(plan.pctFrom52wHigh).toFixed(1)}%` : "n/a"}</strong></div>
+          <div><span>Rel Strength</span><strong>${Number.isFinite(Number(plan.relativeStrength60)) ? `${Number(plan.relativeStrength60) >= 0 ? "+" : ""}${Number(plan.relativeStrength60).toFixed(1)}%` : "n/a"}</strong></div>
+        </div>
+        <div class="tp-rules-block">
+          <div><strong>TP1 Rule:</strong> First technical target. Possible partial trim (20-25% of position). Reassess valuation and risk. Do NOT exit full position automatically.</div>
+          <div><strong>TP2 Rule:</strong> Extended bull-case target. Reduce risk if valuation becomes extreme. If thesis is intact and valuation is reasonable, hold core position.</div>
+          <div><strong>Hold-Through Rule:</strong> TP1/TP2 are trim zones, not automatic exits. Continue holding if thesis and valuation support it.</div>
+        </div>
+      </div>`;
+  }
+
+  const groups = normalizePeerGroups(result);
+  const filteredPeers = filteredPeerComparison(result);
+
   return `
-    <article class="analyzer-detail investor-report" id="printable-analyzer-report">
-      <div class="section-title">
-        <div>
-          <p class="eyebrow">Interactive Investor Report</p>
-          <h2>${escapeHtml(result.symbol)} Stock Analysis</h2>
-          <p class="muted">Latest live Yahoo Finance data as of ${dateTime(result.asOf)}.</p>
+    <article class="analyzer-detail senior-report investor-report" id="printable-analyzer-report">
+
+      <!-- COVER HEADER -->
+      <div class="senior-header">
+        <div class="senior-header-title">
+          <div class="senior-eyebrow">Senior Stock Analyzer</div>
+          <h2 class="senior-company">${escapeHtml(result.symbol)} — ${escapeHtml(result.name)}</h2>
+          <p class="senior-subtitle">5-Year Fundamentals · Technical Entry Plan · Valuation Risk · Earnings Thesis · Shares vs LEAPS</p>
         </div>
-        <div class="report-actions">
-          <span class="growth-status growth-status--${checklist?.isGrowthStock ? "pass" : "fail"}">${checklist?.isGrowthStock ? "Growth stock" : "Not confirmed"}</span>
-          <button type="button" class="print-report-button" data-toggle-report-theme>Dark / Light</button>
-          <button type="button" class="print-report-button" data-print-analyzer>Download PDF</button>
-        </div>
-      </div>
-      <div class="kpi-strip">
-        ${reportMeter("Overall Score", reportScores.overallScore, "Revenue growth versus what the stock price already demands.")}
-        ${reportMeter("Growth Potential", reportScores.growthPotential, "Higher means the company has growth plus enough chart/analyst support.")}
-        ${reportMeter("Risk Analysis", reportScores.riskScore, `${result.riskLevel || riskLevel(reportScores.riskScore)} risk. Higher means more things can go wrong, but quality and balance sheet strength reduce the score.`, true)}
-      </div>
-      <div class="report-snapshot">
-        <div><span>Research view</span><strong>${escapeHtml(result.investigateFurther || result.finalAction || "Research only")}</strong><p>No buy/sell call. This separates company quality, valuation, risk, growth potential, and timing.</p></div>
-        <div><span>Quality profile</span><strong>${escapeHtml(result.fundamentals?.rating || "n/a")}</strong><p>${escapeHtml(result.business?.ownershipStyle || "Watchlist candidate")}</p></div>
-        <div><span>Valuation profile</span><strong>${escapeHtml(result.valuation?.rating || "n/a")}</strong><p>Premium multiples are risk, not automatic danger when quality and growth are strong.</p></div>
-        <div><span>Risk level</span><strong>${escapeHtml(result.riskLevel || riskLevel(reportScores.riskScore))}</strong><p>Built from valuation, balance sheet, dilution, execution, competition, news, and trend risk.</p></div>
-      </div>
-      <div class="decision-strip">
-        <div><span>Would I investigate this further?</span><strong>${escapeHtml(result.investigateFurther || result.finalAction || "Research only")}</strong><p>Not a buy/sell recommendation. Use this as a research priority label.</p></div>
-        <div><span>Moat Score</span><strong>${Number.isFinite(Number(moat.score)) ? Math.round(moat.score) : "n/a"}/100</strong><p>${escapeHtml(moat.rating || "Moat evidence not available.")}</p></div>
-        <div><span>News / Catalyst Tape</span><strong>${escapeHtml(newsEngine.tone || "n/a")}</strong><p>${Number(newsEngine.catalystCount ?? 0)} catalyst headlines, ${Number(newsEngine.bullishCount ?? 0)} bullish, ${Number(newsEngine.bearishCount ?? 0)} bearish.</p></div>
-      </div>
-      <div class="data-quality">
-        <div><span>Data date</span><strong>${escapeHtml(dateTime(dataQuality.marketDataDate || result.asOf))}</strong></div>
-        <div><span>Latest quarter used</span><strong>${escapeHtml(dataQuality.latestQuarterUsed || "Unavailable")}</strong></div>
-        <div><span>SEC / filing cross-check</span><strong>${escapeHtml(dataQuality.secCrossCheck || "Unavailable")}</strong></div>
-      </div>
-      <div class="kpi-ticker-strip">${kpiRows.map(kpiCard).join("")}</div>
-      <div class="score-bars">
-        ${(reportScores.weighting ?? []).map((item) => `
-          <div>
-            <div><span>${escapeHtml(item.label)} (${item.weight}%)</span><strong>${Math.round(item.score)}/100</strong></div>
-            <div class="meter-track"><span style="width:${Math.max(0, Math.min(100, Number(item.score) || 0))}%"></span></div>
-            <p>${escapeHtml(item.note)}</p>
+        <div class="senior-header-meta">
+          <p class="muted">Report: ${dateTime(result.asOf)}</p>
+          <div class="report-actions">
+            <button type="button" class="print-report-button" data-toggle-report-theme>🌓 Dark / Light</button>
+            <button type="button" class="print-report-button print-report-button--primary" data-print-analyzer>⬇ Download Full PDF Report</button>
           </div>
-        `).join("")}
+        </div>
       </div>
-      ${institutionalMemo(result, { reportScores, valuationRows, healthRows, growthRows, riskRows })}
-      <details class="report-section" open><summary>1. Business Model</summary><p>${escapeHtml(report.businessModel || "Business model was not available.")}</p></details>
-      <details class="report-section" open><summary>2. Moat and Competition</summary><p>${escapeHtml(report.moat || "Moat read was not available.")}</p><p>${escapeHtml(report.technologyAdvantage || "Technology advantage was not confirmed.")}</p></details>
-      <details class="report-section" open><summary>3-5. Financial Quality, Growth, Valuation</summary>
-        <h3>Financial Health</h3><div class="metric-card-grid">${healthRows.map(metricCard).join("")}</div>
-        <h3>Growth</h3><div class="metric-card-grid">${growthRows.map(metricCard).join("")}</div>
-        <h3>Valuation</h3><div class="metric-card-grid">${valuationRows.map(metricCard).join("")}</div>
+
+      <!-- KPI STRIP -->
+      <div class="senior-kpi-strip">
+        <div class="senior-kpi"><span>Sector</span><strong>${escapeHtml(result.business?.sector ?? "n/a")}</strong></div>
+        <div class="senior-kpi"><span>Industry</span><strong>${escapeHtml(result.business?.industry ?? "n/a")}</strong></div>
+        <div class="senior-kpi"><span>Market Cap</span><strong>${bigMoney(result.marketCap)}</strong></div>
+        <div class="senior-kpi"><span>Price</span><strong>${money(currentPrice)}</strong></div>
+        <div class="senior-kpi"><span>52W High</span><strong>${money(result.high52w)}</strong></div>
+        <div class="senior-kpi"><span>52W Low</span><strong>${money(result.low52w)}</strong></div>
+        <div class="senior-kpi${ea.earningsProximate ? " senior-kpi--urgent" : ""}"><span>Next Earnings</span><strong>${escapeHtml(ea.nextEarningsDate ?? "n/a")}${Number.isFinite(ea.daysUntilEarnings) && ea.daysUntilEarnings >= 0 ? ` (${ea.daysUntilEarnings}d)` : ""}${ea.earningsProximate ? " ⚠️" : ""}</strong></div>
+        <div class="senior-kpi"><span>Last Earnings</span><strong>${escapeHtml(ea.lastEarningsDate ?? "n/a")}</strong></div>
+        <div class="senior-kpi"><span>Exchange</span><strong>${escapeHtml(result.exchange ?? "n/a")}</strong></div>
+      </div>
+
+      <!-- FINAL RATING / ACTION BANNER -->
+      <div class="senior-verdict-banner">
+        <div class="senior-verdict-item">
+          <span>Final Rating</span>
+          <strong class="chip ${ratingClass(finalRating)}">${escapeHtml(finalRating)}</strong>
+        </div>
+        <div class="senior-verdict-item">
+          <span>Final Action</span>
+          <strong class="chip ${actionClass(finalAction)}">${escapeHtml(finalAction)}</strong>
+        </div>
+        <div class="senior-verdict-item">
+          <span>Overall Long-Term Score</span>
+          <strong class="score-badge">${Number.isFinite(Number(s.overallLongTermScore)) ? Math.round(s.overallLongTermScore) : "n/a"}/100</strong>
+        </div>
+        <div class="senior-verdict-item">
+          <span>5-Year Hold Confidence</span>
+          <strong class="score-badge">${Number.isFinite(Number(s.fiveYearConfidenceScore)) ? Math.round(s.fiveYearConfidenceScore) : "n/a"}/100</strong>
+        </div>
+        <div class="senior-verdict-item">
+          <span>Earnings Thesis</span>
+          <strong class="chip ${ea.thesisClassification === "Thesis Strengthened" ? "chip-green" : ea.thesisClassification === "Thesis Weakened" ? "chip-red" : "chip-amber"}">${escapeHtml(ea.thesisClassification ?? "Insufficient data")}</strong>
+        </div>
+      </div>
+
+      <!-- SCORECARD -->
+      <details class="report-section report-section--open" open>
+        <summary>Score Dashboard — 16 Dimensions</summary>
+        <p class="scorecard-legend">Quality/strength scores: higher = better. Risk scores (Valuation Risk, Earnings Risk, Downside Risk): higher = more risky.</p>
+        <div class="senior-scorecard-grid">
+          ${seniorMeter("Overall Long-Term Score", s.overallLongTermScore, "Weighted composite. Business quality 18%, Revenue growth 14%, Margin/FCF 14%, Moat 14%, Balance Sheet 10%, Management 8%, Valuation risk (inverted) 10%, Earnings risk (inverted) 5%, Technical 7%.")}
+          ${seniorMeter("Business Quality", s.businessQualityScore, "Gross margin, operating margin, net margin, ROE. Core measure of profitability and business strength.")}
+          ${seniorMeter("Revenue Growth", s.revenueGrowthScore, "1-year, 3-year, and 5-year revenue growth rates. Growth consistency and acceleration.")}
+          ${seniorMeter("Margin Quality", s.marginQualityScore, "Gross, operating, EBITDA, and FCF margins. Higher margins = stronger pricing power and operating leverage.")}
+          ${seniorMeter("Free Cash Flow", s.freeCashFlowScore, "FCF generation, FCF margin, and FCF growth trend. The most honest measure of cash profitability.")}
+          ${seniorMeter("Balance Sheet", s.balanceSheetScore, "Cash vs debt, current ratio, D/E ratio. Financial resilience and ability to survive downturns.")}
+          ${seniorMeter("Moat", s.moatScore, "Evidence of pricing power, scale, switching costs, ecosystem, network effects, or data advantage.")}
+          ${seniorMeter("Management / Execution", s.managementScore, "Earnings beat rate, consecutive beats, analyst sentiment, and delivery consistency.")}
+          ${seniorMeter("Valuation Risk", s.valuationRiskScore, "⚠ RISK SCORE — Higher = more expensive and risky. Based on Forward P/E, P/S, PEG. Premium multiples increase downside vulnerability.", true)}
+          ${seniorMeter("Earnings Risk", s.earningsRiskScore, "⚠ RISK SCORE — Higher = more risk around earnings. Proximity to earnings, beat rate history, thesis trajectory.", true)}
+          ${seniorMeter("Technical Setup", s.technicalSetupScore, "Price trend, EMAs, RSI, MACD, ADX, relative strength vs benchmark. Chart quality and momentum.")}
+          ${seniorMeter("Entry Timing", s.entryTimingScore, "How attractive the current entry point is. Near support = higher. Overextended above resistance = lower.")}
+          ${seniorMeter("5-Year Hold Confidence", s.fiveYearConfidenceScore, "Composite of business quality, moat, growth, balance sheet, and execution. Long-term durability.")}
+          ${seniorMeter("Growth Potential", s.growthPotentialScore, "Revenue growth, margin quality, FCF, and moat combined. Upside potential over 3-5 years.")}
+          ${seniorMeter("Downside Risk", s.downsideRiskScore, "⚠ RISK SCORE — Higher = more downside risk. Valuation, earnings, balance sheet, business quality, and technical risk combined.", true)}
+          ${seniorMeter("Shares vs LEAPS Suitability", s.sharesVsLeapsSuitabilityScore, "How suitable this stock is for long-dated options. Requires strong business quality, moat, and reasonable valuation.")}
+        </div>
       </details>
-      <details class="report-section"><summary>6-7. Balance Sheet and Dilution Risk</summary><div class="metric-card-grid metric-card-grid--advisor">${advisorRows.slice(0, 8).map(advisorCard).join("")}</div></details>
-      <details class="report-section" open><summary>8-9. Catalysts, Deals, Backlog, Partnerships</summary><ul class="plain-list">${(report.catalysts ?? []).map((item) => `<li>${escapeHtml(item)}</li>`).join("") || "<li>No specific catalysts found.</li>"}</ul><p>${escapeHtml(report.partnerships || "Partnership data was not available.")}</p></details>
-      <details class="report-section" open><summary>10. Asymmetry Check</summary><p>${escapeHtml(report.asymmetry || "Asymmetry read was not available.")}</p></details>
+
+      <!-- 5-YEAR FINANCIAL TABLE -->
+      <details class="report-section report-section--open" open>
+        <summary>5-Year Financial History</summary>
+        ${buildFYTableHTML(fy)}
+        ${(Number.isFinite(Number(fy.rev3CAGR)) || Number.isFinite(Number(fy.rev5CAGR))) ? `
+          <div class="fy-summary-strip">
+            ${Number.isFinite(Number(fy.rev3CAGR)) ? `<div class="fy-summary-kpi"><span>3-Year Revenue CAGR</span><strong>${fy.rev3CAGR}%</strong></div>` : ""}
+            ${Number.isFinite(Number(fy.rev5CAGR)) ? `<div class="fy-summary-kpi"><span>5-Year Revenue CAGR</span><strong>${fy.rev5CAGR}%</strong></div>` : ""}
+            ${Number.isFinite(Number(fy.currentCash)) ? `<div class="fy-summary-kpi"><span>Cash (TTM)</span><strong>${bigMoney(fy.currentCash)}</strong></div>` : ""}
+            ${Number.isFinite(Number(fy.currentDebt)) ? `<div class="fy-summary-kpi"><span>Debt (TTM)</span><strong>${bigMoney(fy.currentDebt)}</strong></div>` : ""}
+            ${Number.isFinite(Number(fy.netCash)) ? `<div class="fy-summary-kpi"><span>Net Cash / Debt</span><strong>${bigMoney(fy.netCash)}</strong></div>` : ""}
+            ${Number.isFinite(Number(fy.currentROE)) ? `<div class="fy-summary-kpi"><span>ROE (TTM)</span><strong>${fy.currentROE}%</strong></div>` : ""}
+            ${Number.isFinite(Number(fy.currentROA)) ? `<div class="fy-summary-kpi"><span>ROA (TTM)</span><strong>${fy.currentROA}%</strong></div>` : ""}
+          </div>` : ""}
+        <div class="fy-narrative"><strong>Fund Manager Read:</strong> ${escapeHtml(fy.narrative ?? "Insufficient annual data from Yahoo Finance for narrative.")}</div>
+      </details>
+
+      <!-- BUSINESS MODEL -->
+      <details class="report-section report-section--open" open>
+        <summary>Business Model Analysis</summary>
+        <div class="report-grid">
+          <div><span>What does the company do?</span><p>${escapeHtml((result.business?.profileSummary ?? "").slice(0, 500) || report.businessModel || "Business summary unavailable.")}</p></div>
+          <div><span>Revenue model</span><p>${escapeHtml(report.businessModel || report.coreProduct || "Revenue model not detailed in Yahoo structured data.")}</p></div>
+          <div><span>Business theme</span><p>${escapeHtml(result.business?.theme ?? "n/a")}</p></div>
+          <div><span>Demand type</span><p>${escapeHtml(result.business?.theme?.includes("semiconductor") || result.business?.theme?.includes("software") || result.business?.theme?.includes("ai") ? "Likely secular — structural long-term demand driven by AI and digital transformation." : "Verify demand durability against business cycle sensitivity.")}</p></div>
+        </div>
+        <div class="beginner-read-card">
+          <strong>Explain this business like I'm new to investing:</strong>
+          <p>${escapeHtml(result.business?.plainEnglish || "Business explanation unavailable.")}</p>
+        </div>
+        <div class="report-grid">
+          <div><span>Bull case</span><p>${escapeHtml(report.bullCase || "Not available.")}</p></div>
+          <div><span>Bear case</span><p>${escapeHtml(report.bearCase || "Not available.")}</p></div>
+          <div><span>Why should it still matter in 5 years?</span><p>${escapeHtml(report.moat || "Requires deep research into competitive position.")}</p></div>
+          <div><span>Technology / IP advantage</span><p>${escapeHtml(report.technologyAdvantage || "Not confirmed from Yahoo structured data.")}</p></div>
+        </div>
+      </details>
+
+      <!-- MOAT & COMPETITION -->
+      <details class="report-section report-section--open" open>
+        <summary>Moat and Competitive Position</summary>
+        <div class="moat-header">
+          <div class="moat-kpi"><span>Moat Score</span><strong>${moat.score ?? "n/a"}/100</strong></div>
+          <div class="moat-kpi"><span>Moat Rating</span><strong>${escapeHtml(moat.rating ?? "n/a")}</strong></div>
+        </div>
+        <div class="analyzer-columns">
+          <div><h4>Moat Evidence</h4><ul class="plain-list">${(moat.points ?? []).map((item) => `<li>${escapeHtml(item)}</li>`).join("") || "<li>No strong moat evidence confirmed.</li>"}</ul></div>
+          <div><h4>Moat Risks</h4><ul class="plain-list">${(moat.risks ?? []).map((item) => `<li>${escapeHtml(item)}</li>`).join("") || "<li>No major moat risks identified.</li>"}</ul></div>
+        </div>
+        <h4>Peer Groups</h4>
+        ${peerGroupTable(groups)}
+        ${filteredPeers.length ? `<h4>Peer Comparison</h4>${peerTable(filteredPeers)}` : ""}
+        <p class="muted">${escapeHtml(report.peerValidation || "Peers grouped by operating relevance.")}</p>
+      </details>
+
+      <!-- EARNINGS ANALYSIS -->
+      <details class="report-section report-section--open" open>
+        <summary>Earnings Analysis</summary>
+        <div class="earnings-header-strip">
+          <div class="earnings-kpi${ea.earningsProximate ? " earnings-kpi--urgent" : ""}"><span>Next Earnings</span><strong>${escapeHtml(ea.nextEarningsDate ?? "n/a")}${ea.earningsProximate ? " ⚠️ SOON" : ""}</strong><p>${Number.isFinite(ea.daysUntilEarnings) && ea.daysUntilEarnings >= 0 ? `${ea.daysUntilEarnings} days away` : "Timing uncertain"}</p></div>
+          <div class="earnings-kpi"><span>Last Earnings</span><strong>${escapeHtml(ea.lastEarningsDate ?? "n/a")}</strong></div>
+          <div class="earnings-kpi"><span>EPS vs Expectations</span><strong>${escapeHtml(ea.epsVsExpectations ?? "n/a")}</strong></div>
+          <div class="earnings-kpi"><span>Revenue vs Expectations</span><strong>${escapeHtml(ea.revVsExpectations ?? "n/a")}</strong></div>
+          <div class="earnings-kpi"><span>Guidance</span><strong>${escapeHtml(ea.guidanceChange ?? "n/a")}</strong></div>
+          <div class="earnings-kpi"><span>EPS Beat Rate</span><strong>${ea.beatRate !== null && ea.beatRate !== undefined ? `${ea.beatRate}%` : "n/a"}</strong></div>
+          <div class="earnings-kpi"><span>Consecutive Beats</span><strong>${ea.consecutiveBeats ?? "n/a"}</strong></div>
+          <div class="earnings-kpi earnings-kpi--classification earnings-kpi--${ea.thesisClassification === "Thesis Strengthened" ? "green" : ea.thesisClassification === "Thesis Weakened" ? "red" : "amber"}"><span>Earnings Thesis</span><strong>${escapeHtml(ea.thesisClassification ?? "Insufficient data")}</strong></div>
+        </div>
+        <div class="earnings-commentary">
+          <div><strong>Gross Margin Commentary:</strong> ${escapeHtml(ea.grossMarginsComment ?? "n/a")}</div>
+          <div><strong>Operating Margin Commentary:</strong> ${escapeHtml(ea.opMarginsComment ?? "n/a")}</div>
+          <div><strong>Earnings Risk:</strong> <span class="chip chip-${ea.earningsRiskLabel === "High" ? "red" : ea.earningsRiskLabel === "Moderate" ? "amber" : "green"}">${escapeHtml(ea.earningsRiskLabel ?? "Low")}</span></div>
+        </div>
+        <div class="watch-next-block">
+          <strong>What to Watch in the Next Earnings Report:</strong>
+          <ol>${(ea.watchNext ?? []).map((item) => `<li>${escapeHtml(item)}</li>`).join("")}</ol>
+        </div>
+        <div class="news-panel">
+          <div class="section-title">
+            <div><p class="eyebrow">Yahoo Finance</p><h4>Catalyst Intelligence</h4></div>
+            <span class="growth-status growth-status--${scoreTone(newsEngine.score) === "good" ? "pass" : scoreTone(newsEngine.score) === "bad" ? "fail" : "near"}">${Number.isFinite(Number(newsEngine.score)) ? Math.round(newsEngine.score) : "n/a"}/100</span>
+          </div>
+          <div class="news-grid">
+            <div><span>Recent Headlines</span><ul class="plain-list">${(newsEngine.items ?? []).slice(0, 5).map((item) => `<li><a href="${escapeHtml(item.link)}" target="_blank" rel="noreferrer">${escapeHtml(item.title)}</a><small>${escapeHtml(item.publisher || "")} — ${escapeHtml(item.tone || "neutral")}</small></li>`).join("") || "<li>No headline feed.</li>"}</ul></div>
+            <div><span>SEC Filings</span><ul class="plain-list">${(newsEngine.filings ?? []).slice(0, 3).map((item) => `<li><a href="${escapeHtml(item.url)}" target="_blank" rel="noreferrer">${escapeHtml(`${item.date ?? ""} ${item.type ?? ""}: ${item.title ?? ""}`)}</a></li>`).join("") || "<li>No recent filings.</li>"}</ul></div>
+            <div><span>Analyst Revisions</span><ul class="plain-list">${(newsEngine.upgrades ?? []).slice(0, 4).map((item) => `<li>${escapeHtml(`${item.date ?? ""} ${item.firm ?? ""}: ${item.fromGrade ?? "n/a"} → ${item.toGrade ?? "n/a"}${item.priceTargetAction ? `, target ${item.priceTargetAction}` : ""}`)}</li>`).join("") || "<li>No upgrade/downgrade history.</li>"}</ul></div>
+          </div>
+        </div>
+      </details>
+
+      <!-- VALUATION ANALYSIS -->
+      <details class="report-section report-section--open" open>
+        <summary>Valuation Analysis</summary>
+        <div class="valuation-header">
+          <div class="val-kpi"><span>Valuation Risk</span><strong class="${Number(s.valuationRiskScore) >= 70 ? "text-red" : Number(s.valuationRiskScore) >= 50 ? "text-amber" : "text-green"}">${s.valuationRiskScore ?? "n/a"}/100</strong></div>
+          <div class="val-kpi"><span>Trailing P/E</span><strong>${Number.isFinite(Number(valuation.trailingPE)) ? `${valuation.trailingPE}x` : "n/a"}</strong></div>
+          <div class="val-kpi"><span>Forward P/E</span><strong>${Number.isFinite(Number(valuation.forwardPE)) ? `${valuation.forwardPE}x` : "n/a"}</strong></div>
+          <div class="val-kpi"><span>PEG Ratio</span><strong>${Number.isFinite(Number(valuation.pegRatio)) ? `${valuation.pegRatio}x` : "n/a"}</strong></div>
+          <div class="val-kpi"><span>P/S Ratio</span><strong>${Number.isFinite(Number(valuation.priceToSales)) ? `${valuation.priceToSales}x` : "n/a"}</strong></div>
+          <div class="val-kpi"><span>EV/EBITDA</span><strong>${Number.isFinite(Number(valuation.enterpriseToEbitda)) ? `${valuation.enterpriseToEbitda}x` : "n/a"}</strong></div>
+          <div class="val-kpi"><span>Analyst Target</span><strong>${money(valuation.targetMeanPrice)}</strong></div>
+          <div class="val-kpi"><span>Analyst Upside</span><strong>${Number.isFinite(Number(valuation.analystUpside)) ? `${Number(valuation.analystUpside) > 0 ? "+" : ""}${valuation.analystUpside}%` : "n/a"}</strong></div>
+        </div>
+        <div class="valuation-rating-block">
+          <span>Valuation Profile:</span>
+          <strong class="chip ${Number(s.valuationRiskScore) >= 75 ? "chip-red" : Number(s.valuationRiskScore) >= 55 ? "chip-amber" : "chip-green"}">${escapeHtml(valuation.rating ?? "n/a")}</strong>
+          <p>${(valuation.reasons ?? []).concat(valuation.risks ?? []).slice(0, 4).map((item) => escapeHtml(item)).join(" · ") || "Valuation commentary unavailable."}</p>
+        </div>
+        <div class="valuation-interpretation">
+          <div><strong>Is valuation justified by growth?</strong> ${Number(s.revenueGrowthScore) >= 70 && Number(s.valuationRiskScore) >= 65 ? "The premium valuation requires continued strong growth to be justified. Revenue growth score supports it, but execution must remain strong." : Number(s.valuationRiskScore) <= 40 ? "Valuation appears reasonable or attractive relative to growth prospects." : "Valuation carries meaningful risk. Any growth deceleration could lead to significant multiple compression."}</div>
+          <div><strong>What pullback level would be more attractive?</strong> ${tp.available ? `A pullback toward the DCA zone (${money(tp.dcaZoneLow)} – ${money(tp.dcaZoneHigh)}) or ideal buy zone (${money(tp.idealBuyZoneLow)} – ${money(tp.idealBuyZoneHigh)}) would improve risk/reward meaningfully.` : "A 15–20% pullback from current levels would generally create better entry value."}</div>
+        </div>
+        <div class="metric-card-grid">${rowsByLabel(checklist, ["P/E Ratio", "Forward P/E", "PEG Ratio", "P/B Ratio", "P/S Ratio", "Enterprise Value / EBITDA", "P/FCF"]).map(metricCard).join("")}</div>
+      </details>
+
+      <!-- TECHNICAL ANALYSIS + ENTRY PLAN -->
+      <details class="report-section report-section--open" open>
+        <summary>Technical Analysis and Entry Plan</summary>
+        <div class="tech-header-strip">
+          <div class="tech-kpi"><span>Technical Trend</span><strong class="chip ${tp.technicalTrend === "Bullish" ? "chip-green" : tp.technicalTrend === "Neutral" ? "chip-amber" : "chip-red"}">${escapeHtml(tp.technicalTrend ?? technical.rating ?? "n/a")}</strong></div>
+          <div class="tech-kpi"><span>Entry Timing</span><strong class="chip ${tp.entryTiming === "Attractive now" ? "chip-green" : (tp.entryTiming ?? "").includes("Avoid") ? "chip-red" : "chip-amber"}">${escapeHtml(tp.entryTiming ?? "n/a")}</strong></div>
+          <div class="tech-kpi"><span>Technical Score</span><strong>${s.technicalSetupScore ?? technical.score ?? "n/a"}/100</strong></div>
+          <div class="tech-kpi"><span>Entry Timing Score</span><strong>${s.entryTimingScore ?? "n/a"}/100</strong></div>
+        </div>
+        ${(tp.reasons ?? technical.reasons ?? []).length ? `<div class="tech-reasons"><strong>Bullish signals:</strong> ${(tp.reasons ?? technical.reasons ?? []).map((r) => escapeHtml(r)).join(" · ")}</div>` : ""}
+        ${(tp.risks ?? technical.risks ?? []).length ? `<div class="tech-reasons tech-reasons--risk"><strong>Risk signals:</strong> ${(tp.risks ?? technical.risks ?? []).map((r) => escapeHtml(r)).join(" · ")}</div>` : ""}
+        <h4>Entry Plan</h4>
+        ${entryPlanCard(tp)}
+        <p class="muted">Entry zones are calculated from moving averages and ATR. Verify with current chart before acting. This is research, not financial advice.</p>
+        <div class="report-snapshot" style="margin-top:12px;">
+          <div><span>Relative Strength</span><strong>${Number.isFinite(Number(technical.relativeStrength60)) ? `${Number(technical.relativeStrength60) >= 0 ? "+" : ""}${Number(technical.relativeStrength60).toFixed(1)}%` : "n/a"}</strong><p>vs ${escapeHtml(result.benchmark ?? "QQQ")} over 60 days.</p></div>
+          <div><span>RSI / ADX</span><strong>${technical.rsi14 ?? "n/a"} / ${technical.adx14 ?? "n/a"}</strong><p>RSI 14-day momentum. ADX trend strength.</p></div>
+          <div><span>EMA50 / EMA150</span><strong>${money(technical.ema50)} / ${money(technical.ema150)}</strong><p>Key trend support levels.</p></div>
+          <div><span>Stop / Target</span><strong>${money(technical.stop)} / ${money(technical.target)}</strong><p>Existing system stop and target levels.</p></div>
+        </div>
+      </details>
+
+      <!-- SHARES vs LEAPS -->
+      <details class="report-section report-section--open" open>
+        <summary>Shares vs LEAPS Decision</summary>
+        <div class="leaps-decision-grid">
+          <div class="leaps-card leaps-card--shares">
+            <h4>Shares Decision</h4>
+            <strong class="chip ${actionClass(svl.sharesDecision ?? "Wait for pullback")}">${escapeHtml(svl.sharesDecision ?? "n/a")}</strong>
+            <p>${escapeHtml(svl.whyShares ?? "Shares analysis unavailable.")}</p>
+          </div>
+          <div class="leaps-card ${svl.leapsAllowed ? "leaps-card--allowed" : "leaps-card--avoid"}">
+            <h4>LEAPS Decision</h4>
+            <strong class="chip ${svl.leapsAllowed ? "chip-amber" : "chip-red"}">${escapeHtml(svl.leapsDecision ?? "n/a")}</strong>
+            <p>${escapeHtml(svl.whyLeaps ?? "LEAPS analysis unavailable.")}</p>
+          </div>
+        </div>
+        ${!svl.meetsLeapsMinimum ? `
+          <div class="leaps-minimum-block">
+            <strong>LEAPS Minimum Requirements (Not Met):</strong>
+            <div class="explain-grid">
+              <div><span>Overall Score (need ≥75)</span><strong>${svl.minimumRequirements?.overallScore ?? "n/a"}</strong></div>
+              <div><span>Business Quality (need ≥70)</span><strong>${svl.minimumRequirements?.businessScore ?? "n/a"}</strong></div>
+              <div><span>Moat Score (need ≥70)</span><strong>${svl.minimumRequirements?.moatScore ?? "n/a"}</strong></div>
+              <div><span>FCF Score (need ≥48)</span><strong>${svl.minimumRequirements?.fcfScore ?? "n/a"}</strong></div>
+            </div>
+            ${svl.tooRiskyReason ? `<p>${escapeHtml(svl.tooRiskyReason)}</p>` : ""}
+          </div>` : svl.contractPreference ? `
+          <div class="leaps-contract-block">
+            <strong>Preferred LEAPS Contract Parameters:</strong>
+            <div class="explain-grid">
+              <div><span>Preferred Expiry</span><strong>${escapeHtml(svl.contractPreference.preferredExpiry ?? "n/a")}</strong></div>
+              <div><span>Minimum Expiry</span><strong>${escapeHtml(svl.contractPreference.minimumExpiry ?? "n/a")}</strong></div>
+              <div><span>Preferred Delta</span><strong>${escapeHtml(svl.contractPreference.preferredDelta ?? "n/a")}</strong></div>
+              <div><span>OTM Contracts</span><strong>Avoid far OTM lottery contracts</strong></div>
+            </div>
+            <p>${escapeHtml(svl.contractPreference.note ?? "")}</p>
+          </div>` : ""}
+      </details>
+
+      <!-- POSITION SIZING -->
+      <details class="report-section">
+        <summary>Position Sizing Guidance (Example: $10,000 Portfolio)</summary>
+        <div class="position-sizing-grid">
+          <div class="ps-card"><span>Classification</span><strong>${escapeHtml(ps.classification ?? "n/a")}</strong></div>
+          <div class="ps-card"><span>Starter Position</span><strong>${ps.starterPct ?? 0}% (~$${ps.starterDollar ?? 0})</strong></div>
+          <div class="ps-card"><span>Core Target</span><strong>${ps.coreTargetPct ?? 0}% (~$${ps.coreDollar ?? 0})</strong></div>
+          <div class="ps-card"><span>Max Allocation</span><strong>${ps.maxPct ?? 0}%</strong></div>
+        </div>
+        <div class="ps-detail">
+          <div><strong>DCA Plan:</strong> ${escapeHtml(ps.dcaPlan ?? "n/a")}</div>
+          <div><strong>Add-On Zones:</strong> ${escapeHtml(ps.addOnZones ?? "n/a")}</div>
+          <div><strong>LEAPS Note:</strong> ${escapeHtml(ps.leapsNote ?? "n/a")}</div>
+        </div>
+        <div class="ps-trim"><strong>Trim / Reduce Conditions:</strong><ul class="plain-list">${(ps.trimConditions ?? []).map((item) => `<li>${escapeHtml(item)}</li>`).join("")}</ul></div>
+      </details>
+
+      <!-- RISK HEATMAP -->
+      <details class="report-section">
+        <summary>Risk Heatmap</summary>
+        <div class="risk-heatmap">${(result.riskBreakdown ?? []).map(riskHeatCell).join("")}</div>
+        ${(result.risks ?? []).length ? `<ul class="plain-list">${result.risks.map((item) => `<li>${escapeHtml(item)}</li>`).join("")}</ul>` : ""}
+        ${(dataQuality.missingOrEstimatedValues ?? []).length ? `<p class="muted">Missing or estimated: ${dataQuality.missingOrEstimatedValues.slice(0, 8).join(", ")}</p>` : ""}
+        <h4>Balance Sheet and Dilution Checks</h4>
+        <div class="metric-card-grid metric-card-grid--advisor">${advisorRows.slice(0, 8).map(advisorCard).join("")}</div>
+      </details>
+
+      <!-- HIDDEN MULTIBAGGER (if available) -->
       ${renderHiddenMultibagger(result)}
-      <details class="report-section" open><summary>13. Technical Trend Snapshot</summary><div class="metric-card-grid metric-card-grid--advisor">
-        ${advisorCard({ label: "Trend", status: result.technical?.score >= 60 ? "pass" : result.technical?.score >= 45 ? "near" : "fail", value: `${result.technical?.rating || "n/a"} trend. Price ${money(result.technical?.close)}, EMA50 ${money(result.technical?.ema50)}, EMA150 ${money(result.technical?.ema150)}.` })}
-        ${advisorCard({ label: "Momentum", status: result.technical?.rsi14 >= 50 ? "pass" : "near", value: `RSI ${result.technical?.rsi14 ?? "n/a"}, ADX ${result.technical?.adx14 ?? "n/a"}, relative strength ${result.technical?.relativeStrength60 ?? "n/a"}%.` })}
-        ${advisorCard({ label: "Support / Resistance", status: "near", value: `Chart stop near ${money(result.technical?.stop)}; target zone near ${money(result.technical?.target)}; 55-day high ${money(result.technical?.high55)}.` })}
-      </div></details>
-      <details class="report-section" open><summary>14. Red Flags</summary><ul class="plain-list">${[...(result.risks ?? []), ...(dataQuality.missingOrEstimatedValues ?? []).map((item) => `Missing/estimated: ${item}`)].slice(0, 12).map((item) => `<li>${escapeHtml(item)}</li>`).join("") || "<li>No major red flags from available fields.</li>"}</ul></details>
-      <h3>Peer Comparison</h3>
-      ${peerTable(filteredPeerComparison(result))}
-      <h3>Risk Heatmap</h3>
-      <div class="risk-heatmap">${riskRows.map(riskHeatCell).join("")}</div>
-      <h3>Advisor Add-ons</h3>
-      <div class="metric-card-grid metric-card-grid--advisor">${advisorRows.map(advisorCard).join("")}</div>
-      <div class="analyzer-columns">
-        <div>
-          <h3>Moat Evidence</h3>
-          <ul class="plain-list">${(moat.points ?? []).map((item) => `<li>${escapeHtml(item)}</li>`).join("") || "<li>No strong moat evidence found in available fields.</li>"}</ul>
+
+      <!-- FUND MANAGER VERDICT -->
+      <div class="fund-manager-verdict" id="fund-manager-verdict">
+        <div class="verdict-title">
+          <h3>Senior Fund Manager Verdict</h3>
+          <span class="chip ${ratingClass(fmv.finalRating ?? finalRating)}">${escapeHtml(fmv.finalRating ?? finalRating)}</span>
         </div>
-        <div>
-          <h3>Moat Risks</h3>
-          <ul class="plain-list">${(moat.risks ?? []).map((item) => `<li>${escapeHtml(item)}</li>`).join("") || "<li>No major moat risks from available fields.</li>"}</ul>
+        <div class="verdict-grid">
+          <div><span>1. Final Rating</span><strong>${escapeHtml(fmv.finalRating ?? finalRating)}</strong></div>
+          <div><span>2. Final Action</span><strong class="chip ${actionClass(fmv.finalAction ?? finalAction)}">${escapeHtml(fmv.finalAction ?? finalAction)}</strong></div>
+          <div><span>3. Investable 5+ years?</span><strong>${fmv.investable5Years ? "✅ Yes" : "⚠️ Not confirmed"}</strong></div>
+          <div><span>4. Buy today or wait?</span><strong>${escapeHtml(fmv.buyNowOrWait ?? "n/a")}</strong></div>
+          <div><span>5. Ideal Entry Zone</span><strong>${escapeHtml(fmv.idealEntryZone ?? "n/a")}</strong></div>
+          <div><span>6. DCA Zone</span><strong>${escapeHtml(fmv.dcaZone ?? "n/a")}</strong></div>
+          <div><span>7. TP1</span><strong>${money(fmv.tp1)}</strong></div>
+          <div><span>8. TP2</span><strong>${money(fmv.tp2)}</strong></div>
+          <div><span>9. Invalidation Level</span><strong>${money(fmv.invalidationLevel)}</strong></div>
+          <div><span>10. Shares vs LEAPS</span><strong>${escapeHtml(fmv.sharesVsLeapsDecision ?? "n/a")}</strong></div>
+          <div><span>11. Biggest Upside Driver</span><strong>${escapeHtml(fmv.biggestUpsideDriver ?? "n/a")}</strong></div>
+          <div><span>12. Biggest Risk</span><strong>${escapeHtml(fmv.biggestRisk ?? "n/a")}</strong></div>
+          <div><span>13. Watch Next Earnings</span><strong>${escapeHtml(fmv.watchNextEarnings ?? "n/a")}</strong></div>
         </div>
-      </div>
-      <div class="news-panel">
-        <div class="section-title">
-          <div>
-            <p class="eyebrow">Yahoo News + Filings</p>
-            <h3>Catalyst Intelligence</h3>
-          </div>
-          <span class="growth-status growth-status--${scoreTone(newsEngine.score) === "good" ? "pass" : scoreTone(newsEngine.score) === "bad" ? "fail" : "near"}">${Number.isFinite(Number(newsEngine.score)) ? Math.round(newsEngine.score) : "n/a"}/100</span>
+        <div class="verdict-conditions">
+          <div><strong>14. What would make me sell / reduce:</strong><ul class="plain-list">${(fmv.sellReduceConditions ?? []).map((item) => `<li>${escapeHtml(item)}</li>`).join("")}</ul></div>
+          <div><strong>15. What would make me buy more:</strong><ul class="plain-list">${(fmv.buyMoreConditions ?? []).map((item) => `<li>${escapeHtml(item)}</li>`).join("")}</ul></div>
         </div>
-        <div class="news-grid">
-          <div>
-            <span>Recent Headlines</span>
-            <ul class="plain-list">${(newsEngine.items ?? []).slice(0, 5).map((item) => `<li><a href="${escapeHtml(item.link)}" target="_blank" rel="noreferrer">${escapeHtml(item.title)}</a><small>${escapeHtml(item.publisher || "")} - ${escapeHtml(item.tone || "neutral")}</small></li>`).join("") || "<li>No Yahoo headline feed available.</li>"}</ul>
-          </div>
-          <div>
-            <span>SEC Filing Watch</span>
-            <p>${escapeHtml(newsEngine.filingRead || "No filing read available.")}</p>
-            <ul class="plain-list">${(newsEngine.filings ?? []).slice(0, 3).map((item) => `<li><a href="${escapeHtml(item.url)}" target="_blank" rel="noreferrer">${escapeHtml(`${item.date || ""} ${item.type || ""}: ${item.title || ""}`)}</a></li>`).join("") || "<li>No recent filings from Yahoo.</li>"}</ul>
-          </div>
-          <div>
-            <span>Analyst Revisions</span>
-            <ul class="plain-list">${(newsEngine.upgrades ?? []).slice(0, 4).map((item) => `<li>${escapeHtml(`${item.date || ""} ${item.firm || ""}: ${item.fromGrade || "n/a"} -> ${item.toGrade || "n/a"}${item.priceTargetAction ? `, target ${item.priceTargetAction}` : ""}`)}</li>`).join("") || "<li>No recent upgrade/downgrade history from Yahoo.</li>"}</ul>
-            <p>${escapeHtml(newsEngine.caveat || "")}</p>
-          </div>
+        <div class="verdict-plain-english">
+          <strong>Plain-English 5-Sentence Summary:</strong>
+          <p>${escapeHtml(fmv.plainEnglishSummary ?? result.managerRead ?? "Analysis unavailable.")}</p>
         </div>
+        <p class="muted">${escapeHtml(dataQuality.caveat ?? "This is an analytical research report, not financial advice. Data sourced from Yahoo Finance and SEC EDGAR. Verify critical figures against company filings before making investment decisions.")}</p>
       </div>
-      <div class="analyzer-columns">
-        <div class="thesis-card thesis-card--bull"><h3>Bull Case</h3><p>${escapeHtml(report.bullCase || "Bull case was not available.")}</p></div>
-        <div class="thesis-card thesis-card--bear"><h3>Bear Case</h3><p>${escapeHtml(report.bearCase || "Bear case was not available.")}</p></div>
+
+      <!-- DATA QUALITY FOOTER -->
+      <div class="data-quality">
+        <div><span>Report date</span><strong>${escapeHtml(dateTime(dataQuality.marketDataDate || result.asOf))}</strong></div>
+        <div><span>Latest quarter</span><strong>${escapeHtml(dataQuality.latestQuarterUsed || "Unavailable")}</strong></div>
+        <div><span>SEC cross-check</span><strong>${escapeHtml((dataQuality.secCrossCheck || "Yahoo Finance only").slice(0, 80))}</strong></div>
       </div>
-      <p class="action">${escapeHtml(report.shortAnalysis || checklist?.summary || "Use this as a research starting point.")}</p>
-      <div class="final-summary-card">
-        <span>15. Final Short Analysis</span>
-        <p>${escapeHtml(report.shortAnalysis || "Use this as a research starting point.")}</p>
-        <p>${escapeHtml(dataQuality.caveat || "This is an analytical research report, not financial advice.")}</p>
-      </div>
+
     </article>
   `;
 }
