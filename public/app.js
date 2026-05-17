@@ -496,20 +496,23 @@ function renderReportSection(result) {
         <table>
           <thead><tr>${hdr.map((h) => `<th>${h}</th>`).join("")}</tr></thead>
           <tbody>
-            ${fyData.rows.map((row) => `
+            ${fyData.rows.map((row) => {
+              const fmtPct = (v) => v != null && Number.isFinite(Number(v)) ? `${Number(v).toFixed(1)}%` : "—";
+              const growthClass = row.revenueGrowth != null ? (Number(row.revenueGrowth) >= 15 ? "cell-good" : Number(row.revenueGrowth) >= 5 ? "" : "cell-bad") : "";
+              return `
               <tr>
                 <td><strong>${escapeHtml(String(row.year ?? "n/a"))}</strong></td>
                 <td>${bigMoney(row.revenue)}</td>
-                <td class="${Number(row.revenueGrowth) >= 15 ? "cell-good" : Number(row.revenueGrowth) >= 5 ? "" : "cell-bad"}">${Number.isFinite(Number(row.revenueGrowth)) ? `${Number(row.revenueGrowth).toFixed(1)}%` : "n/a"}</td>
-                <td>${Number.isFinite(Number(row.grossMargin)) ? `${Number(row.grossMargin).toFixed(1)}%` : "n/a"}</td>
-                <td>${Number.isFinite(Number(row.operatingMargin)) ? `${Number(row.operatingMargin).toFixed(1)}%` : "n/a"}</td>
-                <td>${Number.isFinite(Number(row.netMargin)) ? `${Number(row.netMargin).toFixed(1)}%` : "n/a"}</td>
-                <td>${Number.isFinite(Number(row.ebitdaMargin)) ? `${Number(row.ebitdaMargin).toFixed(1)}%` : "n/a"}</td>
+                <td class="${growthClass}">${fmtPct(row.revenueGrowth)}</td>
+                <td>${fmtPct(row.grossMargin)}</td>
+                <td>${fmtPct(row.operatingMargin)}</td>
+                <td>${fmtPct(row.netMargin)}</td>
+                <td>${fmtPct(row.ebitdaMargin)}</td>
                 <td>${bigMoney(row.fcf)}</td>
-                <td>${Number.isFinite(Number(row.fcfMargin)) ? `${Number(row.fcfMargin).toFixed(1)}%` : "n/a"}</td>
+                <td>${fmtPct(row.fcfMargin)}</td>
                 <td>${bigMoney(row.capex)}</td>
-              </tr>
-            `).join("")}
+              </tr>`;
+            }).join("")}
           </tbody>
         </table>
       </div>`;
@@ -874,11 +877,26 @@ function renderReportSection(result) {
         <p class="muted">${escapeHtml(dataQuality.caveat ?? "This is an analytical research report, not financial advice. Data sourced from Yahoo Finance and SEC EDGAR. Verify critical figures against company filings before making investment decisions.")}</p>
       </div>
 
-      <!-- DATA QUALITY FOOTER -->
-      <div class="data-quality">
-        <div><span>Report date</span><strong>${escapeHtml(dateTime(dataQuality.marketDataDate || result.asOf))}</strong></div>
-        <div><span>Latest quarter</span><strong>${escapeHtml(dataQuality.latestQuarterUsed || "Unavailable")}</strong></div>
-        <div><span>SEC cross-check</span><strong>${escapeHtml((dataQuality.secCrossCheck || "Yahoo Finance only").slice(0, 80))}</strong></div>
+      <!-- DATA SOURCE SECTION -->
+      <div class="data-source-section">
+        <div class="data-source-header">
+          <strong>Data Sources &amp; Quality</strong>
+          <span class="muted">Verify critical figures against company filings before making investment decisions.</span>
+        </div>
+        <div class="data-source-grid">
+          <div><span>Report Generated</span><strong>${escapeHtml(dateTime(result.asOf))}</strong></div>
+          <div><span>Price / Market Data</span><strong>Yahoo Finance (real-time on local server; cached on GitHub Pages)</strong></div>
+          <div><span>Financial Statements</span><strong>Yahoo Finance incomeStatementHistory &amp; cashflowStatementHistory modules</strong></div>
+          <div><span>Latest Quarter Used</span><strong>${escapeHtml(dataQuality.latestQuarterUsed || "Not confirmed — check company filings")}</strong></div>
+          <div><span>SEC / Filing Cross-Check</span><strong>${escapeHtml(dataQuality.secCrossCheck || "SEC EDGAR facts requested; Yahoo Finance is primary fallback")}</strong></div>
+          <div><span>Earnings Calendar</span><strong>Yahoo Finance calendarEvents + earningsHistory modules</strong></div>
+          <div><span>Analyst Estimates</span><strong>Yahoo Finance earningsTrend module (consensus estimates)</strong></div>
+          <div><span>Technical Indicators</span><strong>Computed from Yahoo Finance OHLCV candle history (18 months)</strong></div>
+          <div><span>News / Headlines</span><strong>Yahoo Finance news feed (sentiment-tagged; not used for thesis)</strong></div>
+          <div><span>Peer Comparison</span><strong>Yahoo Finance (auto-fetched peers based on sector/theme rules)</strong></div>
+          ${(dataQuality.missingOrEstimatedValues ?? []).length ? `<div style="grid-column:1/-1"><span>Missing / Estimated Fields</span><strong style="color:#b45309">${dataQuality.missingOrEstimatedValues.slice(0, 12).join(", ")}</strong></div>` : ""}
+        </div>
+        <p class="muted" style="margin:8px 0 0;font-size:0.75rem">Primary sources: Yahoo Finance (price, financials, estimates, candles) · SEC EDGAR (10-K/10-Q cross-check where available) · Company IR (guidance, confirmed earnings dates). This report is analytical research only — not financial advice.</p>
       </div>
 
     </article>

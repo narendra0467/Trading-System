@@ -1317,158 +1317,7 @@ th {
 
 }
 
-@media print {
-  @page {
-    margin: 0.35in;
-    size: letter;
-  }
 
-  * {
-    -webkit-print-color-adjust: exact !important;
-    print-color-adjust: exact !important;
-  }
-
-  body {
-    background: #07101d !important;
-    color: #f4fbff !important;
-  }
-
-  .topbar,
-  .regime,
-  .tabs,
-  .tab-panel:not(#tab-analyzer),
-  #tab-analyzer > .coach > .section-title,
-  .analyzer-form,
-  .analyzer-note,
-  .analyzer-card,
-  .growth-checklist,
-  .ticker-resolver,
-  #tab-analyzer .analyzer-detail:not(.investor-report),
-  .print-report-button {
-    display: none !important;
-  }
-
-  main.shell,
-  .tab-panel,
-  .coach,
-  .analyzer-detail,
-  .investor-report {
-    border: 0 !important;
-    box-shadow: none !important;
-    margin: 0 !important;
-    max-width: none !important;
-    padding: 12px !important;
-    width: 100% !important;
-  }
-
-  .investor-report,
-  .report-meter,
-  .score-bars div,
-  .decision-strip div,
-  .news-grid div,
-  .metric-card,
-  .report-grid div,
-  .thesis-card,
-  .hidden-hunter,
-  .hidden-thesis-grid div,
-  .proof-grid div,
-  .news-panel {
-    color: #f4fbff !important;
-    break-inside: avoid;
-  }
-
-  .investor-report {
-    background:
-      linear-gradient(135deg, #07101d, #111827 48%, #0c2230) !important;
-  }
-
-  .investor-report > .section-title:first-child {
-    background:
-      linear-gradient(135deg, rgba(114, 210, 255, 0.2), rgba(16, 185, 129, 0.12) 55%, rgba(245, 158, 11, 0.12)) !important;
-    border-color: rgba(114, 210, 255, 0.32) !important;
-    padding: 16px !important;
-  }
-
-  .report-meter,
-  .score-bars div,
-  .metric-card,
-  .report-grid div,
-  .kpi-card,
-  .risk-heat,
-  .report-section,
-  .data-quality div,
-  .report-snapshot div,
-  .hidden-hunter,
-  .hidden-thesis-grid div,
-  .proof-grid div,
-  .final-summary-card {
-    background: rgba(15, 23, 42, 0.74) !important;
-    border-color: rgba(148, 163, 184, 0.22) !important;
-  }
-
-  .kpi-card--pass,
-  .risk-heat--pass {
-    background: rgba(16, 185, 129, 0.14) !important;
-    border-color: rgba(16, 185, 129, 0.42) !important;
-  }
-
-  .kpi-card--near,
-  .risk-heat--near {
-    background: rgba(245, 158, 11, 0.14) !important;
-    border-color: rgba(245, 158, 11, 0.42) !important;
-  }
-
-  .kpi-card--fail,
-  .risk-heat--fail {
-    background: rgba(239, 68, 68, 0.14) !important;
-    border-color: rgba(239, 68, 68, 0.42) !important;
-  }
-
-  .decision-strip div,
-  .news-grid div,
-  .thesis-card,
-  .news-panel {
-    background: rgba(12, 34, 48, 0.78) !important;
-    border-color: rgba(114, 210, 255, 0.22) !important;
-  }
-
-  .investor-report span,
-  .investor-report p,
-  .investor-report li,
-  .investor-report small,
-  .muted {
-    color: #b8c3d2 !important;
-  }
-
-  .investor-report strong,
-  .investor-report h2,
-  .investor-report h3,
-  .news-grid a {
-    color: #f8fbff !important;
-  }
-
-  .investor-report .eyebrow,
-  .decision-strip span,
-  .news-grid span {
-    color: #72d2ff !important;
-  }
-
-  .kpi-strip,
-  .score-bars,
-  .decision-strip,
-  .report-grid,
-  .news-grid,
-  .data-quality,
-  .report-snapshot,
-  .hidden-thesis-grid,
-  .proof-grid,
-  .kpi-ticker-strip,
-  .risk-heatmap,
-  .metric-card-grid,
-  .metric-card-grid--advisor {
-    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
-  }
-}
 
 /* ═
    SENIOR STOCK ANALYZER  Component Styles
@@ -2007,6 +1856,9 @@ th {
 .print-report-button--primary:hover { background: rgba(30,58,138,.75); }
 
 @media print {
+  * { -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; }
+  @page { margin: 0.75in; size: letter; }
+
   body {
     background: #fff !important;
     color: #111 !important;
@@ -2014,45 +1866,187 @@ th {
   }
   .shell { width: 100% !important; padding: 0 !important; }
   .topbar, .regime, nav.tabs, .report-actions, .print-report-button,
-  .analyzer-form, .analyzer-note, #coach-cards, #leaps-cards,
-  #tab-options, #tab-leaps, #tab-hidden, #tab-moonshots, #tab-longterm,
-  button { display: none !important; }
+  .analyzer-form, .analyzer-note, button { display: none !important; }
   #tab-analyzer { display: block !important; }
-  .senior-report, article { background: #fff !important; color: #111 !important; border: 1px solid #ccc !important; }
-  .senior-header { background: #fff !important; }
-  .senior-kpi-strip, .senior-verdict-banner { background: #f4f7fb !important; }
-  .senior-kpi, .senior-verdict-item, .earnings-kpi, .val-kpi, .entry-row,
-  .ps-card, .verdict-grid > div, .leaps-card, .report-grid > div,
-  .fy-summary-kpi { background: #fff !important; color: #111 !important; }
-  .senior-kpi span, .senior-verdict-item span, .earnings-kpi span,
-  .val-kpi span, .entry-row span, .fy-summary-kpi span { color: #555 !important; }
-  .chip-green  { background: #d1fae5 !important; color: #065f46 !important; }
-  .chip-amber  { background: #fef3c7 !important; color: #92400e !important; }
-  .chip-red    { background: #fee2e2 !important; color: #991b1b !important; }
-  .chip-neutral{ background: #f1f5f9 !important; color: #475569 !important; }
-  .text-green  { color: #065f46 !important; }
-  .text-amber  { color: #92400e !important; }
-  .text-red    { color: #991b1b !important; }
-  .score-badge { color: #1d4ed8 !important; }
-  .senior-meter { background: #f8fafc !important; border-color: #cbd5e1 !important; }
-  .senior-meter p, .fy-narrative, .beginner-read-card p, .tech-reasons,
-  .report-grid > div > p, .valuation-interpretation > div { color: #475569 !important; }
-  .fund-manager-verdict { background: #f0f4ff !important; border-color: #bfdbfe !important; }
+
+  /* ── All container backgrounds → white ── */
+  .senior-report, article, .investor-report,
+  .report-section, .report-grid > div,
+  .senior-kpi, .senior-verdict-item, .earnings-kpi, .val-kpi,
+  .entry-row, .ps-card, .verdict-grid > div, .leaps-card,
+  .fy-summary-kpi, .metric-card, .kpi-card, .risk-heat,
+  .report-meter, .senior-meter, .fund-manager-verdict,
   .verdict-plain-english, .watch-next-block, .beginner-read-card,
-  .leaps-minimum-block, .leaps-contract-block { background: #f0f4ff !important; border-color: #bfdbfe !important; }
-  .report-section summary { background: #e8eef7 !important; color: #1e3a8a !important; }
-  table { border-collapse: collapse; font-size: 9pt; }
-  th, td { border: 1px solid #ddd !important; padding: 4px 8px !important; }
-  .cell-good { color: #065f46 !important; }
-  .cell-bad  { color: #991b1b !important; }
-  .muted { color: #64748b !important; }
-  details { open: true !important; }
-  details[open] > :not(summary) { display: block !important; }
-  .entry-plan-card, .leaps-decision-grid, .position-sizing-grid { break-inside: avoid; }
-  .fund-manager-verdict { break-inside: avoid; }
+  .leaps-minimum-block, .leaps-contract-block, .earnings-commentary,
+  .tp-rules-block, .valuation-interpretation > div, .valuation-rating-block,
+  .tech-reasons, .tech-reasons--risk, .entry-plan-card,
+  .entry-plan-indicators > div, .data-quality, .data-source-section,
+  .ps-detail, .news-panel, .news-grid div, .institutional-memo,
+  .hidden-hunter, .hidden-thesis-grid div, .proof-grid div,
+  .moat-kpi, .tech-kpi, .fy-narrative, .fy-summary-strip {
+    background: #fff !important;
+    color: #111 !important;
+    border-color: #ccc !important;
+  }
+
+  /* ── Light-gray headers ── */
+  .senior-header, .senior-kpi-strip, .senior-verdict-banner,
+  .earnings-header-strip, .valuation-header, .tech-header-strip,
+  .moat-header { background: #f4f7fb !important; }
+
+  /* ── All text → dark ── */
+  .investor-report span, .investor-report p, .investor-report li,
+  .investor-report small, .muted, .scorecard-legend,
+  .senior-kpi span, .senior-verdict-item span,
+  .earnings-kpi span, .val-kpi span, .entry-row span, .fy-summary-kpi span,
+  .senior-meter p, .senior-meter-head span, .entry-plan-indicators span,
+  .tp-rules-block > div, .verdict-conditions li,
+  .leaps-card p, .leaps-card h4, .ps-detail, .ps-trim,
+  .fy-narrative, .beginner-read-card p,
+  .report-grid > div > p, .valuation-interpretation > div,
+  .tech-reasons, .risk-heat p, .risk-heat span,
+  .news-grid span, .news-grid p, .news-grid small {
+    color: #444 !important;
+  }
+
+  /* ── Bold headings → black ── */
+  .investor-report strong, .investor-report h2,
+  .investor-report h3, .investor-report h4,
+  .senior-kpi strong, .senior-verdict-item strong,
+  .earnings-kpi strong, .val-kpi strong, .entry-row strong,
+  .fy-summary-kpi strong, .senior-meter-head strong,
+  .moat-kpi strong, .verdict-grid > div > strong,
+  .data-quality strong, .risk-heat strong, .news-grid a {
+    color: #111 !important;
+  }
+
+  /* ── Chips ── */
+  .chip-green   { background: #d1fae5 !important; color: #065f46 !important; border-color: #6ee7b7 !important; }
+  .chip-amber   { background: #fef3c7 !important; color: #92400e !important; border-color: #fde68a !important; }
+  .chip-red     { background: #fee2e2 !important; color: #991b1b !important; border-color: #fca5a5 !important; }
+  .chip-neutral { background: #f1f5f9 !important; color: #475569 !important; border-color: #cbd5e1 !important; }
+  .text-green { color: #15803d !important; }
+  .text-amber { color: #d97706 !important; }
+  .text-red   { color: #dc2626 !important; }
+  .score-badge { color: #1d4ed8 !important; font-size: 1.1rem !important; }
+
+  /* ── Senior meters ── */
+  .senior-meter--good   { border-left-color: #16a34a !important; }
+  .senior-meter--caution{ border-left-color: #d97706 !important; }
+  .senior-meter--bad    { border-left-color: #dc2626 !important; }
+  .senior-meter--good   .senior-meter-head strong { color: #15803d !important; }
+  .senior-meter--caution .senior-meter-head strong { color: #d97706 !important; }
+  .senior-meter--bad    .senior-meter-head strong { color: #dc2626 !important; }
+  .meter-track { background: #e2e8f0 !important; }
+  .senior-meter--good   .meter-track span { background: #16a34a !important; }
+  .senior-meter--caution .meter-track span { background: #d97706 !important; }
+  .senior-meter--bad    .meter-track span { background: #dc2626 !important; }
+
+  /* ── Risk heat cells ── */
+  .risk-heat            { background: #f8fafc !important; border: 1px solid #cbd5e1 !important; }
+  .risk-heat--pass      { background: #f0fdf4 !important; border-color: #bbf7d0 !important; }
+  .risk-heat--pass strong { color: #15803d !important; }
+  .risk-heat--near      { background: #fefce8 !important; border-color: #fde68a !important; }
+  .risk-heat--near strong { color: #b45309 !important; }
+  .risk-heat--fail      { background: #fef2f2 !important; border-color: #fecaca !important; }
+  .risk-heat--fail strong { color: #dc2626 !important; }
+
+  /* ── Earnings ── */
+  .earnings-kpi--green  { background: #f0fdf4 !important; }
+  .earnings-kpi--green strong { color: #15803d !important; }
+  .earnings-kpi--amber  { background: #fefce8 !important; }
+  .earnings-kpi--amber strong { color: #b45309 !important; }
+  .earnings-kpi--red    { background: #fef2f2 !important; }
+  .earnings-kpi--red  strong  { color: #dc2626 !important; }
+  .earnings-kpi--urgent { background: #fff7ed !important; }
+
+  /* ── Entry plan ── */
+  .entry-row--highlight  { background: #eff6ff !important; }
+  .entry-row--highlight strong { color: #1d4ed8 !important; }
+  .entry-row--danger     { background: #fef2f2 !important; }
+  .entry-row--danger strong { color: #dc2626 !important; }
+  .entry-row--tp1, .entry-row--tp2 { background: #f0fdf4 !important; }
+  .entry-row--tp1 strong, .entry-row--tp2 strong { color: #15803d !important; }
+
+  /* ── Verdict ── */
+  .fund-manager-verdict  { background: #eff6ff !important; border-top-color: #3b82f6 !important; }
+  .verdict-plain-english { background: #eff6ff !important; border-color: #bfdbfe !important; }
+  .verdict-plain-english strong { color: #1e3a8a !important; }
+  .verdict-plain-english p { color: #1e40af !important; font-size: 0.95rem !important; }
+  .verdict-title h3 { color: #1e3a8a !important; font-size: 1.1rem !important; }
+  .verdict-conditions > div { background: #f8fafc !important; }
+  .verdict-conditions strong { color: #1e3a8a !important; }
+  .watch-next-block strong { color: #1e3a8a !important; }
+  .watch-next-block { background: #eff6ff !important; border-color: #bfdbfe !important; }
+
+  /* ── Section headers ── */
+  .report-section summary { background: #e8eef7 !important; color: #1e3a8a !important; border: none !important; }
+  .senior-eyebrow { color: #1d4ed8 !important; }
+
+  /* ── Tables ── */
+  table { border-collapse: collapse !important; font-size: 9pt; }
+  th { background: #e8eef7 !important; color: #1e3a8a !important; }
+  th, td { border: 1px solid #ddd !important; padding: 4px 8px !important; color: #111 !important; }
+  .cell-good { color: #15803d !important; }
+  .cell-bad  { color: #dc2626 !important; }
+
+  /* ── Links ── */
   a { color: #1d4ed8 !important; text-decoration: underline !important; }
-  @page { margin: 0.75in; size: letter; }
+
+  /* ── Data quality ── */
+  .muted { color: #64748b !important; }
+  .data-quality { border-top: 1px solid #ccc !important; }
+  .data-quality > div { background: #f8fafc !important; }
+  .data-source-section { background: #f8fafc !important; border: 1px solid #ccc !important; }
+
+  /* ── Force details open ── */
+  details[open] > :not(summary) { display: block !important; }
+
+  /* ── Page breaks ── */
+  .entry-plan-card, .leaps-decision-grid, .position-sizing-grid,
+  .fund-manager-verdict, .senior-verdict-banner,
+  .earnings-header-strip, .risk-heatmap { break-inside: avoid; }
+
+  /* ── Grid/layout for print ── */
+  .senior-scorecard-grid { grid-template-columns: repeat(2, 1fr) !important; }
+  .risk-heatmap { grid-template-columns: repeat(2, 1fr) !important; }
+  .report-grid { grid-template-columns: repeat(2, 1fr) !important; }
+  .metric-card-grid { grid-template-columns: repeat(2, 1fr) !important; }
+  .valuation-interpretation { grid-template-columns: 1fr !important; }
+  .verdict-conditions { grid-template-columns: 1fr !important; }
+  .leaps-decision-grid { grid-template-columns: 1fr !important; }
 }
+
+/* ── Data Source Section ── */
+.data-source-section {
+  padding: 16px 24px;
+  border-top: 1px solid rgba(148,163,184,.12);
+  background: rgba(15,23,42,.3);
+}
+.data-source-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 12px;
+  flex-wrap: wrap;
+}
+.data-source-header strong {
+  font-size: 0.82rem;
+  font-weight: 700;
+  color: #93c5fd;
+  text-transform: uppercase;
+  letter-spacing: .04em;
+}
+.data-source-header .muted { font-size: 0.74rem; }
+.data-source-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: 6px 16px;
+  font-size: 0.78rem;
+}
+.data-source-grid > div { display: flex; flex-direction: column; gap: 2px; }
+.data-source-grid span { font-size: 0.64rem; color: #64748b; text-transform: uppercase; letter-spacing: .04em; }
+.data-source-grid strong { color: #cbd5e1; font-weight: 500; }
 
 /*  Responsive Adjustments  */
 @media (max-width: 768px) {

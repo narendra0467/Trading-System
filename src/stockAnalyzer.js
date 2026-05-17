@@ -522,14 +522,56 @@ function estimateRiskComponents({ growthChecklist, valuation, fundamentals, tech
 function buildRiskBreakdown({ growthChecklist, valuation, fundamentals, technical, analysts, newsEngine, summary }) {
   const components = estimateRiskComponents({ growthChecklist, valuation, fundamentals, technical, analysts, newsEngine, summary });
   const dilutionRow = checklistValue(growthChecklist, "Shares Outstanding Growth");
+  const financial = summary?.financialData ?? {};
+  const earningsTrend = summary?.earningsTrend?.trend ?? [];
+  const earningsHistory = summary?.earningsHistory?.history ?? [];
+  const calendarEvents = summary?.calendarEvents ?? {};
+  const nextEarningsRaw = calendarEvents?.earnings?.earningsDate?.[0]?.raw;
+  const daysUntilEarnings = nextEarningsRaw ? Math.ceil((nextEarningsRaw * 1000 - Date.now()) / (1000 * 60 * 60 * 24)) : null;
+  const earningsProximate = Number.isFinite(daysUntilEarnings) && daysUntilEarnings >= 0 && daysUntilEarnings <= 10;
+  const beatCount = earningsHistory.filter((e) => (raw(e.epsDifference) ?? 0) > 0).length;
+  const beatRate = earningsHistory.length > 0 ? (beatCount / earningsHistory.length) * 100 : null;
+
+  let earningsRisk = 40;
+  if (earningsProximate) earningsRisk += 35;
+  else if (Number.isFinite(daysUntilEarnings) && daysUntilEarnings <= 20 && daysUntilEarnings >= 0) earningsRisk += 18;
+  if (beatRate !== null && beatRate < 40) earningsRisk += 18;
+  else if (beatRate !== null && beatRate >= 80) earningsRisk -= 12;
+  earningsRisk = clamp(Math.round(earningsRisk));
+  const earningsRiskNote = earningsProximate
+    ? `Earnings within ${daysUntilEarnings} days — elevated binary risk.`
+    : Number.isFinite(daysUntilEarnings) && daysUntilEarnings >= 0
+      ? `${daysUntilEarnings} days to earnings. Beat rate: ${beatRate !== null ? Math.round(beatRate) + "%" : "unavailable"}.`
+      : `Beat rate: ${beatRate !== null ? Math.round(beatRate) + "%" : "unavailable"}. Calendar date unavailable.`;
+
+  const gm = fundamentals.grossMargins ?? 0;
+  const om = fundamentals.operatingMargins ?? 0;
+  let marginRisk = 38;
+  if (gm < 15) marginRisk += 28;
+  else if (gm < 30) marginRisk += 14;
+  else if (gm > 55) marginRisk -= 15;
+  if (om < 0) marginRisk += 22;
+  else if (om < 5) marginRisk += 12;
+  else if (om > 20) marginRisk -= 12;
+  marginRisk = clamp(Math.round(marginRisk));
+  const marginRiskNote = om < 0 ? "Operating loss — margin improvement is required for the thesis" : gm > 50 ? "High gross margins reduce margin compression risk" : "Monitor gross and operating margin trends in quarterly filings";
+
+  const downsideRisk = clamp(Math.round(
+    components.valuationRisk * 0.28 + earningsRisk * 0.20 + components.balanceSheetRisk * 0.20 +
+    (100 - (fundamentals.score ?? 35)) * 0.17 + components.technicalRisk * 0.15
+  ));
+
   return [
     { label: "Valuation risk", score: components.valuationRisk, note: `${valuation.rating}. Quality can offset some premium, but not remove it.` },
-    { label: "Balance sheet risk", score: components.balanceSheetRisk, note: fundamentals.totalDebt > fundamentals.totalCash ? "Debt exceeds cash" : "Debt/cash looks manageable" },
+    { label: "Earnings risk", score: earningsRisk, note: earningsRiskNote },
+    { label: "Margin compression risk", score: marginRisk, note: marginRiskNote },
+    { label: "Balance sheet risk", score: components.balanceSheetRisk, note: fundamentals.totalDebt > fundamentals.totalCash ? "Debt exceeds cash — monitor leverage" : "Debt/cash looks manageable at current levels" },
     { label: "Dilution risk", score: components.dilutionRisk, note: dilutionRow?.display || "Share trend unavailable; treated as neutral, not automatically high risk" },
-    { label: "Execution risk", score: components.executionRisk, note: "Growth, margin, FCF, ROE, and ROA delivery risk" },
-    { label: "Competition risk", score: components.competitionRisk, note: fundamentals.grossMargins < 20 ? "Margin pressure" : "Margins/scale reduce competitive risk" },
-    { label: "Regulatory/news risk", score: components.regulatoryNewsRisk, note: newsEngine?.tone || "Normal tape" },
-    { label: "Technical breakdown risk", score: components.technicalRisk, note: technical.rating },
+    { label: "Execution risk", score: components.executionRisk, note: "Revenue growth, margin, FCF, ROE, and ROA delivery risk vs. expectations" },
+    { label: "Competition risk", score: components.competitionRisk, note: gm < 20 ? "Low margins indicate pricing pressure from competition" : "Margins and scale reduce near-term competitive risk" },
+    { label: "Technical breakdown risk", score: components.technicalRisk, note: `Chart trend: ${technical.rating}. A break below key support invalidates short-term thesis.` },
+    { label: "Regulatory / news risk", score: components.regulatoryNewsRisk, note: newsEngine?.tone || "Normal tape — monitor news for sector-specific regulatory changes" },
+    { label: "Overall downside risk", score: downsideRisk, note: "Composite downside score: valuation + earnings + balance sheet + business quality + technical." },
   ];
 }
 
