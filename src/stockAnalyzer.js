@@ -1434,98 +1434,186 @@ function build5YearFinancialTable(summary) {
 
 function buildEnhancedTechnicalPlan(technical, summary) {
   const detail = summary?.summaryDetail ?? {};
-  const close = technical.close;
-  const ema20 = technical.ema20;
-  const ema50 = technical.ema50;
+  const close  = technical.close;
+  const ema20  = technical.ema20;
+  const ema50  = technical.ema50;
   const ema150 = technical.ema150;
-  const atr14 = technical.atr14;
+  const atr14  = technical.atr14;
   const high55 = technical.high55;
-  const rsi14 = technical.rsi14;
+  const rsi14  = technical.rsi14;
   const high52w = raw(detail.fiftyTwoWeekHigh);
-  const low52w = raw(detail.fiftyTwoWeekLow);
+  const low52w  = raw(detail.fiftyTwoWeekLow);
 
   if (!Number.isFinite(close) || !Number.isFinite(atr14) || atr14 <= 0) {
     return { available: false };
   }
 
+  // ── 1. Technical Trend — price position relative to all three MAs ──────
   let technicalTrend;
-  if (Number.isFinite(ema20) && Number.isFinite(ema50) && Number.isFinite(ema150)) {
-    if (close > ema20 && ema20 > ema50 && ema50 > ema150) technicalTrend = "Bullish";
-    else if (close > ema50 && ema50 > ema150) technicalTrend = "Neutral";
-    else if (close < ema50 && close > ema150) technicalTrend = "Weakening";
-    else technicalTrend = "Bearish";
+  const hasMAs = Number.isFinite(ema20) && Number.isFinite(ema50) && Number.isFinite(ema150);
+  if (hasMAs) {
+    if (close > ema20 && ema20 > ema50 && ema50 > ema150)  technicalTrend = "Bullish";
+    else if (close > ema50 && ema50 > ema150)              technicalTrend = "Neutral";
+    else if (close > ema150 && close < ema50)              technicalTrend = "Weakening";
+    else                                                    technicalTrend = "Bearish";
   } else {
     technicalTrend = "Data limited";
   }
 
+  // ── 2. Entry Timing — bearish/weakening gets conservative guidance ──────
   let entryTiming;
-  if (rsi14 > 75 || (Number.isFinite(high55) && close > high55 * 1.10)) {
+  if (technicalTrend === "Bearish") {
+    entryTiming = "Wait for trend repair";
+  } else if (technicalTrend === "Weakening") {
+    entryTiming = "DCA only — wait for trend repair";
+  } else if (rsi14 > 75 || (Number.isFinite(high55) && close > high55 * 1.10)) {
     entryTiming = "Avoid chasing";
   } else if (Number.isFinite(ema50) && close <= ema50 * 1.03 && close >= ema50 * 0.97) {
     entryTiming = "Attractive now";
   } else if (Number.isFinite(ema20) && close <= ema20 * 1.02 && close >= ema20 * 0.98) {
     entryTiming = "Attractive now";
-  } else if (technicalTrend === "Bearish") {
-    entryTiming = "Avoid until trend repairs";
-  } else if (technicalTrend === "Weakening") {
-    entryTiming = "Wait for pullback";
   } else if (Number.isFinite(high55) && close > high55) {
     entryTiming = "Wait for breakout confirmation";
   } else {
     entryTiming = "Good for DCA only";
   }
 
-  const support = Number.isFinite(ema50) ? round(ema50) : round(close * 0.94);
-  const majorSupport = Number.isFinite(ema150) ? round(ema150) : round(close * 0.85);
-  const resistance = Number.isFinite(high55) ? round(high55 * 1.005) : round(close * 1.08);
-  const invalidation = round(Math.max(
-    (Number.isFinite(ema150) ? ema150 - 1.5 * atr14 : close * 0.82),
-    close * 0.75
-  ));
-  const riskAmt = close - invalidation;
-  const idealBuyLow = round(Math.max(support * 0.98, close * 0.93));
-  const idealBuyHigh = round(Math.min(close * 1.01, Number.isFinite(ema20) ? ema20 * 1.02 : close * 1.03));
-  const dcaZoneLow = round(support * 0.96);
-  const dcaZoneHigh = round(support * 1.02);
-  const tp1 = round(close + riskAmt * 1.5);
-  const tp2 = round(close + riskAmt * 3.0);
-  const longTermBullCase = round(close * 2.5);
-  const riskRewardRatio = riskAmt > 0 ? round((tp1 - close) / riskAmt, 1) : null;
+  // ── 3. Classify each MA as support (below price) or resistance (above) ──
+  const masBelow = [ema20, ema50, ema150]
+    .filter((ma) => Number.isFinite(ma) && ma < close)
+    .sort((a, b) => b - a); // descending — nearest below price first
+  const masAbove = [ema20, ema50, ema150]
+    .filter((ma) => Number.isFinite(ma) && ma > close)
+    .sort((a, b) => a - b); // ascending — nearest above price first
+
+  const ema20Label  = Number.isFinite(ema20)  ? (ema20  < close ? "support"       : "resistance / reclaim") : null;
+  const ema50Label  = Number.isFinite(ema50)  ? (ema50  < close ? "support"       : "resistance / reclaim") : null;
+  const ema150Label = Number.isFinite(ema150) ? (ema150 < close ? "major support" : "resistance / reclaim") : null;
+
+  // ── 4. Support: MAs below price; fallback to ATR-based levels ───────────
+  let supportLevel = masBelow.length > 0
+    ? round(masBelow[0])
+    : round(close - 1.5 * atr14);
+
+  let majorSupportLevel = (Number.isFinite(low52w) && low52w < close * 0.98)
+    ? round(low52w * 1.01)
+    : masBelow.length > 1
+      ? round(masBelow[masBelow.length - 1])
+      : round(close - 3.0 * atr14);
+
+  // Guarantee: majorSupport < support < close
+  if (majorSupportLevel >= supportLevel) majorSupportLevel = round(supportLevel - atr14);
+  if (majorSupportLevel >= close)        majorSupportLevel = round(close - 2 * atr14);
+  if (supportLevel >= close)             supportLevel      = round(close - atr14);
+
+  // ── 5. Resistance: MAs above price; fallback to ATR/55-day high ─────────
+  let resistanceLevel = masAbove.length > 0
+    ? round(masAbove[0])
+    : (Number.isFinite(high55) && high55 > close ? round(high55 * 1.005) : round(close * 1.08));
+
+  let majorResistanceLevel = masAbove.length > 1
+    ? round(masAbove[masAbove.length - 1])
+    : (Number.isFinite(high52w) && high52w > close * 1.05 ? round(high52w) : round(resistanceLevel * 1.15));
+
+  // Guarantee: close < resistance < majorResistance
+  if (resistanceLevel <= close)                     resistanceLevel      = round(close + atr14);
+  if (majorResistanceLevel <= resistanceLevel)      majorResistanceLevel = round(resistanceLevel + 2 * atr14);
+
+  // ── 6. Trend repair levels (first and second MA to reclaim) ─────────────
+  const trendRepairAbove   = masAbove.length > 0 ? round(masAbove[0])    : null;
+  const strongConfirmAbove = masAbove.length > 1 ? round(masAbove[1])
+    : trendRepairAbove !== null ? round(trendRepairAbove * 1.05) : null;
+
+  // ── 7. Invalidation: MUST be below current price ────────────────────────
+  // Placed below major support; hard caps ensure it is always < close
+  const invalidationBelow = round(
+    Math.min(majorSupportLevel - 0.5 * atr14, close * 0.90, close - 0.5 * atr14)
+  );
+
+  // ── 8. Risk amount (always positive for long setups) ────────────────────
+  const riskAmt = close - invalidationBelow; // guaranteed > 0
+
+  // ── 9. Buy zones — low must be below high, both sensible vs. price ──────
+  const idealBuyZoneHighRaw = Math.min(close * 1.005, resistanceLevel - 0.01);
+  const idealBuyZoneLowRaw  = Math.max(supportLevel  * 0.98, invalidationBelow * 1.10);
+  const idealBuyZoneHigh = round(idealBuyZoneHighRaw);
+  const idealBuyZoneLow  = round(Math.min(idealBuyZoneLowRaw, idealBuyZoneHighRaw - 0.01));
+
+  const dcaZoneHighRaw = Math.min(supportLevel, idealBuyZoneLow - 0.01);
+  const dcaZoneLowRaw  = Math.max(majorSupportLevel * 0.99, invalidationBelow * 1.08);
+  const dcaZoneHigh = round(Math.max(dcaZoneHighRaw, dcaZoneLowRaw + 0.01));
+  const dcaZoneLow  = round(dcaZoneLowRaw);
+
+  const pullbackBuyZoneLow  = round(close * 0.93);
+  const pullbackBuyZoneHigh = round(close * 0.97);
+
+  // ── 10. TP1 / TP2: MUST be above current price ──────────────────────────
+  // Bullish/Neutral: risk-reward multiples from entry
+  // Bearish/Weakening: resistance levels are the recovery targets
+  let tp1, tp2;
+  if (technicalTrend === "Bullish" || technicalTrend === "Neutral") {
+    tp1 = round(close + riskAmt * 1.5);
+    tp2 = round(close + riskAmt * 3.0);
+  } else {
+    tp1 = resistanceLevel;     // first resistance to reclaim
+    tp2 = majorResistanceLevel; // major resistance as extended target
+  }
+  // Hard safety guards — no TP can be at or below current price
+  if (tp1 <= close) tp1 = round(close + atr14 * 1.5);
+  if (tp2 <= tp1)   tp2 = round(tp1  + atr14 * 2.5);
+
+  const longTermBullCase = (Number.isFinite(high52w) && high52w > close * 1.15)
+    ? round(high52w * 1.10)
+    : round(close * 2.5);
+
+  // ── 11. Risk / Reward ────────────────────────────────────────────────────
+  const rrRatio    = riskAmt > 0 ? round((tp1 - close) / riskAmt, 1) : null;
+  const riskReward = (rrRatio !== null && rrRatio > 0) ? `${rrRatio}:1` : "No clean entry";
+  const noCleanEntry = !rrRatio || rrRatio <= 0;
+
+  // ── 12. Breakout confirmation level ─────────────────────────────────────
+  const breakoutBuyAbove = (Number.isFinite(high55) && high55 > close)
+    ? round(high55 * 1.005)
+    : round(resistanceLevel * 1.005);
 
   return {
     available: true,
-    currentPrice: round(close),
-    idealBuyZoneLow: idealBuyLow,
-    idealBuyZoneHigh: idealBuyHigh,
+    currentPrice:       round(close),
+    idealBuyZoneLow,
+    idealBuyZoneHigh,
     dcaZoneLow,
     dcaZoneHigh,
-    breakoutBuyAbove: Number.isFinite(high55) ? round(high55 * 1.005) : round(close * 1.08),
-    pullbackBuyZoneLow: round(close * 0.92),
-    pullbackBuyZoneHigh: round(close * 0.97),
-    supportLevel: support,
-    majorSupportLevel: majorSupport,
-    resistanceLevel: resistance,
-    invalidationBelow: invalidation,
+    breakoutBuyAbove,
+    pullbackBuyZoneLow,
+    pullbackBuyZoneHigh,
+    trendRepairAbove,
+    strongConfirmAbove,
+    supportLevel,
+    majorSupportLevel,
+    resistanceLevel,
+    majorResistanceLevel,
+    invalidationBelow,
     tp1,
     tp2,
     longTermBullCase,
-    riskReward: riskRewardRatio !== null ? `${riskRewardRatio}:1` : "n/a",
+    riskReward,
+    noCleanEntry,
     technicalTrend,
     entryTiming,
-    ema20: round(ema20),
-    ema50: round(ema50),
-    ema150: round(ema150),
-    rsi14: technical.rsi14,
-    atr14: round(atr14),
-    adx14: technical.adx14,
+    ema20:  round(ema20),  ema20Label,
+    ema50:  round(ema50),  ema50Label,
+    ema150: round(ema150), ema150Label,
+    rsi14:  technical.rsi14,
+    atr14:  round(atr14),
+    adx14:  technical.adx14,
     high52w: round(high52w),
-    low52w: round(low52w),
+    low52w:  round(low52w),
     pctFrom52wHigh: Number.isFinite(high52w) && high52w > 0 ? round(((close - high52w) / high52w) * 100, 1) : null,
     relativeStrength60: technical.relativeStrength60,
     macdHistogram: null,
-    volume: null,
+    volume:  null,
     reasons: technical.reasons ?? [],
-    risks: technical.risks ?? [],
+    risks:   technical.risks   ?? [],
   };
 }
 

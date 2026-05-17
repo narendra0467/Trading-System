@@ -521,38 +521,70 @@ function renderReportSection(result) {
     if (!plan?.available) {
       return `<p class="empty">Insufficient price history for technical entry plan (minimum 160 trading days required).</p>`;
     }
+    const isBearish  = plan.technicalTrend === "Bearish";
+    const isWeak     = plan.technicalTrend === "Weakening";
+    const noEntry    = plan.noCleanEntry;
+
+    // MA label helpers — show role (support vs resistance) next to each value
+    const maRow = (label, val, maLabel) => {
+      if (!Number.isFinite(val)) return "";
+      const isResist = maLabel && maLabel.includes("resistance");
+      const cls = isResist ? "entry-row--danger" : "entry-row--tp1";
+      return `<div class="entry-row ${cls}"><span>${escapeHtml(label)} — ${escapeHtml(maLabel ?? "")}</span><strong>${money(val)}</strong></div>`;
+    };
+
     return `
       <div class="entry-plan-card">
+        ${isBearish || isWeak ? `
+        <div style="background:rgba(127,29,29,.18);border-bottom:1px solid rgba(239,68,68,.25);padding:10px 14px;font-size:0.82rem;color:#fca5a5">
+          <strong>⚠ ${isBearish ? "Bearish trend" : "Weakening trend"} — price is below ${isBearish ? "EMA20, EMA50, and EMA150" : "EMA50"}.</strong>
+          MAs above current price are <em>resistance / reclaim levels</em>, not support.
+          ${isBearish ? "TP1/TP2 represent resistance levels to reclaim, not bullish momentum targets." : ""}
+          ${noEntry ? " Risk/reward is poor at current levels — no clean entry exists." : ""}
+        </div>` : (noEntry ? `
+        <div style="background:rgba(120,53,15,.15);border-bottom:1px solid rgba(245,158,11,.2);padding:10px 14px;font-size:0.82rem;color:#fcd34d">
+          <strong>⚠ No clean entry — risk/reward does not meet minimum threshold at current price.</strong>
+        </div>` : "")}
         <div class="entry-plan-grid">
           <div class="entry-row"><span>Current Price</span><strong>${money(plan.currentPrice)}</strong></div>
-          <div class="entry-row entry-row--highlight"><span>Ideal Buy Zone</span><strong>${money(plan.idealBuyZoneLow)} – ${money(plan.idealBuyZoneHigh)}</strong></div>
+          <div class="entry-row"><span>Technical Trend</span><strong>${escapeHtml(plan.technicalTrend ?? "n/a")}</strong></div>
+          <div class="entry-row"><span>Entry Timing</span><strong>${escapeHtml(plan.entryTiming ?? "n/a")}</strong></div>
+          ${!isBearish && !isWeak ? `<div class="entry-row entry-row--highlight"><span>Ideal Buy Zone</span><strong>${money(plan.idealBuyZoneLow)} – ${money(plan.idealBuyZoneHigh)}</strong></div>` : ""}
           <div class="entry-row"><span>DCA Zone</span><strong>${money(plan.dcaZoneLow)} – ${money(plan.dcaZoneHigh)}</strong></div>
-          <div class="entry-row"><span>Breakout Buy Above</span><strong>${money(plan.breakoutBuyAbove)}</strong></div>
-          <div class="entry-row"><span>Pullback Buy Zone</span><strong>${money(plan.pullbackBuyZoneLow)} – ${money(plan.pullbackBuyZoneHigh)}</strong></div>
-          <div class="entry-row"><span>Support (EMA50)</span><strong>${money(plan.supportLevel)}</strong></div>
-          <div class="entry-row"><span>Major Support (EMA150)</span><strong>${money(plan.majorSupportLevel)}</strong></div>
+          ${!isBearish ? `<div class="entry-row"><span>Pullback Buy Zone</span><strong>${money(plan.pullbackBuyZoneLow)} – ${money(plan.pullbackBuyZoneHigh)}</strong></div>` : ""}
+          ${plan.trendRepairAbove  != null ? `<div class="entry-row entry-row--highlight"><span>Trend Repair Above</span><strong>${money(plan.trendRepairAbove)}</strong></div>` : ""}
+          ${plan.strongConfirmAbove != null ? `<div class="entry-row"><span>Strong Confirmation Above</span><strong>${money(plan.strongConfirmAbove)}</strong></div>` : ""}
+          <div class="entry-row"><span>Support</span><strong>${money(plan.supportLevel)}</strong></div>
+          <div class="entry-row"><span>Major Support</span><strong>${money(plan.majorSupportLevel)}</strong></div>
           <div class="entry-row"><span>Resistance</span><strong>${money(plan.resistanceLevel)}</strong></div>
-          <div class="entry-row entry-row--danger"><span>Invalidation (Stop)</span><strong>Below ${money(plan.invalidationBelow)}</strong></div>
-          <div class="entry-row entry-row--tp1"><span>TP1 — Partial Trim Zone</span><strong>${money(plan.tp1)}</strong></div>
-          <div class="entry-row entry-row--tp2"><span>TP2 — Extended Bull Target</span><strong>${money(plan.tp2)}</strong></div>
+          <div class="entry-row"><span>Major Resistance</span><strong>${money(plan.majorResistanceLevel)}</strong></div>
+          <div class="entry-row"><span>Breakout Confirmation Above</span><strong>${money(plan.breakoutBuyAbove)}</strong></div>
+          <div class="entry-row entry-row--danger"><span>Invalidation / Stop</span><strong>Below ${money(plan.invalidationBelow)}</strong></div>
+          <div class="entry-row entry-row--tp1"><span>${isBearish || isWeak ? "TP1 — First Reclaim Target" : "TP1 — Partial Trim Zone"}</span><strong>${money(plan.tp1)}</strong></div>
+          <div class="entry-row entry-row--tp2"><span>${isBearish || isWeak ? "TP2 — Major Resistance Target" : "TP2 — Extended Bull Target"}</span><strong>${money(plan.tp2)}</strong></div>
           <div class="entry-row"><span>Long-Term Bull Case</span><strong>${money(plan.longTermBullCase)}</strong></div>
-          <div class="entry-row"><span>Risk / Reward</span><strong>${escapeHtml(plan.riskReward ?? "n/a")}</strong></div>
+          <div class="entry-row${noEntry ? " entry-row--danger" : ""}"><span>Risk / Reward</span><strong>${escapeHtml(plan.riskReward ?? "n/a")}</strong></div>
         </div>
         <div class="entry-plan-indicators">
-          <div><span>EMA20</span><strong>${money(plan.ema20)}</strong></div>
-          <div><span>EMA50</span><strong>${money(plan.ema50)}</strong></div>
-          <div><span>EMA150</span><strong>${money(plan.ema150)}</strong></div>
+          <div><span>EMA20 — ${escapeHtml(plan.ema20Label ?? "n/a")}</span><strong>${money(plan.ema20)}</strong></div>
+          <div><span>EMA50 — ${escapeHtml(plan.ema50Label ?? "n/a")}</span><strong>${money(plan.ema50)}</strong></div>
+          <div><span>EMA150 — ${escapeHtml(plan.ema150Label ?? "n/a")}</span><strong>${money(plan.ema150)}</strong></div>
           <div><span>RSI(14)</span><strong>${plan.rsi14 ?? "n/a"}</strong></div>
           <div><span>ATR(14)</span><strong>${money(plan.atr14)}</strong></div>
           <div><span>52W High</span><strong>${money(plan.high52w)}</strong></div>
           <div><span>52W Low</span><strong>${money(plan.low52w)}</strong></div>
-          <div><span>vs 52W High</span><strong>${Number.isFinite(Number(plan.pctFrom52wHigh)) ? `${Number(plan.pctFrom52wHigh).toFixed(1)}%` : "n/a"}</strong></div>
-          <div><span>Rel Strength</span><strong>${Number.isFinite(Number(plan.relativeStrength60)) ? `${Number(plan.relativeStrength60) >= 0 ? "+" : ""}${Number(plan.relativeStrength60).toFixed(1)}%` : "n/a"}</strong></div>
+          <div><span>vs 52W High</span><strong>${plan.pctFrom52wHigh != null ? `${Number(plan.pctFrom52wHigh).toFixed(1)}%` : "n/a"}</strong></div>
+          <div><span>Rel Strength (60d)</span><strong>${Number.isFinite(Number(plan.relativeStrength60)) ? `${Number(plan.relativeStrength60) >= 0 ? "+" : ""}${Number(plan.relativeStrength60).toFixed(1)}%` : "n/a"}</strong></div>
         </div>
         <div class="tp-rules-block">
-          <div><strong>TP1 Rule:</strong> First technical target. Possible partial trim (20-25% of position). Reassess valuation and risk. Do NOT exit full position automatically.</div>
-          <div><strong>TP2 Rule:</strong> Extended bull-case target. Reduce risk if valuation becomes extreme. If thesis is intact and valuation is reasonable, hold core position.</div>
-          <div><strong>Hold-Through Rule:</strong> TP1/TP2 are trim zones, not automatic exits. Continue holding if thesis and valuation support it.</div>
+          ${isBearish || isWeak ? `
+          <div><strong>Trend Repair Rule:</strong> Reclaim EMA20 (${money(plan.trendRepairAbove)}) is the first sign of trend repair. Sustained close above EMA50 (${money(plan.ema50)}) would signal stronger recovery. Do not add aggressively until trend repairs.</div>
+          <div><strong>DCA Rule:</strong> Small, disciplined DCA is allowed near support if the long-term fundamental thesis remains intact. Do not average down into a broken trend with full size.</div>
+          ` : `
+          <div><strong>TP1 Rule:</strong> First technical target. Consider partial trim (20–25% of position) at TP1. Reassess valuation and risk. Do not exit the full position automatically.</div>
+          <div><strong>TP2 Rule:</strong> Extended bull-case target. Reduce risk if valuation becomes extreme. If thesis is intact and valuation is reasonable, hold the core position.</div>
+          `}
+          <div><strong>Invalidation Rule:</strong> A sustained daily close below ${money(plan.invalidationBelow)} negates the short-term technical thesis. Reassess position size and fundamental conviction before adding.</div>
         </div>
       </div>`;
   }
