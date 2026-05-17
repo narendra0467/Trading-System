@@ -61,7 +61,7 @@ function firstSentences(text, count = 2) {
 
 const PEER_RULES = [
   {
-    pattern: /(beverage|energy drink|non-alcoholic|soft drink|functional drink|consumer defensive)/,
+    pattern: /(beverage|energy drink|non-alcoholic|soft drink|functional drink|consumer defensive)/i,
     groups: {
       directOperating: [["MNST", "Monster Beverage", "Energy drink operating peer."], ["PEP", "PepsiCo", "Beverage distribution and portfolio peer."], ["KDP", "Keurig Dr Pepper", "North American beverage peer."], ["FIZZ", "National Beverage", "Public beverage-brand peer."], ["VITA", "Vita Coco", "Functional beverage peer."]],
       publicValuation: [["MNST", "Monster Beverage", "Closest scaled energy-drink valuation peer."], ["KO", "Coca-Cola", "Global beverage franchise anchor."], ["PEP", "PepsiCo", "Global beverage/snack anchor."], ["KDP", "Keurig Dr Pepper", "Beverage portfolio comp."], ["FIZZ", "National Beverage", "Smaller beverage comp."]],
@@ -69,7 +69,7 @@ const PEER_RULES = [
     },
   },
   {
-    pattern: /(semiconductor|chip|gpu|processor)/,
+    pattern: /(semiconductor|chip|gpu|processor)/i,
     groups: {
       directOperating: [["NVDA", "NVIDIA", "Accelerated compute leader."], ["AMD", "Advanced Micro Devices", "CPU/GPU peer."], ["AVGO", "Broadcom", "Diversified semiconductor peer."]],
       publicValuation: [["NVDA", "NVIDIA", "Premium AI semiconductor multiple."], ["AVGO", "Broadcom", "Quality semiconductor comp."], ["QCOM", "Qualcomm", "Semiconductor valuation comp."]],
@@ -77,15 +77,51 @@ const PEER_RULES = [
     },
   },
   {
-    pattern: /(software|application|cloud|internet|platform|data|cybersecurity)/,
+    // Fintech / consumer lending / digital banking — must be BEFORE generic software rule
+    // Matches Financial Services companies: credit services, lending, digital banking
+    // blockedSectors prevents accidental matches from tech/software companies
+    sectorIndustryMatch: (s, i) =>
+      i.includes("credit services") || i.includes("consumer finance") ||
+      i.includes("mortgage finance") || i.includes("financial") && s.includes("financial"),
+    pattern: /(credit services|consumer finance|digital bank|neobank|consumer lending|personal loan|student loan|installment loan|buy.now.pay.later|bnpl|fintech.*lend|lend.*platform|online.*bank|bank.*digital)/i,
     groups: {
-      directOperating: [["MSFT", "Microsoft", "Software/cloud platform peer."], ["ORCL", "Oracle", "Enterprise software/cloud peer."], ["CRM", "Salesforce", "Application software peer."]],
-      publicValuation: [["MSFT", "Microsoft", "Mega-cap software anchor."], ["ADBE", "Adobe", "High-margin software comp."], ["NOW", "ServiceNow", "Premium workflow software comp."]],
-      adjacentStrategic: [["GOOGL", "Alphabet", "Cloud/AI/ads adjacency."], ["AMZN", "Amazon", "AWS/platform adjacency."], ["META", "Meta Platforms", "AI platform adjacency."]],
+      directOperating: [
+        ["LC",   "LendingClub",       "Digital consumer lending — direct overlap in personal loans and bank charter."],
+        ["UPST", "Upstart",           "AI-based consumer lending peer — similar origination model and credit risk."],
+        ["AFRM", "Affirm",            "Installment/BNPL lending peer — consumer credit overlap."],
+        ["ALLY", "Ally Financial",    "Digital banking and auto/consumer finance peer — deposit-funded model."],
+        ["COF",  "Capital One",       "Digital-first consumer lending and banking — scale and product overlap."],
+      ],
+      publicValuation: [
+        ["ALLY", "Ally Financial",    "Digital banking valuation anchor — deposit-funded consumer lender."],
+        ["COF",  "Capital One",       "Consumer credit valuation comp — scale and digital product mix."],
+        ["SYF",  "Synchrony Financial", "Consumer credit card / lending valuation comp."],
+        ["LC",   "LendingClub",       "Digital lending multiple comp — bank-charter fintech."],
+        ["UPST", "Upstart",           "AI lending growth multiple comp — high-beta fintech."],
+      ],
+      adjacentStrategic: [
+        ["SQ",   "Block",             "Fintech payments and consumer financial services adjacency."],
+        ["PYPL", "PayPal",            "Digital payments and buy-now-pay-later adjacency."],
+        ["HOOD", "Robinhood",         "Digital brokerage / consumer fintech platform adjacency."],
+        ["MQ",   "Marqeta",           "Card-issuing platform adjacency (comparable to Galileo segment)."],
+        ["FI",   "Fiserv",            "Financial infrastructure and core banking technology adjacency."],
+      ],
     },
   },
   {
-    pattern: /(bank|credit|financial|capital markets|fintech|payments)/,
+    // Traditional banking and capital markets
+    pattern: /(diversified bank|regional bank|investment bank|capital markets|asset management|wealth management)/i,
+    groups: {
+      directOperating: [["JPM", "JPMorgan Chase", "Scaled diversified banking peer."], ["BAC", "Bank of America", "Large U.S. bank peer."], ["C", "Citigroup", "Global bank peer."]],
+      publicValuation: [["JPM", "JPMorgan Chase", "Quality large-cap bank anchor."], ["GS", "Goldman Sachs", "Capital-markets comp."], ["MS", "Morgan Stanley", "Capital-markets/wealth comp."]],
+      adjacentStrategic: [["V", "Visa", "Payments infrastructure adjacency."], ["MA", "Mastercard", "Payments infrastructure adjacency."], ["PYPL", "PayPal", "Digital payments contrast."]],
+    },
+  },
+  {
+    // Generic financial / fintech fallback (catches remaining financial sector patterns)
+    // blockedSectors ensures software companies don't hit this rule
+    pattern: /(bank|credit|financial|capital markets|fintech|payments|insurance|lending)/i,
+    blockedSectors: ["technology", "communication services", "consumer"],
     groups: {
       directOperating: [["JPM", "JPMorgan Chase", "Scaled banking/financial peer."], ["BAC", "Bank of America", "Large bank peer."], ["C", "Citigroup", "Global bank peer."]],
       publicValuation: [["JPM", "JPMorgan Chase", "Quality bank anchor."], ["GS", "Goldman Sachs", "Capital-markets comp."], ["MS", "Morgan Stanley", "Capital-markets/wealth comp."]],
@@ -93,7 +129,18 @@ const PEER_RULES = [
     },
   },
   {
-    pattern: /(auto|vehicle|ev|automaker)/,
+    // Software / cloud / SaaS — blockedSectors prevents Financial Services companies
+    // from matching due to words like "platform" or "data" in their descriptions
+    pattern: /(software|application|cloud|saas|internet platform|cybersecurity|enterprise software)/i,
+    blockedSectors: ["financial services", "financials", "insurance", "real estate"],
+    groups: {
+      directOperating: [["MSFT", "Microsoft", "Software/cloud platform peer."], ["ORCL", "Oracle", "Enterprise software/cloud peer."], ["CRM", "Salesforce", "Application software peer."]],
+      publicValuation: [["MSFT", "Microsoft", "Mega-cap software anchor."], ["ADBE", "Adobe", "High-margin software comp."], ["NOW", "ServiceNow", "Premium workflow software comp."]],
+      adjacentStrategic: [["GOOGL", "Alphabet", "Cloud/AI/ads adjacency."], ["AMZN", "Amazon", "AWS/platform adjacency."], ["META", "Meta Platforms", "AI platform adjacency."]],
+    },
+  },
+  {
+    pattern: /(auto|vehicle|ev|automaker)/i,
     groups: {
       directOperating: [["TSLA", "Tesla", "EV operating peer."], ["GM", "General Motors", "Legacy automaker peer."], ["F", "Ford", "Legacy automaker peer."]],
       publicValuation: [["TSLA", "Tesla", "EV valuation anchor."], ["TM", "Toyota", "Global auto anchor."], ["GM", "General Motors", "U.S. auto comp."]],
@@ -101,7 +148,7 @@ const PEER_RULES = [
     },
   },
   {
-    pattern: /(retail|marketplace|e-commerce|consumer cyclical|apparel)/,
+    pattern: /(retail|marketplace|e-commerce|consumer cyclical|apparel)/i,
     groups: {
       directOperating: [["AMZN", "Amazon", "Marketplace/e-commerce peer."], ["WMT", "Walmart", "Retail scale peer."], ["TGT", "Target", "U.S. retail peer."]],
       publicValuation: [["COST", "Costco", "Premium retail anchor."], ["WMT", "Walmart", "Scaled retail comp."], ["AMZN", "Amazon", "Marketplace/platform comp."]],
@@ -109,7 +156,7 @@ const PEER_RULES = [
     },
   },
   {
-    pattern: /(media|streaming|entertainment|advertising)/,
+    pattern: /(media|streaming|entertainment|advertising)/i,
     groups: {
       directOperating: [["NFLX", "Netflix", "Streaming peer."], ["DIS", "Disney", "Media/streaming peer."], ["WBD", "Warner Bros. Discovery", "Media peer."]],
       publicValuation: [["NFLX", "Netflix", "Streaming valuation anchor."], ["DIS", "Disney", "Diversified media comp."], ["META", "Meta Platforms", "Advertising platform comp."]],
@@ -117,7 +164,7 @@ const PEER_RULES = [
     },
   },
   {
-    pattern: /(energy|oil|gas|exploration|integrated oil)/,
+    pattern: /(energy|oil|gas|exploration|integrated oil)/i,
     groups: {
       directOperating: [["XOM", "Exxon Mobil", "Integrated energy peer."], ["CVX", "Chevron", "Integrated energy peer."], ["COP", "ConocoPhillips", "E&P peer."]],
       publicValuation: [["XOM", "Exxon Mobil", "Quality energy anchor."], ["CVX", "Chevron", "Integrated energy anchor."], ["EOG", "EOG Resources", "E&P valuation comp."]],
@@ -128,7 +175,17 @@ const PEER_RULES = [
 
 function peerGroupsForCompany(sector, industry, symbol, companyName = "", profileSummary = "") {
   const text = `${sector ?? ""} ${industry ?? ""} ${companyName ?? ""} ${profileSummary ?? ""}`.toLowerCase();
-  const rule = PEER_RULES.find((item) => item.pattern.test(text));
+  const sectorLC   = (sector   ?? "").toLowerCase();
+  const industryLC = (industry ?? "").toLowerCase();
+
+  const rule = PEER_RULES.find((item) => {
+    // Sector+industry exact match overrides keyword matching entirely
+    if (item.sectorIndustryMatch && item.sectorIndustryMatch(sectorLC, industryLC)) return true;
+    // Skip if this rule is blocked for this company's sector
+    if (item.blockedSectors && item.blockedSectors.some((s) => sectorLC.includes(s))) return false;
+    // Keyword match against full text
+    return item.pattern.test(text);
+  });
   const groups = rule?.groups ?? {
     directOperating: [["SPY", "S&P 500 ETF", "Broad market benchmark until industry peers are validated."], ["QQQ", "Nasdaq 100 ETF", "Growth benchmark until industry peers are validated."], ["IWM", "Russell 2000 ETF", "Small/mid-cap benchmark until industry peers are validated."]],
     publicValuation: [["SPY", "S&P 500 ETF", "Market multiple anchor."], ["QQQ", "Nasdaq 100 ETF", "Growth multiple anchor."], ["IWM", "Russell 2000 ETF", "Small/mid-cap multiple anchor."]],
@@ -1448,7 +1505,7 @@ function buildEnhancedTechnicalPlan(technical, summary) {
     return { available: false };
   }
 
-  // ── 1. Technical Trend — price position relative to all three MAs ──────
+  // ── 1. Technical Trend ───────────────────────────────────────────────────
   let technicalTrend;
   const hasMAs = Number.isFinite(ema20) && Number.isFinite(ema50) && Number.isFinite(ema150);
   if (hasMAs) {
@@ -1456,11 +1513,14 @@ function buildEnhancedTechnicalPlan(technical, summary) {
     else if (close > ema50 && ema50 > ema150)              technicalTrend = "Neutral";
     else if (close > ema150 && close < ema50)              technicalTrend = "Weakening";
     else                                                    technicalTrend = "Bearish";
+  } else if (Number.isFinite(ema50)) {
+    technicalTrend = close > ema50 ? "Neutral" : "Bearish";
   } else {
     technicalTrend = "Data limited";
   }
+  const isBearishTrend = technicalTrend === "Bearish" || technicalTrend === "Weakening";
 
-  // ── 2. Entry Timing — bearish/weakening gets conservative guidance ──────
+  // ── 2. Entry Timing ──────────────────────────────────────────────────────
   let entryTiming;
   if (technicalTrend === "Bearish") {
     entryTiming = "Wait for trend repair";
@@ -1468,9 +1528,9 @@ function buildEnhancedTechnicalPlan(technical, summary) {
     entryTiming = "DCA only — wait for trend repair";
   } else if (rsi14 > 75 || (Number.isFinite(high55) && close > high55 * 1.10)) {
     entryTiming = "Avoid chasing";
-  } else if (Number.isFinite(ema50) && close <= ema50 * 1.03 && close >= ema50 * 0.97) {
+  } else if (Number.isFinite(ema50) && close >= ema50 * 0.97 && close <= ema50 * 1.03) {
     entryTiming = "Attractive now";
-  } else if (Number.isFinite(ema20) && close <= ema20 * 1.02 && close >= ema20 * 0.98) {
+  } else if (Number.isFinite(ema20) && close >= ema20 * 0.98 && close <= ema20 * 1.02) {
     entryTiming = "Attractive now";
   } else if (Number.isFinite(high55) && close > high55) {
     entryTiming = "Wait for breakout confirmation";
@@ -1478,35 +1538,43 @@ function buildEnhancedTechnicalPlan(technical, summary) {
     entryTiming = "Good for DCA only";
   }
 
-  // ── 3. Classify each MA as support (below price) or resistance (above) ──
+  // ── 3. Classify each MA — support only if BELOW current price ───────────
   const masBelow = [ema20, ema50, ema150]
     .filter((ma) => Number.isFinite(ma) && ma < close)
-    .sort((a, b) => b - a); // descending — nearest below price first
+    .sort((a, b) => b - a); // nearest below first (descending)
   const masAbove = [ema20, ema50, ema150]
     .filter((ma) => Number.isFinite(ma) && ma > close)
-    .sort((a, b) => a - b); // ascending — nearest above price first
+    .sort((a, b) => a - b); // nearest above first (ascending)
 
   const ema20Label  = Number.isFinite(ema20)  ? (ema20  < close ? "support"       : "resistance / reclaim") : null;
   const ema50Label  = Number.isFinite(ema50)  ? (ema50  < close ? "support"       : "resistance / reclaim") : null;
   const ema150Label = Number.isFinite(ema150) ? (ema150 < close ? "major support" : "resistance / reclaim") : null;
 
-  // ── 4. Support: MAs below price; fallback to ATR-based levels ───────────
-  let supportLevel = masBelow.length > 0
-    ? round(masBelow[0])
-    : round(close - 1.5 * atr14);
+  // ── 4. Support: build ONLY from levels that are below current price ──────
+  //
+  // Priority: MAs below price (nearest first), then 52-week low (if below price), then ATR fallback.
+  // We sort ALL candidates together by proximity to price (nearest first), then pick top-2.
+  //
+  const supportCandidates = [
+    ...masBelow,
+    (Number.isFinite(low52w) && low52w < close) ? low52w : null,
+    close - 1.5 * atr14,
+  ].filter((v) => Number.isFinite(v) && v < close);
+  supportCandidates.sort((a, b) => b - a); // nearest to current price first
 
-  let majorSupportLevel = (Number.isFinite(low52w) && low52w < close * 0.98)
-    ? round(low52w * 1.01)
-    : masBelow.length > 1
-      ? round(masBelow[masBelow.length - 1])
-      : round(close - 3.0 * atr14);
+  let supportLevel      = round(supportCandidates[0] ?? close - atr14);
+  let majorSupportLevel = round(supportCandidates[1] ?? close - 3 * atr14);
 
-  // Guarantee: majorSupport < support < close
+  // Push majorSupport lower if it is too close to support (within 0.5 ATR)
+  if (majorSupportLevel >= supportLevel - 0.5 * atr14) {
+    majorSupportLevel = round(supportLevel - atr14);
+  }
+  // Hard guards — both MUST be strictly below close
+  if (supportLevel      >= close) supportLevel      = round(close - atr14);
+  if (majorSupportLevel >= close) majorSupportLevel = round(close - 2 * atr14);
   if (majorSupportLevel >= supportLevel) majorSupportLevel = round(supportLevel - atr14);
-  if (majorSupportLevel >= close)        majorSupportLevel = round(close - 2 * atr14);
-  if (supportLevel >= close)             supportLevel      = round(close - atr14);
 
-  // ── 5. Resistance: MAs above price; fallback to ATR/55-day high ─────────
+  // ── 5. Resistance: only levels ABOVE current price ──────────────────────
   let resistanceLevel = masAbove.length > 0
     ? round(masAbove[0])
     : (Number.isFinite(high55) && high55 > close ? round(high55 * 1.005) : round(close * 1.08));
@@ -1515,50 +1583,69 @@ function buildEnhancedTechnicalPlan(technical, summary) {
     ? round(masAbove[masAbove.length - 1])
     : (Number.isFinite(high52w) && high52w > close * 1.05 ? round(high52w) : round(resistanceLevel * 1.15));
 
-  // Guarantee: close < resistance < majorResistance
-  if (resistanceLevel <= close)                     resistanceLevel      = round(close + atr14);
-  if (majorResistanceLevel <= resistanceLevel)      majorResistanceLevel = round(resistanceLevel + 2 * atr14);
+  // Hard guards — both MUST be strictly above close
+  if (resistanceLevel      <= close)             resistanceLevel      = round(close + atr14);
+  if (majorResistanceLevel <= resistanceLevel)   majorResistanceLevel = round(resistanceLevel + 2 * atr14);
 
-  // ── 6. Trend repair levels (first and second MA to reclaim) ─────────────
+  // ── 6. Trend repair levels ───────────────────────────────────────────────
   const trendRepairAbove   = masAbove.length > 0 ? round(masAbove[0])    : null;
   const strongConfirmAbove = masAbove.length > 1 ? round(masAbove[1])
     : trendRepairAbove !== null ? round(trendRepairAbove * 1.05) : null;
 
-  // ── 7. Invalidation: MUST be below current price ────────────────────────
-  // Placed below major support; hard caps ensure it is always < close
+  // ── 7. Invalidation: below nearest support, always < close ──────────────
+  // Use 0.75× ATR below the nearest support level as the invalidation.
+  // Hard caps: never more than 10% below close, always at least 1 ATR below close.
   const invalidationBelow = round(
-    Math.min(majorSupportLevel - 0.5 * atr14, close * 0.90, close - 0.5 * atr14)
+    Math.min(
+      supportLevel - 0.75 * atr14, // primary: just below nearest real support
+      close * 0.90,                 // max 10% drawdown cap
+      close - atr14                 // at least 1 ATR of breathing room
+    )
   );
 
-  // ── 8. Risk amount (always positive for long setups) ────────────────────
+  // ── 8. Risk amount (always positive) ────────────────────────────────────
   const riskAmt = close - invalidationBelow; // guaranteed > 0
 
-  // ── 9. Buy zones — low must be below high, both sensible vs. price ──────
-  const idealBuyZoneHighRaw = Math.min(close * 1.005, resistanceLevel - 0.01);
-  const idealBuyZoneLowRaw  = Math.max(supportLevel  * 0.98, invalidationBelow * 1.10);
-  const idealBuyZoneHigh = round(idealBuyZoneHighRaw);
-  const idealBuyZoneLow  = round(Math.min(idealBuyZoneLowRaw, idealBuyZoneHighRaw - 0.01));
-
-  const dcaZoneHighRaw = Math.min(supportLevel, idealBuyZoneLow - 0.01);
-  const dcaZoneLowRaw  = Math.max(majorSupportLevel * 0.99, invalidationBelow * 1.08);
-  const dcaZoneHigh = round(Math.max(dcaZoneHighRaw, dcaZoneLowRaw + 0.01));
-  const dcaZoneLow  = round(dcaZoneLowRaw);
-
+  // ── 9. Buy zones ─────────────────────────────────────────────────────────
+  // Bearish/Weakening: DCA zone = [nearest support, just above current price]
+  //   This is the "accumulate in tranches" zone when thesis is intact but trend is down.
+  // Bullish/Neutral: DCA zone is near the support MA below price.
+  let idealBuyZoneLow, idealBuyZoneHigh, dcaZoneLow, dcaZoneHigh;
+  if (isBearishTrend) {
+    idealBuyZoneLow  = round(supportLevel * 0.99);
+    idealBuyZoneHigh = round(Math.min(close * 1.005, resistanceLevel - 0.01));
+    dcaZoneLow       = round(supportLevel);
+    dcaZoneHigh      = round(Math.min(close * 1.01, resistanceLevel - 0.01));
+  } else {
+    const idealHighRaw = Math.min(close * 1.005, resistanceLevel - 0.01);
+    const idealLowRaw  = Math.max(supportLevel * 0.98, invalidationBelow * 1.10);
+    idealBuyZoneHigh   = round(idealHighRaw);
+    idealBuyZoneLow    = round(Math.min(idealLowRaw, idealHighRaw - 0.01));
+    dcaZoneHigh = round(Math.min(supportLevel * 1.01, idealBuyZoneLow - 0.01));
+    dcaZoneLow  = round(Math.max(majorSupportLevel * 0.99, invalidationBelow * 1.08));
+    if (dcaZoneLow >= dcaZoneHigh) dcaZoneLow = round(dcaZoneHigh - atr14);
+  }
   const pullbackBuyZoneLow  = round(close * 0.93);
   const pullbackBuyZoneHigh = round(close * 0.97);
 
   // ── 10. TP1 / TP2: MUST be above current price ──────────────────────────
-  // Bullish/Neutral: risk-reward multiples from entry
-  // Bearish/Weakening: resistance levels are the recovery targets
-  let tp1, tp2;
-  if (technicalTrend === "Bullish" || technicalTrend === "Neutral") {
+  // Bearish/Weakening: TPs are INACTIVE — shown as reclaim benchmarks only.
+  //   tp1 = nearest resistance (first MA to reclaim)
+  //   tp2 = major resistance (extended recovery target)
+  // Bullish/Neutral: active risk-reward targets above entry.
+  let tp1, tp2, tp1Active, tp2Active;
+  if (isBearishTrend) {
+    tp1 = resistanceLevel;
+    tp2 = majorResistanceLevel;
+    tp1Active = false;
+    tp2Active = false;
+  } else {
     tp1 = round(close + riskAmt * 1.5);
     tp2 = round(close + riskAmt * 3.0);
-  } else {
-    tp1 = resistanceLevel;     // first resistance to reclaim
-    tp2 = majorResistanceLevel; // major resistance as extended target
+    tp1Active = true;
+    tp2Active = true;
   }
-  // Hard safety guards — no TP can be at or below current price
+  // Hard safety — TPs must always be above close (even if labelled inactive)
   if (tp1 <= close) tp1 = round(close + atr14 * 1.5);
   if (tp2 <= tp1)   tp2 = round(tp1  + atr14 * 2.5);
 
@@ -1566,19 +1653,23 @@ function buildEnhancedTechnicalPlan(technical, summary) {
     ? round(high52w * 1.10)
     : round(close * 2.5);
 
-  // ── 11. Risk / Reward ────────────────────────────────────────────────────
-  const rrRatio    = riskAmt > 0 ? round((tp1 - close) / riskAmt, 1) : null;
-  const riskReward = (rrRatio !== null && rrRatio > 0) ? `${rrRatio}:1` : "No clean entry";
-  const noCleanEntry = !rrRatio || rrRatio <= 0;
+  // ── 11. Risk/Reward ──────────────────────────────────────────────────────
+  // Only meaningful for confirmed bullish/neutral setups.
+  let riskReward = "No clean long setup yet";
+  let noCleanEntry = true;
+  if (!isBearishTrend && riskAmt > 0) {
+    const rrRatio = round((tp1 - close) / riskAmt, 1);
+    if (rrRatio > 0) { riskReward = `${rrRatio}:1`; noCleanEntry = false; }
+  }
 
-  // ── 12. Breakout confirmation level ─────────────────────────────────────
+  // ── 12. Breakout confirmation ────────────────────────────────────────────
   const breakoutBuyAbove = (Number.isFinite(high55) && high55 > close)
     ? round(high55 * 1.005)
     : round(resistanceLevel * 1.005);
 
   return {
     available: true,
-    currentPrice:       round(close),
+    currentPrice:        round(close),
     idealBuyZoneLow,
     idealBuyZoneHigh,
     dcaZoneLow,
@@ -1595,6 +1686,8 @@ function buildEnhancedTechnicalPlan(technical, summary) {
     invalidationBelow,
     tp1,
     tp2,
+    tp1Active,
+    tp2Active,
     longTermBullCase,
     riskReward,
     noCleanEntry,
@@ -1675,10 +1768,15 @@ function buildEarningsAnalysis(summary, newsEngine, symbol, theme) {
   const lastRevenue = raw(financial.totalRevenue);
   const revEstimate = raw(lastQTrend?.revenueEstimate?.avg);
   let revVsExpectations = "Unavailable from Yahoo structured data";
+  let revenueBeatPct = null;
   if (Number.isFinite(lastRevenue) && Number.isFinite(revEstimate) && revEstimate > 0) {
-    const diffPct = ((lastRevenue - revEstimate) / revEstimate) * 100;
-    revVsExpectations = diffPct >= 0 ? `Beat by approximately ${round(diffPct, 1)}%` : `Missed by approximately ${round(Math.abs(diffPct), 1)}%`;
+    revenueBeatPct = ((lastRevenue - revEstimate) / revEstimate) * 100;
+    revVsExpectations = revenueBeatPct >= 0 ? `Beat by approximately ${round(revenueBeatPct, 1)}%` : `Missed by approximately ${round(Math.abs(revenueBeatPct), 1)}%`;
   }
+
+  const revenueBeatSanityFlag = Number.isFinite(revenueBeatPct) && Math.abs(revenueBeatPct) > 50
+    ? "Needs verification — beat/miss appears abnormally large. Possible unit mismatch (annual vs quarterly) or data error. Cross-check with company IR filing."
+    : null;
 
   const revenueGrowth = raw(financial.revenueGrowth);
   let guidanceChange = "Guidance data not available in Yahoo structured feed — check company press release";
@@ -1727,6 +1825,7 @@ function buildEarningsAnalysis(summary, newsEngine, symbol, theme) {
     lastEarningsDate: lastEarningsDate ?? "Not available from Yahoo",
     lastQuarterRevenue: lastRevenue,
     revVsExpectations,
+    revenueBeatSanityFlag,
     lastQuarterEPS: epsActual,
     epsVsExpectations,
     epsSurprisePct: round(epsSurprisePct, 1),

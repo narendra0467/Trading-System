@@ -246,19 +246,52 @@ const CLIENT_PEER_RULES = [
     },
   },
   {
-    pattern: /(software|application|cloud|internet|platform|data|cybersecurity)/i,
+    // Fintech / consumer lending — must come BEFORE generic software rule
+    sectorIndustryMatch: (s, i) =>
+      i.includes("credit services") || i.includes("consumer finance") ||
+      (i.includes("financial") && s.includes("financial")),
+    pattern: /(credit services|consumer finance|digital bank|neobank|consumer lending|personal loan|student loan|installment loan|buy.now.pay.later|bnpl|fintech.*lend|lend.*platform)/i,
+    blockedSectors: ["technology", "communication services"],
     groups: {
-      directOperating: [["MSFT", "Microsoft", "Software/cloud platform peer."], ["ORCL", "Oracle", "Enterprise software/cloud peer."], ["CRM", "Salesforce", "Application software peer."]],
-      publicValuation: [["MSFT", "Microsoft", "Mega-cap software anchor."], ["ADBE", "Adobe", "High-margin software comp."], ["NOW", "ServiceNow", "Premium workflow software comp."]],
-      adjacentStrategic: [["GOOGL", "Alphabet", "Cloud/AI/ads adjacency."], ["AMZN", "Amazon", "AWS/platform adjacency."], ["META", "Meta Platforms", "AI platform adjacency."]],
+      directOperating: [
+        ["LC",   "LendingClub",       "Digital consumer lending — direct overlap in personal loans."],
+        ["UPST", "Upstart",           "AI-based consumer lending peer — similar origination model."],
+        ["AFRM", "Affirm",            "Installment/BNPL lending peer — consumer credit overlap."],
+        ["ALLY", "Ally Financial",    "Digital banking and auto/consumer finance peer."],
+        ["COF",  "Capital One",       "Digital-first consumer lending and banking peer."],
+      ],
+      publicValuation: [
+        ["ALLY", "Ally Financial",    "Digital banking valuation anchor — deposit-funded consumer lender."],
+        ["COF",  "Capital One",       "Consumer credit valuation comp."],
+        ["SYF",  "Synchrony Financial", "Consumer credit card / lending valuation comp."],
+        ["LC",   "LendingClub",       "Digital lending multiple comp."],
+        ["UPST", "Upstart",           "AI lending growth multiple comp."],
+      ],
+      adjacentStrategic: [
+        ["SQ",   "Block",             "Fintech payments and consumer financial services adjacency."],
+        ["PYPL", "PayPal",            "Digital payments and buy-now-pay-later adjacency."],
+        ["HOOD", "Robinhood",         "Digital brokerage / consumer fintech platform adjacency."],
+        ["MQ",   "Marqeta",           "Card-issuing platform adjacency."],
+        ["FI",   "Fiserv",            "Financial infrastructure adjacency."],
+      ],
     },
   },
   {
     pattern: /(bank|credit|financial|capital markets|fintech|payments)/i,
+    blockedSectors: ["technology", "communication services", "consumer"],
     groups: {
       directOperating: [["JPM", "JPMorgan Chase", "Scaled banking/financial peer."], ["BAC", "Bank of America", "Large bank peer."], ["C", "Citigroup", "Global bank peer."]],
       publicValuation: [["JPM", "JPMorgan Chase", "Quality bank anchor."], ["GS", "Goldman Sachs", "Capital-markets comp."], ["MS", "Morgan Stanley", "Capital-markets/wealth comp."]],
       adjacentStrategic: [["V", "Visa", "Payments adjacency."], ["MA", "Mastercard", "Payments adjacency."], ["PYPL", "PayPal", "Digital payments contrast."]],
+    },
+  },
+  {
+    pattern: /(software|application|cloud|saas|internet platform|cybersecurity|enterprise software)/i,
+    blockedSectors: ["financial services", "financials", "insurance", "real estate"],
+    groups: {
+      directOperating: [["MSFT", "Microsoft", "Software/cloud platform peer."], ["ORCL", "Oracle", "Enterprise software/cloud peer."], ["CRM", "Salesforce", "Application software peer."]],
+      publicValuation: [["MSFT", "Microsoft", "Mega-cap software anchor."], ["ADBE", "Adobe", "High-margin software comp."], ["NOW", "ServiceNow", "Premium workflow software comp."]],
+      adjacentStrategic: [["GOOGL", "Alphabet", "Cloud/AI/ads adjacency."], ["AMZN", "Amazon", "AWS/platform adjacency."], ["META", "Meta Platforms", "AI platform adjacency."]],
     },
   },
   {
@@ -283,7 +316,14 @@ function normalizePeerGroups(result) {
   const symbol = String(result.symbol ?? "").toUpperCase();
   const reportGroups = result.report?.peerGroups;
   const text = [result.name, result.business?.sector, result.business?.industry, result.business?.theme, result.report?.businessModel, result.report?.coreProduct].join(" ");
-  const selected = reportGroups || CLIENT_PEER_RULES.find((rule) => rule.pattern.test(text))?.groups || {
+  const sectorLC   = (result.business?.sector   ?? "").toLowerCase();
+  const industryLC = (result.business?.industry ?? "").toLowerCase();
+  const matchedRule = CLIENT_PEER_RULES.find((rule) => {
+    if (rule.sectorIndustryMatch && rule.sectorIndustryMatch(sectorLC, industryLC)) return true;
+    if (rule.blockedSectors && rule.blockedSectors.some((s) => sectorLC.includes(s))) return false;
+    return rule.pattern.test(text);
+  });
+  const selected = reportGroups || matchedRule?.groups || {
     directOperating: [["SPY", "S&P 500 ETF", "Broad market benchmark until direct peers are validated."]],
     publicValuation: [["QQQ", "Nasdaq 100 ETF", "Growth benchmark until valuation peers are validated."]],
     adjacentStrategic: [],
@@ -560,8 +600,14 @@ function renderReportSection(result) {
           <div class="entry-row"><span>Major Resistance</span><strong>${money(plan.majorResistanceLevel)}</strong></div>
           <div class="entry-row"><span>Breakout Confirmation Above</span><strong>${money(plan.breakoutBuyAbove)}</strong></div>
           <div class="entry-row entry-row--danger"><span>Invalidation / Stop</span><strong>Below ${money(plan.invalidationBelow)}</strong></div>
-          <div class="entry-row entry-row--tp1"><span>${isBearish || isWeak ? "TP1 — First Reclaim Target" : "TP1 — Partial Trim Zone"}</span><strong>${money(plan.tp1)}</strong></div>
-          <div class="entry-row entry-row--tp2"><span>${isBearish || isWeak ? "TP2 — Major Resistance Target" : "TP2 — Extended Bull Target"}</span><strong>${money(plan.tp2)}</strong></div>
+          <div class="entry-row entry-row--tp1">
+            <span>${plan.tp1Active === false ? "TP1 — Inactive (First Reclaim Level)" : "TP1 — Partial Trim Zone"}</span>
+            <strong>${plan.tp1Active === false ? `${money(plan.tp1)} — not active until trend repairs` : money(plan.tp1)}</strong>
+          </div>
+          <div class="entry-row entry-row--tp2">
+            <span>${plan.tp2Active === false ? "TP2 — Inactive (Major Resistance Target)" : "TP2 — Extended Bull Target"}</span>
+            <strong>${plan.tp2Active === false ? `${money(plan.tp2)} — not active until trend repairs` : money(plan.tp2)}</strong>
+          </div>
           <div class="entry-row"><span>Long-Term Bull Case</span><strong>${money(plan.longTermBullCase)}</strong></div>
           <div class="entry-row${noEntry ? " entry-row--danger" : ""}"><span>Risk / Reward</span><strong>${escapeHtml(plan.riskReward ?? "n/a")}</strong></div>
         </div>
@@ -767,13 +813,13 @@ function renderReportSection(result) {
         <summary>Valuation Analysis</summary>
         <div class="valuation-header">
           <div class="val-kpi"><span>Valuation Risk</span><strong class="${Number(s.valuationRiskScore) >= 70 ? "text-red" : Number(s.valuationRiskScore) >= 50 ? "text-amber" : "text-green"}">${s.valuationRiskScore ?? "n/a"}/100</strong></div>
-          <div class="val-kpi"><span>Trailing P/E</span><strong>${Number.isFinite(Number(valuation.trailingPE)) ? `${valuation.trailingPE}x` : "n/a"}</strong></div>
-          <div class="val-kpi"><span>Forward P/E</span><strong>${Number.isFinite(Number(valuation.forwardPE)) ? `${valuation.forwardPE}x` : "n/a"}</strong></div>
-          <div class="val-kpi"><span>PEG Ratio</span><strong>${Number.isFinite(Number(valuation.pegRatio)) ? `${valuation.pegRatio}x` : "n/a"}</strong></div>
-          <div class="val-kpi"><span>P/S Ratio</span><strong>${Number.isFinite(Number(valuation.priceToSales)) ? `${valuation.priceToSales}x` : "n/a"}</strong></div>
-          <div class="val-kpi"><span>EV/EBITDA</span><strong>${Number.isFinite(Number(valuation.enterpriseToEbitda)) ? `${valuation.enterpriseToEbitda}x` : "n/a"}</strong></div>
+          <div class="val-kpi"><span>Trailing P/E</span><strong>${valuation.trailingPE != null && Number.isFinite(Number(valuation.trailingPE)) ? `${Number(valuation.trailingPE).toFixed(1)}x` : "n/a"}</strong></div>
+          <div class="val-kpi"><span>Forward P/E</span><strong>${valuation.forwardPE != null && Number.isFinite(Number(valuation.forwardPE)) ? `${Number(valuation.forwardPE).toFixed(1)}x` : "n/a"}</strong></div>
+          <div class="val-kpi"><span>PEG Ratio</span><strong>${valuation.pegRatio != null && Number.isFinite(Number(valuation.pegRatio)) ? `${Number(valuation.pegRatio).toFixed(1)}x` : "n/a"}</strong></div>
+          <div class="val-kpi"><span>P/S Ratio</span><strong>${valuation.priceToSales != null && Number.isFinite(Number(valuation.priceToSales)) ? `${Number(valuation.priceToSales).toFixed(1)}x` : "n/a"}</strong></div>
+          <div class="val-kpi"><span>EV/EBITDA</span><strong>${valuation.enterpriseToEbitda != null && Number.isFinite(Number(valuation.enterpriseToEbitda)) ? `${Number(valuation.enterpriseToEbitda).toFixed(1)}x` : "n/a"}</strong></div>
           <div class="val-kpi"><span>Analyst Target</span><strong>${money(valuation.targetMeanPrice)}</strong></div>
-          <div class="val-kpi"><span>Analyst Upside</span><strong>${Number.isFinite(Number(valuation.analystUpside)) ? `${Number(valuation.analystUpside) > 0 ? "+" : ""}${valuation.analystUpside}%` : "n/a"}</strong></div>
+          <div class="val-kpi"><span>Analyst Upside</span><strong>${valuation.analystUpside != null && Number.isFinite(Number(valuation.analystUpside)) ? `${Number(valuation.analystUpside) > 0 ? "+" : ""}${Number(valuation.analystUpside).toFixed(1)}%` : "n/a"}</strong></div>
         </div>
         <div class="valuation-rating-block">
           <span>Valuation Profile:</span>
