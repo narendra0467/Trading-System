@@ -485,6 +485,7 @@ function renderReportSection(result) {
   const svl = result.sharesVsLeaps ?? {};
   const ps = result.positionSizing ?? {};
   const fmv = result.fundManagerVerdict ?? {};
+  const dev = fmv.decisionEngineVerdict ?? {};
   const report = result.report ?? {};
   const technical = result.technical ?? {};
   const valuation = result.valuation ?? {};
@@ -496,6 +497,7 @@ function renderReportSection(result) {
   const currentPrice = Number(result.currentPrice ?? technical.close);
   const finalRating = result.seniorFinalRating ?? result.investigateFurther ?? "Watchlist Only";
   const finalAction = result.seniorFinalAction ?? result.finalAction ?? "Wait for pullback";
+  const rv = result.reportValidation ?? {};
 
   function ratingClass(rating) {
     if (["Core 5-Year Compounder", "DCA Candidate"].includes(rating)) return "chip-green";
@@ -505,9 +507,11 @@ function renderReportSection(result) {
   }
   function actionClass(action) {
     if (!action) return "chip-neutral";
-    if (["Buy shares slowly", "DCA shares", "LEAPS starter allowed"].includes(action)) return "chip-green";
-    if (["Wait for pullback", "Watch after earnings", "LEAPS watch only"].includes(action)) return "chip-amber";
-    if (action.toLowerCase().includes("avoid")) return "chip-red";
+    const a = String(action).toLowerCase();
+    if (["buy shares slowly", "dca shares", "dca small only", "leaps starter allowed"].includes(a)) return "chip-green";
+    if (["wait for pullback", "watch after earnings", "wait until after earnings", "leaps watch only", "wait for trend repair", "watchlist only"].includes(a)) return "chip-amber";
+    if (a === "avoid" || a === "report needs review") return "chip-red";
+    if (["deep research required"].includes(a)) return "chip-amber";
     return "chip-neutral";
   }
   function seniorMeter(label, score, note, inverse = false) {
@@ -530,32 +534,50 @@ function renderReportSection(result) {
     if (!fyData.rows?.length) {
       return `<p class="empty">5-year financial data requires annual income statement history from Yahoo Finance. Data may be limited for some tickers.</p>`;
     }
-    const hdr = ["Year", "Revenue", "Rev Growth", "Gross Margin", "Op Margin", "Net Margin", "EBITDA Margin", "FCF", "FCF Margin", "Capex"];
+    // Safe money formatter: null → "—", zero → "$0.00", number → "$X.XX"
+    const safeAmt = (v) => (v != null && Number.isFinite(Number(v))) ? bigMoney(v) : "—";
+    const fmtPct = (v) => v != null && Number.isFinite(Number(v)) ? `${Number(v).toFixed(1)}%` : "—";
+    const isFS = fyData.isFinancialServices === true;
+
+    const hdr = ["Year", "Revenue", "Rev Growth", "Gross Margin", "Op Margin", "Net Margin",
+      isFS ? "EBITDA Margin *" : "EBITDA Margin",
+      isFS ? "FCF *" : "FCF",
+      isFS ? "FCF Margin *" : "FCF Margin",
+      isFS ? "Capex *" : "Capex"];
+
     return `
+      ${isFS ? `<div class="fs-mode-banner">
+        <strong>📊 Financial Services Mode</strong> — EBITDA, FCF, and Capex are not primary metrics for this business model.
+        <span>Focus on: Revenue growth · Net income · ROE/ROA · Credit quality · Loan/deposit growth</span>
+      </div>` : ""}
       <div class="table-wrap fy-table">
         <table>
           <thead><tr>${hdr.map((h) => `<th>${h}</th>`).join("")}</tr></thead>
           <tbody>
             ${fyData.rows.map((row) => {
-              const fmtPct = (v) => v != null && Number.isFinite(Number(v)) ? `${Number(v).toFixed(1)}%` : "—";
               const growthClass = row.revenueGrowth != null ? (Number(row.revenueGrowth) >= 15 ? "cell-good" : Number(row.revenueGrowth) >= 5 ? "" : "cell-bad") : "";
+              const ebitdaCell = isFS && row.ebitdaMargin == null ? `<td class="cell-muted">N/M</td>` : `<td>${fmtPct(row.ebitdaMargin)}</td>`;
+              const fcfCell    = isFS && row.fcf == null ? `<td class="cell-muted">N/M</td>` : `<td>${safeAmt(row.fcf)}</td>`;
+              const fcfMgCell  = isFS && row.fcfMargin == null ? `<td class="cell-muted">N/M</td>` : `<td>${fmtPct(row.fcfMargin)}</td>`;
+              const capexCell  = isFS && row.capex == null ? `<td class="cell-muted">N/M</td>` : `<td>${safeAmt(row.capex)}</td>`;
               return `
               <tr>
                 <td><strong>${escapeHtml(String(row.year ?? "n/a"))}</strong></td>
-                <td>${bigMoney(row.revenue)}</td>
+                <td>${safeAmt(row.revenue)}</td>
                 <td class="${growthClass}">${fmtPct(row.revenueGrowth)}</td>
                 <td>${fmtPct(row.grossMargin)}</td>
                 <td>${fmtPct(row.operatingMargin)}</td>
                 <td>${fmtPct(row.netMargin)}</td>
-                <td>${fmtPct(row.ebitdaMargin)}</td>
-                <td>${bigMoney(row.fcf)}</td>
-                <td>${fmtPct(row.fcfMargin)}</td>
-                <td>${bigMoney(row.capex)}</td>
+                ${ebitdaCell}
+                ${fcfCell}
+                ${fcfMgCell}
+                ${capexCell}
               </tr>`;
             }).join("")}
           </tbody>
         </table>
-      </div>`;
+      </div>
+      ${isFS ? `<p class="fs-mode-note muted">* EBITDA, FCF, and Capex are marked N/M (Not Meaningful) for financial-services companies where Yahoo Finance does not provide or these metrics are not standard operating metrics. Use net income, ROE, ROA, and credit quality instead.</p>` : ""}`;
   }
   function entryPlanCard(plan) {
     if (!plan?.available) {
@@ -641,6 +663,16 @@ function renderReportSection(result) {
   return `
     <article class="analyzer-detail senior-report investor-report" id="printable-analyzer-report">
 
+      ${rv.needsReview ? `
+      <div class="report-review-banner">
+        <div class="review-banner-title">⚠ REPORT NEEDS REVIEW — DO NOT RELY ON FINAL SCORE</div>
+        ${(rv.errors ?? []).length ? `<ul class="review-banner-list">${(rv.errors ?? []).map(e => `<li>${escapeHtml(e)}</li>`).join('')}</ul>` : ''}
+        ${(rv.warnings ?? []).length ? `<ul class="review-banner-warnings">${(rv.warnings ?? []).slice(0, 4).map(w => `<li>${escapeHtml(w)}</li>`).join('')}</ul>` : ''}
+      </div>` : ((rv.warnings ?? []).length > 0 ? `
+      <div class="report-warning-banner">
+        ${(rv.warnings ?? []).slice(0, 3).map(w => `<span>⚠ ${escapeHtml(w)}</span>`).join('')}
+      </div>` : '')}
+
       <!-- COVER HEADER -->
       <div class="senior-header">
         <div class="senior-header-title">
@@ -668,6 +700,7 @@ function renderReportSection(result) {
         <div class="senior-kpi${ea.earningsProximate ? " senior-kpi--urgent" : ""}"><span>Next Earnings</span><strong>${escapeHtml(ea.nextEarningsDate ?? "n/a")}${Number.isFinite(ea.daysUntilEarnings) && ea.daysUntilEarnings >= 0 ? ` (${ea.daysUntilEarnings}d)` : ""}${ea.earningsProximate ? " ⚠️" : ""}</strong></div>
         <div class="senior-kpi"><span>Last Earnings</span><strong>${escapeHtml(ea.lastEarningsDate ?? "n/a")}</strong></div>
         <div class="senior-kpi"><span>Exchange</span><strong>${escapeHtml(result.exchange ?? "n/a")}</strong></div>
+        <div class="senior-kpi${rv.needsReview ? ' senior-kpi--urgent' : ''}"><span>Report Quality</span><strong>${rv.needsReview ? '⚠ Needs Review' : `Data: ${rv.dataConfidenceScore ?? 'n/a'}/100`}</strong></div>
       </div>
 
       <!-- FINAL RATING / ACTION BANNER -->
@@ -923,31 +956,83 @@ function renderReportSection(result) {
       <!-- HIDDEN MULTIBAGGER (if available) -->
       ${renderHiddenMultibagger(result)}
 
-      <!-- FUND MANAGER VERDICT -->
-      <div class="fund-manager-verdict" id="fund-manager-verdict">
+      <!-- DECISION ENGINE VERDICT -->
+      <div class="fund-manager-verdict decision-engine-verdict" id="fund-manager-verdict">
         <div class="verdict-title">
-          <h3>Senior Fund Manager Verdict</h3>
+          <h3>Decision Engine Verdict</h3>
           <span class="chip ${ratingClass(fmv.finalRating ?? finalRating)}">${escapeHtml(fmv.finalRating ?? finalRating)}</span>
         </div>
-        <div class="verdict-grid">
-          <div><span>1. Final Rating</span><strong>${escapeHtml(fmv.finalRating ?? finalRating)}</strong></div>
-          <div><span>2. Final Action</span><strong class="chip ${actionClass(fmv.finalAction ?? finalAction)}">${escapeHtml(fmv.finalAction ?? finalAction)}</strong></div>
-          <div><span>3. Investable 5+ years?</span><strong>${fmv.investable5Years ? "✅ Yes" : "⚠️ Not confirmed"}</strong></div>
-          <div><span>4. Buy today or wait?</span><strong>${escapeHtml(fmv.buyNowOrWait ?? "n/a")}</strong></div>
-          <div><span>5. Ideal Entry Zone</span><strong>${escapeHtml(fmv.idealEntryZone ?? "n/a")}</strong></div>
-          <div><span>6. DCA Zone</span><strong>${escapeHtml(fmv.dcaZone ?? "n/a")}</strong></div>
-          <div><span>7. TP1</span><strong>${money(fmv.tp1)}</strong></div>
-          <div><span>8. TP2</span><strong>${money(fmv.tp2)}</strong></div>
-          <div><span>9. Invalidation Level</span><strong>${money(fmv.invalidationLevel)}</strong></div>
-          <div><span>10. Shares vs LEAPS</span><strong>${escapeHtml(fmv.sharesVsLeapsDecision ?? "n/a")}</strong></div>
-          <div><span>11. Biggest Upside Driver</span><strong>${escapeHtml(fmv.biggestUpsideDriver ?? "n/a")}</strong></div>
-          <div><span>12. Biggest Risk</span><strong>${escapeHtml(fmv.biggestRisk ?? "n/a")}</strong></div>
-          <div><span>13. Watch Next Earnings</span><strong>${escapeHtml(fmv.watchNextEarnings ?? "n/a")}</strong></div>
+
+        ${(fmv.validationSummary?.needsReview || fmv.validationSummary?.errors?.length > 0) ? `
+        <div class="verdict-review-alert">
+          <strong>⚠ REPORT NEEDS REVIEW — DO NOT RELY ON FINAL SCORE</strong>
+          ${(fmv.validationSummary?.errors ?? []).map(e => `<div class="verdict-error">${escapeHtml(e)}</div>`).join('')}
+        </div>` : ''}
+
+        <!-- Confidence Scores -->
+        <div class="confidence-scores-grid">
+          <div class="conf-score">
+            <span>Data Confidence</span>
+            <strong class="${Number(fmv.dataConfidenceScore) >= 70 ? 'text-green' : Number(fmv.dataConfidenceScore) >= 50 ? 'text-amber' : 'text-red'}">${fmv.dataConfidenceScore ?? 'n/a'}/100</strong>
+          </div>
+          <div class="conf-score">
+            <span>Decision Confidence</span>
+            <strong class="${Number(fmv.decisionConfidenceScore) >= 70 ? 'text-green' : Number(fmv.decisionConfidenceScore) >= 50 ? 'text-amber' : 'text-red'}">${fmv.decisionConfidenceScore ?? 'n/a'}/100</strong>
+          </div>
+          <div class="conf-score">
+            <span>Entry Confidence</span>
+            <strong class="${Number(fmv.entryConfidenceScore) >= 70 ? 'text-green' : Number(fmv.entryConfidenceScore) >= 50 ? 'text-amber' : 'text-red'}">${fmv.entryConfidenceScore ?? 'n/a'}/100</strong>
+          </div>
         </div>
-        <div class="verdict-conditions">
-          <div><strong>14. What would make me sell / reduce:</strong><ul class="plain-list">${(fmv.sellReduceConditions ?? []).map((item) => `<li>${escapeHtml(item)}</li>`).join("")}</ul></div>
-          <div><strong>15. What would make me buy more:</strong><ul class="plain-list">${(fmv.buyMoreConditions ?? []).map((item) => `<li>${escapeHtml(item)}</li>`).join("")}</ul></div>
+
+        <!-- 25-Point Verdict Grid -->
+        <div class="verdict-grid verdict-grid--25">
+          ${[
+            ["1. Data quality", dev.dataQuality],
+            ["2. Business classification", dev.businessClassification],
+            ["3. Peer mapping", dev.peerMapping],
+            ["4. Fundamental quality", dev.fundamentalQuality],
+            ["5. Financial trend", dev.financialTrend],
+            ["6. Moat", dev.moat],
+            ["7. Valuation", dev.valuation],
+            ["8. Earnings thesis", dev.earningsThesis],
+            ["9. Technical setup", dev.technicalSetup],
+            ["10. Entry timing", dev.entryTiming],
+            ["11. Shares vs LEAPS", dev.sharesVsLeaps],
+            ["12. Portfolio role", dev.portfolioRole],
+            ["13. Final decision", dev.finalDecision],
+            ["14. Decision confidence", dev.decisionConfidence],
+            ["15. Position size", dev.positionSize],
+            ["16. Ideal entry zone", dev.idealEntryZone],
+            ["17. DCA zone", dev.dcaZone],
+            ["18. Reclaim level", dev.reclaimLevel],
+            ["19. Invalidation level", dev.invalidationLevel],
+            ["20. TP1 / reassessment zone", dev.tp1Zone],
+            ["21. TP2 / extended zone", dev.tp2Zone],
+          ].map(([label, value]) => `<div><span>${escapeHtml(label)}</span><strong>${escapeHtml(String(value ?? "n/a"))}</strong></div>`).join('')}
         </div>
+
+        <!-- What makes me act -->
+        <div class="verdict-conditions verdict-conditions--3col">
+          <div>
+            <strong>22. What would make me buy more:</strong>
+            <ul class="plain-list">${(dev.whatMakesMeBuyMore ?? fmv.buyMoreConditions ?? []).map(item => `<li>${escapeHtml(item)}</li>`).join('')}</ul>
+          </div>
+          <div>
+            <strong>23. What would make me reduce:</strong>
+            <ul class="plain-list">${(dev.whatMakesMeReduce ?? []).map(item => `<li>${escapeHtml(item)}</li>`).join('')}</ul>
+          </div>
+          <div>
+            <strong>24. What would make me sell:</strong>
+            <ul class="plain-list">${(dev.whatMakesMeSell ?? fmv.sellReduceConditions ?? []).map(item => `<li>${escapeHtml(item)}</li>`).join('')}</ul>
+          </div>
+        </div>
+
+        <div class="watch-next-block">
+          <strong>25. What to watch next earnings:</strong>
+          <ol>${(Array.isArray(dev.watchNextEarnings) ? dev.watchNextEarnings : [fmv.watchNextEarnings ?? "Revenue growth, margin trends, forward guidance"]).map(item => `<li>${escapeHtml(item)}</li>`).join('')}</ol>
+        </div>
+
         <div class="verdict-plain-english">
           <strong>Plain-English 5-Sentence Summary:</strong>
           <p>${escapeHtml(fmv.plainEnglishSummary ?? result.managerRead ?? "Analysis unavailable.")}</p>

@@ -1380,7 +1380,10 @@ async function buildPeerComparison(targetRow, peers) {
 // SENIOR STOCK ANALYZER — Institutional-grade analysis layer
 // ─────────────────────────────────────────────────────────────────────────────
 
-function build5YearFinancialTable(summary) {
+function build5YearFinancialTable(summary, sector = "", industry = "") {
+  const isFinancialServices =
+    /financial services|financials/i.test(sector) ||
+    /credit services|consumer finance|mortgage finance|capital markets|lending|bank|insurance/i.test(industry);
   const income = (summary.incomeStatementHistory?.incomeStatementHistory ?? [])
     .map((item) => ({
       date: item.endDate?.fmt,
@@ -1447,6 +1450,9 @@ function build5YearFinancialTable(summary) {
   const oldest = rows[0];
 
   const narrativePoints = [];
+  if (isFinancialServices) {
+    narrativePoints.push("Note: EBITDA and traditional free cash flow are not standard metrics for financial-services companies. Focus on revenue growth, net income, ROE/ROA, credit quality, and loan/deposit trends");
+  }
   if (allRevPositive) narrativePoints.push("Revenue has grown consistently across all reported annual periods");
   else if (revGrowthRates.some((r) => r > 0)) narrativePoints.push("Revenue growth has been mixed — some years showed declines or flattening");
   else narrativePoints.push("Revenue has been declining or stagnant");
@@ -1486,6 +1492,10 @@ function build5YearFinancialTable(summary) {
     currentROE: round(currentROE, 1),
     currentROA: round(currentROA, 1),
     narrative: narrativePoints.join(". ") + ".",
+    isFinancialServices,
+    financialServicesNote: isFinancialServices
+      ? `Financial Services Mode active. EBITDA margin, FCF, and Capex are not primary value drivers for ${sector} / ${industry} companies. Key metrics: Revenue growth, Net income growth, ROE, ROA, credit quality, deposit growth, and loan performance.`
+      : null,
   };
 }
 
@@ -2017,23 +2027,35 @@ function determineFinalRating(scorecard, growthChecklist, valuation, technical, 
   return "Avoid";
 }
 
-function determineFinalAction(finalRating, technical, earnings, scorecard) {
-  if (Number.isFinite(earnings?.daysUntilEarnings) && earnings.daysUntilEarnings >= 0 && earnings.daysUntilEarnings <= 4) return "Wait after earnings";
+function determineFinalAction(finalRating, technical, earnings, scorecard, reportValidation) {
+  // Major validation failure → needs review
+  if (reportValidation?.needsReview) return "Report needs review";
+  // Data quality too poor for a reliable decision
+  if (reportValidation?.dataConfidenceScore < 35) return "Deep research required";
+  // Very close to earnings
+  if (Number.isFinite(earnings?.daysUntilEarnings) && earnings.daysUntilEarnings >= 0 && earnings.daysUntilEarnings <= 4) return "Wait until after earnings";
+
+  const isBearishTrend = technical?.rating === "Bearish" || technical?.rating === "Weakening";
+
   switch (finalRating) {
     case "Core 5-Year Compounder":
+      if (isBearishTrend) return technical.score >= 35 ? "DCA small only" : "Wait for trend repair";
       if (technical.score >= 65) return "Buy shares slowly";
       if (technical.score >= 45) return "DCA shares";
       return "Wait for pullback";
-    case "Strong Company, Wait for Better Price": return "Wait for pullback";
+    case "Strong Company, Wait for Better Price":
+      return isBearishTrend ? "Wait for trend repair" : "Wait for pullback";
     case "DCA Candidate":
+      if (isBearishTrend) return "DCA small only";
       return technical.score >= 50 ? "DCA shares" : "Wait for pullback";
     case "High Growth / High Risk":
+      if (isBearishTrend) return "Watchlist only";
       if (scorecard.overallLongTermScore >= 76 && technical.score >= 58) return "LEAPS starter allowed";
       if (technical.score >= 48) return "Watch after earnings";
       return "LEAPS watch only";
     case "Watchlist Only":
       if (Number.isFinite(earnings?.daysUntilEarnings) && earnings.daysUntilEarnings >= 0 && earnings.daysUntilEarnings <= 30) return "Watch after earnings";
-      return "Wait for pullback";
+      return "Watchlist only";
     case "Thesis Weakening": return "Watch after earnings";
     default: return "Avoid";
   }
@@ -2144,7 +2166,7 @@ function buildPositionSizing(finalRating, scorecard) {
   };
 }
 
-function buildFundManagerVerdict({ symbol, companyName, scorecard, finalRating, finalAction, technicalPlan, valuation, earnings, report, growthChecklist }) {
+function buildFundManagerVerdict({ symbol, companyName, scorecard, finalRating, finalAction, technicalPlan, valuation, earnings, report, growthChecklist, reportValidation }) {
   const investable5Years = scorecard.fiveYearConfidenceScore >= 62 && scorecard.businessQualityScore >= 58;
   const buyNowOrWait = ["Buy shares slowly", "DCA shares"].includes(finalAction)
     ? "Accumulate slowly in tranches. Do not rush to full size. Use the entry zones provided."
@@ -2216,6 +2238,193 @@ function buildFundManagerVerdict({ symbol, companyName, scorecard, finalRating, 
     sellReduceConditions: sellReduce,
     buyMoreConditions: buyMore,
     plainEnglishSummary: plainEnglish,
+    // ── Decision Engine Verdict — 25 points ────────────────────────────────
+    decisionEngineVerdict: {
+      dataQuality: reportValidation?.dataQualityPassed ? "✅ Passed" : "⚠ Needs review",
+      businessClassification: reportValidation?.businessClassificationPassed ? "✅ Classified" : "⚠ Unconfirmed",
+      peerMapping: reportValidation?.peerValidationPassed ? "✅ Valid" : "⚠ Requires manual review",
+      fundamentalQuality: scorecard.businessQualityScore >= 70 ? "Strong" : scorecard.businessQualityScore >= 50 ? "Acceptable" : "Weak",
+      financialTrend: scorecard.revenueGrowthScore >= 70 ? "Accelerating / Strong" : scorecard.revenueGrowthScore >= 50 ? "Moderate" : "Weak or declining",
+      moat: scorecard.moatScore >= 70 ? "Confirmed moat" : scorecard.moatScore >= 50 ? "Narrow moat / building" : "No clear moat",
+      valuation: valuation?.rating ?? "Unavailable",
+      earningsThesis: earnings?.thesisClassification ?? "Insufficient data",
+      technicalSetup: reportValidation?.technicalValidationPassed ? (technicalPlan?.technicalTrend ?? "n/a") : "⚠ Technical plan invalid",
+      entryTiming: technicalPlan?.entryTiming ?? "n/a",
+      sharesVsLeaps: finalAction.toLowerCase().includes("leaps") ? "LEAPS starter allowed with strict sizing rules" : "Shares preferred for long-term position building",
+      portfolioRole: scorecard.overallLongTermScore >= 75 ? "Core holding candidate" : scorecard.overallLongTermScore >= 55 ? "Satellite / DCA position" : "Watchlist / speculative only",
+      finalDecision: finalAction,
+      decisionConfidence: `${reportValidation?.decisionConfidenceScore ?? "n/a"}/100`,
+      positionSize: `Starter: ${scorecard.overallLongTermScore >= 72 ? "2–3%" : scorecard.overallLongTermScore >= 55 ? "1–2%" : "0.5–1%"} of portfolio`,
+      idealEntryZone: technicalPlan?.available ? `$${Number(technicalPlan.idealBuyZoneLow).toFixed(2)} – $${Number(technicalPlan.idealBuyZoneHigh).toFixed(2)}` : "See technical section",
+      dcaZone: technicalPlan?.available ? `$${Number(technicalPlan.dcaZoneLow).toFixed(2)} – $${Number(technicalPlan.dcaZoneHigh).toFixed(2)}` : "See technical section",
+      reclaimLevel: technicalPlan?.trendRepairAbove != null ? `$${Number(technicalPlan.trendRepairAbove).toFixed(2)}` : "n/a",
+      invalidationLevel: technicalPlan?.available ? `Below $${Number(technicalPlan.invalidationBelow).toFixed(2)}` : "n/a",
+      tp1Zone: technicalPlan?.tp1Active === false ? `$${Number(technicalPlan.tp1).toFixed(2)} — inactive until trend repairs` : (technicalPlan?.available ? `$${Number(technicalPlan.tp1).toFixed(2)}` : "n/a"),
+      tp2Zone: technicalPlan?.tp2Active === false ? `$${Number(technicalPlan.tp2).toFixed(2)} — inactive until trend repairs` : (technicalPlan?.available ? `$${Number(technicalPlan.tp2).toFixed(2)}` : "n/a"),
+      whatMakesMeBuyMore: [
+        "Earnings beat with raised guidance on both revenue and margins",
+        technicalPlan?.available ? `Price pulls back to DCA zone ($${Number(technicalPlan.dcaZoneLow).toFixed(2)}–$${Number(technicalPlan.dcaZoneHigh).toFixed(2)}) with thesis intact` : "Price returns to a technically attractive zone with thesis intact",
+        "New major product cycle, contract, or market expansion directly addresses core thesis",
+        "Valuation becomes materially more attractive (20%+ pullback, same or better earnings outlook)",
+      ],
+      whatMakesMeReduce: [
+        "Two consecutive quarters of revenue deceleration below expectations",
+        "Gross margin compression of more than 3 percentage points with no recovery path",
+        "Guidance cut on forward revenue or margins",
+        "Position exceeds maximum allocation without rebalance",
+      ],
+      whatMakesMeSell: [
+        "Two consecutive quarters: revenue deceleration + guidance cut + moat erosion",
+        "Gross margin structural collapse (not cyclical dip)",
+        "Clear loss of major customer or market share to competitor",
+        technicalPlan?.available ? `Sustained weekly close below invalidation at $${Number(technicalPlan.invalidationBelow).toFixed(2)}` : "Price breaks major long-term support on heavy volume with thesis weakening",
+      ],
+      watchNextEarnings: earnings?.watchNext?.slice(0, 3) ?? ["Revenue growth", "Margin trends", "Forward guidance"],
+    },
+    // ── Confidence scores ──────────────────────────────────────────────
+    dataConfidenceScore: reportValidation?.dataConfidenceScore ?? null,
+    decisionConfidenceScore: reportValidation?.decisionConfidenceScore ?? null,
+    entryConfidenceScore: reportValidation?.entryConfidenceScore ?? null,
+    validationSummary: {
+      needsReview: reportValidation?.needsReview ?? false,
+      warnings: reportValidation?.warnings ?? [],
+      errors: reportValidation?.errors ?? [],
+    },
+  };
+}
+
+function buildReportValidation({ symbol, scorecard, technicalPlan, earnings, valuation, peerGroups, fiveYearTable, dataQuality, sector, industry, fundamentals }) {
+  const warnings = [];
+  const errors = [];
+
+  // ── 1. Data Quality Gate ──────────────────────────────────────────────
+  const fyRows = fiveYearTable?.rows ?? [];
+  const validRevenueRows = fyRows.filter(r => Number.isFinite(Number(r.revenue)) && Number(r.revenue) > 0);
+  const hasCurrentPrice = Number.isFinite(Number(technicalPlan?.currentPrice));
+  const hasSomeFinancials = Number.isFinite(fundamentals?.grossMargins) || Number.isFinite(fundamentals?.operatingMargins);
+  const dataQualityPassed = hasCurrentPrice && (validRevenueRows.length > 0 || hasSomeFinancials);
+  if (!hasCurrentPrice) errors.push("Current price unavailable — technical analysis unreliable.");
+  if (validRevenueRows.length === 0) warnings.push("Revenue history unavailable — 5-year financial table incomplete.");
+  if (!hasSomeFinancials) warnings.push("Margin data unavailable — profitability analysis limited.");
+
+  // ── 2. Business Classification Gate ──────────────────────────────────
+  const sectorKnown = sector && sector !== "n/a" && sector !== "N/A" && sector !== "Unknown";
+  const industryKnown = industry && industry !== "n/a" && industry !== "N/A" && industry !== "Unknown";
+  const businessClassificationPassed = sectorKnown && industryKnown;
+  if (!sectorKnown) errors.push("Sector classification unavailable — peer selection may be incorrect.");
+  if (!industryKnown) warnings.push("Industry not confirmed — valuation benchmarking limited.");
+
+  // ── 3. Peer Validation Gate ───────────────────────────────────────────
+  const BLOCKED_CROSS_SECTOR = new Set(["MSFT", "ORCL", "CRM", "ADBE", "NOW", "GOOGL", "AMZN", "META", "AAPL", "NFLX"]);
+  const isFinancialsSector = /financial/i.test(sector ?? "");
+  const allPeerTickers = [
+    ...(peerGroups?.directOperating ?? []).map(p => p.symbol),
+    ...(peerGroups?.publicValuation ?? []).map(p => p.symbol),
+    ...(peerGroups?.adjacentStrategic ?? []).map(p => p.symbol),
+  ].filter(Boolean).map(t => String(t).toUpperCase());
+  const hasBadCrossSectorPeer = isFinancialsSector && allPeerTickers.some(t => BLOCKED_CROSS_SECTOR.has(t));
+  const hasAnyDirectPeer = (peerGroups?.directOperating ?? []).length > 0;
+  const peerValidationPassed = hasAnyDirectPeer && !hasBadCrossSectorPeer;
+  if (hasBadCrossSectorPeer) errors.push("Peer group contains cross-sector technology companies — valuation comparison invalid for a financial-sector stock.");
+  if (!hasAnyDirectPeer) warnings.push("No direct operating peers identified — valuation benchmarking unavailable.");
+
+  // ── 4. Financial Validation Gate ─────────────────────────────────────
+  const financialValidationPassed = validRevenueRows.length >= 2;
+  if (!financialValidationPassed) warnings.push(`Only ${validRevenueRows.length} year(s) of revenue data available — multi-year trend analysis limited.`);
+
+  // ── 5. Earnings Sanity Gate ───────────────────────────────────────────
+  const revBeatSanityFail = earnings?.revenueBeatSanityFlag === true;
+  const earningsSanityPassed = !revBeatSanityFail;
+  if (revBeatSanityFail) warnings.push("Revenue beat/miss >50% deviation detected — verify period and unit consistency before relying on earnings data.");
+
+  // ── 6. Valuation Validation Gate ─────────────────────────────────────
+  const hasValuation = Number.isFinite(valuation?.forwardPE) || Number.isFinite(valuation?.trailingPE) || Number.isFinite(valuation?.priceToSales);
+  const valuationValidationPassed = hasValuation;
+  if (!hasValuation) warnings.push("No valuation multiples available — valuation scoring unreliable.");
+
+  // ── 7. Technical Validation Gate ─────────────────────────────────────
+  const tp = technicalPlan ?? {};
+  const price = Number(tp.currentPrice);
+  const support = Number(tp.supportLevel);
+  const invalidation = Number(tp.invalidationBelow);
+  const tp1Val = Number(tp.tp1);
+  const tp2Val = Number(tp.tp2);
+  let technicalValidationPassed = tp.available === true;
+  if (tp.available) {
+    if (Number.isFinite(support) && Number.isFinite(price) && support >= price) {
+      technicalValidationPassed = false;
+      errors.push(`Support level ($${support.toFixed(2)}) is at or above current price ($${price.toFixed(2)}) — technical plan logic error.`);
+    }
+    if (Number.isFinite(invalidation) && Number.isFinite(price) && invalidation >= price) {
+      technicalValidationPassed = false;
+      errors.push(`Invalidation level ($${invalidation.toFixed(2)}) is at or above current price ($${price.toFixed(2)}) — stop logic error.`);
+    }
+    if (tp.tp1Active !== false && Number.isFinite(tp1Val) && Number.isFinite(price) && tp1Val <= price) {
+      technicalValidationPassed = false;
+      errors.push(`TP1 ($${tp1Val.toFixed(2)}) is at or below current price ($${price.toFixed(2)}) — target logic error.`);
+    }
+    if (tp.tp2Active !== false && Number.isFinite(tp2Val) && Number.isFinite(tp1Val) && tp2Val <= tp1Val) {
+      technicalValidationPassed = false;
+      errors.push(`TP2 ($${tp2Val.toFixed(2)}) is at or below TP1 ($${tp1Val.toFixed(2)}) — target logic error.`);
+    }
+  } else {
+    warnings.push("Technical plan unavailable — insufficient price history or data error.");
+  }
+
+  // ── 8. Shares vs LEAPS Validation Gate ────────────────────────────────
+  const svlScoreOK = typeof scorecard?.sharesVsLeapsSuitabilityScore === "number";
+  const sharesVsLeapsValidationPassed = svlScoreOK;
+  if (!svlScoreOK) warnings.push("Shares vs LEAPS suitability score unavailable.");
+
+  // ── 9. Final Verdict Consistency Gate — checked after determineFinalAction ─
+  // We set this to true by default and mark it false only if major errors exist
+  const finalVerdictConsistencyPassed = errors.length === 0;
+  if (errors.length > 0) warnings.push("Validation errors detected — final verdict reliability reduced. Do not rely on scores alone.");
+
+  // ── Confidence Scores ─────────────────────────────────────────────────
+  let dataConf = 80;
+  if (!hasCurrentPrice) dataConf -= 25;
+  if (validRevenueRows.length === 0) dataConf -= 15;
+  if (!hasSomeFinancials) dataConf -= 10;
+  if (validRevenueRows.length > 0 && validRevenueRows.length < 3) dataConf -= 5;
+  if ((dataQuality?.missingOrEstimatedValues ?? []).length > 5) dataConf -= 5;
+  const dataConfidenceScore = Math.max(0, Math.min(100, Math.round(dataConf)));
+
+  let decConf = 80;
+  if (!businessClassificationPassed) decConf -= 15;
+  if (!peerValidationPassed) decConf -= 15;
+  if (!financialValidationPassed) decConf -= 10;
+  if (!earningsSanityPassed) decConf -= 10;
+  if (!valuationValidationPassed) decConf -= 5;
+  if (!sharesVsLeapsValidationPassed) decConf -= 5;
+  const decisionConfidenceScore = Math.max(0, Math.min(100, Math.round(decConf)));
+
+  let entryConf = tp.available ? 70 : 20;
+  if (!technicalValidationPassed) entryConf = Math.min(entryConf, 20);
+  if (earnings?.earningsProximate) entryConf -= 15;
+  if (tp.technicalTrend === "Bearish") entryConf -= 15;
+  else if (tp.technicalTrend === "Weakening") entryConf -= 8;
+  if (Number.isFinite(scorecard?.technicalSetupScore) && scorecard.technicalSetupScore >= 65) entryConf += 15;
+  const entryConfidenceScore = Math.max(0, Math.min(100, Math.round(entryConf)));
+
+  const needsReview = !dataQualityPassed || !technicalValidationPassed || hasBadCrossSectorPeer || errors.length >= 2;
+
+  return {
+    dataQualityPassed,
+    businessClassificationPassed,
+    peerValidationPassed,
+    financialValidationPassed,
+    earningsSanityPassed,
+    valuationValidationPassed,
+    technicalValidationPassed,
+    sharesVsLeapsValidationPassed,
+    finalVerdictConsistencyPassed,
+    dataConfidenceScore,
+    decisionConfidenceScore,
+    entryConfidenceScore,
+    needsReview,
+    warnings,
+    errors,
   };
 }
 
@@ -2305,18 +2514,31 @@ export async function analyzeStock(symbolInput) {
 
   // ── Senior Analyzer layer ──────────────────────────────────────────────────
   const earningsAnalysis = buildEarningsAnalysis(summary, newsEngine, symbol, theme);
-  const fiveYearTable = build5YearFinancialTable(summary);
+  const fiveYearTable = build5YearFinancialTable(summary, sector, industry);
   const technicalPlan = buildEnhancedTechnicalPlan(technical, summary);
   const seniorScorecard = buildSeniorScorecard({
     growthChecklist, technical, fundamentals, valuation, moat, analysts, newsEngine, riskScore, summary, earnings: earningsAnalysis,
   });
   const seniorFinalRating = determineFinalRating(seniorScorecard, growthChecklist, valuation, technical, earningsAnalysis);
-  const seniorFinalAction = determineFinalAction(seniorFinalRating, technical, earningsAnalysis, seniorScorecard);
+  const reportValidation = buildReportValidation({
+    symbol,
+    scorecard: seniorScorecard,
+    technicalPlan,
+    earnings: earningsAnalysis,
+    valuation,
+    peerGroups: peerGroupsForCompany(sector, industry, symbol, companyName, (summary.assetProfile ?? {}).longBusinessSummary ?? ""),
+    fiveYearTable,
+    dataQuality,
+    sector,
+    industry,
+    fundamentals,
+  });
+  const seniorFinalAction = determineFinalAction(seniorFinalRating, technical, earningsAnalysis, seniorScorecard, reportValidation);
   const sharesVsLeaps = buildSharesVsLeapsDecision(seniorScorecard, technical, valuation, earningsAnalysis, summary);
   const positionSizing = buildPositionSizing(seniorFinalRating, seniorScorecard);
   const fundManagerVerdict = buildFundManagerVerdict({
     symbol, companyName, scorecard: seniorScorecard, finalRating: seniorFinalRating, finalAction: seniorFinalAction,
-    technicalPlan, valuation, earnings: earningsAnalysis, report, growthChecklist,
+    technicalPlan, valuation, earnings: earningsAnalysis, report, growthChecklist, reportValidation,
   });
 
   const detail = summary.summaryDetail ?? {};
@@ -2378,6 +2600,7 @@ export async function analyzeStock(symbolInput) {
     sharesVsLeaps,
     positionSizing,
     fundManagerVerdict,
+    reportValidation,
     finalAction: seniorFinalAction,
     managerRead: `${seniorFinalRating}: ${symbol} scores ${seniorScorecard.overallLongTermScore}/100 in the Senior Analyzer. Technicals are ${technical.rating.toLowerCase()}, fundamentals are ${fundamentals.rating.toLowerCase()}, valuation is ${valuation.rating.toLowerCase()}.`,
     asOf: new Date().toISOString(),

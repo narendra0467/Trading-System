@@ -1780,6 +1780,105 @@ th {
 .ps-trim { font-size: 0.82rem; color: #94a3b8; }
 .ps-trim strong { color: #e8edf5; display: block; margin-bottom: 6px; }
 
+/* ── Report Review Banner ─────────────────────────────────────────── */
+.report-review-banner {
+  background: rgba(127, 29, 29, 0.18);
+  border: 1px solid rgba(239, 68, 68, 0.5);
+  border-radius: 8px;
+  padding: 12px 16px;
+  margin: 0 0 16px;
+  color: #fca5a5;
+}
+.report-review-banner .review-banner-title {
+  font-weight: 700;
+  font-size: 0.9rem;
+  color: #f87171;
+  margin-bottom: 6px;
+}
+.report-review-banner .review-banner-list,
+.report-review-banner .review-banner-warnings {
+  margin: 4px 0 0;
+  padding-left: 18px;
+  font-size: 0.82rem;
+  line-height: 1.6;
+}
+.report-review-banner .review-banner-warnings { color: #fcd34d; }
+
+.report-warning-banner {
+  background: rgba(120, 53, 15, 0.15);
+  border: 1px solid rgba(245, 158, 11, 0.3);
+  border-radius: 8px;
+  padding: 8px 14px;
+  margin: 0 0 14px;
+  font-size: 0.82rem;
+  color: #fcd34d;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 16px;
+}
+.report-warning-banner span::before { content: "⚠ "; }
+
+/* ── Decision Engine Verdict ──────────────────────────────────────── */
+.verdict-review-alert {
+  background: rgba(127, 29, 29, 0.18);
+  border: 1px solid rgba(239, 68, 68, 0.4);
+  border-radius: 6px;
+  padding: 10px 14px;
+  margin-bottom: 14px;
+  font-size: 0.83rem;
+  color: #f87171;
+}
+.verdict-review-alert strong { color: #fca5a5; display: block; margin-bottom: 6px; }
+.verdict-error { color: #fca5a5; font-size: 0.8rem; margin-top: 3px; }
+
+.confidence-scores-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 8px;
+  margin-bottom: 16px;
+}
+.conf-score {
+  background: rgba(255,255,255,0.05);
+  border: 1px solid rgba(255,255,255,0.08);
+  border-radius: 6px;
+  padding: 8px 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+.conf-score span { font-size: 0.75rem; color: var(--text-muted, #94a3b8); }
+.conf-score strong { font-size: 1rem; font-weight: 700; }
+
+.verdict-grid--25 {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 6px 12px;
+  margin-bottom: 16px;
+}
+.verdict-grid--25 > div {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 8px;
+  padding: 5px 8px;
+  background: rgba(255,255,255,0.04);
+  border-radius: 4px;
+  font-size: 0.83rem;
+}
+.verdict-grid--25 > div span { color: var(--text-muted, #94a3b8); font-size: 0.79rem; }
+.verdict-grid--25 > div strong { text-align: right; font-size: 0.83rem; }
+
+.verdict-conditions--3col {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+  margin-bottom: 12px;
+}
+@media (max-width: 800px) {
+  .verdict-conditions--3col { grid-template-columns: 1fr; }
+  .confidence-scores-grid { grid-template-columns: repeat(3, 1fr); }
+}
+
 /*  Fund Manager Verdict ─ */
 .fund-manager-verdict {
   padding: 24px;
@@ -1973,6 +2072,18 @@ th {
   .verdict-plain-english { background: #eff6ff !important; border-color: #bfdbfe !important; }
   .verdict-plain-english strong { color: #1e3a8a !important; }
   .verdict-plain-english p { color: #1e40af !important; font-size: 0.95rem !important; }
+  .report-review-banner { background: #fff3f3 !important; border-color: #dc2626 !important; color: #dc2626 !important; }
+  .report-review-banner .review-banner-title { color: #dc2626 !important; }
+  .confidence-scores-grid { display: grid !important; grid-template-columns: repeat(3, 1fr) !important; }
+  .conf-score { background: #f8fafc !important; border-color: #ddd !important; }
+  .conf-score span { color: #64748b !important; }
+  .conf-score strong { color: #111 !important; }
+  .verdict-grid--25 { display: grid !important; grid-template-columns: repeat(2, 1fr) !important; }
+  .verdict-grid--25 > div { background: #f8fafc !important; color: #111 !important; }
+  .verdict-grid--25 > div span { color: #64748b !important; }
+  .verdict-conditions--3col { display: grid !important; grid-template-columns: repeat(3, 1fr) !important; }
+  .verdict-review-alert { background: #fff3f3 !important; border-color: #dc2626 !important; }
+  .verdict-error { color: #dc2626 !important; }
   .verdict-title h3 { color: #1e3a8a !important; font-size: 1.1rem !important; }
   .verdict-conditions > div { background: #f8fafc !important; }
   .verdict-conditions strong { color: #1e3a8a !important; }
@@ -2004,7 +2115,7 @@ th {
 
   /* ── Page breaks ── */
   .entry-plan-card, .leaps-decision-grid, .position-sizing-grid,
-  .fund-manager-verdict, .senior-verdict-banner,
+  .fund-manager-verdict, .decision-engine-verdict, .senior-verdict-banner,
   .earnings-header-strip, .risk-heatmap { break-inside: avoid; }
 
   /* ── Grid/layout for print ── */
