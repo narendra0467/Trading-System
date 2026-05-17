@@ -9,6 +9,8 @@
     "scan": "node src/cli.js",
     "highrisk:scan": "node src/highRiskCli.js",
     "hidden:scan": "node src/hiddenMultibaggerDiscoveryScanner.js",
+    "longterm:index": "node src/longTermUniverseReport.js",
+    "longterm:engine": "node src/longTermEngineReport.js",
     "leaps:scan": "node src/leapsCli.js",
     "leaps:daily": "node src/leapsCli.js",
     "leaps:weekly": "node src/leapsCli.js",
@@ -16,7 +18,10 @@
     "options:scan": "node src/optionsCli.js",
     "intraday:scan": "node src/intradayCli.js",
     "intraday:dashboard": "node src/intradayDashboardServer.js",
+    "research:pdf": "node src/institutionalResearchReport.js AMZN",
+    "signals:scan": "node -e \"import('./src/signalScanner.js').then(async (m) => console.log(JSON.stringify(await m.scanSignals(), null, 2)))\"",
     "backtest": "node src/backtestCli.js",
+    "test": "node --test tests/*.test.js",
     "refresh:all": "npm run highrisk:scan && npm run scan && npm run options:scan && npm run leaps:scan && npm run backtest && npm run export:static",
     "dashboard": "node src/dashboardServer.js"
   }

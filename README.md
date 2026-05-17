@@ -4,6 +4,21 @@ Technical trading scanner for stock options, high-risk/high-reward speculation, 
 
 The system scans configurable universes, ranks technical setups, and writes beginner-friendly alerts. It is not financial advice; it is a decision-support tool for disciplined review.
 
+## Institutional Research PDF
+
+Generate the default AMZN buy-side style investment memo with official filing/source validation, peer grouping, valuation, catalysts, risks, technical analysis, and a buying plan:
+
+```powershell
+npm run research:pdf
+```
+
+Outputs:
+
+- `reports/AMZN_institutional_research_report.html`
+- `reports/AMZN_institutional_research_report.pdf`
+
+The current institutional template is intentionally AMZN-specific so peer matching stays clean. It uses Amazon Investor Relations, SEC filings, and local market-data endpoints; missing market fields are labeled instead of filled with guesses.
+
 ## What It Checks
 
 - Trend: price above rising moving averages.
@@ -79,6 +94,35 @@ Current structure:
 - Individual stocks as satellites: durable compounders across capital allocation, software/cloud, digital commerce, and AI infrastructure.
 - Review rules for when the business quality breaks instead of reacting to normal market drops.
 
+## Long-Term Index Leaders Report
+
+The long-term index report pulls the current top holdings from official iShares ETF holding files, then runs each company through the local stock analyzer as a 5-year hold screen.
+
+Default universe:
+
+- Top 50 holdings from `IVV`, used as the S&P 500 proxy.
+- Top 20 holdings from `IWM`, used as the Russell 2000 proxy.
+
+Run it with:
+
+```powershell
+npm run longterm:index
+```
+
+Override the counts:
+
+```powershell
+npm run longterm:index -- --sp500=25 --iwm=10
+```
+
+Outputs are written to:
+
+- `reports/latest_long_term_index_report.md`
+- `reports/latest_long_term_index_report.csv`
+- `reports/latest_long_term_index_report.json`
+
+The Markdown report includes dashboard scores, business-model notes, growth/valuation/risk checks, final labels, and a short thesis for each stock. Treat it as a repeatable research screen, then verify segment details, earnings-release commentary, and annual-report context from official company filings before making a portfolio decision.
+
 ## Simple Stock Options Scanner
 
 The options scanner is separate from the mid-cap stock scanner. It is designed for 15-20 high-volume single-stock options names such as `TSLA`, `SNDK`, `MU`, `AMD`, `AAPL`, `NVDA`, `C`, `INTC`, `AMZN`, `GOOGL`, `META`, `MSFT`, `MSTR`, `AVGO`, `ORCL`, `PLTR`, `WDC`, `NFLX`, `TSM`, and `COIN`.
@@ -92,7 +136,7 @@ It checks the underlying first, then the option chain:
 - Relative strength: 60-day performance versus benchmark.
 - Volatility: 20-day historical volatility versus option implied volatility.
 - Risk: ATR-based underlying stop and target.
-- Options quality: 21-60 DTE, bid/ask spread, volume, open interest, estimated delta, and a simple buy-call/buy-put plan with option cost, stop, and target.
+- Options quality: 30-50 DTE by default, bid/ask spread, volume, open interest, estimated delta, and a simple buy-call/buy-put plan with option cost, stop, and target.
 
 Run it with:
 
@@ -107,6 +151,20 @@ The default options sizing assumes a `$100,000` account and `1%` max risk per tr
 ```powershell
 npm run options:scan -- --account-size=50000 --risk-pct=0.0075
 ```
+
+## SPY / QQQ Swing Options Signal Engine
+
+The local dashboard includes a conservative SPY/QQQ-only signal engine:
+
+```powershell
+npm run signals:scan
+```
+
+When the dashboard server is running, the same output is available at `GET /api/signals`.
+
+This engine is signal-only. It never sends orders and it deliberately prefers `NO_TRADE` over low-quality ideas. It combines `indicators.js`, `regimeEngine.js`, `timeframeEngine.js`, `setupEngine.js`, `triggerEngine.js`, `optionsFilter.js`, `riskEngine.js`, `eventRiskEngine.js`, `signalEngine.js`, and `signalScanner.js`. The existing `scanner.js` still owns the older stock scanner and re-exports `scanSignals` for compatibility.
+
+Final statuses are `A_PLUS_TRADE`, `WATCH_FOR_TRIGGER`, or `NO_TRADE`. The dashboard card shows symbol, direction, confidence, DTE, selected contract, bid/ask/mid, one-contract cost, spread, trigger, invalidation, targets, reasons, warnings, event risk, last updated time, and next scan time.
 
 The scanner also writes:
 
