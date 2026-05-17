@@ -8,6 +8,7 @@ import { fetchHistory, fetchQuoteSummary } from "./marketData.js";
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const rootDir = path.resolve(__dirname, "..");
 const reportsDir = path.join(rootDir, "reports");
+const publicReportsDir = path.join(rootDir, "public", "reports");
 
 const ticker = (process.argv[2] || "AMZN").toUpperCase();
 const reportSymbol = ticker === "AMZN" ? ticker : "AMZN";
@@ -415,16 +416,23 @@ async function main() {
     console.warn(`This institutional template currently validates peer logic for AMZN. Requested ${ticker}; defaulting to AMZN until ticker-specific peer validation is added.`);
   }
   fs.mkdirSync(reportsDir, { recursive: true });
+  fs.mkdirSync(publicReportsDir, { recursive: true });
   const market = await getMarketData(reportSymbol);
   const technical = buildTechnical(market.history, market.price);
   const html = buildHtml({ market, technical });
   const htmlPath = path.join(reportsDir, "AMZN_institutional_research_report.html");
   const pdfPath = path.join(reportsDir, "AMZN_institutional_research_report.pdf");
+  const publicHtmlPath = path.join(publicReportsDir, "AMZN_institutional_research_report.html");
+  const publicPdfPath = path.join(publicReportsDir, "AMZN_institutional_research_report.pdf");
   fs.writeFileSync(htmlPath, html, "utf8");
+  fs.writeFileSync(publicHtmlPath, html, "utf8");
   console.log(`Institutional AMZN report HTML written: ${htmlPath}`);
+  console.log(`GitHub Pages AMZN report HTML written: ${publicHtmlPath}`);
   const pdf = printPdf(htmlPath, pdfPath);
   if (pdf.ok) {
+    fs.copyFileSync(pdfPath, publicPdfPath);
     console.log(`Institutional AMZN report PDF written: ${pdfPath}`);
+    console.log(`GitHub Pages AMZN report PDF written: ${publicPdfPath}`);
   } else {
     console.warn(`PDF export skipped: ${pdf.message}`);
   }

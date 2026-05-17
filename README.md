@@ -16,8 +16,10 @@ Outputs:
 
 - `reports/AMZN_institutional_research_report.html`
 - `reports/AMZN_institutional_research_report.pdf`
+- `public/reports/AMZN_institutional_research_report.html`
+- `public/reports/AMZN_institutional_research_report.pdf`
 
-The current institutional template is intentionally AMZN-specific so peer matching stays clean. It uses Amazon Investor Relations, SEC filings, and local market-data endpoints; missing market fields are labeled instead of filled with guesses.
+The `public/reports` copies are deployed by GitHub Pages after the change is pushed to `main`. The current institutional template is intentionally AMZN-specific so peer matching stays clean. It uses Amazon Investor Relations, SEC filings, and local market-data endpoints; missing market fields are labeled instead of filled with guesses.
 
 ## What It Checks
 
