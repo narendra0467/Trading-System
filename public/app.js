@@ -755,16 +755,17 @@ function renderReportSection(result) {
       <details class="report-section report-section--open" open>
         <summary>5-Year Financial History</summary>
         ${buildFYTableHTML(fy)}
-        ${(Number.isFinite(Number(fy.rev3CAGR)) || Number.isFinite(Number(fy.rev5CAGR))) ? `
-          <div class="fy-summary-strip">
-            ${Number.isFinite(Number(fy.rev3CAGR)) ? `<div class="fy-summary-kpi"><span>3-Year Revenue CAGR</span><strong>${fy.rev3CAGR}%</strong></div>` : ""}
-            ${Number.isFinite(Number(fy.rev5CAGR)) ? `<div class="fy-summary-kpi"><span>5-Year Revenue CAGR</span><strong>${fy.rev5CAGR}%</strong></div>` : ""}
-            ${Number.isFinite(Number(fy.currentCash)) ? `<div class="fy-summary-kpi"><span>Cash (TTM)</span><strong>${bigMoney(fy.currentCash)}</strong></div>` : ""}
-            ${Number.isFinite(Number(fy.currentDebt)) ? `<div class="fy-summary-kpi"><span>Debt (TTM)</span><strong>${bigMoney(fy.currentDebt)}</strong></div>` : ""}
-            ${Number.isFinite(Number(fy.netCash)) ? `<div class="fy-summary-kpi"><span>Net Cash / Debt</span><strong>${bigMoney(fy.netCash)}</strong></div>` : ""}
-            ${Number.isFinite(Number(fy.currentROE)) ? `<div class="fy-summary-kpi"><span>ROE (TTM)</span><strong>${fy.currentROE}%</strong></div>` : ""}
-            ${Number.isFinite(Number(fy.currentROA)) ? `<div class="fy-summary-kpi"><span>ROA (TTM)</span><strong>${fy.currentROA}%</strong></div>` : ""}
-          </div>` : ""}
+        <div class="fy-summary-strip">
+          ${fy.rev3CAGR != null && Number.isFinite(Number(fy.rev3CAGR)) ? `<div class="fy-summary-kpi"><span>3-Year Rev CAGR</span><strong>${fy.rev3CAGR}%</strong></div>` : `<div class="fy-summary-kpi"><span>3-Year Rev CAGR</span><strong class="muted">Not available — ${fy.rows?.length ?? 0} yr${fy.rows?.length === 1 ? "" : "s"} loaded</strong></div>`}
+          ${fy.rev5CAGR != null && Number.isFinite(Number(fy.rev5CAGR)) ? `<div class="fy-summary-kpi"><span>5-Year Rev CAGR</span><strong>${fy.rev5CAGR}%</strong></div>` : `<div class="fy-summary-kpi"><span>5-Year Rev CAGR</span><strong class="muted">Not available — need 6 yrs, have ${fy.rows?.length ?? 0}</strong></div>`}
+          ${fy.currentCash != null && Number.isFinite(Number(fy.currentCash)) ? `<div class="fy-summary-kpi"><span>Cash (TTM)</span><strong>${bigMoney(fy.currentCash)}</strong></div>` : ""}
+          ${fy.currentDebt != null && Number.isFinite(Number(fy.currentDebt)) ? `<div class="fy-summary-kpi"><span>Debt (TTM)</span><strong>${bigMoney(fy.currentDebt)}</strong></div>` : ""}
+          ${fy.netCash != null && Number.isFinite(Number(fy.netCash)) ? `<div class="fy-summary-kpi"><span>Net Cash / Debt</span><strong>${bigMoney(fy.netCash)}</strong></div>` : ""}
+          ${fy.currentROE != null && Number.isFinite(Number(fy.currentROE)) ? `<div class="fy-summary-kpi"><span>ROE (TTM)</span><strong>${fy.currentROE}%</strong></div>` : ""}
+          ${fy.currentROA != null && Number.isFinite(Number(fy.currentROA)) ? `<div class="fy-summary-kpi"><span>ROA (TTM)</span><strong>${fy.currentROA}%</strong></div>` : ""}
+          ${fy.isFinancialServices ? `<div class="fy-summary-kpi fy-kpi--fs"><span>Mode</span><strong>Financial Services</strong></div>` : ""}
+        </div>
+        ${fy.financialServicesNote ? `<div class="fy-fs-note"><strong>📊 Financial Services Note:</strong> ${escapeHtml(fy.financialServicesNote)}</div>` : ""}
         <div class="fy-narrative"><strong>Fund Manager Read:</strong> ${escapeHtml(fy.narrative ?? "Insufficient annual data from Yahoo Finance for narrative.")}</div>
       </details>
 

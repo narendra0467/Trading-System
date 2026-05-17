@@ -1475,6 +1475,44 @@ th {
 .fy-table table { min-width: 700px; }
 .cell-good { color: #4ade80; }
 .cell-bad  { color: #f87171; }
+
+/* ── Financial Services Mode ─────────────────────────────────────── */
+.fs-mode-banner {
+  background: rgba(59, 130, 246, 0.12);
+  border: 1px solid rgba(59, 130, 246, 0.3);
+  border-radius: 6px;
+  padding: 8px 14px;
+  margin-bottom: 8px;
+  font-size: 0.82rem;
+  color: #93c5fd;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px 12px;
+  align-items: baseline;
+}
+.fs-mode-banner strong { color: #60a5fa; margin-right: 6px; }
+.fs-mode-banner span   { color: #94a3b8; font-size: 0.78rem; }
+.fs-mode-note { font-size: 0.78rem; color: #94a3b8; margin-top: 4px; }
+.fy-fs-note {
+  background: rgba(59, 130, 246, 0.08);
+  border-left: 3px solid #3b82f6;
+  border-radius: 0 4px 4px 0;
+  padding: 8px 12px;
+  margin: 8px 0;
+  font-size: 0.82rem;
+  color: #93c5fd;
+}
+.fy-fs-note strong { color: #60a5fa; }
+.cell-muted { color: #94a3b8 !important; font-size: 0.8rem; }
+.fy-kpi--fs strong { color: #60a5fa !important; }
+
+/* Print overrides for FS mode */
+@media print {
+  .fs-mode-banner { background: #eff6ff !important; border-color: #93c5fd !important; color: #1e40af !important; }
+  .fs-mode-banner strong { color: #1e3a8a !important; }
+  .fy-fs-note { background: #eff6ff !important; border-color: #3b82f6 !important; color: #1e40af !important; }
+  .cell-muted { color: #64748b !important; }
+}
 .fy-summary-strip {
   display: flex;
   flex-wrap: wrap;
