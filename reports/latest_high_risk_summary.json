@@ -1,14 +1,14 @@
 {
   "accountSize": 5000,
   "sleeveName": "Very High Risk / High Reward",
-  "primaryAction": "BITF.TO: SPEC BUY",
-  "topSymbol": "BITF.TO",
+  "primaryAction": "RKLB: SPEC BUY",
+  "topSymbol": "RKLB",
   "topReason": "This is the kind of technical risk I would fund from a small speculative sleeve because momentum, relative strength, and volume agree.",
   "buyCount": 4,
-  "starterCount": 3,
-  "watchCount": 3,
-  "plannedCapital": 4300,
-  "cashReserve": 700,
+  "starterCount": 1,
+  "watchCount": 1,
+  "plannedCapital": 3600,
+  "cashReserve": 1400,
   "rules": [
     "This is not retirement money.",
     "Maximum 5-7 names.",
@@ -18,24 +18,24 @@
   ],
   "marketContext": {
     "SPY": {
-      "close": 739.17,
-      "return20": 4.09,
-      "return60": 7.99
+      "close": 737.11,
+      "return20": 4.01,
+      "return60": 6.92
     },
     "QQQ": {
-      "close": 708.93,
-      "return20": 9.26,
-      "return60": 17.48
+      "close": 703.32,
+      "return20": 8.74,
+      "return60": 15.52
     },
     "IWM": {
-      "close": 277.6,
-      "return20": 0.66,
-      "return60": 4.91
+      "close": 276.01,
+      "return20": -0.48,
+      "return60": 4.31
     },
     "ARKK": {
-      "close": 74.9,
-      "return20": -5.47,
-      "return60": 3.68
+      "close": 74.38,
+      "return20": -6.23,
+      "return60": 4.04
     },
     "XIU.TO": {
       "close": 49.82,
