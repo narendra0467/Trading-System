@@ -7506,6 +7506,150 @@
     ]
   },
   {
+    "symbol": "ORCL",
+    "trades": 15,
+    "winRate": 33.3,
+    "avgReturnPct": -0.52,
+    "profitFactor": 0.77,
+    "tradeLog": [
+      {
+        "symbol": "ORCL",
+        "entryDate": "2022-12-01",
+        "exitDate": "2022-12-05",
+        "entry": 83.05,
+        "exit": 80.31,
+        "returnPct": -3.3,
+        "exitReason": "stop"
+      },
+      {
+        "symbol": "ORCL",
+        "entryDate": "2023-01-24",
+        "exitDate": "2023-02-07",
+        "entry": 89.05,
+        "exit": 86.34,
+        "returnPct": -3.04,
+        "exitReason": "stop"
+      },
+      {
+        "symbol": "ORCL",
+        "entryDate": "2023-03-06",
+        "exitDate": "2023-03-09",
+        "entry": 89.41,
+        "exit": 86.8,
+        "returnPct": -2.92,
+        "exitReason": "stop"
+      },
+      {
+        "symbol": "ORCL",
+        "entryDate": "2023-04-28",
+        "exitDate": "2023-05-17",
+        "entry": 94.27,
+        "exit": 99.41,
+        "returnPct": 5.45,
+        "exitReason": "target"
+      },
+      {
+        "symbol": "ORCL",
+        "entryDate": "2023-07-03",
+        "exitDate": "2023-07-10",
+        "entry": 118.01,
+        "exit": 114.25,
+        "returnPct": -3.18,
+        "exitReason": "stop"
+      },
+      {
+        "symbol": "ORCL",
+        "entryDate": "2023-08-15",
+        "exitDate": "2023-08-23",
+        "entry": 115.45,
+        "exit": 113.51,
+        "returnPct": -1.68,
+        "exitReason": "stop"
+      },
+      {
+        "symbol": "ORCL",
+        "entryDate": "2024-03-14",
+        "exitDate": "2024-04-09",
+        "entry": 127.23,
+        "exit": 123.23,
+        "returnPct": -3.14,
+        "exitReason": "trend_loss"
+      },
+      {
+        "symbol": "ORCL",
+        "entryDate": "2024-06-06",
+        "exitDate": "2024-06-12",
+        "entry": 122.88,
+        "exit": 130.32,
+        "returnPct": 6.06,
+        "exitReason": "target"
+      },
+      {
+        "symbol": "ORCL",
+        "entryDate": "2024-07-15",
+        "exitDate": "2024-07-17",
+        "entry": 145.73,
+        "exit": 140.08,
+        "returnPct": -3.87,
+        "exitReason": "stop"
+      },
+      {
+        "symbol": "ORCL",
+        "entryDate": "2024-09-06",
+        "exitDate": "2024-09-10",
+        "entry": 143.79,
+        "exit": 150.6,
+        "returnPct": 4.74,
+        "exitReason": "target"
+      },
+      {
+        "symbol": "ORCL",
+        "entryDate": "2024-10-30",
+        "exitDate": "2024-10-31",
+        "entry": 173.98,
+        "exit": 169.45,
+        "returnPct": -2.6,
+        "exitReason": "stop"
+      },
+      {
+        "symbol": "ORCL",
+        "entryDate": "2024-12-05",
+        "exitDate": "2024-12-10",
+        "entry": 189.02,
+        "exit": 180.96,
+        "returnPct": -4.26,
+        "exitReason": "stop"
+      },
+      {
+        "symbol": "ORCL",
+        "entryDate": "2025-07-17",
+        "exitDate": "2025-08-13",
+        "entry": 243.34,
+        "exit": 244.18,
+        "returnPct": 0.35,
+        "exitReason": "trend_loss"
+      },
+      {
+        "symbol": "ORCL",
+        "entryDate": "2025-09-09",
+        "exitDate": "2025-09-10",
+        "entry": 239.94,
+        "exit": 261.99,
+        "returnPct": 9.19,
+        "exitReason": "target"
+      },
+      {
+        "symbol": "ORCL",
+        "entryDate": "2025-10-14",
+        "exitDate": "2025-10-20",
+        "entry": 303.57,
+        "exit": 286.75,
+        "returnPct": -5.54,
+        "exitReason": "stop"
+      }
+    ]
+  },
+  {
     "symbol": "AMD",
     "trades": 13,
     "winRate": 30.8,
@@ -9169,14 +9313,6 @@
         "exitReason": "stop"
       }
     ]
-  },
-  {
-    "symbol": "ORCL",
-    "trades": 0,
-    "winRate": 0,
-    "avgReturnPct": 0,
-    "profitFactor": null,
-    "error": "ORCL data request failed: 400"
   },
   {
     "symbol": "DDOG",
