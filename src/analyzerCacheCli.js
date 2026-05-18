@@ -23,6 +23,20 @@ const EXTRA_SYMBOLS = [
   "TD.TO",
   "BN.TO",
   "CIFR",
+  // Core test tickers — always kept fresh in cache
+  "SOFI",
+  "CELH",
+  "AAPL",
+  "NVDA",
+  "AMAT",
+  "MSFT",
+  "APP",
+  "AMZN",
+  "META",
+  "GOOGL",
+  "AMD",
+  "TSM",
+  "AVGO",
 ];
 
 function uniqueSymbols(values) {

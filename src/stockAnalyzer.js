@@ -238,7 +238,38 @@ const PEER_RULES = [
     },
   },
   {
-    pattern: /(auto|vehicle|ev|automaker)/i,
+    // Adtech / programmatic advertising / mobile marketing — must be BEFORE generic auto rule
+    // "advertising agencies" industry + Communication Services sector
+    sectorIndustryMatch: (s, i) =>
+      i.includes("advertising agencies") || i.includes("advertising") && s.includes("communication"),
+    pattern: /(adtech|mobile marketing|programmatic|performance marketing|ad tech|advertising platform|ad network|marketing platform)/i,
+    groups: {
+      directOperating: [
+        ["TTD",  "The Trade Desk",   "Programmatic/DSP advertising peer — highest-quality adtech comp."],
+        ["MGNI", "Magnite",          "Supply-side programmatic peer."],
+        ["IAS",  "Integral Ad Science", "Digital ad measurement peer."],
+        ["DV",   "DoubleVerify",     "Ad verification/measurement peer."],
+        ["PUBM", "PubMatic",         "Programmatic supply-side peer."],
+      ],
+      publicValuation: [
+        ["TTD",  "The Trade Desk",   "Premium adtech valuation anchor."],
+        ["META", "Meta Platforms",   "Digital advertising platform anchor."],
+        ["GOOGL","Alphabet",         "Search + programmatic advertising anchor."],
+        ["MGNI", "Magnite",          "Adtech growth multiple comp."],
+        ["PUBM", "PubMatic",         "Adtech smaller-cap comp."],
+      ],
+      adjacentStrategic: [
+        ["META", "Meta Platforms",   "Mobile advertising and AI targeting adjacency."],
+        ["GOOGL","Alphabet",         "Search and programmatic ads adjacency."],
+        ["SNAP", "Snap",             "Mobile/social advertising adjacency."],
+        ["PINS", "Pinterest",        "Visual/social advertising adjacency."],
+        ["AMZN", "Amazon",           "Retail media network adjacency."],
+      ],
+    },
+  },
+  {
+    // Auto / EV / vehicle manufacturers — use word boundary to avoid matching "automated", "automation"
+    pattern: /\b(automaker|electric vehicle|ev manufacturer)\b|(automobile manufacturer|auto industry|car manufacturer)/i,
     groups: {
       directOperating: [["TSLA", "Tesla", "EV operating peer."], ["GM", "General Motors", "Legacy automaker peer."], ["F", "Ford", "Legacy automaker peer."]],
       publicValuation: [["TSLA", "Tesla", "EV valuation anchor."], ["TM", "Toyota", "Global auto anchor."], ["GM", "General Motors", "U.S. auto comp."]],
@@ -254,7 +285,7 @@ const PEER_RULES = [
     },
   },
   {
-    pattern: /(media|streaming|entertainment|advertising)/i,
+    pattern: /(media|streaming|entertainment)\b/i,
     groups: {
       directOperating: [["NFLX", "Netflix", "Streaming peer."], ["DIS", "Disney", "Media/streaming peer."], ["WBD", "Warner Bros. Discovery", "Media peer."]],
       publicValuation: [["NFLX", "Netflix", "Streaming valuation anchor."], ["DIS", "Disney", "Diversified media comp."], ["META", "Meta Platforms", "Advertising platform comp."]],
