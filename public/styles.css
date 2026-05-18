@@ -2204,3 +2204,55 @@ th {
   .senior-scorecard-grid { grid-template-columns: 1fr 1fr; }
   .entry-plan-grid { grid-template-columns: 1fr; }
 }
+
+/* Validation Audit Panel */
+.validation-audit-panel { margin: 1rem 0; padding: 1rem; background: var(--card-bg, #1a1a2e); border: 1px solid var(--border, #333); border-radius: 8px; }
+.audit-panel-title { font-size: 0.85rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; color: var(--text-muted, #888); margin-bottom: 0.75rem; }
+.audit-gates-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); gap: 0.5rem; }
+.audit-gate { display: flex; justify-content: space-between; align-items: center; padding: 0.4rem 0.6rem; border-radius: 4px; font-size: 0.8rem; }
+.audit-gate-label { font-weight: 500; }
+.audit-gate-status { font-weight: 700; font-size: 0.72rem; }
+.gate-pass { background: rgba(34,197,94,0.12); color: #22c55e; }
+.gate-warn { background: rgba(234,179,8,0.12); color: #eab308; }
+.gate-fail { background: rgba(239,68,68,0.12); color: #ef4444; }
+
+/* Compact Asymmetric Section */
+.compact-asymmetric-section { margin: 1.5rem 0; padding: 1rem 1.25rem; background: var(--card-bg, #1a1a2e); border-left: 3px solid #a855f7; border-radius: 0 8px 8px 0; }
+.compact-asymmetric-title { font-weight: 700; font-size: 0.9rem; color: #a855f7; margin-bottom: 0.75rem; }
+.compact-asymmetric-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0.5rem; margin-bottom: 0.75rem; font-size: 0.85rem; }
+.compact-asymmetric-grid span { color: var(--text-muted, #888); display: block; font-size: 0.75rem; }
+.compact-asymmetric-items { font-size: 0.82rem; display: flex; flex-direction: column; gap: 0.25rem; }
+.compact-asymmetric-note { font-size: 0.72rem; color: var(--text-muted, #888); margin-top: 0.5rem; }
+
+/* Why Not Buy Section */
+.why-not-buy-section { margin: 1.5rem 0; padding: 1rem 1.25rem; background: rgba(239,68,68,0.05); border: 1px solid rgba(239,68,68,0.2); border-radius: 8px; }
+.why-not-buy-title { font-weight: 700; font-size: 0.9rem; color: #ef4444; margin-bottom: 0.5rem; }
+.why-not-buy-list { margin: 0; padding-left: 1.25rem; display: flex; flex-direction: column; gap: 0.3rem; font-size: 0.84rem; color: var(--text, #ddd); }
+
+/* Investment Scenarios */
+.scenarios-section { margin: 1.5rem 0; }
+.scenarios-title { font-weight: 700; font-size: 0.9rem; color: var(--text-muted, #888); text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 0.75rem; }
+.scenarios-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 0.75rem; }
+.scenario { padding: 0.875rem 1rem; border-radius: 8px; font-size: 0.83rem; }
+.scenario-bull { background: rgba(34,197,94,0.08); border: 1px solid rgba(34,197,94,0.2); }
+.scenario-base { background: rgba(59,130,246,0.08); border: 1px solid rgba(59,130,246,0.2); }
+.scenario-bear { background: rgba(239,68,68,0.08); border: 1px solid rgba(239,68,68,0.2); }
+.scenario-label { font-weight: 700; margin-bottom: 0.35rem; }
+.scenario p { margin: 0 0 0.35rem; color: var(--text-muted, #888); line-height: 1.45; }
+.scenario-target { font-weight: 600; font-size: 0.82rem; }
+
+/* Source Links */
+.source-links-section { margin: 1.5rem 0; padding: 0.75rem 1rem; background: var(--card-bg, #1a1a2e); border-radius: 8px; font-size: 0.82rem; }
+.source-links-title { font-weight: 700; font-size: 0.82rem; color: var(--text-muted, #888); margin-bottom: 0.5rem; text-transform: uppercase; }
+.source-links-list { display: flex; flex-wrap: wrap; gap: 0.75rem; align-items: center; }
+.source-links-list a { color: #60a5fa; text-decoration: none; }
+.source-links-list a:hover { text-decoration: underline; }
+.source-links-list span { color: var(--text-muted, #888); }
+
+/* Sector Mode Banner */
+.sector-mode-banner { padding: 0.5rem 1rem; border-radius: 6px; font-size: 0.82rem; margin: 0.75rem 0; font-weight: 500; }
+.sector-mode--financial-services { background: rgba(59,130,246,0.1); border-left: 3px solid #3b82f6; color: #93c5fd; }
+.sector-mode--software-saas { background: rgba(34,197,94,0.1); border-left: 3px solid #22c55e; color: #86efac; }
+.sector-mode--semiconductor { background: rgba(168,85,247,0.1); border-left: 3px solid #a855f7; color: #d8b4fe; }
+.sector-mode--consumer-brand { background: rgba(234,179,8,0.1); border-left: 3px solid #eab308; color: #fde047; }
+.sector-mode--healthcare-pharma { background: rgba(239,68,68,0.1); border-left: 3px solid #ef4444; color: #fca5a5; }

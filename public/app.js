@@ -439,6 +439,22 @@ function round(value, decimals = 1) {
   return Number.isFinite(Number(value)) ? Number(Number(value).toFixed(decimals)) : null;
 }
 
+function renderValidationAuditPanel(rv) {
+  if (!rv || !rv.validationGates) return '';
+  const gates = rv.validationGates;
+  const gateHtml = gates.map(g => {
+    const cls = g.status === 'PASS' ? 'gate-pass' : (g.status === 'FAIL' ? 'gate-fail' : 'gate-warn');
+    return `<div class="audit-gate ${cls}">
+      <span class="audit-gate-label">${escapeHtml(g.label)}</span>
+      <span class="audit-gate-status">${escapeHtml(g.status)}</span>
+    </div>`;
+  }).join('');
+  return `<div class="validation-audit-panel">
+    <div class="audit-panel-title">Validation Audit</div>
+    <div class="audit-gates-grid">${gateHtml}</div>
+  </div>`;
+}
+
 function renderReportSection(result) {
   // Derive fallback scorecard from existing fields when seniorScorecard is missing (old cache / old API)
   function deriveFallbackScorecard(r) {
@@ -672,6 +688,9 @@ function renderReportSection(result) {
       <div class="report-warning-banner">
         ${(rv.warnings ?? []).slice(0, 3).map(w => `<span>⚠ ${escapeHtml(w)}</span>`).join('')}
       </div>` : '')}
+
+      ${renderValidationAuditPanel(rv)}
+      ${(() => { const sm = result.sectorMode; return (sm && sm.mode !== 'general') ? `<div class="sector-mode-banner sector-mode--${escapeHtml(sm.mode)}">⚙ ${escapeHtml(sm.displayMode)} — Metrics adjusted for this business type. ${escapeHtml(sm.peerNote ?? '')}</div>` : ''; })()}
 
       <!-- COVER HEADER -->
       <div class="senior-header">
@@ -955,7 +974,25 @@ function renderReportSection(result) {
       </details>
 
       <!-- HIDDEN MULTIBAGGER (if available) -->
-      ${renderHiddenMultibagger(result)}
+      ${(() => {
+        const showFull = result.showAsymmetricResearch === true;
+        const asyncSummary = result.hiddenMultibagger?.asymmetricUpsideSummary;
+        if (showFull) return renderHiddenMultibagger(result);
+        if (!asyncSummary) return renderHiddenMultibagger(result);
+        return `<div class="compact-asymmetric-section">
+          <div class="compact-asymmetric-title">⚡ Asymmetric Upside Check</div>
+          <div class="compact-asymmetric-grid">
+            <div><span>Upside Potential</span><strong>${escapeHtml(asyncSummary.upsidePotential)}</strong></div>
+            <div><span>Risk Level</span><strong>${escapeHtml(asyncSummary.riskLevel)}</strong></div>
+            <div><span>Classification</span><strong>${escapeHtml(asyncSummary.classification)}</strong></div>
+          </div>
+          <div class="compact-asymmetric-items">
+            <div><strong>What must go right:</strong> ${escapeHtml((asyncSummary.whatMustGoRight ?? []).join(' / '))}</div>
+            <div><strong>What could kill the thesis:</strong> ${escapeHtml((asyncSummary.whatCouldKillThesis ?? []).join(' / '))}</div>
+          </div>
+          <p class="compact-asymmetric-note">${escapeHtml(asyncSummary.caveat ?? '')}</p>
+        </div>`;
+      })()}
 
       <!-- DECISION ENGINE VERDICT -->
       <div class="fund-manager-verdict decision-engine-verdict" id="fund-manager-verdict">
@@ -1034,6 +1071,42 @@ function renderReportSection(result) {
           <ol>${(Array.isArray(dev.watchNextEarnings) ? dev.watchNextEarnings : [fmv.watchNextEarnings ?? "Revenue growth, margin trends, forward guidance"]).map(item => `<li>${escapeHtml(item)}</li>`).join('')}</ol>
         </div>
 
+        ${(() => {
+          const whyNotBuy = fmv.whyNotBuy ?? [];
+          if (!whyNotBuy.length) return '';
+          return `<div class="why-not-buy-section">
+            <div class="why-not-buy-title">⚠ Top Reasons Not to Buy Today</div>
+            <ol class="why-not-buy-list">${whyNotBuy.map(r => `<li>${escapeHtml(r)}</li>`).join('')}</ol>
+          </div>`;
+        })()}
+
+        ${(() => {
+          const bull = fmv.bullScenario;
+          const base = fmv.baseScenario;
+          const bear = fmv.bearScenario;
+          if (!bull || !base || !bear) return '';
+          return `<div class="scenarios-section">
+            <div class="scenarios-title">📊 Investment Scenarios</div>
+            <div class="scenarios-grid">
+              <div class="scenario scenario-bull">
+                <div class="scenario-label">🐂 Bull Case</div>
+                <p>${escapeHtml(bull.assumption)}</p>
+                <div class="scenario-target">Target: <strong>${escapeHtml(bull.target)}</strong></div>
+              </div>
+              <div class="scenario scenario-base">
+                <div class="scenario-label">📊 Base Case</div>
+                <p>${escapeHtml(base.assumption)}</p>
+                <div class="scenario-target">Target: <strong>${escapeHtml(base.target)}</strong></div>
+              </div>
+              <div class="scenario scenario-bear">
+                <div class="scenario-label">🐻 Bear Case</div>
+                <p>${escapeHtml(bear.assumption)}</p>
+                <div class="scenario-target">Floor: <strong>${escapeHtml(bear.level)}</strong></div>
+              </div>
+            </div>
+          </div>`;
+        })()}
+
         <div class="verdict-plain-english">
           <strong>Plain-English 5-Sentence Summary:</strong>
           <p>${escapeHtml(fmv.plainEnglishSummary ?? result.managerRead ?? "Analysis unavailable.")}</p>
@@ -1051,7 +1124,7 @@ function renderReportSection(result) {
           <div><span>Report Generated</span><strong>${escapeHtml(dateTime(result.asOf))}</strong></div>
           <div><span>Price / Market Data</span><strong>Yahoo Finance (real-time on local server; cached on GitHub Pages)</strong></div>
           <div><span>Financial Statements</span><strong>Yahoo Finance incomeStatementHistory &amp; cashflowStatementHistory modules</strong></div>
-          <div><span>Latest Quarter Used</span><strong>${escapeHtml(dataQuality.latestQuarterUsed || "Not confirmed — check company filings")}</strong></div>
+          <div><span>Latest Reported Quarter</span><strong>${escapeHtml(dataQuality.latestReportedQuarter || dataQuality.latestQuarterUsed || "Not confirmed — check company filings")}</strong></div>
           <div><span>SEC / Filing Cross-Check</span><strong>${escapeHtml(dataQuality.secCrossCheck || "SEC EDGAR facts requested; Yahoo Finance is primary fallback")}</strong></div>
           <div><span>Earnings Calendar</span><strong>Yahoo Finance calendarEvents + earningsHistory modules</strong></div>
           <div><span>Analyst Estimates</span><strong>Yahoo Finance earningsTrend module (consensus estimates)</strong></div>
@@ -1062,6 +1135,20 @@ function renderReportSection(result) {
         </div>
         <p class="muted" style="margin:8px 0 0;font-size:0.75rem">Primary sources: Yahoo Finance (price, financials, estimates, candles) · SEC EDGAR (10-K/10-Q cross-check where available) · Company IR (guidance, confirmed earnings dates). This report is analytical research only — not financial advice.</p>
       </div>
+
+      ${(() => {
+        const sl = result.sourceLinks ?? {};
+        if (!sl.yahooFinanceUrl && !sl.secEdgarUrl) return '';
+        return `<div class="source-links-section">
+          <div class="source-links-title">📁 Data Sources</div>
+          <div class="source-links-list">
+            ${sl.yahooFinanceUrl ? `<a href="${escapeHtml(sl.yahooFinanceUrl)}" target="_blank" rel="noopener">Yahoo Finance →</a>` : ''}
+            ${sl.secEdgarUrl ? `<a href="${escapeHtml(sl.secEdgarUrl)}" target="_blank" rel="noopener">SEC EDGAR (10-K filings) →</a>` : ''}
+            <span>Data as of: ${escapeHtml(sl.dataAsOf ? new Date(sl.dataAsOf).toLocaleString() : 'Unknown')}</span>
+            <span>Analyzer v${escapeHtml(sl.analyzerVersion ?? '2.0')}</span>
+          </div>
+        </div>`;
+      })()}
 
     </article>
   `;
