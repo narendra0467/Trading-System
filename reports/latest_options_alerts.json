@@ -587,6 +587,31 @@
     }
   },
   {
+    "symbol": "ORCL",
+    "signal": "PREMIUM_SELL_WATCH",
+    "strategy": "IRON_CONDOR_WATCH",
+    "score": 55,
+    "dte": 31,
+    "underlying": 192.95,
+    "atmIv": 73.9,
+    "ivHvRatio": 1.45,
+    "reason": "ADX confirms bullish trend; neutral technical regime",
+    "marketRegime": "RISK_ON",
+    "eventRisk": "CLEAR",
+    "eventReason": "No dated event in window",
+    "positionPlan": {
+      "accountSize": 100000,
+      "riskPct": 0.01,
+      "maxRiskDollars": 1000,
+      "riskPerContract": null,
+      "riskPerSpread": null,
+      "contracts": 0,
+      "plannedCapital": null,
+      "marketRegime": "RISK_ON",
+      "sizeMultiplier": 1
+    }
+  },
+  {
     "symbol": "C",
     "signal": "PREMIUM_SELL_WATCH",
     "strategy": "IRON_CONDOR_WATCH",

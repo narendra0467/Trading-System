@@ -1,6 +1,6 @@
 {
   "title": "LEAPS Call Opportunity Desk",
-  "asOf": "2026-05-18T01:36:25.436Z",
+  "asOf": "2026-05-18T02:43:44.614Z",
   "disclaimer": "Research watchlist only. Not financial advice and not a buy/sell recommendation.",
   "schedule": {
     "timeZone": "America/Edmonton",
@@ -45,7 +45,7 @@
   "riskSummary": {
     "biggestTimeDecayRisk": "No existing LEAPS positions loaded.",
     "biggestIvRisk": "AMD IV 71.7%.",
-    "biggestEarningsRisk": "NVDA: Earnings window is about 2 days away.",
+    "biggestEarningsRisk": "No high event risk flagged.",
     "biggestTechnicalBreakdownRisk": "No broken technical profile flagged.",
     "biggestConcentrationRisk": "No concentration risk until positions are loaded."
   },
@@ -71,6 +71,7 @@
         "GOOGL"
       ],
       "waitForPullback": [
+        "NVDA",
         "AMD",
         "GOOGL",
         "ORCL"
@@ -80,20 +81,19 @@
     "riskSummary": {
       "biggestTimeDecayRisk": "No existing LEAPS positions loaded.",
       "biggestIvRisk": "AMD IV 71.7%.",
-      "biggestEarningsRisk": "NVDA: Earnings window is about 2 days away.",
+      "biggestEarningsRisk": "No high event risk flagged.",
       "biggestTechnicalBreakdownRisk": "No broken technical profile flagged.",
       "biggestConcentrationRisk": "No concentration risk until positions are loaded."
     },
     "actionWatchlist": {
       "reviewToday": [],
       "watchForPullback": [
+        "NVDA",
         "AMD",
         "GOOGL",
         "ORCL"
       ],
-      "waitForEarnings": [
-        "NVDA"
-      ],
+      "waitForEarnings": [],
       "considerRolling": [],
       "doNotAdd": [],
       "exitReview": []
@@ -108,15 +108,15 @@
       "currentPrice": 225.32,
       "direction": "CALL",
       "decision": "Strong Watchlist Candidate",
-      "status": "Wait for Earnings",
+      "status": "Watch for Pullback",
       "score": 84,
       "leapsOpportunityScore": 84,
-      "underlyingScore": 83,
+      "underlyingScore": 84,
       "riskScore": 45,
       "riskLabel": "Medium Risk",
-      "eventRisk": "High Event Risk",
-      "eventRiskHeadline": "Earnings window is about 2 days away.",
-      "earningsDate": "2026-05-20",
+      "eventRisk": "Medium Event Risk",
+      "eventRiskHeadline": "Positive catalyst tape",
+      "earningsDate": "Unavailable",
       "preferredExpiryRange": "12-24 months preferred; 6 months minimum",
       "preferredStrikeZone": "Balanced: near 205 strike",
       "preferredDelta": "0.55-0.75",
@@ -146,7 +146,7 @@
         "rules": "Add only if the thesis is intact, price is near support, long-term trend survives, IV/spread remain reasonable, and total position risk remains capped."
       },
       "invalidationLevel": 181.89,
-      "finalResearchVerdict": "Research verdict: avoid for now; the underlying, option contract, or risk profile is not clean enough.",
+      "finalResearchVerdict": "Research verdict: watchlist candidate; wait for a better entry, cleaner pullback, or tighter spread.",
       "underlyingComponents": [
         {
           "label": "Business quality",
@@ -171,7 +171,7 @@
         {
           "label": "Catalyst strength",
           "weight": 15,
-          "score": 92
+          "score": 96
         },
         {
           "label": "Technical setup",
@@ -646,8 +646,8 @@
       "riskScore": 45,
       "riskLabel": "Medium Risk",
       "eventRisk": "Low Event Risk",
-      "eventRiskHeadline": "Earnings window is about 78 days away.",
-      "earningsDate": "2026-08-04",
+      "eventRiskHeadline": "Positive catalyst tape",
+      "earningsDate": "Unavailable",
       "preferredExpiryRange": "12-24 months preferred; 6 months minimum",
       "preferredStrikeZone": "Balanced: near 370 strike",
       "preferredDelta": "0.55-0.75",
@@ -1186,8 +1186,8 @@
       "riskScore": 46,
       "riskLabel": "Medium Risk",
       "eventRisk": "Low Event Risk",
-      "eventRiskHeadline": "Earnings window is about 66 days away.",
-      "earningsDate": "2026-07-23",
+      "eventRiskHeadline": "Mixed / normal tape",
+      "earningsDate": "Unavailable",
       "preferredExpiryRange": "12-24 months preferred; 6 months minimum",
       "preferredStrikeZone": "Balanced: near 360 strike",
       "preferredDelta": "0.55-0.75",
@@ -1715,8 +1715,8 @@
       "riskScore": 53,
       "riskLabel": "Medium Risk",
       "eventRisk": "Medium Event Risk",
-      "eventRiskHeadline": "Earnings window is about 23 days away.",
-      "earningsDate": "2026-06-10",
+      "eventRiskHeadline": "Positive catalyst tape",
+      "earningsDate": "Unavailable",
       "preferredExpiryRange": "12-24 months preferred; 6 months minimum",
       "preferredStrikeZone": "Conservative: near 160 strike",
       "preferredDelta": "0.75-0.90",
@@ -2251,15 +2251,15 @@
       "currentPrice": 225.32,
       "direction": "CALL",
       "decision": "Strong Watchlist Candidate",
-      "status": "Wait for Earnings",
+      "status": "Watch for Pullback",
       "score": 84,
       "leapsOpportunityScore": 84,
-      "underlyingScore": 83,
+      "underlyingScore": 84,
       "riskScore": 45,
       "riskLabel": "Medium Risk",
-      "eventRisk": "High Event Risk",
-      "eventRiskHeadline": "Earnings window is about 2 days away.",
-      "earningsDate": "2026-05-20",
+      "eventRisk": "Medium Event Risk",
+      "eventRiskHeadline": "Positive catalyst tape",
+      "earningsDate": "Unavailable",
       "preferredExpiryRange": "12-24 months preferred; 6 months minimum",
       "preferredStrikeZone": "Balanced: near 205 strike",
       "preferredDelta": "0.55-0.75",
@@ -2289,7 +2289,7 @@
         "rules": "Add only if the thesis is intact, price is near support, long-term trend survives, IV/spread remain reasonable, and total position risk remains capped."
       },
       "invalidationLevel": 181.89,
-      "finalResearchVerdict": "Research verdict: avoid for now; the underlying, option contract, or risk profile is not clean enough.",
+      "finalResearchVerdict": "Research verdict: watchlist candidate; wait for a better entry, cleaner pullback, or tighter spread.",
       "underlyingComponents": [
         {
           "label": "Business quality",
@@ -2314,7 +2314,7 @@
         {
           "label": "Catalyst strength",
           "weight": 15,
-          "score": 92
+          "score": 96
         },
         {
           "label": "Technical setup",
@@ -2789,8 +2789,8 @@
       "riskScore": 45,
       "riskLabel": "Medium Risk",
       "eventRisk": "Low Event Risk",
-      "eventRiskHeadline": "Earnings window is about 78 days away.",
-      "earningsDate": "2026-08-04",
+      "eventRiskHeadline": "Positive catalyst tape",
+      "earningsDate": "Unavailable",
       "preferredExpiryRange": "12-24 months preferred; 6 months minimum",
       "preferredStrikeZone": "Balanced: near 370 strike",
       "preferredDelta": "0.55-0.75",
@@ -3329,8 +3329,8 @@
       "riskScore": 46,
       "riskLabel": "Medium Risk",
       "eventRisk": "Low Event Risk",
-      "eventRiskHeadline": "Earnings window is about 66 days away.",
-      "earningsDate": "2026-07-23",
+      "eventRiskHeadline": "Mixed / normal tape",
+      "earningsDate": "Unavailable",
       "preferredExpiryRange": "12-24 months preferred; 6 months minimum",
       "preferredStrikeZone": "Balanced: near 360 strike",
       "preferredDelta": "0.55-0.75",
@@ -3858,8 +3858,8 @@
       "riskScore": 53,
       "riskLabel": "Medium Risk",
       "eventRisk": "Medium Event Risk",
-      "eventRiskHeadline": "Earnings window is about 23 days away.",
-      "earningsDate": "2026-06-10",
+      "eventRiskHeadline": "Positive catalyst tape",
+      "earningsDate": "Unavailable",
       "preferredExpiryRange": "12-24 months preferred; 6 months minimum",
       "preferredStrikeZone": "Conservative: near 160 strike",
       "preferredDelta": "0.75-0.90",
@@ -4394,15 +4394,15 @@
       "currentPrice": 225.32,
       "direction": "CALL",
       "decision": "Strong Watchlist Candidate",
-      "status": "Wait for Earnings",
+      "status": "Watch for Pullback",
       "score": 84,
       "leapsOpportunityScore": 84,
-      "underlyingScore": 83,
+      "underlyingScore": 84,
       "riskScore": 45,
       "riskLabel": "Medium Risk",
-      "eventRisk": "High Event Risk",
-      "eventRiskHeadline": "Earnings window is about 2 days away.",
-      "earningsDate": "2026-05-20",
+      "eventRisk": "Medium Event Risk",
+      "eventRiskHeadline": "Positive catalyst tape",
+      "earningsDate": "Unavailable",
       "preferredExpiryRange": "12-24 months preferred; 6 months minimum",
       "preferredStrikeZone": "Balanced: near 205 strike",
       "preferredDelta": "0.55-0.75",
@@ -4432,7 +4432,7 @@
         "rules": "Add only if the thesis is intact, price is near support, long-term trend survives, IV/spread remain reasonable, and total position risk remains capped."
       },
       "invalidationLevel": 181.89,
-      "finalResearchVerdict": "Research verdict: avoid for now; the underlying, option contract, or risk profile is not clean enough.",
+      "finalResearchVerdict": "Research verdict: watchlist candidate; wait for a better entry, cleaner pullback, or tighter spread.",
       "underlyingComponents": [
         {
           "label": "Business quality",
@@ -4457,7 +4457,7 @@
         {
           "label": "Catalyst strength",
           "weight": 15,
-          "score": 92
+          "score": 96
         },
         {
           "label": "Technical setup",
@@ -4932,8 +4932,8 @@
       "riskScore": 45,
       "riskLabel": "Medium Risk",
       "eventRisk": "Low Event Risk",
-      "eventRiskHeadline": "Earnings window is about 78 days away.",
-      "earningsDate": "2026-08-04",
+      "eventRiskHeadline": "Positive catalyst tape",
+      "earningsDate": "Unavailable",
       "preferredExpiryRange": "12-24 months preferred; 6 months minimum",
       "preferredStrikeZone": "Balanced: near 370 strike",
       "preferredDelta": "0.55-0.75",
@@ -5472,8 +5472,8 @@
       "riskScore": 46,
       "riskLabel": "Medium Risk",
       "eventRisk": "Low Event Risk",
-      "eventRiskHeadline": "Earnings window is about 66 days away.",
-      "earningsDate": "2026-07-23",
+      "eventRiskHeadline": "Mixed / normal tape",
+      "earningsDate": "Unavailable",
       "preferredExpiryRange": "12-24 months preferred; 6 months minimum",
       "preferredStrikeZone": "Balanced: near 360 strike",
       "preferredDelta": "0.55-0.75",
@@ -6001,8 +6001,8 @@
       "riskScore": 53,
       "riskLabel": "Medium Risk",
       "eventRisk": "Medium Event Risk",
-      "eventRiskHeadline": "Earnings window is about 23 days away.",
-      "earningsDate": "2026-06-10",
+      "eventRiskHeadline": "Positive catalyst tape",
+      "earningsDate": "Unavailable",
       "preferredExpiryRange": "12-24 months preferred; 6 months minimum",
       "preferredStrikeZone": "Conservative: near 160 strike",
       "preferredDelta": "0.75-0.90",
@@ -6659,6 +6659,73 @@
         "distanceFrom200DayPct": -5.2,
         "rsi14": 44.5,
         "volumeVs20Day": 0.83
+      }
+    },
+    {
+      "symbol": "AAPL",
+      "name": "Apple Inc.",
+      "sector": "Technology",
+      "currentPrice": 300.23,
+      "decision": "Avoid - weak underlying",
+      "status": "Avoid",
+      "score": 37,
+      "leapsOpportunityScore": 37,
+      "underlyingScore": 68,
+      "riskScore": 80,
+      "pullbackClassification": "Waiting for Reclaim",
+      "dcaSuitability": "DCA Rejected / Wait",
+      "reason": "Underlying stock quality is below 70, so the desk does not analyze LEAPS calls.",
+      "bullCase": "Bull case: the chart trend is supportive, business quality is acceptable.",
+      "bearCase": "Bear case: growth is not fully confirmed by the checklist, valuation or missing valuation support can limit upside.",
+      "underlyingComponents": [
+        {
+          "label": "Business quality",
+          "weight": 20,
+          "score": 84
+        },
+        {
+          "label": "Growth quality",
+          "weight": 20,
+          "score": 35
+        },
+        {
+          "label": "Financial strength",
+          "weight": 15,
+          "score": 79
+        },
+        {
+          "label": "Valuation reasonableness",
+          "weight": 15,
+          "score": 35
+        },
+        {
+          "label": "Catalyst strength",
+          "weight": 15,
+          "score": 91
+        },
+        {
+          "label": "Technical setup",
+          "weight": 15,
+          "score": 90
+        }
+      ],
+      "pullback": {
+        "score": 57,
+        "classification": "Waiting for Reclaim",
+        "reasons": [
+          "long-term trend remains above the 200-day average",
+          "selloff volume is not extreme",
+          "fundamentals still look intact from available data"
+        ],
+        "risks": [
+          "stock is still close to highs",
+          "RSI is extended"
+        ],
+        "distanceFrom52WeekHighPct": -1,
+        "distanceFrom50DayPct": 10,
+        "distanceFrom200DayPct": 16.5,
+        "rsi14": 82.9,
+        "volumeVs20Day": 1.13
       }
     },
     {
@@ -8138,16 +8205,6 @@
         "rsi14": 30.3,
         "volumeVs20Day": 1.52
       }
-    },
-    {
-      "symbol": "AAPL",
-      "direction": "CALL",
-      "decision": "ERROR",
-      "status": "Avoid",
-      "score": 0,
-      "leapsOpportunityScore": 0,
-      "riskScore": 100,
-      "reason": "fetch failed"
     },
     {
       "symbol": "SQ",
