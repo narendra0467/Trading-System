@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-05-18T21:49:06.308Z",
+  "generatedAt": "2026-05-19T17:27:35.206Z",
   "qualityMode": true,
   "investorMode": true,
   "scanned": 78,
@@ -9,8 +9,8 @@
       "name": "Dave Inc.",
       "sector": "Technology",
       "theme": "consumer fintech",
-      "marketCap": 3058539264,
-      "marketCapDisplay": "$3.06B",
+      "marketCap": 3048495104,
+      "marketCapDisplay": "$3.05B",
       "revenueGrowth": 46.7,
       "revenueGrowthDisplay": "46.7%",
       "revenueCagr3": 39.3517,
@@ -22,7 +22,7 @@
       "cashDebt": "0.67x",
       "analystCoverage": 8,
       "analystCoverageDisplay": "8",
-      "institutionalOwnership": "99.1%",
+      "institutionalOwnership": "98.89%",
       "insiderOwnership": "10.93%",
       "catalyst": "Next earnings window shown by Yahoo: 2026-05-05.",
       "score": 83,
@@ -33,7 +33,7 @@
       "bullCase": "The upside case is that revenue keeps compounding, margins scale, dilution stays controlled, and catalysts prove there is a real business curve rather than a one-quarter trade.",
       "bearCase": "The downside case is that valuation expectations reset, growth slows, or the market decides the company is not as unique as the story suggests.",
       "businessModel": "It makes money by selling products or services tied to Software - Application. In plain English: Dave Inc.  provides various financial products and services through its financial services platform in the United States.",
-      "whyUnderRadar": "Market cap: $3.06B; Analyst coverage: 8 analysts; Trading volume: $141.5M/day",
+      "whyUnderRadar": "Market cap: $3.05B; Analyst coverage: 8 analysts; Trading volume: $139.8M/day",
       "multibaggerWhy": "Growth, market size, margin quality, survivability, and catalysts create an asymmetric research setup if execution continues.",
       "proof": [
         "Revenue growth above 25%: 46.7%",
@@ -52,6 +52,7 @@
         "The stock should remain liquid enough to exit and avoid becoming a purely hype-driven trade."
       ],
       "redFlags": [
+        "RSI momentum is weak",
         "debt load is elevated"
       ],
       "dilutionCheck": "High if cash runway is weak or share growth is heavy.",
@@ -66,7 +67,7 @@
       ],
       "verdict": "Early Quality Compounder: The setup has enough business progress and survivability to deserve deeper research.",
       "dataQuality": {
-        "marketDataDate": "2026-05-18T21:48:49.166Z",
+        "marketDataDate": "2026-05-19T17:27:17.841Z",
         "latestReportedQuarter": "2026-03-31",
         "latestReportedQuarterEnd": "2026-03-31",
         "lastEarningsDate": "2026-03-31",
@@ -116,7 +117,7 @@
         {
           "label": "Liquidity risk",
           "score": 32,
-          "note": "$141.5M estimated daily dollar volume."
+          "note": "$139.8M estimated daily dollar volume."
         },
         {
           "label": "Filing / reporting risk",
@@ -240,7 +241,7 @@
       "underRadarFactors": [
         {
           "label": "Market cap",
-          "value": "$3.06B",
+          "value": "$3.05B",
           "score": 85,
           "note": "Best hidden setups are usually small or mid cap, not already mega-cap."
         },
@@ -252,7 +253,7 @@
         },
         {
           "label": "Institutional ownership",
-          "value": "99.1%",
+          "value": "98.89%",
           "score": 36,
           "note": "Some sponsorship is good; extreme sponsorship can mean the name is already discovered."
         },
@@ -270,7 +271,7 @@
         },
         {
           "label": "Trading volume",
-          "value": "$141.5M/day",
+          "value": "$139.8M/day",
           "score": 62,
           "note": "Enough liquidity matters, but very high dollar volume usually means the stock is already known."
         },
@@ -404,7 +405,7 @@
           "label": "Insider/institutional confidence",
           "weight": 8,
           "score": 61,
-          "read": "Institutions: 99.1%; insiders: 10.93%."
+          "read": "Institutions: 98.89%; insiders: 10.93%."
         },
         {
           "label": "Story becoming real",
@@ -437,7 +438,7 @@
           "label": "Low but improving institutional ownership",
           "weight": 12,
           "score": 36,
-          "read": "99.1%"
+          "read": "98.89%"
         },
         {
           "label": "Recently improving fundamentals",
@@ -449,7 +450,7 @@
           "label": "Small/mid-cap status",
           "weight": 11,
           "score": 78,
-          "read": "$3.06B"
+          "read": "$3.05B"
         },
         {
           "label": "Misunderstood business model",
@@ -465,10 +466,10 @@
         }
       ],
       "multibaggerPath": {
-        "currentMarketCap": "$3.06B",
-        "threeXMarketCap": "$9.18B",
-        "fiveXMarketCap": "$15.29B",
-        "tenXMarketCap": "$30.59B",
+        "currentMarketCap": "$3.05B",
+        "threeXMarketCap": "$9.15B",
+        "fiveXMarketCap": "$15.24B",
+        "tenXMarketCap": "$30.48B",
         "path3": "realistic",
         "path5": "stretched",
         "path10": "stretched",
@@ -590,13 +591,13 @@
       },
       "entryQuality": {
         "classification": "Ready for starter",
-        "priceVs50Day": "4% vs 50-day EMA",
-        "priceVs200Day": "13.4% vs long-term EMA proxy",
-        "rsi": 42.1,
-        "support": "$231.36",
-        "resistance": "$268.16",
+        "priceVs50Day": "3.5% vs 50-day EMA",
+        "priceVs200Day": "12.8% vs long-term EMA proxy",
+        "rsi": 41.3,
+        "support": "$231.69",
+        "resistance": "$264.01",
         "volumeTrend": "Constructive",
-        "highLowLocation": "85.3% of 55-day high",
+        "highLowLocation": "85% of 55-day high",
         "earningsReaction": "Earnings/guidance language found - wait for confirmation if volatility is elevated."
       },
       "killCriteria": [
@@ -605,7 +606,7 @@
         "Free cash flow worsens and cash runway becomes dependent on unfavorable financing.",
         "Dilution accelerates beyond the current read: Unavailable.",
         "A major customer, backlog, product, or partnership catalyst fails to convert into real revenue.",
-        "The stock breaks major long-term support near $231.36 and fails to recover.",
+        "The stock breaks major long-term support near $231.69 and fails to recover.",
         "Balance sheet risk, filing/reporting risk, or hype/promotion risk moves into the red zone."
       ],
       "positionSizingCategory": "Small speculative basket candidate",
@@ -621,8 +622,8 @@
       "name": "JFrog Ltd.",
       "sector": "Technology",
       "theme": "developer software",
-      "marketCap": 8225241088,
-      "marketCapDisplay": "$8.23B",
+      "marketCap": 8340304384,
+      "marketCapDisplay": "$8.34B",
       "revenueGrowth": 25.2,
       "revenueGrowthDisplay": "25.2%",
       "revenueCagr3": 23.8379,
@@ -645,7 +646,7 @@
       "bullCase": "The upside case is that revenue keeps compounding, margins scale, dilution stays controlled, and catalysts prove there is a real business curve rather than a one-quarter trade.",
       "bearCase": "The downside case is that valuation expectations reset, growth slows, or the market decides the company is not as unique as the story suggests.",
       "businessModel": "It makes money by selling products or services tied to Software - Application. In plain English: JFrog Ltd.  provides software supply chain platform in the United States, Israel, India, and internationally.",
-      "whyUnderRadar": "Market cap: $8.23B; Short interest: 5.61%; Insider ownership: 11.57%",
+      "whyUnderRadar": "Market cap: $8.34B; Short interest: 5.61%; Insider ownership: 11.57%",
       "multibaggerWhy": "Growth, market size, margin quality, survivability, and catalysts create an asymmetric research setup if execution continues.",
       "proof": [
         "Revenue growth above 25%: 25.2%",
@@ -678,7 +679,7 @@
       ],
       "verdict": "Early Quality Compounder: The setup has enough business progress and survivability to deserve deeper research.",
       "dataQuality": {
-        "marketDataDate": "2026-05-18T21:48:59.593Z",
+        "marketDataDate": "2026-05-19T17:27:27.624Z",
         "latestReportedQuarter": "2026-03-31",
         "latestReportedQuarterEnd": "2026-03-31",
         "lastEarningsDate": "2026-03-31",
@@ -729,7 +730,7 @@
         {
           "label": "Liquidity risk",
           "score": 32,
-          "note": "$230.6M estimated daily dollar volume."
+          "note": "$233.1M estimated daily dollar volume."
         },
         {
           "label": "Filing / reporting risk",
@@ -853,7 +854,7 @@
       "underRadarFactors": [
         {
           "label": "Market cap",
-          "value": "$8.23B",
+          "value": "$8.34B",
           "score": 85,
           "note": "Best hidden setups are usually small or mid cap, not already mega-cap."
         },
@@ -883,7 +884,7 @@
         },
         {
           "label": "Trading volume",
-          "value": "$230.6M/day",
+          "value": "$233.1M/day",
           "score": 24,
           "note": "Enough liquidity matters, but very high dollar volume usually means the stock is already known."
         },
@@ -1062,7 +1063,7 @@
           "label": "Small/mid-cap status",
           "weight": 11,
           "score": 58,
-          "read": "$8.23B"
+          "read": "$8.34B"
         },
         {
           "label": "Misunderstood business model",
@@ -1078,10 +1079,10 @@
         }
       ],
       "multibaggerPath": {
-        "currentMarketCap": "$8.23B",
-        "threeXMarketCap": "$24.68B",
-        "fiveXMarketCap": "$41.13B",
-        "tenXMarketCap": "$82.25B",
+        "currentMarketCap": "$8.34B",
+        "threeXMarketCap": "$25.02B",
+        "fiveXMarketCap": "$41.7B",
+        "tenXMarketCap": "$83.4B",
         "path3": "realistic",
         "path5": "stretched",
         "path10": "unrealistic",
@@ -1191,13 +1192,13 @@
       },
       "entryQuality": {
         "classification": "Too extended",
-        "priceVs50Day": "29.7% vs 50-day EMA",
-        "priceVs200Day": "34.5% vs long-term EMA proxy",
-        "rsi": 73.9,
-        "support": "$59.83",
-        "resistance": "$92.16",
+        "priceVs50Day": "29.9% vs 50-day EMA",
+        "priceVs200Day": "35.7% vs long-term EMA proxy",
+        "rsi": 75.4,
+        "support": "$61.17",
+        "resistance": "$91.93",
         "volumeTrend": "Strong",
-        "highLowLocation": "96.3% of 55-day high",
+        "highLowLocation": "97.6% of 55-day high",
         "earningsReaction": "Earnings/guidance language found - wait for confirmation if volatility is elevated."
       },
       "killCriteria": [
@@ -1206,7 +1207,7 @@
         "Free cash flow worsens and cash runway becomes dependent on unfavorable financing.",
         "Dilution accelerates beyond the current read: Unavailable.",
         "A major customer, backlog, product, or partnership catalyst fails to convert into real revenue.",
-        "The stock breaks major long-term support near $59.83 and fails to recover.",
+        "The stock breaks major long-term support near $61.17 and fails to recover.",
         "Balance sheet risk, filing/reporting risk, or hype/promotion risk moves into the red zone."
       ],
       "positionSizingCategory": "Small speculative basket candidate",
@@ -1222,8 +1223,8 @@
       "name": "ACM Research, Inc.",
       "sector": "Technology",
       "theme": "semiconductor equipment",
-      "marketCap": 4188723200,
-      "marketCapDisplay": "$4.19B",
+      "marketCap": 4701864448,
+      "marketCapDisplay": "$4.7B",
       "revenueGrowth": 34.2,
       "revenueGrowthDisplay": "34.2%",
       "revenueCagr3": 32.3439,
@@ -1235,18 +1236,18 @@
       "cashDebt": "3.75x",
       "analystCoverage": 7,
       "analystCoverageDisplay": "7",
-      "institutionalOwnership": "72.58%",
+      "institutionalOwnership": "74.33%",
       "insiderOwnership": "12.78%",
       "catalyst": "Next earnings window shown by Yahoo: 2026-08-05.",
       "score": 78,
-      "riskScore": 39,
+      "riskScore": 40,
       "underRadarScore": 61,
       "classification": "Early Quality Compounder",
       "classificationReason": "The setup has enough business progress and survivability to deserve deeper research.",
       "bullCase": "The upside case is that revenue keeps compounding, margins scale, dilution stays controlled, and catalysts prove there is a real business curve rather than a one-quarter trade.",
       "bearCase": "The downside case is that valuation expectations reset, growth slows, or the market decides the company is not as unique as the story suggests.",
       "businessModel": "It makes money by selling products or services tied to Semiconductor Equipment & Materials. In plain English: ACM Research, Inc. , together with its subsidiaries, develops, manufactures, and sells capital equipment in Mainland China and internationally.",
-      "whyUnderRadar": "Market cap: $4.19B; Analyst coverage: 7 analysts; Trading volume: $83.9M/day",
+      "whyUnderRadar": "Market cap: $4.7B; Analyst coverage: 7 analysts; Trading volume: $90.5M/day",
       "multibaggerWhy": "Growth, market size, margin quality, survivability, and catalysts create an asymmetric research setup if execution continues.",
       "proof": [
         "Revenue growth above 25%: 34.2%",
@@ -1265,6 +1266,7 @@
         "The stock should remain liquid enough to exit and avoid becoming a purely hype-driven trade."
       ],
       "redFlags": [
+        "RSI is extended",
         "underperforming benchmark"
       ],
       "dilutionCheck": "High if cash runway is weak or share growth is heavy.",
@@ -1279,7 +1281,7 @@
       ],
       "verdict": "Early Quality Compounder: The setup has enough business progress and survivability to deserve deeper research.",
       "dataQuality": {
-        "marketDataDate": "2026-05-18T21:48:55.217Z",
+        "marketDataDate": "2026-05-19T17:27:23.455Z",
         "latestReportedQuarter": "2026-03-31",
         "latestReportedQuarterEnd": "2026-03-31",
         "lastEarningsDate": "2026-03-31",
@@ -1313,7 +1315,7 @@
         },
         {
           "label": "Valuation risk",
-          "score": 47,
+          "score": 55,
           "note": "Expensive but possible"
         },
         {
@@ -1329,7 +1331,7 @@
         {
           "label": "Liquidity risk",
           "score": 32,
-          "note": "$83.9M estimated daily dollar volume."
+          "note": "$90.5M estimated daily dollar volume."
         },
         {
           "label": "Filing / reporting risk",
@@ -1453,7 +1455,7 @@
       "underRadarFactors": [
         {
           "label": "Market cap",
-          "value": "$4.19B",
+          "value": "$4.7B",
           "score": 85,
           "note": "Best hidden setups are usually small or mid cap, not already mega-cap."
         },
@@ -1465,7 +1467,7 @@
         },
         {
           "label": "Institutional ownership",
-          "value": "72.58%",
+          "value": "74.33%",
           "score": 36,
           "note": "Some sponsorship is good; extreme sponsorship can mean the name is already discovered."
         },
@@ -1483,7 +1485,7 @@
         },
         {
           "label": "Trading volume",
-          "value": "$83.9M/day",
+          "value": "$90.5M/day",
           "score": 62,
           "note": "Enough liquidity matters, but very high dollar volume usually means the stock is already known."
         },
@@ -1617,7 +1619,7 @@
           "label": "Insider/institutional confidence",
           "weight": 8,
           "score": 61,
-          "read": "Institutions: 72.58%; insiders: 12.78%."
+          "read": "Institutions: 74.33%; insiders: 12.78%."
         },
         {
           "label": "Story becoming real",
@@ -1650,7 +1652,7 @@
           "label": "Low but improving institutional ownership",
           "weight": 12,
           "score": 36,
-          "read": "72.58%"
+          "read": "74.33%"
         },
         {
           "label": "Recently improving fundamentals",
@@ -1662,7 +1664,7 @@
           "label": "Small/mid-cap status",
           "weight": 11,
           "score": 58,
-          "read": "$4.19B"
+          "read": "$4.7B"
         },
         {
           "label": "Misunderstood business model",
@@ -1678,10 +1680,10 @@
         }
       ],
       "multibaggerPath": {
-        "currentMarketCap": "$4.19B",
-        "threeXMarketCap": "$12.57B",
-        "fiveXMarketCap": "$20.94B",
-        "tenXMarketCap": "$41.89B",
+        "currentMarketCap": "$4.7B",
+        "threeXMarketCap": "$14.11B",
+        "fiveXMarketCap": "$23.51B",
+        "tenXMarketCap": "$47.02B",
         "path3": "realistic",
         "path5": "stretched",
         "path10": "stretched",
@@ -1803,13 +1805,13 @@
       },
       "entryQuality": {
         "classification": "Too extended",
-        "priceVs50Day": "18.4% vs 50-day EMA",
-        "priceVs200Day": "34.2% vs long-term EMA proxy",
-        "rsi": 67.7,
-        "support": "$53.43",
-        "resistance": "$92.72",
+        "priceVs50Day": "26% vs 50-day EMA",
+        "priceVs200Day": "43.5% vs long-term EMA proxy",
+        "rsi": 77.6,
+        "support": "$57.76",
+        "resistance": "$98.86",
         "volumeTrend": "Strong",
-        "highLowLocation": "97.7% of 55-day high",
+        "highLowLocation": "100% of 55-day high",
         "earningsReaction": "Earnings/guidance language found - wait for confirmation if volatility is elevated."
       },
       "killCriteria": [
@@ -1818,7 +1820,7 @@
         "Free cash flow worsens and cash runway becomes dependent on unfavorable financing.",
         "Dilution accelerates beyond the current read: Unavailable.",
         "A major customer, backlog, product, or partnership catalyst fails to convert into real revenue.",
-        "The stock breaks major long-term support near $53.43 and fails to recover.",
+        "The stock breaks major long-term support near $57.76 and fails to recover.",
         "Balance sheet risk, filing/reporting risk, or hype/promotion risk moves into the red zone."
       ],
       "positionSizingCategory": "Small speculative basket candidate",
@@ -1834,8 +1836,8 @@
       "name": "e.l.f. Beauty, Inc.",
       "sector": "Consumer Defensive",
       "theme": "consumer brand",
-      "marketCap": 3239606016,
-      "marketCapDisplay": "$3.24B",
+      "marketCap": 3145122304,
+      "marketCapDisplay": "$3.15B",
       "revenueGrowth": 37.8,
       "revenueGrowthDisplay": "37.8%",
       "revenueCagr3": 49.621,
@@ -1847,10 +1849,10 @@
       "cashDebt": "0.21x",
       "analystCoverage": 15,
       "analystCoverageDisplay": "15",
-      "institutionalOwnership": "101.73%",
+      "institutionalOwnership": "101.99%",
       "insiderOwnership": "2.33%",
       "catalyst": "Next earnings window shown by Yahoo: 2026-05-20.",
-      "score": 74,
+      "score": 73,
       "riskScore": 36,
       "underRadarScore": 51,
       "classification": "Early Quality Compounder",
@@ -1858,7 +1860,7 @@
       "bullCase": "The upside case is that revenue keeps compounding, margins scale, dilution stays controlled, and catalysts prove there is a real business curve rather than a one-quarter trade.",
       "bearCase": "The downside case is that valuation expectations reset, growth slows, or the market decides the company is not as unique as the story suggests.",
       "businessModel": "It makes money by selling products or services tied to Household & Personal Products. In plain English: e. l.",
-      "whyUnderRadar": "Market cap: $3.24B; Trading volume: $134.9M/day; Short interest: 14.82%",
+      "whyUnderRadar": "Market cap: $3.15B; Trading volume: $131.5M/day; Short interest: 14.82%",
       "multibaggerWhy": "Growth, market size, margin quality, survivability, and catalysts create an asymmetric research setup if execution continues.",
       "proof": [
         "Revenue growth above 25%: 37.8%",
@@ -1866,7 +1868,7 @@
         "Gross margin stable or improving: 60.95%",
         "Strong cash runway: FCF positive",
         "Real signed customers or backlog: Verify source documents",
-        "Clear catalyst in next 12-24 months: 6 listed"
+        "Clear catalyst in next 12-24 months: 5 listed"
       ],
       "mustHappen": [
         "Revenue growth should stay above 25% or reaccelerate with proof from filings.",
@@ -1888,12 +1890,11 @@
         "Growth itself is a catalyst if management keeps beating expectations.",
         "Analyst target is above current price, so estimate revisions matter.",
         "Recent Yahoo headline catalyst: e.l.f. Beauty's Q4 Earnings on Deck: Key Factors You Should Understand",
-        "Recent Yahoo headline catalyst: Deutsche Bank Downgrades e.l.f. Beauty to $65 From $68, Maintains Hold Rating",
-        "Recent Yahoo headline catalyst: e.l.f. Beauty Faces 'Tricky Quarter' Ahead of Earnings, UBS Says"
+        "Recent Yahoo headline catalyst: Deutsche Bank Downgrades e.l.f. Beauty to $65 From $68, Maintains Hold Rating"
       ],
       "verdict": "Early Quality Compounder: The setup has enough business progress and survivability to deserve deeper research.",
       "dataQuality": {
-        "marketDataDate": "2026-05-18T21:49:05.210Z",
+        "marketDataDate": "2026-05-19T17:27:33.565Z",
         "latestReportedQuarter": "2025-12-31",
         "latestReportedQuarterEnd": "2025-12-31",
         "lastEarningsDate": "2025-12-31",
@@ -1942,7 +1943,7 @@
         {
           "label": "Liquidity risk",
           "score": 32,
-          "note": "$134.9M estimated daily dollar volume."
+          "note": "$131.5M estimated daily dollar volume."
         },
         {
           "label": "Filing / reporting risk",
@@ -2001,8 +2002,8 @@
         {
           "label": "Catalyst strength",
           "weight": 5,
-          "score": 87,
-          "note": "3 catalyst headlines; Positive catalyst tape."
+          "score": 80,
+          "note": "2 catalyst headlines; Mixed / normal tape."
         },
         {
           "label": "Under-the-radar factor",
@@ -2060,13 +2061,13 @@
         {
           "label": "Clear catalyst in next 12-24 months",
           "passed": true,
-          "value": "6 listed"
+          "value": "5 listed"
         }
       ],
       "underRadarFactors": [
         {
           "label": "Market cap",
-          "value": "$3.24B",
+          "value": "$3.15B",
           "score": 85,
           "note": "Best hidden setups are usually small or mid cap, not already mega-cap."
         },
@@ -2078,7 +2079,7 @@
         },
         {
           "label": "Institutional ownership",
-          "value": "101.73%",
+          "value": "101.99%",
           "score": 36,
           "note": "Some sponsorship is good; extreme sponsorship can mean the name is already discovered."
         },
@@ -2096,7 +2097,7 @@
         },
         {
           "label": "Trading volume",
-          "value": "$134.9M/day",
+          "value": "$131.5M/day",
           "score": 62,
           "note": "Enough liquidity matters, but very high dollar volume usually means the stock is already known."
         },
@@ -2230,7 +2231,7 @@
           "label": "Insider/institutional confidence",
           "weight": 8,
           "score": 51,
-          "read": "Institutions: 101.73%; insiders: 2.33%."
+          "read": "Institutions: 101.99%; insiders: 2.33%."
         },
         {
           "label": "Story becoming real",
@@ -2263,7 +2264,7 @@
           "label": "Low but improving institutional ownership",
           "weight": 12,
           "score": 36,
-          "read": "101.73%"
+          "read": "101.99%"
         },
         {
           "label": "Recently improving fundamentals",
@@ -2275,7 +2276,7 @@
           "label": "Small/mid-cap status",
           "weight": 11,
           "score": 78,
-          "read": "$3.24B"
+          "read": "$3.15B"
         },
         {
           "label": "Misunderstood business model",
@@ -2291,10 +2292,10 @@
         }
       ],
       "multibaggerPath": {
-        "currentMarketCap": "$3.24B",
-        "threeXMarketCap": "$9.72B",
-        "fiveXMarketCap": "$16.2B",
-        "tenXMarketCap": "$32.4B",
+        "currentMarketCap": "$3.15B",
+        "threeXMarketCap": "$9.44B",
+        "fiveXMarketCap": "$15.73B",
+        "tenXMarketCap": "$31.45B",
         "path3": "realistic",
         "path5": "stretched",
         "path10": "unrealistic",
@@ -2397,10 +2398,6 @@
         ],
         "next24Months": [
           {
-            "text": "Recent Yahoo headline catalyst: e.l.f. Beauty Faces 'Tricky Quarter' Ahead of Earnings, UBS Says",
-            "strength": "Strong"
-          },
-          {
             "text": "e.l.f. Beauty's Q4 Earnings on Deck: Key Factors You Should Understand",
             "strength": "Strong"
           },
@@ -2416,13 +2413,13 @@
       },
       "entryQuality": {
         "classification": "Broken chart",
-        "priceVs50Day": "-16.5% vs 50-day EMA",
-        "priceVs200Day": "-31.2% vs long-term EMA proxy",
-        "rsi": 34.4,
-        "support": "$48.69",
-        "resistance": "$73.38",
+        "priceVs50Day": "-18.4% vs 50-day EMA",
+        "priceVs200Day": "-32.9% vs long-term EMA proxy",
+        "rsi": 30.1,
+        "support": "$47.24",
+        "resistance": "$71.32",
         "volumeTrend": "Weak",
-        "highLowLocation": "66.5% of 55-day high",
+        "highLowLocation": "64.5% of 55-day high",
         "earningsReaction": "Earnings/guidance language found - wait for confirmation if volatility is elevated."
       },
       "killCriteria": [
@@ -2431,7 +2428,7 @@
         "Free cash flow worsens and cash runway becomes dependent on unfavorable financing.",
         "Dilution accelerates beyond the current read: Unavailable.",
         "A major customer, backlog, product, or partnership catalyst fails to convert into real revenue.",
-        "The stock breaks major long-term support near $48.69 and fails to recover.",
+        "The stock breaks major long-term support near $47.24 and fails to recover.",
         "Balance sheet risk, filing/reporting risk, or hype/promotion risk moves into the red zone."
       ],
       "positionSizingCategory": "Small speculative basket candidate",
@@ -2447,7 +2444,7 @@
       "name": "SentinelOne, Inc.",
       "sector": "Technology",
       "theme": "cybersecurity",
-      "marketCap": 5989596672,
+      "marketCap": 5987888640,
       "marketCapDisplay": "$5.99B",
       "revenueGrowth": 20.2,
       "revenueGrowthDisplay": "20.2%",
@@ -2460,10 +2457,10 @@
       "cashDebt": "41.91x",
       "analystCoverage": 34,
       "analystCoverageDisplay": "34",
-      "institutionalOwnership": "84.97%",
+      "institutionalOwnership": "84.87%",
       "insiderOwnership": "0.64%",
       "catalyst": "Next earnings window shown by Yahoo: 2026-05-28.",
-      "score": 73,
+      "score": 72,
       "riskScore": 42,
       "underRadarScore": 47,
       "classification": "Early Quality Compounder",
@@ -2471,14 +2468,14 @@
       "bullCase": "The upside case is that revenue keeps compounding, margins scale, dilution stays controlled, and catalysts prove there is a real business curve rather than a one-quarter trade.",
       "bearCase": "The downside case is that valuation expectations reset, growth slows, or the market decides the company is not as unique as the story suggests.",
       "businessModel": "It makes money by selling products or services tied to Software - Infrastructure. In plain English: SentinelOne, Inc.  operates as a cybersecurity provider in the United States and internationally.",
-      "whyUnderRadar": "Market cap: $5.99B; Trading volume: $139.2M/day; Short interest: 7.77%",
+      "whyUnderRadar": "Market cap: $5.99B; Trading volume: $140.3M/day; Short interest: 7.77%",
       "multibaggerWhy": "Growth, market size, margin quality, survivability, and catalysts create an asymmetric research setup if execution continues.",
       "proof": [
         "3-year revenue CAGR above 20%: 33.36%",
         "Gross margin stable or improving: 74.11%",
         "Strong cash runway: FCF positive",
         "Real signed customers or backlog: Verify source documents",
-        "Clear catalyst in next 12-24 months: 5 listed"
+        "Clear catalyst in next 12-24 months: 4 listed"
       ],
       "mustHappen": [
         "Revenue growth should stay above 25% or reaccelerate with proof from filings.",
@@ -2498,12 +2495,11 @@
         "Next earnings window shown by Yahoo: 2026-05-28.",
         "Growth itself is a catalyst if management keeps beating expectations.",
         "Analyst target is above current price, so estimate revisions matter.",
-        "Recent Yahoo headline catalyst: KeyBanc Just Hiked CrowdStrike Price Target to $700. Is Mythos the Real Catalyst?",
-        "Recent Yahoo headline catalyst: SentinelOne (S) Is Up 6.3% After Launching AI-Powered Wayfinder Frontier Exposure Management Service"
+        "Recent Yahoo headline catalyst: KeyBanc Just Hiked CrowdStrike Price Target to $700. Is Mythos the Real Catalyst?"
       ],
       "verdict": "Early Quality Compounder: The setup has enough business progress and survivability to deserve deeper research.",
       "dataQuality": {
-        "marketDataDate": "2026-05-18T21:49:00.072Z",
+        "marketDataDate": "2026-05-19T17:27:28.217Z",
         "latestReportedQuarter": "2026-01-31",
         "latestReportedQuarterEnd": "2026-01-31",
         "lastEarningsDate": "2026-01-31",
@@ -2554,7 +2550,7 @@
         {
           "label": "Liquidity risk",
           "score": 32,
-          "note": "$139.2M estimated daily dollar volume."
+          "note": "$140.3M estimated daily dollar volume."
         },
         {
           "label": "Filing / reporting risk",
@@ -2613,8 +2609,8 @@
         {
           "label": "Catalyst strength",
           "weight": 5,
-          "score": 81,
-          "note": "2 catalyst headlines; Mixed / normal tape."
+          "score": 61,
+          "note": "1 catalyst headlines; Mixed / normal tape."
         },
         {
           "label": "Under-the-radar factor",
@@ -2672,7 +2668,7 @@
         {
           "label": "Clear catalyst in next 12-24 months",
           "passed": true,
-          "value": "5 listed"
+          "value": "4 listed"
         }
       ],
       "underRadarFactors": [
@@ -2690,7 +2686,7 @@
         },
         {
           "label": "Institutional ownership",
-          "value": "84.97%",
+          "value": "84.87%",
           "score": 36,
           "note": "Some sponsorship is good; extreme sponsorship can mean the name is already discovered."
         },
@@ -2702,13 +2698,13 @@
         },
         {
           "label": "Social media hype",
-          "value": "Proxy 9",
+          "value": "Proxy 8",
           "score": 48,
           "note": "Uses headlines, bullish headline count, and short interest as a hype proxy."
         },
         {
           "label": "Trading volume",
-          "value": "$139.2M/day",
+          "value": "$140.3M/day",
           "score": 62,
           "note": "Enough liquidity matters, but very high dollar volume usually means the stock is already known."
         },
@@ -2842,7 +2838,7 @@
           "label": "Insider/institutional confidence",
           "weight": 8,
           "score": 47,
-          "read": "Institutions: 84.97%; insiders: 0.64%."
+          "read": "Institutions: 84.87%; insiders: 0.64%."
         },
         {
           "label": "Story becoming real",
@@ -2875,7 +2871,7 @@
           "label": "Low but improving institutional ownership",
           "weight": 12,
           "score": 36,
-          "read": "84.97%"
+          "read": "84.87%"
         },
         {
           "label": "Recently improving fundamentals",
@@ -2904,9 +2900,9 @@
       ],
       "multibaggerPath": {
         "currentMarketCap": "$5.99B",
-        "threeXMarketCap": "$17.97B",
-        "fiveXMarketCap": "$29.95B",
-        "tenXMarketCap": "$59.9B",
+        "threeXMarketCap": "$17.96B",
+        "fiveXMarketCap": "$29.94B",
+        "tenXMarketCap": "$59.88B",
         "path3": "stretched",
         "path5": "stretched",
         "path10": "unrealistic",
@@ -3003,19 +2999,11 @@
             "strength": "Weak"
           },
           {
-            "text": "Recent Yahoo headline catalyst: SentinelOne (S) Is Up 6.3% After Launching AI-Powered Wayfinder Frontier Exposure Management Service",
-            "strength": "Medium"
+            "text": "KeyBanc Just Hiked CrowdStrike Price Target to $700. Is Mythos the Real Catalyst?",
+            "strength": "Weak"
           }
         ],
         "next24Months": [
-          {
-            "text": "KeyBanc Just Hiked CrowdStrike Price Target to $700. Is Mythos the Real Catalyst?",
-            "strength": "Weak"
-          },
-          {
-            "text": "SentinelOne (S) Is Up 6.3% After Launching AI-Powered Wayfinder Frontier Exposure Management Service",
-            "strength": "Medium"
-          },
           {
             "text": "Next two to four earnings reports must confirm growth, margin, cash flow, and dilution trends.",
             "strength": "Strong"
@@ -3024,13 +3012,13 @@
       },
       "entryQuality": {
         "classification": "Too extended",
-        "priceVs50Day": "18.9% vs 50-day EMA",
-        "priceVs200Day": "15.6% vs long-term EMA proxy",
-        "rsi": 75.8,
-        "support": "$15.83",
-        "resistance": "$22.68",
+        "priceVs50Day": "18% vs 50-day EMA",
+        "priceVs200Day": "15.3% vs long-term EMA proxy",
+        "rsi": 75.7,
+        "support": "$15.86",
+        "resistance": "$22.56",
         "volumeTrend": "Strong",
-        "highLowLocation": "100% of 55-day high",
+        "highLowLocation": "99.9% of 55-day high",
         "earningsReaction": "Earnings/guidance language found - wait for confirmation if volatility is elevated."
       },
       "killCriteria": [
@@ -3039,7 +3027,7 @@
         "Free cash flow worsens and cash runway becomes dependent on unfavorable financing.",
         "Dilution accelerates beyond the current read: Unavailable.",
         "A major customer, backlog, product, or partnership catalyst fails to convert into real revenue.",
-        "The stock breaks major long-term support near $15.83 and fails to recover.",
+        "The stock breaks major long-term support near $15.86 and fails to recover.",
         "Balance sheet risk, filing/reporting risk, or hype/promotion risk moves into the red zone."
       ],
       "positionSizingCategory": "Small speculative basket candidate",
@@ -3055,8 +3043,8 @@
       "name": "Enovix Corporation",
       "sector": "Industrials",
       "theme": "advanced batteries",
-      "marketCap": 1293649920,
-      "marketCapDisplay": "$1.29B",
+      "marketCap": 1222750080,
+      "marketCapDisplay": "$1.22B",
       "revenueGrowth": 49.1,
       "revenueGrowthDisplay": "49.1%",
       "revenueCagr3": 72.4755,
@@ -3068,7 +3056,7 @@
       "cashDebt": "0.97x",
       "analystCoverage": 10,
       "analystCoverageDisplay": "10",
-      "institutionalOwnership": "50.83%",
+      "institutionalOwnership": "50.78%",
       "insiderOwnership": "11.33%",
       "catalyst": "Next earnings window shown by Yahoo: 2026-07-29.",
       "score": 63,
@@ -3079,7 +3067,7 @@
       "bullCase": "The upside case is that revenue keeps compounding, margins scale, dilution stays controlled, and catalysts prove there is a real business curve rather than a one-quarter trade.",
       "bearCase": "The downside case is that valuation expectations reset, growth slows, or the market decides the company is not as unique as the story suggests.",
       "businessModel": "It makes money by selling products or services tied to Electrical Equipment & Parts. In plain English: Enovix Corporation designs, develops, and manufactures lithium-ion battery cells in the United States and internationally.  It serves wearables and IoT, smartphone, computing, electrical vehicles, and original equipment manufacturers.",
-      "whyUnderRadar": "Market cap: $1.29B; Analyst coverage: 10 analysts; Institutional ownership: 50.83%",
+      "whyUnderRadar": "Market cap: $1.22B; Analyst coverage: 10 analysts; Institutional ownership: 50.78%",
       "multibaggerWhy": "The multibagger thesis is not yet proven; it needs stronger growth, leverage, or survivability evidence.",
       "proof": [
         "Revenue growth above 25%: 49.1%",
@@ -3115,7 +3103,7 @@
       ],
       "verdict": "Speculative Multibagger Candidate: The setup has some proof, but the thesis still needs more evidence before it becomes high conviction.",
       "dataQuality": {
-        "marketDataDate": "2026-05-18T21:49:02.410Z",
+        "marketDataDate": "2026-05-19T17:27:30.483Z",
         "latestReportedQuarter": "2026-03-31",
         "latestReportedQuarterEnd": "2026-03-31",
         "lastEarningsDate": "2026-03-31",
@@ -3166,7 +3154,7 @@
         {
           "label": "Liquidity risk",
           "score": 32,
-          "note": "$36.8M estimated daily dollar volume."
+          "note": "$35.3M estimated daily dollar volume."
         },
         {
           "label": "Filing / reporting risk",
@@ -3290,7 +3278,7 @@
       "underRadarFactors": [
         {
           "label": "Market cap",
-          "value": "$1.29B",
+          "value": "$1.22B",
           "score": 95,
           "note": "Best hidden setups are usually small or mid cap, not already mega-cap."
         },
@@ -3302,7 +3290,7 @@
         },
         {
           "label": "Institutional ownership",
-          "value": "50.83%",
+          "value": "50.78%",
           "score": 82,
           "note": "Some sponsorship is good; extreme sponsorship can mean the name is already discovered."
         },
@@ -3320,7 +3308,7 @@
         },
         {
           "label": "Trading volume",
-          "value": "$36.8M/day",
+          "value": "$35.3M/day",
           "score": 62,
           "note": "Enough liquidity matters, but very high dollar volume usually means the stock is already known."
         },
@@ -3454,7 +3442,7 @@
           "label": "Insider/institutional confidence",
           "weight": 8,
           "score": 64,
-          "read": "Institutions: 50.83%; insiders: 11.33%."
+          "read": "Institutions: 50.78%; insiders: 11.33%."
         },
         {
           "label": "Story becoming real",
@@ -3487,7 +3475,7 @@
           "label": "Low but improving institutional ownership",
           "weight": 12,
           "score": 82,
-          "read": "50.83%"
+          "read": "50.78%"
         },
         {
           "label": "Recently improving fundamentals",
@@ -3499,7 +3487,7 @@
           "label": "Small/mid-cap status",
           "weight": 11,
           "score": 90,
-          "read": "$1.29B"
+          "read": "$1.22B"
         },
         {
           "label": "Misunderstood business model",
@@ -3515,10 +3503,10 @@
         }
       ],
       "multibaggerPath": {
-        "currentMarketCap": "$1.29B",
-        "threeXMarketCap": "$3.88B",
-        "fiveXMarketCap": "$6.47B",
-        "tenXMarketCap": "$12.94B",
+        "currentMarketCap": "$1.22B",
+        "threeXMarketCap": "$3.67B",
+        "fiveXMarketCap": "$6.11B",
+        "tenXMarketCap": "$12.23B",
         "path3": "stretched",
         "path5": "stretched",
         "path10": "unrealistic",
@@ -3640,13 +3628,13 @@
       },
       "entryQuality": {
         "classification": "Broken chart",
-        "priceVs50Day": "-6% vs 50-day EMA",
-        "priceVs200Day": "-17.2% vs long-term EMA proxy",
-        "rsi": 34.7,
-        "support": "$4.77",
-        "resistance": "$9.42",
+        "priceVs50Day": "-10.7% vs 50-day EMA",
+        "priceVs200Day": "-21.4% vs long-term EMA proxy",
+        "rsi": 29.8,
+        "support": "$4.45",
+        "resistance": "$9.06",
         "volumeTrend": "Weak",
-        "highLowLocation": "81.3% of 55-day high",
+        "highLowLocation": "77% of 55-day high",
         "earningsReaction": "Earnings/guidance language found - wait for confirmation if volatility is elevated."
       },
       "killCriteria": [
@@ -3655,7 +3643,7 @@
         "Free cash flow worsens and cash runway becomes dependent on unfavorable financing.",
         "Dilution accelerates beyond the current read: Unavailable.",
         "A major customer, backlog, product, or partnership catalyst fails to convert into real revenue.",
-        "The stock breaks major long-term support near $4.77 and fails to recover.",
+        "The stock breaks major long-term support near $4.45 and fails to recover.",
         "Balance sheet risk, filing/reporting risk, or hype/promotion risk moves into the red zone."
       ],
       "positionSizingCategory": "Small speculative basket candidate",

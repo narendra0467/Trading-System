@@ -4,11 +4,11 @@
   "primaryAction": "RKLB: SPEC BUY",
   "topSymbol": "RKLB",
   "topReason": "This is the kind of technical risk I would fund from a small speculative sleeve because momentum, relative strength, and volume agree.",
-  "buyCount": 4,
-  "starterCount": 1,
-  "watchCount": 2,
-  "plannedCapital": 3900,
-  "cashReserve": 1100,
+  "buyCount": 2,
+  "starterCount": 4,
+  "watchCount": 0,
+  "plannedCapital": 3400,
+  "cashReserve": 1600,
   "rules": [
     "This is not retirement money.",
     "Maximum 5-7 names.",
@@ -18,34 +18,34 @@
   ],
   "marketContext": {
     "SPY": {
-      "close": 738.65,
-      "return20": 4.22,
-      "return60": 7.14
+      "close": 737,
+      "return20": 4.68,
+      "return60": 8
     },
     "QQQ": {
-      "close": 705.88,
-      "return20": 9.14,
-      "return60": 15.94
+      "close": 705.56,
+      "return20": 9.5,
+      "return60": 17.32
     },
     "IWM": {
-      "close": 275.97,
-      "return20": -0.5,
-      "return60": 4.29
+      "close": 274.8,
+      "return20": 0.11,
+      "return60": 5.49
     },
     "ARKK": {
-      "close": 74.51,
-      "return20": -6.06,
-      "return60": 4.22
+      "close": 74.34,
+      "return20": -3.93,
+      "return60": 6.2
     },
     "XIU.TO": {
-      "close": 49.82,
-      "return20": -1.33,
-      "return60": 1.05
+      "close": 50.3,
+      "return20": -0.42,
+      "return60": 1.47
     },
     "XIC.TO": {
-      "close": 54.08,
-      "return20": -1.39,
-      "return60": 0.71
+      "close": 54.36,
+      "return20": -0.88,
+      "return60": 0.54
     }
   }
 }
