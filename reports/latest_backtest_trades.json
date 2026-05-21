@@ -828,159 +828,6 @@
     ]
   },
   {
-    "symbol": "GWRE",
-    "trades": 16,
-    "winRate": 56.3,
-    "avgReturnPct": 2.24,
-    "profitFactor": 3.11,
-    "tradeLog": [
-      {
-        "symbol": "GWRE",
-        "entryDate": "2023-03-06",
-        "exitDate": "2023-03-13",
-        "entry": 73.15,
-        "exit": 70.51,
-        "returnPct": -3.61,
-        "exitReason": "stop"
-      },
-      {
-        "symbol": "GWRE",
-        "entryDate": "2023-04-14",
-        "exitDate": "2023-04-24",
-        "entry": 77.51,
-        "exit": 76.76,
-        "returnPct": -0.97,
-        "exitReason": "trend_loss"
-      },
-      {
-        "symbol": "GWRE",
-        "entryDate": "2023-05-19",
-        "exitDate": "2023-05-24",
-        "entry": 81.6,
-        "exit": 79.1,
-        "returnPct": -3.07,
-        "exitReason": "stop"
-      },
-      {
-        "symbol": "GWRE",
-        "entryDate": "2023-08-30",
-        "exitDate": "2023-08-31",
-        "entry": 81.92,
-        "exit": 86.93,
-        "returnPct": 6.11,
-        "exitReason": "target"
-      },
-      {
-        "symbol": "GWRE",
-        "entryDate": "2023-10-05",
-        "exitDate": "2023-10-13",
-        "entry": 88.76,
-        "exit": 89.28,
-        "returnPct": 0.59,
-        "exitReason": "trend_loss"
-      },
-      {
-        "symbol": "GWRE",
-        "entryDate": "2023-11-09",
-        "exitDate": "2023-11-29",
-        "entry": 92.36,
-        "exit": 100.13,
-        "returnPct": 8.42,
-        "exitReason": "target"
-      },
-      {
-        "symbol": "GWRE",
-        "entryDate": "2023-12-18",
-        "exitDate": "2023-12-26",
-        "entry": 100.81,
-        "exit": 109.49,
-        "returnPct": 8.61,
-        "exitReason": "target"
-      },
-      {
-        "symbol": "GWRE",
-        "entryDate": "2024-01-30",
-        "exitDate": "2024-02-26",
-        "entry": 114.25,
-        "exit": 121.35,
-        "returnPct": 6.22,
-        "exitReason": "target"
-      },
-      {
-        "symbol": "GWRE",
-        "entryDate": "2024-03-11",
-        "exitDate": "2024-03-14",
-        "entry": 116.95,
-        "exit": 113.38,
-        "returnPct": -3.05,
-        "exitReason": "stop"
-      },
-      {
-        "symbol": "GWRE",
-        "entryDate": "2024-05-17",
-        "exitDate": "2024-05-30",
-        "entry": 122,
-        "exit": 117.82,
-        "returnPct": -3.43,
-        "exitReason": "stop"
-      },
-      {
-        "symbol": "GWRE",
-        "entryDate": "2024-07-16",
-        "exitDate": "2024-07-29",
-        "entry": 141.87,
-        "exit": 150.1,
-        "returnPct": 5.8,
-        "exitReason": "target"
-      },
-      {
-        "symbol": "GWRE",
-        "entryDate": "2024-08-20",
-        "exitDate": "2024-09-03",
-        "entry": 149.03,
-        "exit": 146.14,
-        "returnPct": -1.94,
-        "exitReason": "trend_loss"
-      },
-      {
-        "symbol": "GWRE",
-        "entryDate": "2024-10-14",
-        "exitDate": "2024-11-04",
-        "entry": 187.26,
-        "exit": 185.52,
-        "returnPct": -0.93,
-        "exitReason": "trend_loss"
-      },
-      {
-        "symbol": "GWRE",
-        "entryDate": "2024-11-20",
-        "exitDate": "2024-11-25",
-        "entry": 197.72,
-        "exit": 206.06,
-        "returnPct": 4.22,
-        "exitReason": "target"
-      },
-      {
-        "symbol": "GWRE",
-        "entryDate": "2025-05-30",
-        "exitDate": "2025-06-04",
-        "entry": 211.34,
-        "exit": 224.54,
-        "returnPct": 6.25,
-        "exitReason": "target"
-      },
-      {
-        "symbol": "GWRE",
-        "entryDate": "2025-10-13",
-        "exitDate": "2025-10-22",
-        "entry": 239.71,
-        "exit": 255.74,
-        "returnPct": 6.69,
-        "exitReason": "target"
-      }
-    ]
-  },
-  {
     "symbol": "RDDT",
     "trades": 5,
     "winRate": 40,
@@ -1282,6 +1129,159 @@
         "entry": 226.54,
         "exit": 272.44,
         "returnPct": 20.26,
+        "exitReason": "target"
+      }
+    ]
+  },
+  {
+    "symbol": "GWRE",
+    "trades": 16,
+    "winRate": 56.3,
+    "avgReturnPct": 2.08,
+    "profitFactor": 2.67,
+    "tradeLog": [
+      {
+        "symbol": "GWRE",
+        "entryDate": "2023-03-06",
+        "exitDate": "2023-03-13",
+        "entry": 73.15,
+        "exit": 70.51,
+        "returnPct": -3.61,
+        "exitReason": "stop"
+      },
+      {
+        "symbol": "GWRE",
+        "entryDate": "2023-04-18",
+        "exitDate": "2023-04-20",
+        "entry": 79.17,
+        "exit": 75.78,
+        "returnPct": -4.28,
+        "exitReason": "stop"
+      },
+      {
+        "symbol": "GWRE",
+        "entryDate": "2023-05-23",
+        "exitDate": "2023-05-24",
+        "entry": 81.34,
+        "exit": 79.13,
+        "returnPct": -2.72,
+        "exitReason": "stop"
+      },
+      {
+        "symbol": "GWRE",
+        "entryDate": "2023-08-30",
+        "exitDate": "2023-08-31",
+        "entry": 81.92,
+        "exit": 86.93,
+        "returnPct": 6.11,
+        "exitReason": "target"
+      },
+      {
+        "symbol": "GWRE",
+        "entryDate": "2023-10-05",
+        "exitDate": "2023-10-13",
+        "entry": 88.76,
+        "exit": 89.28,
+        "returnPct": 0.59,
+        "exitReason": "trend_loss"
+      },
+      {
+        "symbol": "GWRE",
+        "entryDate": "2023-11-09",
+        "exitDate": "2023-11-29",
+        "entry": 92.36,
+        "exit": 100.13,
+        "returnPct": 8.42,
+        "exitReason": "target"
+      },
+      {
+        "symbol": "GWRE",
+        "entryDate": "2023-12-18",
+        "exitDate": "2023-12-26",
+        "entry": 100.81,
+        "exit": 109.49,
+        "returnPct": 8.61,
+        "exitReason": "target"
+      },
+      {
+        "symbol": "GWRE",
+        "entryDate": "2024-01-30",
+        "exitDate": "2024-02-26",
+        "entry": 114.25,
+        "exit": 121.35,
+        "returnPct": 6.22,
+        "exitReason": "target"
+      },
+      {
+        "symbol": "GWRE",
+        "entryDate": "2024-03-11",
+        "exitDate": "2024-03-14",
+        "entry": 116.95,
+        "exit": 113.38,
+        "returnPct": -3.05,
+        "exitReason": "stop"
+      },
+      {
+        "symbol": "GWRE",
+        "entryDate": "2024-05-17",
+        "exitDate": "2024-05-30",
+        "entry": 122,
+        "exit": 117.82,
+        "returnPct": -3.43,
+        "exitReason": "stop"
+      },
+      {
+        "symbol": "GWRE",
+        "entryDate": "2024-07-16",
+        "exitDate": "2024-07-29",
+        "entry": 141.87,
+        "exit": 150.1,
+        "returnPct": 5.8,
+        "exitReason": "target"
+      },
+      {
+        "symbol": "GWRE",
+        "entryDate": "2024-08-20",
+        "exitDate": "2024-09-03",
+        "entry": 149.03,
+        "exit": 146.14,
+        "returnPct": -1.94,
+        "exitReason": "trend_loss"
+      },
+      {
+        "symbol": "GWRE",
+        "entryDate": "2024-10-14",
+        "exitDate": "2024-11-04",
+        "entry": 187.26,
+        "exit": 185.52,
+        "returnPct": -0.93,
+        "exitReason": "trend_loss"
+      },
+      {
+        "symbol": "GWRE",
+        "entryDate": "2024-11-20",
+        "exitDate": "2024-11-25",
+        "entry": 197.72,
+        "exit": 206.06,
+        "returnPct": 4.22,
+        "exitReason": "target"
+      },
+      {
+        "symbol": "GWRE",
+        "entryDate": "2025-05-30",
+        "exitDate": "2025-06-04",
+        "entry": 211.34,
+        "exit": 224.54,
+        "returnPct": 6.25,
+        "exitReason": "target"
+      },
+      {
+        "symbol": "GWRE",
+        "entryDate": "2025-10-10",
+        "exitDate": "2025-10-20",
+        "entry": 237,
+        "exit": 253.69,
+        "returnPct": 7.04,
         "exitReason": "target"
       }
     ]

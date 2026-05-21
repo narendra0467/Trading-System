@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-05-21T20:23:34.683Z",
+  "generatedAt": "2026-05-21T22:03:51.611Z",
   "qualityMode": true,
   "investorMode": true,
   "scanned": 78,
@@ -65,7 +65,7 @@
       ],
       "verdict": "Early Quality Compounder: The setup has enough business progress and survivability to deserve deeper research.",
       "dataQuality": {
-        "marketDataDate": "2026-05-21T20:23:33.123Z",
+        "marketDataDate": "2026-05-21T22:03:48.445Z",
         "latestReportedQuarter": "2026-03-31",
         "latestReportedQuarterEnd": "2026-03-31",
         "lastEarningsDate": "2026-03-31",
@@ -664,7 +664,7 @@
       ],
       "verdict": "Early Quality Compounder: The setup has enough business progress and survivability to deserve deeper research.",
       "dataQuality": {
-        "marketDataDate": "2026-05-21T20:23:26.975Z",
+        "marketDataDate": "2026-05-21T22:03:40.140Z",
         "latestReportedQuarter": "2026-03-31",
         "latestReportedQuarterEnd": "2026-03-31",
         "lastEarningsDate": "2026-03-31",
@@ -1266,7 +1266,7 @@
       ],
       "verdict": "Early Quality Compounder: The setup has enough business progress and survivability to deserve deeper research.",
       "dataQuality": {
-        "marketDataDate": "2026-05-21T20:23:22.086Z",
+        "marketDataDate": "2026-05-21T22:03:33.130Z",
         "latestReportedQuarter": "2026-03-31",
         "latestReportedQuarterEnd": "2026-03-31",
         "lastEarningsDate": "2026-03-31",
@@ -1876,11 +1876,11 @@
         "Analyst target is above current price, so estimate revisions matter.",
         "Recent Yahoo headline catalyst: ELF Q4 Earnings Surpass Estimates, Net Sales Increase Y/Y",
         "Recent Yahoo headline catalyst: ELF Stock Wipes Off Early Gains As Analysts Reset Price Targets After Q4 Results – Elf Brand Softness Remains A Concern",
-        "Recent Yahoo headline catalyst: UBS Adjusts Price Target on e.l.f. Beauty to $60 From $70, Maintains Neutral Rating"
+        "Recent Yahoo headline catalyst: Stocks Fall on Doubts Over a US-Iran Peace Deal"
       ],
       "verdict": "Early Quality Compounder: The setup has enough business progress and survivability to deserve deeper research.",
       "dataQuality": {
-        "marketDataDate": "2026-05-21T20:23:33.471Z",
+        "marketDataDate": "2026-05-21T22:03:49.177Z",
         "latestReportedQuarter": "2026-03-31",
         "latestReportedQuarterEnd": "2026-03-31",
         "lastEarningsDate": "2026-03-31",
@@ -1988,8 +1988,8 @@
         {
           "label": "Catalyst strength",
           "weight": 5,
-          "score": 86,
-          "note": "5 catalyst headlines; Positive catalyst tape."
+          "score": 92,
+          "note": "4 catalyst headlines; Positive catalyst tape."
         },
         {
           "label": "Under-the-radar factor",
@@ -2077,7 +2077,7 @@
         },
         {
           "label": "Social media hype",
-          "value": "Proxy 8",
+          "value": "Proxy 9",
           "score": 48,
           "note": "Uses headlines, bullish headline count, and short interest as a hype proxy."
         },
@@ -2384,7 +2384,7 @@
         ],
         "next24Months": [
           {
-            "text": "Recent Yahoo headline catalyst: UBS Adjusts Price Target on e.l.f. Beauty to $60 From $70, Maintains Neutral Rating",
+            "text": "Recent Yahoo headline catalyst: Stocks Fall on Doubts Over a US-Iran Peace Deal",
             "strength": "Weak"
           },
           {
@@ -2490,7 +2490,7 @@
       ],
       "verdict": "Early Quality Compounder: The setup has enough business progress and survivability to deserve deeper research.",
       "dataQuality": {
-        "marketDataDate": "2026-05-21T20:23:28.285Z",
+        "marketDataDate": "2026-05-21T22:03:40.831Z",
         "latestReportedQuarter": "2026-01-31",
         "latestReportedQuarterEnd": "2026-01-31",
         "lastEarningsDate": "2026-01-31",
@@ -3092,7 +3092,7 @@
       ],
       "verdict": "Speculative Multibagger Candidate: The setup has some proof, but the thesis still needs more evidence before it becomes high conviction.",
       "dataQuality": {
-        "marketDataDate": "2026-05-21T20:23:30.869Z",
+        "marketDataDate": "2026-05-21T22:03:45.185Z",
         "latestReportedQuarter": "2026-03-31",
         "latestReportedQuarterEnd": "2026-03-31",
         "lastEarningsDate": "2026-03-31",
@@ -3644,5 +3644,18 @@
       "investorModePass": true
     }
   ],
-  "errors": []
+  "errors": [
+    {
+      "symbol": "RGTI",
+      "error": "RGTI data request failed: 503"
+    },
+    {
+      "symbol": "TWST",
+      "error": "TWST data request failed: 503"
+    },
+    {
+      "symbol": "SLDP",
+      "error": "SLDP data request failed: 503"
+    }
+  ]
 }
