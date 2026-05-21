@@ -4,11 +4,11 @@
   "primaryAction": "HIVE.V: SPEC BUY",
   "topSymbol": "HIVE.V",
   "topReason": "This is the kind of technical risk I would fund from a small speculative sleeve because momentum, relative strength, and volume agree.",
-  "buyCount": 5,
-  "starterCount": 3,
-  "watchCount": 0,
-  "plannedCapital": 4500,
-  "cashReserve": 500,
+  "buyCount": 9,
+  "starterCount": 2,
+  "watchCount": 1,
+  "plannedCapital": 4900,
+  "cashReserve": 100,
   "rules": [
     "This is not retirement money.",
     "Maximum 5-7 names.",
@@ -18,34 +18,34 @@
   ],
   "marketContext": {
     "SPY": {
-      "close": 741.25,
-      "return20": 4.22,
-      "return60": 7.84
+      "close": 741.46,
+      "return20": 4.66,
+      "return60": 6.97
     },
     "QQQ": {
-      "close": 713.15,
-      "return20": 8.86,
-      "return60": 17.32
+      "close": 713.2,
+      "return20": 9.48,
+      "return60": 15.65
     },
     "IWM": {
-      "close": 279.87,
-      "return20": 1.23,
-      "return60": 6.28
+      "close": 281.79,
+      "return20": 2.28,
+      "return60": 6.5
     },
     "ARKK": {
-      "close": 75.84,
-      "return20": -4.36,
-      "return60": 5.23
+      "close": 76.33,
+      "return20": -0.22,
+      "return60": 3.79
     },
     "XIU.TO": {
-      "close": 50.58,
+      "close": 50.69,
       "return20": 1.4,
-      "return60": 2.37
+      "return60": 2.78
     },
     "XIC.TO": {
-      "close": 54.64,
-      "return20": 1.28,
-      "return60": 1.22
+      "close": 54.97,
+      "return20": 1.4,
+      "return60": 1.27
     }
   }
 }
