@@ -4,11 +4,11 @@
   "primaryAction": "QBTS: SPEC BUY",
   "topSymbol": "QBTS",
   "topReason": "This is the kind of technical risk I would fund from a small speculative sleeve because momentum, relative strength, and volume agree.",
-  "buyCount": 9,
-  "starterCount": 1,
+  "buyCount": 8,
+  "starterCount": 2,
   "watchCount": 0,
-  "plannedCapital": 4900,
-  "cashReserve": 100,
+  "plannedCapital": 4700,
+  "cashReserve": 300,
   "rules": [
     "This is not retirement money.",
     "Maximum 5-7 names.",
@@ -18,34 +18,34 @@
   ],
   "marketContext": {
     "SPY": {
-      "close": 746.94,
-      "return20": 4.62,
-      "return60": 8.36
+      "close": 745.7,
+      "return20": 4.45,
+      "return60": 8.18
     },
     "QQQ": {
-      "close": 719.48,
-      "return20": 8.38,
-      "return60": 18.09
+      "close": 717.54,
+      "return20": 8.08,
+      "return60": 17.78
     },
     "IWM": {
-      "close": 285.13,
-      "return20": 3.07,
-      "return60": 7.2
+      "close": 285.1,
+      "return20": 3.05,
+      "return60": 7.18
     },
     "ARKK": {
-      "close": 77.14,
-      "return20": 0.84,
-      "return60": 3.39
-    },
-    "XIU.TO": {
-      "close": 50.82,
-      "return20": 1.64,
+      "close": 76.4,
+      "return20": -0.13,
       "return60": 2.4
     },
+    "XIU.TO": {
+      "close": 50.78,
+      "return20": 1.56,
+      "return60": 2.32
+    },
     "XIC.TO": {
-      "close": 55.17,
-      "return20": 1.85,
-      "return60": 1.1
+      "close": 55.09,
+      "return20": 1.7,
+      "return60": 0.95
     }
   }
 }
