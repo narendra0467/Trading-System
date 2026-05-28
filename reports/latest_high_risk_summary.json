@@ -1,12 +1,12 @@
 {
   "accountSize": 5000,
   "sleeveName": "Very High Risk / High Reward",
-  "primaryAction": "IREN: SPEC BUY",
-  "topSymbol": "IREN",
+  "primaryAction": "HIVE.V: SPEC BUY",
+  "topSymbol": "HIVE.V",
   "topReason": "This is the kind of technical risk I would fund from a small speculative sleeve because momentum, relative strength, and volume agree.",
-  "buyCount": 10,
-  "starterCount": 2,
-  "watchCount": 0,
+  "buyCount": 12,
+  "starterCount": 0,
+  "watchCount": 2,
   "plannedCapital": 4900,
   "cashReserve": 100,
   "rules": [
@@ -18,34 +18,34 @@
   ],
   "marketContext": {
     "SPY": {
-      "close": 750.46,
-      "return20": 5.45,
-      "return60": 9.34
+      "close": 754.76,
+      "return20": 6.07,
+      "return60": 10.94
     },
     "QQQ": {
-      "close": 729.45,
-      "return20": 10.93,
-      "return60": 19.96
+      "close": 736.37,
+      "return20": 11.31,
+      "return60": 22.41
     },
     "IWM": {
-      "close": 290.37,
-      "return20": 6.01,
-      "return60": 10.07
+      "close": 292.12,
+      "return20": 7.37,
+      "return60": 12.68
     },
     "ARKK": {
-      "close": 77.95,
-      "return20": 3.31,
-      "return60": 5.03
+      "close": 80.65,
+      "return20": 9.69,
+      "return60": 11.62
     },
     "XIU.TO": {
-      "close": 50.64,
-      "return20": 2.14,
-      "return60": 1.16
+      "close": 50.62,
+      "return20": 2.93,
+      "return60": 2.97
     },
     "XIC.TO": {
-      "close": 55.05,
-      "return20": 2.59,
-      "return60": -0.36
+      "close": 55.18,
+      "return20": 3.68,
+      "return60": 2.07
     }
   }
 }
