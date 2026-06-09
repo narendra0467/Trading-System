@@ -1,14 +1,14 @@
 {
   "accountSize": 5000,
   "sleeveName": "Very High Risk / High Reward",
-  "primaryAction": "WULF: STARTER BUY",
-  "topSymbol": "WULF",
+  "primaryAction": "HIVE.V: WATCHLIST",
+  "topSymbol": "HIVE.V",
   "topReason": "The chart is interesting, but event risk is elevated. I would reduce size or wait until the news clears.",
   "buyCount": 0,
-  "starterCount": 1,
-  "watchCount": 4,
-  "plannedCapital": 1700,
-  "cashReserve": 3300,
+  "starterCount": 0,
+  "watchCount": 1,
+  "plannedCapital": 300,
+  "cashReserve": 4700,
   "rules": [
     "This is not retirement money.",
     "Maximum 5-7 names.",
@@ -18,34 +18,34 @@
   ],
   "marketContext": {
     "SPY": {
-      "close": 739.22,
-      "return20": 0.22,
-      "return60": 10.98
+      "close": 728,
+      "return20": -1.53,
+      "return60": 9.92
     },
     "QQQ": {
-      "close": 716.07,
-      "return20": 0.68,
-      "return60": 19.89
+      "close": 695.01,
+      "return20": -2.56,
+      "return60": 17.06
     },
     "IWM": {
-      "close": 284.11,
-      "return20": -0.02,
-      "return60": 14.83
+      "close": 280.64,
+      "return20": -1.64,
+      "return60": 13.81
     },
     "ARKK": {
-      "close": 75.88,
-      "return20": -4.1,
-      "return60": 7.42
+      "close": 73.19,
+      "return20": -8.55,
+      "return60": 4.19
     },
     "XIU.TO": {
-      "close": 50.98,
-      "return20": 1.78,
-      "return60": 6.14
+      "close": 50.62,
+      "return20": 1.12,
+      "return60": 6.12
     },
     "XIC.TO": {
-      "close": 55.21,
-      "return20": 1.36,
-      "return60": 5.04
+      "close": 54.66,
+      "return20": 0.2,
+      "return60": 4.95
     }
   }
 }
