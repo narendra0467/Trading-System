@@ -1,16 +1,16 @@
 {
   "regime": "MIXED",
-  "score": 58,
+  "score": 52,
   "bullishSizeMultiplier": 0.5,
   "bearishSizeMultiplier": 0.75,
-  "vix": 19.87,
+  "vix": 21.66,
   "indexes": [
     {
       "symbol": "SPY",
       "score": 55,
-      "close": 737.05,
-      "rsi14": 35.8,
-      "adx14": 41.5,
+      "close": 728.25,
+      "rsi14": 27.6,
+      "adx14": 43.9,
       "above20": false,
       "above50": true,
       "above150": true,
@@ -21,9 +21,9 @@
     {
       "symbol": "QQQ",
       "score": 55,
-      "close": 707.83,
-      "rsi14": 38,
-      "adx14": 45.3,
+      "close": 696.22,
+      "rsi14": 31.7,
+      "adx14": 47,
       "above20": false,
       "above50": true,
       "above150": true,
@@ -33,15 +33,17 @@
     },
     {
       "symbol": "IWM",
-      "score": 65,
-      "close": 285.02,
-      "rsi14": 47.8,
-      "adx14": 22.1,
-      "above20": true,
+      "score": 45,
+      "close": 283.39,
+      "rsi14": 44.5,
+      "adx14": 24.4,
+      "above20": false,
       "above50": true,
       "above150": true,
-      "reasons": []
+      "reasons": [
+        "IWM below 20 EMA"
+      ]
     }
   ],
-  "reason": "SPY below 20 EMA; QQQ below 20 EMA"
+  "reason": "SPY below 20 EMA; QQQ below 20 EMA; IWM below 20 EMA"
 }
