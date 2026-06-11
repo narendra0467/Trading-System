@@ -111,8 +111,8 @@
     "symbol": "SNDK",
     "trades": 6,
     "winRate": 66.7,
-    "avgReturnPct": 14.87,
-    "profitFactor": 5,
+    "avgReturnPct": 15.55,
+    "profitFactor": 5.19,
     "tradeLog": [
       {
         "symbol": "SNDK",
@@ -164,8 +164,8 @@
         "entryDate": "2026-05-22",
         "exitDate": "2026-06-11",
         "entry": 1520.71,
-        "exit": 1819,
-        "returnPct": 19.61,
+        "exit": 1881.51,
+        "returnPct": 23.73,
         "exitReason": "time"
       }
     ]
@@ -2106,119 +2106,11 @@
     ]
   },
   {
-    "symbol": "CELH",
-    "trades": 11,
-    "winRate": 45.5,
-    "avgReturnPct": 2.42,
-    "profitFactor": 1.99,
-    "tradeLog": [
-      {
-        "symbol": "CELH",
-        "entryDate": "2022-07-18",
-        "exitDate": "2022-08-01",
-        "entry": 27.75,
-        "exit": 32.33,
-        "returnPct": 16.53,
-        "exitReason": "target"
-      },
-      {
-        "symbol": "CELH",
-        "entryDate": "2022-08-23",
-        "exitDate": "2022-09-01",
-        "entry": 34.32,
-        "exit": 33.06,
-        "returnPct": -3.65,
-        "exitReason": "trend_loss"
-      },
-      {
-        "symbol": "CELH",
-        "entryDate": "2022-11-25",
-        "exitDate": "2022-12-15",
-        "entry": 34.58,
-        "exit": 35.71,
-        "returnPct": 3.27,
-        "exitReason": "trend_loss"
-      },
-      {
-        "symbol": "CELH",
-        "entryDate": "2023-01-12",
-        "exitDate": "2023-01-18",
-        "entry": 35.66,
-        "exit": 34.08,
-        "returnPct": -4.42,
-        "exitReason": "stop"
-      },
-      {
-        "symbol": "CELH",
-        "entryDate": "2023-06-02",
-        "exitDate": "2023-06-23",
-        "entry": 45.42,
-        "exit": 50.26,
-        "returnPct": 10.65,
-        "exitReason": "target"
-      },
-      {
-        "symbol": "CELH",
-        "entryDate": "2023-07-11",
-        "exitDate": "2023-07-11",
-        "entry": 49.69,
-        "exit": 47.47,
-        "returnPct": -4.47,
-        "exitReason": "stop"
-      },
-      {
-        "symbol": "CELH",
-        "entryDate": "2024-04-08",
-        "exitDate": "2024-04-15",
-        "entry": 83.97,
-        "exit": 77.04,
-        "returnPct": -8.26,
-        "exitReason": "stop"
-      },
-      {
-        "symbol": "CELH",
-        "entryDate": "2025-05-14",
-        "exitDate": "2025-05-21",
-        "entry": 37.99,
-        "exit": 36.58,
-        "returnPct": -3.71,
-        "exitReason": "trend_loss"
-      },
-      {
-        "symbol": "CELH",
-        "entryDate": "2025-06-25",
-        "exitDate": "2025-07-16",
-        "entry": 45.51,
-        "exit": 44.45,
-        "returnPct": -2.33,
-        "exitReason": "trend_loss"
-      },
-      {
-        "symbol": "CELH",
-        "entryDate": "2025-08-08",
-        "exitDate": "2025-08-18",
-        "entry": 51.15,
-        "exit": 58.66,
-        "returnPct": 14.68,
-        "exitReason": "target"
-      },
-      {
-        "symbol": "CELH",
-        "entryDate": "2025-09-30",
-        "exitDate": "2025-10-09",
-        "entry": 58.66,
-        "exit": 63.53,
-        "returnPct": 8.31,
-        "exitReason": "target"
-      }
-    ]
-  },
-  {
     "symbol": "C",
     "trades": 18,
     "winRate": 50,
-    "avgReturnPct": 1.44,
-    "profitFactor": 1.98,
+    "avgReturnPct": 1.47,
+    "profitFactor": 2,
     "tradeLog": [
       {
         "symbol": "C",
@@ -2378,9 +2270,117 @@
         "entryDate": "2026-06-03",
         "exitDate": "2026-06-11",
         "entry": 130.93,
-        "exit": 137.33,
-        "returnPct": 4.89,
+        "exit": 138.07,
+        "returnPct": 5.45,
         "exitReason": "time"
+      }
+    ]
+  },
+  {
+    "symbol": "CELH",
+    "trades": 11,
+    "winRate": 45.5,
+    "avgReturnPct": 2.42,
+    "profitFactor": 1.99,
+    "tradeLog": [
+      {
+        "symbol": "CELH",
+        "entryDate": "2022-07-18",
+        "exitDate": "2022-08-01",
+        "entry": 27.75,
+        "exit": 32.33,
+        "returnPct": 16.53,
+        "exitReason": "target"
+      },
+      {
+        "symbol": "CELH",
+        "entryDate": "2022-08-23",
+        "exitDate": "2022-09-01",
+        "entry": 34.32,
+        "exit": 33.06,
+        "returnPct": -3.65,
+        "exitReason": "trend_loss"
+      },
+      {
+        "symbol": "CELH",
+        "entryDate": "2022-11-25",
+        "exitDate": "2022-12-15",
+        "entry": 34.58,
+        "exit": 35.71,
+        "returnPct": 3.27,
+        "exitReason": "trend_loss"
+      },
+      {
+        "symbol": "CELH",
+        "entryDate": "2023-01-12",
+        "exitDate": "2023-01-18",
+        "entry": 35.66,
+        "exit": 34.08,
+        "returnPct": -4.42,
+        "exitReason": "stop"
+      },
+      {
+        "symbol": "CELH",
+        "entryDate": "2023-06-02",
+        "exitDate": "2023-06-23",
+        "entry": 45.42,
+        "exit": 50.26,
+        "returnPct": 10.65,
+        "exitReason": "target"
+      },
+      {
+        "symbol": "CELH",
+        "entryDate": "2023-07-11",
+        "exitDate": "2023-07-11",
+        "entry": 49.69,
+        "exit": 47.47,
+        "returnPct": -4.47,
+        "exitReason": "stop"
+      },
+      {
+        "symbol": "CELH",
+        "entryDate": "2024-04-08",
+        "exitDate": "2024-04-15",
+        "entry": 83.97,
+        "exit": 77.04,
+        "returnPct": -8.26,
+        "exitReason": "stop"
+      },
+      {
+        "symbol": "CELH",
+        "entryDate": "2025-05-14",
+        "exitDate": "2025-05-21",
+        "entry": 37.99,
+        "exit": 36.58,
+        "returnPct": -3.71,
+        "exitReason": "trend_loss"
+      },
+      {
+        "symbol": "CELH",
+        "entryDate": "2025-06-25",
+        "exitDate": "2025-07-16",
+        "entry": 45.51,
+        "exit": 44.45,
+        "returnPct": -2.33,
+        "exitReason": "trend_loss"
+      },
+      {
+        "symbol": "CELH",
+        "entryDate": "2025-08-08",
+        "exitDate": "2025-08-18",
+        "entry": 51.15,
+        "exit": 58.66,
+        "returnPct": 14.68,
+        "exitReason": "target"
+      },
+      {
+        "symbol": "CELH",
+        "entryDate": "2025-09-30",
+        "exitDate": "2025-10-09",
+        "entry": 58.66,
+        "exit": 63.53,
+        "returnPct": 8.31,
+        "exitReason": "target"
       }
     ]
   },
@@ -3981,7 +3981,7 @@
         "exitDate": "2022-02-09",
         "entry": 124.88,
         "exit": 123.04,
-        "returnPct": -1.48,
+        "returnPct": -1.47,
         "exitReason": "stop"
       },
       {
@@ -4788,159 +4788,6 @@
     ]
   },
   {
-    "symbol": "AAPL",
-    "trades": 16,
-    "winRate": 37.5,
-    "avgReturnPct": 0.42,
-    "profitFactor": 1.33,
-    "tradeLog": [
-      {
-        "symbol": "AAPL",
-        "entryDate": "2022-01-31",
-        "exitDate": "2022-02-11",
-        "entry": 170.16,
-        "exit": 168.64,
-        "returnPct": -0.89,
-        "exitReason": "trend_loss"
-      },
-      {
-        "symbol": "AAPL",
-        "entryDate": "2022-08-26",
-        "exitDate": "2022-08-26",
-        "entry": 170.57,
-        "exit": 165.74,
-        "returnPct": -2.83,
-        "exitReason": "stop"
-      },
-      {
-        "symbol": "AAPL",
-        "entryDate": "2023-03-16",
-        "exitDate": "2023-03-31",
-        "entry": 152.16,
-        "exit": 163.74,
-        "returnPct": 7.61,
-        "exitReason": "target"
-      },
-      {
-        "symbol": "AAPL",
-        "entryDate": "2023-04-28",
-        "exitDate": "2023-05-30",
-        "entry": 168.49,
-        "exit": 176.9,
-        "returnPct": 4.99,
-        "exitReason": "target"
-      },
-      {
-        "symbol": "AAPL",
-        "entryDate": "2023-06-09",
-        "exitDate": "2023-06-30",
-        "entry": 181.5,
-        "exit": 190.32,
-        "returnPct": 4.86,
-        "exitReason": "target"
-      },
-      {
-        "symbol": "AAPL",
-        "entryDate": "2023-12-06",
-        "exitDate": "2023-12-26",
-        "entry": 194.45,
-        "exit": 193.05,
-        "returnPct": -0.72,
-        "exitReason": "trend_loss"
-      },
-      {
-        "symbol": "AAPL",
-        "entryDate": "2024-06-04",
-        "exitDate": "2024-06-11",
-        "entry": 194.64,
-        "exit": 202.83,
-        "returnPct": 4.21,
-        "exitReason": "target"
-      },
-      {
-        "symbol": "AAPL",
-        "entryDate": "2024-07-16",
-        "exitDate": "2024-07-18",
-        "entry": 235,
-        "exit": 226.58,
-        "returnPct": -3.58,
-        "exitReason": "stop"
-      },
-      {
-        "symbol": "AAPL",
-        "entryDate": "2024-08-20",
-        "exitDate": "2024-09-03",
-        "entry": 225.77,
-        "exit": 222.77,
-        "returnPct": -1.33,
-        "exitReason": "trend_loss"
-      },
-      {
-        "symbol": "AAPL",
-        "entryDate": "2024-09-25",
-        "exitDate": "2024-10-07",
-        "entry": 224.93,
-        "exit": 221.69,
-        "returnPct": -1.44,
-        "exitReason": "trend_loss"
-      },
-      {
-        "symbol": "AAPL",
-        "entryDate": "2024-12-23",
-        "exitDate": "2025-01-02",
-        "entry": 254.77,
-        "exit": 247.32,
-        "returnPct": -2.92,
-        "exitReason": "stop"
-      },
-      {
-        "symbol": "AAPL",
-        "entryDate": "2025-08-28",
-        "exitDate": "2025-09-10",
-        "entry": 230.82,
-        "exit": 226.79,
-        "returnPct": -1.75,
-        "exitReason": "trend_loss"
-      },
-      {
-        "symbol": "AAPL",
-        "entryDate": "2025-10-20",
-        "exitDate": "2025-10-27",
-        "entry": 255.89,
-        "exit": 267.16,
-        "returnPct": 4.4,
-        "exitReason": "target"
-      },
-      {
-        "symbol": "AAPL",
-        "entryDate": "2025-11-24",
-        "exitDate": "2025-12-15",
-        "entry": 270.9,
-        "exit": 274.11,
-        "returnPct": 1.18,
-        "exitReason": "trend_loss"
-      },
-      {
-        "symbol": "AAPL",
-        "entryDate": "2026-02-27",
-        "exitDate": "2026-02-27",
-        "entry": 272.81,
-        "exit": 265.96,
-        "returnPct": -2.51,
-        "exitReason": "stop"
-      },
-      {
-        "symbol": "AAPL",
-        "entryDate": "2026-06-03",
-        "exitDate": "2026-06-08",
-        "entry": 314.18,
-        "exit": 306.3,
-        "returnPct": -2.51,
-        "exitReason": "stop"
-      }
-    ]
-  },
-  {
     "symbol": "AMD",
     "trades": 13,
     "winRate": 38.5,
@@ -5332,6 +5179,159 @@
         "entry": 1078.52,
         "exit": 1026.56,
         "returnPct": -4.82,
+        "exitReason": "stop"
+      }
+    ]
+  },
+  {
+    "symbol": "AAPL",
+    "trades": 16,
+    "winRate": 37.5,
+    "avgReturnPct": 0.29,
+    "profitFactor": 1.2,
+    "tradeLog": [
+      {
+        "symbol": "AAPL",
+        "entryDate": "2022-02-01",
+        "exitDate": "2022-02-11",
+        "entry": 174.01,
+        "exit": 168.64,
+        "returnPct": -3.09,
+        "exitReason": "trend_loss"
+      },
+      {
+        "symbol": "AAPL",
+        "entryDate": "2022-08-26",
+        "exitDate": "2022-08-26",
+        "entry": 170.57,
+        "exit": 165.74,
+        "returnPct": -2.83,
+        "exitReason": "stop"
+      },
+      {
+        "symbol": "AAPL",
+        "entryDate": "2023-03-16",
+        "exitDate": "2023-03-31",
+        "entry": 152.16,
+        "exit": 163.74,
+        "returnPct": 7.61,
+        "exitReason": "target"
+      },
+      {
+        "symbol": "AAPL",
+        "entryDate": "2023-04-28",
+        "exitDate": "2023-05-30",
+        "entry": 168.49,
+        "exit": 176.9,
+        "returnPct": 4.99,
+        "exitReason": "target"
+      },
+      {
+        "symbol": "AAPL",
+        "entryDate": "2023-06-09",
+        "exitDate": "2023-06-30",
+        "entry": 181.5,
+        "exit": 190.32,
+        "returnPct": 4.86,
+        "exitReason": "target"
+      },
+      {
+        "symbol": "AAPL",
+        "entryDate": "2023-12-06",
+        "exitDate": "2023-12-26",
+        "entry": 194.45,
+        "exit": 193.05,
+        "returnPct": -0.72,
+        "exitReason": "trend_loss"
+      },
+      {
+        "symbol": "AAPL",
+        "entryDate": "2024-06-04",
+        "exitDate": "2024-06-11",
+        "entry": 194.64,
+        "exit": 202.83,
+        "returnPct": 4.21,
+        "exitReason": "target"
+      },
+      {
+        "symbol": "AAPL",
+        "entryDate": "2024-07-16",
+        "exitDate": "2024-07-18",
+        "entry": 235,
+        "exit": 226.58,
+        "returnPct": -3.58,
+        "exitReason": "stop"
+      },
+      {
+        "symbol": "AAPL",
+        "entryDate": "2024-08-20",
+        "exitDate": "2024-09-03",
+        "entry": 225.77,
+        "exit": 222.77,
+        "returnPct": -1.33,
+        "exitReason": "trend_loss"
+      },
+      {
+        "symbol": "AAPL",
+        "entryDate": "2024-09-25",
+        "exitDate": "2024-10-07",
+        "entry": 224.93,
+        "exit": 221.69,
+        "returnPct": -1.44,
+        "exitReason": "trend_loss"
+      },
+      {
+        "symbol": "AAPL",
+        "entryDate": "2024-12-23",
+        "exitDate": "2025-01-02",
+        "entry": 254.77,
+        "exit": 247.32,
+        "returnPct": -2.92,
+        "exitReason": "stop"
+      },
+      {
+        "symbol": "AAPL",
+        "entryDate": "2025-08-28",
+        "exitDate": "2025-09-10",
+        "entry": 230.82,
+        "exit": 226.79,
+        "returnPct": -1.75,
+        "exitReason": "trend_loss"
+      },
+      {
+        "symbol": "AAPL",
+        "entryDate": "2025-10-20",
+        "exitDate": "2025-10-27",
+        "entry": 255.89,
+        "exit": 267.16,
+        "returnPct": 4.4,
+        "exitReason": "target"
+      },
+      {
+        "symbol": "AAPL",
+        "entryDate": "2025-11-24",
+        "exitDate": "2025-12-15",
+        "entry": 270.9,
+        "exit": 274.11,
+        "returnPct": 1.18,
+        "exitReason": "trend_loss"
+      },
+      {
+        "symbol": "AAPL",
+        "entryDate": "2026-02-27",
+        "exitDate": "2026-02-27",
+        "entry": 272.81,
+        "exit": 265.96,
+        "returnPct": -2.51,
+        "exitReason": "stop"
+      },
+      {
+        "symbol": "AAPL",
+        "entryDate": "2026-06-03",
+        "exitDate": "2026-06-08",
+        "entry": 314.18,
+        "exit": 306.3,
+        "returnPct": -2.51,
         "exitReason": "stop"
       }
     ]
@@ -9407,7 +9407,7 @@
         "entryDate": "2022-03-03",
         "exitDate": "2022-03-03",
         "entry": 159.58,
-        "exit": 156.57,
+        "exit": 156.58,
         "returnPct": -1.88,
         "exitReason": "stop"
       },
