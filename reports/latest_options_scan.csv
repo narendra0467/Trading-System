@@ -1,21 +1,21 @@
 symbol,signal,strategy,score,reason,marketRegime,eventRisk,contracts,maxRiskDollars,riskPerContract,riskPerSpread,plannedCapital
-SNDK,NO_TRADE,CALL_DEBIT_SPREAD,92,No liquid long option found,RISK_ON,HIGH,0,1000,,,
+C,NO_TRADE,CALL_DEBIT_SPREAD,92,No liquid long option found,RISK_ON,HIGH,0,1000,,,
 WDC,NO_TRADE,CALL_DEBIT_SPREAD,92,No liquid long option found,RISK_ON,HIGH,0,1000,,,
-AMD,AVOID_EVENT_RISK,CALL_DEBIT_SPREAD,77,bull trend stack; ADX confirms bullish trend,RISK_ON,HIGH,0,1000,3525,3525,0
-MU,AVOID_EVENT_RISK,CALL_DEBIT_SPREAD,77,bull trend stack; ADX confirms bullish trend,RISK_ON,HIGH,0,1000,14182.5,14182.5,0
-C,AVOID_EVENT_RISK,CALL_DEBIT_SPREAD,67,bull trend stack; overbought risk; ADX confirms bullish trend,RISK_ON,HIGH,2,1000,455,455,910
-INTC,AVOID_EVENT_RISK,CALL_DEBIT_SPREAD,65,bull trend stack; ADX confirms bullish trend; above upper Bollinger band,RISK_ON,HIGH,0,1000,1110,1110,0
-TSM,AVOID_EVENT_RISK,CALL_DEBIT_SPREAD,65,bull trend stack; ADX confirms bullish trend,RISK_ON,HIGH,0,1000,2105,2105,0
-GOOGL,NO_TRADE,NONE,62,bull trend stack; ADX confirms bullish trend; neutral technical regime,RISK_ON,HIGH,0,1000,,,
+AMD,AVOID_EVENT_RISK,CALL_DEBIT_SPREAD,77,bull trend stack; ADX confirms bullish trend,RISK_ON,HIGH,0,1000,3487.5,3487.5,0
+MU,AVOID_EVENT_RISK,CALL_DEBIT_SPREAD,77,bull trend stack; ADX confirms bullish trend,RISK_ON,HIGH,0,1000,14565,14565,0
+SNDK,AVOID_EVENT_RISK,CALL_DEBIT_SPREAD,77,bull trend stack; overbought risk; ADX confirms bullish trend; above upper Bollinger band,RISK_ON,HIGH,0,1000,26080,26080,0
 NVDA,NO_TRADE,NONE,62,bull trend stack; ADX confirms bullish trend; neutral technical regime,RISK_ON,HIGH,0,1000,,,
+TSLA,NO_TRADE,NONE,60,bull trend stack; ADX confirms bearish trend; neutral technical regime,RISK_ON,HIGH,0,1000,,,
+INTC,AVOID_EVENT_RISK,CALL_DEBIT_SPREAD,55,bull trend stack; ADX confirms bullish trend; above upper Bollinger band,RISK_ON,HIGH,0,1000,1110,1110,0
+TSM,AVOID_EVENT_RISK,CALL_DEBIT_SPREAD,55,bull trend stack; ADX confirms bullish trend,RISK_ON,HIGH,0,1000,1792.5,1792.5,0
 PLTR,NO_TRADE,NONE,53,bear trend stack; ADX confirms bearish trend; neutral technical regime,RISK_ON,HIGH,0,1000,,,
-NFLX,AVOID_EVENT_RISK,PUT_DEBIT_SPREAD,45,bear trend stack; ADX confirms bearish trend,RISK_ON,HIGH,1,500,387.5,387.5,387.5
-MSTR,AVOID_EVENT_RISK,PUT_DEBIT_SPREAD,43,bear trend stack; ADX confirms bearish trend,RISK_ON,HIGH,0,500,967.5,967.5,0
+NFLX,AVOID_EVENT_RISK,PUT_DEBIT_SPREAD,45,bear trend stack; ADX confirms bearish trend,RISK_ON,HIGH,1,500,370,370,370
+MSTR,AVOID_EVENT_RISK,PUT_DEBIT_SPREAD,43,bear trend stack; ADX confirms bearish trend,RISK_ON,HIGH,0,500,1037.5,1037.5,0
 AAPL,NO_TRADE,NONE,40,ADX confirms bearish trend; neutral technical regime,RISK_ON,HIGH,0,1000,,,
 AMZN,NO_TRADE,NONE,40,ADX confirms bearish trend; neutral technical regime,RISK_ON,HIGH,0,1000,,,
-MSFT,AVOID_EVENT_RISK,PUT_DEBIT_SPREAD,40,bear trend stack; ADX confirms bearish trend,RISK_ON,HIGH,0,500,1272.5,1272.5,0
-TSLA,NO_TRADE,NONE,35,ADX confirms bearish trend; neutral technical regime,RISK_ON,HIGH,0,1000,,,
-META,AVOID_EVENT_RISK,PUT_DEBIT_SPREAD,33,bear trend stack; ADX confirms bullish trend,RISK_ON,HIGH,0,500,1745,1745,0
+GOOGL,NO_TRADE,NONE,37,ADX confirms bullish trend; neutral technical regime,RISK_ON,HIGH,0,1000,,,
 AVGO,NO_TRADE,NONE,30,ADX confirms bearish trend; neutral technical regime,RISK_ON,HIGH,0,1000,,,
+MSFT,AVOID_EVENT_RISK,PUT_DEBIT_SPREAD,30,bear trend stack; ADX confirms bearish trend,RISK_ON,HIGH,0,500,1050,1050,0
 ORCL,NO_TRADE,NONE,30,ADX confirms bearish trend; neutral technical regime,RISK_ON,HIGH,0,1000,,,
-COIN,AVOID_EVENT_RISK,PUT_DEBIT_SPREAD,23,bear trend stack; ADX confirms bullish trend,RISK_ON,HIGH,0,500,1340,1340,0
+COIN,AVOID_EVENT_RISK,PUT_DEBIT_SPREAD,23,bear trend stack; ADX confirms bullish trend,RISK_ON,HIGH,0,500,1427.5,1427.5,0
+META,AVOID_EVENT_RISK,PUT_DEBIT_SPREAD,23,bear trend stack; ADX confirms bullish trend,RISK_ON,HIGH,0,500,2072.5,2072.5,0
