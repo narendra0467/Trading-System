@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-06-19T20:17:51.626Z",
+  "generatedAt": "2026-06-19T21:47:05.154Z",
   "qualityMode": true,
   "investorMode": true,
   "scanned": 78,
@@ -65,7 +65,7 @@
       ],
       "verdict": "Early Quality Compounder: The setup has enough business progress and survivability to deserve deeper research.",
       "dataQuality": {
-        "marketDataDate": "2026-06-19T20:17:50.144Z",
+        "marketDataDate": "2026-06-19T21:47:03.714Z",
         "latestReportedQuarter": "2026-03-31",
         "latestReportedQuarterEnd": "2026-03-31",
         "lastEarningsDate": "2026-03-31",
@@ -650,7 +650,6 @@
         "The stock should remain liquid enough to exit and avoid becoming a purely hype-driven trade."
       ],
       "redFlags": [
-        "price is below the 50-day trend line",
         "underperforming benchmark",
         "operating margin is negative",
         "profit margin is negative",
@@ -668,7 +667,7 @@
       ],
       "verdict": "Early Quality Compounder: The setup has enough business progress and survivability to deserve deeper research.",
       "dataQuality": {
-        "marketDataDate": "2026-06-19T20:17:37.903Z",
+        "marketDataDate": "2026-06-19T21:46:52.701Z",
         "latestReportedQuarter": "2026-03-31",
         "latestReportedQuarterEnd": "2026-03-31",
         "lastEarningsDate": "2026-03-31",
@@ -1091,7 +1090,7 @@
         "read": "High if cash runway is weak or share growth is heavy."
       },
       "inflectionSignal": {
-        "classification": "No clear inflection",
+        "classification": "Early inflection",
         "signals": [
           {
             "label": "Revenue acceleration",
@@ -1140,7 +1139,7 @@
           },
           {
             "label": "Valuation reset after selloff",
-            "passed": false,
+            "passed": true,
             "value": "Fair"
           }
         ]
@@ -1192,14 +1191,14 @@
         ]
       },
       "entryQuality": {
-        "classification": "Broken chart",
-        "priceVs50Day": "-1.3% vs 50-day EMA",
-        "priceVs200Day": "-5.4% vs long-term EMA proxy",
-        "rsi": 51.9,
-        "support": "$49.93",
-        "resistance": "$79.34",
-        "volumeTrend": "Weak",
-        "highLowLocation": "80.7% of 55-day high",
+        "classification": "Ready for starter",
+        "priceVs50Day": "1.4% vs 50-day EMA",
+        "priceVs200Day": "-2.8% vs long-term EMA proxy",
+        "rsi": 58.2,
+        "support": "$58.05",
+        "resistance": "$61.21",
+        "volumeTrend": "Mixed",
+        "highLowLocation": "82.9% of 55-day high",
         "earningsReaction": "Earnings/guidance language found - wait for confirmation if volatility is elevated."
       },
       "killCriteria": [
@@ -1208,11 +1207,11 @@
         "Free cash flow worsens and cash runway becomes dependent on unfavorable financing.",
         "Dilution accelerates beyond the current read: Unavailable.",
         "A major customer, backlog, product, or partnership catalyst fails to convert into real revenue.",
-        "The stock breaks major long-term support near $49.93 and fails to recover.",
+        "The stock breaks major long-term support near $58.05 and fails to recover.",
         "Balance sheet risk, filing/reporting risk, or hype/promotion risk moves into the red zone."
       ],
       "positionSizingCategory": "Small speculative basket candidate",
-      "finalResearchVerdict": "Deep research candidate",
+      "finalResearchVerdict": "Research candidate",
       "bestPracticalApproach": "Use basket discipline: top 20 watchlist, top 5 deep research, top 3 starter candidates, add only after proof improves.",
       "researchDeskScore": 73,
       "initialFilterPass": true,
@@ -1280,7 +1279,7 @@
       ],
       "verdict": "Early Quality Compounder: The setup has enough business progress and survivability to deserve deeper research.",
       "dataQuality": {
-        "marketDataDate": "2026-06-19T20:17:40.833Z",
+        "marketDataDate": "2026-06-19T21:46:55.485Z",
         "latestReportedQuarter": "2026-03-31",
         "latestReportedQuarterEnd": "2026-03-31",
         "lastEarningsDate": "2026-03-31",
@@ -1810,8 +1809,8 @@
       "name": "SentinelOne, Inc.",
       "sector": "Technology",
       "theme": "cybersecurity",
-      "marketCap": 5129061376,
-      "marketCapDisplay": "$5.13B",
+      "marketCap": 5148912128,
+      "marketCapDisplay": "$5.15B",
       "revenueGrowth": 20.8,
       "revenueGrowthDisplay": "20.8%",
       "revenueCagr3": 33.3581,
@@ -1834,7 +1833,7 @@
       "bullCase": "The upside case is that revenue keeps compounding, margins scale, dilution stays controlled, and catalysts prove there is a real business curve rather than a one-quarter trade.",
       "bearCase": "The downside case is that valuation expectations reset, growth slows, or the market decides the company is not as unique as the story suggests.",
       "businessModel": "It makes money by selling products or services tied to Software - Infrastructure. In plain English: SentinelOne, Inc.  operates as a cybersecurity provider in the United States and internationally.",
-      "whyUnderRadar": "Market cap: $5.13B; Trading volume: $125.4M/day; Short interest: 6.54%",
+      "whyUnderRadar": "Market cap: $5.15B; Trading volume: $125.4M/day; Short interest: 6.54%",
       "multibaggerWhy": "Growth, market size, margin quality, survivability, and catalysts create an asymmetric research setup if execution continues.",
       "proof": [
         "3-year revenue CAGR above 20%: 33.36%",
@@ -1868,7 +1867,7 @@
       ],
       "verdict": "Speculative Multibagger Candidate: The setup has enough business progress and survivability to deserve deeper research.",
       "dataQuality": {
-        "marketDataDate": "2026-06-19T20:17:45.514Z",
+        "marketDataDate": "2026-06-19T21:46:59.595Z",
         "latestReportedQuarter": "2026-04-30",
         "latestReportedQuarterEnd": "2026-04-30",
         "lastEarningsDate": "2026-04-30",
@@ -2043,7 +2042,7 @@
       "underRadarFactors": [
         {
           "label": "Market cap",
-          "value": "$5.13B",
+          "value": "$5.15B",
           "score": 85,
           "note": "Best hidden setups are usually small or mid cap, not already mega-cap."
         },
@@ -2252,7 +2251,7 @@
           "label": "Small/mid-cap status",
           "weight": 11,
           "score": 58,
-          "read": "$5.13B"
+          "read": "$5.15B"
         },
         {
           "label": "Misunderstood business model",
@@ -2268,10 +2267,10 @@
         }
       ],
       "multibaggerPath": {
-        "currentMarketCap": "$5.13B",
-        "threeXMarketCap": "$15.39B",
-        "fiveXMarketCap": "$25.65B",
-        "tenXMarketCap": "$51.29B",
+        "currentMarketCap": "$5.15B",
+        "threeXMarketCap": "$15.45B",
+        "fiveXMarketCap": "$25.74B",
+        "tenXMarketCap": "$51.49B",
         "path3": "stretched",
         "path5": "stretched",
         "path10": "unrealistic",
@@ -2468,7 +2467,7 @@
       ],
       "verdict": "Speculative Multibagger Candidate: The setup has some proof, but the thesis still needs more evidence before it becomes high conviction.",
       "dataQuality": {
-        "marketDataDate": "2026-06-19T20:17:47.589Z",
+        "marketDataDate": "2026-06-19T21:47:01.342Z",
         "latestReportedQuarter": "2026-03-31",
         "latestReportedQuarterEnd": "2026-03-31",
         "lastEarningsDate": "2026-03-31",
