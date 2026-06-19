@@ -1,6 +1,6 @@
 {
   "title": "LEAPS Call Opportunity Desk",
-  "asOf": "2026-06-19T16:59:59.393Z",
+  "asOf": "2026-06-19T20:17:31.175Z",
   "disclaimer": "Research watchlist only. Not financial advice and not a buy/sell recommendation.",
   "schedule": {
     "timeZone": "America/Edmonton",
@@ -107,8 +107,8 @@
       "direction": "CALL",
       "decision": "A+ LEAPS Candidate",
       "status": "Ready for Starter",
-      "score": 89,
-      "leapsOpportunityScore": 89,
+      "score": 90,
+      "leapsOpportunityScore": 90,
       "underlyingScore": 83,
       "riskScore": 45,
       "riskLabel": "Medium Risk",
@@ -167,7 +167,7 @@
         {
           "label": "Catalyst strength",
           "weight": 15,
-          "score": 87
+          "score": 91
         },
         {
           "label": "Technical setup",
@@ -1252,7 +1252,7 @@
         "distanceFrom50DayPct": -5.3,
         "distanceFrom200DayPct": -9.5,
         "rsi14": 43,
-        "volumeVs20Day": 1.5
+        "volumeVs20Day": 1.51
       },
       "optionContracts": [
         {
@@ -2236,8 +2236,8 @@
       "direction": "CALL",
       "decision": "A+ LEAPS Candidate",
       "status": "Ready for Starter",
-      "score": 89,
-      "leapsOpportunityScore": 89,
+      "score": 90,
+      "leapsOpportunityScore": 90,
       "underlyingScore": 83,
       "riskScore": 45,
       "riskLabel": "Medium Risk",
@@ -2296,7 +2296,7 @@
         {
           "label": "Catalyst strength",
           "weight": 15,
-          "score": 87
+          "score": 91
         },
         {
           "label": "Technical setup",
@@ -3381,7 +3381,7 @@
         "distanceFrom50DayPct": -5.3,
         "distanceFrom200DayPct": -9.5,
         "rsi14": 43,
-        "volumeVs20Day": 1.5
+        "volumeVs20Day": 1.51
       },
       "optionContracts": [
         {
@@ -4365,8 +4365,8 @@
       "direction": "CALL",
       "decision": "A+ LEAPS Candidate",
       "status": "Ready for Starter",
-      "score": 89,
-      "leapsOpportunityScore": 89,
+      "score": 90,
+      "leapsOpportunityScore": 90,
       "underlyingScore": 83,
       "riskScore": 45,
       "riskLabel": "Medium Risk",
@@ -4425,7 +4425,7 @@
         {
           "label": "Catalyst strength",
           "weight": 15,
-          "score": 87
+          "score": 91
         },
         {
           "label": "Technical setup",
@@ -5510,7 +5510,7 @@
         "distanceFrom50DayPct": -5.3,
         "distanceFrom200DayPct": -9.5,
         "rsi14": 43,
-        "volumeVs20Day": 1.5
+        "volumeVs20Day": 1.51
       },
       "optionContracts": [
         {
@@ -6658,7 +6658,7 @@
         {
           "label": "Catalyst strength",
           "weight": 15,
-          "score": 82
+          "score": 84
         },
         {
           "label": "Technical setup",
@@ -6683,72 +6683,6 @@
         "distanceFrom200DayPct": 11.6,
         "rsi14": 48.4,
         "volumeVs20Day": 1.63
-      }
-    },
-    {
-      "symbol": "HOOD",
-      "name": "Robinhood Markets, Inc.",
-      "sector": "Financial Services",
-      "currentPrice": 108.15,
-      "decision": "Avoid - weak underlying",
-      "status": "Avoid",
-      "score": 34,
-      "leapsOpportunityScore": 34,
-      "underlyingScore": 61,
-      "riskScore": 85,
-      "pullbackClassification": "Waiting for Reclaim",
-      "dcaSuitability": "DCA Rejected / Wait",
-      "reason": "Underlying stock quality is below 70, so the desk does not analyze LEAPS calls.",
-      "bullCase": "Bull case: the chart trend is supportive, business quality is acceptable.",
-      "bearCase": "Bear case: growth is not fully confirmed by the checklist, valuation or missing valuation support can limit upside.",
-      "underlyingComponents": [
-        {
-          "label": "Business quality",
-          "weight": 20,
-          "score": 63
-        },
-        {
-          "label": "Growth quality",
-          "weight": 20,
-          "score": 43.75
-        },
-        {
-          "label": "Financial strength",
-          "weight": 15,
-          "score": 62
-        },
-        {
-          "label": "Valuation reasonableness",
-          "weight": 15,
-          "score": 27
-        },
-        {
-          "label": "Catalyst strength",
-          "weight": 15,
-          "score": 87
-        },
-        {
-          "label": "Technical setup",
-          "weight": 15,
-          "score": 87
-        }
-      ],
-      "pullback": {
-        "score": 49,
-        "classification": "Waiting for Reclaim",
-        "reasons": [
-          "long-term trend remains above the 200-day average",
-          "selloff volume is not extreme",
-          "fundamentals still look intact from available data"
-        ],
-        "risks": [
-          "RSI is extended"
-        ],
-        "distanceFrom52WeekHighPct": -29.7,
-        "distanceFrom50DayPct": 27.1,
-        "distanceFrom200DayPct": 21.2,
-        "rsi14": 79.5,
-        "volumeVs20Day": 1.14
       }
     },
     {
@@ -6884,6 +6818,72 @@
         "distanceFrom200DayPct": -13.1,
         "rsi14": 45.4,
         "volumeVs20Day": 1.16
+      }
+    },
+    {
+      "symbol": "HOOD",
+      "name": "Robinhood Markets, Inc.",
+      "sector": "Financial Services",
+      "currentPrice": 108.15,
+      "decision": "Avoid - weak underlying",
+      "status": "Avoid",
+      "score": 33,
+      "leapsOpportunityScore": 33,
+      "underlyingScore": 60,
+      "riskScore": 85,
+      "pullbackClassification": "Waiting for Reclaim",
+      "dcaSuitability": "DCA Rejected / Wait",
+      "reason": "Underlying stock quality is below 70, so the desk does not analyze LEAPS calls.",
+      "bullCase": "Bull case: the chart trend is supportive, business quality is acceptable.",
+      "bearCase": "Bear case: growth is not fully confirmed by the checklist, valuation or missing valuation support can limit upside.",
+      "underlyingComponents": [
+        {
+          "label": "Business quality",
+          "weight": 20,
+          "score": 63
+        },
+        {
+          "label": "Growth quality",
+          "weight": 20,
+          "score": 43.75
+        },
+        {
+          "label": "Financial strength",
+          "weight": 15,
+          "score": 62
+        },
+        {
+          "label": "Valuation reasonableness",
+          "weight": 15,
+          "score": 27
+        },
+        {
+          "label": "Catalyst strength",
+          "weight": 15,
+          "score": 81
+        },
+        {
+          "label": "Technical setup",
+          "weight": 15,
+          "score": 87
+        }
+      ],
+      "pullback": {
+        "score": 49,
+        "classification": "Waiting for Reclaim",
+        "reasons": [
+          "long-term trend remains above the 200-day average",
+          "selloff volume is not extreme",
+          "fundamentals still look intact from available data"
+        ],
+        "risks": [
+          "RSI is extended"
+        ],
+        "distanceFrom52WeekHighPct": -29.7,
+        "distanceFrom50DayPct": 27.1,
+        "distanceFrom200DayPct": 21.2,
+        "rsi14": 79.5,
+        "volumeVs20Day": 1.14
       }
     },
     {
@@ -7059,7 +7059,7 @@
         {
           "label": "Catalyst strength",
           "weight": 15,
-          "score": 89
+          "score": 91
         },
         {
           "label": "Technical setup",
@@ -7127,7 +7127,7 @@
         {
           "label": "Catalyst strength",
           "weight": 15,
-          "score": 93
+          "score": 91
         },
         {
           "label": "Technical setup",
@@ -7758,7 +7758,7 @@
         "distanceFrom50DayPct": -9.5,
         "distanceFrom200DayPct": -25.3,
         "rsi14": 44.1,
-        "volumeVs20Day": 1.13
+        "volumeVs20Day": 1.14
       }
     },
     {
@@ -7961,7 +7961,7 @@
         "distanceFrom50DayPct": -10.8,
         "distanceFrom200DayPct": -14.7,
         "rsi14": 25.6,
-        "volumeVs20Day": 1.92
+        "volumeVs20Day": 1.93
       }
     },
     {
@@ -8004,7 +8004,7 @@
         {
           "label": "Catalyst strength",
           "weight": 15,
-          "score": 70
+          "score": 75
         },
         {
           "label": "Technical setup",
