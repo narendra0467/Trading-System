@@ -7704,159 +7704,6 @@
     ]
   },
   {
-    "symbol": "PSTG",
-    "trades": 16,
-    "winRate": 31.3,
-    "avgReturnPct": -0.96,
-    "profitFactor": 0.7,
-    "tradeLog": [
-      {
-        "symbol": "PSTG",
-        "entryDate": "2022-08-26",
-        "exitDate": "2022-08-29",
-        "entry": 30.94,
-        "exit": 29.77,
-        "returnPct": -3.77,
-        "exitReason": "stop"
-      },
-      {
-        "symbol": "PSTG",
-        "entryDate": "2022-11-11",
-        "exitDate": "2022-11-28",
-        "entry": 31,
-        "exit": 29.54,
-        "returnPct": -4.71,
-        "exitReason": "trend_loss"
-      },
-      {
-        "symbol": "PSTG",
-        "entryDate": "2023-07-03",
-        "exitDate": "2023-07-21",
-        "entry": 36.77,
-        "exit": 37.07,
-        "returnPct": 0.82,
-        "exitReason": "trend_loss"
-      },
-      {
-        "symbol": "PSTG",
-        "entryDate": "2023-08-08",
-        "exitDate": "2023-08-09",
-        "entry": 37.61,
-        "exit": 36.15,
-        "returnPct": -3.88,
-        "exitReason": "stop"
-      },
-      {
-        "symbol": "PSTG",
-        "entryDate": "2024-01-19",
-        "exitDate": "2024-02-08",
-        "entry": 39.4,
-        "exit": 42.83,
-        "returnPct": 8.7,
-        "exitReason": "target"
-      },
-      {
-        "symbol": "PSTG",
-        "entryDate": "2024-02-29",
-        "exitDate": "2024-02-29",
-        "entry": 47.58,
-        "exit": 46.36,
-        "returnPct": -2.56,
-        "exitReason": "target"
-      },
-      {
-        "symbol": "PSTG",
-        "entryDate": "2024-04-05",
-        "exitDate": "2024-04-15",
-        "entry": 52.81,
-        "exit": 52.3,
-        "returnPct": -0.97,
-        "exitReason": "trend_loss"
-      },
-      {
-        "symbol": "PSTG",
-        "entryDate": "2024-05-10",
-        "exitDate": "2024-05-15",
-        "entry": 54.47,
-        "exit": 59.14,
-        "returnPct": 8.57,
-        "exitReason": "target"
-      },
-      {
-        "symbol": "PSTG",
-        "entryDate": "2024-06-28",
-        "exitDate": "2024-07-02",
-        "entry": 65.56,
-        "exit": 61.48,
-        "returnPct": -6.22,
-        "exitReason": "stop"
-      },
-      {
-        "symbol": "PSTG",
-        "entryDate": "2024-12-17",
-        "exitDate": "2024-12-19",
-        "entry": 66.22,
-        "exit": 62.06,
-        "returnPct": -6.29,
-        "exitReason": "stop"
-      },
-      {
-        "symbol": "PSTG",
-        "entryDate": "2025-02-05",
-        "exitDate": "2025-02-12",
-        "entry": 68.84,
-        "exit": 67.25,
-        "returnPct": -2.31,
-        "exitReason": "trend_loss"
-      },
-      {
-        "symbol": "PSTG",
-        "entryDate": "2025-07-18",
-        "exitDate": "2025-08-01",
-        "entry": 57.52,
-        "exit": 54.51,
-        "returnPct": -5.23,
-        "exitReason": "trend_loss"
-      },
-      {
-        "symbol": "PSTG",
-        "entryDate": "2025-08-26",
-        "exitDate": "2025-08-28",
-        "entry": 59.13,
-        "exit": 64.5,
-        "returnPct": 9.08,
-        "exitReason": "target"
-      },
-      {
-        "symbol": "PSTG",
-        "entryDate": "2025-10-02",
-        "exitDate": "2025-10-10",
-        "entry": 87,
-        "exit": 94.04,
-        "returnPct": 8.1,
-        "exitReason": "target"
-      },
-      {
-        "symbol": "PSTG",
-        "entryDate": "2025-12-01",
-        "exitDate": "2025-12-01",
-        "entry": 87.65,
-        "exit": 85.56,
-        "returnPct": -2.39,
-        "exitReason": "stop"
-      },
-      {
-        "symbol": "PSTG",
-        "entryDate": "2026-05-26",
-        "exitDate": "2026-05-28",
-        "entry": 91.02,
-        "exit": 79.82,
-        "returnPct": -12.31,
-        "exitReason": "stop"
-      }
-    ]
-  },
-  {
     "symbol": "HOOD",
     "trades": 12,
     "winRate": 25,
@@ -9537,5 +9384,13 @@
     "avgReturnPct": 0,
     "profitFactor": null,
     "error": "SQ data request failed: 404"
+  },
+  {
+    "symbol": "PSTG",
+    "trades": 0,
+    "winRate": 0,
+    "avgReturnPct": 0,
+    "profitFactor": null,
+    "error": "PSTG data request failed: 404"
   }
 ]
