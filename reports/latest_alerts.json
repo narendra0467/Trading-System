@@ -23,7 +23,33 @@
     "sizePlan": "Starter size only. Add later only if the stock holds trend and risk tightens.",
     "reason": "stacked uptrend; rising 50 EMA; constructive RSI; MACD improving; 55-day breakout; volume expansion; outperforming benchmark",
     "marketRegime": "MIXED",
-    "marketScore": 53
+    "marketScore": 57
+  },
+  {
+    "symbol": "C",
+    "signal": "BUY_SETUP",
+    "setup": "Trend continuation",
+    "score": 85,
+    "close": 141.76,
+    "rsi14": 55,
+    "ema20": 138.54,
+    "ema50": 131.79,
+    "high55": 145.67,
+    "buyZoneLow": 139.92,
+    "buyZoneHigh": 142.68,
+    "stop": 134.39,
+    "target1": 152.81,
+    "target": 163.87,
+    "riskPct": 5.2,
+    "rewardRisk": 3,
+    "avgVolume20": 14024855,
+    "relativeStrength60": 0.0259,
+    "entryPlan": "Buy zone 139.92-142.68 if price holds above EMA20.",
+    "holdPlan": "Plan for 2-8 weeks. Stay only while price respects the stop and trend stays intact.",
+    "sizePlan": "Normal starter position. Add only after the setup proves itself.",
+    "reason": "stacked uptrend; rising 50 EMA; constructive RSI; near 55-day high; volume expansion; outperforming benchmark",
+    "marketRegime": "MIXED",
+    "marketScore": 57
   },
   {
     "symbol": "ABNB",
@@ -42,40 +68,40 @@
     "target": 173.47,
     "riskPct": 6.39,
     "rewardRisk": 3,
-    "avgVolume20": 3980530,
+    "avgVolume20": 4014977,
     "relativeStrength60": -0.0714,
     "entryPlan": "Buy zone 143.18-146.75 if price holds above EMA20.",
     "holdPlan": "Plan for 2-8 weeks. Stay only while price respects the stop and trend stays intact.",
     "sizePlan": "Normal starter position. Add only after the setup proves itself.",
     "reason": "stacked uptrend; constructive RSI; MACD improving; 55-day breakout; volume expansion",
     "marketRegime": "MIXED",
-    "marketScore": 53
+    "marketScore": 57
   },
   {
     "symbol": "LLY",
     "signal": "BUY_SETUP",
     "setup": "Breakout trend",
     "score": 80,
-    "close": 1206.51,
-    "rsi14": 80.1,
-    "ema20": 1113.16,
-    "ema50": 1061.18,
-    "high55": 1206.51,
-    "buyZoneLow": 1185.93,
-    "buyZoneHigh": 1216.8,
-    "stop": 1124.19,
-    "target1": 1329.99,
-    "target": 1453.48,
-    "riskPct": 6.82,
+    "close": 1208.12,
+    "rsi14": 80.3,
+    "ema20": 1113.31,
+    "ema50": 1061.24,
+    "high55": 1208.12,
+    "buyZoneLow": 1187.54,
+    "buyZoneHigh": 1218.41,
+    "stop": 1125.8,
+    "target1": 1331.6,
+    "target": 1455.09,
+    "riskPct": 6.81,
     "rewardRisk": 3,
-    "avgVolume20": 3313941,
-    "relativeStrength60": 0.0877,
-    "entryPlan": "Extended move. Starter only near 1185.93-1216.80, or wait for a pullback toward EMA20.",
+    "avgVolume20": 3437054,
+    "relativeStrength60": 0.0894,
+    "entryPlan": "Extended move. Starter only near 1187.54-1218.41, or wait for a pullback toward EMA20.",
     "holdPlan": "Plan for 2-8 weeks. Stay only while price respects the stop and trend stays intact.",
     "sizePlan": "Starter size only. Add later only if the stock holds trend and risk tightens.",
     "reason": "stacked uptrend; rising 50 EMA; extended RSI; 55-day breakout; volume expansion; outperforming benchmark",
     "marketRegime": "MIXED",
-    "marketScore": 53
+    "marketScore": 57
   },
   {
     "symbol": "AMD",
@@ -101,33 +127,7 @@
     "sizePlan": "Starter size only. Add later only if the stock holds trend and risk tightens.",
     "reason": "stacked uptrend; rising 50 EMA; constructive RSI; volume expansion; outperforming benchmark",
     "marketRegime": "MIXED",
-    "marketScore": 53
-  },
-  {
-    "symbol": "C",
-    "signal": "BUY_SETUP",
-    "setup": "Trend continuation",
-    "score": 75,
-    "close": 141.68,
-    "rsi14": 54.6,
-    "ema20": 138.53,
-    "ema50": 131.79,
-    "high55": 145.67,
-    "buyZoneLow": 139.83,
-    "buyZoneHigh": 142.6,
-    "stop": 134.28,
-    "target1": 152.78,
-    "target": 163.88,
-    "riskPct": 5.22,
-    "rewardRisk": 3,
-    "avgVolume20": 13667507,
-    "relativeStrength60": 0.0252,
-    "entryPlan": "Buy zone 139.83-142.60 if price holds above EMA20.",
-    "holdPlan": "Plan for 2-8 weeks. Stay only while price respects the stop and trend stays intact.",
-    "sizePlan": "Normal starter position. Add only after the setup proves itself.",
-    "reason": "stacked uptrend; rising 50 EMA; constructive RSI; near 55-day high; outperforming benchmark",
-    "marketRegime": "MIXED",
-    "marketScore": 53
+    "marketScore": 57
   },
   {
     "symbol": "DDOG",
@@ -146,14 +146,14 @@
     "target": 313.95,
     "riskPct": 10.31,
     "rewardRisk": 3,
-    "avgVolume20": 6041462,
+    "avgVolume20": 6045970,
     "relativeStrength60": 0.807,
     "entryPlan": "Extended move. Starter only near 233.59-242.86, or wait for a pullback toward EMA20.",
     "holdPlan": "Plan for 2-8 weeks. Stay only while price respects the stop and trend stays intact.",
     "sizePlan": "Starter size only. Add later only if the stock holds trend and risk tightens.",
     "reason": "stacked uptrend; rising 50 EMA; constructive RSI; volume expansion; outperforming benchmark",
     "marketRegime": "MIXED",
-    "marketScore": 53
+    "marketScore": 57
   },
   {
     "symbol": "MU",
@@ -179,7 +179,7 @@
     "sizePlan": "Starter size only. Add later only if the stock holds trend and risk tightens.",
     "reason": "stacked uptrend; rising 50 EMA; constructive RSI; volume expansion; outperforming benchmark",
     "marketRegime": "MIXED",
-    "marketScore": 53
+    "marketScore": 57
   },
   {
     "symbol": "SNDK",
@@ -205,7 +205,7 @@
     "sizePlan": "Starter size only. Add later only if the stock holds trend and risk tightens.",
     "reason": "stacked uptrend; rising 50 EMA; constructive RSI; volume expansion; outperforming benchmark",
     "marketRegime": "MIXED",
-    "marketScore": 53
+    "marketScore": 57
   },
   {
     "symbol": "SNOW",
@@ -217,21 +217,21 @@
     "ema20": 227.57,
     "ema50": 204.61,
     "high55": 280.16,
-    "buyZoneLow": 241.12,
-    "buyZoneHigh": 252.88,
-    "stop": 217.59,
-    "target1": 296.01,
-    "target": 343.06,
-    "riskPct": 12.6,
+    "buyZoneLow": 241.13,
+    "buyZoneHigh": 252.87,
+    "stop": 217.64,
+    "target1": 295.93,
+    "target": 342.91,
+    "riskPct": 12.58,
     "rewardRisk": 3,
-    "avgVolume20": 8929665,
+    "avgVolume20": 9267382,
     "relativeStrength60": 0.4266,
-    "entryPlan": "Extended move. Starter only near 241.12-252.88, or wait for a pullback toward EMA20.",
+    "entryPlan": "Extended move. Starter only near 241.13-252.87, or wait for a pullback toward EMA20.",
     "holdPlan": "Plan for 2-8 weeks. Stay only while price respects the stop and trend stays intact.",
     "sizePlan": "Starter size only. Add later only if the stock holds trend and risk tightens.",
     "reason": "stacked uptrend; rising 50 EMA; constructive RSI; volume expansion; outperforming benchmark",
     "marketRegime": "MIXED",
-    "marketScore": 53
+    "marketScore": 57
   },
   {
     "symbol": "TLN",
@@ -250,14 +250,14 @@
     "target": 488.93,
     "riskPct": 7,
     "rewardRisk": 3,
-    "avgVolume20": 954119,
+    "avgVolume20": 968860,
     "relativeStrength60": 0.0417,
     "entryPlan": "Buy zone 392.98-409.64 if price holds above EMA20.",
     "holdPlan": "Plan for 2-8 weeks. Stay only while price respects the stop and trend stays intact.",
     "sizePlan": "Normal starter position. Add only after the setup proves itself.",
     "reason": "stacked uptrend; rising 50 EMA; constructive RSI; volume expansion; outperforming benchmark",
     "marketRegime": "MIXED",
-    "marketScore": 53
+    "marketScore": 57
   },
   {
     "symbol": "PANW",
@@ -283,7 +283,7 @@
     "sizePlan": "No position yet. Keep it on watch.",
     "reason": "stacked uptrend; rising 50 EMA; extended RSI; 55-day breakout; outperforming benchmark",
     "marketRegime": "MIXED",
-    "marketScore": 53
+    "marketScore": 57
   },
   {
     "symbol": "RBA",
@@ -309,7 +309,7 @@
     "sizePlan": "No position yet. Keep it on watch.",
     "reason": "stacked uptrend; rising 50 EMA; extended RSI; MACD improving; near 55-day high",
     "marketRegime": "MIXED",
-    "marketScore": 53
+    "marketScore": 57
   },
   {
     "symbol": "CRWD",
@@ -328,14 +328,14 @@
     "target": 888.16,
     "riskPct": 8.89,
     "rewardRisk": 3,
-    "avgVolume20": 3618540,
+    "avgVolume20": 3629020,
     "relativeStrength60": 0.5717,
     "entryPlan": "Wait for a close above 782.17 or a calm pullback near EMA20.",
     "holdPlan": "Plan for 2-8 weeks. Stay only while price respects the stop and trend stays intact.",
     "sizePlan": "No position yet. Keep it on watch.",
     "reason": "stacked uptrend; rising 50 EMA; constructive RSI; outperforming benchmark",
     "marketRegime": "MIXED",
-    "marketScore": 53
+    "marketScore": 57
   },
   {
     "symbol": "INTC",
@@ -354,66 +354,66 @@
     "target": 191.02,
     "riskPct": 16.29,
     "rewardRisk": 3,
-    "avgVolume20": 136241595,
+    "avgVolume20": 136266138,
     "relativeStrength60": 1.6837,
     "entryPlan": "Wait for a close above 140.94 or a calm pullback near EMA20.",
     "holdPlan": "Plan for 2-8 weeks. Stay only while price respects the stop and trend stays intact.",
     "sizePlan": "No position yet. Keep it on watch.",
     "reason": "stacked uptrend; rising 50 EMA; constructive RSI; outperforming benchmark",
     "marketRegime": "MIXED",
-    "marketScore": 53
+    "marketScore": 57
   },
   {
     "symbol": "NET",
     "signal": "WATCH",
     "setup": "Watch for breakout",
-    "score": 55,
-    "close": 236.86,
-    "rsi14": 58.6,
-    "ema20": 229.69,
-    "ema50": 223.04,
+    "score": 65,
+    "close": 237.24,
+    "rsi14": 59,
+    "ema20": 229.73,
+    "ema50": 223.05,
     "high55": 272.66,
-    "buyZoneLow": 230.45,
-    "buyZoneHigh": 240.07,
-    "stop": 223.04,
-    "target1": 257.6,
-    "target": 278.33,
-    "riskPct": 5.84,
+    "buyZoneLow": 230.83,
+    "buyZoneHigh": 240.45,
+    "stop": 223.05,
+    "target1": 258.52,
+    "target": 279.81,
+    "riskPct": 5.98,
     "rewardRisk": 3,
-    "avgVolume20": 3943657,
-    "relativeStrength60": -0.0762,
+    "avgVolume20": 4104008,
+    "relativeStrength60": -0.0743,
     "entryPlan": "Wait for a close above 272.66 or a calm pullback near EMA20.",
     "holdPlan": "Plan for 2-8 weeks. Stay only while price respects the stop and trend stays intact.",
     "sizePlan": "No position yet. Keep it on watch.",
-    "reason": "stacked uptrend; rising 50 EMA; constructive RSI",
+    "reason": "stacked uptrend; rising 50 EMA; constructive RSI; volume expansion",
     "marketRegime": "MIXED",
-    "marketScore": 53
+    "marketScore": 57
   },
   {
     "symbol": "NVO",
     "signal": "WATCH",
     "setup": "Watch for breakout",
     "score": 55,
-    "close": 48.03,
-    "rsi14": 77.8,
+    "close": 48.07,
+    "rsi14": 78,
     "ema20": 45.03,
     "ema50": 43.96,
-    "high55": 48.03,
-    "buyZoneLow": 47.32,
-    "buyZoneHigh": 48.38,
-    "stop": 45.2,
-    "target1": 52.27,
-    "target": 56.51,
+    "high55": 48.07,
+    "buyZoneLow": 47.36,
+    "buyZoneHigh": 48.42,
+    "stop": 45.24,
+    "target1": 52.31,
+    "target": 56.56,
     "riskPct": 5.89,
     "rewardRisk": 3,
     "avgVolume20": 13752795,
-    "relativeStrength60": 0.0827,
-    "entryPlan": "Wait for a close above 48.03 or a calm pullback near EMA20.",
+    "relativeStrength60": 0.0839,
+    "entryPlan": "Wait for a close above 48.07 or a calm pullback near EMA20.",
     "holdPlan": "Plan for 2-8 weeks. Stay only while price respects the stop and trend stays intact.",
     "sizePlan": "No position yet. Keep it on watch.",
     "reason": "extended RSI; MACD improving; 55-day breakout; volume expansion; outperforming benchmark",
     "marketRegime": "MIXED",
-    "marketScore": 53
+    "marketScore": 57
   },
   {
     "symbol": "UPST",
@@ -439,7 +439,7 @@
     "sizePlan": "No position yet. Keep it on watch.",
     "reason": "rising 50 EMA; constructive RSI; MACD improving; outperforming benchmark",
     "marketRegime": "MIXED",
-    "marketScore": 53
+    "marketScore": 57
   },
   {
     "symbol": "ANET",
@@ -465,7 +465,33 @@
     "sizePlan": "Reduce or avoid.",
     "reason": "primary trend up; rising 50 EMA; volume expansion; outperforming benchmark",
     "marketRegime": "MIXED",
-    "marketScore": 53
+    "marketScore": 57
+  },
+  {
+    "symbol": "CIEN",
+    "signal": "EXIT_WARNING",
+    "setup": "Protect or avoid",
+    "score": 50,
+    "close": 479.5,
+    "rsi14": 53.3,
+    "ema20": 482.32,
+    "ema50": 487.82,
+    "high55": 627,
+    "buyZoneLow": 461.42,
+    "buyZoneHigh": 488.54,
+    "stop": 487.82,
+    "target1": 467.02,
+    "target": 454.53,
+    "riskPct": -1.74,
+    "rewardRisk": null,
+    "avgVolume20": 4254726,
+    "relativeStrength60": 0.011,
+    "entryPlan": "No new buy. Protect capital until price repairs above EMA50.",
+    "holdPlan": "No swing hold plan right now.",
+    "sizePlan": "Reduce or avoid.",
+    "reason": "constructive RSI; MACD improving; volume expansion; outperforming benchmark",
+    "marketRegime": "MIXED",
+    "marketScore": 57
   },
   {
     "symbol": "FIX",
@@ -484,14 +510,14 @@
     "target": 1954.08,
     "riskPct": 1.79,
     "rewardRisk": 3,
-    "avgVolume20": 552887,
+    "avgVolume20": 524834,
     "relativeStrength60": 0.1205,
     "entryPlan": "No new buy. Protect capital until price repairs above EMA50.",
     "holdPlan": "No swing hold plan right now.",
     "sizePlan": "Reduce or avoid.",
     "reason": "primary trend up; rising 50 EMA; volume expansion; outperforming benchmark",
     "marketRegime": "MIXED",
-    "marketScore": 53
+    "marketScore": 57
   },
   {
     "symbol": "WDC",
@@ -517,7 +543,7 @@
     "sizePlan": "Reduce or avoid.",
     "reason": "primary trend up; rising 50 EMA; volume expansion; outperforming benchmark",
     "marketRegime": "MIXED",
-    "marketScore": 53
+    "marketScore": 57
   },
   {
     "symbol": "ARM",
@@ -543,33 +569,7 @@
     "sizePlan": "Reduce or avoid.",
     "reason": "primary trend up; rising 50 EMA; outperforming benchmark",
     "marketRegime": "MIXED",
-    "marketScore": 53
-  },
-  {
-    "symbol": "CIEN",
-    "signal": "EXIT_WARNING",
-    "setup": "Protect or avoid",
-    "score": 40,
-    "close": 479.5,
-    "rsi14": 53.3,
-    "ema20": 482.32,
-    "ema50": 487.82,
-    "high55": 627,
-    "buyZoneLow": 461.42,
-    "buyZoneHigh": 488.54,
-    "stop": 487.82,
-    "target1": 467.02,
-    "target": 454.53,
-    "riskPct": -1.74,
-    "rewardRisk": null,
-    "avgVolume20": 3977016,
-    "relativeStrength60": 0.011,
-    "entryPlan": "No new buy. Protect capital until price repairs above EMA50.",
-    "holdPlan": "No swing hold plan right now.",
-    "sizePlan": "Reduce or avoid.",
-    "reason": "constructive RSI; MACD improving; outperforming benchmark",
-    "marketRegime": "MIXED",
-    "marketScore": 53
+    "marketScore": 57
   },
   {
     "symbol": "PYPL",
@@ -595,7 +595,7 @@
     "sizePlan": "Reduce or avoid.",
     "reason": "constructive RSI; MACD improving; volume expansion",
     "marketRegime": "MIXED",
-    "marketScore": 53
+    "marketScore": 57
   },
   {
     "symbol": "CELH",
@@ -614,14 +614,14 @@
     "target": 24.73,
     "riskPct": -5.72,
     "rewardRisk": null,
-    "avgVolume20": 9653639,
+    "avgVolume20": 9659608,
     "relativeStrength60": -0.3828,
     "entryPlan": "No new buy. Protect capital until price repairs above EMA50.",
     "holdPlan": "No swing hold plan right now.",
     "sizePlan": "Reduce or avoid.",
     "reason": "constructive RSI; MACD improving",
     "marketRegime": "MIXED",
-    "marketScore": 53
+    "marketScore": 57
   },
   {
     "symbol": "CW",
@@ -647,7 +647,7 @@
     "sizePlan": "Reduce or avoid.",
     "reason": "primary trend up; rising 50 EMA",
     "marketRegime": "MIXED",
-    "marketScore": 53
+    "marketScore": 57
   },
   {
     "symbol": "AAPL",
@@ -666,14 +666,14 @@
     "target": 265.11,
     "riskPct": -2.19,
     "rewardRisk": null,
-    "avgVolume20": 63109295,
+    "avgVolume20": 66956926,
     "relativeStrength60": -0.1059,
     "entryPlan": "No new buy. Protect capital until price repairs above EMA50.",
     "holdPlan": "No swing hold plan right now.",
     "sizePlan": "Reduce or avoid.",
     "reason": "rising 50 EMA; volume expansion",
     "marketRegime": "MIXED",
-    "marketScore": 53
+    "marketScore": 57
   },
   {
     "symbol": "CASY",
@@ -692,14 +692,40 @@
     "target": 704.95,
     "riskPct": -3.15,
     "rewardRisk": null,
-    "avgVolume20": 711813,
+    "avgVolume20": 725688,
     "relativeStrength60": -0.1543,
     "entryPlan": "No new buy. Protect capital until price repairs above EMA50.",
     "holdPlan": "No swing hold plan right now.",
     "sizePlan": "Reduce or avoid.",
     "reason": "rising 50 EMA; volume expansion",
     "marketRegime": "MIXED",
-    "marketScore": 53
+    "marketScore": 57
+  },
+  {
+    "symbol": "GWRE",
+    "signal": "EXIT_WARNING",
+    "setup": "Protect or avoid",
+    "score": 25,
+    "close": 121.48,
+    "rsi14": 54.9,
+    "ema20": 121.66,
+    "ema50": 131.24,
+    "high55": 171.42,
+    "buyZoneLow": 117.58,
+    "buyZoneHigh": 123.43,
+    "stop": 131.24,
+    "target1": 106.84,
+    "target": 92.2,
+    "riskPct": -8.03,
+    "rewardRisk": null,
+    "avgVolume20": 2356318,
+    "relativeStrength60": -0.4118,
+    "entryPlan": "No new buy. Protect capital until price repairs above EMA50.",
+    "holdPlan": "No swing hold plan right now.",
+    "sizePlan": "Reduce or avoid.",
+    "reason": "constructive RSI; volume expansion",
+    "marketRegime": "MIXED",
+    "marketScore": 57
   },
   {
     "symbol": "IONQ",
@@ -725,7 +751,7 @@
     "sizePlan": "Reduce or avoid.",
     "reason": "rising 50 EMA; outperforming benchmark",
     "marketRegime": "MIXED",
-    "marketScore": 53
+    "marketScore": 57
   },
   {
     "symbol": "MDB",
@@ -751,7 +777,7 @@
     "sizePlan": "Reduce or avoid.",
     "reason": "rising 50 EMA; outperforming benchmark",
     "marketRegime": "MIXED",
-    "marketScore": 53
+    "marketScore": 57
   },
   {
     "symbol": "RKLB",
@@ -777,7 +803,7 @@
     "sizePlan": "Reduce or avoid.",
     "reason": "rising 50 EMA; outperforming benchmark",
     "marketRegime": "MIXED",
-    "marketScore": 53
+    "marketScore": 57
   },
   {
     "symbol": "SMCI",
@@ -796,14 +822,14 @@
     "target": 22.1,
     "riskPct": -9.28,
     "rewardRisk": null,
-    "avgVolume20": 75741748,
+    "avgVolume20": 75760286,
     "relativeStrength60": 0.1211,
     "entryPlan": "No new buy. Protect capital until price repairs above EMA50.",
     "holdPlan": "No swing hold plan right now.",
     "sizePlan": "Reduce or avoid.",
     "reason": "rising 50 EMA; outperforming benchmark",
     "marketRegime": "MIXED",
-    "marketScore": 53
+    "marketScore": 57
   },
   {
     "symbol": "APP",
@@ -829,7 +855,7 @@
     "sizePlan": "Reduce or avoid.",
     "reason": "rising 50 EMA",
     "marketRegime": "MIXED",
-    "marketScore": 53
+    "marketScore": 57
   },
   {
     "symbol": "DECK",
@@ -855,33 +881,7 @@
     "sizePlan": "Reduce or avoid.",
     "reason": "rising 50 EMA",
     "marketRegime": "MIXED",
-    "marketScore": 53
-  },
-  {
-    "symbol": "GWRE",
-    "signal": "EXIT_WARNING",
-    "setup": "Protect or avoid",
-    "score": 15,
-    "close": 121.48,
-    "rsi14": 54.9,
-    "ema20": 121.66,
-    "ema50": 131.24,
-    "high55": 171.42,
-    "buyZoneLow": 117.58,
-    "buyZoneHigh": 123.43,
-    "stop": 131.24,
-    "target1": 106.84,
-    "target": 92.2,
-    "riskPct": -8.03,
-    "rewardRisk": null,
-    "avgVolume20": 2269549,
-    "relativeStrength60": -0.4118,
-    "entryPlan": "No new buy. Protect capital until price repairs above EMA50.",
-    "holdPlan": "No swing hold plan right now.",
-    "sizePlan": "Reduce or avoid.",
-    "reason": "constructive RSI",
-    "marketRegime": "MIXED",
-    "marketScore": 53
+    "marketScore": 57
   },
   {
     "symbol": "NOW",
@@ -907,33 +907,33 @@
     "sizePlan": "Reduce or avoid.",
     "reason": "rising 50 EMA",
     "marketRegime": "MIXED",
-    "marketScore": 53
+    "marketScore": 57
   },
   {
     "symbol": "ORCL",
     "signal": "EXIT_WARNING",
     "setup": "Protect or avoid",
     "score": 15,
-    "close": 148.68,
+    "close": 148.53,
     "rsi14": 17,
-    "ema20": 182.24,
-    "ema50": 184.47,
+    "ema20": 182.23,
+    "ema50": 184.46,
     "high55": 248.15,
-    "buyZoneLow": 143.45,
-    "buyZoneHigh": 151.3,
-    "stop": 184.47,
-    "target1": 95,
-    "target": 41.32,
-    "riskPct": -24.07,
+    "buyZoneLow": 143.3,
+    "buyZoneHigh": 151.15,
+    "stop": 184.46,
+    "target1": 94.63,
+    "target": 40.74,
+    "riskPct": -24.19,
     "rewardRisk": null,
     "avgVolume20": 30951680,
-    "relativeStrength60": -0.2134,
+    "relativeStrength60": -0.2144,
     "entryPlan": "No new buy. Protect capital until price repairs above EMA50.",
     "holdPlan": "No swing hold plan right now.",
     "sizePlan": "Reduce or avoid.",
     "reason": "rising 50 EMA",
     "marketRegime": "MIXED",
-    "marketScore": 53
+    "marketScore": 57
   },
   {
     "symbol": "PATH",
@@ -959,33 +959,33 @@
     "sizePlan": "Reduce or avoid.",
     "reason": "constructive RSI",
     "marketRegime": "MIXED",
-    "marketScore": 53
+    "marketScore": 57
   },
   {
     "symbol": "RBLX",
     "signal": "EXIT_WARNING",
     "setup": "Protect or avoid",
     "score": 15,
-    "close": 47.55,
+    "close": 47.56,
     "rsi14": 54.1,
     "ema20": 46.5,
     "ema50": 48.84,
     "high55": 61.83,
-    "buyZoneLow": 45.95,
-    "buyZoneHigh": 48.35,
+    "buyZoneLow": 45.96,
+    "buyZoneHigh": 48.36,
     "stop": 48.84,
-    "target1": 45.62,
-    "target": 43.68,
-    "riskPct": -2.71,
+    "target1": 45.64,
+    "target": 43.72,
+    "riskPct": -2.69,
     "rewardRisk": null,
     "avgVolume20": 11459984,
-    "relativeStrength60": -0.3834,
+    "relativeStrength60": -0.3832,
     "entryPlan": "No new buy. Protect capital until price repairs above EMA50.",
     "holdPlan": "No swing hold plan right now.",
     "sizePlan": "Reduce or avoid.",
     "reason": "constructive RSI",
     "marketRegime": "MIXED",
-    "marketScore": 53
+    "marketScore": 57
   },
   {
     "symbol": "TEAM",
@@ -1011,7 +1011,7 @@
     "sizePlan": "Reduce or avoid.",
     "reason": "rising 50 EMA",
     "marketRegime": "MIXED",
-    "marketScore": 53
+    "marketScore": 57
   },
   {
     "symbol": "AMZN",
@@ -1037,7 +1037,7 @@
     "sizePlan": "Reduce or avoid.",
     "reason": "volume expansion",
     "marketRegime": "MIXED",
-    "marketScore": 53
+    "marketScore": 57
   },
   {
     "symbol": "GOOGL",
@@ -1063,7 +1063,7 @@
     "sizePlan": "Reduce or avoid.",
     "reason": "volume expansion",
     "marketRegime": "MIXED",
-    "marketScore": 53
+    "marketScore": 57
   },
   {
     "symbol": "MSFT",
@@ -1089,7 +1089,7 @@
     "sizePlan": "Reduce or avoid.",
     "reason": "volume expansion",
     "marketRegime": "MIXED",
-    "marketScore": 53
+    "marketScore": 57
   },
   {
     "symbol": "MSTR",
@@ -1115,7 +1115,7 @@
     "sizePlan": "Reduce or avoid.",
     "reason": "volume expansion",
     "marketRegime": "MIXED",
-    "marketScore": 53
+    "marketScore": 57
   },
   {
     "symbol": "NFLX",
@@ -1141,7 +1141,7 @@
     "sizePlan": "Reduce or avoid.",
     "reason": "volume expansion",
     "marketRegime": "MIXED",
-    "marketScore": 53
+    "marketScore": 57
   },
   {
     "symbol": "PLTR",
@@ -1160,14 +1160,14 @@
     "target": 47.9,
     "riskPct": -19.2,
     "rewardRisk": null,
-    "avgVolume20": 44997796,
+    "avgVolume20": 45106353,
     "relativeStrength60": -0.4521,
     "entryPlan": "No new buy. Protect capital until price repairs above EMA50.",
     "holdPlan": "No swing hold plan right now.",
     "sizePlan": "Reduce or avoid.",
     "reason": "volume expansion",
     "marketRegime": "MIXED",
-    "marketScore": 53
+    "marketScore": 57
   },
   {
     "symbol": "AVGO",
@@ -1186,14 +1186,14 @@
     "target": 271.38,
     "riskPct": -8.55,
     "rewardRisk": null,
-    "avgVolume20": 38164096,
+    "avgVolume20": 38200570,
     "relativeStrength60": -0.0447,
     "entryPlan": "No new buy. Protect capital until price repairs above EMA50.",
     "holdPlan": "No swing hold plan right now.",
     "sizePlan": "Reduce or avoid.",
     "reason": "No technical edge",
     "marketRegime": "MIXED",
-    "marketScore": 53
+    "marketScore": 57
   },
   {
     "symbol": "COIN",
@@ -1212,14 +1212,14 @@
     "target": 70.41,
     "riskPct": -17.59,
     "rewardRisk": null,
-    "avgVolume20": 8925765,
+    "avgVolume20": 8930010,
     "relativeStrength60": -0.3704,
     "entryPlan": "No new buy. Protect capital until price repairs above EMA50.",
     "holdPlan": "No swing hold plan right now.",
     "sizePlan": "Reduce or avoid.",
     "reason": "No technical edge",
     "marketRegime": "MIXED",
-    "marketScore": 53
+    "marketScore": 57
   },
   {
     "symbol": "META",
@@ -1238,14 +1238,14 @@
     "target": 402.14,
     "riskPct": -8.97,
     "rewardRisk": null,
-    "avgVolume20": 19160797,
+    "avgVolume20": 19172623,
     "relativeStrength60": -0.2623,
     "entryPlan": "No new buy. Protect capital until price repairs above EMA50.",
     "holdPlan": "No swing hold plan right now.",
     "sizePlan": "Reduce or avoid.",
     "reason": "No technical edge",
     "marketRegime": "MIXED",
-    "marketScore": 53
+    "marketScore": 57
   },
   {
     "symbol": "NVDA",
@@ -1264,14 +1264,14 @@
     "target": 153.73,
     "riskPct": -6.72,
     "rewardRisk": null,
-    "avgVolume20": 168277598,
+    "avgVolume20": 169842912,
     "relativeStrength60": -0.1201,
     "entryPlan": "No new buy. Protect capital until price repairs above EMA50.",
     "holdPlan": "No swing hold plan right now.",
     "sizePlan": "Reduce or avoid.",
     "reason": "No technical edge",
     "marketRegime": "MIXED",
-    "marketScore": 53
+    "marketScore": 57
   },
   {
     "symbol": "ONON",
@@ -1297,7 +1297,7 @@
     "sizePlan": "Reduce or avoid.",
     "reason": "No technical edge",
     "marketRegime": "MIXED",
-    "marketScore": 53
+    "marketScore": 57
   },
   {
     "symbol": "TSLA",
@@ -1323,7 +1323,7 @@
     "sizePlan": "Reduce or avoid.",
     "reason": "No technical edge",
     "marketRegime": "MIXED",
-    "marketScore": 53
+    "marketScore": 57
   },
   {
     "symbol": "TTD",
@@ -1349,6 +1349,6 @@
     "sizePlan": "Reduce or avoid.",
     "reason": "No technical edge",
     "marketRegime": "MIXED",
-    "marketScore": 53
+    "marketScore": 57
   }
 ]
