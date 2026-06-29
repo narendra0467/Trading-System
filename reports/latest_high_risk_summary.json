@@ -4,11 +4,11 @@
   "primaryAction": "AFRM: SPEC BUY",
   "topSymbol": "AFRM",
   "topReason": "This is the kind of technical risk I would fund from a small speculative sleeve because momentum, relative strength, and volume agree.",
-  "buyCount": 5,
-  "starterCount": 2,
-  "watchCount": 3,
-  "plannedCapital": 4500,
-  "cashReserve": 500,
+  "buyCount": 3,
+  "starterCount": 3,
+  "watchCount": 2,
+  "plannedCapital": 3900,
+  "cashReserve": 1100,
   "rules": [
     "This is not retirement money.",
     "Maximum 5-7 names.",
@@ -18,34 +18,34 @@
   ],
   "marketContext": {
     "SPY": {
-      "close": 728.99,
-      "return20": -3.39,
-      "return60": 12.09
+      "close": 739.97,
+      "return20": -2.18,
+      "return60": 12.93
     },
     "QQQ": {
-      "close": 706.52,
-      "return20": -3.95,
-      "return60": 22.41
+      "close": 722.5,
+      "return20": -2.14,
+      "return60": 23.65
     },
     "IWM": {
-      "close": 299.83,
-      "return20": 2.67,
-      "return60": 20.9
+      "close": 297.7,
+      "return20": 2.5,
+      "return60": 19.29
     },
     "ARKK": {
-      "close": 78.13,
-      "return20": -3.56,
-      "return60": 15.59
+      "close": 80.31,
+      "return20": -2.01,
+      "return60": 17.4
     },
     "XIU.TO": {
-      "close": 51.96,
-      "return20": 2.16,
-      "return60": 7.4
+      "close": 51.83,
+      "return20": 1.71,
+      "return60": 6.58
     },
     "XIC.TO": {
-      "close": 55.74,
-      "return20": 0.52,
-      "return60": 6.01
+      "close": 55.57,
+      "return20": -0.02,
+      "return60": 5.23
     }
   }
 }
