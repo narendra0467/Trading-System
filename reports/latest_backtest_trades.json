@@ -1685,9 +1685,9 @@
   {
     "symbol": "DELL",
     "trades": 18,
-    "winRate": 50,
-    "avgReturnPct": 2.64,
-    "profitFactor": 2.48,
+    "winRate": 44.4,
+    "avgReturnPct": 2.51,
+    "profitFactor": 2.36,
     "tradeLog": [
       {
         "symbol": "DELL",
@@ -1847,8 +1847,8 @@
         "entryDate": "2026-06-18",
         "exitDate": "2026-07-01",
         "entry": 429.88,
-        "exit": 434.86,
-        "returnPct": 1.16,
+        "exit": 425.25,
+        "returnPct": -1.08,
         "exitReason": "time"
       }
     ]
@@ -2019,8 +2019,8 @@
     "symbol": "CRWD",
     "trades": 15,
     "winRate": 53.3,
-    "avgReturnPct": 2.56,
-    "profitFactor": 2.1,
+    "avgReturnPct": 2.53,
+    "profitFactor": 2.09,
     "tradeLog": [
       {
         "symbol": "CRWD",
@@ -2153,8 +2153,8 @@
         "entryDate": "2026-06-12",
         "exitDate": "2026-07-01",
         "entry": 690.66,
-        "exit": 776.17,
-        "returnPct": 12.38,
+        "exit": 772.74,
+        "returnPct": 11.88,
         "exitReason": "time"
       }
     ]
@@ -2606,87 +2606,6 @@
         "exit": 112.9,
         "returnPct": -4.63,
         "exitReason": "stop"
-      }
-    ]
-  },
-  {
-    "symbol": "ARM",
-    "trades": 8,
-    "winRate": 50,
-    "avgReturnPct": 3.22,
-    "profitFactor": 1.93,
-    "tradeLog": [
-      {
-        "symbol": "ARM",
-        "entryDate": "2024-06-04",
-        "exitDate": "2024-06-11",
-        "entry": 126.88,
-        "exit": 147.41,
-        "returnPct": 16.19,
-        "exitReason": "target"
-      },
-      {
-        "symbol": "ARM",
-        "entryDate": "2024-07-11",
-        "exitDate": "2024-07-17",
-        "entry": 186.84,
-        "exit": 171.42,
-        "returnPct": -8.26,
-        "exitReason": "stop"
-      },
-      {
-        "symbol": "ARM",
-        "entryDate": "2024-10-29",
-        "exitDate": "2024-10-31",
-        "entry": 150,
-        "exit": 142.99,
-        "returnPct": -4.67,
-        "exitReason": "stop"
-      },
-      {
-        "symbol": "ARM",
-        "entryDate": "2025-02-03",
-        "exitDate": "2025-02-12",
-        "entry": 153.55,
-        "exit": 155.41,
-        "returnPct": 1.21,
-        "exitReason": "trend_loss"
-      },
-      {
-        "symbol": "ARM",
-        "entryDate": "2025-07-17",
-        "exitDate": "2025-07-31",
-        "entry": 157.11,
-        "exit": 145.11,
-        "returnPct": -7.64,
-        "exitReason": "stop"
-      },
-      {
-        "symbol": "ARM",
-        "entryDate": "2025-10-28",
-        "exitDate": "2025-11-04",
-        "entry": 178.01,
-        "exit": 165.26,
-        "returnPct": -7.16,
-        "exitReason": "stop"
-      },
-      {
-        "symbol": "ARM",
-        "entryDate": "2026-04-14",
-        "exitDate": "2026-04-22",
-        "entry": 161.03,
-        "exit": 186.49,
-        "returnPct": 15.81,
-        "exitReason": "target"
-      },
-      {
-        "symbol": "ARM",
-        "entryDate": "2026-05-20",
-        "exitDate": "2026-05-21",
-        "entry": 226.54,
-        "exit": 272.44,
-        "returnPct": 20.26,
-        "exitReason": "target"
       }
     ]
   },
@@ -3362,6 +3281,87 @@
         "exit": 52.89,
         "returnPct": -9.73,
         "exitReason": "stop"
+      }
+    ]
+  },
+  {
+    "symbol": "ARM",
+    "trades": 8,
+    "winRate": 50,
+    "avgReturnPct": 2.95,
+    "profitFactor": 1.79,
+    "tradeLog": [
+      {
+        "symbol": "ARM",
+        "entryDate": "2024-06-04",
+        "exitDate": "2024-06-11",
+        "entry": 126.88,
+        "exit": 147.41,
+        "returnPct": 16.19,
+        "exitReason": "target"
+      },
+      {
+        "symbol": "ARM",
+        "entryDate": "2024-07-11",
+        "exitDate": "2024-07-17",
+        "entry": 186.84,
+        "exit": 171.42,
+        "returnPct": -8.26,
+        "exitReason": "stop"
+      },
+      {
+        "symbol": "ARM",
+        "entryDate": "2024-10-14",
+        "exitDate": "2024-10-23",
+        "entry": 153.1,
+        "exit": 142.7,
+        "returnPct": -6.79,
+        "exitReason": "stop"
+      },
+      {
+        "symbol": "ARM",
+        "entryDate": "2025-02-03",
+        "exitDate": "2025-02-12",
+        "entry": 153.55,
+        "exit": 155.41,
+        "returnPct": 1.21,
+        "exitReason": "trend_loss"
+      },
+      {
+        "symbol": "ARM",
+        "entryDate": "2025-07-17",
+        "exitDate": "2025-07-31",
+        "entry": 157.11,
+        "exit": 145.11,
+        "returnPct": -7.64,
+        "exitReason": "stop"
+      },
+      {
+        "symbol": "ARM",
+        "entryDate": "2025-10-28",
+        "exitDate": "2025-11-04",
+        "entry": 178.01,
+        "exit": 165.26,
+        "returnPct": -7.16,
+        "exitReason": "stop"
+      },
+      {
+        "symbol": "ARM",
+        "entryDate": "2026-04-14",
+        "exitDate": "2026-04-22",
+        "entry": 161.03,
+        "exit": 186.49,
+        "returnPct": 15.81,
+        "exitReason": "target"
+      },
+      {
+        "symbol": "ARM",
+        "entryDate": "2026-05-20",
+        "exitDate": "2026-05-21",
+        "entry": 226.54,
+        "exit": 272.44,
+        "returnPct": 20.26,
+        "exitReason": "target"
       }
     ]
   },
@@ -4934,9 +4934,9 @@
   {
     "symbol": "AMD",
     "trades": 14,
-    "winRate": 42.9,
-    "avgReturnPct": 1.06,
-    "profitFactor": 1.3,
+    "winRate": 35.7,
+    "avgReturnPct": 0.93,
+    "profitFactor": 1.26,
     "tradeLog": [
       {
         "symbol": "AMD",
@@ -5060,8 +5060,8 @@
         "entryDate": "2026-06-30",
         "exitDate": "2026-07-01",
         "entry": 545.57,
-        "exit": 550.5,
-        "returnPct": 0.9,
+        "exit": 540.88,
+        "returnPct": -0.86,
         "exitReason": "time"
       }
     ]
@@ -5277,7 +5277,7 @@
     "symbol": "SNOW",
     "trades": 11,
     "winRate": 45.5,
-    "avgReturnPct": 0.42,
+    "avgReturnPct": 0.41,
     "profitFactor": 1.19,
     "tradeLog": [
       {
@@ -5375,8 +5375,8 @@
         "entryDate": "2026-06-29",
         "exitDate": "2026-07-01",
         "entry": 250.96,
-        "exit": 261.41,
-        "returnPct": 4.16,
+        "exit": 261.19,
+        "returnPct": 4.08,
         "exitReason": "time"
       }
     ]
@@ -9039,16 +9039,16 @@
     "symbol": "ABNB",
     "trades": 12,
     "winRate": 8.3,
-    "avgReturnPct": -1.76,
-    "profitFactor": 0.37,
+    "avgReturnPct": -1.89,
+    "profitFactor": 0.36,
     "tradeLog": [
       {
         "symbol": "ABNB",
-        "entryDate": "2022-04-18",
+        "entryDate": "2022-04-14",
         "exitDate": "2022-04-21",
-        "entry": 169.27,
-        "exit": 163.25,
-        "returnPct": -3.56,
+        "entry": 171.66,
+        "exit": 162.94,
+        "returnPct": -5.08,
         "exitReason": "stop"
       },
       {
