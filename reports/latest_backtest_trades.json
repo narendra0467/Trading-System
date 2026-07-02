@@ -1542,7 +1542,7 @@
     "symbol": "ANET",
     "trades": 22,
     "winRate": 54.5,
-    "avgReturnPct": 2.47,
+    "avgReturnPct": 2.46,
     "profitFactor": 2.29,
     "tradeLog": [
       {
@@ -1739,8 +1739,8 @@
         "entryDate": "2026-07-01",
         "exitDate": "2026-07-02",
         "entry": 165.55,
-        "exit": 160.04,
-        "returnPct": -3.33,
+        "exit": 159.9,
+        "returnPct": -3.42,
         "exitReason": "time"
       }
     ]
@@ -1749,8 +1749,8 @@
     "symbol": "CRWD",
     "trades": 15,
     "winRate": 53.3,
-    "avgReturnPct": 2.6,
-    "profitFactor": 2.12,
+    "avgReturnPct": 2.63,
+    "profitFactor": 2.13,
     "tradeLog": [
       {
         "symbol": "CRWD",
@@ -1883,8 +1883,8 @@
         "entryDate": "2026-06-12",
         "exitDate": "2026-07-02",
         "entry": 172.66,
-        "exit": 195.08,
-        "returnPct": 12.98,
+        "exit": 195.7,
+        "returnPct": 13.34,
         "exitReason": "time"
       }
     ]
@@ -2466,177 +2466,6 @@
     ]
   },
   {
-    "symbol": "DELL",
-    "trades": 18,
-    "winRate": 44.4,
-    "avgReturnPct": 2.11,
-    "profitFactor": 1.94,
-    "tradeLog": [
-      {
-        "symbol": "DELL",
-        "entryDate": "2023-05-04",
-        "exitDate": "2023-05-26",
-        "entry": 45.03,
-        "exit": 48.34,
-        "returnPct": 7.35,
-        "exitReason": "target"
-      },
-      {
-        "symbol": "DELL",
-        "entryDate": "2023-06-09",
-        "exitDate": "2023-06-29",
-        "entry": 48.09,
-        "exit": 52.89,
-        "returnPct": 9.98,
-        "exitReason": "target"
-      },
-      {
-        "symbol": "DELL",
-        "entryDate": "2023-07-26",
-        "exitDate": "2023-07-28",
-        "entry": 54.24,
-        "exit": 52.76,
-        "returnPct": -2.72,
-        "exitReason": "stop"
-      },
-      {
-        "symbol": "DELL",
-        "entryDate": "2023-10-11",
-        "exitDate": "2023-10-18",
-        "entry": 68.24,
-        "exit": 66.89,
-        "returnPct": -1.98,
-        "exitReason": "trend_loss"
-      },
-      {
-        "symbol": "DELL",
-        "entryDate": "2023-11-24",
-        "exitDate": "2023-12-01",
-        "entry": 74.63,
-        "exit": 72.49,
-        "returnPct": -2.87,
-        "exitReason": "stop"
-      },
-      {
-        "symbol": "DELL",
-        "entryDate": "2024-01-09",
-        "exitDate": "2024-01-24",
-        "entry": 79.17,
-        "exit": 84.82,
-        "returnPct": 7.13,
-        "exitReason": "target"
-      },
-      {
-        "symbol": "DELL",
-        "entryDate": "2024-02-15",
-        "exitDate": "2024-02-15",
-        "entry": 85.48,
-        "exit": 82.73,
-        "returnPct": -3.22,
-        "exitReason": "stop"
-      },
-      {
-        "symbol": "DELL",
-        "entryDate": "2024-03-22",
-        "exitDate": "2024-04-03",
-        "entry": 112.91,
-        "exit": 129.24,
-        "returnPct": 14.47,
-        "exitReason": "target"
-      },
-      {
-        "symbol": "DELL",
-        "entryDate": "2024-04-29",
-        "exitDate": "2024-05-15",
-        "entry": 125.2,
-        "exit": 141.8,
-        "returnPct": 13.26,
-        "exitReason": "target"
-      },
-      {
-        "symbol": "DELL",
-        "entryDate": "2024-06-18",
-        "exitDate": "2024-06-26",
-        "entry": 143.58,
-        "exit": 138.24,
-        "returnPct": -3.72,
-        "exitReason": "trend_loss"
-      },
-      {
-        "symbol": "DELL",
-        "entryDate": "2024-10-14",
-        "exitDate": "2024-10-22",
-        "entry": 129,
-        "exit": 121.83,
-        "returnPct": -5.56,
-        "exitReason": "stop"
-      },
-      {
-        "symbol": "DELL",
-        "entryDate": "2024-11-22",
-        "exitDate": "2024-11-27",
-        "entry": 142.5,
-        "exit": 131.15,
-        "returnPct": -7.97,
-        "exitReason": "stop"
-      },
-      {
-        "symbol": "DELL",
-        "entryDate": "2025-06-24",
-        "exitDate": "2025-07-18",
-        "entry": 119.8,
-        "exit": 129.22,
-        "returnPct": 7.86,
-        "exitReason": "target"
-      },
-      {
-        "symbol": "DELL",
-        "entryDate": "2025-07-30",
-        "exitDate": "2025-08-01",
-        "entry": 133.43,
-        "exit": 128.04,
-        "returnPct": -4.04,
-        "exitReason": "stop"
-      },
-      {
-        "symbol": "DELL",
-        "entryDate": "2025-10-08",
-        "exitDate": "2025-11-04",
-        "entry": 154.71,
-        "exit": 154.64,
-        "returnPct": -0.05,
-        "exitReason": "trend_loss"
-      },
-      {
-        "symbol": "DELL",
-        "entryDate": "2026-03-20",
-        "exitDate": "2026-03-24",
-        "entry": 163.5,
-        "exit": 178.08,
-        "returnPct": 8.92,
-        "exitReason": "target"
-      },
-      {
-        "symbol": "DELL",
-        "entryDate": "2026-05-06",
-        "exitDate": "2026-05-08",
-        "entry": 220.8,
-        "exit": 241.67,
-        "returnPct": 9.45,
-        "exitReason": "target"
-      },
-      {
-        "symbol": "DELL",
-        "entryDate": "2026-06-18",
-        "exitDate": "2026-07-02",
-        "entry": 429.88,
-        "exit": 393.89,
-        "returnPct": -8.37,
-        "exitReason": "trend_loss"
-      }
-    ]
-  },
-  {
     "symbol": "ELF",
     "trades": 19,
     "winRate": 47.4,
@@ -2813,6 +2642,177 @@
         "exit": 129.62,
         "returnPct": -1.31,
         "exitReason": "stop"
+      }
+    ]
+  },
+  {
+    "symbol": "DELL",
+    "trades": 18,
+    "winRate": 44.4,
+    "avgReturnPct": 2.06,
+    "profitFactor": 1.9,
+    "tradeLog": [
+      {
+        "symbol": "DELL",
+        "entryDate": "2023-05-04",
+        "exitDate": "2023-05-26",
+        "entry": 45.03,
+        "exit": 48.34,
+        "returnPct": 7.35,
+        "exitReason": "target"
+      },
+      {
+        "symbol": "DELL",
+        "entryDate": "2023-06-09",
+        "exitDate": "2023-06-29",
+        "entry": 48.09,
+        "exit": 52.89,
+        "returnPct": 9.98,
+        "exitReason": "target"
+      },
+      {
+        "symbol": "DELL",
+        "entryDate": "2023-07-26",
+        "exitDate": "2023-07-28",
+        "entry": 54.24,
+        "exit": 52.76,
+        "returnPct": -2.72,
+        "exitReason": "stop"
+      },
+      {
+        "symbol": "DELL",
+        "entryDate": "2023-10-11",
+        "exitDate": "2023-10-18",
+        "entry": 68.24,
+        "exit": 66.89,
+        "returnPct": -1.98,
+        "exitReason": "trend_loss"
+      },
+      {
+        "symbol": "DELL",
+        "entryDate": "2023-11-24",
+        "exitDate": "2023-12-01",
+        "entry": 74.63,
+        "exit": 72.49,
+        "returnPct": -2.87,
+        "exitReason": "stop"
+      },
+      {
+        "symbol": "DELL",
+        "entryDate": "2024-01-09",
+        "exitDate": "2024-01-24",
+        "entry": 79.17,
+        "exit": 84.82,
+        "returnPct": 7.13,
+        "exitReason": "target"
+      },
+      {
+        "symbol": "DELL",
+        "entryDate": "2024-02-15",
+        "exitDate": "2024-02-15",
+        "entry": 85.48,
+        "exit": 82.73,
+        "returnPct": -3.22,
+        "exitReason": "stop"
+      },
+      {
+        "symbol": "DELL",
+        "entryDate": "2024-03-22",
+        "exitDate": "2024-04-03",
+        "entry": 112.91,
+        "exit": 129.24,
+        "returnPct": 14.47,
+        "exitReason": "target"
+      },
+      {
+        "symbol": "DELL",
+        "entryDate": "2024-04-29",
+        "exitDate": "2024-05-15",
+        "entry": 125.2,
+        "exit": 141.8,
+        "returnPct": 13.26,
+        "exitReason": "target"
+      },
+      {
+        "symbol": "DELL",
+        "entryDate": "2024-06-18",
+        "exitDate": "2024-06-26",
+        "entry": 143.58,
+        "exit": 138.24,
+        "returnPct": -3.72,
+        "exitReason": "trend_loss"
+      },
+      {
+        "symbol": "DELL",
+        "entryDate": "2024-10-14",
+        "exitDate": "2024-10-22",
+        "entry": 129,
+        "exit": 121.83,
+        "returnPct": -5.56,
+        "exitReason": "stop"
+      },
+      {
+        "symbol": "DELL",
+        "entryDate": "2024-11-22",
+        "exitDate": "2024-11-27",
+        "entry": 142.5,
+        "exit": 131.15,
+        "returnPct": -7.97,
+        "exitReason": "stop"
+      },
+      {
+        "symbol": "DELL",
+        "entryDate": "2025-06-24",
+        "exitDate": "2025-07-18",
+        "entry": 119.8,
+        "exit": 129.22,
+        "returnPct": 7.86,
+        "exitReason": "target"
+      },
+      {
+        "symbol": "DELL",
+        "entryDate": "2025-07-30",
+        "exitDate": "2025-08-01",
+        "entry": 133.43,
+        "exit": 128.04,
+        "returnPct": -4.04,
+        "exitReason": "stop"
+      },
+      {
+        "symbol": "DELL",
+        "entryDate": "2025-10-08",
+        "exitDate": "2025-11-04",
+        "entry": 154.71,
+        "exit": 154.64,
+        "returnPct": -0.05,
+        "exitReason": "trend_loss"
+      },
+      {
+        "symbol": "DELL",
+        "entryDate": "2026-03-20",
+        "exitDate": "2026-03-24",
+        "entry": 163.5,
+        "exit": 178.08,
+        "returnPct": 8.92,
+        "exitReason": "target"
+      },
+      {
+        "symbol": "DELL",
+        "entryDate": "2026-05-06",
+        "exitDate": "2026-05-08",
+        "entry": 220.8,
+        "exit": 241.67,
+        "returnPct": 9.45,
+        "exitReason": "target"
+      },
+      {
+        "symbol": "DELL",
+        "entryDate": "2026-06-18",
+        "exitDate": "2026-07-02",
+        "entry": 429.88,
+        "exit": 390.48,
+        "returnPct": -9.17,
+        "exitReason": "trend_loss"
       }
     ]
   },
@@ -5274,141 +5274,6 @@
     ]
   },
   {
-    "symbol": "AMD",
-    "trades": 14,
-    "winRate": 35.7,
-    "avgReturnPct": 0.61,
-    "profitFactor": 1.16,
-    "tradeLog": [
-      {
-        "symbol": "AMD",
-        "entryDate": "2023-03-15",
-        "exitDate": "2023-03-22",
-        "entry": 86.77,
-        "exit": 99.51,
-        "returnPct": 14.68,
-        "exitReason": "target"
-      },
-      {
-        "symbol": "AMD",
-        "entryDate": "2023-05-03",
-        "exitDate": "2023-05-03",
-        "entry": 83.54,
-        "exit": 88.24,
-        "returnPct": 5.63,
-        "exitReason": "stop"
-      },
-      {
-        "symbol": "AMD",
-        "entryDate": "2023-06-12",
-        "exitDate": "2023-06-21",
-        "entry": 128.52,
-        "exit": 116.26,
-        "returnPct": -9.54,
-        "exitReason": "stop"
-      },
-      {
-        "symbol": "AMD",
-        "entryDate": "2023-07-19",
-        "exitDate": "2023-07-20",
-        "entry": 121.3,
-        "exit": 111.51,
-        "returnPct": -8.07,
-        "exitReason": "stop"
-      },
-      {
-        "symbol": "AMD",
-        "entryDate": "2023-12-08",
-        "exitDate": "2023-12-19",
-        "entry": 129.54,
-        "exit": 142.93,
-        "returnPct": 10.34,
-        "exitReason": "target"
-      },
-      {
-        "symbol": "AMD",
-        "entryDate": "2024-02-05",
-        "exitDate": "2024-02-06",
-        "entry": 179.09,
-        "exit": 166.14,
-        "returnPct": -7.23,
-        "exitReason": "stop"
-      },
-      {
-        "symbol": "AMD",
-        "entryDate": "2024-07-12",
-        "exitDate": "2024-07-17",
-        "entry": 182.02,
-        "exit": 170.97,
-        "returnPct": -6.07,
-        "exitReason": "stop"
-      },
-      {
-        "symbol": "AMD",
-        "entryDate": "2024-10-29",
-        "exitDate": "2024-10-30",
-        "entry": 161.1,
-        "exit": 156.71,
-        "returnPct": -2.72,
-        "exitReason": "stop"
-      },
-      {
-        "symbol": "AMD",
-        "entryDate": "2025-07-11",
-        "exitDate": "2025-07-16",
-        "entry": 142.6,
-        "exit": 159.22,
-        "returnPct": 11.66,
-        "exitReason": "target"
-      },
-      {
-        "symbol": "AMD",
-        "entryDate": "2025-08-15",
-        "exitDate": "2025-08-19",
-        "entry": 180.06,
-        "exit": 168.42,
-        "returnPct": -6.46,
-        "exitReason": "stop"
-      },
-      {
-        "symbol": "AMD",
-        "entryDate": "2025-09-24",
-        "exitDate": "2025-09-25",
-        "entry": 162.98,
-        "exit": 158.13,
-        "returnPct": -2.98,
-        "exitReason": "stop"
-      },
-      {
-        "symbol": "AMD",
-        "entryDate": "2025-11-13",
-        "exitDate": "2025-11-14",
-        "entry": 251.9,
-        "exit": 236.43,
-        "returnPct": -6.14,
-        "exitReason": "stop"
-      },
-      {
-        "symbol": "AMD",
-        "entryDate": "2026-05-21",
-        "exitDate": "2026-06-03",
-        "entry": 441.99,
-        "exit": 534.06,
-        "returnPct": 20.83,
-        "exitReason": "target"
-      },
-      {
-        "symbol": "AMD",
-        "entryDate": "2026-06-30",
-        "exitDate": "2026-07-02",
-        "entry": 545.57,
-        "exit": 516.48,
-        "returnPct": -5.33,
-        "exitReason": "time"
-      }
-    ]
-  },
-  {
     "symbol": "NVO",
     "trades": 16,
     "winRate": 31.3,
@@ -5715,10 +5580,145 @@
     ]
   },
   {
+    "symbol": "AMD",
+    "trades": 14,
+    "winRate": 35.7,
+    "avgReturnPct": 0.56,
+    "profitFactor": 1.14,
+    "tradeLog": [
+      {
+        "symbol": "AMD",
+        "entryDate": "2023-03-15",
+        "exitDate": "2023-03-22",
+        "entry": 86.77,
+        "exit": 99.51,
+        "returnPct": 14.68,
+        "exitReason": "target"
+      },
+      {
+        "symbol": "AMD",
+        "entryDate": "2023-05-03",
+        "exitDate": "2023-05-03",
+        "entry": 83.54,
+        "exit": 88.24,
+        "returnPct": 5.63,
+        "exitReason": "stop"
+      },
+      {
+        "symbol": "AMD",
+        "entryDate": "2023-06-12",
+        "exitDate": "2023-06-21",
+        "entry": 128.52,
+        "exit": 116.26,
+        "returnPct": -9.54,
+        "exitReason": "stop"
+      },
+      {
+        "symbol": "AMD",
+        "entryDate": "2023-07-19",
+        "exitDate": "2023-07-20",
+        "entry": 121.3,
+        "exit": 111.51,
+        "returnPct": -8.07,
+        "exitReason": "stop"
+      },
+      {
+        "symbol": "AMD",
+        "entryDate": "2023-12-08",
+        "exitDate": "2023-12-19",
+        "entry": 129.54,
+        "exit": 142.93,
+        "returnPct": 10.34,
+        "exitReason": "target"
+      },
+      {
+        "symbol": "AMD",
+        "entryDate": "2024-02-05",
+        "exitDate": "2024-02-06",
+        "entry": 179.09,
+        "exit": 166.14,
+        "returnPct": -7.23,
+        "exitReason": "stop"
+      },
+      {
+        "symbol": "AMD",
+        "entryDate": "2024-07-12",
+        "exitDate": "2024-07-17",
+        "entry": 182.02,
+        "exit": 170.97,
+        "returnPct": -6.07,
+        "exitReason": "stop"
+      },
+      {
+        "symbol": "AMD",
+        "entryDate": "2024-10-29",
+        "exitDate": "2024-10-30",
+        "entry": 161.1,
+        "exit": 156.71,
+        "returnPct": -2.72,
+        "exitReason": "stop"
+      },
+      {
+        "symbol": "AMD",
+        "entryDate": "2025-07-11",
+        "exitDate": "2025-07-16",
+        "entry": 142.6,
+        "exit": 159.22,
+        "returnPct": 11.66,
+        "exitReason": "target"
+      },
+      {
+        "symbol": "AMD",
+        "entryDate": "2025-08-15",
+        "exitDate": "2025-08-19",
+        "entry": 180.06,
+        "exit": 168.42,
+        "returnPct": -6.46,
+        "exitReason": "stop"
+      },
+      {
+        "symbol": "AMD",
+        "entryDate": "2025-09-24",
+        "exitDate": "2025-09-25",
+        "entry": 162.98,
+        "exit": 158.13,
+        "returnPct": -2.98,
+        "exitReason": "stop"
+      },
+      {
+        "symbol": "AMD",
+        "entryDate": "2025-11-13",
+        "exitDate": "2025-11-14",
+        "entry": 251.9,
+        "exit": 236.43,
+        "returnPct": -6.14,
+        "exitReason": "stop"
+      },
+      {
+        "symbol": "AMD",
+        "entryDate": "2026-05-21",
+        "exitDate": "2026-06-03",
+        "entry": 441.99,
+        "exit": 534.06,
+        "returnPct": 20.83,
+        "exitReason": "target"
+      },
+      {
+        "symbol": "AMD",
+        "entryDate": "2026-06-30",
+        "exitDate": "2026-07-02",
+        "entry": 545.57,
+        "exit": 512.06,
+        "returnPct": -6.14,
+        "exitReason": "time"
+      }
+    ]
+  },
+  {
     "symbol": "SNOW",
     "trades": 11,
     "winRate": 45.5,
-    "avgReturnPct": 0.29,
+    "avgReturnPct": 0.31,
     "profitFactor": 1.14,
     "tradeLog": [
       {
@@ -5816,8 +5816,8 @@
         "entryDate": "2026-06-29",
         "exitDate": "2026-07-02",
         "entry": 250.96,
-        "exit": 257.88,
-        "returnPct": 2.76,
+        "exit": 258.36,
+        "returnPct": 2.95,
         "exitReason": "time"
       }
     ]
@@ -7101,11 +7101,92 @@
     ]
   },
   {
+    "symbol": "PYPL",
+    "trades": 8,
+    "winRate": 25,
+    "avgReturnPct": -0.2,
+    "profitFactor": 0.9,
+    "tradeLog": [
+      {
+        "symbol": "PYPL",
+        "entryDate": "2024-04-09",
+        "exitDate": "2024-04-15",
+        "entry": 66.95,
+        "exit": 63.79,
+        "returnPct": -4.73,
+        "exitReason": "stop"
+      },
+      {
+        "symbol": "PYPL",
+        "entryDate": "2024-05-21",
+        "exitDate": "2024-05-21",
+        "entry": 64.39,
+        "exit": 64.09,
+        "returnPct": -0.47,
+        "exitReason": "stop"
+      },
+      {
+        "symbol": "PYPL",
+        "entryDate": "2024-08-19",
+        "exitDate": "2024-09-05",
+        "entry": 68.22,
+        "exit": 74.07,
+        "returnPct": 8.57,
+        "exitReason": "target"
+      },
+      {
+        "symbol": "PYPL",
+        "entryDate": "2024-10-07",
+        "exitDate": "2024-10-30",
+        "entry": 79.29,
+        "exit": 78.22,
+        "returnPct": -1.35,
+        "exitReason": "trend_loss"
+      },
+      {
+        "symbol": "PYPL",
+        "entryDate": "2024-11-11",
+        "exitDate": "2024-12-04",
+        "entry": 84.07,
+        "exit": 89.24,
+        "returnPct": 6.15,
+        "exitReason": "target"
+      },
+      {
+        "symbol": "PYPL",
+        "entryDate": "2024-12-17",
+        "exitDate": "2024-12-18",
+        "entry": 90.9,
+        "exit": 88.03,
+        "returnPct": -3.16,
+        "exitReason": "stop"
+      },
+      {
+        "symbol": "PYPL",
+        "entryDate": "2025-01-28",
+        "exitDate": "2025-02-03",
+        "entry": 89.76,
+        "exit": 86.71,
+        "returnPct": -3.4,
+        "exitReason": "stop"
+      },
+      {
+        "symbol": "PYPL",
+        "entryDate": "2025-07-25",
+        "exitDate": "2025-07-29",
+        "entry": 77.59,
+        "exit": 75.1,
+        "returnPct": -3.2,
+        "exitReason": "stop"
+      }
+    ]
+  },
+  {
     "symbol": "APP",
     "trades": 18,
-    "winRate": 27.8,
-    "avgReturnPct": -0.4,
-    "profitFactor": 0.9,
+    "winRate": 22.2,
+    "avgReturnPct": -0.49,
+    "profitFactor": 0.88,
     "tradeLog": [
       {
         "symbol": "APP",
@@ -7265,90 +7346,9 @@
         "entryDate": "2026-07-01",
         "exitDate": "2026-07-02",
         "entry": 532.94,
-        "exit": 538.21,
-        "returnPct": 0.99,
+        "exit": 529.37,
+        "returnPct": -0.67,
         "exitReason": "time"
-      }
-    ]
-  },
-  {
-    "symbol": "PYPL",
-    "trades": 8,
-    "winRate": 25,
-    "avgReturnPct": -0.2,
-    "profitFactor": 0.9,
-    "tradeLog": [
-      {
-        "symbol": "PYPL",
-        "entryDate": "2024-04-09",
-        "exitDate": "2024-04-15",
-        "entry": 66.95,
-        "exit": 63.79,
-        "returnPct": -4.73,
-        "exitReason": "stop"
-      },
-      {
-        "symbol": "PYPL",
-        "entryDate": "2024-05-21",
-        "exitDate": "2024-05-21",
-        "entry": 64.39,
-        "exit": 64.09,
-        "returnPct": -0.47,
-        "exitReason": "stop"
-      },
-      {
-        "symbol": "PYPL",
-        "entryDate": "2024-08-19",
-        "exitDate": "2024-09-05",
-        "entry": 68.22,
-        "exit": 74.07,
-        "returnPct": 8.57,
-        "exitReason": "target"
-      },
-      {
-        "symbol": "PYPL",
-        "entryDate": "2024-10-07",
-        "exitDate": "2024-10-30",
-        "entry": 79.29,
-        "exit": 78.22,
-        "returnPct": -1.35,
-        "exitReason": "trend_loss"
-      },
-      {
-        "symbol": "PYPL",
-        "entryDate": "2024-11-11",
-        "exitDate": "2024-12-04",
-        "entry": 84.07,
-        "exit": 89.24,
-        "returnPct": 6.15,
-        "exitReason": "target"
-      },
-      {
-        "symbol": "PYPL",
-        "entryDate": "2024-12-17",
-        "exitDate": "2024-12-18",
-        "entry": 90.9,
-        "exit": 88.03,
-        "returnPct": -3.16,
-        "exitReason": "stop"
-      },
-      {
-        "symbol": "PYPL",
-        "entryDate": "2025-01-28",
-        "exitDate": "2025-02-03",
-        "entry": 89.76,
-        "exit": 86.71,
-        "returnPct": -3.4,
-        "exitReason": "stop"
-      },
-      {
-        "symbol": "PYPL",
-        "entryDate": "2025-07-25",
-        "exitDate": "2025-07-29",
-        "entry": 77.59,
-        "exit": 75.1,
-        "returnPct": -3.2,
-        "exitReason": "stop"
       }
     ]
   },
