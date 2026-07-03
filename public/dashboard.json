@@ -3938,7 +3938,7 @@
   ],
   "leapsReport": {
     "title": "LEAPS Call Opportunity Desk",
-    "asOf": "2026-07-03T19:59:27.945Z",
+    "asOf": "2026-07-03T21:41:34.348Z",
     "disclaimer": "Research watchlist only. Not financial advice and not a buy/sell recommendation.",
     "schedule": {
       "timeZone": "America/Edmonton",
@@ -10485,7 +10485,7 @@
           {
             "label": "Catalyst strength",
             "weight": 15,
-            "score": 82
+            "score": 83
           },
           {
             "label": "Technical setup",
@@ -12107,10 +12107,10 @@
         "currentPrice": 140.27,
         "decision": "Avoid - weak underlying",
         "status": "Avoid",
-        "score": 32,
-        "leapsOpportunityScore": 32,
-        "underlyingScore": 58,
-        "riskScore": 90,
+        "score": 31,
+        "leapsOpportunityScore": 31,
+        "underlyingScore": 57,
+        "riskScore": 91,
         "pullbackClassification": "Falling Knife / Do Not DCA",
         "dcaSuitability": "DCA Rejected / Wait",
         "reason": "Underlying stock quality is below 70, so the desk does not analyze LEAPS calls.",
@@ -12140,7 +12140,7 @@
           {
             "label": "Catalyst strength",
             "weight": 15,
-            "score": 93
+            "score": 91
           },
           {
             "label": "Technical setup",
@@ -12781,8 +12781,8 @@
         "status": "Avoid",
         "score": 25,
         "leapsOpportunityScore": 25,
-        "underlyingScore": 45,
-        "riskScore": 97,
+        "underlyingScore": 46,
+        "riskScore": 96,
         "pullbackClassification": "Falling Knife / Do Not DCA",
         "dcaSuitability": "DCA Rejected / Wait",
         "reason": "Underlying stock quality is below 70, so the desk does not analyze LEAPS calls.",
@@ -12812,7 +12812,7 @@
           {
             "label": "Catalyst strength",
             "weight": 15,
-            "score": 60
+            "score": 62
           },
           {
             "label": "Technical setup",
@@ -13411,9 +13411,9 @@
         "return60": 18.16
       },
       "XIU.TO": {
-        "close": 52.29,
-        "return20": 0.85,
-        "return60": 5.83
+        "close": 52.28,
+        "return20": 0.83,
+        "return60": 5.81
       },
       "XIC.TO": {
         "close": 56.28,
@@ -13423,7 +13423,7 @@
     }
   },
   "hiddenMultibagger": {
-    "generatedAt": "2026-07-03T19:59:45.941Z",
+    "generatedAt": "2026-07-03T21:41:52.226Z",
     "qualityMode": true,
     "investorMode": true,
     "scanned": 78,
@@ -13490,7 +13490,7 @@
         ],
         "verdict": "Early Quality Compounder: The setup has enough business progress and survivability to deserve deeper research.",
         "dataQuality": {
-          "marketDataDate": "2026-07-03T19:59:33.866Z",
+          "marketDataDate": "2026-07-03T21:41:40.582Z",
           "latestReportedQuarter": "2026-03-31",
           "latestReportedQuarterEnd": "2026-03-31",
           "lastEarningsDate": "2026-03-31",
@@ -14075,7 +14075,7 @@
         ],
         "verdict": "Early Quality Compounder: The setup has enough business progress and survivability to deserve deeper research.",
         "dataQuality": {
-          "marketDataDate": "2026-07-03T19:59:36.650Z",
+          "marketDataDate": "2026-07-03T21:41:43.261Z",
           "latestReportedQuarter": "2026-03-31",
           "latestReportedQuarterEnd": "2026-03-31",
           "lastEarningsDate": "2026-03-31",
@@ -14663,7 +14663,7 @@
         ],
         "verdict": "Speculative Multibagger Candidate: The setup has enough business progress and survivability to deserve deeper research.",
         "dataQuality": {
-          "marketDataDate": "2026-07-03T19:59:45.005Z",
+          "marketDataDate": "2026-07-03T21:41:51.166Z",
           "latestReportedQuarter": "2026-03-31",
           "latestReportedQuarterEnd": "2026-03-31",
           "lastEarningsDate": "2026-03-31",
@@ -15250,7 +15250,7 @@
         ],
         "verdict": "Speculative Multibagger Candidate: The setup has some proof, but the thesis still needs more evidence before it becomes high conviction.",
         "dataQuality": {
-          "marketDataDate": "2026-07-03T19:59:42.236Z",
+          "marketDataDate": "2026-07-03T21:41:49.067Z",
           "latestReportedQuarter": "2026-03-31",
           "latestReportedQuarterEnd": "2026-03-31",
           "lastEarningsDate": "2026-03-31",
@@ -18212,25 +18212,25 @@
       "conviction": "No Client Action",
       "clientAction": "No buy",
       "scoreSummary": "weak setup. Needs manual news/macro check.",
-      "close": "139.59",
-      "buyZoneLow": "133.66",
-      "buyZoneHigh": "142.55",
-      "stop": "139.67",
-      "target1": "139.44",
-      "target2": "139.29",
-      "doubleTarget": "279.18",
-      "riskPct": "-0.05",
-      "return20": "-21.36",
-      "return60": "64.34",
-      "return120": "64.69",
-      "relativeStrength60": "58.51",
-      "volumeRatio": "0.11",
-      "atrPct": "10.61",
-      "hv20": "98.34",
-      "rsi14": "27.1",
+      "close": "139.53",
+      "buyZoneLow": "133.6",
+      "buyZoneHigh": "142.49",
+      "stop": "139.66",
+      "target1": "139.26",
+      "target2": "138.99",
+      "doubleTarget": "279.06",
+      "riskPct": "-0.1",
+      "return20": "-21.39",
+      "return60": "64.27",
+      "return120": "64.62",
+      "relativeStrength60": "58.46",
+      "volumeRatio": "0.12",
+      "atrPct": "10.62",
+      "hv20": "98.32",
+      "rsi14": "27",
       "adx14": "23.8",
-      "ema20": "160.71",
-      "ema50": "147.02",
+      "ema20": "160.7",
+      "ema50": "147.01",
       "high55": "184.08",
       "capitalPlan": "0",
       "shares": "0",
@@ -19022,7 +19022,7 @@
       "conviction": "",
       "clientAction": "",
       "scoreSummary": "",
-      "close": "0.74",
+      "close": "0.75",
       "buyZoneLow": "",
       "buyZoneHigh": "",
       "stop": "",
@@ -21087,10 +21087,10 @@
       "direction": "",
       "decision": "Avoid - weak underlying",
       "status": "Avoid",
-      "score": "32",
-      "leapsOpportunityScore": "32",
-      "underlyingScore": "58",
-      "riskScore": "90",
+      "score": "31",
+      "leapsOpportunityScore": "31",
+      "underlyingScore": "57",
+      "riskScore": "91",
       "riskLabel": "",
       "eventRisk": "",
       "eventRiskHeadline": "",
@@ -21689,8 +21689,8 @@
       "status": "Avoid",
       "score": "25",
       "leapsOpportunityScore": "25",
-      "underlyingScore": "45",
-      "riskScore": "97",
+      "underlyingScore": "46",
+      "riskScore": "96",
       "riskLabel": "",
       "eventRisk": "",
       "eventRiskHeadline": "",
@@ -22477,7 +22477,7 @@
       "id": "AVGO-PUT_DEBIT_SPREAD-2026-08-07-360-340",
       "status": "WATCHING",
       "createdAt": "2026-07-01T16:56:09.825Z",
-      "updatedAt": "2026-07-03T19:59:16.663Z",
+      "updatedAt": "2026-07-03T21:41:22.636Z",
       "latestIdea": {
         "symbol": "AVGO",
         "signal": "PUT_SETUP",
@@ -22545,7 +22545,7 @@
       "id": "AAPL-CALL_DEBIT_SPREAD-2026-08-07-310-325",
       "status": "WATCHING",
       "createdAt": "2026-07-02T16:20:59.127Z",
-      "updatedAt": "2026-07-03T19:59:16.663Z",
+      "updatedAt": "2026-07-03T21:41:22.636Z",
       "latestIdea": {
         "symbol": "AAPL",
         "signal": "CALL_SETUP",
@@ -30658,5 +30658,5 @@
       }
     }
   ],
-  "updatedAt": "2026-07-03T20:00:18.315Z"
+  "updatedAt": "2026-07-03T21:42:24.696Z"
 }
