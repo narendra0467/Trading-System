@@ -541,7 +541,7 @@
     "underlyingScore": 70,
     "riskScore": 45,
     "riskLabel": "Medium Risk",
-    "eventRisk": "Medium Event Risk",
+    "eventRisk": "Low Event Risk",
     "eventRiskHeadline": "Positive catalyst tape",
     "earningsDate": "Unavailable",
     "preferredExpiryRange": "12-24 months preferred; 6 months minimum",
@@ -558,9 +558,7 @@
     "catalysts": [
       "Next earnings window shown by Yahoo: 2026-08-26.",
       "Growth itself is a catalyst if management keeps beating expectations.",
-      "Analyst target is above current price, so estimate revisions matter.",
-      "Recent Yahoo headline catalyst: Moderna Is Up More Than 70% in a Month After a 9-0 FDA Vote. Wall Street's Average Price Target Says It Should Fall 44%. What Gives?",
-      "Recent Yahoo headline catalyst: Price Prediction: Coca-Cola’s Fourth Consecutive Earnings Beat Sets Up a Run Toward a New High"
+      "Analyst target is above current price, so estimate revisions matter."
     ],
     "technicalSetup": "Healthy Pullback. Price is -17.6% from 52-week high, -4.6% from 50-day, 2.9% from 200-day, RSI 37.8.",
     "dcaPlan": {
@@ -598,7 +596,7 @@
       {
         "label": "Catalyst strength",
         "weight": 15,
-        "score": 96
+        "score": 95
       },
       {
         "label": "Technical setup",
@@ -621,7 +619,7 @@
       "distanceFrom50DayPct": -4.6,
       "distanceFrom200DayPct": 2.9,
       "rsi14": 37.8,
-      "volumeVs20Day": 0.9
+      "volumeVs20Day": 0.91
     },
     "optionContracts": [
       {
@@ -1066,9 +1064,9 @@
     "direction": "CALL",
     "decision": "Strong Watchlist Candidate",
     "status": "Watch for Pullback",
-    "score": 82,
-    "leapsOpportunityScore": 82,
-    "underlyingScore": 75,
+    "score": 84,
+    "leapsOpportunityScore": 84,
+    "underlyingScore": 77,
     "riskScore": 53,
     "riskLabel": "Medium Risk",
     "eventRisk": "Low Event Risk",
@@ -1127,7 +1125,7 @@
       {
         "label": "Catalyst strength",
         "weight": 15,
-        "score": 93
+        "score": 100
       },
       {
         "label": "Technical setup",
@@ -1597,8 +1595,8 @@
     "direction": "CALL",
     "decision": "Strong Watchlist Candidate",
     "status": "Watch for Pullback",
-    "score": 79,
-    "leapsOpportunityScore": 79,
+    "score": 80,
+    "leapsOpportunityScore": 80,
     "underlyingScore": 71,
     "riskScore": 57,
     "riskLabel": "Medium Risk",
@@ -1656,7 +1654,7 @@
       {
         "label": "Catalyst strength",
         "weight": 15,
-        "score": 91
+        "score": 95
       },
       {
         "label": "Technical setup",
