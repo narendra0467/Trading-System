@@ -1,16 +1,16 @@
 {
   "regime": "RISK_ON",
-  "score": 75,
+  "score": 82,
   "bullishSizeMultiplier": 1,
   "bearishSizeMultiplier": 0.5,
-  "vix": 15.81,
+  "vix": 15.82,
   "indexes": [
     {
       "symbol": "SPY",
       "score": 75,
-      "close": 744.78,
-      "rsi14": 55,
-      "adx14": 30.8,
+      "close": 750.94,
+      "rsi14": 62.3,
+      "adx14": 29.3,
       "above20": true,
       "above50": true,
       "above150": true,
@@ -18,28 +18,26 @@
     },
     {
       "symbol": "QQQ",
-      "score": 55,
-      "close": 712.6,
-      "rsi14": 44.1,
-      "adx14": 19.9,
-      "above20": false,
+      "score": 75,
+      "close": 723.51,
+      "rsi14": 51,
+      "adx14": 19.3,
+      "above20": true,
       "above50": true,
       "above150": true,
-      "reasons": [
-        "QQQ below 20 EMA"
-      ]
+      "reasons": []
     },
     {
       "symbol": "IWM",
       "score": 65,
-      "close": 297.58,
-      "rsi14": 55.3,
-      "adx14": 11,
+      "close": 300,
+      "rsi14": 62,
+      "adx14": 10.6,
       "above20": true,
       "above50": true,
       "above150": true,
       "reasons": []
     }
   ],
-  "reason": "QQQ below 20 EMA"
+  "reason": "Market breadth and trend acceptable"
 }
