@@ -1,21 +1,21 @@
 symbol,signal,strategy,score,reason,marketRegime,eventRisk,contracts,maxRiskDollars,riskPerContract,riskPerSpread,plannedCapital
-AMD,NO_TRADE,CALL_DEBIT_SPREAD,80,No liquid long option found,RISK_ON,MANUAL_CHECK,0,1000,,,
+AVGO,NO_TRADE,PUT_DEBIT_SPREAD,80,No liquid long option found,RISK_ON,CLEAR,0,500,,,
 AAPL,WATCH,CALL_DEBIT_SPREAD,72,bull trend stack; ADX confirms bullish trend,RISK_ON,MANUAL_CHECK,0,1000,1335,1335,0
-TSM,NO_TRADE,CALL_DEBIT_SPREAD,70,No liquid long option found,RISK_ON,CLEAR,0,1000,,,
-MSTR,NO_TRADE,PUT_DEBIT_SPREAD,68,No liquid long option found,RISK_ON,CLEAR,0,500,,,
-C,PREMIUM_SELL_WATCH,IRON_CONDOR_WATCH,62,bull trend stack; ADX confirms bullish trend; neutral technical regime,RISK_ON,CLEAR,0,1000,,,
-TSLA,WATCH,CALL_DEBIT_SPREAD,62,bull trend stack; ADX confirms bearish trend,RISK_ON,MANUAL_CHECK,0,1000,1480,1480,0
-ORCL,WATCH,PUT_DEBIT_SPREAD,60,bear trend stack; ADX confirms bearish trend,RISK_ON,CLEAR,0,500,870,870,0
-AVGO,WATCH,PUT_DEBIT_SPREAD,58,bear trend stack; ADX confirms bearish trend,RISK_ON,CLEAR,0,500,3217.5,3217.5,0
+C,NO_TRADE,CALL_DEBIT_SPREAD,70,No liquid long option found,RISK_ON,CLEAR,0,1000,,,
+ORCL,WATCH,PUT_DEBIT_SPREAD,60,bear trend stack; ADX confirms bearish trend,RISK_ON,CLEAR,0,500,825,825,0
+MSTR,WATCH,PUT_DEBIT_SPREAD,58,bear trend stack; ADX confirms bearish trend,RISK_ON,CLEAR,0,500,1157.5,1157.5,0
 NFLX,NO_TRADE,PUT_DEBIT_SPREAD,58,No liquid long option found,RISK_ON,CLEAR,0,500,,,
-NVDA,WATCH,PUT_DEBIT_SPREAD,50,bear trend stack; ADX confirms bearish trend,RISK_ON,MANUAL_CHECK,0,500,707.5,707.5,0
-GOOGL,PREMIUM_SELL_WATCH,IRON_CONDOR_WATCH,49,bull trend stack; neutral technical regime,RISK_ON,CLEAR,0,1000,,,
+TSLA,NO_TRADE,NONE,55,bull trend stack; neutral technical regime,RISK_ON,MANUAL_CHECK,0,1000,,,
+SNDK,NO_TRADE,NONE,52,ADX confirms bearish trend; neutral technical regime,RISK_ON,CLEAR,0,1000,,,
+NVDA,WATCH,PUT_DEBIT_SPREAD,50,bear trend stack; ADX confirms bearish trend,RISK_ON,MANUAL_CHECK,0,500,682.5,682.5,0
+GOOGL,NO_TRADE,NONE,49,bull trend stack; neutral technical regime,RISK_ON,CLEAR,0,1000,,,
+AMD,NO_TRADE,NONE,43,ADX confirms bullish trend; neutral technical regime,RISK_ON,MANUAL_CHECK,0,1000,,,
 AMZN,NO_TRADE,NONE,42,ADX confirms bullish trend; neutral technical regime,RISK_ON,MANUAL_CHECK,0,1000,,,
 COIN,NO_TRADE,NONE,42,ADX confirms bullish trend; neutral technical regime,RISK_ON,CLEAR,0,1000,,,
 META,NO_TRADE,NONE,42,ADX confirms bullish trend; neutral technical regime,RISK_ON,MANUAL_CHECK,0,1000,,,
 MSFT,NO_TRADE,NONE,42,ADX confirms bullish trend; neutral technical regime,RISK_ON,MANUAL_CHECK,0,1000,,,
+MU,NO_TRADE,NONE,42,ADX confirms bearish trend; neutral technical regime,RISK_ON,CLEAR,0,1000,,,
 PLTR,NO_TRADE,NONE,42,ADX confirms bullish trend; neutral technical regime,RISK_ON,CLEAR,0,1000,,,
-SNDK,NO_TRADE,NONE,42,ADX confirms bearish trend; neutral technical regime,RISK_ON,CLEAR,0,1000,,,
 WDC,NO_TRADE,NONE,42,ADX confirms bearish trend; neutral technical regime,RISK_ON,CLEAR,0,1000,,,
-MU,NO_TRADE,NONE,34,ADX confirms bearish trend; neutral technical regime,RISK_ON,CLEAR,0,1000,,,
 INTC,NO_TRADE,NONE,33,neutral technical regime,RISK_ON,CLEAR,0,1000,,,
+TSM,NO_TRADE,NONE,25,neutral technical regime,RISK_ON,CLEAR,0,1000,,,
