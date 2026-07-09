@@ -1,21 +1,21 @@
-symbol,signal,strategy,score,dte,expiration,underlying,longStrike,shortStrike,longBid,longAsk,longMid,shortBid,shortAsk,shortMid,debit,maxReward,rewardRisk,stopUnderlying,targetUnderlying,beginnerStrategy,beginnerAction,optionStrike,optionType,optionEntry,optionCost,optionStop,optionStopDollars,optionTarget1,optionTarget1Dollars,optionTarget2,optionTarget2Dollars,underlyingStop,underlyingTarget,longVolume,longOpenInterest,longSpreadPct,longDelta,longGamma,longTheta,longVega,probabilityItm,atmIv,ivHvRatio,marketRegime,marketScore,eventRisk,eventReason,reason,contracts,maxRiskDollars,riskPerContract,riskPerSpread,plannedCapital
-MSTR,PUT_SETUP,PUT_DEBIT_SPREAD,80,36,2026-08-14,93.87,90,85,8.45,9.3,8.88,6.2,7.4,6.8,2.07,2.93,1.41,107.61,70.98,BUY_PUT,Buy the 90 PUT expiring 2026-08-14.,90,PUT,8.88,887.5,6.21,621.25,11.98,1198.13,15.09,1508.75,107.61,70.98,191,321,9.6,-0.38,0.0142,-0.137,0.112,49.2,90.9,0.93,MIXED,68,CLEAR,No dated event in window,bear trend stack; ADX confirms bearish trend,0,750,887.5,887.5,0
-AAPL,WATCH,CALL_DEBIT_SPREAD,72,36,2026-08-14,313.39,310,325,12.9,13.75,13.32,6,6.5,6.25,7.07,7.93,1.12,300.3,335.21,BUY_CALL,Buy the 310 CALL expiring 2026-08-14.,310,CALL,13.32,1332.5,9.33,932.75,17.99,1798.88,22.65,2265.25,300.3,335.21,166,4704,6.4,0.58,0.0133,-0.178,0.384,54.4,28.2,0.74,MIXED,68,MANUAL_CHECK,Earnings/manual check,bull trend stack; ADX confirms bullish trend,0,500,1332.5,1332.5,0
-ORCL,WATCH,PUT_DEBIT_SPREAD,70,36,2026-08-14,140.49,140,133,9.2,11,10.1,5.1,7.7,6.4,3.7,3.3,0.89,152.27,120.86,BUY_PUT,Buy the 140 PUT expiring 2026-08-14.,140,PUT,10.1,1010,7.07,707,13.63,1363.5,17.17,1717,152.27,120.86,11,244,17.8,-0.45,0.0156,-0.131,0.175,51.9,58.5,1.27,MIXED,68,CLEAR,No dated event in window,bear trend stack; ADX confirms bearish trend,0,750,1010,1010,0
-COIN,NO_TRADE,PUT_DEBIT_SPREAD,68,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,MIXED,,CLEAR,,No liquid long option found,0,750,,,
-NFLX,NO_TRADE,PUT_DEBIT_SPREAD,68,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,MIXED,,CLEAR,,No liquid long option found,0,750,,,
-C,PREMIUM_SELL_WATCH,IRON_CONDOR_WATCH,52,36,,137.39,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,36.1,1.4,MIXED,,CLEAR,No dated event in window,ADX confirms bearish trend; neutral technical regime,0,500,,,
-MSFT,NO_TRADE,NONE,50,36,,383.34,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,42.5,1.12,MIXED,,MANUAL_CHECK,Earnings/manual check,bear trend stack; ADX confirms bullish trend; neutral technical regime,0,500,,,
-AMZN,NO_TRADE,NONE,42,36,,243.62,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,43.7,1.23,MIXED,,MANUAL_CHECK,Earnings/manual check,ADX confirms bullish trend; neutral technical regime,0,500,,,
-INTC,NO_TRADE,NONE,42,36,,110.24,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,96.4,1.02,MIXED,,CLEAR,No dated event in window,ADX confirms bearish trend; neutral technical regime,0,500,,,
-MU,NO_TRADE,NONE,42,36,,948.8,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,97.1,0.82,MIXED,,CLEAR,No dated event in window,ADX confirms bearish trend; neutral technical regime,0,500,,,
-PLTR,NO_TRADE,NONE,42,36,,132.22,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,61.6,1.05,MIXED,,CLEAR,No dated event in window,ADX confirms bullish trend; neutral technical regime,0,500,,,
-SNDK,NO_TRADE,NONE,42,36,,1727.18,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,132.5,0.88,MIXED,,CLEAR,No dated event in window,ADX confirms bearish trend; neutral technical regime,0,500,,,
-GOOGL,NO_TRADE,NONE,37,36,,361.92,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,40.8,1.24,MIXED,,CLEAR,No dated event in window,bull trend stack; neutral technical regime,0,500,,,
-AVGO,NO_TRADE,NONE,34,36,,388.69,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,51.9,0.98,MIXED,,CLEAR,No dated event in window,ADX confirms bullish trend; neutral technical regime,0,500,,,
-AMD,NO_TRADE,NONE,33,36,,517.41,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,81.5,0.99,MIXED,,MANUAL_CHECK,Earnings/manual check,neutral technical regime,0,500,,,
-TSM,NO_TRADE,NONE,33,36,,436.98,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,54.9,0.87,MIXED,,CLEAR,No dated event in window,neutral technical regime,0,500,,,
-NVDA,NO_TRADE,NONE,32,36,,204.12,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,42.8,1.19,MIXED,,MANUAL_CHECK,Earnings/manual check,ADX confirms bearish trend; neutral technical regime,0,500,,,
-META,NO_TRADE,NONE,30,36,,603.12,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,49.3,0.96,MIXED,,MANUAL_CHECK,Earnings/manual check,ADX confirms bullish trend; neutral technical regime,0,500,,,
-WDC,NO_TRADE,NONE,30,36,,550.3,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,104.6,0.86,MIXED,,CLEAR,No dated event in window,ADX confirms bearish trend; neutral technical regime,0,500,,,
-TSLA,NO_TRADE,NONE,25,36,,394.06,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,48.5,0.78,MIXED,,MANUAL_CHECK,Earnings/manual check,bear trend stack; neutral technical regime,0,500,,,
+symbol,signal,strategy,score,reason,marketRegime,eventRisk,contracts,maxRiskDollars,riskPerContract,riskPerSpread,plannedCapital
+NFLX,NO_TRADE,PUT_DEBIT_SPREAD,80,No liquid long option found,RISK_ON,CLEAR,0,500,,,
+AAPL,CALL_SETUP,CALL_DEBIT_SPREAD,72,bull trend stack; ADX confirms bullish trend,RISK_ON,MANUAL_CHECK,0,1000,1132.5,1132.5,0
+MSTR,PUT_SETUP,PUT_DEBIT_SPREAD,70,bear trend stack; ADX confirms bearish trend,RISK_ON,CLEAR,0,500,810,810,0
+TSM,NO_TRADE,CALL_DEBIT_SPREAD,70,No liquid long option found,RISK_ON,CLEAR,0,1000,,,
+AMD,WATCH,CALL_DEBIT_SPREAD,65,bull trend stack,RISK_ON,MANUAL_CHECK,0,1000,6430,6430,0
+ORCL,WATCH,PUT_DEBIT_SPREAD,60,bear trend stack; ADX confirms bearish trend,RISK_ON,CLEAR,0,500,785,785,0
+MU,NO_TRADE,NONE,58,bull trend stack; ADX confirms bearish trend; neutral technical regime,RISK_ON,CLEAR,0,1000,,,
+COIN,NO_TRADE,NONE,50,bear trend stack; neutral technical regime,RISK_ON,CLEAR,0,1000,,,
+PLTR,NO_TRADE,NONE,50,bear trend stack; ADX confirms bullish trend; neutral technical regime,RISK_ON,CLEAR,0,1000,,,
+SNDK,NO_TRADE,NONE,50,bull trend stack; ADX confirms bearish trend; neutral technical regime,RISK_ON,CLEAR,0,1000,,,
+MSFT,WATCH,PUT_DEBIT_SPREAD,45,bear trend stack; ADX confirms bearish trend,RISK_ON,MANUAL_CHECK,0,500,2460,2460,0
+AVGO,NO_TRADE,NONE,42,ADX confirms bullish trend; neutral technical regime,RISK_ON,CLEAR,0,1000,,,
+INTC,NO_TRADE,NONE,42,ADX confirms bearish trend; neutral technical regime,RISK_ON,CLEAR,0,1000,,,
+META,NO_TRADE,NONE,42,ADX confirms bullish trend; neutral technical regime,RISK_ON,MANUAL_CHECK,0,1000,,,
+C,PREMIUM_SELL_WATCH,IRON_CONDOR_WATCH,40,ADX confirms bearish trend; neutral technical regime,RISK_ON,CLEAR,0,1000,,,
+AMZN,NO_TRADE,NONE,30,ADX confirms bullish trend; neutral technical regime,RISK_ON,MANUAL_CHECK,0,1000,,,
+GOOGL,NO_TRADE,NONE,30,neutral technical regime,RISK_ON,CLEAR,0,1000,,,
+NVDA,NO_TRADE,NONE,28,ADX confirms bearish trend; neutral technical regime,RISK_ON,MANUAL_CHECK,0,1000,,,
+WDC,NO_TRADE,NONE,25,ADX confirms bearish trend; neutral technical regime,RISK_ON,CLEAR,0,1000,,,
+TSLA,NO_TRADE,NONE,20,neutral technical regime,RISK_ON,MANUAL_CHECK,0,1000,,,

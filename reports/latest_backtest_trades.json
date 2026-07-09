@@ -4959,6 +4959,114 @@
     ]
   },
   {
+    "symbol": "SNOW",
+    "trades": 11,
+    "winRate": 45.5,
+    "avgReturnPct": 0.52,
+    "profitFactor": 1.24,
+    "tradeLog": [
+      {
+        "symbol": "SNOW",
+        "entryDate": "2023-06-01",
+        "exitDate": "2023-06-21",
+        "entry": 160.37,
+        "exit": 173.39,
+        "returnPct": 8.12,
+        "exitReason": "trend_loss"
+      },
+      {
+        "symbol": "SNOW",
+        "entryDate": "2023-07-14",
+        "exitDate": "2023-07-21",
+        "entry": 184.94,
+        "exit": 175.9,
+        "returnPct": -4.89,
+        "exitReason": "trend_loss"
+      },
+      {
+        "symbol": "SNOW",
+        "entryDate": "2023-12-29",
+        "exitDate": "2024-01-02",
+        "entry": 200,
+        "exit": 194.13,
+        "returnPct": -2.94,
+        "exitReason": "stop"
+      },
+      {
+        "symbol": "SNOW",
+        "entryDate": "2024-02-06",
+        "exitDate": "2024-02-21",
+        "entry": 217.5,
+        "exit": 216.21,
+        "returnPct": -0.59,
+        "exitReason": "trend_loss"
+      },
+      {
+        "symbol": "SNOW",
+        "entryDate": "2025-01-06",
+        "exitDate": "2025-01-27",
+        "entry": 165.32,
+        "exit": 178.38,
+        "returnPct": 7.9,
+        "exitReason": "target"
+      },
+      {
+        "symbol": "SNOW",
+        "entryDate": "2025-02-14",
+        "exitDate": "2025-02-20",
+        "entry": 192.86,
+        "exit": 182.46,
+        "returnPct": -5.39,
+        "exitReason": "stop"
+      },
+      {
+        "symbol": "SNOW",
+        "entryDate": "2025-06-20",
+        "exitDate": "2025-07-10",
+        "entry": 213.35,
+        "exit": 214.42,
+        "returnPct": 0.5,
+        "exitReason": "trend_loss"
+      },
+      {
+        "symbol": "SNOW",
+        "entryDate": "2025-07-28",
+        "exitDate": "2025-08-01",
+        "entry": 219.93,
+        "exit": 211.9,
+        "returnPct": -3.65,
+        "exitReason": "stop"
+      },
+      {
+        "symbol": "SNOW",
+        "entryDate": "2025-10-06",
+        "exitDate": "2025-10-24",
+        "entry": 240.36,
+        "exit": 258.8,
+        "returnPct": 7.67,
+        "exitReason": "target"
+      },
+      {
+        "symbol": "SNOW",
+        "entryDate": "2025-11-12",
+        "exitDate": "2025-11-13",
+        "entry": 274.29,
+        "exit": 257.07,
+        "returnPct": -6.28,
+        "exitReason": "stop"
+      },
+      {
+        "symbol": "SNOW",
+        "entryDate": "2026-06-29",
+        "exitDate": "2026-07-09",
+        "entry": 250.96,
+        "exit": 264.27,
+        "returnPct": 5.3,
+        "exitReason": "time"
+      }
+    ]
+  },
+  {
     "symbol": "ONON",
     "trades": 13,
     "winRate": 30.8,
@@ -5081,114 +5189,6 @@
         "exit": 53.1,
         "returnPct": -1.9,
         "exitReason": "stop"
-      }
-    ]
-  },
-  {
-    "symbol": "SNOW",
-    "trades": 11,
-    "winRate": 45.5,
-    "avgReturnPct": 0.42,
-    "profitFactor": 1.19,
-    "tradeLog": [
-      {
-        "symbol": "SNOW",
-        "entryDate": "2023-06-01",
-        "exitDate": "2023-06-21",
-        "entry": 160.37,
-        "exit": 173.39,
-        "returnPct": 8.12,
-        "exitReason": "trend_loss"
-      },
-      {
-        "symbol": "SNOW",
-        "entryDate": "2023-07-14",
-        "exitDate": "2023-07-21",
-        "entry": 184.94,
-        "exit": 175.9,
-        "returnPct": -4.89,
-        "exitReason": "trend_loss"
-      },
-      {
-        "symbol": "SNOW",
-        "entryDate": "2023-12-29",
-        "exitDate": "2024-01-02",
-        "entry": 200,
-        "exit": 194.13,
-        "returnPct": -2.94,
-        "exitReason": "stop"
-      },
-      {
-        "symbol": "SNOW",
-        "entryDate": "2024-02-06",
-        "exitDate": "2024-02-21",
-        "entry": 217.5,
-        "exit": 216.21,
-        "returnPct": -0.59,
-        "exitReason": "trend_loss"
-      },
-      {
-        "symbol": "SNOW",
-        "entryDate": "2025-01-06",
-        "exitDate": "2025-01-27",
-        "entry": 165.32,
-        "exit": 178.38,
-        "returnPct": 7.9,
-        "exitReason": "target"
-      },
-      {
-        "symbol": "SNOW",
-        "entryDate": "2025-02-14",
-        "exitDate": "2025-02-20",
-        "entry": 192.86,
-        "exit": 182.46,
-        "returnPct": -5.39,
-        "exitReason": "stop"
-      },
-      {
-        "symbol": "SNOW",
-        "entryDate": "2025-06-20",
-        "exitDate": "2025-07-10",
-        "entry": 213.35,
-        "exit": 214.42,
-        "returnPct": 0.5,
-        "exitReason": "trend_loss"
-      },
-      {
-        "symbol": "SNOW",
-        "entryDate": "2025-07-28",
-        "exitDate": "2025-08-01",
-        "entry": 219.93,
-        "exit": 211.9,
-        "returnPct": -3.65,
-        "exitReason": "stop"
-      },
-      {
-        "symbol": "SNOW",
-        "entryDate": "2025-10-06",
-        "exitDate": "2025-10-24",
-        "entry": 240.36,
-        "exit": 258.8,
-        "returnPct": 7.67,
-        "exitReason": "target"
-      },
-      {
-        "symbol": "SNOW",
-        "entryDate": "2025-11-12",
-        "exitDate": "2025-11-13",
-        "entry": 274.29,
-        "exit": 257.07,
-        "returnPct": -6.28,
-        "exitReason": "stop"
-      },
-      {
-        "symbol": "SNOW",
-        "entryDate": "2026-06-29",
-        "exitDate": "2026-07-08",
-        "entry": 250.96,
-        "exit": 261.31,
-        "returnPct": 4.12,
-        "exitReason": "time"
       }
     ]
   },
@@ -7104,8 +7104,8 @@
     "symbol": "APP",
     "trades": 18,
     "winRate": 22.2,
-    "avgReturnPct": -0.57,
-    "profitFactor": 0.86,
+    "avgReturnPct": -0.63,
+    "profitFactor": 0.85,
     "tradeLog": [
       {
         "symbol": "APP",
@@ -7263,10 +7263,10 @@
       {
         "symbol": "APP",
         "entryDate": "2026-07-01",
-        "exitDate": "2026-07-08",
+        "exitDate": "2026-07-09",
         "entry": 532.94,
-        "exit": 522.18,
-        "returnPct": -2.02,
+        "exit": 516.57,
+        "returnPct": -3.07,
         "exitReason": "time"
       }
     ]
