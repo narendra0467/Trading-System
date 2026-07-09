@@ -1,14 +1,14 @@
 {
   "accountSize": 5000,
   "sleeveName": "Very High Risk / High Reward",
-  "primaryAction": "HOOD: SPEC BUY",
-  "topSymbol": "HOOD",
+  "primaryAction": "AFRM: SPEC BUY",
+  "topSymbol": "AFRM",
   "topReason": "This is the kind of technical risk I would fund from a small speculative sleeve because momentum, relative strength, and volume agree.",
-  "buyCount": 4,
+  "buyCount": 5,
   "starterCount": 1,
-  "watchCount": 3,
-  "plannedCapital": 3900,
-  "cashReserve": 1100,
+  "watchCount": 2,
+  "plannedCapital": 4300,
+  "cashReserve": 700,
   "rules": [
     "This is not retirement money.",
     "Maximum 5-7 names.",
@@ -18,34 +18,34 @@
   ],
   "marketContext": {
     "SPY": {
-      "close": 750.7,
-      "return20": 1.85,
-      "return60": 9.42
+      "close": 751.71,
+      "return20": 1.99,
+      "return60": 9.56
     },
     "QQQ": {
-      "close": 722.45,
-      "return20": 2.07,
-      "return60": 17.02
+      "close": 723.28,
+      "return20": 2.18,
+      "return60": 17.15
     },
     "IWM": {
-      "close": 297.23,
-      "return20": 4.29,
-      "return60": 12.13
+      "close": 297.27,
+      "return20": 4.3,
+      "return60": 12.15
     },
     "ARKK": {
-      "close": 81.58,
-      "return20": 8.78,
-      "return60": 13.38
+      "close": 81.53,
+      "return20": 8.71,
+      "return60": 13.3
     },
     "XIU.TO": {
-      "close": 52.48,
-      "return20": 3.47,
-      "return60": 4.86
+      "close": 52.42,
+      "return20": 3.35,
+      "return60": 4.74
     },
     "XIC.TO": {
-      "close": 56.23,
-      "return20": 2.85,
-      "return60": 3.33
+      "close": 56.19,
+      "return20": 2.78,
+      "return60": 3.25
     }
   }
 }
