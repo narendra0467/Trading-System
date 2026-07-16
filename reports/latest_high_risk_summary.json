@@ -1,14 +1,14 @@
 {
   "accountSize": 5000,
   "sleeveName": "Very High Risk / High Reward",
-  "primaryAction": "AFRM: WATCHLIST",
-  "topSymbol": "AFRM",
+  "primaryAction": "HOOD: WATCHLIST",
+  "topSymbol": "HOOD",
   "topReason": "Interesting high-beta name, but it still needs proof. I would keep it on the board, not buy blindly.",
   "buyCount": 0,
   "starterCount": 0,
-  "watchCount": 4,
-  "plannedCapital": 1200,
-  "cashReserve": 3800,
+  "watchCount": 1,
+  "plannedCapital": 300,
+  "cashReserve": 4700,
   "rules": [
     "This is not retirement money.",
     "Maximum 5-7 names.",
@@ -18,34 +18,34 @@
   ],
   "marketContext": {
     "SPY": {
-      "close": 753.54,
-      "return20": 0.43,
-      "return60": 6.32
+      "close": 751.47,
+      "return20": 0.15,
+      "return60": 6.03
     },
     "QQQ": {
-      "close": 710.37,
-      "return20": -2.67,
-      "return60": 9.83
+      "close": 706.49,
+      "return20": -3.2,
+      "return60": 9.23
     },
     "IWM": {
-      "close": 296.39,
-      "return20": 1.48,
-      "return60": 6.86
+      "close": 295.31,
+      "return20": 1.11,
+      "return60": 6.48
     },
     "ARKK": {
-      "close": 77.68,
-      "return20": -1.77,
-      "return60": -2.07
+      "close": 76.79,
+      "return20": -2.9,
+      "return60": -3.19
     },
     "XIU.TO": {
-      "close": 52.97,
-      "return20": 1.96,
-      "return60": 6.19
+      "close": 52.94,
+      "return20": 1.91,
+      "return60": 6.13
     },
     "XIC.TO": {
-      "close": 56.44,
-      "return20": 0.3,
-      "return60": 4.62
+      "close": 56.37,
+      "return20": 0.18,
+      "return60": 4.49
     }
   }
 }
