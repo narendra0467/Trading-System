@@ -1,14 +1,14 @@
 {
   "accountSize": 5000,
   "sleeveName": "Very High Risk / High Reward",
-  "primaryAction": "LCID: WATCHLIST",
+  "primaryAction": "LCID: STARTER BUY",
   "topSymbol": "LCID",
-  "topReason": "Interesting high-beta name, but it still needs proof. I would keep it on the board, not buy blindly.",
+  "topReason": "Good chart, but not clean enough for full speculative size. I would nibble only or wait for a better entry.",
   "buyCount": 0,
-  "starterCount": 0,
-  "watchCount": 1,
-  "plannedCapital": 300,
-  "cashReserve": 4700,
+  "starterCount": 1,
+  "watchCount": 0,
+  "plannedCapital": 500,
+  "cashReserve": 4500,
   "rules": [
     "This is not retirement money.",
     "Maximum 5-7 names.",
@@ -18,34 +18,34 @@
   ],
   "marketContext": {
     "SPY": {
-      "close": 745.92,
-      "return20": 0.67,
-      "return60": 5.94
+      "close": 742.95,
+      "return20": 0.27,
+      "return60": 5.52
     },
     "QQQ": {
-      "close": 700.55,
-      "return20": -3.04,
-      "return60": 8.73
+      "close": 695.49,
+      "return20": -3.74,
+      "return60": 7.94
     },
     "IWM": {
-      "close": 295.1,
-      "return20": 1.8,
-      "return60": 7.5
+      "close": 293.63,
+      "return20": 1.29,
+      "return60": 6.97
     },
     "ARKK": {
-      "close": 76.18,
-      "return20": -2.94,
-      "return60": -1.55
+      "close": 75.15,
+      "return20": -4.25,
+      "return60": -2.88
     },
     "XIU.TO": {
-      "close": 52.86,
-      "return20": 2.18,
-      "return60": 5.74
+      "close": 52.71,
+      "return20": 1.89,
+      "return60": 5.44
     },
     "XIC.TO": {
-      "close": 56.36,
-      "return20": 0.61,
-      "return60": 3.97
+      "close": 56.16,
+      "return20": 0.25,
+      "return60": 3.6
     }
   }
 }
