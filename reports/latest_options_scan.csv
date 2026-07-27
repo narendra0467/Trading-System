@@ -1,21 +1,21 @@
 symbol,signal,strategy,score,reason,marketRegime,eventRisk,contracts,maxRiskDollars,riskPerContract,riskPerSpread,plannedCapital
 ORCL,NO_TRADE,PUT_DEBIT_SPREAD,90,No liquid long option found,RISK_OFF,HIGH,0,1000,,,
 AMZN,NO_TRADE,PUT_DEBIT_SPREAD,87,No liquid long option found,RISK_OFF,HIGH,0,1000,,,
-TSLA,AVOID_EVENT_RISK,PUT_DEBIT_SPREAD,87,bear trend stack; ADX confirms bearish trend; below lower Bollinger band,RISK_OFF,HIGH,0,1000,1427.5,1427.5,0
-AAPL,WATCH,CALL_DEBIT_SPREAD,69,bull trend stack; ADX confirms bullish trend,RISK_OFF,HIGH,0,250,1127.5,1127.5,0
+TSLA,AVOID_EVENT_RISK,PUT_DEBIT_SPREAD,87,bear trend stack; ADX confirms bearish trend; below lower Bollinger band,RISK_OFF,HIGH,0,1000,1397.5,1397.5,0
+AAPL,WATCH,CALL_DEBIT_SPREAD,69,bull trend stack; ADX confirms bullish trend,RISK_OFF,HIGH,0,250,1170,1170,0
 GOOGL,NO_TRADE,PUT_DEBIT_SPREAD,67,No liquid long option found,RISK_OFF,HIGH,0,1000,,,
-NFLX,AVOID_EVENT_RISK,PUT_DEBIT_SPREAD,65,bear trend stack; ADX confirms bearish trend,RISK_OFF,HIGH,3,1000,272,272,816
+NFLX,AVOID_EVENT_RISK,PUT_DEBIT_SPREAD,65,bear trend stack; ADX confirms bearish trend,RISK_OFF,HIGH,3,1000,273,273,819
 INTC,AVOID_EVENT_RISK,PUT_DEBIT_SPREAD,62,bear trend stack; ADX confirms bearish trend,RISK_OFF,HIGH,0,1000,1270,1270,0
 META,NO_TRADE,NONE,52,ADX confirms bearish trend; neutral technical regime,RISK_OFF,HIGH,0,250,,,
 SNDK,NO_TRADE,NONE,52,ADX confirms bearish trend; volume expansion; neutral technical regime,RISK_OFF,HIGH,0,250,,,
 MSFT,PREMIUM_SELL_WATCH,IRON_CONDOR_WATCH,50,bear trend stack; neutral technical regime,RISK_OFF,HIGH,0,250,,,
 MSTR,NO_TRADE,NONE,50,bear trend stack; weak trend strength; neutral technical regime,RISK_OFF,HIGH,0,250,,,
-AVGO,AVOID_EVENT_RISK,PUT_DEBIT_SPREAD,43,bear trend stack,RISK_OFF,HIGH,0,1000,2425,2425,0
 AMD,NO_TRADE,NONE,42,neutral technical regime,RISK_OFF,HIGH,0,250,,,
 MU,NO_TRADE,NONE,42,ADX confirms bearish trend; neutral technical regime,RISK_OFF,HIGH,0,250,,,
 TSM,NO_TRADE,NONE,42,ADX confirms bearish trend; neutral technical regime,RISK_OFF,HIGH,0,250,,,
 NVDA,NO_TRADE,NONE,40,ADX confirms bearish trend; neutral technical regime,RISK_OFF,HIGH,0,250,,,
 WDC,NO_TRADE,NONE,34,ADX confirms bearish trend; neutral technical regime,RISK_OFF,HIGH,0,250,,,
+AVGO,AVOID_EVENT_RISK,PUT_DEBIT_SPREAD,33,bear trend stack,RISK_OFF,HIGH,0,1000,2440,2440,0
 COIN,NO_TRADE,NONE,32,neutral technical regime,RISK_OFF,HIGH,0,250,,,
-PLTR,NO_TRADE,NONE,32,neutral technical regime,RISK_OFF,HIGH,0,250,,,
-C,NO_TRADE,NONE,18,ADX confirms bearish trend; neutral technical regime,RISK_OFF,HIGH,0,250,,,
+PLTR,PREMIUM_SELL_WATCH,IRON_CONDOR_WATCH,32,neutral technical regime,RISK_OFF,HIGH,0,250,,,
+C,NO_TRADE,NONE,30,ADX confirms bearish trend; neutral technical regime,RISK_OFF,HIGH,0,250,,,
