@@ -1,21 +1,21 @@
-symbol,signal,strategy,score,dte,expiration,underlying,longStrike,shortStrike,longBid,longAsk,longMid,shortBid,shortAsk,shortMid,debit,maxReward,rewardRisk,stopUnderlying,targetUnderlying,beginnerStrategy,beginnerAction,optionStrike,optionType,optionEntry,optionCost,optionStop,optionStopDollars,optionTarget1,optionTarget1Dollars,optionTarget2,optionTarget2Dollars,underlyingStop,underlyingTarget,longVolume,longOpenInterest,longSpreadPct,longDelta,longGamma,longTheta,longVega,probabilityItm,atmIv,ivHvRatio,marketRegime,marketScore,eventRisk,eventReason,reason,contracts,maxRiskDollars,riskPerContract,riskPerSpread,plannedCapital
-TSLA,AVOID_EVENT_RISK,PUT_DEBIT_SPREAD,87,37,2026-09-04,306.48,300,285,13.2,13.45,13.32,7.85,8.25,8.05,5.27,9.73,1.84,333.2,261.95,BUY_PUT,Buy the 300 PUT expiring 2026-09-04.,300,PUT,13.32,1332.5,9.33,932.75,17.99,1798.88,22.65,2265.25,333.2,261.95,530,1650,1.9,-0.4,0.0095,-0.197,0.377,45.1,51.9,0.73,RISK_OFF,48,HIGH,FOMC rate decision and press conference 2026-07-29,bear trend stack; ADX confirms bearish trend,0,1000,1332.5,1332.5,0
-ORCL,NO_TRADE,PUT_DEBIT_SPREAD,80,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,RISK_OFF,,HIGH,,No liquid long option found,0,1000,,,
-AMZN,NO_TRADE,PUT_DEBIT_SPREAD,77,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,RISK_OFF,,HIGH,,No liquid long option found,0,1000,,,
-INTC,AVOID_EVENT_RISK,PUT_DEBIT_SPREAD,77,37,2026-09-04,86.57,85,80,7.4,8.45,7.92,5.2,6.1,5.65,2.27,2.73,1.2,98.68,66.39,BUY_PUT,Buy the 85 PUT expiring 2026-09-04.,85,PUT,7.92,792.5,5.55,554.75,10.7,1069.88,13.47,1347.25,98.68,66.39,131,243,13.2,-0.42,0.0182,-0.108,0.107,51.3,77.9,0.97,RISK_OFF,48,HIGH,FOMC rate decision and press conference 2026-07-29,bear trend stack; ADX confirms bearish trend,1,1000,792.5,792.5,792.5
-SNDK,AVOID_EVENT_RISK,PUT_DEBIT_SPREAD,72,37,2026-09-04,1099.44,1200,1135,232.3,244.8,238.55,195.1,208.6,201.85,36.7,28.3,0.77,1394.47,607.74,BUY_PUT,Buy the 1200 PUT expiring 2026-09-04.,1200,PUT,238.55,23855,166.98,16698.5,322.04,32204.25,405.54,40553.5,1394.47,607.74,60,24,5.2,-0.51,0.0009,-2.246,1.396,65.9,128.4,0.88,RISK_OFF,48,HIGH,FOMC rate decision and press conference 2026-07-29,bear trend stack; ADX confirms bearish trend,0,1000,23855,23855,0
-GOOGL,NO_TRADE,PUT_DEBIT_SPREAD,65,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,RISK_OFF,,HIGH,,No liquid long option found,0,1000,,,
-TSM,AVOID_EVENT_RISK,PUT_DEBIT_SPREAD,62,37,2026-09-04,391.61,395,375,24.35,26.7,25.52,15,18.35,16.68,8.85,11.15,1.26,416.67,349.85,BUY_PUT,Buy the 395 PUT expiring 2026-09-04.,395,PUT,25.52,2552.5,17.87,1786.75,34.46,3445.88,43.39,4339.25,416.67,349.85,1004,20,9.2,-0.48,0.0065,-0.305,0.497,54.2,49.9,1.04,RISK_OFF,48,HIGH,FOMC rate decision and press conference 2026-07-29,bear trend stack; ADX confirms bearish trend,0,1000,2552.5,2552.5,0
-AAPL,WATCH,CALL_DEBIT_SPREAD,57,37,2026-09-04,339.6,340,355,12.7,13.3,13,6.3,6.8,6.55,6.45,8.55,1.33,327.53,359.72,BUY_CALL,Buy the 340 CALL expiring 2026-09-04.,340,CALL,13,1300,9.1,910,17.55,1755,22.1,2210,327.53,359.72,260,88,4.6,0.53,0.0121,-0.195,0.43,49.2,30,1.07,RISK_OFF,48,HIGH,FOMC rate decision and press conference 2026-07-29,bull trend stack; ADX confirms bullish trend,0,250,1300,1300,0
-MU,NO_TRADE,NONE,52,37,,820.7,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,88,1,RISK_OFF,,HIGH,FOMC rate decision and press conference 2026-07-29,ADX confirms bearish trend; neutral technical regime,0,250,,,
-NVDA,AVOID_EVENT_RISK,PUT_DEBIT_SPREAD,52,37,2026-09-04,197.67,200,190,11.8,12,11.9,7.45,7.7,7.58,4.33,5.67,1.31,204.49,178.28,BUY_PUT,Buy the 200 PUT expiring 2026-09-04.,200,PUT,11.9,1190,8.33,833,16.07,1606.5,20.23,2023,204.49,178.28,67,4147,1.7,-0.5,0.0152,-0.129,0.251,54.9,47.6,1.2,RISK_OFF,48,HIGH,FOMC rate decision and press conference 2026-07-29,bear trend stack; ADX confirms bearish trend,0,1000,1190,1190,0
-PLTR,AVOID_EVENT_RISK,PUT_DEBIT_SPREAD,52,37,2026-09-04,124.06,129,123,12.5,14.1,13.3,8.95,11.05,10,3.3,2.7,0.82,131.28,105.31,BUY_PUT,Buy the 129 PUT expiring 2026-09-04.,129,PUT,13.3,1330,9.31,931,17.96,1795.5,22.61,2261,131.28,105.31,83,59,12,-0.53,0.0156,-0.129,0.157,60.8,65.3,1.2,RISK_OFF,48,HIGH,FOMC rate decision and press conference 2026-07-29,bear trend stack; ADX confirms bearish trend,0,1000,1330,1330,0
-WDC,NO_TRADE,NONE,52,37,,452.57,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,104,1.04,RISK_OFF,,HIGH,FOMC rate decision and press conference 2026-07-29,ADX confirms bearish trend; neutral technical regime,0,250,,,
-AVGO,PREMIUM_SELL_WATCH,IRON_CONDOR_WATCH,43,37,,382.16,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,62.1,1.49,RISK_OFF,,HIGH,FOMC rate decision and press conference 2026-07-29,bear trend stack; neutral technical regime,0,250,,,
-MSTR,AVOID_EVENT_RISK,PUT_DEBIT_SPREAD,43,37,2026-09-04,97.38,100,95,10.6,11.6,11.1,8.2,8.7,8.45,2.65,2.35,0.89,106.67,81.89,BUY_PUT,Buy the 100 PUT expiring 2026-09-04.,100,PUT,11.1,1110,7.77,777,14.99,1498.5,18.87,1887,106.67,81.89,32,130,9,-0.49,0.017,-0.12,0.124,58.5,77.1,1.11,RISK_OFF,48,HIGH,FOMC rate decision and press conference 2026-07-29,bear trend stack; weak trend strength,0,1000,1110,1110,0
-AMD,NO_TRADE,NONE,42,37,,460.4,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,75.8,0.97,RISK_OFF,,HIGH,FOMC rate decision and press conference 2026-07-29,below lower Bollinger band; neutral technical regime,0,250,,,
-META,NO_TRADE,NONE,42,37,,597.19,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,49.3,0.92,RISK_OFF,,HIGH,FOMC rate decision and press conference 2026-07-29,ADX confirms bearish trend; neutral technical regime,0,250,,,
-NFLX,NO_TRADE,NONE,42,37,,73.25,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,35.1,0.81,RISK_OFF,,HIGH,FOMC rate decision and press conference 2026-07-29,ADX confirms bullish trend; neutral technical regime,0,250,,,
-COIN,PREMIUM_SELL_WATCH,IRON_CONDOR_WATCH,33,37,,165.78,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,84.6,1.29,RISK_OFF,,HIGH,FOMC rate decision and press conference 2026-07-29,weak trend strength; neutral technical regime,0,250,,,
-MSFT,PREMIUM_SELL_WATCH,IRON_CONDOR_WATCH,32,37,,398.32,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,42.5,1.58,RISK_OFF,,HIGH,FOMC rate decision and press conference 2026-07-29,neutral technical regime,0,250,,,
-C,NO_TRADE,NONE,30,37,,132.07,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,31.9,1.02,RISK_OFF,,HIGH,FOMC rate decision and press conference 2026-07-29,ADX confirms bearish trend; neutral technical regime,0,250,,,
+symbol,signal,strategy,score,reason,marketRegime,eventRisk,contracts,maxRiskDollars,riskPerContract,riskPerSpread,plannedCapital
+SNDK,NO_TRADE,PUT_DEBIT_SPREAD,87,No liquid long option found,RISK_OFF,HIGH,0,1000,,,
+INTC,AVOID_EVENT_RISK,PUT_DEBIT_SPREAD,77,bear trend stack; ADX confirms bearish trend; volume expansion,RISK_OFF,HIGH,1,1000,800,800,800
+GOOGL,NO_TRADE,PUT_DEBIT_SPREAD,65,No liquid long option found,RISK_OFF,HIGH,0,1000,,,
+ORCL,AVOID_EVENT_RISK,PUT_DEBIT_SPREAD,65,bear trend stack; ADX confirms bearish trend,RISK_OFF,HIGH,1,1000,967.5,967.5,967.5
+AMZN,AVOID_EVENT_RISK,PUT_DEBIT_SPREAD,62,bear trend stack; ADX confirms bearish trend,RISK_OFF,HIGH,0,1000,1100,1100,0
+PLTR,AVOID_EVENT_RISK,PUT_DEBIT_SPREAD,62,bear trend stack; ADX confirms bearish trend,RISK_OFF,HIGH,0,1000,1260,1260,0
+TSM,AVOID_EVENT_RISK,PUT_DEBIT_SPREAD,62,bear trend stack; ADX confirms bearish trend,RISK_OFF,HIGH,0,1000,2500,2500,0
+AAPL,WATCH,CALL_DEBIT_SPREAD,57,bull trend stack; ADX confirms bullish trend,RISK_OFF,HIGH,0,250,1320,1320,0
+MU,NO_TRADE,NONE,52,ADX confirms bearish trend; neutral technical regime,RISK_OFF,HIGH,0,250,,,
+NVDA,AVOID_EVENT_RISK,PUT_DEBIT_SPREAD,52,bear trend stack; ADX confirms bearish trend,RISK_OFF,HIGH,0,1000,1242.5,1242.5,0
+WDC,NO_TRADE,NONE,52,ADX confirms bearish trend; volume expansion; neutral technical regime,RISK_OFF,HIGH,0,250,,,
+AVGO,PREMIUM_SELL_WATCH,IRON_CONDOR_WATCH,43,bear trend stack; neutral technical regime,RISK_OFF,HIGH,0,250,,,
+MSTR,AVOID_EVENT_RISK,PUT_DEBIT_SPREAD,43,bear trend stack; weak trend strength,RISK_OFF,HIGH,1,1000,900,900,900
+AMD,NO_TRADE,NONE,42,below lower Bollinger band; volume expansion; neutral technical regime,RISK_OFF,HIGH,0,250,,,
+META,NO_TRADE,NONE,42,ADX confirms bearish trend; neutral technical regime,RISK_OFF,HIGH,0,250,,,
+NFLX,NO_TRADE,NONE,42,ADX confirms bullish trend; neutral technical regime,RISK_OFF,HIGH,0,250,,,
+COIN,NO_TRADE,NONE,32,weak trend strength; neutral technical regime,RISK_OFF,HIGH,0,250,,,
+MSFT,PREMIUM_SELL_WATCH,IRON_CONDOR_WATCH,32,neutral technical regime,RISK_OFF,HIGH,0,250,,,
+C,NO_TRADE,NONE,30,ADX confirms bearish trend; neutral technical regime,RISK_OFF,HIGH,0,250,,,
+TSLA,ERROR,NONE,0,fetch failed,,,,,,,
