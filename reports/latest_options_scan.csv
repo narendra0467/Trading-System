@@ -1,21 +1,21 @@
-symbol,signal,strategy,score,reason,marketRegime,eventRisk,contracts,maxRiskDollars,riskPerContract,riskPerSpread,plannedCapital
-INTC,NO_TRADE,PUT_DEBIT_SPREAD,102,No liquid long option found,RISK_OFF,HIGH,0,1000,,,
-SNDK,NO_TRADE,PUT_DEBIT_SPREAD,87,No liquid long option found,RISK_OFF,HIGH,0,1000,,,
-TSLA,AVOID_EVENT_RISK,PUT_DEBIT_SPREAD,87,bear trend stack; ADX confirms bearish trend,RISK_OFF,HIGH,0,1000,1412.5,1412.5,0
-ORCL,NO_TRADE,PUT_DEBIT_SPREAD,80,No liquid long option found,RISK_OFF,HIGH,0,1000,,,
-GOOGL,NO_TRADE,PUT_DEBIT_SPREAD,65,No liquid long option found,RISK_OFF,HIGH,0,1000,,,
-AMZN,AVOID_EVENT_RISK,PUT_DEBIT_SPREAD,62,bear trend stack; ADX confirms bearish trend,RISK_OFF,HIGH,0,1000,1107.5,1107.5,0
-AAPL,WATCH,CALL_DEBIT_SPREAD,57,bull trend stack; ADX confirms bullish trend,RISK_OFF,HIGH,0,250,1320,1320,0
-MU,NO_TRADE,NONE,52,ADX confirms bearish trend; volume expansion; neutral technical regime,RISK_OFF,HIGH,0,250,,,
-NVDA,AVOID_EVENT_RISK,PUT_DEBIT_SPREAD,52,bear trend stack; ADX confirms bearish trend,RISK_OFF,HIGH,0,1000,1262.5,1262.5,0
-PLTR,AVOID_EVENT_RISK,PUT_DEBIT_SPREAD,52,bear trend stack; ADX confirms bearish trend,RISK_OFF,HIGH,0,1000,1192.5,1192.5,0
-TSM,AVOID_EVENT_RISK,PUT_DEBIT_SPREAD,52,bear trend stack; ADX confirms bearish trend,RISK_OFF,HIGH,0,1000,2490,2490,0
-WDC,NO_TRADE,NONE,52,ADX confirms bearish trend; volume expansion; neutral technical regime,RISK_OFF,HIGH,0,250,,,
-AVGO,PREMIUM_SELL_WATCH,IRON_CONDOR_WATCH,43,bear trend stack; neutral technical regime,RISK_OFF,HIGH,0,250,,,
-MSTR,AVOID_EVENT_RISK,PUT_DEBIT_SPREAD,43,bear trend stack; weak trend strength,RISK_OFF,HIGH,0,1000,1235,1235,0
-AMD,NO_TRADE,NONE,42,below lower Bollinger band; volume expansion; neutral technical regime,RISK_OFF,HIGH,0,250,,,
-META,NO_TRADE,NONE,42,ADX confirms bearish trend; neutral technical regime,RISK_OFF,HIGH,0,250,,,
-NFLX,NO_TRADE,NONE,42,ADX confirms bullish trend; neutral technical regime,RISK_OFF,HIGH,0,250,,,
-COIN,NO_TRADE,NONE,32,weak trend strength; neutral technical regime,RISK_OFF,HIGH,0,250,,,
-MSFT,PREMIUM_SELL_WATCH,IRON_CONDOR_WATCH,32,neutral technical regime,RISK_OFF,HIGH,0,250,,,
-C,NO_TRADE,NONE,30,ADX confirms bearish trend; neutral technical regime,RISK_OFF,HIGH,0,250,,,
+symbol,signal,strategy,score,dte,expiration,underlying,longStrike,shortStrike,longBid,longAsk,longMid,shortBid,shortAsk,shortMid,debit,maxReward,rewardRisk,stopUnderlying,targetUnderlying,beginnerStrategy,beginnerAction,optionStrike,optionType,optionEntry,optionCost,optionStop,optionStopDollars,optionTarget1,optionTarget1Dollars,optionTarget2,optionTarget2Dollars,underlyingStop,underlyingTarget,longVolume,longOpenInterest,longSpreadPct,longDelta,longGamma,longTheta,longVega,probabilityItm,atmIv,ivHvRatio,marketRegime,marketScore,eventRisk,eventReason,reason,contracts,maxRiskDollars,riskPerContract,riskPerSpread,plannedCapital
+INTC,WATCH,PUT_DEBIT_SPREAD,102,36,2026-09-04,82.57,85,80,9.45,10.25,9.85,6.7,7.65,7.18,2.67,2.33,0.87,94.85,62.11,BUY_PUT,Buy the 85 PUT expiring 2026-09-04.,85,PUT,9.85,985,6.89,689.5,13.3,1329.75,16.74,1674.5,94.85,62.11,38,352,8.1,-0.49,0.0193,-0.109,0.103,58.9,79.8,0.94,RISK_OFF,35,CLEAR,No dated event in window,bear trend stack; ADX confirms bearish trend,1,1000,985,985,985
+TSLA,PUT_SETUP,PUT_DEBIT_SPREAD,97,36,2026-09-04,301.08,300,285,16,16.3,16.15,9.85,10.15,10,6.15,8.85,1.44,327.44,257.16,BUY_PUT,Buy the 300 PUT expiring 2026-09-04.,300,PUT,16.15,1615,11.3,1130.5,21.8,2180.25,27.45,2745.5,327.44,257.16,29,1830,1.9,-0.45,0.0096,-0.21,0.374,50.6,49.9,0.7,RISK_OFF,35,MANUAL_CHECK,Earnings/manual check,bear trend stack; ADX confirms bearish trend,0,1000,1615,1615,0
+SNDK,NO_TRADE,PUT_DEBIT_SPREAD,87,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,RISK_OFF,,CLEAR,,No liquid long option found,0,1000,,,
+ORCL,NO_TRADE,PUT_DEBIT_SPREAD,80,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,RISK_OFF,,CLEAR,,No liquid long option found,0,1000,,,
+TSM,WATCH,PUT_DEBIT_SPREAD,77,36,2026-09-04,375.64,395,375,33.45,35.15,34.3,21.95,24.1,23.02,11.27,8.73,0.77,401.98,331.75,BUY_PUT,Buy the 395 PUT expiring 2026-09-04.,395,PUT,34.3,3430,24.01,2401,46.3,4630.5,58.31,5831,401.98,331.75,1,1024,5,-0.59,0.0067,-0.284,0.459,64.8,50.9,0.99,RISK_OFF,35,CLEAR,No dated event in window,bear trend stack; ADX confirms bearish trend,0,1000,3430,3430,0
+AMZN,WATCH,PUT_DEBIT_SPREAD,72,36,2026-09-04,227.58,230,220,12.2,12.5,12.35,7.6,7.95,7.78,4.57,5.43,1.19,237.1,211.71,BUY_PUT,Buy the 230 PUT expiring 2026-09-04.,230,PUT,12.35,1235,8.64,864.5,16.67,1667.25,20.99,2099.5,237.1,211.71,44,106,2.4,-0.5,0.0146,-0.138,0.285,54.6,44.8,1.76,RISK_OFF,35,MANUAL_CHECK,Earnings/manual check,bear trend stack; ADX confirms bearish trend,0,1000,1235,1235,0
+NVDA,WATCH,PUT_DEBIT_SPREAD,72,36,2026-09-04,191.39,200,190,15.15,15.5,15.32,9.85,10.15,10,5.32,4.68,0.88,203.06,171.93,BUY_PUT,Buy the 200 PUT expiring 2026-09-04.,200,PUT,15.32,1532.5,10.73,1072.75,20.69,2068.88,26.05,2605.25,203.06,171.93,12,4210,2.3,-0.59,0.0153,-0.123,0.233,64.4,48.6,1.19,RISK_OFF,35,MANUAL_CHECK,Earnings/manual check,bear trend stack; ADX confirms bearish trend,0,1000,1532.5,1532.5,0
+AAPL,WATCH,CALL_DEBIT_SPREAD,67,36,2026-09-04,340.91,350,365,8.55,8.95,8.75,3.75,4.1,3.92,4.83,10.18,2.11,328.94,360.85,BUY_CALL,Buy the 350 CALL expiring 2026-09-04.,350,CALL,8.75,875,6.13,612.5,11.81,1181.25,14.88,1487.5,328.94,360.85,119,165,4.6,0.42,0.0125,-0.185,0.419,38.6,29.6,1.05,RISK_OFF,35,MANUAL_CHECK,Earnings/manual check,bull trend stack; ADX confirms bullish trend,0,250,875,875,0
+GOOGL,WATCH,PUT_DEBIT_SPREAD,65,36,2026-09-04,333.02,330,315,11,11.6,11.3,5.65,6.3,5.97,5.33,9.67,1.82,350.68,303.58,BUY_PUT,Buy the 330 PUT expiring 2026-09-04.,330,PUT,11.3,1130,7.91,791,15.26,1525.5,19.21,1921,350.68,303.58,1,139,5.3,-0.43,0.0122,-0.158,0.41,46.5,34.6,0.88,RISK_OFF,35,CLEAR,No dated event in window,bear trend stack; ADX confirms bearish trend,0,1000,1130,1130,0
+PLTR,WATCH,PUT_DEBIT_SPREAD,59,36,2026-09-04,124.91,120,114,7.7,8.25,7.97,4.95,6.15,5.55,2.42,3.58,1.47,131.32,107.76,BUY_PUT,Buy the 120 PUT expiring 2026-09-04.,120,PUT,7.97,797.5,5.58,558.25,10.77,1076.63,13.56,1355.75,131.32,107.76,83,119,6.9,-0.38,0.0149,-0.129,0.149,45.5,66.3,1.24,RISK_OFF,35,CLEAR,No dated event in window,bear trend stack,1,1000,797.5,797.5,797.5
+MSTR,WATCH,PUT_DEBIT_SPREAD,58,36,2026-09-04,95.13,90,87,6.7,7.55,7.13,5.4,6.15,5.78,1.35,1.65,1.22,104.12,80.15,BUY_PUT,Buy the 90 PUT expiring 2026-09-04.,90,PUT,7.13,712.5,4.99,498.75,9.62,961.88,12.11,1211.25,104.12,80.15,56,305,11.9,-0.36,0.0157,-0.119,0.112,45.5,78.3,1.11,RISK_OFF,35,CLEAR,No dated event in window,bear trend stack; weak trend strength,1,1000,712.5,712.5,712.5
+C,NO_TRADE,NONE,52,36,,128.3,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,33.4,1,RISK_OFF,,CLEAR,No dated event in window,ADX confirms bearish trend; neutral technical regime,0,250,,,
+MU,NO_TRADE,NONE,52,36,,771.42,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,88.5,0.91,RISK_OFF,,CLEAR,No dated event in window,ADX confirms bearish trend; below lower Bollinger band; neutral technical regime,0,250,,,
+AVGO,PREMIUM_SELL_WATCH,IRON_CONDOR_WATCH,47,36,,370.76,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,55.8,1.28,RISK_OFF,,CLEAR,No dated event in window,bear trend stack; neutral technical regime,0,250,,,
+WDC,NO_TRADE,NONE,44,36,,464.9,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,102.9,1.05,RISK_OFF,,CLEAR,No dated event in window,ADX confirms bearish trend; neutral technical regime,0,250,,,
+AMD,NO_TRADE,NONE,42,36,,426.48,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,73.7,0.81,RISK_OFF,,MANUAL_CHECK,Earnings/manual check,below lower Bollinger band; neutral technical regime,0,250,,,
+META,NO_TRADE,NONE,42,36,,586.69,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,50.5,0.93,RISK_OFF,,MANUAL_CHECK,Earnings/manual check,ADX confirms bearish trend; neutral technical regime,0,250,,,
+NFLX,NO_TRADE,NONE,42,36,,72.61,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,36.1,0.85,RISK_OFF,,CLEAR,No dated event in window,ADX confirms bullish trend; neutral technical regime,0,250,,,
+COIN,NO_TRADE,NONE,33,36,,163.63,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,81.2,1.22,RISK_OFF,,CLEAR,No dated event in window,neutral technical regime,0,250,,,
+MSFT,PREMIUM_SELL_WATCH,IRON_CONDOR_WATCH,32,36,,394.77,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,43.2,1.65,RISK_OFF,,MANUAL_CHECK,Earnings/manual check,weak trend strength; neutral technical regime,0,250,,,
