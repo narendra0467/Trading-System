@@ -1,21 +1,21 @@
 symbol,signal,strategy,score,reason,marketRegime,eventRisk,contracts,maxRiskDollars,riskPerContract,riskPerSpread,plannedCapital
-COIN,NO_TRADE,PUT_DEBIT_SPREAD,82,No liquid long option found,RISK_ON,CLEAR,0,500,,,
-SNDK,NO_TRADE,PUT_DEBIT_SPREAD,80,No liquid long option found,RISK_ON,CLEAR,0,500,,,
-TSLA,WATCH,PUT_DEBIT_SPREAD,65,bear trend stack; ADX confirms bearish trend,RISK_ON,MANUAL_CHECK,0,500,1690,1690,0
-AMZN,WATCH,CALL_DEBIT_SPREAD,62,bull trend stack; overbought risk; ADX confirms bullish trend; above upper Bollinger band; volume expansion,RISK_ON,MANUAL_CHECK,0,1000,1022.5,1022.5,0
-INTC,WATCH,PUT_DEBIT_SPREAD,60,bear trend stack; ADX confirms bearish trend,RISK_ON,CLEAR,0,500,972.5,972.5,0
-AAPL,NO_TRADE,NONE,52,ADX confirms bearish trend; volume expansion; neutral technical regime,RISK_ON,MANUAL_CHECK,0,1000,,,
-MSFT,NO_TRADE,NONE,52,overbought risk; ADX confirms bullish trend; above upper Bollinger band; volume expansion; neutral technical regime,RISK_ON,MANUAL_CHECK,0,1000,,,
-MSTR,WATCH,PUT_DEBIT_SPREAD,48,bear trend stack; weak trend strength,RISK_ON,CLEAR,0,500,890,890,0
-PLTR,PREMIUM_SELL_WATCH,IRON_CONDOR_WATCH,45,bear trend stack; ADX confirms bearish trend; volume expansion; neutral technical regime,RISK_ON,CLEAR,0,1000,,,
-META,NO_TRADE,NONE,43,bear trend stack; ADX confirms bearish trend; volume expansion; neutral technical regime,RISK_ON,MANUAL_CHECK,0,1000,,,
-TSM,NO_TRADE,NONE,43,bear trend stack; ADX confirms bearish trend; neutral technical regime,RISK_ON,CLEAR,0,1000,,,
-GOOGL,NO_TRADE,NONE,42,ADX confirms bullish trend; neutral technical regime,RISK_ON,CLEAR,0,1000,,,
-NFLX,NO_TRADE,NONE,42,ADX confirms bullish trend; neutral technical regime,RISK_ON,CLEAR,0,1000,,,
-ORCL,NO_TRADE,NONE,42,ADX confirms bullish trend; volume expansion; neutral technical regime,RISK_ON,CLEAR,0,1000,,,
-WDC,NO_TRADE,NONE,34,ADX confirms bearish trend; neutral technical regime,RISK_ON,CLEAR,0,1000,,,
-AVGO,PREMIUM_SELL_WATCH,IRON_CONDOR_WATCH,32,neutral technical regime,RISK_ON,CLEAR,0,1000,,,
-MU,NO_TRADE,NONE,30,ADX confirms bearish trend; neutral technical regime,RISK_ON,CLEAR,0,1000,,,
-NVDA,NO_TRADE,NONE,30,ADX confirms bullish trend; neutral technical regime,RISK_ON,MANUAL_CHECK,0,1000,,,
-AMD,NO_TRADE,NONE,25,neutral technical regime,RISK_ON,MANUAL_CHECK,0,1000,,,
-C,NO_TRADE,NONE,22,ADX confirms bearish trend; neutral technical regime,RISK_ON,CLEAR,0,1000,,,
+COIN,NO_TRADE,PUT_DEBIT_SPREAD,84,No liquid long option found,RISK_ON,CLEAR,0,500,,,
+C,NO_TRADE,CALL_DEBIT_SPREAD,77,No liquid long option found,RISK_ON,CLEAR,0,1000,,,
+WDC,NO_TRADE,CALL_DEBIT_SPREAD,67,No liquid long option found,RISK_ON,CLEAR,0,1000,,,
+TSLA,WATCH,PUT_DEBIT_SPREAD,65,bear trend stack; ADX confirms bearish trend,RISK_ON,MANUAL_CHECK,0,500,1560,1560,0
+AMD,NO_TRADE,NONE,62,bull trend stack; neutral technical regime,RISK_ON,MANUAL_CHECK,0,1000,,,
+MSFT,WATCH,CALL_DEBIT_SPREAD,62,overbought risk; ADX confirms bullish trend; above upper Bollinger band,RISK_ON,MANUAL_CHECK,0,1000,2147.5,2147.5,0
+AMZN,NO_TRADE,NONE,55,bull trend stack; ADX confirms bullish trend; neutral technical regime,RISK_ON,MANUAL_CHECK,0,1000,,,
+PLTR,NO_TRADE,NONE,52,overbought risk; ADX confirms bullish trend; above upper Bollinger band; volume expansion; neutral technical regime,RISK_ON,CLEAR,0,1000,,,
+META,WATCH,PUT_DEBIT_SPREAD,50,bear trend stack; ADX confirms bearish trend,RISK_ON,MANUAL_CHECK,0,500,3102.5,3102.5,0
+MSTR,WATCH,PUT_DEBIT_SPREAD,48,bear trend stack; weak trend strength,RISK_ON,CLEAR,0,500,817.5,817.5,0
+SNDK,NO_TRADE,NONE,48,bear trend stack; ADX confirms bullish trend; neutral technical regime,RISK_ON,CLEAR,0,1000,,,
+AAPL,NO_TRADE,NONE,42,ADX confirms bearish trend; neutral technical regime,RISK_ON,MANUAL_CHECK,0,1000,,,
+NVDA,NO_TRADE,NONE,42,ADX confirms bullish trend; neutral technical regime,RISK_ON,MANUAL_CHECK,0,1000,,,
+INTC,NO_TRADE,NONE,34,ADX confirms bullish trend; neutral technical regime,RISK_ON,CLEAR,0,1000,,,
+TSM,NO_TRADE,NONE,34,ADX confirms bullish trend; neutral technical regime,RISK_ON,CLEAR,0,1000,,,
+AVGO,PREMIUM_SELL_WATCH,IRON_CONDOR_WATCH,32,above upper Bollinger band; neutral technical regime,RISK_ON,CLEAR,0,1000,,,
+GOOGL,NO_TRADE,NONE,30,ADX confirms bullish trend; neutral technical regime,RISK_ON,CLEAR,0,1000,,,
+ORCL,NO_TRADE,NONE,30,ADX confirms bullish trend; neutral technical regime,RISK_ON,CLEAR,0,1000,,,
+NFLX,NO_TRADE,NONE,25,neutral technical regime,RISK_ON,CLEAR,0,1000,,,
+MU,NO_TRADE,NONE,22,ADX confirms bearish trend; neutral technical regime,RISK_ON,CLEAR,0,1000,,,
