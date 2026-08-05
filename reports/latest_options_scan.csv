@@ -1,9 +1,9 @@
 symbol,signal,strategy,score,reason,marketRegime,eventRisk,contracts,maxRiskDollars,riskPerContract,riskPerSpread,plannedCapital
 COIN,NO_TRADE,PUT_DEBIT_SPREAD,92,No liquid long option found,RISK_ON,CLEAR,0,500,,,
 C,NO_TRADE,CALL_DEBIT_SPREAD,77,No liquid long option found,RISK_ON,CLEAR,0,1000,,,
-NVDA,CALL_SETUP,CALL_DEBIT_SPREAD,72,bull trend stack; ADX confirms bullish trend; above upper Bollinger band,RISK_ON,MANUAL_CHECK,1,1000,790,790,790
-TSLA,WATCH,PUT_DEBIT_SPREAD,65,bear trend stack; ADX confirms bearish trend,RISK_ON,MANUAL_CHECK,0,500,1590,1590,0
-AMZN,WATCH,CALL_DEBIT_SPREAD,62,bull trend stack; ADX confirms bullish trend,RISK_ON,MANUAL_CHECK,0,1000,1245,1245,0
+NVDA,CALL_SETUP,CALL_DEBIT_SPREAD,72,bull trend stack; ADX confirms bullish trend; above upper Bollinger band,RISK_ON,MANUAL_CHECK,1,1000,735,735,735
+TSLA,WATCH,PUT_DEBIT_SPREAD,65,bear trend stack; ADX confirms bearish trend,RISK_ON,MANUAL_CHECK,0,500,1610,1610,0
+AMZN,WATCH,CALL_DEBIT_SPREAD,62,bull trend stack; ADX confirms bullish trend,RISK_ON,MANUAL_CHECK,0,1000,1292.5,1292.5,0
 SNDK,NO_TRADE,PUT_DEBIT_SPREAD,58,No liquid long option found,RISK_ON,CLEAR,0,500,,,
 AVGO,PREMIUM_SELL_WATCH,IRON_CONDOR_WATCH,55,bull trend stack; ADX confirms bullish trend; above upper Bollinger band; neutral technical regime,RISK_ON,CLEAR,0,1000,,,
 META,NO_TRADE,NONE,43,bear trend stack; ADX confirms bearish trend; neutral technical regime,RISK_ON,MANUAL_CHECK,0,1000,,,
