@@ -891,6 +891,87 @@
     ]
   },
   {
+    "symbol": "ARM",
+    "trades": 8,
+    "winRate": 62.5,
+    "avgReturnPct": 5.31,
+    "profitFactor": 3.07,
+    "tradeLog": [
+      {
+        "symbol": "ARM",
+        "entryDate": "2024-06-04",
+        "exitDate": "2024-06-11",
+        "entry": 126.88,
+        "exit": 147.41,
+        "returnPct": 16.19,
+        "exitReason": "target"
+      },
+      {
+        "symbol": "ARM",
+        "entryDate": "2024-07-11",
+        "exitDate": "2024-07-17",
+        "entry": 186.84,
+        "exit": 171.42,
+        "returnPct": -8.26,
+        "exitReason": "stop"
+      },
+      {
+        "symbol": "ARM",
+        "entryDate": "2024-10-29",
+        "exitDate": "2024-10-31",
+        "entry": 150,
+        "exit": 142.99,
+        "returnPct": -4.67,
+        "exitReason": "stop"
+      },
+      {
+        "symbol": "ARM",
+        "entryDate": "2025-02-03",
+        "exitDate": "2025-02-12",
+        "entry": 153.55,
+        "exit": 155.41,
+        "returnPct": 1.21,
+        "exitReason": "trend_loss"
+      },
+      {
+        "symbol": "ARM",
+        "entryDate": "2025-07-17",
+        "exitDate": "2025-07-31",
+        "entry": 157.11,
+        "exit": 145.11,
+        "returnPct": -7.64,
+        "exitReason": "stop"
+      },
+      {
+        "symbol": "ARM",
+        "entryDate": "2025-10-03",
+        "exitDate": "2025-10-08",
+        "entry": 152.88,
+        "exit": 167.53,
+        "returnPct": 9.58,
+        "exitReason": "target"
+      },
+      {
+        "symbol": "ARM",
+        "entryDate": "2026-04-14",
+        "exitDate": "2026-04-22",
+        "entry": 161.03,
+        "exit": 186.49,
+        "returnPct": 15.81,
+        "exitReason": "target"
+      },
+      {
+        "symbol": "ARM",
+        "entryDate": "2026-05-20",
+        "exitDate": "2026-05-21",
+        "entry": 226.54,
+        "exit": 272.44,
+        "returnPct": 20.26,
+        "exitReason": "target"
+      }
+    ]
+  },
+  {
     "symbol": "CIEN",
     "trades": 18,
     "winRate": 50,
@@ -1733,78 +1814,6 @@
         "exit": 157.77,
         "returnPct": -4.71,
         "exitReason": "stop"
-      }
-    ]
-  },
-  {
-    "symbol": "ARM",
-    "trades": 7,
-    "winRate": 57.1,
-    "avgReturnPct": 3.5,
-    "profitFactor": 2.2,
-    "tradeLog": [
-      {
-        "symbol": "ARM",
-        "entryDate": "2024-07-05",
-        "exitDate": "2024-07-17",
-        "entry": 172,
-        "exit": 161.7,
-        "returnPct": -5.99,
-        "exitReason": "trend_loss"
-      },
-      {
-        "symbol": "ARM",
-        "entryDate": "2024-10-14",
-        "exitDate": "2024-10-23",
-        "entry": 153.1,
-        "exit": 142.7,
-        "returnPct": -6.79,
-        "exitReason": "stop"
-      },
-      {
-        "symbol": "ARM",
-        "entryDate": "2025-02-03",
-        "exitDate": "2025-02-12",
-        "entry": 153.55,
-        "exit": 155.41,
-        "returnPct": 1.21,
-        "exitReason": "trend_loss"
-      },
-      {
-        "symbol": "ARM",
-        "entryDate": "2025-07-17",
-        "exitDate": "2025-07-31",
-        "entry": 157.11,
-        "exit": 145.11,
-        "returnPct": -7.64,
-        "exitReason": "stop"
-      },
-      {
-        "symbol": "ARM",
-        "entryDate": "2025-10-06",
-        "exitDate": "2025-10-08",
-        "entry": 155.6,
-        "exit": 167.53,
-        "returnPct": 7.67,
-        "exitReason": "target"
-      },
-      {
-        "symbol": "ARM",
-        "entryDate": "2026-04-14",
-        "exitDate": "2026-04-22",
-        "entry": 161.03,
-        "exit": 186.49,
-        "returnPct": 15.81,
-        "exitReason": "target"
-      },
-      {
-        "symbol": "ARM",
-        "entryDate": "2026-05-20",
-        "exitDate": "2026-05-21",
-        "entry": 226.54,
-        "exit": 272.44,
-        "returnPct": 20.26,
-        "exitReason": "target"
       }
     ]
   },
@@ -4781,7 +4790,7 @@
         "entryDate": "2022-04-20",
         "exitDate": "2022-04-26",
         "entry": 343.33,
-        "exit": 324.25,
+        "exit": 324.26,
         "returnPct": -5.56,
         "exitReason": "stop"
       },
@@ -4896,168 +4905,6 @@
     ]
   },
   {
-    "symbol": "NET",
-    "trades": 17,
-    "winRate": 41.2,
-    "avgReturnPct": 0.92,
-    "profitFactor": 1.31,
-    "tradeLog": [
-      {
-        "symbol": "NET",
-        "entryDate": "2023-04-17",
-        "exitDate": "2023-04-25",
-        "entry": 64.71,
-        "exit": 60.27,
-        "returnPct": -6.86,
-        "exitReason": "stop"
-      },
-      {
-        "symbol": "NET",
-        "entryDate": "2023-06-14",
-        "exitDate": "2023-06-21",
-        "entry": 68.41,
-        "exit": 63.66,
-        "returnPct": -6.94,
-        "exitReason": "stop"
-      },
-      {
-        "symbol": "NET",
-        "entryDate": "2023-07-31",
-        "exitDate": "2023-08-02",
-        "entry": 67.88,
-        "exit": 64.46,
-        "returnPct": -5.03,
-        "exitReason": "stop"
-      },
-      {
-        "symbol": "NET",
-        "entryDate": "2024-01-10",
-        "exitDate": "2024-01-16",
-        "entry": 82.55,
-        "exit": 77.63,
-        "returnPct": -5.96,
-        "exitReason": "stop"
-      },
-      {
-        "symbol": "NET",
-        "entryDate": "2024-02-15",
-        "exitDate": "2024-02-20",
-        "entry": 104.5,
-        "exit": 94.35,
-        "returnPct": -9.71,
-        "exitReason": "stop"
-      },
-      {
-        "symbol": "NET",
-        "entryDate": "2024-03-22",
-        "exitDate": "2024-04-01",
-        "entry": 96.1,
-        "exit": 95.66,
-        "returnPct": -0.46,
-        "exitReason": "trend_loss"
-      },
-      {
-        "symbol": "NET",
-        "entryDate": "2024-10-09",
-        "exitDate": "2024-10-10",
-        "entry": 81.94,
-        "exit": 89.9,
-        "returnPct": 9.72,
-        "exitReason": "target"
-      },
-      {
-        "symbol": "NET",
-        "entryDate": "2024-11-14",
-        "exitDate": "2024-12-02",
-        "entry": 94.46,
-        "exit": 107.7,
-        "returnPct": 14.01,
-        "exitReason": "target"
-      },
-      {
-        "symbol": "NET",
-        "entryDate": "2025-01-03",
-        "exitDate": "2025-01-13",
-        "entry": 113.4,
-        "exit": 110.71,
-        "returnPct": -2.37,
-        "exitReason": "trend_loss"
-      },
-      {
-        "symbol": "NET",
-        "entryDate": "2025-06-17",
-        "exitDate": "2025-07-10",
-        "entry": 178.27,
-        "exit": 181.92,
-        "returnPct": 2.05,
-        "exitReason": "trend_loss"
-      },
-      {
-        "symbol": "NET",
-        "entryDate": "2025-07-28",
-        "exitDate": "2025-08-07",
-        "entry": 200.91,
-        "exit": 218.16,
-        "returnPct": 8.59,
-        "exitReason": "target"
-      },
-      {
-        "symbol": "NET",
-        "entryDate": "2025-09-02",
-        "exitDate": "2025-09-26",
-        "entry": 202.65,
-        "exit": 216.34,
-        "returnPct": 6.76,
-        "exitReason": "trend_loss"
-      },
-      {
-        "symbol": "NET",
-        "entryDate": "2025-10-07",
-        "exitDate": "2025-10-14",
-        "entry": 222,
-        "exit": 217.55,
-        "returnPct": -2,
-        "exitReason": "trend_loss"
-      },
-      {
-        "symbol": "NET",
-        "entryDate": "2025-11-11",
-        "exitDate": "2025-11-13",
-        "entry": 238.58,
-        "exit": 223.55,
-        "returnPct": -6.3,
-        "exitReason": "stop"
-      },
-      {
-        "symbol": "NET",
-        "entryDate": "2026-04-06",
-        "exitDate": "2026-04-09",
-        "entry": 210.26,
-        "exit": 199.08,
-        "returnPct": -5.32,
-        "exitReason": "stop"
-      },
-      {
-        "symbol": "NET",
-        "entryDate": "2026-05-21",
-        "exitDate": "2026-06-01",
-        "entry": 210.49,
-        "exit": 247.51,
-        "returnPct": 17.59,
-        "exitReason": "target"
-      },
-      {
-        "symbol": "NET",
-        "entryDate": "2026-07-30",
-        "exitDate": "2026-08-05",
-        "entry": 271.38,
-        "exit": 292.96,
-        "returnPct": 7.95,
-        "exitReason": "time"
-      }
-    ]
-  },
-  {
     "symbol": "UPST",
     "trades": 8,
     "winRate": 25,
@@ -5143,15 +4990,15 @@
     "trades": 23,
     "winRate": 39.1,
     "avgReturnPct": 0.39,
-    "profitFactor": 1.25,
+    "profitFactor": 1.26,
     "tradeLog": [
       {
         "symbol": "CW",
-        "entryDate": "2022-03-28",
-        "exitDate": "2022-03-31",
-        "entry": 155.96,
-        "exit": 150.07,
-        "returnPct": -3.77,
+        "entryDate": "2022-04-04",
+        "exitDate": "2022-04-06",
+        "entry": 153.51,
+        "exit": 147.95,
+        "returnPct": -3.62,
         "exitReason": "stop"
       },
       {
@@ -5355,128 +5202,173 @@
     ]
   },
   {
-    "symbol": "AFRM",
-    "trades": 12,
-    "winRate": 33.3,
-    "avgReturnPct": 0.99,
-    "profitFactor": 1.22,
+    "symbol": "NET",
+    "trades": 17,
+    "winRate": 41.2,
+    "avgReturnPct": 0.74,
+    "profitFactor": 1.25,
     "tradeLog": [
       {
-        "symbol": "AFRM",
-        "entryDate": "2023-07-27",
-        "exitDate": "2023-08-04",
-        "entry": 18.33,
-        "exit": 16.69,
-        "returnPct": -8.95,
-        "exitReason": "trend_loss"
-      },
-      {
-        "symbol": "AFRM",
-        "entryDate": "2023-10-12",
-        "exitDate": "2023-10-12",
-        "entry": 20.2,
-        "exit": 19.27,
-        "returnPct": -4.61,
+        "symbol": "NET",
+        "entryDate": "2023-04-17",
+        "exitDate": "2023-04-25",
+        "entry": 64.71,
+        "exit": 60.27,
+        "returnPct": -6.86,
         "exitReason": "stop"
       },
       {
-        "symbol": "AFRM",
-        "entryDate": "2023-11-16",
-        "exitDate": "2023-11-28",
-        "entry": 25.46,
-        "exit": 32.73,
-        "returnPct": 28.57,
-        "exitReason": "target"
+        "symbol": "NET",
+        "entryDate": "2023-06-14",
+        "exitDate": "2023-06-21",
+        "entry": 68.41,
+        "exit": 63.66,
+        "returnPct": -6.94,
+        "exitReason": "stop"
       },
       {
-        "symbol": "AFRM",
-        "entryDate": "2024-01-09",
+        "symbol": "NET",
+        "entryDate": "2023-07-31",
+        "exitDate": "2023-08-02",
+        "entry": 67.88,
+        "exit": 64.46,
+        "returnPct": -5.03,
+        "exitReason": "stop"
+      },
+      {
+        "symbol": "NET",
+        "entryDate": "2024-01-10",
         "exitDate": "2024-01-16",
-        "entry": 44.61,
-        "exit": 40.71,
-        "returnPct": -8.75,
+        "entry": 82.55,
+        "exit": 77.63,
+        "returnPct": -5.96,
         "exitReason": "stop"
       },
       {
-        "symbol": "AFRM",
-        "entryDate": "2024-09-13",
-        "exitDate": "2024-09-30",
-        "entry": 42.39,
-        "exit": 40.82,
-        "returnPct": -3.7,
+        "symbol": "NET",
+        "entryDate": "2024-02-15",
+        "exitDate": "2024-02-20",
+        "entry": 104.5,
+        "exit": 94.35,
+        "returnPct": -9.71,
+        "exitReason": "stop"
+      },
+      {
+        "symbol": "NET",
+        "entryDate": "2024-03-22",
+        "exitDate": "2024-04-01",
+        "entry": 96.1,
+        "exit": 95.66,
+        "returnPct": -0.46,
         "exitReason": "trend_loss"
       },
       {
-        "symbol": "AFRM",
-        "entryDate": "2024-10-31",
-        "exitDate": "2024-11-11",
-        "entry": 44.39,
-        "exit": 53.1,
-        "returnPct": 19.62,
+        "symbol": "NET",
+        "entryDate": "2024-10-09",
+        "exitDate": "2024-10-10",
+        "entry": 81.94,
+        "exit": 89.9,
+        "returnPct": 9.72,
         "exitReason": "target"
       },
       {
-        "symbol": "AFRM",
-        "entryDate": "2024-12-16",
-        "exitDate": "2024-12-18",
-        "entry": 71.09,
-        "exit": 64.42,
-        "returnPct": -9.39,
-        "exitReason": "stop"
+        "symbol": "NET",
+        "entryDate": "2024-11-14",
+        "exitDate": "2024-12-02",
+        "entry": 94.46,
+        "exit": 107.7,
+        "returnPct": 14.01,
+        "exitReason": "target"
       },
       {
-        "symbol": "AFRM",
-        "entryDate": "2025-07-17",
-        "exitDate": "2025-07-24",
-        "entry": 68.8,
-        "exit": 65.82,
-        "returnPct": -4.33,
+        "symbol": "NET",
+        "entryDate": "2025-01-03",
+        "exitDate": "2025-01-13",
+        "entry": 113.4,
+        "exit": 110.71,
+        "returnPct": -2.37,
         "exitReason": "trend_loss"
       },
       {
-        "symbol": "AFRM",
-        "entryDate": "2025-08-25",
-        "exitDate": "2025-08-29",
-        "entry": 78.93,
-        "exit": 91.57,
-        "returnPct": 16.01,
+        "symbol": "NET",
+        "entryDate": "2025-06-17",
+        "exitDate": "2025-07-10",
+        "entry": 178.27,
+        "exit": 181.92,
+        "returnPct": 2.05,
+        "exitReason": "trend_loss"
+      },
+      {
+        "symbol": "NET",
+        "entryDate": "2025-07-28",
+        "exitDate": "2025-08-07",
+        "entry": 200.91,
+        "exit": 218.16,
+        "returnPct": 8.59,
         "exitReason": "target"
       },
       {
-        "symbol": "AFRM",
-        "entryDate": "2026-01-06",
-        "exitDate": "2026-01-12",
-        "entry": 81.63,
-        "exit": 75.71,
-        "returnPct": -7.25,
+        "symbol": "NET",
+        "entryDate": "2025-09-02",
+        "exitDate": "2025-09-26",
+        "entry": 202.65,
+        "exit": 216.34,
+        "returnPct": 6.76,
+        "exitReason": "trend_loss"
+      },
+      {
+        "symbol": "NET",
+        "entryDate": "2025-10-07",
+        "exitDate": "2025-10-14",
+        "entry": 222,
+        "exit": 217.55,
+        "returnPct": -2,
+        "exitReason": "trend_loss"
+      },
+      {
+        "symbol": "NET",
+        "entryDate": "2025-11-11",
+        "exitDate": "2025-11-13",
+        "entry": 238.58,
+        "exit": 223.55,
+        "returnPct": -6.3,
         "exitReason": "stop"
       },
       {
-        "symbol": "AFRM",
-        "entryDate": "2026-06-01",
-        "exitDate": "2026-06-03",
-        "entry": 73.97,
-        "exit": 68.15,
-        "returnPct": -7.87,
+        "symbol": "NET",
+        "entryDate": "2026-04-06",
+        "exitDate": "2026-04-09",
+        "entry": 210.26,
+        "exit": 199.08,
+        "returnPct": -5.32,
         "exitReason": "stop"
       },
       {
-        "symbol": "AFRM",
-        "entryDate": "2026-08-04",
-        "exitDate": "2026-08-05",
-        "entry": 76.52,
-        "exit": 78.47,
-        "returnPct": 2.55,
+        "symbol": "NET",
+        "entryDate": "2026-05-21",
+        "exitDate": "2026-06-01",
+        "entry": 210.49,
+        "exit": 247.51,
+        "returnPct": 17.59,
+        "exitReason": "target"
+      },
+      {
+        "symbol": "NET",
+        "entryDate": "2026-07-30",
+        "exitDate": "2026-08-06",
+        "entry": 271.38,
+        "exit": 284.43,
+        "returnPct": 4.81,
         "exitReason": "time"
       }
     ]
   },
   {
     "symbol": "AMD",
-    "trades": 14,
-    "winRate": 35.7,
+    "trades": 15,
+    "winRate": 40,
     "avgReturnPct": 0.63,
-    "profitFactor": 1.16,
+    "profitFactor": 1.17,
     "tradeLog": [
       {
         "symbol": "AMD",
@@ -5603,6 +5495,132 @@
         "exit": 517.41,
         "returnPct": -5.16,
         "exitReason": "trend_loss"
+      },
+      {
+        "symbol": "AMD",
+        "entryDate": "2026-08-05",
+        "exitDate": "2026-08-05",
+        "entry": 484.5,
+        "exit": 487.48,
+        "returnPct": 0.61,
+        "exitReason": "stop"
+      }
+    ]
+  },
+  {
+    "symbol": "AFRM",
+    "trades": 12,
+    "winRate": 33.3,
+    "avgReturnPct": 0.79,
+    "profitFactor": 1.17,
+    "tradeLog": [
+      {
+        "symbol": "AFRM",
+        "entryDate": "2023-07-27",
+        "exitDate": "2023-08-04",
+        "entry": 18.33,
+        "exit": 16.69,
+        "returnPct": -8.95,
+        "exitReason": "trend_loss"
+      },
+      {
+        "symbol": "AFRM",
+        "entryDate": "2023-10-12",
+        "exitDate": "2023-10-12",
+        "entry": 20.2,
+        "exit": 19.27,
+        "returnPct": -4.61,
+        "exitReason": "stop"
+      },
+      {
+        "symbol": "AFRM",
+        "entryDate": "2023-11-16",
+        "exitDate": "2023-11-28",
+        "entry": 25.46,
+        "exit": 32.73,
+        "returnPct": 28.57,
+        "exitReason": "target"
+      },
+      {
+        "symbol": "AFRM",
+        "entryDate": "2024-01-09",
+        "exitDate": "2024-01-16",
+        "entry": 44.61,
+        "exit": 40.71,
+        "returnPct": -8.75,
+        "exitReason": "stop"
+      },
+      {
+        "symbol": "AFRM",
+        "entryDate": "2024-09-13",
+        "exitDate": "2024-09-30",
+        "entry": 42.39,
+        "exit": 40.82,
+        "returnPct": -3.7,
+        "exitReason": "trend_loss"
+      },
+      {
+        "symbol": "AFRM",
+        "entryDate": "2024-10-31",
+        "exitDate": "2024-11-11",
+        "entry": 44.39,
+        "exit": 53.1,
+        "returnPct": 19.62,
+        "exitReason": "target"
+      },
+      {
+        "symbol": "AFRM",
+        "entryDate": "2024-12-16",
+        "exitDate": "2024-12-18",
+        "entry": 71.09,
+        "exit": 64.42,
+        "returnPct": -9.39,
+        "exitReason": "stop"
+      },
+      {
+        "symbol": "AFRM",
+        "entryDate": "2025-07-17",
+        "exitDate": "2025-07-24",
+        "entry": 68.8,
+        "exit": 65.82,
+        "returnPct": -4.33,
+        "exitReason": "trend_loss"
+      },
+      {
+        "symbol": "AFRM",
+        "entryDate": "2025-08-25",
+        "exitDate": "2025-08-29",
+        "entry": 78.93,
+        "exit": 91.57,
+        "returnPct": 16.01,
+        "exitReason": "target"
+      },
+      {
+        "symbol": "AFRM",
+        "entryDate": "2026-01-06",
+        "exitDate": "2026-01-12",
+        "entry": 81.63,
+        "exit": 75.71,
+        "returnPct": -7.25,
+        "exitReason": "stop"
+      },
+      {
+        "symbol": "AFRM",
+        "entryDate": "2026-06-01",
+        "exitDate": "2026-06-03",
+        "entry": 73.97,
+        "exit": 68.15,
+        "returnPct": -7.87,
+        "exitReason": "stop"
+      },
+      {
+        "symbol": "AFRM",
+        "entryDate": "2026-08-04",
+        "exitDate": "2026-08-06",
+        "entry": 76.52,
+        "exit": 76.58,
+        "returnPct": 0.08,
+        "exitReason": "time"
       }
     ]
   },
@@ -6777,6 +6795,150 @@
     ]
   },
   {
+    "symbol": "TLN",
+    "trades": 15,
+    "winRate": 40,
+    "avgReturnPct": -0.04,
+    "profitFactor": 0.99,
+    "tradeLog": [
+      {
+        "symbol": "TLN",
+        "entryDate": "2024-01-26",
+        "exitDate": "2024-02-07",
+        "entry": 65.8,
+        "exit": 68.89,
+        "returnPct": 4.7,
+        "exitReason": "target"
+      },
+      {
+        "symbol": "TLN",
+        "entryDate": "2024-04-23",
+        "exitDate": "2024-04-26",
+        "entry": 93.99,
+        "exit": 99.27,
+        "returnPct": 5.62,
+        "exitReason": "target"
+      },
+      {
+        "symbol": "TLN",
+        "entryDate": "2024-05-29",
+        "exitDate": "2024-06-26",
+        "entry": 118.99,
+        "exit": 114.47,
+        "returnPct": -3.8,
+        "exitReason": "trend_loss"
+      },
+      {
+        "symbol": "TLN",
+        "entryDate": "2024-07-05",
+        "exitDate": "2024-07-10",
+        "entry": 119,
+        "exit": 130.96,
+        "returnPct": 10.05,
+        "exitReason": "target"
+      },
+      {
+        "symbol": "TLN",
+        "entryDate": "2024-08-09",
+        "exitDate": "2024-08-12",
+        "entry": 119.48,
+        "exit": 116.01,
+        "returnPct": -2.9,
+        "exitReason": "stop"
+      },
+      {
+        "symbol": "TLN",
+        "entryDate": "2024-10-07",
+        "exitDate": "2024-10-07",
+        "entry": 190.86,
+        "exit": 177.04,
+        "returnPct": -7.24,
+        "exitReason": "stop"
+      },
+      {
+        "symbol": "TLN",
+        "entryDate": "2024-11-11",
+        "exitDate": "2024-12-09",
+        "entry": 208.5,
+        "exit": 208.68,
+        "returnPct": 0.09,
+        "exitReason": "trend_loss"
+      },
+      {
+        "symbol": "TLN",
+        "entryDate": "2024-12-26",
+        "exitDate": "2024-12-27",
+        "entry": 205.36,
+        "exit": 197.46,
+        "returnPct": -3.85,
+        "exitReason": "stop"
+      },
+      {
+        "symbol": "TLN",
+        "entryDate": "2025-02-04",
+        "exitDate": "2025-02-21",
+        "entry": 231.28,
+        "exit": 218.8,
+        "returnPct": -5.4,
+        "exitReason": "trend_loss"
+      },
+      {
+        "symbol": "TLN",
+        "entryDate": "2025-06-03",
+        "exitDate": "2025-06-09",
+        "entry": 257.31,
+        "exit": 271.64,
+        "returnPct": 5.57,
+        "exitReason": "target"
+      },
+      {
+        "symbol": "TLN",
+        "entryDate": "2025-07-15",
+        "exitDate": "2025-07-15",
+        "entry": 282.42,
+        "exit": 265.76,
+        "returnPct": -5.9,
+        "exitReason": "stop"
+      },
+      {
+        "symbol": "TLN",
+        "entryDate": "2025-08-27",
+        "exitDate": "2025-09-19",
+        "entry": 379.47,
+        "exit": 423.28,
+        "returnPct": 11.55,
+        "exitReason": "target"
+      },
+      {
+        "symbol": "TLN",
+        "entryDate": "2025-10-02",
+        "exitDate": "2025-10-10",
+        "entry": 429.9,
+        "exit": 412.83,
+        "returnPct": -3.97,
+        "exitReason": "trend_loss"
+      },
+      {
+        "symbol": "TLN",
+        "entryDate": "2026-05-28",
+        "exitDate": "2026-06-05",
+        "entry": 377.94,
+        "exit": 364.74,
+        "returnPct": -3.49,
+        "exitReason": "trend_loss"
+      },
+      {
+        "symbol": "TLN",
+        "entryDate": "2026-07-10",
+        "exitDate": "2026-07-16",
+        "entry": 381.68,
+        "exit": 375.69,
+        "returnPct": -1.57,
+        "exitReason": "stop"
+      }
+    ]
+  },
+  {
     "symbol": "CAVA",
     "trades": 8,
     "winRate": 37.5,
@@ -6970,150 +7132,6 @@
         "entry": 60.89,
         "exit": 58.03,
         "returnPct": -4.69,
-        "exitReason": "stop"
-      }
-    ]
-  },
-  {
-    "symbol": "TLN",
-    "trades": 15,
-    "winRate": 40,
-    "avgReturnPct": -0.12,
-    "profitFactor": 0.95,
-    "tradeLog": [
-      {
-        "symbol": "TLN",
-        "entryDate": "2024-01-26",
-        "exitDate": "2024-02-07",
-        "entry": 65.8,
-        "exit": 68.89,
-        "returnPct": 4.7,
-        "exitReason": "target"
-      },
-      {
-        "symbol": "TLN",
-        "entryDate": "2024-04-23",
-        "exitDate": "2024-04-26",
-        "entry": 93.99,
-        "exit": 99.27,
-        "returnPct": 5.62,
-        "exitReason": "target"
-      },
-      {
-        "symbol": "TLN",
-        "entryDate": "2024-05-29",
-        "exitDate": "2024-06-26",
-        "entry": 118.99,
-        "exit": 114.47,
-        "returnPct": -3.8,
-        "exitReason": "trend_loss"
-      },
-      {
-        "symbol": "TLN",
-        "entryDate": "2024-07-05",
-        "exitDate": "2024-07-10",
-        "entry": 119,
-        "exit": 130.96,
-        "returnPct": 10.05,
-        "exitReason": "target"
-      },
-      {
-        "symbol": "TLN",
-        "entryDate": "2024-08-09",
-        "exitDate": "2024-08-12",
-        "entry": 119.48,
-        "exit": 116.01,
-        "returnPct": -2.9,
-        "exitReason": "stop"
-      },
-      {
-        "symbol": "TLN",
-        "entryDate": "2024-10-07",
-        "exitDate": "2024-10-07",
-        "entry": 190.86,
-        "exit": 177.04,
-        "returnPct": -7.24,
-        "exitReason": "stop"
-      },
-      {
-        "symbol": "TLN",
-        "entryDate": "2024-11-11",
-        "exitDate": "2024-12-09",
-        "entry": 208.5,
-        "exit": 208.68,
-        "returnPct": 0.09,
-        "exitReason": "trend_loss"
-      },
-      {
-        "symbol": "TLN",
-        "entryDate": "2024-12-26",
-        "exitDate": "2024-12-27",
-        "entry": 205.36,
-        "exit": 197.46,
-        "returnPct": -3.85,
-        "exitReason": "stop"
-      },
-      {
-        "symbol": "TLN",
-        "entryDate": "2025-02-04",
-        "exitDate": "2025-02-21",
-        "entry": 231.28,
-        "exit": 218.8,
-        "returnPct": -5.4,
-        "exitReason": "trend_loss"
-      },
-      {
-        "symbol": "TLN",
-        "entryDate": "2025-06-03",
-        "exitDate": "2025-06-09",
-        "entry": 257.31,
-        "exit": 271.64,
-        "returnPct": 5.57,
-        "exitReason": "target"
-      },
-      {
-        "symbol": "TLN",
-        "entryDate": "2025-07-15",
-        "exitDate": "2025-07-15",
-        "entry": 282.42,
-        "exit": 265.76,
-        "returnPct": -5.9,
-        "exitReason": "stop"
-      },
-      {
-        "symbol": "TLN",
-        "entryDate": "2025-08-27",
-        "exitDate": "2025-09-19",
-        "entry": 379.47,
-        "exit": 423.28,
-        "returnPct": 11.55,
-        "exitReason": "target"
-      },
-      {
-        "symbol": "TLN",
-        "entryDate": "2025-10-02",
-        "exitDate": "2025-10-10",
-        "entry": 429.9,
-        "exit": 412.83,
-        "returnPct": -3.97,
-        "exitReason": "trend_loss"
-      },
-      {
-        "symbol": "TLN",
-        "entryDate": "2026-05-29",
-        "exitDate": "2026-06-05",
-        "entry": 383,
-        "exit": 364.74,
-        "returnPct": -4.77,
-        "exitReason": "trend_loss"
-      },
-      {
-        "symbol": "TLN",
-        "entryDate": "2026-07-10",
-        "exitDate": "2026-07-16",
-        "entry": 381.68,
-        "exit": 375.69,
-        "returnPct": -1.57,
         "exitReason": "stop"
       }
     ]
@@ -8334,240 +8352,6 @@
     ]
   },
   {
-    "symbol": "CASY",
-    "trades": 25,
-    "winRate": 24,
-    "avgReturnPct": -0.91,
-    "profitFactor": 0.56,
-    "tradeLog": [
-      {
-        "symbol": "CASY",
-        "entryDate": "2022-05-05",
-        "exitDate": "2022-05-06",
-        "entry": 207.36,
-        "exit": 199.96,
-        "returnPct": -3.57,
-        "exitReason": "stop"
-      },
-      {
-        "symbol": "CASY",
-        "entryDate": "2022-08-04",
-        "exitDate": "2022-08-18",
-        "entry": 206.44,
-        "exit": 219.37,
-        "returnPct": 6.26,
-        "exitReason": "target"
-      },
-      {
-        "symbol": "CASY",
-        "entryDate": "2022-09-09",
-        "exitDate": "2022-09-16",
-        "entry": 222.21,
-        "exit": 212.41,
-        "returnPct": -4.41,
-        "exitReason": "stop"
-      },
-      {
-        "symbol": "CASY",
-        "entryDate": "2022-11-17",
-        "exitDate": "2022-12-01",
-        "entry": 239.06,
-        "exit": 234.79,
-        "returnPct": -1.79,
-        "exitReason": "trend_loss"
-      },
-      {
-        "symbol": "CASY",
-        "entryDate": "2023-05-02",
-        "exitDate": "2023-05-16",
-        "entry": 232.23,
-        "exit": 226.87,
-        "returnPct": -2.31,
-        "exitReason": "stop"
-      },
-      {
-        "symbol": "CASY",
-        "entryDate": "2023-08-16",
-        "exitDate": "2023-08-23",
-        "entry": 249.62,
-        "exit": 243.19,
-        "returnPct": -2.57,
-        "exitReason": "stop"
-      },
-      {
-        "symbol": "CASY",
-        "entryDate": "2023-10-06",
-        "exitDate": "2023-10-12",
-        "entry": 272.7,
-        "exit": 266.79,
-        "returnPct": -2.17,
-        "exitReason": "stop"
-      },
-      {
-        "symbol": "CASY",
-        "entryDate": "2023-11-10",
-        "exitDate": "2023-11-29",
-        "entry": 276.06,
-        "exit": 273.75,
-        "returnPct": -0.84,
-        "exitReason": "trend_loss"
-      },
-      {
-        "symbol": "CASY",
-        "entryDate": "2024-03-08",
-        "exitDate": "2024-03-12",
-        "entry": 307.52,
-        "exit": 295.06,
-        "returnPct": -4.05,
-        "exitReason": "stop"
-      },
-      {
-        "symbol": "CASY",
-        "entryDate": "2024-04-16",
-        "exitDate": "2024-05-03",
-        "entry": 312.98,
-        "exit": 313.92,
-        "returnPct": 0.3,
-        "exitReason": "trend_loss"
-      },
-      {
-        "symbol": "CASY",
-        "entryDate": "2024-06-17",
-        "exitDate": "2024-07-09",
-        "entry": 371.55,
-        "exit": 360.62,
-        "returnPct": -2.94,
-        "exitReason": "trend_loss"
-      },
-      {
-        "symbol": "CASY",
-        "entryDate": "2024-07-29",
-        "exitDate": "2024-08-02",
-        "entry": 392.47,
-        "exit": 376.92,
-        "returnPct": -3.96,
-        "exitReason": "stop"
-      },
-      {
-        "symbol": "CASY",
-        "entryDate": "2024-10-16",
-        "exitDate": "2024-11-04",
-        "entry": 388.54,
-        "exit": 381.08,
-        "returnPct": -1.92,
-        "exitReason": "trend_loss"
-      },
-      {
-        "symbol": "CASY",
-        "entryDate": "2024-11-20",
-        "exitDate": "2024-12-11",
-        "entry": 412.78,
-        "exit": 437.98,
-        "returnPct": 6.1,
-        "exitReason": "target"
-      },
-      {
-        "symbol": "CASY",
-        "entryDate": "2025-02-14",
-        "exitDate": "2025-02-18",
-        "entry": 443.69,
-        "exit": 428.45,
-        "returnPct": -3.43,
-        "exitReason": "stop"
-      },
-      {
-        "symbol": "CASY",
-        "entryDate": "2025-04-10",
-        "exitDate": "2025-05-08",
-        "entry": 436.98,
-        "exit": 452.5,
-        "returnPct": 3.55,
-        "exitReason": "trend_loss"
-      },
-      {
-        "symbol": "CASY",
-        "entryDate": "2025-05-19",
-        "exitDate": "2025-05-27",
-        "entry": 450.87,
-        "exit": 447.5,
-        "returnPct": -0.75,
-        "exitReason": "trend_loss"
-      },
-      {
-        "symbol": "CASY",
-        "entryDate": "2025-07-31",
-        "exitDate": "2025-08-07",
-        "entry": 524.03,
-        "exit": 518.28,
-        "returnPct": -1.1,
-        "exitReason": "trend_loss"
-      },
-      {
-        "symbol": "CASY",
-        "entryDate": "2025-09-30",
-        "exitDate": "2025-10-21",
-        "entry": 558.36,
-        "exit": 548.13,
-        "returnPct": -1.83,
-        "exitReason": "trend_loss"
-      },
-      {
-        "symbol": "CASY",
-        "entryDate": "2025-12-17",
-        "exitDate": "2025-12-18",
-        "entry": 552.82,
-        "exit": 546.76,
-        "returnPct": -1.1,
-        "exitReason": "stop"
-      },
-      {
-        "symbol": "CASY",
-        "entryDate": "2026-02-03",
-        "exitDate": "2026-02-12",
-        "entry": 626.41,
-        "exit": 668.01,
-        "returnPct": 6.64,
-        "exitReason": "target"
-      },
-      {
-        "symbol": "CASY",
-        "entryDate": "2026-03-11",
-        "exitDate": "2026-03-18",
-        "entry": 689.23,
-        "exit": 669.52,
-        "returnPct": -2.86,
-        "exitReason": "trend_loss"
-      },
-      {
-        "symbol": "CASY",
-        "entryDate": "2026-04-20",
-        "exitDate": "2026-04-30",
-        "entry": 760.23,
-        "exit": 809.53,
-        "returnPct": 6.49,
-        "exitReason": "target"
-      },
-      {
-        "symbol": "CASY",
-        "entryDate": "2026-06-15",
-        "exitDate": "2026-06-18",
-        "entry": 900.65,
-        "exit": 833.71,
-        "returnPct": -7.43,
-        "exitReason": "stop"
-      },
-      {
-        "symbol": "CASY",
-        "entryDate": "2026-07-24",
-        "exitDate": "2026-08-05",
-        "entry": 880,
-        "exit": 852.86,
-        "returnPct": -3.08,
-        "exitReason": "time"
-      }
-    ]
-  },
-  {
     "symbol": "RBA",
     "trades": 13,
     "winRate": 23.1,
@@ -8797,6 +8581,240 @@
         "entry": 54.13,
         "exit": 53.1,
         "returnPct": -1.9,
+        "exitReason": "stop"
+      }
+    ]
+  },
+  {
+    "symbol": "CASY",
+    "trades": 25,
+    "winRate": 24,
+    "avgReturnPct": -1,
+    "profitFactor": 0.54,
+    "tradeLog": [
+      {
+        "symbol": "CASY",
+        "entryDate": "2022-05-05",
+        "exitDate": "2022-05-06",
+        "entry": 207.36,
+        "exit": 199.96,
+        "returnPct": -3.57,
+        "exitReason": "stop"
+      },
+      {
+        "symbol": "CASY",
+        "entryDate": "2022-08-04",
+        "exitDate": "2022-08-18",
+        "entry": 206.44,
+        "exit": 219.37,
+        "returnPct": 6.26,
+        "exitReason": "target"
+      },
+      {
+        "symbol": "CASY",
+        "entryDate": "2022-09-09",
+        "exitDate": "2022-09-16",
+        "entry": 222.21,
+        "exit": 212.41,
+        "returnPct": -4.41,
+        "exitReason": "stop"
+      },
+      {
+        "symbol": "CASY",
+        "entryDate": "2022-11-17",
+        "exitDate": "2022-12-01",
+        "entry": 239.06,
+        "exit": 234.79,
+        "returnPct": -1.79,
+        "exitReason": "trend_loss"
+      },
+      {
+        "symbol": "CASY",
+        "entryDate": "2023-05-02",
+        "exitDate": "2023-05-16",
+        "entry": 232.23,
+        "exit": 226.87,
+        "returnPct": -2.31,
+        "exitReason": "stop"
+      },
+      {
+        "symbol": "CASY",
+        "entryDate": "2023-08-16",
+        "exitDate": "2023-08-23",
+        "entry": 249.62,
+        "exit": 243.19,
+        "returnPct": -2.57,
+        "exitReason": "stop"
+      },
+      {
+        "symbol": "CASY",
+        "entryDate": "2023-10-06",
+        "exitDate": "2023-10-12",
+        "entry": 272.7,
+        "exit": 266.79,
+        "returnPct": -2.17,
+        "exitReason": "stop"
+      },
+      {
+        "symbol": "CASY",
+        "entryDate": "2023-11-10",
+        "exitDate": "2023-11-29",
+        "entry": 276.06,
+        "exit": 273.75,
+        "returnPct": -0.84,
+        "exitReason": "trend_loss"
+      },
+      {
+        "symbol": "CASY",
+        "entryDate": "2024-03-08",
+        "exitDate": "2024-03-12",
+        "entry": 307.52,
+        "exit": 295.06,
+        "returnPct": -4.05,
+        "exitReason": "stop"
+      },
+      {
+        "symbol": "CASY",
+        "entryDate": "2024-04-16",
+        "exitDate": "2024-05-03",
+        "entry": 312.98,
+        "exit": 313.92,
+        "returnPct": 0.3,
+        "exitReason": "trend_loss"
+      },
+      {
+        "symbol": "CASY",
+        "entryDate": "2024-06-17",
+        "exitDate": "2024-07-09",
+        "entry": 371.55,
+        "exit": 360.62,
+        "returnPct": -2.94,
+        "exitReason": "trend_loss"
+      },
+      {
+        "symbol": "CASY",
+        "entryDate": "2024-07-29",
+        "exitDate": "2024-08-02",
+        "entry": 392.47,
+        "exit": 376.92,
+        "returnPct": -3.96,
+        "exitReason": "stop"
+      },
+      {
+        "symbol": "CASY",
+        "entryDate": "2024-10-16",
+        "exitDate": "2024-11-04",
+        "entry": 388.54,
+        "exit": 381.08,
+        "returnPct": -1.92,
+        "exitReason": "trend_loss"
+      },
+      {
+        "symbol": "CASY",
+        "entryDate": "2024-11-20",
+        "exitDate": "2024-12-11",
+        "entry": 412.78,
+        "exit": 437.98,
+        "returnPct": 6.1,
+        "exitReason": "target"
+      },
+      {
+        "symbol": "CASY",
+        "entryDate": "2025-02-14",
+        "exitDate": "2025-02-18",
+        "entry": 443.69,
+        "exit": 428.45,
+        "returnPct": -3.43,
+        "exitReason": "stop"
+      },
+      {
+        "symbol": "CASY",
+        "entryDate": "2025-04-10",
+        "exitDate": "2025-05-08",
+        "entry": 436.98,
+        "exit": 452.5,
+        "returnPct": 3.55,
+        "exitReason": "trend_loss"
+      },
+      {
+        "symbol": "CASY",
+        "entryDate": "2025-05-19",
+        "exitDate": "2025-05-27",
+        "entry": 450.87,
+        "exit": 447.5,
+        "returnPct": -0.75,
+        "exitReason": "trend_loss"
+      },
+      {
+        "symbol": "CASY",
+        "entryDate": "2025-07-31",
+        "exitDate": "2025-08-07",
+        "entry": 524.03,
+        "exit": 518.28,
+        "returnPct": -1.1,
+        "exitReason": "trend_loss"
+      },
+      {
+        "symbol": "CASY",
+        "entryDate": "2025-09-30",
+        "exitDate": "2025-10-21",
+        "entry": 558.36,
+        "exit": 548.13,
+        "returnPct": -1.83,
+        "exitReason": "trend_loss"
+      },
+      {
+        "symbol": "CASY",
+        "entryDate": "2025-12-17",
+        "exitDate": "2025-12-18",
+        "entry": 552.82,
+        "exit": 546.76,
+        "returnPct": -1.1,
+        "exitReason": "stop"
+      },
+      {
+        "symbol": "CASY",
+        "entryDate": "2026-02-03",
+        "exitDate": "2026-02-12",
+        "entry": 626.41,
+        "exit": 668.01,
+        "returnPct": 6.64,
+        "exitReason": "target"
+      },
+      {
+        "symbol": "CASY",
+        "entryDate": "2026-03-11",
+        "exitDate": "2026-03-18",
+        "entry": 689.23,
+        "exit": 669.52,
+        "returnPct": -2.86,
+        "exitReason": "trend_loss"
+      },
+      {
+        "symbol": "CASY",
+        "entryDate": "2026-04-20",
+        "exitDate": "2026-04-30",
+        "entry": 760.23,
+        "exit": 809.53,
+        "returnPct": 6.49,
+        "exitReason": "target"
+      },
+      {
+        "symbol": "CASY",
+        "entryDate": "2026-06-15",
+        "exitDate": "2026-06-18",
+        "entry": 900.65,
+        "exit": 833.71,
+        "returnPct": -7.43,
+        "exitReason": "stop"
+      },
+      {
+        "symbol": "CASY",
+        "entryDate": "2026-07-24",
+        "exitDate": "2026-08-06",
+        "entry": 880,
+        "exit": 833.41,
+        "returnPct": -5.29,
         "exitReason": "stop"
       }
     ]
@@ -9234,96 +9252,6 @@
     ]
   },
   {
-    "symbol": "DDOG",
-    "trades": 9,
-    "winRate": 11.1,
-    "avgReturnPct": -1.65,
-    "profitFactor": 0.33,
-    "tradeLog": [
-      {
-        "symbol": "DDOG",
-        "entryDate": "2023-06-16",
-        "exitDate": "2023-06-21",
-        "entry": 98.63,
-        "exit": 92.07,
-        "returnPct": -6.65,
-        "exitReason": "stop"
-      },
-      {
-        "symbol": "DDOG",
-        "entryDate": "2023-07-26",
-        "exitDate": "2023-07-26",
-        "entry": 109.58,
-        "exit": 108.98,
-        "returnPct": -0.54,
-        "exitReason": "stop"
-      },
-      {
-        "symbol": "DDOG",
-        "entryDate": "2023-12-14",
-        "exitDate": "2024-01-02",
-        "entry": 119.01,
-        "exit": 115.08,
-        "returnPct": -3.3,
-        "exitReason": "trend_loss"
-      },
-      {
-        "symbol": "DDOG",
-        "entryDate": "2024-01-30",
-        "exitDate": "2024-02-20",
-        "entry": 128.36,
-        "exit": 127.66,
-        "returnPct": -0.55,
-        "exitReason": "trend_loss"
-      },
-      {
-        "symbol": "DDOG",
-        "entryDate": "2024-10-28",
-        "exitDate": "2024-11-01",
-        "entry": 127.29,
-        "exit": 121.44,
-        "returnPct": -4.59,
-        "exitReason": "stop"
-      },
-      {
-        "symbol": "DDOG",
-        "entryDate": "2025-07-03",
-        "exitDate": "2025-07-03",
-        "entry": 147.45,
-        "exit": 146.36,
-        "returnPct": -0.74,
-        "exitReason": "target"
-      },
-      {
-        "symbol": "DDOG",
-        "entryDate": "2025-10-06",
-        "exitDate": "2025-10-16",
-        "entry": 153.11,
-        "exit": 151.17,
-        "returnPct": -1.27,
-        "exitReason": "trend_loss"
-      },
-      {
-        "symbol": "DDOG",
-        "entryDate": "2026-06-16",
-        "exitDate": "2026-06-24",
-        "entry": 233.23,
-        "exit": 222.65,
-        "returnPct": -4.53,
-        "exitReason": "trend_loss"
-      },
-      {
-        "symbol": "DDOG",
-        "entryDate": "2026-07-30",
-        "exitDate": "2026-08-05",
-        "entry": 263.8,
-        "exit": 283.17,
-        "returnPct": 7.34,
-        "exitReason": "time"
-      }
-    ]
-  },
-  {
     "symbol": "AI",
     "trades": 8,
     "winRate": 12.5,
@@ -9526,6 +9454,96 @@
         "entry": 149.12,
         "exit": 141.79,
         "returnPct": -4.92,
+        "exitReason": "stop"
+      }
+    ]
+  },
+  {
+    "symbol": "DDOG",
+    "trades": 9,
+    "winRate": 0,
+    "avgReturnPct": -3.33,
+    "profitFactor": 0,
+    "tradeLog": [
+      {
+        "symbol": "DDOG",
+        "entryDate": "2023-06-16",
+        "exitDate": "2023-06-21",
+        "entry": 98.63,
+        "exit": 92.07,
+        "returnPct": -6.65,
+        "exitReason": "stop"
+      },
+      {
+        "symbol": "DDOG",
+        "entryDate": "2023-07-26",
+        "exitDate": "2023-07-26",
+        "entry": 109.58,
+        "exit": 108.98,
+        "returnPct": -0.54,
+        "exitReason": "stop"
+      },
+      {
+        "symbol": "DDOG",
+        "entryDate": "2023-12-14",
+        "exitDate": "2024-01-02",
+        "entry": 119.01,
+        "exit": 115.08,
+        "returnPct": -3.3,
+        "exitReason": "trend_loss"
+      },
+      {
+        "symbol": "DDOG",
+        "entryDate": "2024-01-30",
+        "exitDate": "2024-02-20",
+        "entry": 128.36,
+        "exit": 127.66,
+        "returnPct": -0.55,
+        "exitReason": "trend_loss"
+      },
+      {
+        "symbol": "DDOG",
+        "entryDate": "2024-10-28",
+        "exitDate": "2024-11-01",
+        "entry": 127.29,
+        "exit": 121.44,
+        "returnPct": -4.59,
+        "exitReason": "stop"
+      },
+      {
+        "symbol": "DDOG",
+        "entryDate": "2025-07-03",
+        "exitDate": "2025-07-03",
+        "entry": 147.45,
+        "exit": 146.36,
+        "returnPct": -0.74,
+        "exitReason": "target"
+      },
+      {
+        "symbol": "DDOG",
+        "entryDate": "2025-10-06",
+        "exitDate": "2025-10-16",
+        "entry": 153.11,
+        "exit": 151.17,
+        "returnPct": -1.27,
+        "exitReason": "trend_loss"
+      },
+      {
+        "symbol": "DDOG",
+        "entryDate": "2026-06-16",
+        "exitDate": "2026-06-24",
+        "entry": 233.23,
+        "exit": 222.65,
+        "returnPct": -4.53,
+        "exitReason": "trend_loss"
+      },
+      {
+        "symbol": "DDOG",
+        "entryDate": "2026-07-30",
+        "exitDate": "2026-08-06",
+        "entry": 263.8,
+        "exit": 243.33,
+        "returnPct": -7.76,
         "exitReason": "stop"
       }
     ]
