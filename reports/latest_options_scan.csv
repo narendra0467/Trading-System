@@ -1,21 +1,21 @@
-symbol,signal,strategy,score,reason,marketRegime,eventRisk,contracts,maxRiskDollars,riskPerContract,riskPerSpread,plannedCapital
-WDC,NO_TRADE,PUT_DEBIT_SPREAD,102,No liquid long option found,RISK_ON,CLEAR,0,500,,,
-SNDK,WATCH,PUT_DEBIT_SPREAD,82,bear trend stack; ADX confirms bearish trend,RISK_ON,CLEAR,0,500,13715,13715,0
-C,NO_TRADE,CALL_DEBIT_SPREAD,67,No liquid long option found,RISK_ON,CLEAR,0,1000,,,
-AMZN,WATCH,CALL_DEBIT_SPREAD,60,bull trend stack; ADX confirms bullish trend,RISK_ON,MANUAL_CHECK,0,1000,1032.5,1032.5,0
-COIN,NO_TRADE,PUT_DEBIT_SPREAD,60,No liquid long option found,RISK_ON,CLEAR,0,500,,,
-AVGO,NO_TRADE,NONE,55,bull trend stack; overbought risk; ADX confirms bullish trend; neutral technical regime,RISK_ON,CLEAR,0,1000,,,
-MSFT,NO_TRADE,NONE,55,overbought risk; ADX confirms bullish trend; neutral technical regime,RISK_ON,MANUAL_CHECK,0,1000,,,
-NVDA,NO_TRADE,NONE,55,bull trend stack; ADX confirms bullish trend; neutral technical regime,RISK_ON,MANUAL_CHECK,0,1000,,,
-TSLA,WATCH,PUT_DEBIT_SPREAD,53,bear trend stack; ADX confirms bearish trend,RISK_ON,MANUAL_CHECK,0,500,1190,1190,0
-PLTR,NO_TRADE,NONE,52,overbought risk; ADX confirms bullish trend; above upper Bollinger band; volume expansion; neutral technical regime,RISK_ON,CLEAR,0,1000,,,
-TSM,NO_TRADE,NONE,44,ADX confirms bullish trend; neutral technical regime,RISK_ON,CLEAR,0,1000,,,
-ORCL,NO_TRADE,NONE,42,ADX confirms bullish trend; neutral technical regime,RISK_ON,CLEAR,0,1000,,,
-INTC,NO_TRADE,NONE,34,ADX confirms bullish trend; neutral technical regime,RISK_ON,CLEAR,0,1000,,,
-AAPL,NO_TRADE,NONE,33,ADX confirms bearish trend; neutral technical regime,RISK_ON,MANUAL_CHECK,0,1000,,,
-META,NO_TRADE,NONE,33,bear trend stack; neutral technical regime,RISK_ON,MANUAL_CHECK,0,1000,,,
-MSTR,NO_TRADE,NONE,32,weak trend strength; volume expansion; neutral technical regime,RISK_ON,CLEAR,0,1000,,,
-NFLX,NO_TRADE,NONE,30,ADX confirms bullish trend; neutral technical regime,RISK_ON,CLEAR,0,1000,,,
-AMD,NO_TRADE,NONE,25,weak trend strength; neutral technical regime,RISK_ON,MANUAL_CHECK,0,1000,,,
-GOOGL,NO_TRADE,NONE,22,ADX confirms bullish trend; neutral technical regime,RISK_ON,CLEAR,0,1000,,,
-MU,NO_TRADE,NONE,22,neutral technical regime,RISK_ON,CLEAR,0,1000,,,
+symbol,signal,strategy,score,dte,expiration,underlying,longStrike,shortStrike,longBid,longAsk,longMid,shortBid,shortAsk,shortMid,debit,maxReward,rewardRisk,stopUnderlying,targetUnderlying,beginnerStrategy,beginnerAction,optionStrike,optionType,optionEntry,optionCost,optionStop,optionStopDollars,optionTarget1,optionTarget1Dollars,optionTarget2,optionTarget2Dollars,underlyingStop,underlyingTarget,longVolume,longOpenInterest,longSpreadPct,longDelta,longGamma,longTheta,longVega,probabilityItm,atmIv,ivHvRatio,marketRegime,marketScore,eventRisk,eventReason,reason,contracts,maxRiskDollars,riskPerContract,riskPerSpread,plannedCapital
+WDC,WATCH,PUT_DEBIT_SPREAD,82,38,2026-09-18,441.73,450,430,48.25,49.4,48.83,37.75,39.15,38.45,10.38,9.63,0.93,519.43,312.24,BUY_PUT,Buy the 450 PUT expiring 2026-09-18.,450,PUT,48.83,4882.5,34.18,3417.75,65.91,6591.38,83,8300.25,519.43,312.24,7,887,2.4,-0.47,0.0037,-0.539,0.567,57.2,81.7,0.75,RISK_ON,92,CLEAR,No dated event in window,bear trend stack; ADX confirms bearish trend,0,500,4882.5,4882.5,0
+AMZN,CALL_SETUP,CALL_DEBIT_SPREAD,75,38,2026-09-18,279.35,280,295,11.3,11.4,11.35,5.6,5.8,5.7,5.65,9.35,1.65,265.09,303.12,BUY_CALL,Buy the 280 CALL expiring 2026-09-18.,280,CALL,11.35,1135,7.95,794.5,15.32,1532.25,19.3,1929.5,265.09,303.12,959,22516,0.9,0.53,0.0139,-0.165,0.359,48.7,31.6,0.51,RISK_ON,92,MANUAL_CHECK,Earnings/manual check,bull trend stack; ADX confirms bullish trend,0,1000,1135,1135,0
+COIN,WATCH,PUT_DEBIT_SPREAD,70,38,2026-09-18,148.61,150,140,12.55,12.95,12.75,7.8,8,7.9,4.85,5.15,1.06,162.14,126.06,BUY_PUT,Buy the 150 PUT expiring 2026-09-18.,150,PUT,12.75,1275,8.92,892.5,17.21,1721.25,21.68,2167.5,162.14,126.06,222,2576,3.1,-0.47,0.0136,-0.145,0.191,55,68.3,0.92,RISK_ON,92,CLEAR,No dated event in window,bear trend stack; ADX confirms bearish trend,0,500,1275,1275,0
+SNDK,WATCH,PUT_DEBIT_SPREAD,70,38,2026-09-18,1232.7,1350,1280,209.6,215.9,212.75,166.1,170.5,168.3,44.45,25.55,0.57,1476.78,825.9,BUY_PUT,Buy the 1350 PUT expiring 2026-09-18.,1350,PUT,212.75,21275,148.92,14892.5,287.21,28721.25,361.68,36167.5,1476.78,825.9,1,2289,3,-0.57,0.0011,-1.681,1.564,67.3,95.6,0.62,RISK_ON,92,CLEAR,No dated event in window,bear trend stack; ADX confirms bearish trend,0,500,21275,21275,0
+C,WATCH,CALL_DEBIT_SPREAD,67,38,2026-09-18,135.85,135,140,5.85,6,5.92,3.45,3.65,3.55,2.38,2.63,1.11,133.84,144.45,BUY_CALL,Buy the 135 CALL expiring 2026-09-18.,135,CALL,5.92,592.5,4.15,414.75,8,799.88,10.07,1007.25,133.84,144.45,13,6786,2.5,0.56,0.0289,-0.078,0.173,52.1,31.1,0.86,RISK_ON,92,CLEAR,No dated event in window,bull trend stack,1,1000,592.5,592.5,592.5
+PLTR,WATCH,CALL_DEBIT_SPREAD,67,38,2026-09-18,178.15,190,200,7.7,7.85,7.78,4.9,5.05,4.97,2.8,7.2,2.57,162.92,203.54,BUY_CALL,Buy the 190 CALL expiring 2026-09-18.,190,CALL,7.78,777.5,5.44,544.25,10.5,1049.63,13.22,1321.75,162.92,203.54,602,12776,1.9,0.39,0.0127,-0.161,0.221,33.1,52.8,0.49,RISK_ON,92,CLEAR,No dated event in window,overbought risk; ADX confirms bullish trend; above upper Bollinger band,1,1000,777.5,777.5,777.5
+MSFT,NO_TRADE,NONE,55,38,,509.61,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,28.5,0.49,RISK_ON,,MANUAL_CHECK,Earnings/manual check,overbought risk; ADX confirms bullish trend; neutral technical regime,0,1000,,,
+NVDA,NO_TRADE,NONE,55,38,,219.17,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,39.9,0.97,RISK_ON,,MANUAL_CHECK,Earnings/manual check,bull trend stack; ADX confirms bullish trend; neutral technical regime,0,1000,,,
+AVGO,PREMIUM_SELL_WATCH,IRON_CONDOR_WATCH,53,38,,424.84,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,52.8,1.3,RISK_ON,,CLEAR,No dated event in window,bull trend stack; ADX confirms bullish trend; neutral technical regime,0,1000,,,
+TSLA,WATCH,PUT_DEBIT_SPREAD,53,38,2026-09-18,329.46,340,325,22.65,22.9,22.77,14.35,14.5,14.43,8.35,6.65,0.8,347.71,299.05,BUY_PUT,Buy the 340 PUT expiring 2026-09-18.,340,PUT,22.77,2277.5,15.94,1594.25,30.75,3074.63,38.72,3871.75,347.71,299.05,40,9510,1.1,-0.56,0.0096,-0.191,0.419,61.1,42.9,0.67,RISK_ON,92,MANUAL_CHECK,Earnings/manual check,bear trend stack; ADX confirms bearish trend,0,500,2277.5,2277.5,0
+TSM,NO_TRADE,NONE,52,38,,422.84,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,44.3,1.01,RISK_ON,,CLEAR,No dated event in window,ADX confirms bullish trend; neutral technical regime,0,1000,,,
+INTC,WATCH,PUT_DEBIT_SPREAD,48,38,2026-09-18,97.96,95,90,7.25,7.4,7.33,5,5.2,5.1,2.23,2.77,1.25,102.81,79.73,BUY_PUT,Buy the 95 PUT expiring 2026-09-18.,95,PUT,7.33,732.5,5.13,512.75,9.89,988.88,12.45,1245.25,102.81,79.73,454,24339,2,-0.39,0.0177,-0.105,0.122,48.1,72.5,0.86,RISK_ON,92,CLEAR,No dated event in window,bear trend stack,0,500,732.5,732.5,0
+NFLX,NO_TRADE,NONE,42,38,,74.96,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,35.6,1.03,RISK_ON,,CLEAR,No dated event in window,ADX confirms bullish trend; neutral technical regime,0,1000,,,
+AAPL,NO_TRADE,NONE,34,38,,306.6,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,26.1,0.68,RISK_ON,,MANUAL_CHECK,Earnings/manual check,ADX confirms bearish trend; neutral technical regime,0,1000,,,
+AMD,NO_TRADE,NONE,32,38,,475.54,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,62.2,0.75,RISK_ON,,MANUAL_CHECK,Earnings/manual check,weak trend strength; neutral technical regime,0,1000,,,
+ORCL,NO_TRADE,NONE,30,38,,149.45,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,74.1,1.14,RISK_ON,,CLEAR,No dated event in window,ADX confirms bullish trend; neutral technical regime,0,1000,,,
+MSTR,PREMIUM_SELL_WATCH,IRON_CONDOR_WATCH,25,38,,97.77,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,76.8,1.29,RISK_ON,,CLEAR,No dated event in window,weak trend strength; neutral technical regime,0,1000,,,
+GOOGL,NO_TRADE,NONE,22,38,,354.81,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,31,0.61,RISK_ON,,CLEAR,No dated event in window,ADX confirms bullish trend; neutral technical regime,0,1000,,,
+MU,NO_TRADE,NONE,22,38,,869.9,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,71.2,0.65,RISK_ON,,CLEAR,No dated event in window,neutral technical regime,0,1000,,,
+META,NO_TRADE,NONE,20,38,,599.55,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,36.9,0.8,RISK_ON,,MANUAL_CHECK,Earnings/manual check,neutral technical regime,0,1000,,,
