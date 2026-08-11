@@ -1613,9 +1613,9 @@
   {
     "symbol": "ANET",
     "trades": 23,
-    "winRate": 52.2,
-    "avgReturnPct": 2.28,
-    "profitFactor": 2.2,
+    "winRate": 56.5,
+    "avgReturnPct": 2.39,
+    "profitFactor": 2.27,
     "tradeLog": [
       {
         "symbol": "ANET",
@@ -1818,10 +1818,10 @@
       {
         "symbol": "ANET",
         "entryDate": "2026-08-06",
-        "exitDate": "2026-08-10",
+        "exitDate": "2026-08-11",
         "entry": 192.41,
-        "exit": 191.52,
-        "returnPct": -0.46,
+        "exit": 196.49,
+        "returnPct": 2.12,
         "exitReason": "time"
       }
     ]
@@ -5661,74 +5661,11 @@
     ]
   },
   {
-    "symbol": "TEAM",
-    "trades": 6,
-    "winRate": 33.3,
-    "avgReturnPct": 0.39,
-    "profitFactor": 1.14,
-    "tradeLog": [
-      {
-        "symbol": "TEAM",
-        "entryDate": "2023-08-01",
-        "exitDate": "2023-08-02",
-        "entry": 178.63,
-        "exit": 170.9,
-        "returnPct": -4.33,
-        "exitReason": "stop"
-      },
-      {
-        "symbol": "TEAM",
-        "entryDate": "2023-09-06",
-        "exitDate": "2023-09-20",
-        "entry": 205,
-        "exit": 200.82,
-        "returnPct": -2.04,
-        "exitReason": "trend_loss"
-      },
-      {
-        "symbol": "TEAM",
-        "entryDate": "2023-10-11",
-        "exitDate": "2023-10-12",
-        "entry": 207.85,
-        "exit": 194.29,
-        "returnPct": -6.53,
-        "exitReason": "stop"
-      },
-      {
-        "symbol": "TEAM",
-        "entryDate": "2024-01-09",
-        "exitDate": "2024-02-02",
-        "entry": 231.61,
-        "exit": 223.8,
-        "returnPct": -3.37,
-        "exitReason": "stop"
-      },
-      {
-        "symbol": "TEAM",
-        "entryDate": "2024-11-22",
-        "exitDate": "2024-12-04",
-        "entry": 254.99,
-        "exit": 281.59,
-        "returnPct": 10.43,
-        "exitReason": "target"
-      },
-      {
-        "symbol": "TEAM",
-        "entryDate": "2025-01-17",
-        "exitDate": "2025-01-28",
-        "entry": 259.85,
-        "exit": 281.08,
-        "returnPct": 8.17,
-        "exitReason": "target"
-      }
-    ]
-  },
-  {
     "symbol": "AFRM",
     "trades": 12,
     "winRate": 25,
-    "avgReturnPct": 0.67,
-    "profitFactor": 1.14,
+    "avgReturnPct": 0.77,
+    "profitFactor": 1.17,
     "tradeLog": [
       {
         "symbol": "AFRM",
@@ -5832,11 +5769,74 @@
       {
         "symbol": "AFRM",
         "entryDate": "2026-08-04",
-        "exitDate": "2026-08-10",
+        "exitDate": "2026-08-11",
         "entry": 76.52,
-        "exit": 75.54,
-        "returnPct": -1.28,
+        "exit": 76.47,
+        "returnPct": -0.07,
         "exitReason": "time"
+      }
+    ]
+  },
+  {
+    "symbol": "TEAM",
+    "trades": 6,
+    "winRate": 33.3,
+    "avgReturnPct": 0.39,
+    "profitFactor": 1.14,
+    "tradeLog": [
+      {
+        "symbol": "TEAM",
+        "entryDate": "2023-08-01",
+        "exitDate": "2023-08-02",
+        "entry": 178.63,
+        "exit": 170.9,
+        "returnPct": -4.33,
+        "exitReason": "stop"
+      },
+      {
+        "symbol": "TEAM",
+        "entryDate": "2023-09-06",
+        "exitDate": "2023-09-20",
+        "entry": 205,
+        "exit": 200.82,
+        "returnPct": -2.04,
+        "exitReason": "trend_loss"
+      },
+      {
+        "symbol": "TEAM",
+        "entryDate": "2023-10-11",
+        "exitDate": "2023-10-12",
+        "entry": 207.85,
+        "exit": 194.29,
+        "returnPct": -6.53,
+        "exitReason": "stop"
+      },
+      {
+        "symbol": "TEAM",
+        "entryDate": "2024-01-09",
+        "exitDate": "2024-02-02",
+        "entry": 231.61,
+        "exit": 223.8,
+        "returnPct": -3.37,
+        "exitReason": "stop"
+      },
+      {
+        "symbol": "TEAM",
+        "entryDate": "2024-11-22",
+        "exitDate": "2024-12-04",
+        "entry": 254.99,
+        "exit": 281.59,
+        "returnPct": 10.43,
+        "exitReason": "target"
+      },
+      {
+        "symbol": "TEAM",
+        "entryDate": "2025-01-17",
+        "exitDate": "2025-01-28",
+        "entry": 259.85,
+        "exit": 281.08,
+        "returnPct": 8.17,
+        "exitReason": "target"
       }
     ]
   },
@@ -7749,168 +7749,6 @@
     ]
   },
   {
-    "symbol": "AMZN",
-    "trades": 17,
-    "winRate": 23.5,
-    "avgReturnPct": -0.52,
-    "profitFactor": 0.72,
-    "tradeLog": [
-      {
-        "symbol": "AMZN",
-        "entryDate": "2023-05-30",
-        "exitDate": "2023-06-22",
-        "entry": 122.37,
-        "exit": 130.13,
-        "returnPct": 6.34,
-        "exitReason": "target"
-      },
-      {
-        "symbol": "AMZN",
-        "entryDate": "2023-07-06",
-        "exitDate": "2023-07-10",
-        "entry": 128.25,
-        "exit": 126.12,
-        "returnPct": -1.66,
-        "exitReason": "stop"
-      },
-      {
-        "symbol": "AMZN",
-        "entryDate": "2023-08-15",
-        "exitDate": "2023-08-17",
-        "entry": 140.05,
-        "exit": 134.89,
-        "returnPct": -3.69,
-        "exitReason": "stop"
-      },
-      {
-        "symbol": "AMZN",
-        "entryDate": "2023-12-14",
-        "exitDate": "2024-01-02",
-        "entry": 149.93,
-        "exit": 149.93,
-        "returnPct": 0,
-        "exitReason": "trend_loss"
-      },
-      {
-        "symbol": "AMZN",
-        "entryDate": "2024-01-23",
-        "exitDate": "2024-02-02",
-        "entry": 154.85,
-        "exit": 163.67,
-        "returnPct": 5.7,
-        "exitReason": "target"
-      },
-      {
-        "symbol": "AMZN",
-        "entryDate": "2024-03-01",
-        "exitDate": "2024-03-11",
-        "entry": 176.75,
-        "exit": 171.75,
-        "returnPct": -2.83,
-        "exitReason": "stop"
-      },
-      {
-        "symbol": "AMZN",
-        "entryDate": "2024-04-08",
-        "exitDate": "2024-04-17",
-        "entry": 186.9,
-        "exit": 181.28,
-        "returnPct": -3.01,
-        "exitReason": "trend_loss"
-      },
-      {
-        "symbol": "AMZN",
-        "entryDate": "2024-06-07",
-        "exitDate": "2024-06-18",
-        "entry": 184.9,
-        "exit": 182.81,
-        "returnPct": -1.13,
-        "exitReason": "trend_loss"
-      },
-      {
-        "symbol": "AMZN",
-        "entryDate": "2024-10-14",
-        "exitDate": "2024-10-23",
-        "entry": 189.78,
-        "exit": 184.71,
-        "returnPct": -2.67,
-        "exitReason": "trend_loss"
-      },
-      {
-        "symbol": "AMZN",
-        "entryDate": "2024-11-27",
-        "exitDate": "2024-12-06",
-        "entry": 206.98,
-        "exit": 224.51,
-        "returnPct": 8.47,
-        "exitReason": "target"
-      },
-      {
-        "symbol": "AMZN",
-        "entryDate": "2025-01-06",
-        "exitDate": "2025-01-14",
-        "entry": 226.78,
-        "exit": 216.24,
-        "returnPct": -4.65,
-        "exitReason": "stop"
-      },
-      {
-        "symbol": "AMZN",
-        "entryDate": "2025-06-17",
-        "exitDate": "2025-06-20",
-        "entry": 215.2,
-        "exit": 209.19,
-        "returnPct": -2.79,
-        "exitReason": "stop"
-      },
-      {
-        "symbol": "AMZN",
-        "entryDate": "2025-07-25",
-        "exitDate": "2025-08-01",
-        "entry": 232.22,
-        "exit": 226.32,
-        "returnPct": -2.54,
-        "exitReason": "stop"
-      },
-      {
-        "symbol": "AMZN",
-        "entryDate": "2025-08-29",
-        "exitDate": "2025-09-02",
-        "entry": 231.32,
-        "exit": 224.97,
-        "returnPct": -2.74,
-        "exitReason": "stop"
-      },
-      {
-        "symbol": "AMZN",
-        "entryDate": "2026-01-26",
-        "exitDate": "2026-02-04",
-        "entry": 239.98,
-        "exit": 233.33,
-        "returnPct": -2.77,
-        "exitReason": "stop"
-      },
-      {
-        "symbol": "AMZN",
-        "entryDate": "2026-05-21",
-        "exitDate": "2026-06-01",
-        "entry": 263.5,
-        "exit": 261.26,
-        "returnPct": -0.85,
-        "exitReason": "trend_loss"
-      },
-      {
-        "symbol": "AMZN",
-        "entryDate": "2026-08-06",
-        "exitDate": "2026-08-10",
-        "entry": 272.77,
-        "exit": 278.09,
-        "returnPct": 1.95,
-        "exitReason": "time"
-      }
-    ]
-  },
-  {
     "symbol": "VKTX",
     "trades": 17,
     "winRate": 29.4,
@@ -8222,6 +8060,168 @@
         "exit": 374.81,
         "returnPct": -3.4,
         "exitReason": "stop"
+      }
+    ]
+  },
+  {
+    "symbol": "AMZN",
+    "trades": 17,
+    "winRate": 23.5,
+    "avgReturnPct": -0.63,
+    "profitFactor": 0.66,
+    "tradeLog": [
+      {
+        "symbol": "AMZN",
+        "entryDate": "2023-05-30",
+        "exitDate": "2023-06-22",
+        "entry": 122.37,
+        "exit": 130.13,
+        "returnPct": 6.34,
+        "exitReason": "target"
+      },
+      {
+        "symbol": "AMZN",
+        "entryDate": "2023-07-06",
+        "exitDate": "2023-07-10",
+        "entry": 128.25,
+        "exit": 126.12,
+        "returnPct": -1.66,
+        "exitReason": "stop"
+      },
+      {
+        "symbol": "AMZN",
+        "entryDate": "2023-08-15",
+        "exitDate": "2023-08-17",
+        "entry": 140.05,
+        "exit": 134.89,
+        "returnPct": -3.69,
+        "exitReason": "stop"
+      },
+      {
+        "symbol": "AMZN",
+        "entryDate": "2023-12-14",
+        "exitDate": "2024-01-02",
+        "entry": 149.93,
+        "exit": 149.93,
+        "returnPct": 0,
+        "exitReason": "trend_loss"
+      },
+      {
+        "symbol": "AMZN",
+        "entryDate": "2024-01-23",
+        "exitDate": "2024-02-02",
+        "entry": 154.85,
+        "exit": 163.67,
+        "returnPct": 5.7,
+        "exitReason": "target"
+      },
+      {
+        "symbol": "AMZN",
+        "entryDate": "2024-03-01",
+        "exitDate": "2024-03-11",
+        "entry": 176.75,
+        "exit": 171.75,
+        "returnPct": -2.83,
+        "exitReason": "stop"
+      },
+      {
+        "symbol": "AMZN",
+        "entryDate": "2024-04-08",
+        "exitDate": "2024-04-17",
+        "entry": 186.9,
+        "exit": 181.28,
+        "returnPct": -3.01,
+        "exitReason": "trend_loss"
+      },
+      {
+        "symbol": "AMZN",
+        "entryDate": "2024-06-07",
+        "exitDate": "2024-06-18",
+        "entry": 184.9,
+        "exit": 182.81,
+        "returnPct": -1.13,
+        "exitReason": "trend_loss"
+      },
+      {
+        "symbol": "AMZN",
+        "entryDate": "2024-10-14",
+        "exitDate": "2024-10-23",
+        "entry": 189.78,
+        "exit": 184.71,
+        "returnPct": -2.67,
+        "exitReason": "trend_loss"
+      },
+      {
+        "symbol": "AMZN",
+        "entryDate": "2024-11-27",
+        "exitDate": "2024-12-06",
+        "entry": 206.98,
+        "exit": 224.51,
+        "returnPct": 8.47,
+        "exitReason": "target"
+      },
+      {
+        "symbol": "AMZN",
+        "entryDate": "2025-01-06",
+        "exitDate": "2025-01-14",
+        "entry": 226.78,
+        "exit": 216.24,
+        "returnPct": -4.65,
+        "exitReason": "stop"
+      },
+      {
+        "symbol": "AMZN",
+        "entryDate": "2025-06-17",
+        "exitDate": "2025-06-20",
+        "entry": 215.2,
+        "exit": 209.19,
+        "returnPct": -2.79,
+        "exitReason": "stop"
+      },
+      {
+        "symbol": "AMZN",
+        "entryDate": "2025-07-25",
+        "exitDate": "2025-08-01",
+        "entry": 232.22,
+        "exit": 226.32,
+        "returnPct": -2.54,
+        "exitReason": "stop"
+      },
+      {
+        "symbol": "AMZN",
+        "entryDate": "2025-08-29",
+        "exitDate": "2025-09-02",
+        "entry": 231.32,
+        "exit": 224.97,
+        "returnPct": -2.74,
+        "exitReason": "stop"
+      },
+      {
+        "symbol": "AMZN",
+        "entryDate": "2026-01-26",
+        "exitDate": "2026-02-04",
+        "entry": 239.98,
+        "exit": 233.33,
+        "returnPct": -2.77,
+        "exitReason": "stop"
+      },
+      {
+        "symbol": "AMZN",
+        "entryDate": "2026-05-21",
+        "exitDate": "2026-06-01",
+        "entry": 263.5,
+        "exit": 261.26,
+        "returnPct": -0.85,
+        "exitReason": "trend_loss"
+      },
+      {
+        "symbol": "AMZN",
+        "entryDate": "2026-08-06",
+        "exitDate": "2026-08-11",
+        "entry": 272.77,
+        "exit": 273.25,
+        "returnPct": 0.18,
+        "exitReason": "time"
       }
     ]
   },
