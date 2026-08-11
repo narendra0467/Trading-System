@@ -1614,8 +1614,8 @@
     "symbol": "ANET",
     "trades": 23,
     "winRate": 56.5,
-    "avgReturnPct": 2.37,
-    "profitFactor": 2.26,
+    "avgReturnPct": 2.39,
+    "profitFactor": 2.27,
     "tradeLog": [
       {
         "symbol": "ANET",
@@ -1820,8 +1820,8 @@
         "entryDate": "2026-08-06",
         "exitDate": "2026-08-11",
         "entry": 192.41,
-        "exit": 195.66,
-        "returnPct": 1.69,
+        "exit": 196.55,
+        "returnPct": 2.15,
         "exitReason": "time"
       }
     ]
@@ -5517,6 +5517,123 @@
     ]
   },
   {
+    "symbol": "AFRM",
+    "trades": 12,
+    "winRate": 33.3,
+    "avgReturnPct": 0.83,
+    "profitFactor": 1.18,
+    "tradeLog": [
+      {
+        "symbol": "AFRM",
+        "entryDate": "2023-07-27",
+        "exitDate": "2023-08-04",
+        "entry": 18.33,
+        "exit": 16.69,
+        "returnPct": -8.95,
+        "exitReason": "trend_loss"
+      },
+      {
+        "symbol": "AFRM",
+        "entryDate": "2023-10-12",
+        "exitDate": "2023-10-12",
+        "entry": 20.2,
+        "exit": 19.27,
+        "returnPct": -4.61,
+        "exitReason": "stop"
+      },
+      {
+        "symbol": "AFRM",
+        "entryDate": "2023-11-16",
+        "exitDate": "2023-11-28",
+        "entry": 25.46,
+        "exit": 32.73,
+        "returnPct": 28.57,
+        "exitReason": "target"
+      },
+      {
+        "symbol": "AFRM",
+        "entryDate": "2024-01-09",
+        "exitDate": "2024-01-16",
+        "entry": 44.61,
+        "exit": 40.71,
+        "returnPct": -8.75,
+        "exitReason": "stop"
+      },
+      {
+        "symbol": "AFRM",
+        "entryDate": "2024-09-13",
+        "exitDate": "2024-09-30",
+        "entry": 42.39,
+        "exit": 40.82,
+        "returnPct": -3.7,
+        "exitReason": "trend_loss"
+      },
+      {
+        "symbol": "AFRM",
+        "entryDate": "2024-10-31",
+        "exitDate": "2024-11-11",
+        "entry": 44.39,
+        "exit": 53.1,
+        "returnPct": 19.62,
+        "exitReason": "target"
+      },
+      {
+        "symbol": "AFRM",
+        "entryDate": "2024-12-16",
+        "exitDate": "2024-12-18",
+        "entry": 71.09,
+        "exit": 64.42,
+        "returnPct": -9.39,
+        "exitReason": "stop"
+      },
+      {
+        "symbol": "AFRM",
+        "entryDate": "2025-07-17",
+        "exitDate": "2025-07-24",
+        "entry": 68.8,
+        "exit": 65.82,
+        "returnPct": -4.33,
+        "exitReason": "trend_loss"
+      },
+      {
+        "symbol": "AFRM",
+        "entryDate": "2025-08-25",
+        "exitDate": "2025-08-29",
+        "entry": 78.93,
+        "exit": 91.57,
+        "returnPct": 16.01,
+        "exitReason": "target"
+      },
+      {
+        "symbol": "AFRM",
+        "entryDate": "2026-01-06",
+        "exitDate": "2026-01-12",
+        "entry": 81.63,
+        "exit": 75.71,
+        "returnPct": -7.25,
+        "exitReason": "stop"
+      },
+      {
+        "symbol": "AFRM",
+        "entryDate": "2026-06-01",
+        "exitDate": "2026-06-03",
+        "entry": 73.97,
+        "exit": 68.15,
+        "returnPct": -7.87,
+        "exitReason": "stop"
+      },
+      {
+        "symbol": "AFRM",
+        "entryDate": "2026-08-04",
+        "exitDate": "2026-08-11",
+        "entry": 76.52,
+        "exit": 76.97,
+        "returnPct": 0.59,
+        "exitReason": "time"
+      }
+    ]
+  },
+  {
     "symbol": "AMD",
     "trades": 15,
     "winRate": 40,
@@ -5657,123 +5774,6 @@
         "exit": 487.48,
         "returnPct": 0.61,
         "exitReason": "stop"
-      }
-    ]
-  },
-  {
-    "symbol": "AFRM",
-    "trades": 12,
-    "winRate": 25,
-    "avgReturnPct": 0.77,
-    "profitFactor": 1.17,
-    "tradeLog": [
-      {
-        "symbol": "AFRM",
-        "entryDate": "2023-07-27",
-        "exitDate": "2023-08-04",
-        "entry": 18.33,
-        "exit": 16.69,
-        "returnPct": -8.95,
-        "exitReason": "trend_loss"
-      },
-      {
-        "symbol": "AFRM",
-        "entryDate": "2023-10-12",
-        "exitDate": "2023-10-12",
-        "entry": 20.2,
-        "exit": 19.27,
-        "returnPct": -4.61,
-        "exitReason": "stop"
-      },
-      {
-        "symbol": "AFRM",
-        "entryDate": "2023-11-16",
-        "exitDate": "2023-11-28",
-        "entry": 25.46,
-        "exit": 32.73,
-        "returnPct": 28.57,
-        "exitReason": "target"
-      },
-      {
-        "symbol": "AFRM",
-        "entryDate": "2024-01-09",
-        "exitDate": "2024-01-16",
-        "entry": 44.61,
-        "exit": 40.71,
-        "returnPct": -8.75,
-        "exitReason": "stop"
-      },
-      {
-        "symbol": "AFRM",
-        "entryDate": "2024-09-13",
-        "exitDate": "2024-09-30",
-        "entry": 42.39,
-        "exit": 40.82,
-        "returnPct": -3.7,
-        "exitReason": "trend_loss"
-      },
-      {
-        "symbol": "AFRM",
-        "entryDate": "2024-10-31",
-        "exitDate": "2024-11-11",
-        "entry": 44.39,
-        "exit": 53.1,
-        "returnPct": 19.62,
-        "exitReason": "target"
-      },
-      {
-        "symbol": "AFRM",
-        "entryDate": "2024-12-16",
-        "exitDate": "2024-12-18",
-        "entry": 71.09,
-        "exit": 64.42,
-        "returnPct": -9.39,
-        "exitReason": "stop"
-      },
-      {
-        "symbol": "AFRM",
-        "entryDate": "2025-07-17",
-        "exitDate": "2025-07-24",
-        "entry": 68.8,
-        "exit": 65.82,
-        "returnPct": -4.33,
-        "exitReason": "trend_loss"
-      },
-      {
-        "symbol": "AFRM",
-        "entryDate": "2025-08-25",
-        "exitDate": "2025-08-29",
-        "entry": 78.93,
-        "exit": 91.57,
-        "returnPct": 16.01,
-        "exitReason": "target"
-      },
-      {
-        "symbol": "AFRM",
-        "entryDate": "2026-01-06",
-        "exitDate": "2026-01-12",
-        "entry": 81.63,
-        "exit": 75.71,
-        "returnPct": -7.25,
-        "exitReason": "stop"
-      },
-      {
-        "symbol": "AFRM",
-        "entryDate": "2026-06-01",
-        "exitDate": "2026-06-03",
-        "entry": 73.97,
-        "exit": 68.15,
-        "returnPct": -7.87,
-        "exitReason": "stop"
-      },
-      {
-        "symbol": "AFRM",
-        "entryDate": "2026-08-04",
-        "exitDate": "2026-08-11",
-        "entry": 76.52,
-        "exit": 76.4,
-        "returnPct": -0.16,
-        "exitReason": "time"
       }
     ]
   },
@@ -8066,9 +8066,9 @@
   {
     "symbol": "AMZN",
     "trades": 17,
-    "winRate": 17.6,
-    "avgReturnPct": -0.65,
-    "profitFactor": 0.65,
+    "winRate": 23.5,
+    "avgReturnPct": -0.62,
+    "profitFactor": 0.66,
     "tradeLog": [
       {
         "symbol": "AMZN",
@@ -8219,8 +8219,8 @@
         "entryDate": "2026-08-06",
         "exitDate": "2026-08-11",
         "entry": 272.77,
-        "exit": 272.03,
-        "returnPct": -0.27,
+        "exit": 273.31,
+        "returnPct": 0.2,
         "exitReason": "time"
       }
     ]
