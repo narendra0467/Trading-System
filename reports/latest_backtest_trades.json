@@ -1614,8 +1614,8 @@
     "symbol": "ANET",
     "trades": 23,
     "winRate": 56.5,
-    "avgReturnPct": 2.67,
-    "profitFactor": 2.42,
+    "avgReturnPct": 2.65,
+    "profitFactor": 2.41,
     "tradeLog": [
       {
         "symbol": "ANET",
@@ -1820,8 +1820,8 @@
         "entryDate": "2026-08-06",
         "exitDate": "2026-08-13",
         "entry": 192.41,
-        "exit": 209,
-        "returnPct": 8.62,
+        "exit": 208.06,
+        "returnPct": 8.13,
         "exitReason": "time"
       }
     ]
@@ -1830,8 +1830,8 @@
     "symbol": "NTNX",
     "trades": 16,
     "winRate": 43.8,
-    "avgReturnPct": 1.98,
-    "profitFactor": 2.24,
+    "avgReturnPct": 1.85,
+    "profitFactor": 2.16,
     "tradeLog": [
       {
         "symbol": "NTNX",
@@ -1970,11 +1970,11 @@
       },
       {
         "symbol": "NTNX",
-        "entryDate": "2026-07-28",
-        "exitDate": "2026-08-10",
-        "entry": 57.5,
-        "exit": 64.13,
-        "returnPct": 11.53,
+        "entryDate": "2026-07-27",
+        "exitDate": "2026-08-04",
+        "entry": 56.34,
+        "exit": 61.67,
+        "returnPct": 9.45,
         "exitReason": "target"
       }
     ]
@@ -3240,119 +3240,11 @@
     ]
   },
   {
-    "symbol": "SNOW",
-    "trades": 11,
-    "winRate": 45.5,
-    "avgReturnPct": 1.67,
-    "profitFactor": 1.78,
-    "tradeLog": [
-      {
-        "symbol": "SNOW",
-        "entryDate": "2023-06-01",
-        "exitDate": "2023-06-21",
-        "entry": 160.37,
-        "exit": 173.39,
-        "returnPct": 8.12,
-        "exitReason": "trend_loss"
-      },
-      {
-        "symbol": "SNOW",
-        "entryDate": "2023-07-14",
-        "exitDate": "2023-07-21",
-        "entry": 184.94,
-        "exit": 175.9,
-        "returnPct": -4.89,
-        "exitReason": "trend_loss"
-      },
-      {
-        "symbol": "SNOW",
-        "entryDate": "2023-12-29",
-        "exitDate": "2024-01-02",
-        "entry": 200,
-        "exit": 194.13,
-        "returnPct": -2.94,
-        "exitReason": "stop"
-      },
-      {
-        "symbol": "SNOW",
-        "entryDate": "2024-02-06",
-        "exitDate": "2024-02-21",
-        "entry": 217.5,
-        "exit": 216.21,
-        "returnPct": -0.59,
-        "exitReason": "trend_loss"
-      },
-      {
-        "symbol": "SNOW",
-        "entryDate": "2025-01-06",
-        "exitDate": "2025-01-27",
-        "entry": 165.32,
-        "exit": 178.38,
-        "returnPct": 7.9,
-        "exitReason": "target"
-      },
-      {
-        "symbol": "SNOW",
-        "entryDate": "2025-02-14",
-        "exitDate": "2025-02-20",
-        "entry": 192.86,
-        "exit": 182.46,
-        "returnPct": -5.39,
-        "exitReason": "stop"
-      },
-      {
-        "symbol": "SNOW",
-        "entryDate": "2025-06-20",
-        "exitDate": "2025-07-10",
-        "entry": 213.35,
-        "exit": 214.42,
-        "returnPct": 0.5,
-        "exitReason": "trend_loss"
-      },
-      {
-        "symbol": "SNOW",
-        "entryDate": "2025-07-28",
-        "exitDate": "2025-08-01",
-        "entry": 219.93,
-        "exit": 211.9,
-        "returnPct": -3.65,
-        "exitReason": "stop"
-      },
-      {
-        "symbol": "SNOW",
-        "entryDate": "2025-10-06",
-        "exitDate": "2025-10-24",
-        "entry": 240.36,
-        "exit": 258.8,
-        "returnPct": 7.67,
-        "exitReason": "target"
-      },
-      {
-        "symbol": "SNOW",
-        "entryDate": "2025-11-12",
-        "exitDate": "2025-11-13",
-        "entry": 274.29,
-        "exit": 257.07,
-        "returnPct": -6.28,
-        "exitReason": "stop"
-      },
-      {
-        "symbol": "SNOW",
-        "entryDate": "2026-06-29",
-        "exitDate": "2026-07-30",
-        "entry": 250.96,
-        "exit": 296.01,
-        "returnPct": 17.95,
-        "exitReason": "target"
-      }
-    ]
-  },
-  {
     "symbol": "ELF",
     "trades": 20,
     "winRate": 45,
-    "avgReturnPct": 2.01,
-    "profitFactor": 1.78,
+    "avgReturnPct": 2.04,
+    "profitFactor": 1.8,
     "tradeLog": [
       {
         "symbol": "ELF",
@@ -3530,9 +3422,117 @@
         "entryDate": "2026-08-11",
         "exitDate": "2026-08-13",
         "entry": 94.81,
-        "exit": 91.5,
-        "returnPct": -3.5,
+        "exit": 92.03,
+        "returnPct": -2.93,
         "exitReason": "time"
+      }
+    ]
+  },
+  {
+    "symbol": "SNOW",
+    "trades": 11,
+    "winRate": 45.5,
+    "avgReturnPct": 1.67,
+    "profitFactor": 1.78,
+    "tradeLog": [
+      {
+        "symbol": "SNOW",
+        "entryDate": "2023-06-01",
+        "exitDate": "2023-06-21",
+        "entry": 160.37,
+        "exit": 173.39,
+        "returnPct": 8.12,
+        "exitReason": "trend_loss"
+      },
+      {
+        "symbol": "SNOW",
+        "entryDate": "2023-07-14",
+        "exitDate": "2023-07-21",
+        "entry": 184.94,
+        "exit": 175.9,
+        "returnPct": -4.89,
+        "exitReason": "trend_loss"
+      },
+      {
+        "symbol": "SNOW",
+        "entryDate": "2023-12-29",
+        "exitDate": "2024-01-02",
+        "entry": 200,
+        "exit": 194.13,
+        "returnPct": -2.94,
+        "exitReason": "stop"
+      },
+      {
+        "symbol": "SNOW",
+        "entryDate": "2024-02-06",
+        "exitDate": "2024-02-21",
+        "entry": 217.5,
+        "exit": 216.21,
+        "returnPct": -0.59,
+        "exitReason": "trend_loss"
+      },
+      {
+        "symbol": "SNOW",
+        "entryDate": "2025-01-06",
+        "exitDate": "2025-01-27",
+        "entry": 165.32,
+        "exit": 178.38,
+        "returnPct": 7.9,
+        "exitReason": "target"
+      },
+      {
+        "symbol": "SNOW",
+        "entryDate": "2025-02-14",
+        "exitDate": "2025-02-20",
+        "entry": 192.86,
+        "exit": 182.46,
+        "returnPct": -5.39,
+        "exitReason": "stop"
+      },
+      {
+        "symbol": "SNOW",
+        "entryDate": "2025-06-20",
+        "exitDate": "2025-07-10",
+        "entry": 213.35,
+        "exit": 214.42,
+        "returnPct": 0.5,
+        "exitReason": "trend_loss"
+      },
+      {
+        "symbol": "SNOW",
+        "entryDate": "2025-07-28",
+        "exitDate": "2025-08-01",
+        "entry": 219.93,
+        "exit": 211.9,
+        "returnPct": -3.65,
+        "exitReason": "stop"
+      },
+      {
+        "symbol": "SNOW",
+        "entryDate": "2025-10-06",
+        "exitDate": "2025-10-24",
+        "entry": 240.36,
+        "exit": 258.8,
+        "returnPct": 7.67,
+        "exitReason": "target"
+      },
+      {
+        "symbol": "SNOW",
+        "entryDate": "2025-11-12",
+        "exitDate": "2025-11-13",
+        "entry": 274.29,
+        "exit": 257.07,
+        "returnPct": -6.28,
+        "exitReason": "stop"
+      },
+      {
+        "symbol": "SNOW",
+        "entryDate": "2026-06-29",
+        "exitDate": "2026-07-30",
+        "entry": 250.96,
+        "exit": 296.01,
+        "returnPct": 17.95,
+        "exitReason": "target"
       }
     ]
   },
@@ -4584,8 +4584,8 @@
     "symbol": "NET",
     "trades": 17,
     "winRate": 41.2,
-    "avgReturnPct": 1.35,
-    "profitFactor": 1.45,
+    "avgReturnPct": 1.32,
+    "profitFactor": 1.44,
     "tradeLog": [
       {
         "symbol": "NET",
@@ -4736,8 +4736,8 @@
         "entryDate": "2026-07-30",
         "exitDate": "2026-08-07",
         "entry": 271.38,
-        "exit": 312.38,
-        "returnPct": 15.11,
+        "exit": 311.37,
+        "returnPct": 14.74,
         "exitReason": "target"
       }
     ]
@@ -7770,8 +7770,8 @@
     "symbol": "VKTX",
     "trades": 17,
     "winRate": 29.4,
-    "avgReturnPct": -1.32,
-    "profitFactor": 0.75,
+    "avgReturnPct": -1.47,
+    "profitFactor": 0.72,
     "tradeLog": [
       {
         "symbol": "VKTX",
@@ -7919,11 +7919,11 @@
       },
       {
         "symbol": "VKTX",
-        "entryDate": "2026-07-23",
+        "entryDate": "2026-07-22",
         "exitDate": "2026-07-24",
-        "entry": 36.65,
+        "entry": 37.67,
         "exit": 34.94,
-        "returnPct": -4.68,
+        "returnPct": -7.26,
         "exitReason": "stop"
       }
     ]
@@ -8211,8 +8211,8 @@
     "symbol": "AMZN",
     "trades": 17,
     "winRate": 17.6,
-    "avgReturnPct": -0.77,
-    "profitFactor": 0.61,
+    "avgReturnPct": -0.79,
+    "profitFactor": 0.6,
     "tradeLog": [
       {
         "symbol": "AMZN",
@@ -8363,8 +8363,8 @@
         "entryDate": "2026-08-06",
         "exitDate": "2026-08-13",
         "entry": 272.77,
-        "exit": 266.61,
-        "returnPct": -2.26,
+        "exit": 265.58,
+        "returnPct": -2.64,
         "exitReason": "time"
       }
     ]
