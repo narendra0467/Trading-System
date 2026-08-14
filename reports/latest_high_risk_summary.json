@@ -5,10 +5,10 @@
   "topSymbol": "BIG.V",
   "topReason": "Good chart, but not clean enough for full speculative size. I would nibble only or wait for a better entry.",
   "buyCount": 0,
-  "starterCount": 2,
-  "watchCount": 6,
-  "plannedCapital": 2500,
-  "cashReserve": 2500,
+  "starterCount": 1,
+  "watchCount": 5,
+  "plannedCapital": 2000,
+  "cashReserve": 3000,
   "rules": [
     "This is not retirement money.",
     "Maximum 5-7 names.",
@@ -18,24 +18,24 @@
   ],
   "marketContext": {
     "SPY": {
-      "close": 775.76,
-      "return20": 4.37,
-      "return60": 5.73
+      "close": 776.16,
+      "return20": 4.42,
+      "return60": 5.78
     },
     "QQQ": {
-      "close": 729.03,
-      "return20": 4.85,
-      "return60": 3.92
+      "close": 729.89,
+      "return20": 4.97,
+      "return60": 4.04
     },
     "IWM": {
-      "close": 304.69,
+      "close": 304.68,
       "return20": 3.62,
-      "return60": 11.61
+      "return60": 11.6
     },
     "ARKK": {
-      "close": 81.25,
-      "return20": 8.04,
-      "return60": 10.03
+      "close": 81.03,
+      "return20": 7.75,
+      "return60": 9.74
     },
     "XIU.TO": {
       "close": 54.76,
@@ -43,9 +43,9 @@
       "return60": 8.26
     },
     "XIC.TO": {
-      "close": 58.7,
-      "return20": 4,
-      "return60": 7.43
+      "close": 58.65,
+      "return20": 3.92,
+      "return60": 7.34
     }
   }
 }
