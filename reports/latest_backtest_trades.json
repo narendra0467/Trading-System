@@ -2151,137 +2151,11 @@
     ]
   },
   {
-    "symbol": "INTC",
-    "trades": 13,
-    "winRate": 46.2,
-    "avgReturnPct": 2.54,
-    "profitFactor": 2.04,
-    "tradeLog": [
-      {
-        "symbol": "INTC",
-        "entryDate": "2023-08-14",
-        "exitDate": "2023-08-16",
-        "entry": 34.67,
-        "exit": 33.59,
-        "returnPct": -3.12,
-        "exitReason": "stop"
-      },
-      {
-        "symbol": "INTC",
-        "entryDate": "2023-10-04",
-        "exitDate": "2023-10-13",
-        "entry": 36.52,
-        "exit": 35.97,
-        "returnPct": -1.51,
-        "exitReason": "trend_loss"
-      },
-      {
-        "symbol": "INTC",
-        "entryDate": "2023-11-08",
-        "exitDate": "2023-11-16",
-        "entry": 38.85,
-        "exit": 42.02,
-        "returnPct": 8.16,
-        "exitReason": "target"
-      },
-      {
-        "symbol": "INTC",
-        "entryDate": "2023-12-14",
-        "exitDate": "2023-12-26",
-        "entry": 45.01,
-        "exit": 48.43,
-        "returnPct": 7.59,
-        "exitReason": "target"
-      },
-      {
-        "symbol": "INTC",
-        "entryDate": "2024-01-23",
-        "exitDate": "2024-01-26",
-        "entry": 48.12,
-        "exit": 46.04,
-        "returnPct": -4.32,
-        "exitReason": "stop"
-      },
-      {
-        "symbol": "INTC",
-        "entryDate": "2025-09-11",
-        "exitDate": "2025-09-18",
-        "entry": 24.76,
-        "exit": 27.18,
-        "returnPct": 9.76,
-        "exitReason": "target"
-      },
-      {
-        "symbol": "INTC",
-        "entryDate": "2025-10-21",
-        "exitDate": "2025-11-04",
-        "entry": 38.14,
-        "exit": 37.03,
-        "returnPct": -2.91,
-        "exitReason": "trend_loss"
-      },
-      {
-        "symbol": "INTC",
-        "entryDate": "2025-11-28",
-        "exitDate": "2025-12-02",
-        "entry": 37.4,
-        "exit": 41.99,
-        "returnPct": 12.28,
-        "exitReason": "target"
-      },
-      {
-        "symbol": "INTC",
-        "entryDate": "2026-01-06",
-        "exitDate": "2026-01-07",
-        "entry": 39.86,
-        "exit": 44.53,
-        "returnPct": 11.72,
-        "exitReason": "target"
-      },
-      {
-        "symbol": "INTC",
-        "entryDate": "2026-02-26",
-        "exitDate": "2026-02-26",
-        "entry": 46.77,
-        "exit": 44.41,
-        "returnPct": -5.05,
-        "exitReason": "stop"
-      },
-      {
-        "symbol": "INTC",
-        "entryDate": "2026-04-07",
-        "exitDate": "2026-04-09",
-        "entry": 51.91,
-        "exit": 59.87,
-        "returnPct": 15.34,
-        "exitReason": "target"
-      },
-      {
-        "symbol": "INTC",
-        "entryDate": "2026-05-21",
-        "exitDate": "2026-06-01",
-        "entry": 116.58,
-        "exit": 109.33,
-        "returnPct": -6.22,
-        "exitReason": "trend_loss"
-      },
-      {
-        "symbol": "INTC",
-        "entryDate": "2026-07-01",
-        "exitDate": "2026-07-02",
-        "entry": 135,
-        "exit": 123.34,
-        "returnPct": -8.64,
-        "exitReason": "stop"
-      }
-    ]
-  },
-  {
     "symbol": "ELF",
     "trades": 20,
     "winRate": 50,
-    "avgReturnPct": 2.5,
-    "profitFactor": 2.04,
+    "avgReturnPct": 2.56,
+    "profitFactor": 2.07,
     "tradeLog": [
       {
         "symbol": "ELF",
@@ -2459,9 +2333,135 @@
         "entryDate": "2026-08-11",
         "exitDate": "2026-08-21",
         "entry": 94.81,
-        "exit": 100.83,
-        "returnPct": 6.35,
+        "exit": 101.94,
+        "returnPct": 7.52,
         "exitReason": "time"
+      }
+    ]
+  },
+  {
+    "symbol": "INTC",
+    "trades": 13,
+    "winRate": 46.2,
+    "avgReturnPct": 2.54,
+    "profitFactor": 2.04,
+    "tradeLog": [
+      {
+        "symbol": "INTC",
+        "entryDate": "2023-08-14",
+        "exitDate": "2023-08-16",
+        "entry": 34.67,
+        "exit": 33.59,
+        "returnPct": -3.12,
+        "exitReason": "stop"
+      },
+      {
+        "symbol": "INTC",
+        "entryDate": "2023-10-04",
+        "exitDate": "2023-10-13",
+        "entry": 36.52,
+        "exit": 35.97,
+        "returnPct": -1.51,
+        "exitReason": "trend_loss"
+      },
+      {
+        "symbol": "INTC",
+        "entryDate": "2023-11-08",
+        "exitDate": "2023-11-16",
+        "entry": 38.85,
+        "exit": 42.02,
+        "returnPct": 8.16,
+        "exitReason": "target"
+      },
+      {
+        "symbol": "INTC",
+        "entryDate": "2023-12-14",
+        "exitDate": "2023-12-26",
+        "entry": 45.01,
+        "exit": 48.43,
+        "returnPct": 7.59,
+        "exitReason": "target"
+      },
+      {
+        "symbol": "INTC",
+        "entryDate": "2024-01-23",
+        "exitDate": "2024-01-26",
+        "entry": 48.12,
+        "exit": 46.04,
+        "returnPct": -4.32,
+        "exitReason": "stop"
+      },
+      {
+        "symbol": "INTC",
+        "entryDate": "2025-09-11",
+        "exitDate": "2025-09-18",
+        "entry": 24.76,
+        "exit": 27.18,
+        "returnPct": 9.76,
+        "exitReason": "target"
+      },
+      {
+        "symbol": "INTC",
+        "entryDate": "2025-10-21",
+        "exitDate": "2025-11-04",
+        "entry": 38.14,
+        "exit": 37.03,
+        "returnPct": -2.91,
+        "exitReason": "trend_loss"
+      },
+      {
+        "symbol": "INTC",
+        "entryDate": "2025-11-28",
+        "exitDate": "2025-12-02",
+        "entry": 37.4,
+        "exit": 41.99,
+        "returnPct": 12.28,
+        "exitReason": "target"
+      },
+      {
+        "symbol": "INTC",
+        "entryDate": "2026-01-06",
+        "exitDate": "2026-01-07",
+        "entry": 39.86,
+        "exit": 44.53,
+        "returnPct": 11.72,
+        "exitReason": "target"
+      },
+      {
+        "symbol": "INTC",
+        "entryDate": "2026-02-26",
+        "exitDate": "2026-02-26",
+        "entry": 46.77,
+        "exit": 44.41,
+        "returnPct": -5.05,
+        "exitReason": "stop"
+      },
+      {
+        "symbol": "INTC",
+        "entryDate": "2026-04-07",
+        "exitDate": "2026-04-09",
+        "entry": 51.91,
+        "exit": 59.87,
+        "returnPct": 15.34,
+        "exitReason": "target"
+      },
+      {
+        "symbol": "INTC",
+        "entryDate": "2026-05-21",
+        "exitDate": "2026-06-01",
+        "entry": 116.58,
+        "exit": 109.33,
+        "returnPct": -6.22,
+        "exitReason": "trend_loss"
+      },
+      {
+        "symbol": "INTC",
+        "entryDate": "2026-07-01",
+        "exitDate": "2026-07-02",
+        "entry": 135,
+        "exit": 123.34,
+        "returnPct": -8.64,
+        "exitReason": "stop"
       }
     ]
   },
@@ -7131,8 +7131,8 @@
     "symbol": "PYPL",
     "trades": 9,
     "winRate": 33.3,
-    "avgReturnPct": -0.07,
-    "profitFactor": 0.96,
+    "avgReturnPct": -0.09,
+    "profitFactor": 0.95,
     "tradeLog": [
       {
         "symbol": "PYPL",
@@ -7211,8 +7211,8 @@
         "entryDate": "2026-08-20",
         "exitDate": "2026-08-21",
         "entry": 61.1,
-        "exit": 61.67,
-        "returnPct": 0.94,
+        "exit": 61.55,
+        "returnPct": 0.74,
         "exitReason": "time"
       }
     ]
