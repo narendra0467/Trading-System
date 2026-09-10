@@ -1,14 +1,14 @@
 {
   "accountSize": 5000,
   "sleeveName": "Very High Risk / High Reward",
-  "primaryAction": "NILI.V: SPEC BUY",
-  "topSymbol": "NILI.V",
+  "primaryAction": "HOOD: STARTER BUY",
+  "topSymbol": "HOOD",
   "topReason": "The chart is interesting, but event risk is elevated. I would reduce size or wait until the news clears.",
-  "buyCount": 1,
-  "starterCount": 2,
-  "watchCount": 1,
-  "plannedCapital": 2000,
-  "cashReserve": 3000,
+  "buyCount": 0,
+  "starterCount": 1,
+  "watchCount": 2,
+  "plannedCapital": 1100,
+  "cashReserve": 3900,
   "rules": [
     "This is not retirement money.",
     "Maximum 5-7 names.",
@@ -18,34 +18,34 @@
   ],
   "marketContext": {
     "SPY": {
-      "close": 762.4,
-      "return20": -1.06,
-      "return60": 2.78
+      "close": 758.34,
+      "return20": -1.83,
+      "return60": 0.47
     },
     "QQQ": {
-      "close": 716.31,
-      "return20": -0.3,
-      "return60": -0.7
+      "close": 710.12,
+      "return20": -1.88,
+      "return60": -4.55
     },
     "IWM": {
-      "close": 290.64,
-      "return20": -3.44,
-      "return60": -0.79
+      "close": 287.76,
+      "return20": -4.94,
+      "return60": -2.34
     },
     "ARKK": {
-      "close": 84.56,
-      "return20": 4.91,
-      "return60": 11.78
+      "close": 83.55,
+      "return20": 2.68,
+      "return60": 4.92
     },
     "XIU.TO": {
-      "close": 53,
-      "return20": -2.36,
-      "return60": 2.42
+      "close": 52.53,
+      "return20": -3.76,
+      "return60": 0.81
     },
     "XIC.TO": {
-      "close": 57.47,
-      "return20": -1.42,
-      "return60": 2.72
+      "close": 56.86,
+      "return20": -2.94,
+      "return60": 0.65
     }
   }
 }
