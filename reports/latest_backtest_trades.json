@@ -3,8 +3,8 @@
     "symbol": "MSFT",
     "trades": 12,
     "winRate": 66.7,
-    "avgReturnPct": 2.52,
-    "profitFactor": 5.97,
+    "avgReturnPct": 2.53,
+    "profitFactor": 5.99,
     "tradeLog": [
       {
         "symbol": "MSFT",
@@ -110,8 +110,8 @@
         "entryDate": "2026-08-26",
         "exitDate": "2026-09-11",
         "entry": 487.85,
-        "exit": 494.94,
-        "returnPct": 1.45,
+        "exit": 495.63,
+        "returnPct": 1.59,
         "exitReason": "time"
       }
     ]
@@ -2790,146 +2790,11 @@
     ]
   },
   {
-    "symbol": "DKNG",
-    "trades": 14,
-    "winRate": 50,
-    "avgReturnPct": 2.03,
-    "profitFactor": 1.89,
-    "tradeLog": [
-      {
-        "symbol": "DKNG",
-        "entryDate": "2023-03-06",
-        "exitDate": "2023-03-13",
-        "entry": 19.08,
-        "exit": 18.22,
-        "returnPct": -4.51,
-        "exitReason": "trend_loss"
-      },
-      {
-        "symbol": "DKNG",
-        "entryDate": "2023-04-12",
-        "exitDate": "2023-04-19",
-        "entry": 19.13,
-        "exit": 21.13,
-        "returnPct": 10.47,
-        "exitReason": "target"
-      },
-      {
-        "symbol": "DKNG",
-        "entryDate": "2023-05-19",
-        "exitDate": "2023-06-16",
-        "entry": 24.01,
-        "exit": 24.51,
-        "returnPct": 2.08,
-        "exitReason": "trend_loss"
-      },
-      {
-        "symbol": "DKNG",
-        "entryDate": "2023-06-27",
-        "exitDate": "2023-07-06",
-        "entry": 25.3,
-        "exit": 25.23,
-        "returnPct": -0.28,
-        "exitReason": "trend_loss"
-      },
-      {
-        "symbol": "DKNG",
-        "entryDate": "2023-08-07",
-        "exitDate": "2023-08-09",
-        "entry": 32.51,
-        "exit": 29.15,
-        "returnPct": -10.32,
-        "exitReason": "stop"
-      },
-      {
-        "symbol": "DKNG",
-        "entryDate": "2023-10-02",
-        "exitDate": "2023-10-02",
-        "entry": 29.33,
-        "exit": 29.04,
-        "returnPct": -1,
-        "exitReason": "stop"
-      },
-      {
-        "symbol": "DKNG",
-        "entryDate": "2023-12-14",
-        "exitDate": "2023-12-15",
-        "entry": 38.17,
-        "exit": 35.39,
-        "returnPct": -7.28,
-        "exitReason": "stop"
-      },
-      {
-        "symbol": "DKNG",
-        "entryDate": "2024-02-02",
-        "exitDate": "2024-02-16",
-        "entry": 40.13,
-        "exit": 45,
-        "returnPct": 12.13,
-        "exitReason": "target"
-      },
-      {
-        "symbol": "DKNG",
-        "entryDate": "2024-03-13",
-        "exitDate": "2024-03-21",
-        "entry": 42.34,
-        "exit": 47.5,
-        "returnPct": 12.19,
-        "exitReason": "target"
-      },
-      {
-        "symbol": "DKNG",
-        "entryDate": "2024-04-29",
-        "exitDate": "2024-04-29",
-        "entry": 43.71,
-        "exit": 42.78,
-        "returnPct": -2.14,
-        "exitReason": "stop"
-      },
-      {
-        "symbol": "DKNG",
-        "entryDate": "2024-11-14",
-        "exitDate": "2024-11-15",
-        "entry": 42.06,
-        "exit": 39.28,
-        "returnPct": -6.62,
-        "exitReason": "stop"
-      },
-      {
-        "symbol": "DKNG",
-        "entryDate": "2025-02-12",
-        "exitDate": "2025-02-14",
-        "entry": 42.78,
-        "exit": 47.63,
-        "returnPct": 11.34,
-        "exitReason": "target"
-      },
-      {
-        "symbol": "DKNG",
-        "entryDate": "2025-07-09",
-        "exitDate": "2025-08-07",
-        "entry": 42.49,
-        "exit": 46.81,
-        "returnPct": 10.17,
-        "exitReason": "target"
-      },
-      {
-        "symbol": "DKNG",
-        "entryDate": "2025-08-18",
-        "exitDate": "2025-09-08",
-        "entry": 45.31,
-        "exit": 46.32,
-        "returnPct": 2.23,
-        "exitReason": "trend_loss"
-      }
-    ]
-  },
-  {
     "symbol": "DELL",
     "trades": 20,
     "winRate": 45,
-    "avgReturnPct": 2.15,
-    "profitFactor": 1.86,
+    "avgReturnPct": 2.23,
+    "profitFactor": 1.89,
     "tradeLog": [
       {
         "symbol": "DELL",
@@ -3107,9 +2972,144 @@
         "entryDate": "2026-09-03",
         "exitDate": "2026-09-11",
         "entry": 486.31,
-        "exit": 559.62,
-        "returnPct": 15.07,
+        "exit": 567.29,
+        "returnPct": 16.65,
         "exitReason": "time"
+      }
+    ]
+  },
+  {
+    "symbol": "DKNG",
+    "trades": 14,
+    "winRate": 50,
+    "avgReturnPct": 2.03,
+    "profitFactor": 1.89,
+    "tradeLog": [
+      {
+        "symbol": "DKNG",
+        "entryDate": "2023-03-06",
+        "exitDate": "2023-03-13",
+        "entry": 19.08,
+        "exit": 18.22,
+        "returnPct": -4.51,
+        "exitReason": "trend_loss"
+      },
+      {
+        "symbol": "DKNG",
+        "entryDate": "2023-04-12",
+        "exitDate": "2023-04-19",
+        "entry": 19.13,
+        "exit": 21.13,
+        "returnPct": 10.47,
+        "exitReason": "target"
+      },
+      {
+        "symbol": "DKNG",
+        "entryDate": "2023-05-19",
+        "exitDate": "2023-06-16",
+        "entry": 24.01,
+        "exit": 24.51,
+        "returnPct": 2.08,
+        "exitReason": "trend_loss"
+      },
+      {
+        "symbol": "DKNG",
+        "entryDate": "2023-06-27",
+        "exitDate": "2023-07-06",
+        "entry": 25.3,
+        "exit": 25.23,
+        "returnPct": -0.28,
+        "exitReason": "trend_loss"
+      },
+      {
+        "symbol": "DKNG",
+        "entryDate": "2023-08-07",
+        "exitDate": "2023-08-09",
+        "entry": 32.51,
+        "exit": 29.15,
+        "returnPct": -10.32,
+        "exitReason": "stop"
+      },
+      {
+        "symbol": "DKNG",
+        "entryDate": "2023-10-02",
+        "exitDate": "2023-10-02",
+        "entry": 29.33,
+        "exit": 29.04,
+        "returnPct": -1,
+        "exitReason": "stop"
+      },
+      {
+        "symbol": "DKNG",
+        "entryDate": "2023-12-14",
+        "exitDate": "2023-12-15",
+        "entry": 38.17,
+        "exit": 35.39,
+        "returnPct": -7.28,
+        "exitReason": "stop"
+      },
+      {
+        "symbol": "DKNG",
+        "entryDate": "2024-02-02",
+        "exitDate": "2024-02-16",
+        "entry": 40.13,
+        "exit": 45,
+        "returnPct": 12.13,
+        "exitReason": "target"
+      },
+      {
+        "symbol": "DKNG",
+        "entryDate": "2024-03-13",
+        "exitDate": "2024-03-21",
+        "entry": 42.34,
+        "exit": 47.5,
+        "returnPct": 12.19,
+        "exitReason": "target"
+      },
+      {
+        "symbol": "DKNG",
+        "entryDate": "2024-04-29",
+        "exitDate": "2024-04-29",
+        "entry": 43.71,
+        "exit": 42.78,
+        "returnPct": -2.14,
+        "exitReason": "stop"
+      },
+      {
+        "symbol": "DKNG",
+        "entryDate": "2024-11-14",
+        "exitDate": "2024-11-15",
+        "entry": 42.06,
+        "exit": 39.28,
+        "returnPct": -6.62,
+        "exitReason": "stop"
+      },
+      {
+        "symbol": "DKNG",
+        "entryDate": "2025-02-12",
+        "exitDate": "2025-02-14",
+        "entry": 42.78,
+        "exit": 47.63,
+        "returnPct": 11.34,
+        "exitReason": "target"
+      },
+      {
+        "symbol": "DKNG",
+        "entryDate": "2025-07-09",
+        "exitDate": "2025-08-07",
+        "entry": 42.49,
+        "exit": 46.81,
+        "returnPct": 10.17,
+        "exitReason": "target"
+      },
+      {
+        "symbol": "DKNG",
+        "entryDate": "2025-08-18",
+        "exitDate": "2025-09-08",
+        "entry": 45.31,
+        "exit": 46.32,
+        "returnPct": 2.23,
+        "exitReason": "trend_loss"
       }
     ]
   },
@@ -4332,7 +4332,7 @@
     "symbol": "MU",
     "trades": 18,
     "winRate": 38.9,
-    "avgReturnPct": 1.55,
+    "avgReturnPct": 1.53,
     "profitFactor": 1.56,
     "tradeLog": [
       {
@@ -4493,8 +4493,8 @@
         "entryDate": "2026-09-01",
         "exitDate": "2026-09-11",
         "entry": 941.13,
-        "exit": 979.36,
-        "returnPct": 4.06,
+        "exit": 975.26,
+        "returnPct": 3.63,
         "exitReason": "time"
       }
     ]
@@ -5214,8 +5214,8 @@
     "symbol": "NET",
     "trades": 18,
     "winRate": 38.9,
-    "avgReturnPct": 1.1,
-    "profitFactor": 1.37,
+    "avgReturnPct": 1.13,
+    "profitFactor": 1.38,
     "tradeLog": [
       {
         "symbol": "NET",
@@ -5375,8 +5375,8 @@
         "entryDate": "2026-09-10",
         "exitDate": "2026-09-11",
         "entry": 313.35,
-        "exit": 305.14,
-        "returnPct": -2.62,
+        "exit": 306.53,
+        "returnPct": -2.18,
         "exitReason": "time"
       }
     ]
@@ -7184,9 +7184,9 @@
   {
     "symbol": "SMCI",
     "trades": 14,
-    "winRate": 28.6,
-    "avgReturnPct": -0.35,
-    "profitFactor": 0.93,
+    "winRate": 35.7,
+    "avgReturnPct": -0.22,
+    "profitFactor": 0.96,
     "tradeLog": [
       {
         "symbol": "SMCI",
@@ -7310,8 +7310,8 @@
         "entryDate": "2026-09-08",
         "exitDate": "2026-09-11",
         "entry": 39.67,
-        "exit": 39.38,
-        "returnPct": -0.73,
+        "exit": 40.1,
+        "returnPct": 1.08,
         "exitReason": "time"
       }
     ]
