@@ -1,21 +1,21 @@
-symbol,signal,strategy,score,dte,expiration,underlying,longStrike,shortStrike,longBid,longAsk,longMid,shortBid,shortAsk,shortMid,debit,maxReward,rewardRisk,stopUnderlying,targetUnderlying,beginnerStrategy,beginnerAction,optionStrike,optionType,optionEntry,optionCost,optionStop,optionStopDollars,optionTarget1,optionTarget1Dollars,optionTarget2,optionTarget2Dollars,underlyingStop,underlyingTarget,longVolume,longOpenInterest,longSpreadPct,longDelta,longGamma,longTheta,longVega,probabilityItm,atmIv,ivHvRatio,marketRegime,marketScore,eventRisk,eventReason,reason,contracts,maxRiskDollars,riskPerContract,riskPerSpread,plannedCapital
-AVGO,AVOID_EVENT_RISK,PUT_DEBIT_SPREAD,87,38,2026-10-23,345.16,350,330,17.6,18.55,18.08,8.7,9.3,9,9.08,10.92,1.2,362.56,316.15,BUY_PUT,Buy the 350 PUT expiring 2026-10-23.,350,PUT,18.08,1807.5,12.65,1265.25,24.4,2440.13,30.73,3072.75,362.56,316.15,180,420,5.3,-0.51,0.0103,-0.183,0.444,55.7,38.2,1.07,RISK_OFF,35,HIGH,FOMC rate decision and press conference 2026-09-16,bear trend stack; ADX confirms bearish trend; below lower Bollinger band,0,1000,1807.5,1807.5,0
-WDC,AVOID_EVENT_RISK,PUT_DEBIT_SPREAD,65,38,2026-10-23,432.51,420,400,27.95,30.55,29.25,17.9,21.7,19.8,9.45,10.55,1.12,473.78,363.73,BUY_PUT,Buy the 420 PUT expiring 2026-10-23.,420,PUT,29.25,2925,20.47,2047.5,39.49,3948.75,49.73,4972.5,473.78,363.73,75,14,8.9,-0.39,0.0044,-0.421,0.537,47.4,64.6,1.07,RISK_OFF,35,HIGH,FOMC rate decision and press conference 2026-09-16,bear trend stack,0,1000,2925,2925,0
-PLTR,NO_TRADE,NONE,62,38,,173.87,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,50.1,0.96,RISK_OFF,,HIGH,FOMC rate decision and press conference 2026-09-16,bull trend stack; ADX confirms bearish trend; neutral technical regime,0,250,,,
-AMD,NO_TRADE,NONE,55,38,,495.6,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,52.3,1.06,RISK_OFF,,HIGH,FOMC rate decision and press conference 2026-09-16,bull trend stack; ADX confirms bullish trend; neutral technical regime,0,250,,,
-COIN,NO_TRADE,NONE,55,38,,192.28,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,68.2,0.79,RISK_OFF,,HIGH,FOMC rate decision and press conference 2026-09-16,ADX confirms bullish trend; neutral technical regime,0,250,,,
-MSTR,NO_TRADE,NONE,55,38,,136.9,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,70.9,0.69,RISK_OFF,,HIGH,FOMC rate decision and press conference 2026-09-16,ADX confirms bullish trend; neutral technical regime,0,250,,,
-MU,NO_TRADE,NONE,52,38,,926.88,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,59.3,1.04,RISK_OFF,,HIGH,FOMC rate decision and press conference 2026-09-16,ADX confirms bearish trend; neutral technical regime,0,250,,,
-ORCL,AVOID_EVENT_RISK,PUT_DEBIT_SPREAD,52,38,2026-10-23,143.86,140,133,7.1,7.65,7.38,4.3,4.65,4.47,2.9,4.1,1.41,149.75,122.35,BUY_PUT,Buy the 140 PUT expiring 2026-10-23.,140,PUT,7.38,737.5,5.16,516.25,9.96,995.63,12.54,1253.75,149.75,122.35,38,422,7.5,-0.39,0.0164,-0.112,0.178,45.6,50.3,1.02,RISK_OFF,35,HIGH,FOMC rate decision and press conference 2026-09-16,bear trend stack; ADX confirms bullish trend,1,1000,737.5,737.5,737.5
-NFLX,NO_TRADE,NONE,47,38,,80.45,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,43.7,1.2,RISK_OFF,,HIGH,FOMC rate decision and press conference 2026-09-16,ADX confirms bullish trend; neutral technical regime,0,250,,,
-MSFT,WATCH,CALL_DEBIT_SPREAD,45,38,2026-10-23,507.38,510,535,15.35,17.2,16.27,6.4,7,6.7,9.57,15.43,1.61,492,533,BUY_CALL,Buy the 510 CALL expiring 2026-10-23.,510,CALL,16.27,1627.5,11.39,1139.25,21.97,2197.13,27.67,2766.75,492,533,37,182,11.4,0.51,0.0089,-0.263,0.653,47.8,26.2,1.13,RISK_OFF,35,HIGH,FOMC rate decision and press conference 2026-09-16,bull trend stack; ADX confirms bullish trend,0,250,1627.5,1627.5,0
-AAPL,WATCH,CALL_DEBIT_SPREAD,42,38,2026-10-23,334.39,340,355,8.95,9.4,9.18,3.8,3.95,3.88,5.3,9.7,1.83,322.61,354.03,BUY_CALL,Buy the 340 CALL expiring 2026-10-23.,340,CALL,9.18,917.5,6.42,642.25,12.39,1238.63,15.6,1559.75,322.61,354.03,229,1116,4.9,0.46,0.0137,-0.168,0.428,42.6,26.9,1.13,RISK_OFF,35,HIGH,FOMC rate decision and press conference 2026-09-16,bull trend stack; ADX confirms bullish trend,0,250,917.5,917.5,0
-NVDA,NO_TRADE,NONE,42,38,,211.83,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,35.5,0.79,RISK_OFF,,HIGH,FOMC rate decision and press conference 2026-09-16,ADX confirms bearish trend; neutral technical regime,0,250,,,
-META,NO_TRADE,NONE,40,38,,667.02,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,38.5,1.03,RISK_OFF,,HIGH,FOMC rate decision and press conference 2026-09-16,overbought risk; ADX confirms bullish trend; neutral technical regime,0,250,,,
-SNDK,NO_TRADE,NONE,40,38,,1558.46,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,70.1,0.92,RISK_OFF,,HIGH,FOMC rate decision and press conference 2026-09-16,ADX confirms bearish trend; neutral technical regime,0,250,,,
-C,PREMIUM_SELL_WATCH,IRON_CONDOR_WATCH,32,38,,134.13,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,33.3,1.34,RISK_OFF,,HIGH,FOMC rate decision and press conference 2026-09-16,ADX confirms bearish trend; neutral technical regime,0,250,,,
-GOOGL,PREMIUM_SELL_WATCH,IRON_CONDOR_WATCH,32,38,,348,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,31.4,1.43,RISK_OFF,,HIGH,FOMC rate decision and press conference 2026-09-16,neutral technical regime,0,250,,,
-INTC,NO_TRADE,NONE,30,38,,97.69,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,68.8,1.14,RISK_OFF,,HIGH,FOMC rate decision and press conference 2026-09-16,ADX confirms bullish trend; neutral technical regime,0,250,,,
-TSLA,NO_TRADE,NONE,30,38,,360.36,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,44.5,0.87,RISK_OFF,,HIGH,FOMC rate decision and press conference 2026-09-16,ADX confirms bullish trend; neutral technical regime,0,250,,,
-AMZN,NO_TRADE,NONE,20,38,,253.84,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,31.5,1.2,RISK_OFF,,HIGH,FOMC rate decision and press conference 2026-09-16,weak trend strength; neutral technical regime,0,250,,,
-TSM,NO_TRADE,NONE,8,38,,421.01,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,36.7,1.25,RISK_OFF,,HIGH,FOMC rate decision and press conference 2026-09-16,neutral technical regime,0,250,,,
+symbol,signal,strategy,score,reason,marketRegime,eventRisk,contracts,maxRiskDollars,riskPerContract,riskPerSpread,plannedCapital
+WDC,NO_TRADE,PUT_DEBIT_SPREAD,80,No liquid long option found,RISK_OFF,HIGH,0,1000,,,
+AVGO,AVOID_EVENT_RISK,PUT_DEBIT_SPREAD,77,bear trend stack; ADX confirms bearish trend; below lower Bollinger band,RISK_OFF,HIGH,0,1000,1870,1870,0
+AMD,NO_TRADE,NONE,55,bull trend stack; ADX confirms bullish trend; volume expansion; neutral technical regime,RISK_OFF,HIGH,0,250,,,
+COIN,NO_TRADE,NONE,55,ADX confirms bullish trend; volume expansion; neutral technical regime,RISK_OFF,HIGH,0,250,,,
+MSTR,NO_TRADE,NONE,55,ADX confirms bullish trend; neutral technical regime,RISK_OFF,HIGH,0,250,,,
+MU,NO_TRADE,NONE,52,ADX confirms bearish trend; neutral technical regime,RISK_OFF,HIGH,0,250,,,
+ORCL,AVOID_EVENT_RISK,PUT_DEBIT_SPREAD,52,bear trend stack; ADX confirms bullish trend; volume expansion,RISK_OFF,HIGH,1,1000,695,695,695
+NFLX,NO_TRADE,NONE,47,ADX confirms bullish trend; neutral technical regime,RISK_OFF,HIGH,0,250,,,
+C,PREMIUM_SELL_WATCH,IRON_CONDOR_WATCH,45,bull trend stack; ADX confirms bearish trend; volume expansion; neutral technical regime,RISK_OFF,HIGH,0,250,,,
+MSFT,WATCH,CALL_DEBIT_SPREAD,45,bull trend stack; ADX confirms bullish trend,RISK_OFF,HIGH,0,250,2137.5,2137.5,0
+PLTR,WATCH,CALL_DEBIT_SPREAD,45,bull trend stack; ADX confirms bullish trend,RISK_OFF,HIGH,0,250,1200,1200,0
+AAPL,WATCH,CALL_DEBIT_SPREAD,42,bull trend stack; ADX confirms bullish trend,RISK_OFF,HIGH,0,250,820,820,0
+NVDA,NO_TRADE,NONE,42,ADX confirms bearish trend; neutral technical regime,RISK_OFF,HIGH,0,250,,,
+META,NO_TRADE,NONE,40,overbought risk; ADX confirms bullish trend; neutral technical regime,RISK_OFF,HIGH,0,250,,,
+SNDK,NO_TRADE,NONE,40,ADX confirms bearish trend; neutral technical regime,RISK_OFF,HIGH,0,250,,,
+GOOGL,PREMIUM_SELL_WATCH,IRON_CONDOR_WATCH,32,volume expansion; neutral technical regime,RISK_OFF,HIGH,0,250,,,
+INTC,NO_TRADE,NONE,30,ADX confirms bullish trend; neutral technical regime,RISK_OFF,HIGH,0,250,,,
+AMZN,NO_TRADE,NONE,20,weak trend strength; neutral technical regime,RISK_OFF,HIGH,0,250,,,
+TSLA,NO_TRADE,NONE,18,ADX confirms bullish trend; neutral technical regime,RISK_OFF,HIGH,0,250,,,
+TSM,NO_TRADE,NONE,12,volume expansion; neutral technical regime,RISK_OFF,HIGH,0,250,,,
