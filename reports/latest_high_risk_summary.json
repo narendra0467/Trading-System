@@ -4,11 +4,11 @@
   "primaryAction": "HOOD: SPEC BUY",
   "topSymbol": "HOOD",
   "topReason": "This is the kind of technical risk I would fund from a small speculative sleeve because momentum, relative strength, and volume agree.",
-  "buyCount": 4,
-  "starterCount": 3,
-  "watchCount": 2,
-  "plannedCapital": 4300,
-  "cashReserve": 700,
+  "buyCount": 5,
+  "starterCount": 2,
+  "watchCount": 1,
+  "plannedCapital": 4500,
+  "cashReserve": 500,
   "rules": [
     "This is not retirement money.",
     "Maximum 5-7 names.",
@@ -18,34 +18,34 @@
   ],
   "marketContext": {
     "SPY": {
-      "close": 773.38,
-      "return20": 1.3,
-      "return60": 6.09
+      "close": 768.14,
+      "return20": 0.61,
+      "return60": 5.37
     },
     "QQQ": {
-      "close": 747.46,
-      "return20": 5.82,
-      "return60": 5.79
+      "close": 740.75,
+      "return20": 4.87,
+      "return60": 4.84
     },
     "IWM": {
-      "close": 287.21,
-      "return20": -3.61,
-      "return60": -4.21
+      "close": 282.44,
+      "return20": -5.21,
+      "return60": -5.8
     },
     "ARKK": {
-      "close": 91.61,
-      "return20": 9.16,
-      "return60": 17.25
+      "close": 89.81,
+      "return20": 7.02,
+      "return60": 14.95
     },
     "XIU.TO": {
-      "close": 53.78,
-      "return20": -1.27,
-      "return60": 3.6
+      "close": 53.11,
+      "return20": -2.5,
+      "return60": 2.31
     },
     "XIC.TO": {
-      "close": 58.2,
-      "return20": -0.8,
-      "return60": 4.73
+      "close": 57.43,
+      "return20": -2.11,
+      "return60": 3.35
     }
   }
 }
