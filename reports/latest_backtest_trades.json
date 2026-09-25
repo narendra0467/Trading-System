@@ -1218,8 +1218,8 @@
     "symbol": "CRWD",
     "trades": 17,
     "winRate": 58.8,
-    "avgReturnPct": 3.87,
-    "profitFactor": 2.89,
+    "avgReturnPct": 3.81,
+    "profitFactor": 2.86,
     "tradeLog": [
       {
         "symbol": "CRWD",
@@ -1370,8 +1370,8 @@
         "entryDate": "2026-09-15",
         "exitDate": "2026-09-25",
         "entry": 233,
-        "exit": 254.52,
-        "returnPct": 9.24,
+        "exit": 252.13,
+        "returnPct": 8.21,
         "exitReason": "time"
       }
     ]
@@ -2811,7 +2811,7 @@
     "symbol": "ELF",
     "trades": 21,
     "winRate": 47.6,
-    "avgReturnPct": 2.23,
+    "avgReturnPct": 2.24,
     "profitFactor": 1.93,
     "tradeLog": [
       {
@@ -2999,8 +2999,8 @@
         "entryDate": "2026-09-23",
         "exitDate": "2026-09-25",
         "entry": 101.83,
-        "exit": 99.3,
-        "returnPct": -2.48,
+        "exit": 99.51,
+        "returnPct": -2.28,
         "exitReason": "time"
       }
     ]
@@ -3224,8 +3224,8 @@
         "entryDate": "2026-09-22",
         "exitDate": "2026-09-25",
         "entry": 441.22,
-        "exit": 451.4,
-        "returnPct": 2.31,
+        "exit": 450.61,
+        "returnPct": 2.13,
         "exitReason": "time"
       }
     ]
@@ -3648,7 +3648,7 @@
     "symbol": "NET",
     "trades": 18,
     "winRate": 44.4,
-    "avgReturnPct": 1.91,
+    "avgReturnPct": 1.88,
     "profitFactor": 1.67,
     "tradeLog": [
       {
@@ -3809,8 +3809,8 @@
         "entryDate": "2026-09-10",
         "exitDate": "2026-09-25",
         "entry": 313.35,
-        "exit": 350.39,
-        "returnPct": 11.82,
+        "exit": 349.02,
+        "returnPct": 11.38,
         "exitReason": "time"
       }
     ]
@@ -5781,8 +5781,8 @@
     "symbol": "PANW",
     "trades": 20,
     "winRate": 40,
-    "avgReturnPct": 0.6,
-    "profitFactor": 1.28,
+    "avgReturnPct": 0.56,
+    "profitFactor": 1.26,
     "tradeLog": [
       {
         "symbol": "PANW",
@@ -5960,8 +5960,8 @@
         "entryDate": "2026-09-15",
         "exitDate": "2026-09-25",
         "entry": 368.43,
-        "exit": 377.55,
-        "returnPct": 2.48,
+        "exit": 374.74,
+        "returnPct": 1.71,
         "exitReason": "time"
       }
     ]
@@ -6044,78 +6044,6 @@
         "exit": 68.14,
         "returnPct": -0.31,
         "exitReason": "stop"
-      }
-    ]
-  },
-  {
-    "symbol": "TEAM",
-    "trades": 7,
-    "winRate": 42.9,
-    "avgReturnPct": 0.58,
-    "profitFactor": 1.25,
-    "tradeLog": [
-      {
-        "symbol": "TEAM",
-        "entryDate": "2023-08-01",
-        "exitDate": "2023-08-02",
-        "entry": 178.63,
-        "exit": 170.9,
-        "returnPct": -4.33,
-        "exitReason": "stop"
-      },
-      {
-        "symbol": "TEAM",
-        "entryDate": "2023-09-06",
-        "exitDate": "2023-09-20",
-        "entry": 205,
-        "exit": 200.82,
-        "returnPct": -2.04,
-        "exitReason": "trend_loss"
-      },
-      {
-        "symbol": "TEAM",
-        "entryDate": "2023-10-11",
-        "exitDate": "2023-10-12",
-        "entry": 207.85,
-        "exit": 194.29,
-        "returnPct": -6.53,
-        "exitReason": "stop"
-      },
-      {
-        "symbol": "TEAM",
-        "entryDate": "2024-01-09",
-        "exitDate": "2024-02-02",
-        "entry": 231.61,
-        "exit": 223.8,
-        "returnPct": -3.37,
-        "exitReason": "stop"
-      },
-      {
-        "symbol": "TEAM",
-        "entryDate": "2024-11-22",
-        "exitDate": "2024-12-04",
-        "entry": 254.99,
-        "exit": 281.59,
-        "returnPct": 10.43,
-        "exitReason": "target"
-      },
-      {
-        "symbol": "TEAM",
-        "entryDate": "2025-01-17",
-        "exitDate": "2025-01-28",
-        "entry": 259.85,
-        "exit": 281.08,
-        "returnPct": 8.17,
-        "exitReason": "target"
-      },
-      {
-        "symbol": "TEAM",
-        "entryDate": "2026-09-15",
-        "exitDate": "2026-09-25",
-        "entry": 187.15,
-        "exit": 190.44,
-        "returnPct": 1.76,
-        "exitReason": "time"
       }
     ]
   },
@@ -6233,6 +6161,78 @@
         "exit": 53.1,
         "returnPct": -1.9,
         "exitReason": "stop"
+      }
+    ]
+  },
+  {
+    "symbol": "TEAM",
+    "trades": 7,
+    "winRate": 42.9,
+    "avgReturnPct": 0.38,
+    "profitFactor": 1.16,
+    "tradeLog": [
+      {
+        "symbol": "TEAM",
+        "entryDate": "2023-08-01",
+        "exitDate": "2023-08-02",
+        "entry": 178.63,
+        "exit": 170.9,
+        "returnPct": -4.33,
+        "exitReason": "stop"
+      },
+      {
+        "symbol": "TEAM",
+        "entryDate": "2023-09-06",
+        "exitDate": "2023-09-20",
+        "entry": 205,
+        "exit": 200.82,
+        "returnPct": -2.04,
+        "exitReason": "trend_loss"
+      },
+      {
+        "symbol": "TEAM",
+        "entryDate": "2023-10-11",
+        "exitDate": "2023-10-12",
+        "entry": 207.85,
+        "exit": 194.29,
+        "returnPct": -6.53,
+        "exitReason": "stop"
+      },
+      {
+        "symbol": "TEAM",
+        "entryDate": "2024-01-09",
+        "exitDate": "2024-02-02",
+        "entry": 231.61,
+        "exit": 223.8,
+        "returnPct": -3.37,
+        "exitReason": "stop"
+      },
+      {
+        "symbol": "TEAM",
+        "entryDate": "2024-11-22",
+        "exitDate": "2024-12-04",
+        "entry": 254.99,
+        "exit": 281.59,
+        "returnPct": 10.43,
+        "exitReason": "target"
+      },
+      {
+        "symbol": "TEAM",
+        "entryDate": "2025-01-17",
+        "exitDate": "2025-01-28",
+        "entry": 259.85,
+        "exit": 281.08,
+        "returnPct": 8.17,
+        "exitReason": "target"
+      },
+      {
+        "symbol": "TEAM",
+        "entryDate": "2026-09-15",
+        "exitDate": "2026-09-25",
+        "entry": 187.15,
+        "exit": 187.74,
+        "returnPct": 0.31,
+        "exitReason": "time"
       }
     ]
   },
