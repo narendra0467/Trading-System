@@ -1,14 +1,14 @@
 {
   "accountSize": 5000,
   "sleeveName": "Very High Risk / High Reward",
-  "primaryAction": "BIG.V: STARTER BUY",
-  "topSymbol": "BIG.V",
-  "topReason": "Good chart, but not clean enough for full speculative size. I would nibble only or wait for a better entry.",
+  "primaryAction": "IONQ: WATCHLIST",
+  "topSymbol": "IONQ",
+  "topReason": "Interesting high-beta name, but it still needs proof. I would keep it on the board, not buy blindly.",
   "buyCount": 0,
-  "starterCount": 1,
+  "starterCount": 0,
   "watchCount": 1,
-  "plannedCapital": 800,
-  "cashReserve": 4200,
+  "plannedCapital": 300,
+  "cashReserve": 4700,
   "rules": [
     "This is not retirement money.",
     "Maximum 5-7 names.",
@@ -18,34 +18,34 @@
   ],
   "marketContext": {
     "SPY": {
-      "close": 771.35,
-      "return20": 0.03,
-      "return60": 3.43
+      "close": 765.61,
+      "return20": -0.49,
+      "return60": 2.8
     },
     "QQQ": {
-      "close": 744.5,
-      "return20": 3.24,
-      "return60": 2.67
+      "close": 736.53,
+      "return20": 2.81,
+      "return60": 3.36
     },
     "IWM": {
-      "close": 281.97,
-      "return20": -5.95,
-      "return60": -5.8
+      "close": 280.02,
+      "return20": -5.32,
+      "return60": -5.9
     },
     "ARKK": {
-      "close": 90.77,
-      "return20": 3.88,
-      "return60": 10.9
+      "close": 89.25,
+      "return20": 5.51,
+      "return60": 9.85
     },
     "XIU.TO": {
-      "close": 53.08,
-      "return20": -2.3,
-      "return60": 2.45
+      "close": 52.76,
+      "return20": -2.39,
+      "return60": 1.56
     },
     "XIC.TO": {
-      "close": 57.07,
-      "return20": -3.12,
-      "return60": 2.64
+      "close": 56.61,
+      "return20": -3.16,
+      "return60": 1.45
     }
   }
 }
