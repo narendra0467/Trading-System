@@ -1,14 +1,14 @@
 {
   "accountSize": 5000,
   "sleeveName": "Very High Risk / High Reward",
-  "primaryAction": "No speculative edge today",
-  "topSymbol": "",
-  "topReason": "No top setup.",
+  "primaryAction": "AI: STARTER BUY",
+  "topSymbol": "AI",
+  "topReason": "Good chart, but not clean enough for full speculative size. I would nibble only or wait for a better entry.",
   "buyCount": 0,
-  "starterCount": 0,
+  "starterCount": 1,
   "watchCount": 0,
-  "plannedCapital": 0,
-  "cashReserve": 5000,
+  "plannedCapital": 500,
+  "cashReserve": 4500,
   "rules": [
     "This is not retirement money.",
     "Maximum 5-7 names.",
@@ -18,34 +18,34 @@
   ],
   "marketContext": {
     "SPY": {
-      "close": 764.2,
-      "return20": -0.37,
-      "return60": 1.72
+      "close": 766.15,
+      "return20": 0.57,
+      "return60": 2.47
     },
     "QQQ": {
-      "close": 737.93,
-      "return20": 2.95,
-      "return60": 2.09
+      "close": 743.6,
+      "return20": 5.08,
+      "return60": 4.82
     },
     "IWM": {
-      "close": 279.01,
-      "return20": -5.08,
-      "return60": -6.65
+      "close": 279.04,
+      "return20": -3.97,
+      "return60": -5.79
     },
     "ARKK": {
-      "close": 89.45,
-      "return20": 4.53,
-      "return60": 6.98
+      "close": 89.56,
+      "return20": 7.8,
+      "return60": 10.31
     },
     "XIU.TO": {
-      "close": 52.73,
-      "return20": -1.71,
-      "return60": 0.86
+      "close": 52.54,
+      "return20": -1.11,
+      "return60": 0.5
     },
     "XIC.TO": {
-      "close": 56.57,
-      "return20": -2.5,
-      "return60": 0.52
+      "close": 56.41,
+      "return20": -1.57,
+      "return60": 0.41
     }
   }
 }
