@@ -1,21 +1,21 @@
-symbol,signal,strategy,score,dte,expiration,underlying,longStrike,shortStrike,longBid,longAsk,longMid,shortBid,shortAsk,shortMid,debit,maxReward,rewardRisk,stopUnderlying,targetUnderlying,beginnerStrategy,beginnerAction,optionStrike,optionType,optionEntry,optionCost,optionStop,optionStopDollars,optionTarget1,optionTarget1Dollars,optionTarget2,optionTarget2Dollars,underlyingStop,underlyingTarget,longVolume,longOpenInterest,longSpreadPct,longDelta,longGamma,longTheta,longVega,probabilityItm,atmIv,ivHvRatio,marketRegime,marketScore,eventRisk,eventReason,reason,contracts,maxRiskDollars,riskPerContract,riskPerSpread,plannedCapital
-TSM,CALL_SETUP,CALL_DEBIT_SPREAD,92,37,2026-11-13,485.8,505,530,11.5,12.85,12.18,5.45,5.95,5.7,6.48,18.52,2.86,469.4,513.13,BUY_CALL,Buy the 505 CALL expiring 2026-11-13.,505,CALL,12.18,1217.5,8.52,852.25,16.44,1643.63,20.7,2069.75,469.4,513.13,53,66,11.1,0.38,0.007,-0.296,0.583,33.4,34.4,1.27,MIXED,65,CLEAR,No dated event in window,bull trend stack; overbought risk; ADX confirms bullish trend; above upper Bollinger band,0,500,1217.5,1217.5,0
-NVDA,CALL_SETUP,CALL_DEBIT_SPREAD,87,37,2026-11-13,238.9,250,260,4.65,4.8,4.72,2.14,2.23,2.19,2.54,7.46,2.94,230.38,253.11,BUY_CALL,Buy the 250 CALL expiring 2026-11-13.,250,CALL,4.72,472.5,3.31,330.75,6.38,637.88,8.03,803.25,230.38,253.11,3376,2039,3.2,0.35,0.0167,-0.12,0.282,31.7,29.8,1.16,MIXED,65,MANUAL_CHECK,Earnings/manual check,bull trend stack; overbought risk; ADX confirms bullish trend,1,500,472.5,472.5,472.5
-META,NO_TRADE,CALL_DEBIT_SPREAD,80,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,MIXED,,MANUAL_CHECK,,No liquid long option found,0,500,,,
-NFLX,NO_TRADE,PUT_DEBIT_SPREAD,80,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,MIXED,,CLEAR,,No liquid long option found,0,750,,,
-MSFT,CALL_SETUP,CALL_DEBIT_SPREAD,77,37,2026-11-13,525.18,540,565,16.55,18.65,17.6,8.35,9.95,9.15,8.45,16.55,1.96,507.03,555.43,BUY_CALL,Buy the 540 CALL expiring 2026-11-13.,540,CALL,17.6,1760,12.32,1232,23.76,2376,29.92,2992,507.03,555.43,72,1154,11.9,0.46,0.0069,-0.335,0.67,42,34.3,1.62,MIXED,65,MANUAL_CHECK,Earnings/manual check,bull trend stack; ADX confirms bullish trend; above upper Bollinger band,0,500,1760,1760,0
-INTC,WATCH,CALL_DEBIT_SPREAD,72,37,2026-11-13,116.19,115,121,8.4,8.6,8.5,6.25,6.5,6.38,2.13,3.88,1.82,107.38,130.87,BUY_CALL,Buy the 115 CALL expiring 2026-11-13.,115,CALL,8.5,850,5.95,595,11.48,1147.5,14.45,1445,107.38,130.87,390,141,2.4,0.51,0.0168,-0.133,0.143,42.4,63.4,0.85,MIXED,65,CLEAR,No dated event in window,bull trend stack; ADX confirms bullish trend,0,500,850,850,0
-MU,WATCH,CALL_DEBIT_SPREAD,70,37,2026-11-13,1063.96,1100,1150,40.4,43.7,42.05,24.75,28.5,26.63,15.42,34.58,2.24,1003.13,1165.35,BUY_CALL,Buy the 1100 CALL expiring 2026-11-13.,1100,CALL,42.05,4205,29.43,2943.5,56.77,5676.75,71.48,7148.5,1003.13,1165.35,176,97,7.8,0.41,0.0024,-0.899,1.296,35.3,48.7,1.04,MIXED,65,CLEAR,No dated event in window,bull trend stack; ADX confirms bearish trend,0,500,4205,4205,0
-PLTR,WATCH,CALL_DEBIT_SPREAD,70,37,2026-11-13,189.4,195,205,12.55,12.85,12.7,8.6,8.9,8.75,3.95,6.05,1.53,180.94,203.5,BUY_CALL,Buy the 195 CALL expiring 2026-11-13.,195,CALL,12.7,1270,8.89,889,17.14,1714.5,21.59,2159,180.94,203.5,73,115,2.4,0.51,0.0115,-0.196,0.244,44,56.7,2.12,MIXED,65,CLEAR,No dated event in window,bull trend stack; ADX confirms bullish trend,0,500,1270,1270,0
-AMD,WATCH,CALL_DEBIT_SPREAD,63,37,2026-11-13,631.75,645,675,47.3,50.05,48.67,34.4,35.7,35.05,13.63,16.38,1.2,598.06,687.91,BUY_CALL,Buy the 645 CALL expiring 2026-11-13.,645,CALL,48.67,4867.5,34.07,3407.25,65.71,6571.13,82.75,8274.75,598.06,687.91,92,77,5.6,0.56,0.0034,-0.65,0.816,48.9,54.9,1.03,MIXED,65,MANUAL_CHECK,Earnings/manual check,bull trend stack; ADX confirms bullish trend,0,500,4867.5,4867.5,0
-C,WATCH,PUT_DEBIT_SPREAD,55,37,2026-11-13,128.55,132,125,6.85,7.6,7.22,3.3,3.8,3.55,3.67,3.33,0.9,133.01,121.12,BUY_PUT,Buy the 132 PUT expiring 2026-11-13.,132,PUT,7.22,722.5,5.06,505.75,9.75,975.38,12.28,1228.25,133.01,121.12,81,707,10.4,-0.56,0.0284,-0.065,0.161,60.4,33.9,1.62,MIXED,65,CLEAR,No dated event in window,bear trend stack; ADX confirms bearish trend,1,750,722.5,722.5,722.5
-AAPL,PREMIUM_SELL_WATCH,IRON_CONDOR_WATCH,50,37,,332.89,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,27,1.29,MIXED,,MANUAL_CHECK,Earnings/manual check,bull trend stack; neutral technical regime,0,500,,,
-WDC,NO_TRADE,NONE,50,37,,441.64,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,67.5,1.08,MIXED,,CLEAR,No dated event in window,bear trend stack; volume expansion; neutral technical regime,0,500,,,
-COIN,NO_TRADE,NONE,47,37,,188.22,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,69.1,0.91,MIXED,,CLEAR,No dated event in window,ADX confirms bullish trend; neutral technical regime,0,500,,,
-MSTR,NO_TRADE,NONE,47,37,,164.43,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,64.6,0.82,MIXED,,CLEAR,No dated event in window,ADX confirms bullish trend; neutral technical regime,0,500,,,
-SNDK,NO_TRADE,NONE,40,37,,1704.16,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,60,0.92,MIXED,,CLEAR,No dated event in window,bull trend stack; neutral technical regime,0,500,,,
-AMZN,PREMIUM_SELL_WATCH,IRON_CONDOR_WATCH,33,37,,251.4,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,40.3,1.88,MIXED,,MANUAL_CHECK,Earnings/manual check,bear trend stack; weak trend strength; neutral technical regime,0,500,,,
-AVGO,NO_TRADE,NONE,32,37,,362.51,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,41.1,1.21,MIXED,,CLEAR,No dated event in window,neutral technical regime,0,500,,,
-GOOGL,PREMIUM_SELL_WATCH,IRON_CONDOR_WATCH,32,37,,346.47,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,37.7,1.46,MIXED,,CLEAR,No dated event in window,neutral technical regime,0,500,,,
-TSLA,PREMIUM_SELL_WATCH,IRON_CONDOR_WATCH,30,37,,378.73,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,44.3,1.36,MIXED,,MANUAL_CHECK,Earnings/manual check,ADX confirms bullish trend; neutral technical regime,0,500,,,
-ORCL,NO_TRADE,NONE,25,37,,142.48,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,52.5,1.17,MIXED,,CLEAR,No dated event in window,bear trend stack; neutral technical regime,0,500,,,
+symbol,signal,strategy,score,reason,marketRegime,eventRisk,contracts,maxRiskDollars,riskPerContract,riskPerSpread,plannedCapital
+WDC,NO_TRADE,PUT_DEBIT_SPREAD,102,No liquid long option found,MIXED,CLEAR,0,750,,,
+PLTR,CALL_SETUP,CALL_DEBIT_SPREAD,82,bull trend stack; ADX confirms bullish trend,MIXED,CLEAR,0,500,1075,1075,0
+NFLX,PUT_SETUP,PUT_DEBIT_SPREAD,80,bear trend stack; ADX confirms bearish trend,MIXED,CLEAR,2,750,284.5,284.5,569
+TSM,CALL_SETUP,CALL_DEBIT_SPREAD,80,bull trend stack; ADX confirms bullish trend,MIXED,CLEAR,0,500,1150,1150,0
+MSFT,CALL_SETUP,CALL_DEBIT_SPREAD,77,bull trend stack; overbought risk; ADX confirms bullish trend,MIXED,MANUAL_CHECK,0,500,1747.5,1747.5,0
+META,WATCH,CALL_DEBIT_SPREAD,75,bull trend stack; ADX confirms bullish trend,MIXED,MANUAL_CHECK,0,500,3867.5,3867.5,0
+NVDA,WATCH,CALL_DEBIT_SPREAD,75,bull trend stack; ADX confirms bullish trend,MIXED,MANUAL_CHECK,0,500,582.5,582.5,0
+MU,WATCH,CALL_DEBIT_SPREAD,70,bull trend stack; ADX confirms bearish trend,MIXED,CLEAR,0,500,6045,6045,0
+AAPL,WATCH,CALL_DEBIT_SPREAD,65,bull trend stack,MIXED,MANUAL_CHECK,0,500,777.5,777.5,0
+AMD,WATCH,CALL_DEBIT_SPREAD,63,bull trend stack; ADX confirms bullish trend,MIXED,MANUAL_CHECK,0,500,4377.5,4377.5,0
+C,WATCH,PUT_DEBIT_SPREAD,55,bear trend stack; ADX confirms bearish trend,MIXED,CLEAR,0,750,797.5,797.5,0
+AMZN,PREMIUM_SELL_WATCH,IRON_CONDOR_WATCH,42,ADX confirms bullish trend; neutral technical regime,MIXED,MANUAL_CHECK,0,500,,,
+AVGO,NO_TRADE,NONE,42,ADX confirms bullish trend; neutral technical regime,MIXED,CLEAR,0,500,,,
+ORCL,NO_TRADE,NONE,42,neutral technical regime,MIXED,CLEAR,0,500,,,
+TSLA,PREMIUM_SELL_WATCH,IRON_CONDOR_WATCH,42,ADX confirms bullish trend; neutral technical regime,MIXED,MANUAL_CHECK,0,500,,,
+INTC,NO_TRADE,NONE,40,bull trend stack; ADX confirms bearish trend; neutral technical regime,MIXED,CLEAR,0,500,,,
+MSTR,NO_TRADE,NONE,35,ADX confirms bullish trend; neutral technical regime,MIXED,CLEAR,0,500,,,
+COIN,NO_TRADE,NONE,32,neutral technical regime,MIXED,CLEAR,0,500,,,
+GOOGL,PREMIUM_SELL_WATCH,IRON_CONDOR_WATCH,32,neutral technical regime,MIXED,CLEAR,0,500,,,
+SNDK,NO_TRADE,NONE,23,neutral technical regime,MIXED,CLEAR,0,500,,,
