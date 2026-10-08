@@ -1,21 +1,21 @@
 symbol,signal,strategy,score,reason,marketRegime,eventRisk,contracts,maxRiskDollars,riskPerContract,riskPerSpread,plannedCapital
 WDC,NO_TRADE,PUT_DEBIT_SPREAD,102,No liquid long option found,MIXED,CLEAR,0,750,,,
-PLTR,CALL_SETUP,CALL_DEBIT_SPREAD,82,bull trend stack; ADX confirms bullish trend,MIXED,CLEAR,0,500,1075,1075,0
-NFLX,PUT_SETUP,PUT_DEBIT_SPREAD,80,bear trend stack; ADX confirms bearish trend,MIXED,CLEAR,2,750,284.5,284.5,569
-TSM,CALL_SETUP,CALL_DEBIT_SPREAD,80,bull trend stack; ADX confirms bullish trend,MIXED,CLEAR,0,500,1150,1150,0
-MSFT,CALL_SETUP,CALL_DEBIT_SPREAD,77,bull trend stack; overbought risk; ADX confirms bullish trend,MIXED,MANUAL_CHECK,0,500,1747.5,1747.5,0
-META,WATCH,CALL_DEBIT_SPREAD,75,bull trend stack; ADX confirms bullish trend,MIXED,MANUAL_CHECK,0,500,3867.5,3867.5,0
-NVDA,WATCH,CALL_DEBIT_SPREAD,75,bull trend stack; ADX confirms bullish trend,MIXED,MANUAL_CHECK,0,500,582.5,582.5,0
-MU,WATCH,CALL_DEBIT_SPREAD,70,bull trend stack; ADX confirms bearish trend,MIXED,CLEAR,0,500,6045,6045,0
-AAPL,WATCH,CALL_DEBIT_SPREAD,65,bull trend stack,MIXED,MANUAL_CHECK,0,500,777.5,777.5,0
-AMD,WATCH,CALL_DEBIT_SPREAD,63,bull trend stack; ADX confirms bullish trend,MIXED,MANUAL_CHECK,0,500,4377.5,4377.5,0
-C,WATCH,PUT_DEBIT_SPREAD,55,bear trend stack; ADX confirms bearish trend,MIXED,CLEAR,0,750,797.5,797.5,0
-AMZN,PREMIUM_SELL_WATCH,IRON_CONDOR_WATCH,42,ADX confirms bullish trend; neutral technical regime,MIXED,MANUAL_CHECK,0,500,,,
-AVGO,NO_TRADE,NONE,42,ADX confirms bullish trend; neutral technical regime,MIXED,CLEAR,0,500,,,
-ORCL,NO_TRADE,NONE,42,neutral technical regime,MIXED,CLEAR,0,500,,,
-TSLA,PREMIUM_SELL_WATCH,IRON_CONDOR_WATCH,42,ADX confirms bullish trend; neutral technical regime,MIXED,MANUAL_CHECK,0,500,,,
-INTC,NO_TRADE,NONE,40,bull trend stack; ADX confirms bearish trend; neutral technical regime,MIXED,CLEAR,0,500,,,
-MSTR,NO_TRADE,NONE,35,ADX confirms bullish trend; neutral technical regime,MIXED,CLEAR,0,500,,,
-COIN,NO_TRADE,NONE,32,neutral technical regime,MIXED,CLEAR,0,500,,,
+AMD,CALL_SETUP,CALL_DEBIT_SPREAD,87,bull trend stack; overbought risk; ADX confirms bullish trend,MIXED,MANUAL_CHECK,0,500,4362.5,4362.5,0
+NVDA,CALL_SETUP,CALL_DEBIT_SPREAD,87,bull trend stack; overbought risk; ADX confirms bullish trend,MIXED,MANUAL_CHECK,0,500,597.5,597.5,0
+PLTR,CALL_SETUP,CALL_DEBIT_SPREAD,82,bull trend stack; ADX confirms bullish trend,MIXED,CLEAR,0,500,1137.5,1137.5,0
+NFLX,NO_TRADE,PUT_DEBIT_SPREAD,80,No liquid long option found,MIXED,CLEAR,0,750,,,
+TSM,WATCH,CALL_DEBIT_SPREAD,80,bull trend stack; overbought risk; ADX confirms bullish trend,MIXED,CLEAR,0,500,1147.5,1147.5,0
+MSFT,WATCH,CALL_DEBIT_SPREAD,77,bull trend stack; overbought risk; ADX confirms bullish trend,MIXED,MANUAL_CHECK,0,500,1735,1735,0
+META,WATCH,CALL_DEBIT_SPREAD,75,bull trend stack; ADX confirms bullish trend,MIXED,MANUAL_CHECK,0,500,3817.5,3817.5,0
+C,NO_TRADE,PUT_DEBIT_SPREAD,65,No liquid long option found,MIXED,CLEAR,0,750,,,
+AAPL,PREMIUM_SELL_WATCH,IRON_CONDOR_WATCH,60,bull trend stack; neutral technical regime,MIXED,MANUAL_CHECK,0,500,,,
+MU,NO_TRADE,NONE,58,bull trend stack; ADX confirms bearish trend; neutral technical regime,MIXED,CLEAR,0,500,,,
+TSLA,PREMIUM_SELL_WATCH,IRON_CONDOR_WATCH,54,ADX confirms bullish trend; neutral technical regime,MIXED,MANUAL_CHECK,0,500,,,
+MSTR,NO_TRADE,NONE,47,ADX confirms bullish trend; neutral technical regime,MIXED,CLEAR,0,500,,,
+SNDK,NO_TRADE,NONE,42,neutral technical regime,MIXED,CLEAR,0,500,,,
+COIN,NO_TRADE,NONE,35,ADX confirms bullish trend; neutral technical regime,MIXED,CLEAR,0,500,,,
+INTC,NO_TRADE,NONE,35,ADX confirms bullish trend; neutral technical regime,MIXED,CLEAR,0,500,,,
+AMZN,PREMIUM_SELL_WATCH,IRON_CONDOR_WATCH,32,neutral technical regime,MIXED,MANUAL_CHECK,0,500,,,
+AVGO,NO_TRADE,NONE,32,volume expansion; neutral technical regime,MIXED,CLEAR,0,500,,,
 GOOGL,PREMIUM_SELL_WATCH,IRON_CONDOR_WATCH,32,neutral technical regime,MIXED,CLEAR,0,500,,,
-SNDK,NO_TRADE,NONE,23,neutral technical regime,MIXED,CLEAR,0,500,,,
+ORCL,NO_TRADE,NONE,30,neutral technical regime,MIXED,CLEAR,0,500,,,
