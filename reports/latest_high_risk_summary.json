@@ -6,9 +6,9 @@
   "topReason": "The chart is interesting, but event risk is elevated. I would reduce size or wait until the news clears.",
   "buyCount": 1,
   "starterCount": 0,
-  "watchCount": 0,
-  "plannedCapital": 700,
-  "cashReserve": 4300,
+  "watchCount": 1,
+  "plannedCapital": 1000,
+  "cashReserve": 4000,
   "rules": [
     "This is not retirement money.",
     "Maximum 5-7 names.",
@@ -18,34 +18,34 @@
   ],
   "marketContext": {
     "SPY": {
-      "close": 773.09,
-      "return20": 0.69,
-      "return60": 4.35
+      "close": 762.02,
+      "return20": -0.67,
+      "return60": 4.46
     },
     "QQQ": {
-      "close": 725.2,
-      "return20": -2.16,
-      "return60": 7.36
+      "close": 703.78,
+      "return20": -5.04,
+      "return60": 6.35
     },
     "IWM": {
-      "close": 276.48,
-      "return20": -1.93,
-      "return60": -5.76
+      "close": 275.79,
+      "return20": -2.08,
+      "return60": -4.43
     },
     "ARKK": {
-      "close": 85.42,
-      "return20": -4.85,
-      "return60": 17.9
+      "close": 81.37,
+      "return20": -11.26,
+      "return60": 15.29
     },
     "XIU.TO": {
-      "close": 54.48,
-      "return20": 1.3,
-      "return60": 3.3
+      "close": 54.11,
+      "return20": 2.19,
+      "return60": 1.81
     },
     "XIC.TO": {
-      "close": 57.99,
-      "return20": -0.36,
-      "return60": 2.71
+      "close": 57.38,
+      "return20": 0.16,
+      "return60": 1
     }
   }
 }
