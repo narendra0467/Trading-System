@@ -4,11 +4,11 @@
   "primaryAction": "AI: SPEC BUY",
   "topSymbol": "AI",
   "topReason": "The chart is interesting, but event risk is elevated. I would reduce size or wait until the news clears.",
-  "buyCount": 2,
+  "buyCount": 1,
   "starterCount": 0,
-  "watchCount": 0,
-  "plannedCapital": 1400,
-  "cashReserve": 3600,
+  "watchCount": 1,
+  "plannedCapital": 1000,
+  "cashReserve": 4000,
   "rules": [
     "This is not retirement money.",
     "Maximum 5-7 names.",
@@ -18,24 +18,24 @@
   ],
   "marketContext": {
     "SPY": {
-      "close": 765.29,
-      "return20": -0.04,
-      "return60": 2.44
+      "close": 759.97,
+      "return20": -1.48,
+      "return60": 2.46
     },
     "QQQ": {
-      "close": 712.2,
-      "return20": -3.3,
-      "return60": 3.52
+      "close": 704.4,
+      "return20": -5.39,
+      "return60": 3.05
     },
     "IWM": {
-      "close": 276.97,
-      "return20": -1.09,
-      "return60": -4.89
+      "close": 275.75,
+      "return20": -2.21,
+      "return60": -5.76
     },
     "ARKK": {
-      "close": 81.81,
-      "return20": -8.34,
-      "return60": 14.83
+      "close": 81.99,
+      "return20": -9.67,
+      "return60": 12.47
     },
     "XIU.TO": {
       "close": 54.13,

@@ -1,21 +1,21 @@
 symbol,signal,strategy,score,reason,marketRegime,eventRisk,contracts,maxRiskDollars,riskPerContract,riskPerSpread,plannedCapital
-C,NO_TRADE,PUT_DEBIT_SPREAD,80,No liquid long option found,RISK_OFF,HIGH,0,1000,,,
-WDC,NO_TRADE,PUT_DEBIT_SPREAD,80,No liquid long option found,RISK_OFF,HIGH,0,1000,,,
+C,NO_TRADE,PUT_DEBIT_SPREAD,102,No liquid long option found,RISK_OFF,HIGH,0,1000,,,
+NFLX,NO_TRADE,PUT_DEBIT_SPREAD,92,No liquid long option found,RISK_OFF,HIGH,0,1000,,,
+WDC,NO_TRADE,PUT_DEBIT_SPREAD,92,No liquid long option found,RISK_OFF,HIGH,0,1000,,,
+SNDK,NO_TRADE,PUT_DEBIT_SPREAD,90,No liquid long option found,RISK_OFF,HIGH,0,1000,,,
+AVGO,AVOID_EVENT_RISK,PUT_DEBIT_SPREAD,87,bear trend stack; ADX confirms bearish trend,RISK_OFF,HIGH,0,1000,1630,1630,0
+GOOGL,NO_TRADE,PUT_DEBIT_SPREAD,87,No liquid long option found,RISK_OFF,HIGH,0,1000,,,
 COIN,NO_TRADE,PUT_DEBIT_SPREAD,77,No liquid long option found,RISK_OFF,HIGH,0,1000,,,
-NFLX,AVOID_EVENT_RISK,PUT_DEBIT_SPREAD,77,bear trend stack; ADX confirms bearish trend; below lower Bollinger band,RISK_OFF,HIGH,5,1000,178,178,890
-SNDK,NO_TRADE,PUT_DEBIT_SPREAD,70,No liquid long option found,RISK_OFF,HIGH,0,1000,,,
-AVGO,AVOID_EVENT_RISK,PUT_DEBIT_SPREAD,65,bear trend stack; ADX confirms bearish trend,RISK_OFF,HIGH,0,1000,1640,1640,0
-ORCL,AVOID_EVENT_RISK,PUT_DEBIT_SPREAD,65,bear trend stack; ADX confirms bearish trend,RISK_OFF,HIGH,1,1000,907.5,907.5,907.5
-GOOGL,AVOID_EVENT_RISK,PUT_DEBIT_SPREAD,62,bear trend stack; ADX confirms bearish trend; below lower Bollinger band,RISK_OFF,HIGH,0,1000,1575,1575,0
-INTC,AVOID_EVENT_RISK,PUT_DEBIT_SPREAD,55,bear trend stack; ADX confirms bearish trend,RISK_OFF,HIGH,1,1000,555,555,555
-AMZN,PREMIUM_SELL_WATCH,IRON_CONDOR_WATCH,52,ADX confirms bearish trend; neutral technical regime,RISK_OFF,HIGH,0,250,,,
-META,NO_TRADE,NONE,52,ADX confirms bearish trend; volume expansion; neutral technical regime,RISK_OFF,HIGH,0,250,,,
-MU,NO_TRADE,NONE,47,bear trend stack; ADX confirms bearish trend; neutral technical regime,RISK_OFF,HIGH,0,250,,,
-TSLA,NO_TRADE,NONE,46,volume expansion; neutral technical regime,RISK_OFF,HIGH,0,250,,,
-PLTR,WATCH,CALL_DEBIT_SPREAD,45,bull trend stack; ADX confirms bullish trend,RISK_OFF,HIGH,0,250,1350,1350,0
-MSTR,NO_TRADE,NONE,42,ADX confirms bearish trend; neutral technical regime,RISK_OFF,HIGH,0,250,,,
-AAPL,WATCH,CALL_DEBIT_SPREAD,35,bull trend stack; ADX confirms bullish trend,RISK_OFF,HIGH,0,250,1507.5,1507.5,0
+INTC,NO_TRADE,PUT_DEBIT_SPREAD,65,No liquid long option found,RISK_OFF,HIGH,0,1000,,,
+ORCL,AVOID_EVENT_RISK,PUT_DEBIT_SPREAD,55,bear trend stack; ADX confirms bearish trend,RISK_OFF,HIGH,1,1000,935,935,935
+META,NO_TRADE,NONE,52,ADX confirms bearish trend; below lower Bollinger band; neutral technical regime,RISK_OFF,HIGH,0,250,,,
+NVDA,PREMIUM_SELL_WATCH,IRON_CONDOR_WATCH,52,ADX confirms bearish trend; neutral technical regime,RISK_OFF,HIGH,0,250,,,
+AAPL,WATCH,CALL_DEBIT_SPREAD,47,bull trend stack; ADX confirms bullish trend,RISK_OFF,HIGH,0,250,1475,1475,0
+AMZN,PREMIUM_SELL_WATCH,IRON_CONDOR_WATCH,42,ADX confirms bearish trend; neutral technical regime,RISK_OFF,HIGH,0,250,,,
+MU,AVOID_EVENT_RISK,PUT_DEBIT_SPREAD,40,bear trend stack; ADX confirms bearish trend,RISK_OFF,HIGH,0,1000,5192.5,5192.5,0
+MSTR,NO_TRADE,NONE,35,ADX confirms bullish trend; neutral technical regime,RISK_OFF,HIGH,0,250,,,
+PLTR,WATCH,CALL_DEBIT_SPREAD,35,bull trend stack; ADX confirms bearish trend,RISK_OFF,HIGH,0,250,940,940,0
+MSFT,PREMIUM_SELL_WATCH,IRON_CONDOR_WATCH,33,ADX confirms bearish trend; neutral technical regime,RISK_OFF,HIGH,0,250,,,
 AMD,NO_TRADE,NONE,30,ADX confirms bearish trend; neutral technical regime,RISK_OFF,HIGH,0,250,,,
-NVDA,PREMIUM_SELL_WATCH,IRON_CONDOR_WATCH,30,ADX confirms bearish trend; neutral technical regime,RISK_OFF,HIGH,0,250,,,
 TSM,NO_TRADE,NONE,30,ADX confirms bearish trend; neutral technical regime,RISK_OFF,HIGH,0,250,,,
-MSFT,WATCH,CALL_DEBIT_SPREAD,25,bull trend stack; ADX confirms bearish trend,RISK_OFF,HIGH,0,250,2412.5,2412.5,0
+TSLA,NO_TRADE,NONE,22,neutral technical regime,RISK_OFF,HIGH,0,250,,,

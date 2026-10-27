@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-10-26T20:05:31.423Z",
+  "generatedAt": "2026-10-27T00:02:16.822Z",
   "qualityMode": true,
   "investorMode": true,
   "scanned": 78,
@@ -9,7 +9,7 @@
       "name": "Lemonade, Inc.",
       "sector": "Financial Services",
       "theme": "insurtech",
-      "marketCap": 3487491584,
+      "marketCap": 3489039616,
       "marketCapDisplay": "$3.49B",
       "revenueGrowth": 79.4,
       "revenueGrowthDisplay": "79.4%",
@@ -67,7 +67,7 @@
       ],
       "verdict": "Early Quality Compounder: The setup has enough business progress and survivability to deserve deeper research.",
       "dataQuality": {
-        "marketDataDate": "2026-10-26T20:05:12.307Z",
+        "marketDataDate": "2026-10-27T00:01:55.577Z",
         "latestReportedQuarter": "2026-06-30",
         "latestReportedQuarterEnd": "2026-06-30",
         "lastEarningsDate": "2026-06-30",
@@ -468,9 +468,9 @@
       ],
       "multibaggerPath": {
         "currentMarketCap": "$3.49B",
-        "threeXMarketCap": "$10.46B",
-        "fiveXMarketCap": "$17.44B",
-        "tenXMarketCap": "$34.87B",
+        "threeXMarketCap": "$10.47B",
+        "fiveXMarketCap": "$17.45B",
+        "tenXMarketCap": "$34.89B",
         "path3": "realistic",
         "path5": "stretched",
         "path10": "stretched",
@@ -580,13 +580,13 @@
       },
       "entryQuality": {
         "classification": "Broken chart",
-        "priceVs50Day": "-6.9% vs 50-day EMA",
-        "priceVs200Day": "-16.9% vs long-term EMA proxy",
-        "rsi": 47.9,
-        "support": "$41.16",
-        "resistance": "$56.76",
+        "priceVs50Day": "-7.4% vs 50-day EMA",
+        "priceVs200Day": "-17.3% vs long-term EMA proxy",
+        "rsi": 46.6,
+        "support": "$40.89",
+        "resistance": "$57.02",
         "volumeTrend": "Weak",
-        "highLowLocation": "81.8% of 55-day high",
+        "highLowLocation": "81.6% of 55-day high",
         "earningsReaction": "Earnings/guidance language found - wait for confirmation if volatility is elevated."
       },
       "killCriteria": [
@@ -595,7 +595,7 @@
         "Free cash flow worsens and cash runway becomes dependent on unfavorable financing.",
         "Dilution accelerates beyond the current read: Unavailable.",
         "A major customer, backlog, product, or partnership catalyst fails to convert into real revenue.",
-        "The stock breaks major long-term support near $41.16 and fails to recover.",
+        "The stock breaks major long-term support near $40.89 and fails to recover.",
         "Balance sheet risk, filing/reporting risk, or hype/promotion risk moves into the red zone."
       ],
       "positionSizingCategory": "Small speculative basket candidate",
@@ -665,7 +665,7 @@
       ],
       "verdict": "Early Quality Compounder: The setup has enough business progress and survivability to deserve deeper research.",
       "dataQuality": {
-        "marketDataDate": "2026-10-26T20:05:24.100Z",
+        "marketDataDate": "2026-10-27T00:02:06.044Z",
         "latestReportedQuarter": "2026-06-30",
         "latestReportedQuarterEnd": "2026-06-30",
         "lastEarningsDate": "2026-06-30",
@@ -1087,7 +1087,7 @@
         "read": "High if cash runway is weak or share growth is heavy."
       },
       "inflectionSignal": {
-        "classification": "No clear inflection",
+        "classification": "Early inflection",
         "signals": [
           {
             "label": "Revenue acceleration",
@@ -1136,7 +1136,7 @@
           },
           {
             "label": "Valuation reset after selloff",
-            "passed": false,
+            "passed": true,
             "value": "Attractive"
           }
         ]
@@ -1177,13 +1177,13 @@
       },
       "entryQuality": {
         "classification": "Ready for starter",
-        "priceVs50Day": "3.7% vs 50-day EMA",
-        "priceVs200Day": "-0.3% vs long-term EMA proxy",
-        "rsi": 71,
-        "support": "$44.43",
-        "resistance": "$50.98",
-        "volumeTrend": "Weak",
-        "highLowLocation": "90% of 55-day high",
+        "priceVs50Day": "2.3% vs 50-day EMA",
+        "priceVs200Day": "-1.8% vs long-term EMA proxy",
+        "rsi": 65.8,
+        "support": "$44.37",
+        "resistance": "$48.42",
+        "volumeTrend": "Mixed",
+        "highLowLocation": "88.5% of 55-day high",
         "earningsReaction": "Earnings/guidance language found - wait for confirmation if volatility is elevated."
       },
       "killCriteria": [
@@ -1192,7 +1192,7 @@
         "Free cash flow worsens and cash runway becomes dependent on unfavorable financing.",
         "Dilution accelerates beyond the current read: Unavailable.",
         "A major customer, backlog, product, or partnership catalyst fails to convert into real revenue.",
-        "The stock breaks major long-term support near $44.43 and fails to recover.",
+        "The stock breaks major long-term support near $44.37 and fails to recover.",
         "Balance sheet risk, filing/reporting risk, or hype/promotion risk moves into the red zone."
       ],
       "positionSizingCategory": "Small speculative basket candidate",
@@ -1268,7 +1268,7 @@
       ],
       "verdict": "Early Quality Compounder: The setup has enough business progress and survivability to deserve deeper research.",
       "dataQuality": {
-        "marketDataDate": "2026-10-26T20:05:16.790Z",
+        "marketDataDate": "2026-10-27T00:01:59.100Z",
         "latestReportedQuarter": "2026-06-30",
         "latestReportedQuarterEnd": "2026-06-30",
         "lastEarningsDate": "2026-06-30",
@@ -1781,13 +1781,13 @@
       },
       "entryQuality": {
         "classification": "Broken chart",
-        "priceVs50Day": "-22.1% vs 50-day EMA",
-        "priceVs200Day": "-26.4% vs long-term EMA proxy",
-        "rsi": 16.6,
-        "support": "$130.66",
-        "resistance": "$184.27",
+        "priceVs50Day": "-22.3% vs 50-day EMA",
+        "priceVs200Day": "-26.2% vs long-term EMA proxy",
+        "rsi": 17.2,
+        "support": "$130.6",
+        "resistance": "$188.36",
         "volumeTrend": "Weak",
-        "highLowLocation": "65.2% of 55-day high",
+        "highLowLocation": "65.7% of 55-day high",
         "earningsReaction": "Earnings/guidance language found - wait for confirmation if volatility is elevated."
       },
       "killCriteria": [
@@ -1796,7 +1796,7 @@
         "Free cash flow worsens and cash runway becomes dependent on unfavorable financing.",
         "Dilution accelerates beyond the current read: Unavailable.",
         "A major customer, backlog, product, or partnership catalyst fails to convert into real revenue.",
-        "The stock breaks major long-term support near $130.66 and fails to recover.",
+        "The stock breaks major long-term support near $130.6 and fails to recover.",
         "Balance sheet risk, filing/reporting risk, or hype/promotion risk moves into the red zone."
       ],
       "positionSizingCategory": "Small speculative basket candidate",
@@ -1868,7 +1868,7 @@
       ],
       "verdict": "Early Quality Compounder: The setup has enough business progress and survivability to deserve deeper research.",
       "dataQuality": {
-        "marketDataDate": "2026-10-26T20:05:16.449Z",
+        "marketDataDate": "2026-10-27T00:01:58.991Z",
         "latestReportedQuarter": "2026-06-30",
         "latestReportedQuarterEnd": "2026-06-30",
         "lastEarningsDate": "2026-06-30",
@@ -1970,8 +1970,8 @@
         {
           "label": "Moat / uniqueness",
           "weight": 10,
-          "score": 79,
-          "note": "Strong moat"
+          "score": 73,
+          "note": "Emerging moat"
         },
         {
           "label": "Catalyst strength",
@@ -2123,7 +2123,7 @@
           {
             "label": "Moat or uniqueness",
             "status": "pass",
-            "note": "The business needs a reason competitors cannot easily copy the upside. Score 79/100."
+            "note": "The business needs a reason competitors cannot easily copy the upside. Score 73/100."
           },
           {
             "label": "Catalyst backed by real evidence",
@@ -2391,13 +2391,13 @@
       },
       "entryQuality": {
         "classification": "Ready for starter",
-        "priceVs50Day": "1.4% vs 50-day EMA",
-        "priceVs200Day": "12.6% vs long-term EMA proxy",
-        "rsi": 54.5,
-        "support": "$54.02",
-        "resistance": "$57.09",
-        "volumeTrend": "Strong",
-        "highLowLocation": "94.3% of 55-day high",
+        "priceVs50Day": "0.3% vs 50-day EMA",
+        "priceVs200Day": "11.5% vs long-term EMA proxy",
+        "rsi": 49.9,
+        "support": "$53.99",
+        "resistance": "$54.7",
+        "volumeTrend": "Constructive",
+        "highLowLocation": "93.2% of 55-day high",
         "earningsReaction": "Earnings/guidance language found - wait for confirmation if volatility is elevated."
       },
       "killCriteria": [
@@ -2406,7 +2406,7 @@
         "Free cash flow worsens and cash runway becomes dependent on unfavorable financing.",
         "Dilution accelerates beyond the current read: Unavailable.",
         "A major customer, backlog, product, or partnership catalyst fails to convert into real revenue.",
-        "The stock breaks major long-term support near $54.02 and fails to recover.",
+        "The stock breaks major long-term support near $53.99 and fails to recover.",
         "Balance sheet risk, filing/reporting risk, or hype/promotion risk moves into the red zone."
       ],
       "positionSizingCategory": "Small speculative basket candidate",
@@ -2422,7 +2422,7 @@
       "name": "Planet Labs PBC",
       "sector": "Industrials",
       "theme": "satellite imaging",
-      "marketCap": 5008367616,
+      "marketCap": 5006548480,
       "marketCapDisplay": "$5.01B",
       "revenueGrowth": 58.1,
       "revenueGrowthDisplay": "58.1%",
@@ -2446,7 +2446,7 @@
       "bullCase": "The upside case is that revenue keeps compounding, margins scale, dilution stays controlled, and catalysts prove there is a real business curve rather than a one-quarter trade.",
       "bearCase": "The downside case is that valuation expectations reset, growth slows, or the market decides the company is not as unique as the story suggests.",
       "businessModel": "It makes money by selling products or services tied to Aerospace & Defense. In plain English: Planet Labs PBC engages in the design, construction, and launch of constellations of satellites with the intent of providing high-cadence geospatial data delivered to customers through an online platform in the United States and internationally.  The company offers SuperDove satellites to create an always-online scanner for the planet, with the goal of imaging the Earth every day at a ground sampling distance (GSD) resolution of up to 3.",
-      "whyUnderRadar": "Market cap: $5.01B; Analyst coverage: 11 analysts; Trading volume: $127M/day",
+      "whyUnderRadar": "Market cap: $5.01B; Analyst coverage: 11 analysts; Trading volume: $126.9M/day",
       "multibaggerWhy": "Growth, market size, margin quality, survivability, and catalysts create an asymmetric research setup if execution continues.",
       "proof": [
         "Revenue growth above 25%: 58.1%",
@@ -2479,7 +2479,7 @@
       ],
       "verdict": "Early Quality Compounder: The setup has enough business progress and survivability to deserve deeper research.",
       "dataQuality": {
-        "marketDataDate": "2026-10-26T20:05:24.411Z",
+        "marketDataDate": "2026-10-27T00:02:06.575Z",
         "latestReportedQuarter": "2026-07-31",
         "latestReportedQuarterEnd": "2026-07-31",
         "lastEarningsDate": "2026-07-31",
@@ -2530,7 +2530,7 @@
         {
           "label": "Liquidity risk",
           "score": 32,
-          "note": "$127M estimated daily dollar volume."
+          "note": "$126.9M estimated daily dollar volume."
         },
         {
           "label": "Filing / reporting risk",
@@ -2684,7 +2684,7 @@
         },
         {
           "label": "Trading volume",
-          "value": "$127M/day",
+          "value": "$126.9M/day",
           "score": 62,
           "note": "Enough liquidity matters, but very high dollar volume usually means the stock is already known."
         },
@@ -2880,9 +2880,9 @@
       ],
       "multibaggerPath": {
         "currentMarketCap": "$5.01B",
-        "threeXMarketCap": "$15.03B",
-        "fiveXMarketCap": "$25.04B",
-        "tenXMarketCap": "$50.08B",
+        "threeXMarketCap": "$15.02B",
+        "fiveXMarketCap": "$25.03B",
+        "tenXMarketCap": "$50.07B",
         "path3": "realistic",
         "path5": "stretched",
         "path10": "unrealistic",
@@ -2992,13 +2992,13 @@
       },
       "entryQuality": {
         "classification": "Broken chart",
-        "priceVs50Day": "-21.9% vs 50-day EMA",
-        "priceVs200Day": "-38.2% vs long-term EMA proxy",
-        "rsi": 38.4,
-        "support": "$12.03",
-        "resistance": "$18.96",
+        "priceVs50Day": "-24.6% vs 50-day EMA",
+        "priceVs200Day": "-40.2% vs long-term EMA proxy",
+        "rsi": 31.8,
+        "support": "$11.64",
+        "resistance": "$18.72",
         "volumeTrend": "Weak",
-        "highLowLocation": "55.6% of 55-day high",
+        "highLowLocation": "54.2% of 55-day high",
         "earningsReaction": "Earnings/guidance language found - wait for confirmation if volatility is elevated."
       },
       "killCriteria": [
@@ -3007,7 +3007,7 @@
         "Free cash flow worsens and cash runway becomes dependent on unfavorable financing.",
         "Dilution accelerates beyond the current read: Unavailable.",
         "A major customer, backlog, product, or partnership catalyst fails to convert into real revenue.",
-        "The stock breaks major long-term support near $12.03 and fails to recover.",
+        "The stock breaks major long-term support near $11.64 and fails to recover.",
         "Balance sheet risk, filing/reporting risk, or hype/promotion risk moves into the red zone."
       ],
       "positionSizingCategory": "Small speculative basket candidate",
@@ -3079,7 +3079,7 @@
       ],
       "verdict": "Early Quality Compounder: The setup has enough business progress and survivability to deserve deeper research.",
       "dataQuality": {
-        "marketDataDate": "2026-10-26T20:05:17.154Z",
+        "marketDataDate": "2026-10-27T00:01:59.560Z",
         "latestReportedQuarter": "2026-06-30",
         "latestReportedQuarterEnd": "2026-06-30",
         "lastEarningsDate": "2026-06-30",
@@ -3591,13 +3591,13 @@
       },
       "entryQuality": {
         "classification": "Broken chart",
-        "priceVs50Day": "-26.5% vs 50-day EMA",
-        "priceVs200Day": "-27.2% vs long-term EMA proxy",
-        "rsi": 25.2,
-        "support": "$42.67",
-        "resistance": "$75.83",
+        "priceVs50Day": "-27.8% vs 50-day EMA",
+        "priceVs200Day": "-28% vs long-term EMA proxy",
+        "rsi": 23.4,
+        "support": "$41.79",
+        "resistance": "$76.84",
         "volumeTrend": "Weak",
-        "highLowLocation": "59.5% of 55-day high",
+        "highLowLocation": "59% of 55-day high",
         "earningsReaction": "Earnings/guidance language found - wait for confirmation if volatility is elevated."
       },
       "killCriteria": [
@@ -3606,7 +3606,7 @@
         "Free cash flow worsens and cash runway becomes dependent on unfavorable financing.",
         "Dilution accelerates beyond the current read: Unavailable.",
         "A major customer, backlog, product, or partnership catalyst fails to convert into real revenue.",
-        "The stock breaks major long-term support near $42.67 and fails to recover.",
+        "The stock breaks major long-term support near $41.79 and fails to recover.",
         "Balance sheet risk, filing/reporting risk, or hype/promotion risk moves into the red zone."
       ],
       "positionSizingCategory": "Small speculative basket candidate",
@@ -3622,8 +3622,8 @@
       "name": "e.l.f. Beauty, Inc.",
       "sector": "Consumer Defensive",
       "theme": "consumer brand",
-      "marketCap": 6666133504,
-      "marketCapDisplay": "$6.67B",
+      "marketCap": 6664363008,
+      "marketCapDisplay": "$6.66B",
       "revenueGrowth": 35.5,
       "revenueGrowthDisplay": "35.5%",
       "revenueCagr3": 41.3999,
@@ -3646,7 +3646,7 @@
       "bullCase": "The upside case is that revenue keeps compounding, margins scale, dilution stays controlled, and catalysts prove there is a real business curve rather than a one-quarter trade.",
       "bearCase": "The downside case is that valuation expectations reset, growth slows, or the market decides the company is not as unique as the story suggests.",
       "businessModel": "It makes money by selling products or services tied to Household & Personal Products. In plain English: e. l.",
-      "whyUnderRadar": "Market cap: $6.67B; Short interest: 8.21%",
+      "whyUnderRadar": "Market cap: $6.66B; Short interest: 8.21%",
       "multibaggerWhy": "Growth, market size, margin quality, survivability, and catalysts create an asymmetric research setup if execution continues.",
       "proof": [
         "Revenue growth above 25%: 35.5%",
@@ -3674,7 +3674,7 @@
       ],
       "verdict": "Early Quality Compounder: The setup has enough business progress and survivability to deserve deeper research.",
       "dataQuality": {
-        "marketDataDate": "2026-10-26T20:05:29.887Z",
+        "marketDataDate": "2026-10-27T00:02:15.329Z",
         "latestReportedQuarter": "2026-06-30",
         "latestReportedQuarterEnd": "2026-06-30",
         "lastEarningsDate": "2026-06-30",
@@ -3847,7 +3847,7 @@
       "underRadarFactors": [
         {
           "label": "Market cap",
-          "value": "$6.67B",
+          "value": "$6.66B",
           "score": 85,
           "note": "Best hidden setups are usually small or mid cap, not already mega-cap."
         },
@@ -4056,7 +4056,7 @@
           "label": "Small/mid-cap status",
           "weight": 11,
           "score": 58,
-          "read": "$6.67B"
+          "read": "$6.66B"
         },
         {
           "label": "Misunderstood business model",
@@ -4072,10 +4072,10 @@
         }
       ],
       "multibaggerPath": {
-        "currentMarketCap": "$6.67B",
-        "threeXMarketCap": "$20B",
-        "fiveXMarketCap": "$33.33B",
-        "tenXMarketCap": "$66.66B",
+        "currentMarketCap": "$6.66B",
+        "threeXMarketCap": "$19.99B",
+        "fiveXMarketCap": "$33.32B",
+        "tenXMarketCap": "$66.64B",
         "path3": "stretched",
         "path5": "stretched",
         "path10": "unrealistic",
@@ -4185,13 +4185,13 @@
       },
       "entryQuality": {
         "classification": "Too extended",
-        "priceVs50Day": "10% vs 50-day EMA",
-        "priceVs200Day": "25.3% vs long-term EMA proxy",
-        "rsi": 58.4,
-        "support": "$105.77",
-        "resistance": "$134.58",
+        "priceVs50Day": "11.7% vs 50-day EMA",
+        "priceVs200Day": "27.2% vs long-term EMA proxy",
+        "rsi": 65.6,
+        "support": "$106.7",
+        "resistance": "$136.87",
         "volumeTrend": "Strong",
-        "highLowLocation": "97.3% of 55-day high",
+        "highLowLocation": "98.4% of 55-day high",
         "earningsReaction": "Earnings/guidance language found - wait for confirmation if volatility is elevated."
       },
       "killCriteria": [
@@ -4200,7 +4200,7 @@
         "Free cash flow worsens and cash runway becomes dependent on unfavorable financing.",
         "Dilution accelerates beyond the current read: Unavailable.",
         "A major customer, backlog, product, or partnership catalyst fails to convert into real revenue.",
-        "The stock breaks major long-term support near $105.77 and fails to recover.",
+        "The stock breaks major long-term support near $106.7 and fails to recover.",
         "Balance sheet risk, filing/reporting risk, or hype/promotion risk moves into the red zone."
       ],
       "positionSizingCategory": "Small speculative basket candidate",
@@ -4275,7 +4275,7 @@
       ],
       "verdict": "Speculative Multibagger Candidate: The setup has some proof, but the thesis still needs more evidence before it becomes high conviction.",
       "dataQuality": {
-        "marketDataDate": "2026-10-26T20:05:06.798Z",
+        "marketDataDate": "2026-10-27T00:01:52.377Z",
         "latestReportedQuarter": "2026-06-30",
         "latestReportedQuarterEnd": "2026-06-30",
         "lastEarningsDate": "2026-06-30",
@@ -4788,13 +4788,13 @@
       },
       "entryQuality": {
         "classification": "Broken chart",
-        "priceVs50Day": "-30% vs 50-day EMA",
-        "priceVs200Day": "-38.7% vs long-term EMA proxy",
-        "rsi": 22,
-        "support": "$5.6",
-        "resistance": "$11.54",
+        "priceVs50Day": "-32.1% vs 50-day EMA",
+        "priceVs200Day": "-40.1% vs long-term EMA proxy",
+        "rsi": 18,
+        "support": "$5.47",
+        "resistance": "$11.44",
         "volumeTrend": "Weak",
-        "highLowLocation": "54% of 55-day high",
+        "highLowLocation": "53% of 55-day high",
         "earningsReaction": "Earnings/guidance language found - wait for confirmation if volatility is elevated."
       },
       "killCriteria": [
@@ -4803,7 +4803,7 @@
         "Free cash flow worsens and cash runway becomes dependent on unfavorable financing.",
         "Dilution accelerates beyond the current read: Unavailable.",
         "A major customer, backlog, product, or partnership catalyst fails to convert into real revenue.",
-        "The stock breaks major long-term support near $5.6 and fails to recover.",
+        "The stock breaks major long-term support near $5.47 and fails to recover.",
         "Balance sheet risk, filing/reporting risk, or hype/promotion risk moves into the red zone."
       ],
       "positionSizingCategory": "Small speculative basket candidate",
