@@ -3,12 +3,12 @@
   "sleeveName": "Very High Risk / High Reward",
   "primaryAction": "RBLX: SPEC BUY",
   "topSymbol": "RBLX",
-  "topReason": "The chart is interesting, but event risk is elevated. I would reduce size or wait until the news clears.",
+  "topReason": "This is the kind of technical risk I would fund from a small speculative sleeve because momentum, relative strength, and volume agree.",
   "buyCount": 2,
   "starterCount": 0,
-  "watchCount": 0,
-  "plannedCapital": 1400,
-  "cashReserve": 3600,
+  "watchCount": 1,
+  "plannedCapital": 1700,
+  "cashReserve": 3300,
   "rules": [
     "This is not retirement money.",
     "Maximum 5-7 names.",
@@ -18,34 +18,34 @@
   ],
   "marketContext": {
     "SPY": {
-      "close": 769.66,
-      "return20": 0.71,
-      "return60": 1.58
+      "close": 771.46,
+      "return20": 1.16,
+      "return60": 0.02
     },
     "QQQ": {
-      "close": 721.25,
-      "return20": -2.26,
-      "return60": 3.03
+      "close": 724.13,
+      "return20": -2.11,
+      "return60": 0.04
     },
     "IWM": {
-      "close": 280.18,
-      "return20": 0.42,
-      "return60": -5.41
+      "close": 280.58,
+      "return20": 0.97,
+      "return60": -7
     },
     "ARKK": {
-      "close": 84.78,
-      "return20": -5.22,
-      "return60": 15.28
+      "close": 85.96,
+      "return20": -3.52,
+      "return60": 11.99
     },
     "XIU.TO": {
-      "close": 54.33,
-      "return20": 2.98,
-      "return60": 2.24
+      "close": 54.47,
+      "return20": 3.3,
+      "return60": 3.24
     },
     "XIC.TO": {
-      "close": 57.76,
-      "return20": 2.03,
-      "return60": 1.82
+      "close": 57.89,
+      "return20": 2.33,
+      "return60": 2.82
     }
   }
 }
