@@ -7410,8 +7410,8 @@
     "symbol": "PYPL",
     "trades": 10,
     "winRate": 30,
-    "avgReturnPct": -0.2,
-    "profitFactor": 0.9,
+    "avgReturnPct": -0.26,
+    "profitFactor": 0.87,
     "tradeLog": [
       {
         "symbol": "PYPL",
@@ -7497,10 +7497,10 @@
       {
         "symbol": "PYPL",
         "entryDate": "2026-10-30",
-        "exitDate": "2026-11-02",
+        "exitDate": "2026-11-03",
         "entry": 56.92,
-        "exit": 58.78,
-        "returnPct": 3.27,
+        "exit": 58.42,
+        "returnPct": 2.64,
         "exitReason": "time"
       }
     ]
@@ -9859,6 +9859,6 @@
     "winRate": 0,
     "avgReturnPct": 0,
     "profitFactor": null,
-    "error": "PSTG data request failed: 404"
+    "tradeLog": []
   }
 ]
