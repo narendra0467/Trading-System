@@ -1,16 +1,16 @@
 {
   "regime": "RISK_OFF",
-  "score": -15,
+  "score": 0,
   "bullishSizeMultiplier": 0.25,
   "bearishSizeMultiplier": 1,
-  "vix": 26.94,
+  "vix": 24.13,
   "indexes": [
     {
       "symbol": "SPY",
       "score": 10,
-      "close": 733.11,
-      "rsi14": 28.3,
-      "adx14": 27.6,
+      "close": 737.73,
+      "rsi14": 33.3,
+      "adx14": 28.2,
       "above20": false,
       "above50": false,
       "above150": false,
@@ -23,9 +23,9 @@
     {
       "symbol": "QQQ",
       "score": 10,
-      "close": 647.05,
-      "rsi14": 20.6,
-      "adx14": 45.9,
+      "close": 658.73,
+      "rsi14": 29.9,
+      "adx14": 47.6,
       "above20": false,
       "above50": false,
       "above150": false,
@@ -38,9 +38,9 @@
     {
       "symbol": "IWM",
       "score": 10,
-      "close": 271,
-      "rsi14": 34.5,
-      "adx14": 21.9,
+      "close": 274.27,
+      "rsi14": 42.5,
+      "adx14": 22.7,
       "above20": false,
       "above50": false,
       "above150": false,
@@ -51,5 +51,5 @@
       ]
     }
   ],
-  "reason": "SPY below 20 EMA; SPY below 50 EMA; SPY below 150 EMA; QQQ below 20 EMA; QQQ below 50 EMA; QQQ below 150 EMA; IWM below 20 EMA; IWM below 50 EMA; IWM below 150 EMA; VIX above 25; VIX trend rising"
+  "reason": "SPY below 20 EMA; SPY below 50 EMA; SPY below 150 EMA; QQQ below 20 EMA; QQQ below 50 EMA; QQQ below 150 EMA; IWM below 20 EMA; IWM below 50 EMA; IWM below 150 EMA; VIX trend rising"
 }
