@@ -1,6 +1,6 @@
 {
   "title": "LEAPS Call Opportunity Desk",
-  "asOf": "2026-11-13T20:57:46.200Z",
+  "asOf": "2026-11-16T23:28:49.525Z",
   "disclaimer": "Research watchlist only. Not financial advice and not a buy/sell recommendation.",
   "schedule": {
     "timeZone": "America/Edmonton",
@@ -14,7 +14,7 @@
   },
   "summary": {
     "scanned": 30,
-    "cleanCandidates": 2,
+    "cleanCandidates": 0,
     "existingPositions": 0,
     "portfolioHealthScore": 100,
     "healthyHolds": 0,
@@ -22,7 +22,7 @@
     "noMoreAdds": 0,
     "rollCandidates": 0,
     "exitReviewPositions": 0,
-    "topStatus": "Candidates found",
+    "topStatus": "No high-quality LEAPS candidates today.",
     "rule": "Calls only. Underlying score must clear 70 before any long-dated option contract can qualify."
   },
   "portfolio": {
@@ -44,7 +44,7 @@
   },
   "riskSummary": {
     "biggestTimeDecayRisk": "No existing LEAPS positions loaded.",
-    "biggestIvRisk": "AMD IV 64.5%.",
+    "biggestIvRisk": "No IV risk available.",
     "biggestEarningsRisk": "No high event risk flagged.",
     "biggestTechnicalBreakdownRisk": "No broken technical profile flagged.",
     "biggestConcentrationRisk": "No concentration risk until positions are loaded."
@@ -59,33 +59,21 @@
       "exitReview": []
     },
     "newOpportunitiesSummary": {
-      "top10": [
-        "AMD",
-        "META"
-      ],
-      "top3Strongest": [
-        "AMD",
-        "META"
-      ],
-      "waitForPullback": [
-        "AMD",
-        "META"
-      ],
+      "top10": [],
+      "top3Strongest": [],
+      "waitForPullback": [],
       "avoid": []
     },
     "riskSummary": {
       "biggestTimeDecayRisk": "No existing LEAPS positions loaded.",
-      "biggestIvRisk": "AMD IV 64.5%.",
+      "biggestIvRisk": "No IV risk available.",
       "biggestEarningsRisk": "No high event risk flagged.",
       "biggestTechnicalBreakdownRisk": "No broken technical profile flagged.",
       "biggestConcentrationRisk": "No concentration risk until positions are loaded."
     },
     "actionWatchlist": {
       "reviewToday": [],
-      "watchForPullback": [
-        "AMD",
-        "META"
-      ],
+      "watchForPullback": [],
       "waitForEarnings": [],
       "considerRolling": [],
       "doNotAdd": [],
@@ -93,3298 +81,14 @@
     },
     "finalPlainEnglishSummary": "No existing LEAPS positions are loaded, so the daily monitor is waiting on your positions CSV. The weekly scanner still ranks new research candidates."
   },
-  "top10": [
-    {
-      "symbol": "AMD",
-      "name": "Advanced Micro Devices, Inc.",
-      "sector": "Technology",
-      "currentPrice": 535.91,
-      "direction": "CALL",
-      "decision": "Strong Watchlist Candidate",
-      "status": "Watch for Pullback",
-      "score": 83,
-      "leapsOpportunityScore": 83,
-      "underlyingScore": 77,
-      "riskScore": 45,
-      "riskLabel": "Medium Risk",
-      "eventRisk": "Medium Event Risk",
-      "eventRiskHeadline": "Mixed / normal tape",
-      "earningsDate": "Unavailable",
-      "preferredExpiryRange": "12-24 months preferred; 6 months minimum",
-      "preferredStrikeZone": "Balanced: near 460 strike",
-      "preferredDelta": "0.55-0.75",
-      "bestContractCandidate": "2028-01-21 460C near 178.05 mid",
-      "optionLiquidityStatus": "Good",
-      "dcaSuitability": "DCA Allowed if Thesis Holds",
-      "pullbackClassification": "Healthy Pullback",
-      "bullCase": "Bull case: the chart trend is supportive, valuation is not fighting the story too hard, business quality is acceptable.",
-      "bearCase": "Bear case: growth is not fully confirmed by the checklist.",
-      "whyOpportunityExists": "Advanced Micro Devices, Inc. clears the underlying-quality gate and has a healthy pullback setup with a usable long-dated call candidate.",
-      "longTermThesis": "Advanced Micro Devices, Inc. is a AI / semiconductor infrastructure candidate. Overall, I would treat it as not yet a confirmed growth stock with risk around 25/100. The key is whether revenue growth can stay ahead of the stock's valuation. Analyst tone is bullish.",
-      "catalysts": [
-        "Next earnings window shown by Yahoo: 2027-02-02.",
-        "Growth itself is a catalyst if management keeps beating expectations.",
-        "Analyst target is above current price, so estimate revisions matter.",
-        "Recent Yahoo headline catalyst: Bank of America resets AMD stock price target as Nvidia CEO exits"
-      ],
-      "technicalSetup": "Healthy Pullback. Price is -18.6% from 52-week high, 0.3% from 50-day, 20.9% from 200-day, RSI 52.8.",
-      "dcaPlan": {
-        "suitability": "DCA Allowed if Thesis Holds",
-        "allowed": true,
-        "starterPositionZone": "525.19-546.62",
-        "addZone1": "482.31-503.75",
-        "addZone2": "443.39-471.6",
-        "stopAddingInvalidationLevel": 443.39,
-        "rules": "Add only if the thesis is intact, price is near support, long-term trend survives, IV/spread remain reasonable, and total position risk remains capped."
-      },
-      "invalidationLevel": 443.39,
-      "finalResearchVerdict": "Research verdict: watchlist candidate; wait for a better entry, cleaner pullback, or tighter spread.",
-      "underlyingComponents": [
-        {
-          "label": "Business quality",
-          "weight": 20,
-          "score": 88
-        },
-        {
-          "label": "Growth quality",
-          "weight": 20,
-          "score": 63.75
-        },
-        {
-          "label": "Financial strength",
-          "weight": 15,
-          "score": 78
-        },
-        {
-          "label": "Valuation reasonableness",
-          "weight": 15,
-          "score": 57
-        },
-        {
-          "label": "Catalyst strength",
-          "weight": 15,
-          "score": 75
-        },
-        {
-          "label": "Technical setup",
-          "weight": 15,
-          "score": 100
-        }
-      ],
-      "pullback": {
-        "score": 100,
-        "classification": "Healthy Pullback",
-        "reasons": [
-          "meaningful pullback from the 52-week high",
-          "price is near the 50-day trend area",
-          "long-term trend remains above the 200-day average",
-          "RSI has reset without becoming washed out",
-          "selloff volume is not extreme",
-          "fundamentals still look intact from available data"
-        ],
-        "risks": [],
-        "distanceFrom52WeekHighPct": -18.6,
-        "distanceFrom50DayPct": 0.3,
-        "distanceFrom200DayPct": 20.9,
-        "rsi14": 52.8,
-        "volumeVs20Day": 1.27
-      },
-      "optionContracts": [
-        {
-          "contractSymbol": "AMD280121C00460000",
-          "expiration": "2028-01-21",
-          "dte": 433,
-          "strike": 460,
-          "lastPrice": 179.7,
-          "bid": 174.85,
-          "ask": 181.25,
-          "mid": 178.05,
-          "delta": 0.74,
-          "theta": -0.1644,
-          "vega": 1.902,
-          "impliedVolatility": 64.5,
-          "impliedVolatilityRaw": 0.6447636842346192,
-          "openInterest": 2419,
-          "volume": 4,
-          "breakeven": 638.05,
-          "breakevenMovePct": 19.1,
-          "intrinsicValue": 75.91,
-          "extrinsicValue": 102.14,
-          "spreadPct": 3.6,
-          "spreadPctRaw": 0.03594495928110084,
-          "bucket": "Balanced",
-          "contractQualityScore": 94,
-          "contractQualityReasons": [
-            "preferred 12-24 month expiration",
-            "delta is in the preferred LEAPS range",
-            "tight bid/ask spread",
-            "open interest is strong",
-            "premium has meaningful intrinsic support",
-            "breakeven move is reasonable"
-          ],
-          "contractQualityRisks": [
-            "IV is elevated"
-          ]
-        },
-        {
-          "contractSymbol": "AMD271217C00450000",
-          "expiration": "2027-12-17",
-          "dte": 398,
-          "strike": 450,
-          "lastPrice": 180,
-          "bid": 174.7,
-          "ask": 180.6,
-          "mid": 177.65,
-          "delta": 0.75,
-          "theta": -0.169,
-          "vega": 1.7945,
-          "impliedVolatility": 64.6,
-          "impliedVolatilityRaw": 0.6460682976531981,
-          "openInterest": 524,
-          "volume": 5,
-          "breakeven": 627.65,
-          "breakevenMovePct": 17.1,
-          "intrinsicValue": 85.91,
-          "extrinsicValue": 91.74,
-          "spreadPct": 3.3,
-          "spreadPctRaw": 0.03321137067267102,
-          "bucket": "Balanced",
-          "contractQualityScore": 94,
-          "contractQualityReasons": [
-            "preferred 12-24 month expiration",
-            "delta is in the preferred LEAPS range",
-            "tight bid/ask spread",
-            "open interest is strong",
-            "premium has meaningful intrinsic support",
-            "breakeven move is reasonable"
-          ],
-          "contractQualityRisks": [
-            "IV is elevated"
-          ]
-        },
-        {
-          "contractSymbol": "AMD280121C00450000",
-          "expiration": "2028-01-21",
-          "dte": 433,
-          "strike": 450,
-          "lastPrice": 177.2,
-          "bid": 179.9,
-          "ask": 186.2,
-          "mid": 183.05,
-          "delta": 0.75,
-          "theta": -0.1621,
-          "vega": 1.8634,
-          "impliedVolatility": 64.7,
-          "impliedVolatilityRaw": 0.6472050660705566,
-          "openInterest": 1926,
-          "volume": 6,
-          "breakeven": 633.05,
-          "breakevenMovePct": 18.1,
-          "intrinsicValue": 85.91,
-          "extrinsicValue": 97.14,
-          "spreadPct": 3.4,
-          "spreadPctRaw": 0.034416826003823994,
-          "bucket": "Balanced",
-          "contractQualityScore": 94,
-          "contractQualityReasons": [
-            "preferred 12-24 month expiration",
-            "delta is in the preferred LEAPS range",
-            "tight bid/ask spread",
-            "open interest is strong",
-            "premium has meaningful intrinsic support",
-            "breakeven move is reasonable"
-          ],
-          "contractQualityRisks": [
-            "IV is elevated"
-          ]
-        },
-        {
-          "contractSymbol": "AMD280121C00420000",
-          "expiration": "2028-01-21",
-          "dte": 433,
-          "strike": 420,
-          "lastPrice": 198.4,
-          "bid": 195.8,
-          "ask": 202,
-          "mid": 198.9,
-          "delta": 0.78,
-          "theta": -0.1544,
-          "vega": 1.7382,
-          "impliedVolatility": 65.6,
-          "impliedVolatilityRaw": 0.6556202040863037,
-          "openInterest": 630,
-          "volume": 5,
-          "breakeven": 618.9,
-          "breakevenMovePct": 15.5,
-          "intrinsicValue": 115.91,
-          "extrinsicValue": 82.99,
-          "spreadPct": 3.1,
-          "spreadPctRaw": 0.03117144293614876,
-          "bucket": "Conservative",
-          "contractQualityScore": 94,
-          "contractQualityReasons": [
-            "preferred 12-24 month expiration",
-            "delta is in the preferred LEAPS range",
-            "tight bid/ask spread",
-            "open interest is strong",
-            "premium has meaningful intrinsic support",
-            "breakeven move is reasonable"
-          ],
-          "contractQualityRisks": [
-            "IV is elevated"
-          ]
-        },
-        {
-          "contractSymbol": "AMD280121C00410000",
-          "expiration": "2028-01-21",
-          "dte": 433,
-          "strike": 410,
-          "lastPrice": 197.3,
-          "bid": 201.05,
-          "ask": 205.25,
-          "mid": 203.15,
-          "delta": 0.79,
-          "theta": -0.1502,
-          "vega": 1.6922,
-          "impliedVolatility": 65.1,
-          "impliedVolatilityRaw": 0.6514317083740235,
-          "openInterest": 1191,
-          "volume": 2,
-          "breakeven": 613.15,
-          "breakevenMovePct": 14.4,
-          "intrinsicValue": 125.91,
-          "extrinsicValue": 77.24,
-          "spreadPct": 2.1,
-          "spreadPctRaw": 0.020674378538026034,
-          "bucket": "Conservative",
-          "contractQualityScore": 94,
-          "contractQualityReasons": [
-            "preferred 12-24 month expiration",
-            "delta is in the preferred LEAPS range",
-            "tight bid/ask spread",
-            "open interest is strong",
-            "premium has meaningful intrinsic support",
-            "breakeven move is reasonable"
-          ],
-          "contractQualityRisks": [
-            "IV is elevated"
-          ]
-        },
-        {
-          "contractSymbol": "AMD280121C00400000",
-          "expiration": "2028-01-21",
-          "dte": 433,
-          "strike": 400,
-          "lastPrice": 211.32,
-          "bid": 206.85,
-          "ask": 212.65,
-          "mid": 209.75,
-          "delta": 0.8,
-          "theta": -0.1483,
-          "vega": 1.6468,
-          "impliedVolatility": 66,
-          "impliedVolatilityRaw": 0.6597476652526855,
-          "openInterest": 2029,
-          "volume": 44,
-          "breakeven": 609.75,
-          "breakevenMovePct": 13.8,
-          "intrinsicValue": 135.91,
-          "extrinsicValue": 73.84,
-          "spreadPct": 2.8,
-          "spreadPctRaw": 0.027651966626936884,
-          "bucket": "Conservative",
-          "contractQualityScore": 94,
-          "contractQualityReasons": [
-            "preferred 12-24 month expiration",
-            "delta is in the preferred LEAPS range",
-            "tight bid/ask spread",
-            "open interest is strong",
-            "premium has meaningful intrinsic support",
-            "breakeven move is reasonable"
-          ],
-          "contractQualityRisks": [
-            "IV is elevated"
-          ]
-        },
-        {
-          "contractSymbol": "AMD271217C00400000",
-          "expiration": "2027-12-17",
-          "dte": 398,
-          "strike": 400,
-          "lastPrice": 204.25,
-          "bid": 201.95,
-          "ask": 208,
-          "mid": 204.97,
-          "delta": 0.8,
-          "theta": -0.1542,
-          "vega": 1.5788,
-          "impliedVolatility": 65.9,
-          "impliedVolatilityRaw": 0.659381457977295,
-          "openInterest": 1359,
-          "volume": 38,
-          "breakeven": 604.98,
-          "breakevenMovePct": 12.9,
-          "intrinsicValue": 135.91,
-          "extrinsicValue": 69.07,
-          "spreadPct": 3,
-          "spreadPctRaw": 0.029515794609098728,
-          "bucket": "Conservative",
-          "contractQualityScore": 94,
-          "contractQualityReasons": [
-            "preferred 12-24 month expiration",
-            "delta is in the preferred LEAPS range",
-            "tight bid/ask spread",
-            "open interest is strong",
-            "premium has meaningful intrinsic support",
-            "breakeven move is reasonable"
-          ],
-          "contractQualityRisks": [
-            "IV is elevated"
-          ]
-        },
-        {
-          "contractSymbol": "AMD271217C00370000",
-          "expiration": "2027-12-17",
-          "dte": 398,
-          "strike": 370,
-          "lastPrice": 216.56,
-          "bid": 220.2,
-          "ask": 225.95,
-          "mid": 223.07,
-          "delta": 0.83,
-          "theta": -0.1436,
-          "vega": 1.4326,
-          "impliedVolatility": 66.9,
-          "impliedVolatilityRaw": 0.6692385371398928,
-          "openInterest": 927,
-          "volume": 5,
-          "breakeven": 593.08,
-          "breakevenMovePct": 10.7,
-          "intrinsicValue": 165.91,
-          "extrinsicValue": 57.17,
-          "spreadPct": 2.6,
-          "spreadPctRaw": 0.025776084276588593,
-          "bucket": "Conservative",
-          "contractQualityScore": 94,
-          "contractQualityReasons": [
-            "preferred 12-24 month expiration",
-            "delta is in the preferred LEAPS range",
-            "tight bid/ask spread",
-            "open interest is strong",
-            "premium has meaningful intrinsic support",
-            "breakeven move is reasonable"
-          ],
-          "contractQualityRisks": [
-            "IV is elevated"
-          ]
-        }
-      ],
-      "best3Contracts": {
-        "conservative": {
-          "contractSymbol": "AMD280121C00410000",
-          "expiration": "2028-01-21",
-          "dte": 433,
-          "strike": 410,
-          "lastPrice": 197.3,
-          "bid": 201.05,
-          "ask": 205.25,
-          "mid": 203.15,
-          "delta": 0.79,
-          "theta": -0.1502,
-          "vega": 1.6922,
-          "impliedVolatility": 65.1,
-          "impliedVolatilityRaw": 0.6514317083740235,
-          "openInterest": 1191,
-          "volume": 2,
-          "breakeven": 613.15,
-          "breakevenMovePct": 14.4,
-          "intrinsicValue": 125.91,
-          "extrinsicValue": 77.24,
-          "spreadPct": 2.1,
-          "spreadPctRaw": 0.020674378538026034,
-          "bucket": "Conservative",
-          "contractQualityScore": 94,
-          "contractQualityReasons": [
-            "preferred 12-24 month expiration",
-            "delta is in the preferred LEAPS range",
-            "tight bid/ask spread",
-            "open interest is strong",
-            "premium has meaningful intrinsic support",
-            "breakeven move is reasonable"
-          ],
-          "contractQualityRisks": [
-            "IV is elevated"
-          ],
-          "gamma": null,
-          "ivRankOrPercentile": "Unavailable from Yahoo option chain",
-          "riskLabel": "Defined premium risk",
-          "classification": "Conservative LEAPS Call",
-          "whySelected": "Conservative stock-replacement style: 18-24 months preferred, ITM/deep ITM, 0.75-0.90 delta."
-        },
-        "balanced": {
-          "contractSymbol": "AMD280121C00460000",
-          "expiration": "2028-01-21",
-          "dte": 433,
-          "strike": 460,
-          "lastPrice": 179.7,
-          "bid": 174.85,
-          "ask": 181.25,
-          "mid": 178.05,
-          "delta": 0.74,
-          "theta": -0.1644,
-          "vega": 1.902,
-          "impliedVolatility": 64.5,
-          "impliedVolatilityRaw": 0.6447636842346192,
-          "openInterest": 2419,
-          "volume": 4,
-          "breakeven": 638.05,
-          "breakevenMovePct": 19.1,
-          "intrinsicValue": 75.91,
-          "extrinsicValue": 102.14,
-          "spreadPct": 3.6,
-          "spreadPctRaw": 0.03594495928110084,
-          "bucket": "Balanced",
-          "contractQualityScore": 94,
-          "contractQualityReasons": [
-            "preferred 12-24 month expiration",
-            "delta is in the preferred LEAPS range",
-            "tight bid/ask spread",
-            "open interest is strong",
-            "premium has meaningful intrinsic support",
-            "breakeven move is reasonable"
-          ],
-          "contractQualityRisks": [
-            "IV is elevated"
-          ],
-          "gamma": null,
-          "ivRankOrPercentile": "Unavailable from Yahoo option chain",
-          "riskLabel": "Defined premium risk",
-          "classification": "Balanced LEAPS Call",
-          "whySelected": "Balanced LEAPS profile: 12-24 months, ITM/ATM, 0.55-0.75 delta."
-        },
-        "aggressive": {
-          "contractSymbol": "AMD271217C00700000",
-          "expiration": "2027-12-17",
-          "dte": 398,
-          "strike": 700,
-          "lastPrice": 86.62,
-          "bid": 84.6,
-          "ask": 87,
-          "mid": 85.8,
-          "delta": 0.49,
-          "theta": -0.1898,
-          "vega": 2.2314,
-          "impliedVolatility": 61.1,
-          "impliedVolatilityRaw": 0.6110268389892579,
-          "openInterest": 3613,
-          "volume": 48,
-          "breakeven": 785.8,
-          "breakevenMovePct": 46.6,
-          "intrinsicValue": 0,
-          "extrinsicValue": 85.8,
-          "spreadPct": 2.8,
-          "spreadPctRaw": 0.027972027972028038,
-          "bucket": "Aggressive",
-          "contractQualityScore": 68,
-          "contractQualityReasons": [
-            "preferred 12-24 month expiration",
-            "tight bid/ask spread",
-            "open interest is strong"
-          ],
-          "contractQualityRisks": [
-            "delta is aggressive/speculative",
-            "IV is elevated",
-            "premium is mostly extrinsic/time value",
-            "breakeven requires a very large move"
-          ],
-          "gamma": null,
-          "ivRankOrPercentile": "Unavailable from Yahoo option chain",
-          "riskLabel": "Speculative",
-          "classification": "Avoid - Bad Risk/Reward",
-          "whySelected": "Aggressive/speculative profile: 12-24 months, slightly OTM, 0.35-0.55 delta."
-        }
-      },
-      "contractQualityReasons": [
-        "preferred 12-24 month expiration",
-        "delta is in the preferred LEAPS range",
-        "tight bid/ask spread",
-        "open interest is strong",
-        "premium has meaningful intrinsic support",
-        "breakeven move is reasonable"
-      ],
-      "contractQualityRisks": [
-        "IV is elevated"
-      ],
-      "expiration": "2028-01-21",
-      "dte": 433,
-      "strike": 460,
-      "lastPrice": 179.7,
-      "bid": 174.85,
-      "ask": 181.25,
-      "mid": 178.05,
-      "delta": 0.74,
-      "theta": -0.1644,
-      "vega": 1.902,
-      "impliedVolatility": 64.5,
-      "openInterest": 2419,
-      "volume": 4,
-      "breakeven": 638.05,
-      "breakevenMovePct": 19.1,
-      "intrinsicValue": 75.91,
-      "extrinsicValue": 102.14,
-      "spreadPct": 3.6,
-      "contractQualityScore": 94,
-      "bucket": "Balanced"
-    },
-    {
-      "symbol": "META",
-      "name": "Meta Platforms, Inc.",
-      "sector": "Communication Services",
-      "currentPrice": 641.41,
-      "direction": "CALL",
-      "decision": "Strong Watchlist Candidate",
-      "status": "Watch for Pullback",
-      "score": 81,
-      "leapsOpportunityScore": 81,
-      "underlyingScore": 73,
-      "riskScore": 53,
-      "riskLabel": "Medium Risk",
-      "eventRisk": "Low Event Risk",
-      "eventRiskHeadline": "Positive catalyst tape",
-      "earningsDate": "Unavailable",
-      "preferredExpiryRange": "12-24 months preferred; 6 months minimum",
-      "preferredStrikeZone": "Balanced: near 550 strike",
-      "preferredDelta": "0.55-0.75",
-      "bestContractCandidate": "2027-12-17 550C near 174.52 mid",
-      "optionLiquidityStatus": "Good",
-      "dcaSuitability": "DCA Rejected / Wait",
-      "pullbackClassification": "Waiting for Reclaim",
-      "bullCase": "Bull case: valuation is not fighting the story too hard, business quality is acceptable.",
-      "bearCase": "Bear case: growth is not fully confirmed by the checklist, the chart is not giving a clean confirmation.",
-      "whyOpportunityExists": "Meta Platforms, Inc. clears the underlying-quality gate and has a waiting for reclaim setup with a usable long-dated call candidate.",
-      "longTermThesis": "Meta Platforms, Inc. is a software / internet platform candidate. Overall, I would treat it as not yet a confirmed growth stock with risk around 26/100. The key is whether revenue growth can stay ahead of the stock's valuation. Analyst tone is bullish.",
-      "catalysts": [
-        "Next earnings window shown by Yahoo: 2027-01-27.",
-        "Growth itself is a catalyst if management keeps beating expectations.",
-        "Analyst target is above current price, so estimate revisions matter."
-      ],
-      "technicalSetup": "Waiting for Reclaim. Price is -17.7% from 52-week high, -1.9% from 50-day, 0% from 200-day, RSI 53.6.",
-      "dcaPlan": {
-        "suitability": "DCA Rejected / Wait",
-        "allowed": false,
-        "starterPositionZone": "628.58-654.24",
-        "addZone1": "597.79-602.93",
-        "addZone2": "597.79-564.44",
-        "stopAddingInvalidationLevel": 597.79,
-        "rules": "Do not DCA unless the thesis, trend, time-to-expiration, liquidity, and IV conditions improve."
-      },
-      "invalidationLevel": 597.79,
-      "finalResearchVerdict": "Research verdict: watchlist candidate; wait for a better entry, cleaner pullback, or tighter spread.",
-      "underlyingComponents": [
-        {
-          "label": "Business quality",
-          "weight": 20,
-          "score": 66
-        },
-        {
-          "label": "Growth quality",
-          "weight": 20,
-          "score": 75
-        },
-        {
-          "label": "Financial strength",
-          "weight": 15,
-          "score": 79
-        },
-        {
-          "label": "Valuation reasonableness",
-          "weight": 15,
-          "score": 73
-        },
-        {
-          "label": "Catalyst strength",
-          "weight": 15,
-          "score": 89
-        },
-        {
-          "label": "Technical setup",
-          "weight": 15,
-          "score": 59
-        }
-      ],
-      "pullback": {
-        "score": 86,
-        "classification": "Waiting for Reclaim",
-        "reasons": [
-          "meaningful pullback from the 52-week high",
-          "price is near the 50-day trend area",
-          "RSI has reset without becoming washed out",
-          "selloff volume is not extreme",
-          "fundamentals still look intact from available data"
-        ],
-        "risks": [
-          "price is below the 200-day average"
-        ],
-        "distanceFrom52WeekHighPct": -17.7,
-        "distanceFrom50DayPct": -1.9,
-        "distanceFrom200DayPct": 0,
-        "rsi14": 53.6,
-        "volumeVs20Day": 0.54
-      },
-      "optionContracts": [
-        {
-          "contractSymbol": "META271217C00550000",
-          "expiration": "2027-12-17",
-          "dte": 398,
-          "strike": 550,
-          "lastPrice": 167.45,
-          "bid": 173.6,
-          "ask": 175.45,
-          "mid": 174.52,
-          "delta": 0.74,
-          "theta": -0.1691,
-          "vega": 2.1794,
-          "impliedVolatility": 50.3,
-          "impliedVolatilityRaw": 0.5029041409301759,
-          "openInterest": 632,
-          "volume": 8,
-          "breakeven": 724.52,
-          "breakevenMovePct": 13,
-          "intrinsicValue": 91.41,
-          "extrinsicValue": 83.12,
-          "spreadPct": 1.1,
-          "spreadPctRaw": 0.010600200544334592,
-          "bucket": "Balanced",
-          "contractQualityScore": 100,
-          "contractQualityReasons": [
-            "preferred 12-24 month expiration",
-            "delta is in the preferred LEAPS range",
-            "tight bid/ask spread",
-            "open interest is strong",
-            "IV is not extreme",
-            "premium has meaningful intrinsic support",
-            "breakeven move is reasonable"
-          ],
-          "contractQualityRisks": []
-        },
-        {
-          "contractSymbol": "META280121C00550000",
-          "expiration": "2028-01-21",
-          "dte": 433,
-          "strike": 550,
-          "lastPrice": 176,
-          "bid": 178.6,
-          "ask": 180.75,
-          "mid": 179.68,
-          "delta": 0.74,
-          "theta": -0.1629,
-          "vega": 2.2694,
-          "impliedVolatility": 50.4,
-          "impliedVolatilityRaw": 0.503735736618042,
-          "openInterest": 3138,
-          "volume": 2,
-          "breakeven": 729.67,
-          "breakevenMovePct": 13.8,
-          "intrinsicValue": 91.41,
-          "extrinsicValue": 88.27,
-          "spreadPct": 1.2,
-          "spreadPctRaw": 0.011966049812160876,
-          "bucket": "Balanced",
-          "contractQualityScore": 100,
-          "contractQualityReasons": [
-            "preferred 12-24 month expiration",
-            "delta is in the preferred LEAPS range",
-            "tight bid/ask spread",
-            "open interest is strong",
-            "IV is not extreme",
-            "premium has meaningful intrinsic support",
-            "breakeven move is reasonable"
-          ],
-          "contractQualityRisks": []
-        },
-        {
-          "contractSymbol": "META280121C00540000",
-          "expiration": "2028-01-21",
-          "dte": 433,
-          "strike": 540,
-          "lastPrice": 169.6,
-          "bid": 184.5,
-          "ask": 186.4,
-          "mid": 185.45,
-          "delta": 0.75,
-          "theta": -0.1609,
-          "vega": 2.2211,
-          "impliedVolatility": 50.7,
-          "impliedVolatilityRaw": 0.5066730241394042,
-          "openInterest": 4521,
-          "volume": 1,
-          "breakeven": 725.45,
-          "breakevenMovePct": 13.1,
-          "intrinsicValue": 101.41,
-          "extrinsicValue": 84.04,
-          "spreadPct": 1,
-          "spreadPctRaw": 0.01024534915071451,
-          "bucket": "Balanced",
-          "contractQualityScore": 100,
-          "contractQualityReasons": [
-            "preferred 12-24 month expiration",
-            "delta is in the preferred LEAPS range",
-            "tight bid/ask spread",
-            "open interest is strong",
-            "IV is not extreme",
-            "premium has meaningful intrinsic support",
-            "breakeven move is reasonable"
-          ],
-          "contractQualityRisks": []
-        },
-        {
-          "contractSymbol": "META280616C00550000",
-          "expiration": "2028-06-16",
-          "dte": 580,
-          "strike": 550,
-          "lastPrice": 198.05,
-          "bid": 199.45,
-          "ask": 202.8,
-          "mid": 201.13,
-          "delta": 0.75,
-          "theta": -0.1433,
-          "vega": 2.5954,
-          "impliedVolatility": 51.3,
-          "impliedVolatilityRaw": 0.5129824703216552,
-          "openInterest": 560,
-          "volume": 1,
-          "breakeven": 751.13,
-          "breakevenMovePct": 17.1,
-          "intrinsicValue": 91.41,
-          "extrinsicValue": 109.72,
-          "spreadPct": 1.7,
-          "spreadPctRaw": 0.016656308266003842,
-          "bucket": "Balanced",
-          "contractQualityScore": 100,
-          "contractQualityReasons": [
-            "preferred 12-24 month expiration",
-            "delta is in the preferred LEAPS range",
-            "tight bid/ask spread",
-            "open interest is strong",
-            "IV is not extreme",
-            "premium has meaningful intrinsic support",
-            "breakeven move is reasonable"
-          ],
-          "contractQualityRisks": []
-        },
-        {
-          "contractSymbol": "META280121C00520000",
-          "expiration": "2028-01-21",
-          "dte": 433,
-          "strike": 520,
-          "lastPrice": 188,
-          "bid": 196.55,
-          "ask": 198.8,
-          "mid": 197.68,
-          "delta": 0.77,
-          "theta": -0.1569,
-          "vega": 2.1203,
-          "impliedVolatility": 51.4,
-          "impliedVolatilityRaw": 0.5141268680572509,
-          "openInterest": 718,
-          "volume": 59,
-          "breakeven": 717.67,
-          "breakevenMovePct": 11.9,
-          "intrinsicValue": 121.41,
-          "extrinsicValue": 76.27,
-          "spreadPct": 1.1,
-          "spreadPctRaw": 0.011382319463766282,
-          "bucket": "Conservative",
-          "contractQualityScore": 100,
-          "contractQualityReasons": [
-            "preferred 12-24 month expiration",
-            "delta is in the preferred LEAPS range",
-            "tight bid/ask spread",
-            "open interest is strong",
-            "IV is not extreme",
-            "premium has meaningful intrinsic support",
-            "breakeven move is reasonable"
-          ],
-          "contractQualityRisks": []
-        },
-        {
-          "contractSymbol": "META280121C00510000",
-          "expiration": "2028-01-21",
-          "dte": 433,
-          "strike": 510,
-          "lastPrice": 205.08,
-          "bid": 202.9,
-          "ask": 204.8,
-          "mid": 203.85,
-          "delta": 0.78,
-          "theta": -0.1546,
-          "vega": 2.0676,
-          "impliedVolatility": 51.7,
-          "impliedVolatilityRaw": 0.5174608801269531,
-          "openInterest": 612,
-          "volume": 1,
-          "breakeven": 713.85,
-          "breakevenMovePct": 11.3,
-          "intrinsicValue": 131.41,
-          "extrinsicValue": 72.44,
-          "spreadPct": 0.9,
-          "spreadPctRaw": 0.009320578857002725,
-          "bucket": "Conservative",
-          "contractQualityScore": 100,
-          "contractQualityReasons": [
-            "preferred 12-24 month expiration",
-            "delta is in the preferred LEAPS range",
-            "tight bid/ask spread",
-            "open interest is strong",
-            "IV is not extreme",
-            "premium has meaningful intrinsic support",
-            "breakeven move is reasonable"
-          ],
-          "contractQualityRisks": []
-        },
-        {
-          "contractSymbol": "META271217C00500000",
-          "expiration": "2027-12-17",
-          "dte": 398,
-          "strike": 500,
-          "lastPrice": 197,
-          "bid": 204.65,
-          "ask": 206.35,
-          "mid": 205.5,
-          "delta": 0.79,
-          "theta": -0.1576,
-          "vega": 1.9245,
-          "impliedVolatility": 52.1,
-          "impliedVolatilityRaw": 0.5206346765136718,
-          "openInterest": 1551,
-          "volume": 6,
-          "breakeven": 705.5,
-          "breakevenMovePct": 10,
-          "intrinsicValue": 141.41,
-          "extrinsicValue": 64.09,
-          "spreadPct": 0.8,
-          "spreadPctRaw": 0.008272506082725006,
-          "bucket": "Conservative",
-          "contractQualityScore": 100,
-          "contractQualityReasons": [
-            "preferred 12-24 month expiration",
-            "delta is in the preferred LEAPS range",
-            "tight bid/ask spread",
-            "open interest is strong",
-            "IV is not extreme",
-            "premium has meaningful intrinsic support",
-            "breakeven move is reasonable"
-          ],
-          "contractQualityRisks": []
-        },
-        {
-          "contractSymbol": "META280121C00500000",
-          "expiration": "2028-01-21",
-          "dte": 433,
-          "strike": 500,
-          "lastPrice": 209.85,
-          "bid": 209.2,
-          "ask": 211,
-          "mid": 210.1,
-          "delta": 0.79,
-          "theta": -0.1521,
-          "vega": 2.0134,
-          "impliedVolatility": 52.1,
-          "impliedVolatilityRaw": 0.520665193786621,
-          "openInterest": 1598,
-          "volume": 18,
-          "breakeven": 710.1,
-          "breakevenMovePct": 10.7,
-          "intrinsicValue": 141.41,
-          "extrinsicValue": 68.69,
-          "spreadPct": 0.9,
-          "spreadPctRaw": 0.008567348881485061,
-          "bucket": "Conservative",
-          "contractQualityScore": 100,
-          "contractQualityReasons": [
-            "preferred 12-24 month expiration",
-            "delta is in the preferred LEAPS range",
-            "tight bid/ask spread",
-            "open interest is strong",
-            "IV is not extreme",
-            "premium has meaningful intrinsic support",
-            "breakeven move is reasonable"
-          ],
-          "contractQualityRisks": []
-        }
-      ],
-      "best3Contracts": {
-        "conservative": {
-          "contractSymbol": "META271217C00500000",
-          "expiration": "2027-12-17",
-          "dte": 398,
-          "strike": 500,
-          "lastPrice": 197,
-          "bid": 204.65,
-          "ask": 206.35,
-          "mid": 205.5,
-          "delta": 0.79,
-          "theta": -0.1576,
-          "vega": 1.9245,
-          "impliedVolatility": 52.1,
-          "impliedVolatilityRaw": 0.5206346765136718,
-          "openInterest": 1551,
-          "volume": 6,
-          "breakeven": 705.5,
-          "breakevenMovePct": 10,
-          "intrinsicValue": 141.41,
-          "extrinsicValue": 64.09,
-          "spreadPct": 0.8,
-          "spreadPctRaw": 0.008272506082725006,
-          "bucket": "Conservative",
-          "contractQualityScore": 100,
-          "contractQualityReasons": [
-            "preferred 12-24 month expiration",
-            "delta is in the preferred LEAPS range",
-            "tight bid/ask spread",
-            "open interest is strong",
-            "IV is not extreme",
-            "premium has meaningful intrinsic support",
-            "breakeven move is reasonable"
-          ],
-          "contractQualityRisks": [],
-          "gamma": null,
-          "ivRankOrPercentile": "Unavailable from Yahoo option chain",
-          "riskLabel": "Defined premium risk",
-          "classification": "Conservative LEAPS Call",
-          "whySelected": "Conservative stock-replacement style: 18-24 months preferred, ITM/deep ITM, 0.75-0.90 delta."
-        },
-        "balanced": {
-          "contractSymbol": "META271217C00550000",
-          "expiration": "2027-12-17",
-          "dte": 398,
-          "strike": 550,
-          "lastPrice": 167.45,
-          "bid": 173.6,
-          "ask": 175.45,
-          "mid": 174.52,
-          "delta": 0.74,
-          "theta": -0.1691,
-          "vega": 2.1794,
-          "impliedVolatility": 50.3,
-          "impliedVolatilityRaw": 0.5029041409301759,
-          "openInterest": 632,
-          "volume": 8,
-          "breakeven": 724.52,
-          "breakevenMovePct": 13,
-          "intrinsicValue": 91.41,
-          "extrinsicValue": 83.12,
-          "spreadPct": 1.1,
-          "spreadPctRaw": 0.010600200544334592,
-          "bucket": "Balanced",
-          "contractQualityScore": 100,
-          "contractQualityReasons": [
-            "preferred 12-24 month expiration",
-            "delta is in the preferred LEAPS range",
-            "tight bid/ask spread",
-            "open interest is strong",
-            "IV is not extreme",
-            "premium has meaningful intrinsic support",
-            "breakeven move is reasonable"
-          ],
-          "contractQualityRisks": [],
-          "gamma": null,
-          "ivRankOrPercentile": "Unavailable from Yahoo option chain",
-          "riskLabel": "Defined premium risk",
-          "classification": "Balanced LEAPS Call",
-          "whySelected": "Balanced LEAPS profile: 12-24 months, ITM/ATM, 0.55-0.75 delta."
-        },
-        "aggressive": {
-          "contractSymbol": "META280121C00850000",
-          "expiration": "2028-01-21",
-          "dte": 433,
-          "strike": 850,
-          "lastPrice": 63,
-          "bid": 62.9,
-          "ask": 63.5,
-          "mid": 63.2,
-          "delta": 0.41,
-          "theta": -0.1627,
-          "vega": 2.7149,
-          "impliedVolatility": 45.2,
-          "impliedVolatilityRaw": 0.4522454678344727,
-          "openInterest": 2751,
-          "volume": 3,
-          "breakeven": 913.2,
-          "breakevenMovePct": 42.4,
-          "intrinsicValue": 0,
-          "extrinsicValue": 63.2,
-          "spreadPct": 0.9,
-          "spreadPctRaw": 0.009493670886075972,
-          "bucket": "Aggressive",
-          "contractQualityScore": 74,
-          "contractQualityReasons": [
-            "preferred 12-24 month expiration",
-            "tight bid/ask spread",
-            "open interest is strong",
-            "IV is not extreme"
-          ],
-          "contractQualityRisks": [
-            "delta is aggressive/speculative",
-            "premium is mostly extrinsic/time value"
-          ],
-          "gamma": null,
-          "ivRankOrPercentile": "Unavailable from Yahoo option chain",
-          "riskLabel": "Speculative",
-          "classification": "Aggressive LEAPS Call",
-          "whySelected": "Aggressive/speculative profile: 12-24 months, slightly OTM, 0.35-0.55 delta."
-        }
-      },
-      "contractQualityReasons": [
-        "preferred 12-24 month expiration",
-        "delta is in the preferred LEAPS range",
-        "tight bid/ask spread",
-        "open interest is strong",
-        "IV is not extreme",
-        "premium has meaningful intrinsic support",
-        "breakeven move is reasonable"
-      ],
-      "contractQualityRisks": [],
-      "expiration": "2027-12-17",
-      "dte": 398,
-      "strike": 550,
-      "lastPrice": 167.45,
-      "bid": 173.6,
-      "ask": 175.45,
-      "mid": 174.52,
-      "delta": 0.74,
-      "theta": -0.1691,
-      "vega": 2.1794,
-      "impliedVolatility": 50.3,
-      "openInterest": 632,
-      "volume": 8,
-      "breakeven": 724.52,
-      "breakevenMovePct": 13,
-      "intrinsicValue": 91.41,
-      "extrinsicValue": 83.12,
-      "spreadPct": 1.1,
-      "contractQualityScore": 100,
-      "bucket": "Balanced"
-    }
-  ],
-  "top5": [
-    {
-      "symbol": "AMD",
-      "name": "Advanced Micro Devices, Inc.",
-      "sector": "Technology",
-      "currentPrice": 535.91,
-      "direction": "CALL",
-      "decision": "Strong Watchlist Candidate",
-      "status": "Watch for Pullback",
-      "score": 83,
-      "leapsOpportunityScore": 83,
-      "underlyingScore": 77,
-      "riskScore": 45,
-      "riskLabel": "Medium Risk",
-      "eventRisk": "Medium Event Risk",
-      "eventRiskHeadline": "Mixed / normal tape",
-      "earningsDate": "Unavailable",
-      "preferredExpiryRange": "12-24 months preferred; 6 months minimum",
-      "preferredStrikeZone": "Balanced: near 460 strike",
-      "preferredDelta": "0.55-0.75",
-      "bestContractCandidate": "2028-01-21 460C near 178.05 mid",
-      "optionLiquidityStatus": "Good",
-      "dcaSuitability": "DCA Allowed if Thesis Holds",
-      "pullbackClassification": "Healthy Pullback",
-      "bullCase": "Bull case: the chart trend is supportive, valuation is not fighting the story too hard, business quality is acceptable.",
-      "bearCase": "Bear case: growth is not fully confirmed by the checklist.",
-      "whyOpportunityExists": "Advanced Micro Devices, Inc. clears the underlying-quality gate and has a healthy pullback setup with a usable long-dated call candidate.",
-      "longTermThesis": "Advanced Micro Devices, Inc. is a AI / semiconductor infrastructure candidate. Overall, I would treat it as not yet a confirmed growth stock with risk around 25/100. The key is whether revenue growth can stay ahead of the stock's valuation. Analyst tone is bullish.",
-      "catalysts": [
-        "Next earnings window shown by Yahoo: 2027-02-02.",
-        "Growth itself is a catalyst if management keeps beating expectations.",
-        "Analyst target is above current price, so estimate revisions matter.",
-        "Recent Yahoo headline catalyst: Bank of America resets AMD stock price target as Nvidia CEO exits"
-      ],
-      "technicalSetup": "Healthy Pullback. Price is -18.6% from 52-week high, 0.3% from 50-day, 20.9% from 200-day, RSI 52.8.",
-      "dcaPlan": {
-        "suitability": "DCA Allowed if Thesis Holds",
-        "allowed": true,
-        "starterPositionZone": "525.19-546.62",
-        "addZone1": "482.31-503.75",
-        "addZone2": "443.39-471.6",
-        "stopAddingInvalidationLevel": 443.39,
-        "rules": "Add only if the thesis is intact, price is near support, long-term trend survives, IV/spread remain reasonable, and total position risk remains capped."
-      },
-      "invalidationLevel": 443.39,
-      "finalResearchVerdict": "Research verdict: watchlist candidate; wait for a better entry, cleaner pullback, or tighter spread.",
-      "underlyingComponents": [
-        {
-          "label": "Business quality",
-          "weight": 20,
-          "score": 88
-        },
-        {
-          "label": "Growth quality",
-          "weight": 20,
-          "score": 63.75
-        },
-        {
-          "label": "Financial strength",
-          "weight": 15,
-          "score": 78
-        },
-        {
-          "label": "Valuation reasonableness",
-          "weight": 15,
-          "score": 57
-        },
-        {
-          "label": "Catalyst strength",
-          "weight": 15,
-          "score": 75
-        },
-        {
-          "label": "Technical setup",
-          "weight": 15,
-          "score": 100
-        }
-      ],
-      "pullback": {
-        "score": 100,
-        "classification": "Healthy Pullback",
-        "reasons": [
-          "meaningful pullback from the 52-week high",
-          "price is near the 50-day trend area",
-          "long-term trend remains above the 200-day average",
-          "RSI has reset without becoming washed out",
-          "selloff volume is not extreme",
-          "fundamentals still look intact from available data"
-        ],
-        "risks": [],
-        "distanceFrom52WeekHighPct": -18.6,
-        "distanceFrom50DayPct": 0.3,
-        "distanceFrom200DayPct": 20.9,
-        "rsi14": 52.8,
-        "volumeVs20Day": 1.27
-      },
-      "optionContracts": [
-        {
-          "contractSymbol": "AMD280121C00460000",
-          "expiration": "2028-01-21",
-          "dte": 433,
-          "strike": 460,
-          "lastPrice": 179.7,
-          "bid": 174.85,
-          "ask": 181.25,
-          "mid": 178.05,
-          "delta": 0.74,
-          "theta": -0.1644,
-          "vega": 1.902,
-          "impliedVolatility": 64.5,
-          "impliedVolatilityRaw": 0.6447636842346192,
-          "openInterest": 2419,
-          "volume": 4,
-          "breakeven": 638.05,
-          "breakevenMovePct": 19.1,
-          "intrinsicValue": 75.91,
-          "extrinsicValue": 102.14,
-          "spreadPct": 3.6,
-          "spreadPctRaw": 0.03594495928110084,
-          "bucket": "Balanced",
-          "contractQualityScore": 94,
-          "contractQualityReasons": [
-            "preferred 12-24 month expiration",
-            "delta is in the preferred LEAPS range",
-            "tight bid/ask spread",
-            "open interest is strong",
-            "premium has meaningful intrinsic support",
-            "breakeven move is reasonable"
-          ],
-          "contractQualityRisks": [
-            "IV is elevated"
-          ]
-        },
-        {
-          "contractSymbol": "AMD271217C00450000",
-          "expiration": "2027-12-17",
-          "dte": 398,
-          "strike": 450,
-          "lastPrice": 180,
-          "bid": 174.7,
-          "ask": 180.6,
-          "mid": 177.65,
-          "delta": 0.75,
-          "theta": -0.169,
-          "vega": 1.7945,
-          "impliedVolatility": 64.6,
-          "impliedVolatilityRaw": 0.6460682976531981,
-          "openInterest": 524,
-          "volume": 5,
-          "breakeven": 627.65,
-          "breakevenMovePct": 17.1,
-          "intrinsicValue": 85.91,
-          "extrinsicValue": 91.74,
-          "spreadPct": 3.3,
-          "spreadPctRaw": 0.03321137067267102,
-          "bucket": "Balanced",
-          "contractQualityScore": 94,
-          "contractQualityReasons": [
-            "preferred 12-24 month expiration",
-            "delta is in the preferred LEAPS range",
-            "tight bid/ask spread",
-            "open interest is strong",
-            "premium has meaningful intrinsic support",
-            "breakeven move is reasonable"
-          ],
-          "contractQualityRisks": [
-            "IV is elevated"
-          ]
-        },
-        {
-          "contractSymbol": "AMD280121C00450000",
-          "expiration": "2028-01-21",
-          "dte": 433,
-          "strike": 450,
-          "lastPrice": 177.2,
-          "bid": 179.9,
-          "ask": 186.2,
-          "mid": 183.05,
-          "delta": 0.75,
-          "theta": -0.1621,
-          "vega": 1.8634,
-          "impliedVolatility": 64.7,
-          "impliedVolatilityRaw": 0.6472050660705566,
-          "openInterest": 1926,
-          "volume": 6,
-          "breakeven": 633.05,
-          "breakevenMovePct": 18.1,
-          "intrinsicValue": 85.91,
-          "extrinsicValue": 97.14,
-          "spreadPct": 3.4,
-          "spreadPctRaw": 0.034416826003823994,
-          "bucket": "Balanced",
-          "contractQualityScore": 94,
-          "contractQualityReasons": [
-            "preferred 12-24 month expiration",
-            "delta is in the preferred LEAPS range",
-            "tight bid/ask spread",
-            "open interest is strong",
-            "premium has meaningful intrinsic support",
-            "breakeven move is reasonable"
-          ],
-          "contractQualityRisks": [
-            "IV is elevated"
-          ]
-        },
-        {
-          "contractSymbol": "AMD280121C00420000",
-          "expiration": "2028-01-21",
-          "dte": 433,
-          "strike": 420,
-          "lastPrice": 198.4,
-          "bid": 195.8,
-          "ask": 202,
-          "mid": 198.9,
-          "delta": 0.78,
-          "theta": -0.1544,
-          "vega": 1.7382,
-          "impliedVolatility": 65.6,
-          "impliedVolatilityRaw": 0.6556202040863037,
-          "openInterest": 630,
-          "volume": 5,
-          "breakeven": 618.9,
-          "breakevenMovePct": 15.5,
-          "intrinsicValue": 115.91,
-          "extrinsicValue": 82.99,
-          "spreadPct": 3.1,
-          "spreadPctRaw": 0.03117144293614876,
-          "bucket": "Conservative",
-          "contractQualityScore": 94,
-          "contractQualityReasons": [
-            "preferred 12-24 month expiration",
-            "delta is in the preferred LEAPS range",
-            "tight bid/ask spread",
-            "open interest is strong",
-            "premium has meaningful intrinsic support",
-            "breakeven move is reasonable"
-          ],
-          "contractQualityRisks": [
-            "IV is elevated"
-          ]
-        },
-        {
-          "contractSymbol": "AMD280121C00410000",
-          "expiration": "2028-01-21",
-          "dte": 433,
-          "strike": 410,
-          "lastPrice": 197.3,
-          "bid": 201.05,
-          "ask": 205.25,
-          "mid": 203.15,
-          "delta": 0.79,
-          "theta": -0.1502,
-          "vega": 1.6922,
-          "impliedVolatility": 65.1,
-          "impliedVolatilityRaw": 0.6514317083740235,
-          "openInterest": 1191,
-          "volume": 2,
-          "breakeven": 613.15,
-          "breakevenMovePct": 14.4,
-          "intrinsicValue": 125.91,
-          "extrinsicValue": 77.24,
-          "spreadPct": 2.1,
-          "spreadPctRaw": 0.020674378538026034,
-          "bucket": "Conservative",
-          "contractQualityScore": 94,
-          "contractQualityReasons": [
-            "preferred 12-24 month expiration",
-            "delta is in the preferred LEAPS range",
-            "tight bid/ask spread",
-            "open interest is strong",
-            "premium has meaningful intrinsic support",
-            "breakeven move is reasonable"
-          ],
-          "contractQualityRisks": [
-            "IV is elevated"
-          ]
-        },
-        {
-          "contractSymbol": "AMD280121C00400000",
-          "expiration": "2028-01-21",
-          "dte": 433,
-          "strike": 400,
-          "lastPrice": 211.32,
-          "bid": 206.85,
-          "ask": 212.65,
-          "mid": 209.75,
-          "delta": 0.8,
-          "theta": -0.1483,
-          "vega": 1.6468,
-          "impliedVolatility": 66,
-          "impliedVolatilityRaw": 0.6597476652526855,
-          "openInterest": 2029,
-          "volume": 44,
-          "breakeven": 609.75,
-          "breakevenMovePct": 13.8,
-          "intrinsicValue": 135.91,
-          "extrinsicValue": 73.84,
-          "spreadPct": 2.8,
-          "spreadPctRaw": 0.027651966626936884,
-          "bucket": "Conservative",
-          "contractQualityScore": 94,
-          "contractQualityReasons": [
-            "preferred 12-24 month expiration",
-            "delta is in the preferred LEAPS range",
-            "tight bid/ask spread",
-            "open interest is strong",
-            "premium has meaningful intrinsic support",
-            "breakeven move is reasonable"
-          ],
-          "contractQualityRisks": [
-            "IV is elevated"
-          ]
-        },
-        {
-          "contractSymbol": "AMD271217C00400000",
-          "expiration": "2027-12-17",
-          "dte": 398,
-          "strike": 400,
-          "lastPrice": 204.25,
-          "bid": 201.95,
-          "ask": 208,
-          "mid": 204.97,
-          "delta": 0.8,
-          "theta": -0.1542,
-          "vega": 1.5788,
-          "impliedVolatility": 65.9,
-          "impliedVolatilityRaw": 0.659381457977295,
-          "openInterest": 1359,
-          "volume": 38,
-          "breakeven": 604.98,
-          "breakevenMovePct": 12.9,
-          "intrinsicValue": 135.91,
-          "extrinsicValue": 69.07,
-          "spreadPct": 3,
-          "spreadPctRaw": 0.029515794609098728,
-          "bucket": "Conservative",
-          "contractQualityScore": 94,
-          "contractQualityReasons": [
-            "preferred 12-24 month expiration",
-            "delta is in the preferred LEAPS range",
-            "tight bid/ask spread",
-            "open interest is strong",
-            "premium has meaningful intrinsic support",
-            "breakeven move is reasonable"
-          ],
-          "contractQualityRisks": [
-            "IV is elevated"
-          ]
-        },
-        {
-          "contractSymbol": "AMD271217C00370000",
-          "expiration": "2027-12-17",
-          "dte": 398,
-          "strike": 370,
-          "lastPrice": 216.56,
-          "bid": 220.2,
-          "ask": 225.95,
-          "mid": 223.07,
-          "delta": 0.83,
-          "theta": -0.1436,
-          "vega": 1.4326,
-          "impliedVolatility": 66.9,
-          "impliedVolatilityRaw": 0.6692385371398928,
-          "openInterest": 927,
-          "volume": 5,
-          "breakeven": 593.08,
-          "breakevenMovePct": 10.7,
-          "intrinsicValue": 165.91,
-          "extrinsicValue": 57.17,
-          "spreadPct": 2.6,
-          "spreadPctRaw": 0.025776084276588593,
-          "bucket": "Conservative",
-          "contractQualityScore": 94,
-          "contractQualityReasons": [
-            "preferred 12-24 month expiration",
-            "delta is in the preferred LEAPS range",
-            "tight bid/ask spread",
-            "open interest is strong",
-            "premium has meaningful intrinsic support",
-            "breakeven move is reasonable"
-          ],
-          "contractQualityRisks": [
-            "IV is elevated"
-          ]
-        }
-      ],
-      "best3Contracts": {
-        "conservative": {
-          "contractSymbol": "AMD280121C00410000",
-          "expiration": "2028-01-21",
-          "dte": 433,
-          "strike": 410,
-          "lastPrice": 197.3,
-          "bid": 201.05,
-          "ask": 205.25,
-          "mid": 203.15,
-          "delta": 0.79,
-          "theta": -0.1502,
-          "vega": 1.6922,
-          "impliedVolatility": 65.1,
-          "impliedVolatilityRaw": 0.6514317083740235,
-          "openInterest": 1191,
-          "volume": 2,
-          "breakeven": 613.15,
-          "breakevenMovePct": 14.4,
-          "intrinsicValue": 125.91,
-          "extrinsicValue": 77.24,
-          "spreadPct": 2.1,
-          "spreadPctRaw": 0.020674378538026034,
-          "bucket": "Conservative",
-          "contractQualityScore": 94,
-          "contractQualityReasons": [
-            "preferred 12-24 month expiration",
-            "delta is in the preferred LEAPS range",
-            "tight bid/ask spread",
-            "open interest is strong",
-            "premium has meaningful intrinsic support",
-            "breakeven move is reasonable"
-          ],
-          "contractQualityRisks": [
-            "IV is elevated"
-          ],
-          "gamma": null,
-          "ivRankOrPercentile": "Unavailable from Yahoo option chain",
-          "riskLabel": "Defined premium risk",
-          "classification": "Conservative LEAPS Call",
-          "whySelected": "Conservative stock-replacement style: 18-24 months preferred, ITM/deep ITM, 0.75-0.90 delta."
-        },
-        "balanced": {
-          "contractSymbol": "AMD280121C00460000",
-          "expiration": "2028-01-21",
-          "dte": 433,
-          "strike": 460,
-          "lastPrice": 179.7,
-          "bid": 174.85,
-          "ask": 181.25,
-          "mid": 178.05,
-          "delta": 0.74,
-          "theta": -0.1644,
-          "vega": 1.902,
-          "impliedVolatility": 64.5,
-          "impliedVolatilityRaw": 0.6447636842346192,
-          "openInterest": 2419,
-          "volume": 4,
-          "breakeven": 638.05,
-          "breakevenMovePct": 19.1,
-          "intrinsicValue": 75.91,
-          "extrinsicValue": 102.14,
-          "spreadPct": 3.6,
-          "spreadPctRaw": 0.03594495928110084,
-          "bucket": "Balanced",
-          "contractQualityScore": 94,
-          "contractQualityReasons": [
-            "preferred 12-24 month expiration",
-            "delta is in the preferred LEAPS range",
-            "tight bid/ask spread",
-            "open interest is strong",
-            "premium has meaningful intrinsic support",
-            "breakeven move is reasonable"
-          ],
-          "contractQualityRisks": [
-            "IV is elevated"
-          ],
-          "gamma": null,
-          "ivRankOrPercentile": "Unavailable from Yahoo option chain",
-          "riskLabel": "Defined premium risk",
-          "classification": "Balanced LEAPS Call",
-          "whySelected": "Balanced LEAPS profile: 12-24 months, ITM/ATM, 0.55-0.75 delta."
-        },
-        "aggressive": {
-          "contractSymbol": "AMD271217C00700000",
-          "expiration": "2027-12-17",
-          "dte": 398,
-          "strike": 700,
-          "lastPrice": 86.62,
-          "bid": 84.6,
-          "ask": 87,
-          "mid": 85.8,
-          "delta": 0.49,
-          "theta": -0.1898,
-          "vega": 2.2314,
-          "impliedVolatility": 61.1,
-          "impliedVolatilityRaw": 0.6110268389892579,
-          "openInterest": 3613,
-          "volume": 48,
-          "breakeven": 785.8,
-          "breakevenMovePct": 46.6,
-          "intrinsicValue": 0,
-          "extrinsicValue": 85.8,
-          "spreadPct": 2.8,
-          "spreadPctRaw": 0.027972027972028038,
-          "bucket": "Aggressive",
-          "contractQualityScore": 68,
-          "contractQualityReasons": [
-            "preferred 12-24 month expiration",
-            "tight bid/ask spread",
-            "open interest is strong"
-          ],
-          "contractQualityRisks": [
-            "delta is aggressive/speculative",
-            "IV is elevated",
-            "premium is mostly extrinsic/time value",
-            "breakeven requires a very large move"
-          ],
-          "gamma": null,
-          "ivRankOrPercentile": "Unavailable from Yahoo option chain",
-          "riskLabel": "Speculative",
-          "classification": "Avoid - Bad Risk/Reward",
-          "whySelected": "Aggressive/speculative profile: 12-24 months, slightly OTM, 0.35-0.55 delta."
-        }
-      },
-      "contractQualityReasons": [
-        "preferred 12-24 month expiration",
-        "delta is in the preferred LEAPS range",
-        "tight bid/ask spread",
-        "open interest is strong",
-        "premium has meaningful intrinsic support",
-        "breakeven move is reasonable"
-      ],
-      "contractQualityRisks": [
-        "IV is elevated"
-      ],
-      "expiration": "2028-01-21",
-      "dte": 433,
-      "strike": 460,
-      "lastPrice": 179.7,
-      "bid": 174.85,
-      "ask": 181.25,
-      "mid": 178.05,
-      "delta": 0.74,
-      "theta": -0.1644,
-      "vega": 1.902,
-      "impliedVolatility": 64.5,
-      "openInterest": 2419,
-      "volume": 4,
-      "breakeven": 638.05,
-      "breakevenMovePct": 19.1,
-      "intrinsicValue": 75.91,
-      "extrinsicValue": 102.14,
-      "spreadPct": 3.6,
-      "contractQualityScore": 94,
-      "bucket": "Balanced"
-    },
-    {
-      "symbol": "META",
-      "name": "Meta Platforms, Inc.",
-      "sector": "Communication Services",
-      "currentPrice": 641.41,
-      "direction": "CALL",
-      "decision": "Strong Watchlist Candidate",
-      "status": "Watch for Pullback",
-      "score": 81,
-      "leapsOpportunityScore": 81,
-      "underlyingScore": 73,
-      "riskScore": 53,
-      "riskLabel": "Medium Risk",
-      "eventRisk": "Low Event Risk",
-      "eventRiskHeadline": "Positive catalyst tape",
-      "earningsDate": "Unavailable",
-      "preferredExpiryRange": "12-24 months preferred; 6 months minimum",
-      "preferredStrikeZone": "Balanced: near 550 strike",
-      "preferredDelta": "0.55-0.75",
-      "bestContractCandidate": "2027-12-17 550C near 174.52 mid",
-      "optionLiquidityStatus": "Good",
-      "dcaSuitability": "DCA Rejected / Wait",
-      "pullbackClassification": "Waiting for Reclaim",
-      "bullCase": "Bull case: valuation is not fighting the story too hard, business quality is acceptable.",
-      "bearCase": "Bear case: growth is not fully confirmed by the checklist, the chart is not giving a clean confirmation.",
-      "whyOpportunityExists": "Meta Platforms, Inc. clears the underlying-quality gate and has a waiting for reclaim setup with a usable long-dated call candidate.",
-      "longTermThesis": "Meta Platforms, Inc. is a software / internet platform candidate. Overall, I would treat it as not yet a confirmed growth stock with risk around 26/100. The key is whether revenue growth can stay ahead of the stock's valuation. Analyst tone is bullish.",
-      "catalysts": [
-        "Next earnings window shown by Yahoo: 2027-01-27.",
-        "Growth itself is a catalyst if management keeps beating expectations.",
-        "Analyst target is above current price, so estimate revisions matter."
-      ],
-      "technicalSetup": "Waiting for Reclaim. Price is -17.7% from 52-week high, -1.9% from 50-day, 0% from 200-day, RSI 53.6.",
-      "dcaPlan": {
-        "suitability": "DCA Rejected / Wait",
-        "allowed": false,
-        "starterPositionZone": "628.58-654.24",
-        "addZone1": "597.79-602.93",
-        "addZone2": "597.79-564.44",
-        "stopAddingInvalidationLevel": 597.79,
-        "rules": "Do not DCA unless the thesis, trend, time-to-expiration, liquidity, and IV conditions improve."
-      },
-      "invalidationLevel": 597.79,
-      "finalResearchVerdict": "Research verdict: watchlist candidate; wait for a better entry, cleaner pullback, or tighter spread.",
-      "underlyingComponents": [
-        {
-          "label": "Business quality",
-          "weight": 20,
-          "score": 66
-        },
-        {
-          "label": "Growth quality",
-          "weight": 20,
-          "score": 75
-        },
-        {
-          "label": "Financial strength",
-          "weight": 15,
-          "score": 79
-        },
-        {
-          "label": "Valuation reasonableness",
-          "weight": 15,
-          "score": 73
-        },
-        {
-          "label": "Catalyst strength",
-          "weight": 15,
-          "score": 89
-        },
-        {
-          "label": "Technical setup",
-          "weight": 15,
-          "score": 59
-        }
-      ],
-      "pullback": {
-        "score": 86,
-        "classification": "Waiting for Reclaim",
-        "reasons": [
-          "meaningful pullback from the 52-week high",
-          "price is near the 50-day trend area",
-          "RSI has reset without becoming washed out",
-          "selloff volume is not extreme",
-          "fundamentals still look intact from available data"
-        ],
-        "risks": [
-          "price is below the 200-day average"
-        ],
-        "distanceFrom52WeekHighPct": -17.7,
-        "distanceFrom50DayPct": -1.9,
-        "distanceFrom200DayPct": 0,
-        "rsi14": 53.6,
-        "volumeVs20Day": 0.54
-      },
-      "optionContracts": [
-        {
-          "contractSymbol": "META271217C00550000",
-          "expiration": "2027-12-17",
-          "dte": 398,
-          "strike": 550,
-          "lastPrice": 167.45,
-          "bid": 173.6,
-          "ask": 175.45,
-          "mid": 174.52,
-          "delta": 0.74,
-          "theta": -0.1691,
-          "vega": 2.1794,
-          "impliedVolatility": 50.3,
-          "impliedVolatilityRaw": 0.5029041409301759,
-          "openInterest": 632,
-          "volume": 8,
-          "breakeven": 724.52,
-          "breakevenMovePct": 13,
-          "intrinsicValue": 91.41,
-          "extrinsicValue": 83.12,
-          "spreadPct": 1.1,
-          "spreadPctRaw": 0.010600200544334592,
-          "bucket": "Balanced",
-          "contractQualityScore": 100,
-          "contractQualityReasons": [
-            "preferred 12-24 month expiration",
-            "delta is in the preferred LEAPS range",
-            "tight bid/ask spread",
-            "open interest is strong",
-            "IV is not extreme",
-            "premium has meaningful intrinsic support",
-            "breakeven move is reasonable"
-          ],
-          "contractQualityRisks": []
-        },
-        {
-          "contractSymbol": "META280121C00550000",
-          "expiration": "2028-01-21",
-          "dte": 433,
-          "strike": 550,
-          "lastPrice": 176,
-          "bid": 178.6,
-          "ask": 180.75,
-          "mid": 179.68,
-          "delta": 0.74,
-          "theta": -0.1629,
-          "vega": 2.2694,
-          "impliedVolatility": 50.4,
-          "impliedVolatilityRaw": 0.503735736618042,
-          "openInterest": 3138,
-          "volume": 2,
-          "breakeven": 729.67,
-          "breakevenMovePct": 13.8,
-          "intrinsicValue": 91.41,
-          "extrinsicValue": 88.27,
-          "spreadPct": 1.2,
-          "spreadPctRaw": 0.011966049812160876,
-          "bucket": "Balanced",
-          "contractQualityScore": 100,
-          "contractQualityReasons": [
-            "preferred 12-24 month expiration",
-            "delta is in the preferred LEAPS range",
-            "tight bid/ask spread",
-            "open interest is strong",
-            "IV is not extreme",
-            "premium has meaningful intrinsic support",
-            "breakeven move is reasonable"
-          ],
-          "contractQualityRisks": []
-        },
-        {
-          "contractSymbol": "META280121C00540000",
-          "expiration": "2028-01-21",
-          "dte": 433,
-          "strike": 540,
-          "lastPrice": 169.6,
-          "bid": 184.5,
-          "ask": 186.4,
-          "mid": 185.45,
-          "delta": 0.75,
-          "theta": -0.1609,
-          "vega": 2.2211,
-          "impliedVolatility": 50.7,
-          "impliedVolatilityRaw": 0.5066730241394042,
-          "openInterest": 4521,
-          "volume": 1,
-          "breakeven": 725.45,
-          "breakevenMovePct": 13.1,
-          "intrinsicValue": 101.41,
-          "extrinsicValue": 84.04,
-          "spreadPct": 1,
-          "spreadPctRaw": 0.01024534915071451,
-          "bucket": "Balanced",
-          "contractQualityScore": 100,
-          "contractQualityReasons": [
-            "preferred 12-24 month expiration",
-            "delta is in the preferred LEAPS range",
-            "tight bid/ask spread",
-            "open interest is strong",
-            "IV is not extreme",
-            "premium has meaningful intrinsic support",
-            "breakeven move is reasonable"
-          ],
-          "contractQualityRisks": []
-        },
-        {
-          "contractSymbol": "META280616C00550000",
-          "expiration": "2028-06-16",
-          "dte": 580,
-          "strike": 550,
-          "lastPrice": 198.05,
-          "bid": 199.45,
-          "ask": 202.8,
-          "mid": 201.13,
-          "delta": 0.75,
-          "theta": -0.1433,
-          "vega": 2.5954,
-          "impliedVolatility": 51.3,
-          "impliedVolatilityRaw": 0.5129824703216552,
-          "openInterest": 560,
-          "volume": 1,
-          "breakeven": 751.13,
-          "breakevenMovePct": 17.1,
-          "intrinsicValue": 91.41,
-          "extrinsicValue": 109.72,
-          "spreadPct": 1.7,
-          "spreadPctRaw": 0.016656308266003842,
-          "bucket": "Balanced",
-          "contractQualityScore": 100,
-          "contractQualityReasons": [
-            "preferred 12-24 month expiration",
-            "delta is in the preferred LEAPS range",
-            "tight bid/ask spread",
-            "open interest is strong",
-            "IV is not extreme",
-            "premium has meaningful intrinsic support",
-            "breakeven move is reasonable"
-          ],
-          "contractQualityRisks": []
-        },
-        {
-          "contractSymbol": "META280121C00520000",
-          "expiration": "2028-01-21",
-          "dte": 433,
-          "strike": 520,
-          "lastPrice": 188,
-          "bid": 196.55,
-          "ask": 198.8,
-          "mid": 197.68,
-          "delta": 0.77,
-          "theta": -0.1569,
-          "vega": 2.1203,
-          "impliedVolatility": 51.4,
-          "impliedVolatilityRaw": 0.5141268680572509,
-          "openInterest": 718,
-          "volume": 59,
-          "breakeven": 717.67,
-          "breakevenMovePct": 11.9,
-          "intrinsicValue": 121.41,
-          "extrinsicValue": 76.27,
-          "spreadPct": 1.1,
-          "spreadPctRaw": 0.011382319463766282,
-          "bucket": "Conservative",
-          "contractQualityScore": 100,
-          "contractQualityReasons": [
-            "preferred 12-24 month expiration",
-            "delta is in the preferred LEAPS range",
-            "tight bid/ask spread",
-            "open interest is strong",
-            "IV is not extreme",
-            "premium has meaningful intrinsic support",
-            "breakeven move is reasonable"
-          ],
-          "contractQualityRisks": []
-        },
-        {
-          "contractSymbol": "META280121C00510000",
-          "expiration": "2028-01-21",
-          "dte": 433,
-          "strike": 510,
-          "lastPrice": 205.08,
-          "bid": 202.9,
-          "ask": 204.8,
-          "mid": 203.85,
-          "delta": 0.78,
-          "theta": -0.1546,
-          "vega": 2.0676,
-          "impliedVolatility": 51.7,
-          "impliedVolatilityRaw": 0.5174608801269531,
-          "openInterest": 612,
-          "volume": 1,
-          "breakeven": 713.85,
-          "breakevenMovePct": 11.3,
-          "intrinsicValue": 131.41,
-          "extrinsicValue": 72.44,
-          "spreadPct": 0.9,
-          "spreadPctRaw": 0.009320578857002725,
-          "bucket": "Conservative",
-          "contractQualityScore": 100,
-          "contractQualityReasons": [
-            "preferred 12-24 month expiration",
-            "delta is in the preferred LEAPS range",
-            "tight bid/ask spread",
-            "open interest is strong",
-            "IV is not extreme",
-            "premium has meaningful intrinsic support",
-            "breakeven move is reasonable"
-          ],
-          "contractQualityRisks": []
-        },
-        {
-          "contractSymbol": "META271217C00500000",
-          "expiration": "2027-12-17",
-          "dte": 398,
-          "strike": 500,
-          "lastPrice": 197,
-          "bid": 204.65,
-          "ask": 206.35,
-          "mid": 205.5,
-          "delta": 0.79,
-          "theta": -0.1576,
-          "vega": 1.9245,
-          "impliedVolatility": 52.1,
-          "impliedVolatilityRaw": 0.5206346765136718,
-          "openInterest": 1551,
-          "volume": 6,
-          "breakeven": 705.5,
-          "breakevenMovePct": 10,
-          "intrinsicValue": 141.41,
-          "extrinsicValue": 64.09,
-          "spreadPct": 0.8,
-          "spreadPctRaw": 0.008272506082725006,
-          "bucket": "Conservative",
-          "contractQualityScore": 100,
-          "contractQualityReasons": [
-            "preferred 12-24 month expiration",
-            "delta is in the preferred LEAPS range",
-            "tight bid/ask spread",
-            "open interest is strong",
-            "IV is not extreme",
-            "premium has meaningful intrinsic support",
-            "breakeven move is reasonable"
-          ],
-          "contractQualityRisks": []
-        },
-        {
-          "contractSymbol": "META280121C00500000",
-          "expiration": "2028-01-21",
-          "dte": 433,
-          "strike": 500,
-          "lastPrice": 209.85,
-          "bid": 209.2,
-          "ask": 211,
-          "mid": 210.1,
-          "delta": 0.79,
-          "theta": -0.1521,
-          "vega": 2.0134,
-          "impliedVolatility": 52.1,
-          "impliedVolatilityRaw": 0.520665193786621,
-          "openInterest": 1598,
-          "volume": 18,
-          "breakeven": 710.1,
-          "breakevenMovePct": 10.7,
-          "intrinsicValue": 141.41,
-          "extrinsicValue": 68.69,
-          "spreadPct": 0.9,
-          "spreadPctRaw": 0.008567348881485061,
-          "bucket": "Conservative",
-          "contractQualityScore": 100,
-          "contractQualityReasons": [
-            "preferred 12-24 month expiration",
-            "delta is in the preferred LEAPS range",
-            "tight bid/ask spread",
-            "open interest is strong",
-            "IV is not extreme",
-            "premium has meaningful intrinsic support",
-            "breakeven move is reasonable"
-          ],
-          "contractQualityRisks": []
-        }
-      ],
-      "best3Contracts": {
-        "conservative": {
-          "contractSymbol": "META271217C00500000",
-          "expiration": "2027-12-17",
-          "dte": 398,
-          "strike": 500,
-          "lastPrice": 197,
-          "bid": 204.65,
-          "ask": 206.35,
-          "mid": 205.5,
-          "delta": 0.79,
-          "theta": -0.1576,
-          "vega": 1.9245,
-          "impliedVolatility": 52.1,
-          "impliedVolatilityRaw": 0.5206346765136718,
-          "openInterest": 1551,
-          "volume": 6,
-          "breakeven": 705.5,
-          "breakevenMovePct": 10,
-          "intrinsicValue": 141.41,
-          "extrinsicValue": 64.09,
-          "spreadPct": 0.8,
-          "spreadPctRaw": 0.008272506082725006,
-          "bucket": "Conservative",
-          "contractQualityScore": 100,
-          "contractQualityReasons": [
-            "preferred 12-24 month expiration",
-            "delta is in the preferred LEAPS range",
-            "tight bid/ask spread",
-            "open interest is strong",
-            "IV is not extreme",
-            "premium has meaningful intrinsic support",
-            "breakeven move is reasonable"
-          ],
-          "contractQualityRisks": [],
-          "gamma": null,
-          "ivRankOrPercentile": "Unavailable from Yahoo option chain",
-          "riskLabel": "Defined premium risk",
-          "classification": "Conservative LEAPS Call",
-          "whySelected": "Conservative stock-replacement style: 18-24 months preferred, ITM/deep ITM, 0.75-0.90 delta."
-        },
-        "balanced": {
-          "contractSymbol": "META271217C00550000",
-          "expiration": "2027-12-17",
-          "dte": 398,
-          "strike": 550,
-          "lastPrice": 167.45,
-          "bid": 173.6,
-          "ask": 175.45,
-          "mid": 174.52,
-          "delta": 0.74,
-          "theta": -0.1691,
-          "vega": 2.1794,
-          "impliedVolatility": 50.3,
-          "impliedVolatilityRaw": 0.5029041409301759,
-          "openInterest": 632,
-          "volume": 8,
-          "breakeven": 724.52,
-          "breakevenMovePct": 13,
-          "intrinsicValue": 91.41,
-          "extrinsicValue": 83.12,
-          "spreadPct": 1.1,
-          "spreadPctRaw": 0.010600200544334592,
-          "bucket": "Balanced",
-          "contractQualityScore": 100,
-          "contractQualityReasons": [
-            "preferred 12-24 month expiration",
-            "delta is in the preferred LEAPS range",
-            "tight bid/ask spread",
-            "open interest is strong",
-            "IV is not extreme",
-            "premium has meaningful intrinsic support",
-            "breakeven move is reasonable"
-          ],
-          "contractQualityRisks": [],
-          "gamma": null,
-          "ivRankOrPercentile": "Unavailable from Yahoo option chain",
-          "riskLabel": "Defined premium risk",
-          "classification": "Balanced LEAPS Call",
-          "whySelected": "Balanced LEAPS profile: 12-24 months, ITM/ATM, 0.55-0.75 delta."
-        },
-        "aggressive": {
-          "contractSymbol": "META280121C00850000",
-          "expiration": "2028-01-21",
-          "dte": 433,
-          "strike": 850,
-          "lastPrice": 63,
-          "bid": 62.9,
-          "ask": 63.5,
-          "mid": 63.2,
-          "delta": 0.41,
-          "theta": -0.1627,
-          "vega": 2.7149,
-          "impliedVolatility": 45.2,
-          "impliedVolatilityRaw": 0.4522454678344727,
-          "openInterest": 2751,
-          "volume": 3,
-          "breakeven": 913.2,
-          "breakevenMovePct": 42.4,
-          "intrinsicValue": 0,
-          "extrinsicValue": 63.2,
-          "spreadPct": 0.9,
-          "spreadPctRaw": 0.009493670886075972,
-          "bucket": "Aggressive",
-          "contractQualityScore": 74,
-          "contractQualityReasons": [
-            "preferred 12-24 month expiration",
-            "tight bid/ask spread",
-            "open interest is strong",
-            "IV is not extreme"
-          ],
-          "contractQualityRisks": [
-            "delta is aggressive/speculative",
-            "premium is mostly extrinsic/time value"
-          ],
-          "gamma": null,
-          "ivRankOrPercentile": "Unavailable from Yahoo option chain",
-          "riskLabel": "Speculative",
-          "classification": "Aggressive LEAPS Call",
-          "whySelected": "Aggressive/speculative profile: 12-24 months, slightly OTM, 0.35-0.55 delta."
-        }
-      },
-      "contractQualityReasons": [
-        "preferred 12-24 month expiration",
-        "delta is in the preferred LEAPS range",
-        "tight bid/ask spread",
-        "open interest is strong",
-        "IV is not extreme",
-        "premium has meaningful intrinsic support",
-        "breakeven move is reasonable"
-      ],
-      "contractQualityRisks": [],
-      "expiration": "2027-12-17",
-      "dte": 398,
-      "strike": 550,
-      "lastPrice": 167.45,
-      "bid": 173.6,
-      "ask": 175.45,
-      "mid": 174.52,
-      "delta": 0.74,
-      "theta": -0.1691,
-      "vega": 2.1794,
-      "impliedVolatility": 50.3,
-      "openInterest": 632,
-      "volume": 8,
-      "breakeven": 724.52,
-      "breakevenMovePct": 13,
-      "intrinsicValue": 91.41,
-      "extrinsicValue": 83.12,
-      "spreadPct": 1.1,
-      "contractQualityScore": 100,
-      "bucket": "Balanced"
-    }
-  ],
+  "top10": [],
+  "top5": [],
   "rows": [
     {
-      "symbol": "AMD",
-      "name": "Advanced Micro Devices, Inc.",
-      "sector": "Technology",
-      "currentPrice": 535.91,
-      "direction": "CALL",
-      "decision": "Strong Watchlist Candidate",
-      "status": "Watch for Pullback",
-      "score": 83,
-      "leapsOpportunityScore": 83,
-      "underlyingScore": 77,
-      "riskScore": 45,
-      "riskLabel": "Medium Risk",
-      "eventRisk": "Medium Event Risk",
-      "eventRiskHeadline": "Mixed / normal tape",
-      "earningsDate": "Unavailable",
-      "preferredExpiryRange": "12-24 months preferred; 6 months minimum",
-      "preferredStrikeZone": "Balanced: near 460 strike",
-      "preferredDelta": "0.55-0.75",
-      "bestContractCandidate": "2028-01-21 460C near 178.05 mid",
-      "optionLiquidityStatus": "Good",
-      "dcaSuitability": "DCA Allowed if Thesis Holds",
-      "pullbackClassification": "Healthy Pullback",
-      "bullCase": "Bull case: the chart trend is supportive, valuation is not fighting the story too hard, business quality is acceptable.",
-      "bearCase": "Bear case: growth is not fully confirmed by the checklist.",
-      "whyOpportunityExists": "Advanced Micro Devices, Inc. clears the underlying-quality gate and has a healthy pullback setup with a usable long-dated call candidate.",
-      "longTermThesis": "Advanced Micro Devices, Inc. is a AI / semiconductor infrastructure candidate. Overall, I would treat it as not yet a confirmed growth stock with risk around 25/100. The key is whether revenue growth can stay ahead of the stock's valuation. Analyst tone is bullish.",
-      "catalysts": [
-        "Next earnings window shown by Yahoo: 2027-02-02.",
-        "Growth itself is a catalyst if management keeps beating expectations.",
-        "Analyst target is above current price, so estimate revisions matter.",
-        "Recent Yahoo headline catalyst: Bank of America resets AMD stock price target as Nvidia CEO exits"
-      ],
-      "technicalSetup": "Healthy Pullback. Price is -18.6% from 52-week high, 0.3% from 50-day, 20.9% from 200-day, RSI 52.8.",
-      "dcaPlan": {
-        "suitability": "DCA Allowed if Thesis Holds",
-        "allowed": true,
-        "starterPositionZone": "525.19-546.62",
-        "addZone1": "482.31-503.75",
-        "addZone2": "443.39-471.6",
-        "stopAddingInvalidationLevel": 443.39,
-        "rules": "Add only if the thesis is intact, price is near support, long-term trend survives, IV/spread remain reasonable, and total position risk remains capped."
-      },
-      "invalidationLevel": 443.39,
-      "finalResearchVerdict": "Research verdict: watchlist candidate; wait for a better entry, cleaner pullback, or tighter spread.",
-      "underlyingComponents": [
-        {
-          "label": "Business quality",
-          "weight": 20,
-          "score": 88
-        },
-        {
-          "label": "Growth quality",
-          "weight": 20,
-          "score": 63.75
-        },
-        {
-          "label": "Financial strength",
-          "weight": 15,
-          "score": 78
-        },
-        {
-          "label": "Valuation reasonableness",
-          "weight": 15,
-          "score": 57
-        },
-        {
-          "label": "Catalyst strength",
-          "weight": 15,
-          "score": 75
-        },
-        {
-          "label": "Technical setup",
-          "weight": 15,
-          "score": 100
-        }
-      ],
-      "pullback": {
-        "score": 100,
-        "classification": "Healthy Pullback",
-        "reasons": [
-          "meaningful pullback from the 52-week high",
-          "price is near the 50-day trend area",
-          "long-term trend remains above the 200-day average",
-          "RSI has reset without becoming washed out",
-          "selloff volume is not extreme",
-          "fundamentals still look intact from available data"
-        ],
-        "risks": [],
-        "distanceFrom52WeekHighPct": -18.6,
-        "distanceFrom50DayPct": 0.3,
-        "distanceFrom200DayPct": 20.9,
-        "rsi14": 52.8,
-        "volumeVs20Day": 1.27
-      },
-      "optionContracts": [
-        {
-          "contractSymbol": "AMD280121C00460000",
-          "expiration": "2028-01-21",
-          "dte": 433,
-          "strike": 460,
-          "lastPrice": 179.7,
-          "bid": 174.85,
-          "ask": 181.25,
-          "mid": 178.05,
-          "delta": 0.74,
-          "theta": -0.1644,
-          "vega": 1.902,
-          "impliedVolatility": 64.5,
-          "impliedVolatilityRaw": 0.6447636842346192,
-          "openInterest": 2419,
-          "volume": 4,
-          "breakeven": 638.05,
-          "breakevenMovePct": 19.1,
-          "intrinsicValue": 75.91,
-          "extrinsicValue": 102.14,
-          "spreadPct": 3.6,
-          "spreadPctRaw": 0.03594495928110084,
-          "bucket": "Balanced",
-          "contractQualityScore": 94,
-          "contractQualityReasons": [
-            "preferred 12-24 month expiration",
-            "delta is in the preferred LEAPS range",
-            "tight bid/ask spread",
-            "open interest is strong",
-            "premium has meaningful intrinsic support",
-            "breakeven move is reasonable"
-          ],
-          "contractQualityRisks": [
-            "IV is elevated"
-          ]
-        },
-        {
-          "contractSymbol": "AMD271217C00450000",
-          "expiration": "2027-12-17",
-          "dte": 398,
-          "strike": 450,
-          "lastPrice": 180,
-          "bid": 174.7,
-          "ask": 180.6,
-          "mid": 177.65,
-          "delta": 0.75,
-          "theta": -0.169,
-          "vega": 1.7945,
-          "impliedVolatility": 64.6,
-          "impliedVolatilityRaw": 0.6460682976531981,
-          "openInterest": 524,
-          "volume": 5,
-          "breakeven": 627.65,
-          "breakevenMovePct": 17.1,
-          "intrinsicValue": 85.91,
-          "extrinsicValue": 91.74,
-          "spreadPct": 3.3,
-          "spreadPctRaw": 0.03321137067267102,
-          "bucket": "Balanced",
-          "contractQualityScore": 94,
-          "contractQualityReasons": [
-            "preferred 12-24 month expiration",
-            "delta is in the preferred LEAPS range",
-            "tight bid/ask spread",
-            "open interest is strong",
-            "premium has meaningful intrinsic support",
-            "breakeven move is reasonable"
-          ],
-          "contractQualityRisks": [
-            "IV is elevated"
-          ]
-        },
-        {
-          "contractSymbol": "AMD280121C00450000",
-          "expiration": "2028-01-21",
-          "dte": 433,
-          "strike": 450,
-          "lastPrice": 177.2,
-          "bid": 179.9,
-          "ask": 186.2,
-          "mid": 183.05,
-          "delta": 0.75,
-          "theta": -0.1621,
-          "vega": 1.8634,
-          "impliedVolatility": 64.7,
-          "impliedVolatilityRaw": 0.6472050660705566,
-          "openInterest": 1926,
-          "volume": 6,
-          "breakeven": 633.05,
-          "breakevenMovePct": 18.1,
-          "intrinsicValue": 85.91,
-          "extrinsicValue": 97.14,
-          "spreadPct": 3.4,
-          "spreadPctRaw": 0.034416826003823994,
-          "bucket": "Balanced",
-          "contractQualityScore": 94,
-          "contractQualityReasons": [
-            "preferred 12-24 month expiration",
-            "delta is in the preferred LEAPS range",
-            "tight bid/ask spread",
-            "open interest is strong",
-            "premium has meaningful intrinsic support",
-            "breakeven move is reasonable"
-          ],
-          "contractQualityRisks": [
-            "IV is elevated"
-          ]
-        },
-        {
-          "contractSymbol": "AMD280121C00420000",
-          "expiration": "2028-01-21",
-          "dte": 433,
-          "strike": 420,
-          "lastPrice": 198.4,
-          "bid": 195.8,
-          "ask": 202,
-          "mid": 198.9,
-          "delta": 0.78,
-          "theta": -0.1544,
-          "vega": 1.7382,
-          "impliedVolatility": 65.6,
-          "impliedVolatilityRaw": 0.6556202040863037,
-          "openInterest": 630,
-          "volume": 5,
-          "breakeven": 618.9,
-          "breakevenMovePct": 15.5,
-          "intrinsicValue": 115.91,
-          "extrinsicValue": 82.99,
-          "spreadPct": 3.1,
-          "spreadPctRaw": 0.03117144293614876,
-          "bucket": "Conservative",
-          "contractQualityScore": 94,
-          "contractQualityReasons": [
-            "preferred 12-24 month expiration",
-            "delta is in the preferred LEAPS range",
-            "tight bid/ask spread",
-            "open interest is strong",
-            "premium has meaningful intrinsic support",
-            "breakeven move is reasonable"
-          ],
-          "contractQualityRisks": [
-            "IV is elevated"
-          ]
-        },
-        {
-          "contractSymbol": "AMD280121C00410000",
-          "expiration": "2028-01-21",
-          "dte": 433,
-          "strike": 410,
-          "lastPrice": 197.3,
-          "bid": 201.05,
-          "ask": 205.25,
-          "mid": 203.15,
-          "delta": 0.79,
-          "theta": -0.1502,
-          "vega": 1.6922,
-          "impliedVolatility": 65.1,
-          "impliedVolatilityRaw": 0.6514317083740235,
-          "openInterest": 1191,
-          "volume": 2,
-          "breakeven": 613.15,
-          "breakevenMovePct": 14.4,
-          "intrinsicValue": 125.91,
-          "extrinsicValue": 77.24,
-          "spreadPct": 2.1,
-          "spreadPctRaw": 0.020674378538026034,
-          "bucket": "Conservative",
-          "contractQualityScore": 94,
-          "contractQualityReasons": [
-            "preferred 12-24 month expiration",
-            "delta is in the preferred LEAPS range",
-            "tight bid/ask spread",
-            "open interest is strong",
-            "premium has meaningful intrinsic support",
-            "breakeven move is reasonable"
-          ],
-          "contractQualityRisks": [
-            "IV is elevated"
-          ]
-        },
-        {
-          "contractSymbol": "AMD280121C00400000",
-          "expiration": "2028-01-21",
-          "dte": 433,
-          "strike": 400,
-          "lastPrice": 211.32,
-          "bid": 206.85,
-          "ask": 212.65,
-          "mid": 209.75,
-          "delta": 0.8,
-          "theta": -0.1483,
-          "vega": 1.6468,
-          "impliedVolatility": 66,
-          "impliedVolatilityRaw": 0.6597476652526855,
-          "openInterest": 2029,
-          "volume": 44,
-          "breakeven": 609.75,
-          "breakevenMovePct": 13.8,
-          "intrinsicValue": 135.91,
-          "extrinsicValue": 73.84,
-          "spreadPct": 2.8,
-          "spreadPctRaw": 0.027651966626936884,
-          "bucket": "Conservative",
-          "contractQualityScore": 94,
-          "contractQualityReasons": [
-            "preferred 12-24 month expiration",
-            "delta is in the preferred LEAPS range",
-            "tight bid/ask spread",
-            "open interest is strong",
-            "premium has meaningful intrinsic support",
-            "breakeven move is reasonable"
-          ],
-          "contractQualityRisks": [
-            "IV is elevated"
-          ]
-        },
-        {
-          "contractSymbol": "AMD271217C00400000",
-          "expiration": "2027-12-17",
-          "dte": 398,
-          "strike": 400,
-          "lastPrice": 204.25,
-          "bid": 201.95,
-          "ask": 208,
-          "mid": 204.97,
-          "delta": 0.8,
-          "theta": -0.1542,
-          "vega": 1.5788,
-          "impliedVolatility": 65.9,
-          "impliedVolatilityRaw": 0.659381457977295,
-          "openInterest": 1359,
-          "volume": 38,
-          "breakeven": 604.98,
-          "breakevenMovePct": 12.9,
-          "intrinsicValue": 135.91,
-          "extrinsicValue": 69.07,
-          "spreadPct": 3,
-          "spreadPctRaw": 0.029515794609098728,
-          "bucket": "Conservative",
-          "contractQualityScore": 94,
-          "contractQualityReasons": [
-            "preferred 12-24 month expiration",
-            "delta is in the preferred LEAPS range",
-            "tight bid/ask spread",
-            "open interest is strong",
-            "premium has meaningful intrinsic support",
-            "breakeven move is reasonable"
-          ],
-          "contractQualityRisks": [
-            "IV is elevated"
-          ]
-        },
-        {
-          "contractSymbol": "AMD271217C00370000",
-          "expiration": "2027-12-17",
-          "dte": 398,
-          "strike": 370,
-          "lastPrice": 216.56,
-          "bid": 220.2,
-          "ask": 225.95,
-          "mid": 223.07,
-          "delta": 0.83,
-          "theta": -0.1436,
-          "vega": 1.4326,
-          "impliedVolatility": 66.9,
-          "impliedVolatilityRaw": 0.6692385371398928,
-          "openInterest": 927,
-          "volume": 5,
-          "breakeven": 593.08,
-          "breakevenMovePct": 10.7,
-          "intrinsicValue": 165.91,
-          "extrinsicValue": 57.17,
-          "spreadPct": 2.6,
-          "spreadPctRaw": 0.025776084276588593,
-          "bucket": "Conservative",
-          "contractQualityScore": 94,
-          "contractQualityReasons": [
-            "preferred 12-24 month expiration",
-            "delta is in the preferred LEAPS range",
-            "tight bid/ask spread",
-            "open interest is strong",
-            "premium has meaningful intrinsic support",
-            "breakeven move is reasonable"
-          ],
-          "contractQualityRisks": [
-            "IV is elevated"
-          ]
-        }
-      ],
-      "best3Contracts": {
-        "conservative": {
-          "contractSymbol": "AMD280121C00410000",
-          "expiration": "2028-01-21",
-          "dte": 433,
-          "strike": 410,
-          "lastPrice": 197.3,
-          "bid": 201.05,
-          "ask": 205.25,
-          "mid": 203.15,
-          "delta": 0.79,
-          "theta": -0.1502,
-          "vega": 1.6922,
-          "impliedVolatility": 65.1,
-          "impliedVolatilityRaw": 0.6514317083740235,
-          "openInterest": 1191,
-          "volume": 2,
-          "breakeven": 613.15,
-          "breakevenMovePct": 14.4,
-          "intrinsicValue": 125.91,
-          "extrinsicValue": 77.24,
-          "spreadPct": 2.1,
-          "spreadPctRaw": 0.020674378538026034,
-          "bucket": "Conservative",
-          "contractQualityScore": 94,
-          "contractQualityReasons": [
-            "preferred 12-24 month expiration",
-            "delta is in the preferred LEAPS range",
-            "tight bid/ask spread",
-            "open interest is strong",
-            "premium has meaningful intrinsic support",
-            "breakeven move is reasonable"
-          ],
-          "contractQualityRisks": [
-            "IV is elevated"
-          ],
-          "gamma": null,
-          "ivRankOrPercentile": "Unavailable from Yahoo option chain",
-          "riskLabel": "Defined premium risk",
-          "classification": "Conservative LEAPS Call",
-          "whySelected": "Conservative stock-replacement style: 18-24 months preferred, ITM/deep ITM, 0.75-0.90 delta."
-        },
-        "balanced": {
-          "contractSymbol": "AMD280121C00460000",
-          "expiration": "2028-01-21",
-          "dte": 433,
-          "strike": 460,
-          "lastPrice": 179.7,
-          "bid": 174.85,
-          "ask": 181.25,
-          "mid": 178.05,
-          "delta": 0.74,
-          "theta": -0.1644,
-          "vega": 1.902,
-          "impliedVolatility": 64.5,
-          "impliedVolatilityRaw": 0.6447636842346192,
-          "openInterest": 2419,
-          "volume": 4,
-          "breakeven": 638.05,
-          "breakevenMovePct": 19.1,
-          "intrinsicValue": 75.91,
-          "extrinsicValue": 102.14,
-          "spreadPct": 3.6,
-          "spreadPctRaw": 0.03594495928110084,
-          "bucket": "Balanced",
-          "contractQualityScore": 94,
-          "contractQualityReasons": [
-            "preferred 12-24 month expiration",
-            "delta is in the preferred LEAPS range",
-            "tight bid/ask spread",
-            "open interest is strong",
-            "premium has meaningful intrinsic support",
-            "breakeven move is reasonable"
-          ],
-          "contractQualityRisks": [
-            "IV is elevated"
-          ],
-          "gamma": null,
-          "ivRankOrPercentile": "Unavailable from Yahoo option chain",
-          "riskLabel": "Defined premium risk",
-          "classification": "Balanced LEAPS Call",
-          "whySelected": "Balanced LEAPS profile: 12-24 months, ITM/ATM, 0.55-0.75 delta."
-        },
-        "aggressive": {
-          "contractSymbol": "AMD271217C00700000",
-          "expiration": "2027-12-17",
-          "dte": 398,
-          "strike": 700,
-          "lastPrice": 86.62,
-          "bid": 84.6,
-          "ask": 87,
-          "mid": 85.8,
-          "delta": 0.49,
-          "theta": -0.1898,
-          "vega": 2.2314,
-          "impliedVolatility": 61.1,
-          "impliedVolatilityRaw": 0.6110268389892579,
-          "openInterest": 3613,
-          "volume": 48,
-          "breakeven": 785.8,
-          "breakevenMovePct": 46.6,
-          "intrinsicValue": 0,
-          "extrinsicValue": 85.8,
-          "spreadPct": 2.8,
-          "spreadPctRaw": 0.027972027972028038,
-          "bucket": "Aggressive",
-          "contractQualityScore": 68,
-          "contractQualityReasons": [
-            "preferred 12-24 month expiration",
-            "tight bid/ask spread",
-            "open interest is strong"
-          ],
-          "contractQualityRisks": [
-            "delta is aggressive/speculative",
-            "IV is elevated",
-            "premium is mostly extrinsic/time value",
-            "breakeven requires a very large move"
-          ],
-          "gamma": null,
-          "ivRankOrPercentile": "Unavailable from Yahoo option chain",
-          "riskLabel": "Speculative",
-          "classification": "Avoid - Bad Risk/Reward",
-          "whySelected": "Aggressive/speculative profile: 12-24 months, slightly OTM, 0.35-0.55 delta."
-        }
-      },
-      "contractQualityReasons": [
-        "preferred 12-24 month expiration",
-        "delta is in the preferred LEAPS range",
-        "tight bid/ask spread",
-        "open interest is strong",
-        "premium has meaningful intrinsic support",
-        "breakeven move is reasonable"
-      ],
-      "contractQualityRisks": [
-        "IV is elevated"
-      ],
-      "expiration": "2028-01-21",
-      "dte": 433,
-      "strike": 460,
-      "lastPrice": 179.7,
-      "bid": 174.85,
-      "ask": 181.25,
-      "mid": 178.05,
-      "delta": 0.74,
-      "theta": -0.1644,
-      "vega": 1.902,
-      "impliedVolatility": 64.5,
-      "openInterest": 2419,
-      "volume": 4,
-      "breakeven": 638.05,
-      "breakevenMovePct": 19.1,
-      "intrinsicValue": 75.91,
-      "extrinsicValue": 102.14,
-      "spreadPct": 3.6,
-      "contractQualityScore": 94,
-      "bucket": "Balanced"
-    },
-    {
       "symbol": "META",
       "name": "Meta Platforms, Inc.",
       "sector": "Communication Services",
-      "currentPrice": 641.41,
-      "direction": "CALL",
-      "decision": "Strong Watchlist Candidate",
-      "status": "Watch for Pullback",
-      "score": 81,
-      "leapsOpportunityScore": 81,
-      "underlyingScore": 73,
-      "riskScore": 53,
-      "riskLabel": "Medium Risk",
-      "eventRisk": "Low Event Risk",
-      "eventRiskHeadline": "Positive catalyst tape",
-      "earningsDate": "Unavailable",
-      "preferredExpiryRange": "12-24 months preferred; 6 months minimum",
-      "preferredStrikeZone": "Balanced: near 550 strike",
-      "preferredDelta": "0.55-0.75",
-      "bestContractCandidate": "2027-12-17 550C near 174.52 mid",
-      "optionLiquidityStatus": "Good",
-      "dcaSuitability": "DCA Rejected / Wait",
-      "pullbackClassification": "Waiting for Reclaim",
-      "bullCase": "Bull case: valuation is not fighting the story too hard, business quality is acceptable.",
-      "bearCase": "Bear case: growth is not fully confirmed by the checklist, the chart is not giving a clean confirmation.",
-      "whyOpportunityExists": "Meta Platforms, Inc. clears the underlying-quality gate and has a waiting for reclaim setup with a usable long-dated call candidate.",
-      "longTermThesis": "Meta Platforms, Inc. is a software / internet platform candidate. Overall, I would treat it as not yet a confirmed growth stock with risk around 26/100. The key is whether revenue growth can stay ahead of the stock's valuation. Analyst tone is bullish.",
-      "catalysts": [
-        "Next earnings window shown by Yahoo: 2027-01-27.",
-        "Growth itself is a catalyst if management keeps beating expectations.",
-        "Analyst target is above current price, so estimate revisions matter."
-      ],
-      "technicalSetup": "Waiting for Reclaim. Price is -17.7% from 52-week high, -1.9% from 50-day, 0% from 200-day, RSI 53.6.",
-      "dcaPlan": {
-        "suitability": "DCA Rejected / Wait",
-        "allowed": false,
-        "starterPositionZone": "628.58-654.24",
-        "addZone1": "597.79-602.93",
-        "addZone2": "597.79-564.44",
-        "stopAddingInvalidationLevel": 597.79,
-        "rules": "Do not DCA unless the thesis, trend, time-to-expiration, liquidity, and IV conditions improve."
-      },
-      "invalidationLevel": 597.79,
-      "finalResearchVerdict": "Research verdict: watchlist candidate; wait for a better entry, cleaner pullback, or tighter spread.",
-      "underlyingComponents": [
-        {
-          "label": "Business quality",
-          "weight": 20,
-          "score": 66
-        },
-        {
-          "label": "Growth quality",
-          "weight": 20,
-          "score": 75
-        },
-        {
-          "label": "Financial strength",
-          "weight": 15,
-          "score": 79
-        },
-        {
-          "label": "Valuation reasonableness",
-          "weight": 15,
-          "score": 73
-        },
-        {
-          "label": "Catalyst strength",
-          "weight": 15,
-          "score": 89
-        },
-        {
-          "label": "Technical setup",
-          "weight": 15,
-          "score": 59
-        }
-      ],
-      "pullback": {
-        "score": 86,
-        "classification": "Waiting for Reclaim",
-        "reasons": [
-          "meaningful pullback from the 52-week high",
-          "price is near the 50-day trend area",
-          "RSI has reset without becoming washed out",
-          "selloff volume is not extreme",
-          "fundamentals still look intact from available data"
-        ],
-        "risks": [
-          "price is below the 200-day average"
-        ],
-        "distanceFrom52WeekHighPct": -17.7,
-        "distanceFrom50DayPct": -1.9,
-        "distanceFrom200DayPct": 0,
-        "rsi14": 53.6,
-        "volumeVs20Day": 0.54
-      },
-      "optionContracts": [
-        {
-          "contractSymbol": "META271217C00550000",
-          "expiration": "2027-12-17",
-          "dte": 398,
-          "strike": 550,
-          "lastPrice": 167.45,
-          "bid": 173.6,
-          "ask": 175.45,
-          "mid": 174.52,
-          "delta": 0.74,
-          "theta": -0.1691,
-          "vega": 2.1794,
-          "impliedVolatility": 50.3,
-          "impliedVolatilityRaw": 0.5029041409301759,
-          "openInterest": 632,
-          "volume": 8,
-          "breakeven": 724.52,
-          "breakevenMovePct": 13,
-          "intrinsicValue": 91.41,
-          "extrinsicValue": 83.12,
-          "spreadPct": 1.1,
-          "spreadPctRaw": 0.010600200544334592,
-          "bucket": "Balanced",
-          "contractQualityScore": 100,
-          "contractQualityReasons": [
-            "preferred 12-24 month expiration",
-            "delta is in the preferred LEAPS range",
-            "tight bid/ask spread",
-            "open interest is strong",
-            "IV is not extreme",
-            "premium has meaningful intrinsic support",
-            "breakeven move is reasonable"
-          ],
-          "contractQualityRisks": []
-        },
-        {
-          "contractSymbol": "META280121C00550000",
-          "expiration": "2028-01-21",
-          "dte": 433,
-          "strike": 550,
-          "lastPrice": 176,
-          "bid": 178.6,
-          "ask": 180.75,
-          "mid": 179.68,
-          "delta": 0.74,
-          "theta": -0.1629,
-          "vega": 2.2694,
-          "impliedVolatility": 50.4,
-          "impliedVolatilityRaw": 0.503735736618042,
-          "openInterest": 3138,
-          "volume": 2,
-          "breakeven": 729.67,
-          "breakevenMovePct": 13.8,
-          "intrinsicValue": 91.41,
-          "extrinsicValue": 88.27,
-          "spreadPct": 1.2,
-          "spreadPctRaw": 0.011966049812160876,
-          "bucket": "Balanced",
-          "contractQualityScore": 100,
-          "contractQualityReasons": [
-            "preferred 12-24 month expiration",
-            "delta is in the preferred LEAPS range",
-            "tight bid/ask spread",
-            "open interest is strong",
-            "IV is not extreme",
-            "premium has meaningful intrinsic support",
-            "breakeven move is reasonable"
-          ],
-          "contractQualityRisks": []
-        },
-        {
-          "contractSymbol": "META280121C00540000",
-          "expiration": "2028-01-21",
-          "dte": 433,
-          "strike": 540,
-          "lastPrice": 169.6,
-          "bid": 184.5,
-          "ask": 186.4,
-          "mid": 185.45,
-          "delta": 0.75,
-          "theta": -0.1609,
-          "vega": 2.2211,
-          "impliedVolatility": 50.7,
-          "impliedVolatilityRaw": 0.5066730241394042,
-          "openInterest": 4521,
-          "volume": 1,
-          "breakeven": 725.45,
-          "breakevenMovePct": 13.1,
-          "intrinsicValue": 101.41,
-          "extrinsicValue": 84.04,
-          "spreadPct": 1,
-          "spreadPctRaw": 0.01024534915071451,
-          "bucket": "Balanced",
-          "contractQualityScore": 100,
-          "contractQualityReasons": [
-            "preferred 12-24 month expiration",
-            "delta is in the preferred LEAPS range",
-            "tight bid/ask spread",
-            "open interest is strong",
-            "IV is not extreme",
-            "premium has meaningful intrinsic support",
-            "breakeven move is reasonable"
-          ],
-          "contractQualityRisks": []
-        },
-        {
-          "contractSymbol": "META280616C00550000",
-          "expiration": "2028-06-16",
-          "dte": 580,
-          "strike": 550,
-          "lastPrice": 198.05,
-          "bid": 199.45,
-          "ask": 202.8,
-          "mid": 201.13,
-          "delta": 0.75,
-          "theta": -0.1433,
-          "vega": 2.5954,
-          "impliedVolatility": 51.3,
-          "impliedVolatilityRaw": 0.5129824703216552,
-          "openInterest": 560,
-          "volume": 1,
-          "breakeven": 751.13,
-          "breakevenMovePct": 17.1,
-          "intrinsicValue": 91.41,
-          "extrinsicValue": 109.72,
-          "spreadPct": 1.7,
-          "spreadPctRaw": 0.016656308266003842,
-          "bucket": "Balanced",
-          "contractQualityScore": 100,
-          "contractQualityReasons": [
-            "preferred 12-24 month expiration",
-            "delta is in the preferred LEAPS range",
-            "tight bid/ask spread",
-            "open interest is strong",
-            "IV is not extreme",
-            "premium has meaningful intrinsic support",
-            "breakeven move is reasonable"
-          ],
-          "contractQualityRisks": []
-        },
-        {
-          "contractSymbol": "META280121C00520000",
-          "expiration": "2028-01-21",
-          "dte": 433,
-          "strike": 520,
-          "lastPrice": 188,
-          "bid": 196.55,
-          "ask": 198.8,
-          "mid": 197.68,
-          "delta": 0.77,
-          "theta": -0.1569,
-          "vega": 2.1203,
-          "impliedVolatility": 51.4,
-          "impliedVolatilityRaw": 0.5141268680572509,
-          "openInterest": 718,
-          "volume": 59,
-          "breakeven": 717.67,
-          "breakevenMovePct": 11.9,
-          "intrinsicValue": 121.41,
-          "extrinsicValue": 76.27,
-          "spreadPct": 1.1,
-          "spreadPctRaw": 0.011382319463766282,
-          "bucket": "Conservative",
-          "contractQualityScore": 100,
-          "contractQualityReasons": [
-            "preferred 12-24 month expiration",
-            "delta is in the preferred LEAPS range",
-            "tight bid/ask spread",
-            "open interest is strong",
-            "IV is not extreme",
-            "premium has meaningful intrinsic support",
-            "breakeven move is reasonable"
-          ],
-          "contractQualityRisks": []
-        },
-        {
-          "contractSymbol": "META280121C00510000",
-          "expiration": "2028-01-21",
-          "dte": 433,
-          "strike": 510,
-          "lastPrice": 205.08,
-          "bid": 202.9,
-          "ask": 204.8,
-          "mid": 203.85,
-          "delta": 0.78,
-          "theta": -0.1546,
-          "vega": 2.0676,
-          "impliedVolatility": 51.7,
-          "impliedVolatilityRaw": 0.5174608801269531,
-          "openInterest": 612,
-          "volume": 1,
-          "breakeven": 713.85,
-          "breakevenMovePct": 11.3,
-          "intrinsicValue": 131.41,
-          "extrinsicValue": 72.44,
-          "spreadPct": 0.9,
-          "spreadPctRaw": 0.009320578857002725,
-          "bucket": "Conservative",
-          "contractQualityScore": 100,
-          "contractQualityReasons": [
-            "preferred 12-24 month expiration",
-            "delta is in the preferred LEAPS range",
-            "tight bid/ask spread",
-            "open interest is strong",
-            "IV is not extreme",
-            "premium has meaningful intrinsic support",
-            "breakeven move is reasonable"
-          ],
-          "contractQualityRisks": []
-        },
-        {
-          "contractSymbol": "META271217C00500000",
-          "expiration": "2027-12-17",
-          "dte": 398,
-          "strike": 500,
-          "lastPrice": 197,
-          "bid": 204.65,
-          "ask": 206.35,
-          "mid": 205.5,
-          "delta": 0.79,
-          "theta": -0.1576,
-          "vega": 1.9245,
-          "impliedVolatility": 52.1,
-          "impliedVolatilityRaw": 0.5206346765136718,
-          "openInterest": 1551,
-          "volume": 6,
-          "breakeven": 705.5,
-          "breakevenMovePct": 10,
-          "intrinsicValue": 141.41,
-          "extrinsicValue": 64.09,
-          "spreadPct": 0.8,
-          "spreadPctRaw": 0.008272506082725006,
-          "bucket": "Conservative",
-          "contractQualityScore": 100,
-          "contractQualityReasons": [
-            "preferred 12-24 month expiration",
-            "delta is in the preferred LEAPS range",
-            "tight bid/ask spread",
-            "open interest is strong",
-            "IV is not extreme",
-            "premium has meaningful intrinsic support",
-            "breakeven move is reasonable"
-          ],
-          "contractQualityRisks": []
-        },
-        {
-          "contractSymbol": "META280121C00500000",
-          "expiration": "2028-01-21",
-          "dte": 433,
-          "strike": 500,
-          "lastPrice": 209.85,
-          "bid": 209.2,
-          "ask": 211,
-          "mid": 210.1,
-          "delta": 0.79,
-          "theta": -0.1521,
-          "vega": 2.0134,
-          "impliedVolatility": 52.1,
-          "impliedVolatilityRaw": 0.520665193786621,
-          "openInterest": 1598,
-          "volume": 18,
-          "breakeven": 710.1,
-          "breakevenMovePct": 10.7,
-          "intrinsicValue": 141.41,
-          "extrinsicValue": 68.69,
-          "spreadPct": 0.9,
-          "spreadPctRaw": 0.008567348881485061,
-          "bucket": "Conservative",
-          "contractQualityScore": 100,
-          "contractQualityReasons": [
-            "preferred 12-24 month expiration",
-            "delta is in the preferred LEAPS range",
-            "tight bid/ask spread",
-            "open interest is strong",
-            "IV is not extreme",
-            "premium has meaningful intrinsic support",
-            "breakeven move is reasonable"
-          ],
-          "contractQualityRisks": []
-        }
-      ],
-      "best3Contracts": {
-        "conservative": {
-          "contractSymbol": "META271217C00500000",
-          "expiration": "2027-12-17",
-          "dte": 398,
-          "strike": 500,
-          "lastPrice": 197,
-          "bid": 204.65,
-          "ask": 206.35,
-          "mid": 205.5,
-          "delta": 0.79,
-          "theta": -0.1576,
-          "vega": 1.9245,
-          "impliedVolatility": 52.1,
-          "impliedVolatilityRaw": 0.5206346765136718,
-          "openInterest": 1551,
-          "volume": 6,
-          "breakeven": 705.5,
-          "breakevenMovePct": 10,
-          "intrinsicValue": 141.41,
-          "extrinsicValue": 64.09,
-          "spreadPct": 0.8,
-          "spreadPctRaw": 0.008272506082725006,
-          "bucket": "Conservative",
-          "contractQualityScore": 100,
-          "contractQualityReasons": [
-            "preferred 12-24 month expiration",
-            "delta is in the preferred LEAPS range",
-            "tight bid/ask spread",
-            "open interest is strong",
-            "IV is not extreme",
-            "premium has meaningful intrinsic support",
-            "breakeven move is reasonable"
-          ],
-          "contractQualityRisks": [],
-          "gamma": null,
-          "ivRankOrPercentile": "Unavailable from Yahoo option chain",
-          "riskLabel": "Defined premium risk",
-          "classification": "Conservative LEAPS Call",
-          "whySelected": "Conservative stock-replacement style: 18-24 months preferred, ITM/deep ITM, 0.75-0.90 delta."
-        },
-        "balanced": {
-          "contractSymbol": "META271217C00550000",
-          "expiration": "2027-12-17",
-          "dte": 398,
-          "strike": 550,
-          "lastPrice": 167.45,
-          "bid": 173.6,
-          "ask": 175.45,
-          "mid": 174.52,
-          "delta": 0.74,
-          "theta": -0.1691,
-          "vega": 2.1794,
-          "impliedVolatility": 50.3,
-          "impliedVolatilityRaw": 0.5029041409301759,
-          "openInterest": 632,
-          "volume": 8,
-          "breakeven": 724.52,
-          "breakevenMovePct": 13,
-          "intrinsicValue": 91.41,
-          "extrinsicValue": 83.12,
-          "spreadPct": 1.1,
-          "spreadPctRaw": 0.010600200544334592,
-          "bucket": "Balanced",
-          "contractQualityScore": 100,
-          "contractQualityReasons": [
-            "preferred 12-24 month expiration",
-            "delta is in the preferred LEAPS range",
-            "tight bid/ask spread",
-            "open interest is strong",
-            "IV is not extreme",
-            "premium has meaningful intrinsic support",
-            "breakeven move is reasonable"
-          ],
-          "contractQualityRisks": [],
-          "gamma": null,
-          "ivRankOrPercentile": "Unavailable from Yahoo option chain",
-          "riskLabel": "Defined premium risk",
-          "classification": "Balanced LEAPS Call",
-          "whySelected": "Balanced LEAPS profile: 12-24 months, ITM/ATM, 0.55-0.75 delta."
-        },
-        "aggressive": {
-          "contractSymbol": "META280121C00850000",
-          "expiration": "2028-01-21",
-          "dte": 433,
-          "strike": 850,
-          "lastPrice": 63,
-          "bid": 62.9,
-          "ask": 63.5,
-          "mid": 63.2,
-          "delta": 0.41,
-          "theta": -0.1627,
-          "vega": 2.7149,
-          "impliedVolatility": 45.2,
-          "impliedVolatilityRaw": 0.4522454678344727,
-          "openInterest": 2751,
-          "volume": 3,
-          "breakeven": 913.2,
-          "breakevenMovePct": 42.4,
-          "intrinsicValue": 0,
-          "extrinsicValue": 63.2,
-          "spreadPct": 0.9,
-          "spreadPctRaw": 0.009493670886075972,
-          "bucket": "Aggressive",
-          "contractQualityScore": 74,
-          "contractQualityReasons": [
-            "preferred 12-24 month expiration",
-            "tight bid/ask spread",
-            "open interest is strong",
-            "IV is not extreme"
-          ],
-          "contractQualityRisks": [
-            "delta is aggressive/speculative",
-            "premium is mostly extrinsic/time value"
-          ],
-          "gamma": null,
-          "ivRankOrPercentile": "Unavailable from Yahoo option chain",
-          "riskLabel": "Speculative",
-          "classification": "Aggressive LEAPS Call",
-          "whySelected": "Aggressive/speculative profile: 12-24 months, slightly OTM, 0.35-0.55 delta."
-        }
-      },
-      "contractQualityReasons": [
-        "preferred 12-24 month expiration",
-        "delta is in the preferred LEAPS range",
-        "tight bid/ask spread",
-        "open interest is strong",
-        "IV is not extreme",
-        "premium has meaningful intrinsic support",
-        "breakeven move is reasonable"
-      ],
-      "contractQualityRisks": [],
-      "expiration": "2027-12-17",
-      "dte": 398,
-      "strike": 550,
-      "lastPrice": 167.45,
-      "bid": 173.6,
-      "ask": 175.45,
-      "mid": 174.52,
-      "delta": 0.74,
-      "theta": -0.1691,
-      "vega": 2.1794,
-      "impliedVolatility": 50.3,
-      "openInterest": 632,
-      "volume": 8,
-      "breakeven": 724.52,
-      "breakevenMovePct": 13,
-      "intrinsicValue": 91.41,
-      "extrinsicValue": 83.12,
-      "spreadPct": 1.1,
-      "contractQualityScore": 100,
-      "bucket": "Balanced"
-    },
-    {
-      "symbol": "SHOP",
-      "name": "Shopify Inc.",
-      "sector": "Technology",
-      "currentPrice": 147.02,
-      "decision": "Avoid - weak underlying",
-      "status": "Avoid",
-      "score": 38,
-      "leapsOpportunityScore": 38,
-      "underlyingScore": 69,
-      "riskScore": 72,
-      "pullbackClassification": "Healthy Pullback",
-      "dcaSuitability": "DCA Rejected / Wait",
-      "reason": "Underlying stock quality is below 70, so the desk does not analyze LEAPS calls.",
-      "bullCase": "Bull case: growth is strong enough to qualify as a growth-stock candidate, business quality is acceptable.",
-      "bearCase": "Bear case: the chart is not giving a clean confirmation, valuation or missing valuation support can limit upside.",
-      "underlyingComponents": [
-        {
-          "label": "Business quality",
-          "weight": 20,
-          "score": 81
-        },
-        {
-          "label": "Growth quality",
-          "weight": 20,
-          "score": 83.75
-        },
-        {
-          "label": "Financial strength",
-          "weight": 15,
-          "score": 85
-        },
-        {
-          "label": "Valuation reasonableness",
-          "weight": 15,
-          "score": 33
-        },
-        {
-          "label": "Catalyst strength",
-          "weight": 15,
-          "score": 80
-        },
-        {
-          "label": "Technical setup",
-          "weight": 15,
-          "score": 39
-        }
-      ],
-      "pullback": {
-        "score": 100,
-        "classification": "Healthy Pullback",
-        "reasons": [
-          "meaningful pullback from the 52-week high",
-          "price is near the 50-day trend area",
-          "long-term trend remains above the 200-day average",
-          "selloff volume is not extreme",
-          "fundamentals still look intact from available data"
-        ],
-        "risks": [],
-        "distanceFrom52WeekHighPct": -18.7,
-        "distanceFrom50DayPct": -3.9,
-        "distanceFrom200DayPct": 5.8,
-        "rsi14": 39.7,
-        "volumeVs20Day": 0.41
-      }
-    },
-    {
-      "symbol": "NVDA",
-      "name": "NVIDIA Corporation",
-      "sector": "Technology",
-      "currentPrice": 163.07,
+      "currentPrice": 626.41,
       "decision": "Avoid - weak underlying",
       "status": "Avoid",
       "score": 38,
@@ -3392,6 +96,74 @@
       "underlyingScore": 69,
       "riskScore": 75,
       "pullbackClassification": "Waiting for Reclaim",
+      "dcaSuitability": "DCA Rejected / Wait",
+      "reason": "Underlying stock quality is below 70, so the desk does not analyze LEAPS calls.",
+      "bullCase": "Bull case: valuation is not fighting the story too hard, business quality is acceptable.",
+      "bearCase": "Bear case: growth is not fully confirmed by the checklist, the chart is not giving a clean confirmation.",
+      "underlyingComponents": [
+        {
+          "label": "Business quality",
+          "weight": 20,
+          "score": 61
+        },
+        {
+          "label": "Growth quality",
+          "weight": 20,
+          "score": 75
+        },
+        {
+          "label": "Financial strength",
+          "weight": 15,
+          "score": 79
+        },
+        {
+          "label": "Valuation reasonableness",
+          "weight": 15,
+          "score": 88
+        },
+        {
+          "label": "Catalyst strength",
+          "weight": 15,
+          "score": 77
+        },
+        {
+          "label": "Technical setup",
+          "weight": 15,
+          "score": 35
+        }
+      ],
+      "pullback": {
+        "score": 86,
+        "classification": "Waiting for Reclaim",
+        "reasons": [
+          "meaningful pullback from the 52-week high",
+          "price is near the 50-day trend area",
+          "RSI has reset without becoming washed out",
+          "selloff volume is not extreme",
+          "fundamentals still look intact from available data"
+        ],
+        "risks": [
+          "price is below the 200-day average"
+        ],
+        "distanceFrom52WeekHighPct": -19.7,
+        "distanceFrom50DayPct": -4.1,
+        "distanceFrom200DayPct": -2.3,
+        "rsi14": 45.4,
+        "volumeVs20Day": 0.49
+      }
+    },
+    {
+      "symbol": "NVDA",
+      "name": "NVIDIA Corporation",
+      "sector": "Technology",
+      "currentPrice": 156.14,
+      "decision": "Avoid - weak underlying",
+      "status": "Avoid",
+      "score": 38,
+      "leapsOpportunityScore": 38,
+      "underlyingScore": 69,
+      "riskScore": 85,
+      "pullbackClassification": "Falling Knife / Do Not DCA",
       "dcaSuitability": "DCA Rejected / Wait",
       "reason": "Underlying stock quality is below 70, so the desk does not analyze LEAPS calls.",
       "bullCase": "Bull case: growth is strong enough to qualify as a growth-stock candidate, valuation is not fighting the story too hard, business quality is acceptable.",
@@ -3420,7 +192,7 @@
         {
           "label": "Catalyst strength",
           "weight": 15,
-          "score": 78
+          "score": 79
         },
         {
           "label": "Technical setup",
@@ -3430,7 +202,7 @@
       ],
       "pullback": {
         "score": 28,
-        "classification": "Waiting for Reclaim",
+        "classification": "Falling Knife / Do Not DCA",
         "reasons": [
           "fundamentals still look intact from available data"
         ],
@@ -3440,24 +212,91 @@
           "RSI is weak; wait for reclaim",
           "recent volume is elevated; confirm the selloff is not company-specific"
         ],
-        "distanceFrom52WeekHighPct": -33,
-        "distanceFrom50DayPct": -21.2,
-        "distanceFrom200DayPct": -19.9,
-        "rsi14": 20.7,
-        "volumeVs20Day": 1.62
+        "distanceFrom52WeekHighPct": -35.8,
+        "distanceFrom50DayPct": -23.8,
+        "distanceFrom200DayPct": -23.1,
+        "rsi14": 17.7,
+        "volumeVs20Day": 1.5
       }
     },
     {
-      "symbol": "PLTR",
-      "name": "Palantir Technologies Inc.",
+      "symbol": "AMD",
+      "name": "Advanced Micro Devices, Inc.",
       "sector": "Technology",
-      "currentPrice": 167.63,
+      "currentPrice": 504.28,
       "decision": "Avoid - weak underlying",
       "status": "Avoid",
       "score": 37,
       "leapsOpportunityScore": 37,
       "underlyingScore": 67,
-      "riskScore": 70,
+      "riskScore": 68,
+      "pullbackClassification": "Healthy Pullback",
+      "dcaSuitability": "DCA Rejected / Wait",
+      "reason": "Underlying stock quality is below 70, so the desk does not analyze LEAPS calls.",
+      "bullCase": "Bull case: valuation is not fighting the story too hard, business quality is acceptable.",
+      "bearCase": "Bear case: growth is not fully confirmed by the checklist, the chart is not giving a clean confirmation.",
+      "underlyingComponents": [
+        {
+          "label": "Business quality",
+          "weight": 20,
+          "score": 75
+        },
+        {
+          "label": "Growth quality",
+          "weight": 20,
+          "score": 63.75
+        },
+        {
+          "label": "Financial strength",
+          "weight": 15,
+          "score": 78
+        },
+        {
+          "label": "Valuation reasonableness",
+          "weight": 15,
+          "score": 57
+        },
+        {
+          "label": "Catalyst strength",
+          "weight": 15,
+          "score": 93
+        },
+        {
+          "label": "Technical setup",
+          "weight": 15,
+          "score": 35
+        }
+      ],
+      "pullback": {
+        "score": 100,
+        "classification": "Healthy Pullback",
+        "reasons": [
+          "meaningful pullback from the 52-week high",
+          "price is near the 50-day trend area",
+          "long-term trend remains above the 200-day average",
+          "RSI has reset without becoming washed out",
+          "selloff volume is not extreme",
+          "fundamentals still look intact from available data"
+        ],
+        "risks": [],
+        "distanceFrom52WeekHighPct": -23.4,
+        "distanceFrom50DayPct": -5.4,
+        "distanceFrom200DayPct": 13.6,
+        "rsi14": 46.4,
+        "volumeVs20Day": 1.01
+      }
+    },
+    {
+      "symbol": "SHOP",
+      "name": "Shopify Inc.",
+      "sector": "Technology",
+      "currentPrice": 147.81,
+      "decision": "Avoid - weak underlying",
+      "status": "Avoid",
+      "score": 37,
+      "leapsOpportunityScore": 37,
+      "underlyingScore": 67,
+      "riskScore": 73,
       "pullbackClassification": "Healthy Pullback",
       "dcaSuitability": "DCA Rejected / Wait",
       "reason": "Underlying stock quality is below 70, so the desk does not analyze LEAPS calls.",
@@ -3467,7 +306,7 @@
         {
           "label": "Business quality",
           "weight": 20,
-          "score": 67
+          "score": 79
         },
         {
           "label": "Growth quality",
@@ -3482,12 +321,12 @@
         {
           "label": "Valuation reasonableness",
           "weight": 15,
-          "score": 45
+          "score": 33
         },
         {
           "label": "Catalyst strength",
           "weight": 15,
-          "score": 89
+          "score": 84
         },
         {
           "label": "Technical setup",
@@ -3496,93 +335,28 @@
         }
       ],
       "pullback": {
-        "score": 86,
+        "score": 100,
         "classification": "Healthy Pullback",
         "reasons": [
           "meaningful pullback from the 52-week high",
+          "price is near the 50-day trend area",
           "long-term trend remains above the 200-day average",
           "selloff volume is not extreme",
           "fundamentals still look intact from available data"
         ],
         "risks": [],
-        "distanceFrom52WeekHighPct": -21.3,
-        "distanceFrom50DayPct": -6.8,
-        "distanceFrom200DayPct": 3.1,
-        "rsi14": 37.3,
-        "volumeVs20Day": 0.49
+        "distanceFrom52WeekHighPct": -18.3,
+        "distanceFrom50DayPct": -3.3,
+        "distanceFrom200DayPct": 6.3,
+        "rsi14": 41.4,
+        "volumeVs20Day": 0.79
       }
     },
     {
-      "symbol": "AMZN",
-      "name": "Amazon.com, Inc.",
-      "sector": "Consumer Cyclical",
-      "currentPrice": 266.32,
-      "decision": "Avoid - weak underlying",
-      "status": "Avoid",
-      "score": 36,
-      "leapsOpportunityScore": 36,
-      "underlyingScore": 65,
-      "riskScore": 69,
-      "pullbackClassification": "Deep Pullback but Thesis Intact",
-      "dcaSuitability": "DCA Rejected / Wait",
-      "reason": "Underlying stock quality is below 70, so the desk does not analyze LEAPS calls.",
-      "bullCase": "Bull case: the chart trend is supportive, valuation is not fighting the story too hard.",
-      "bearCase": "Bear case: growth is not fully confirmed by the checklist, fundamental quality still needs proof.",
-      "underlyingComponents": [
-        {
-          "label": "Business quality",
-          "weight": 20,
-          "score": 70
-        },
-        {
-          "label": "Growth quality",
-          "weight": 20,
-          "score": 43.75
-        },
-        {
-          "label": "Financial strength",
-          "weight": 15,
-          "score": 38
-        },
-        {
-          "label": "Valuation reasonableness",
-          "weight": 15,
-          "score": 73
-        },
-        {
-          "label": "Catalyst strength",
-          "weight": 15,
-          "score": 83
-        },
-        {
-          "label": "Technical setup",
-          "weight": 15,
-          "score": 88
-        }
-      ],
-      "pullback": {
-        "score": 66,
-        "classification": "Deep Pullback but Thesis Intact",
-        "reasons": [
-          "price is near the 50-day trend area",
-          "long-term trend remains above the 200-day average",
-          "selloff volume is not extreme"
-        ],
-        "risks": [
-          "fundamental/risk profile needs confirmation before DCA"
-        ],
-        "distanceFrom52WeekHighPct": -7.3,
-        "distanceFrom50DayPct": 3.8,
-        "distanceFrom200DayPct": 7.6,
-        "rsi14": 59.5,
-        "volumeVs20Day": 0.42
-      }
-    },
-    {
-      "symbol": "WFC",
-      "name": "Wells Fargo & Company",
+      "symbol": "PYPL",
+      "name": "PayPal Holdings, Inc.",
       "sector": "Financial Services",
-      "currentPrice": 86.03,
+      "currentPrice": 58.83,
       "decision": "Avoid - weak underlying",
       "status": "Avoid",
       "score": 35,
@@ -3598,64 +372,65 @@
         {
           "label": "Business quality",
           "weight": 20,
-          "score": 55
+          "score": 75
         },
         {
           "label": "Growth quality",
           "weight": 20,
-          "score": 35
+          "score": 23.75
         },
         {
           "label": "Financial strength",
           "weight": 15,
-          "score": 50
+          "score": 40
         },
         {
           "label": "Valuation reasonableness",
           "weight": 15,
-          "score": 76
+          "score": 80
         },
         {
           "label": "Catalyst strength",
           "weight": 15,
-          "score": 79
+          "score": 68
         },
         {
           "label": "Technical setup",
           "weight": 15,
-          "score": 92
+          "score": 100
         }
       ],
       "pullback": {
-        "score": 91,
+        "score": 100,
         "classification": "Healthy Pullback",
         "reasons": [
           "meaningful pullback from the 52-week high",
           "price is near the 50-day trend area",
           "long-term trend remains above the 200-day average",
+          "RSI has reset without becoming washed out",
           "selloff volume is not extreme"
         ],
         "risks": [
           "fundamental/risk profile needs confirmation before DCA"
         ],
-        "distanceFrom52WeekHighPct": -12,
-        "distanceFrom50DayPct": 2,
-        "distanceFrom200DayPct": 2.5,
-        "rsi14": 59.7,
-        "volumeVs20Day": 0.6
+        "distanceFrom52WeekHighPct": -9,
+        "distanceFrom50DayPct": 3.8,
+        "distanceFrom200DayPct": 7.4,
+        "rsi14": 52.8,
+        "volumeVs20Day": 0.84
       }
     },
     {
       "symbol": "AAPL",
       "name": "Apple Inc.",
       "sector": "Technology",
-      "currentPrice": 356.12,
+      "currentPrice": 352.78,
       "decision": "Avoid - weak underlying",
       "status": "Avoid",
       "score": 35,
       "leapsOpportunityScore": 35,
-      "underlyingScore": 64,
-      "riskScore": 73,
+      "underlyingScore": 63,
+      "riskScore": 74,
       "pullbackClassification": "Healthy Pullback",
       "dcaSuitability": "DCA Rejected / Wait",
       "reason": "Underlying stock quality is below 70, so the desk does not analyze LEAPS calls.",
@@ -3685,7 +460,7 @@
         {
           "label": "Catalyst strength",
           "weight": 15,
-          "score": 71
+          "score": 67
         },
         {
           "label": "Technical setup",
@@ -3694,112 +469,114 @@
         }
       ],
       "pullback": {
-        "score": 87,
+        "score": 100,
         "classification": "Healthy Pullback",
         "reasons": [
           "price is near the 50-day trend area",
           "long-term trend remains above the 200-day average",
+          "RSI has reset without becoming washed out",
           "selloff volume is not extreme",
           "fundamentals still look intact from available data"
         ],
         "risks": [
           "stock is still close to highs"
         ],
-        "distanceFrom52WeekHighPct": -1.3,
-        "distanceFrom50DayPct": 5.1,
-        "distanceFrom200DayPct": 15.8,
-        "rsi14": 63.8,
-        "volumeVs20Day": 0.57
+        "distanceFrom52WeekHighPct": -2.2,
+        "distanceFrom50DayPct": 4,
+        "distanceFrom200DayPct": 14.6,
+        "rsi14": 56.9,
+        "volumeVs20Day": 0.94
       }
     },
     {
-      "symbol": "GOOGL",
-      "name": "Alphabet Inc.",
-      "sector": "Communication Services",
-      "currentPrice": 295.57,
+      "symbol": "PLTR",
+      "name": "Palantir Technologies Inc.",
+      "sector": "Technology",
+      "currentPrice": 160.39,
       "decision": "Avoid - weak underlying",
       "status": "Avoid",
       "score": 35,
       "leapsOpportunityScore": 35,
-      "underlyingScore": 63,
-      "riskScore": 78,
+      "underlyingScore": 64,
+      "riskScore": 79,
       "pullbackClassification": "Waiting for Reclaim",
       "dcaSuitability": "DCA Rejected / Wait",
       "reason": "Underlying stock quality is below 70, so the desk does not analyze LEAPS calls.",
-      "bullCase": "Bull case: valuation is not fighting the story too hard, business quality is acceptable.",
-      "bearCase": "Bear case: growth is not fully confirmed by the checklist, the chart is not giving a clean confirmation.",
+      "bullCase": "Bull case: growth is strong enough to qualify as a growth-stock candidate, business quality is acceptable.",
+      "bearCase": "Bear case: the chart is not giving a clean confirmation, valuation or missing valuation support can limit upside.",
       "underlyingComponents": [
         {
           "label": "Business quality",
           "weight": 20,
-          "score": 59
+          "score": 65
         },
         {
           "label": "Growth quality",
           "weight": 20,
-          "score": 63.75
+          "score": 83.75
         },
         {
           "label": "Financial strength",
           "weight": 15,
-          "score": 70
+          "score": 85
         },
         {
           "label": "Valuation reasonableness",
           "weight": 15,
-          "score": 65
+          "score": 45
         },
         {
           "label": "Catalyst strength",
           "weight": 15,
-          "score": 81
+          "score": 80
         },
         {
           "label": "Technical setup",
           "weight": 15,
-          "score": 39
+          "score": 17
         }
       ],
       "pullback": {
-        "score": 68,
+        "score": 63,
         "classification": "Waiting for Reclaim",
         "reasons": [
           "meaningful pullback from the 52-week high",
-          "RSI has reset without becoming washed out",
           "selloff volume is not extreme",
           "fundamentals still look intact from available data"
         ],
         "risks": [
-          "price is below the 200-day average"
+          "price is meaningfully below the 50-day average",
+          "price is below the 200-day average",
+          "RSI is weak; wait for reclaim"
         ],
-        "distanceFrom52WeekHighPct": -27.7,
-        "distanceFrom50DayPct": -7.9,
-        "distanceFrom200DayPct": -9.3,
-        "rsi14": 47.4,
-        "volumeVs20Day": 0.6
+        "distanceFrom52WeekHighPct": -24.7,
+        "distanceFrom50DayPct": -10.5,
+        "distanceFrom200DayPct": -1.3,
+        "rsi14": 29.9,
+        "volumeVs20Day": 0.72
       }
     },
     {
-      "symbol": "ORCL",
-      "name": "Oracle Corporation",
-      "sector": "Technology",
-      "currentPrice": 125.32,
+      "symbol": "AMZN",
+      "name": "Amazon.com, Inc.",
+      "sector": "Consumer Cyclical",
+      "currentPrice": 257.75,
       "decision": "Avoid - weak underlying",
       "status": "Avoid",
       "score": 34,
       "leapsOpportunityScore": 34,
       "underlyingScore": 61,
-      "riskScore": 89,
-      "pullbackClassification": "Falling Knife / Do Not DCA",
+      "riskScore": 71,
+      "pullbackClassification": "Healthy Pullback",
       "dcaSuitability": "DCA Rejected / Wait",
       "reason": "Underlying stock quality is below 70, so the desk does not analyze LEAPS calls.",
-      "bullCase": "Bull case: valuation is not fighting the story too hard, business quality is acceptable.",
-      "bearCase": "Bear case: growth is not fully confirmed by the checklist, the chart is not giving a clean confirmation.",
+      "bullCase": "Bull case: valuation is not fighting the story too hard.",
+      "bearCase": "Bear case: growth is not fully confirmed by the checklist, the chart is not giving a clean confirmation, fundamental quality still needs proof.",
       "underlyingComponents": [
         {
           "label": "Business quality",
           "weight": 20,
-          "score": 56
+          "score": 64
         },
         {
           "label": "Growth quality",
@@ -3809,89 +586,22 @@
         {
           "label": "Financial strength",
           "weight": 15,
-          "score": 61
+          "score": 38
         },
         {
           "label": "Valuation reasonableness",
           "weight": 15,
-          "score": 92
-        },
-        {
-          "label": "Catalyst strength",
-          "weight": 15,
-          "score": 89
-        },
-        {
-          "label": "Technical setup",
-          "weight": 15,
-          "score": 29
-        }
-      ],
-      "pullback": {
-        "score": 33,
-        "classification": "Falling Knife / Do Not DCA",
-        "reasons": [
-          "RSI has reset without becoming washed out",
-          "selloff volume is not extreme",
-          "fundamentals still look intact from available data"
-        ],
-        "risks": [
-          "drawdown is deep enough to question the thesis",
-          "price is below the 200-day average"
-        ],
-        "distanceFrom52WeekHighPct": -49.9,
-        "distanceFrom50DayPct": -6.3,
-        "distanceFrom200DayPct": -20,
-        "rsi14": 49.9,
-        "volumeVs20Day": 0.44
-      }
-    },
-    {
-      "symbol": "PYPL",
-      "name": "PayPal Holdings, Inc.",
-      "sector": "Financial Services",
-      "currentPrice": 59.27,
-      "decision": "Avoid - weak underlying",
-      "status": "Avoid",
-      "score": 33,
-      "leapsOpportunityScore": 33,
-      "underlyingScore": 60,
-      "riskScore": 72,
-      "pullbackClassification": "Healthy Pullback",
-      "dcaSuitability": "DCA Rejected / Wait",
-      "reason": "Underlying stock quality is below 70, so the desk does not analyze LEAPS calls.",
-      "bullCase": "Bull case: the chart trend is supportive, valuation is not fighting the story too hard.",
-      "bearCase": "Bear case: growth is not fully confirmed by the checklist, fundamental quality still needs proof.",
-      "underlyingComponents": [
-        {
-          "label": "Business quality",
-          "weight": 20,
           "score": 73
         },
         {
-          "label": "Growth quality",
-          "weight": 20,
-          "score": 23.75
-        },
-        {
-          "label": "Financial strength",
-          "weight": 15,
-          "score": 40
-        },
-        {
-          "label": "Valuation reasonableness",
-          "weight": 15,
-          "score": 80
-        },
-        {
           "label": "Catalyst strength",
           "weight": 15,
-          "score": 62
+          "score": 90
         },
         {
           "label": "Technical setup",
           "weight": 15,
-          "score": 90
+          "score": 60
         }
       ],
       "pullback": {
@@ -3907,84 +617,18 @@
         "risks": [
           "fundamental/risk profile needs confirmation before DCA"
         ],
-        "distanceFrom52WeekHighPct": -11.9,
-        "distanceFrom50DayPct": 4.7,
-        "distanceFrom200DayPct": 8.3,
-        "rsi14": 56.8,
-        "volumeVs20Day": 0.52
-      }
-    },
-    {
-      "symbol": "DIS",
-      "name": "The Walt Disney Company",
-      "sector": "Communication Services",
-      "currentPrice": 119.09,
-      "decision": "Avoid - weak underlying",
-      "status": "Avoid",
-      "score": 33,
-      "leapsOpportunityScore": 33,
-      "underlyingScore": 60,
-      "riskScore": 80,
-      "pullbackClassification": "Waiting for Reclaim",
-      "dcaSuitability": "DCA Rejected / Wait",
-      "reason": "Underlying stock quality is below 70, so the desk does not analyze LEAPS calls.",
-      "bullCase": "Bull case: the chart trend is supportive, valuation is not fighting the story too hard.",
-      "bearCase": "Bear case: growth is not fully confirmed by the checklist, fundamental quality still needs proof.",
-      "underlyingComponents": [
-        {
-          "label": "Business quality",
-          "weight": 20,
-          "score": 62
-        },
-        {
-          "label": "Growth quality",
-          "weight": 20,
-          "score": 23.75
-        },
-        {
-          "label": "Financial strength",
-          "weight": 15,
-          "score": 29
-        },
-        {
-          "label": "Valuation reasonableness",
-          "weight": 15,
-          "score": 58
-        },
-        {
-          "label": "Catalyst strength",
-          "weight": 15,
-          "score": 97
-        },
-        {
-          "label": "Technical setup",
-          "weight": 15,
-          "score": 100
-        }
-      ],
-      "pullback": {
-        "score": 56,
-        "classification": "Waiting for Reclaim",
-        "reasons": [
-          "long-term trend remains above the 200-day average",
-          "selloff volume is not extreme"
-        ],
-        "risks": [
-          "stock is still close to highs",
-          "fundamental/risk profile needs confirmation before DCA"
-        ],
-        "distanceFrom52WeekHighPct": -1.4,
-        "distanceFrom50DayPct": 7.6,
-        "distanceFrom200DayPct": 12,
-        "rsi14": 68,
-        "volumeVs20Day": 0.75
+        "distanceFrom52WeekHighPct": -10.3,
+        "distanceFrom50DayPct": 0.5,
+        "distanceFrom200DayPct": 4.1,
+        "rsi14": 45.5,
+        "volumeVs20Day": 0.96
       }
     },
     {
       "symbol": "SOFI",
       "name": "SoFi Technologies, Inc.",
       "sector": "Financial Services",
-      "currentPrice": 15.44,
+      "currentPrice": 14.85,
       "decision": "Avoid - weak underlying",
       "status": "Avoid",
       "score": 33,
@@ -4029,29 +673,29 @@
         }
       ],
       "pullback": {
-        "score": 35,
+        "score": 22,
         "classification": "Falling Knife / Do Not DCA",
         "reasons": [
-          "price is near the 50-day trend area",
           "selloff volume is not extreme",
           "fundamentals still look intact from available data"
         ],
         "risks": [
           "drawdown is deep enough to question the thesis",
-          "price is below the 200-day average"
+          "price is below the 200-day average",
+          "RSI is weak; wait for reclaim"
         ],
-        "distanceFrom52WeekHighPct": -51.4,
-        "distanceFrom50DayPct": -5.2,
-        "distanceFrom200DayPct": -13.5,
-        "rsi14": 38.6,
-        "volumeVs20Day": 0.64
+        "distanceFrom52WeekHighPct": -51.2,
+        "distanceFrom50DayPct": -8.5,
+        "distanceFrom200DayPct": -16.6,
+        "rsi14": 32.2,
+        "volumeVs20Day": 0.82
       }
     },
     {
-      "symbol": "GM",
-      "name": "General Motors Company",
-      "sector": "Consumer Cyclical",
-      "currentPrice": 86.01,
+      "symbol": "WFC",
+      "name": "Wells Fargo & Company",
+      "sector": "Financial Services",
+      "currentPrice": 84.84,
       "decision": "Avoid - weak underlying",
       "status": "Avoid",
       "score": 32,
@@ -4067,27 +711,27 @@
         {
           "label": "Business quality",
           "weight": 20,
-          "score": 37
+          "score": 52
         },
         {
           "label": "Growth quality",
           "weight": 20,
-          "score": 43.75
+          "score": 35
         },
         {
           "label": "Financial strength",
           "weight": 15,
-          "score": 22
+          "score": 50
         },
         {
           "label": "Valuation reasonableness",
           "weight": 15,
-          "score": 88
+          "score": 76
         },
         {
           "label": "Catalyst strength",
           "weight": 15,
-          "score": 93
+          "score": 70
         },
         {
           "label": "Technical setup",
@@ -4108,92 +752,90 @@
         "risks": [
           "fundamental/risk profile needs confirmation before DCA"
         ],
-        "distanceFrom52WeekHighPct": -8.2,
-        "distanceFrom50DayPct": 2.1,
-        "distanceFrom200DayPct": 7.5,
-        "rsi14": 47.8,
-        "volumeVs20Day": 0.25
+        "distanceFrom52WeekHighPct": -13.2,
+        "distanceFrom50DayPct": 0.5,
+        "distanceFrom200DayPct": 1.1,
+        "rsi14": 48.6,
+        "volumeVs20Day": 0.76
       }
     },
     {
-      "symbol": "C",
-      "name": "Citigroup Inc.",
-      "sector": "Financial Services",
-      "currentPrice": 124.11,
+      "symbol": "DIS",
+      "name": "The Walt Disney Company",
+      "sector": "Communication Services",
+      "currentPrice": 118.7,
       "decision": "Avoid - weak underlying",
       "status": "Avoid",
       "score": 32,
       "leapsOpportunityScore": 32,
-      "underlyingScore": 59,
+      "underlyingScore": 58,
       "riskScore": 80,
       "pullbackClassification": "Waiting for Reclaim",
       "dcaSuitability": "DCA Rejected / Wait",
       "reason": "Underlying stock quality is below 70, so the desk does not analyze LEAPS calls.",
-      "bullCase": "Bull case: valuation is not fighting the story too hard.",
-      "bearCase": "Bear case: growth is not fully confirmed by the checklist, the chart is not giving a clean confirmation, fundamental quality still needs proof.",
+      "bullCase": "Bull case: the chart trend is supportive, valuation is not fighting the story too hard.",
+      "bearCase": "Bear case: growth is not fully confirmed by the checklist, fundamental quality still needs proof.",
       "underlyingComponents": [
         {
           "label": "Business quality",
           "weight": 20,
-          "score": 45
+          "score": 62
         },
         {
           "label": "Growth quality",
           "weight": 20,
-          "score": 43.75
+          "score": 23.75
         },
         {
           "label": "Financial strength",
           "weight": 15,
-          "score": 53
+          "score": 29
         },
         {
           "label": "Valuation reasonableness",
           "weight": 15,
-          "score": 84
+          "score": 58
         },
         {
           "label": "Catalyst strength",
           "weight": 15,
-          "score": 78
+          "score": 83
         },
         {
           "label": "Technical setup",
           "weight": 15,
-          "score": 59
+          "score": 100
         }
       ],
       "pullback": {
-        "score": 73,
+        "score": 46,
         "classification": "Waiting for Reclaim",
         "reasons": [
-          "meaningful pullback from the 52-week high",
-          "price is near the 50-day trend area",
-          "RSI has reset without becoming washed out",
-          "selloff volume is not extreme"
+          "long-term trend remains above the 200-day average"
         ],
         "risks": [
-          "price is below the 200-day average",
+          "stock is still close to highs",
+          "recent volume is elevated; confirm the selloff is not company-specific",
           "fundamental/risk profile needs confirmation before DCA"
         ],
-        "distanceFrom52WeekHighPct": -16.1,
-        "distanceFrom50DayPct": -1.9,
-        "distanceFrom200DayPct": -0.3,
-        "rsi14": 55.7,
-        "volumeVs20Day": 0.57
+        "distanceFrom52WeekHighPct": -1.7,
+        "distanceFrom50DayPct": 7,
+        "distanceFrom200DayPct": 11.5,
+        "rsi14": 65.4,
+        "volumeVs20Day": 1.53
       }
     },
     {
       "symbol": "NFLX",
       "name": "Netflix, Inc.",
       "sector": "Communication Services",
-      "currentPrice": 62.38,
+      "currentPrice": 60.75,
       "decision": "Avoid - weak underlying",
       "status": "Avoid",
-      "score": 31,
-      "leapsOpportunityScore": 31,
-      "underlyingScore": 57,
-      "riskScore": 91,
+      "score": 32,
+      "leapsOpportunityScore": 32,
+      "underlyingScore": 59,
+      "riskScore": 90,
       "pullbackClassification": "Falling Knife / Do Not DCA",
       "dcaSuitability": "DCA Rejected / Wait",
       "reason": "Underlying stock quality is below 70, so the desk does not analyze LEAPS calls.",
@@ -4223,7 +865,7 @@
         {
           "label": "Catalyst strength",
           "weight": 15,
-          "score": 64
+          "score": 82
         },
         {
           "label": "Technical setup",
@@ -4232,7 +874,7 @@
         }
       ],
       "pullback": {
-        "score": 17,
+        "score": 28,
         "classification": "Falling Knife / Do Not DCA",
         "reasons": [
           "selloff volume is not extreme",
@@ -4240,25 +882,161 @@
         ],
         "risks": [
           "drawdown is deep enough to question the thesis",
+          "price is meaningfully below the 50-day average",
+          "price is below the 200-day average",
+          "RSI is weak; wait for reclaim"
+        ],
+        "distanceFrom52WeekHighPct": -47.3,
+        "distanceFrom50DayPct": -10.7,
+        "distanceFrom200DayPct": -23.7,
+        "rsi14": 31.5,
+        "volumeVs20Day": 0.78
+      }
+    },
+    {
+      "symbol": "ORCL",
+      "name": "Oracle Corporation",
+      "sector": "Technology",
+      "currentPrice": 119.09,
+      "decision": "Avoid - weak underlying",
+      "status": "Avoid",
+      "score": 32,
+      "leapsOpportunityScore": 32,
+      "underlyingScore": 58,
+      "riskScore": 90,
+      "pullbackClassification": "Falling Knife / Do Not DCA",
+      "dcaSuitability": "DCA Rejected / Wait",
+      "reason": "Underlying stock quality is below 70, so the desk does not analyze LEAPS calls.",
+      "bullCase": "Bull case: valuation is not fighting the story too hard, business quality is acceptable.",
+      "bearCase": "Bear case: growth is not fully confirmed by the checklist, the chart is not giving a clean confirmation.",
+      "underlyingComponents": [
+        {
+          "label": "Business quality",
+          "weight": 20,
+          "score": 52
+        },
+        {
+          "label": "Growth quality",
+          "weight": 20,
+          "score": 43.75
+        },
+        {
+          "label": "Financial strength",
+          "weight": 15,
+          "score": 61
+        },
+        {
+          "label": "Valuation reasonableness",
+          "weight": 15,
+          "score": 92
+        },
+        {
+          "label": "Catalyst strength",
+          "weight": 15,
+          "score": 97
+        },
+        {
+          "label": "Technical setup",
+          "weight": 15,
+          "score": 9
+        }
+      ],
+      "pullback": {
+        "score": 23,
+        "classification": "Falling Knife / Do Not DCA",
+        "reasons": [
+          "selloff volume is not extreme",
+          "fundamentals still look intact from available data"
+        ],
+        "risks": [
+          "drawdown is deep enough to question the thesis",
+          "price is meaningfully below the 50-day average",
           "price is below the 200-day average"
         ],
-        "distanceFrom52WeekHighPct": -46.6,
-        "distanceFrom50DayPct": -8.7,
-        "distanceFrom200DayPct": -21.8,
-        "rsi14": 38.4,
-        "volumeVs20Day": 0.64
+        "distanceFrom52WeekHighPct": -52.4,
+        "distanceFrom50DayPct": -10.6,
+        "distanceFrom200DayPct": -23.8,
+        "rsi14": 41.2,
+        "volumeVs20Day": 0.48
+      }
+    },
+    {
+      "symbol": "GOOGL",
+      "name": "Alphabet Inc.",
+      "sector": "Communication Services",
+      "currentPrice": 283.72,
+      "decision": "Avoid - weak underlying",
+      "status": "Avoid",
+      "score": 31,
+      "leapsOpportunityScore": 31,
+      "underlyingScore": 57,
+      "riskScore": 81,
+      "pullbackClassification": "Waiting for Reclaim",
+      "dcaSuitability": "DCA Rejected / Wait",
+      "reason": "Underlying stock quality is below 70, so the desk does not analyze LEAPS calls.",
+      "bullCase": "Bull case: valuation is not fighting the story too hard, business quality is acceptable.",
+      "bearCase": "Bear case: growth is not fully confirmed by the checklist, the chart is not giving a clean confirmation.",
+      "underlyingComponents": [
+        {
+          "label": "Business quality",
+          "weight": 20,
+          "score": 53
+        },
+        {
+          "label": "Growth quality",
+          "weight": 20,
+          "score": 63.75
+        },
+        {
+          "label": "Financial strength",
+          "weight": 15,
+          "score": 70
+        },
+        {
+          "label": "Valuation reasonableness",
+          "weight": 15,
+          "score": 65
+        },
+        {
+          "label": "Catalyst strength",
+          "weight": 15,
+          "score": 81
+        },
+        {
+          "label": "Technical setup",
+          "weight": 15,
+          "score": 9
+        }
+      ],
+      "pullback": {
+        "score": 38,
+        "classification": "Waiting for Reclaim",
+        "reasons": [
+          "selloff volume is not extreme",
+          "fundamentals still look intact from available data"
+        ],
+        "risks": [
+          "price is meaningfully below the 50-day average",
+          "price is below the 200-day average",
+          "RSI is weak; wait for reclaim"
+        ],
+        "distanceFrom52WeekHighPct": -30.6,
+        "distanceFrom50DayPct": -11.2,
+        "distanceFrom200DayPct": -12.8,
+        "rsi14": 34.8,
+        "volumeVs20Day": 0.82
       }
     },
     {
       "symbol": "T",
       "name": "AT&T Inc.",
       "sector": "Communication Services",
-      "currentPrice": 22.16,
+      "currentPrice": 22.36,
       "decision": "Avoid - weak underlying",
       "status": "Avoid",
       "score": 30,
       "leapsOpportunityScore": 30,
-      "underlyingScore": 54,
+      "underlyingScore": 55,
       "riskScore": 82,
       "pullbackClassification": "Waiting for Reclaim",
       "dcaSuitability": "DCA Rejected / Wait",
@@ -4269,7 +1047,7 @@
         {
           "label": "Business quality",
           "weight": 20,
-          "score": 54
+          "score": 56
         },
         {
           "label": "Growth quality",
@@ -4289,12 +1067,79 @@
         {
           "label": "Catalyst strength",
           "weight": 15,
-          "score": 78
+          "score": 70
         },
         {
           "label": "Technical setup",
           "weight": 15,
-          "score": 51
+          "score": 59
+        }
+      ],
+      "pullback": {
+        "score": 57,
+        "classification": "Waiting for Reclaim",
+        "reasons": [
+          "meaningful pullback from the 52-week high",
+          "price is near the 50-day trend area",
+          "selloff volume is not extreme"
+        ],
+        "risks": [
+          "price is below the 200-day average",
+          "fundamental/risk profile needs confirmation before DCA"
+        ],
+        "distanceFrom52WeekHighPct": -24,
+        "distanceFrom50DayPct": -2.5,
+        "distanceFrom200DayPct": -8,
+        "rsi14": 62.6,
+        "volumeVs20Day": 0.84
+      }
+    },
+    {
+      "symbol": "UBER",
+      "name": "Uber Technologies, Inc.",
+      "sector": "Technology",
+      "currentPrice": 69.99,
+      "decision": "Avoid - weak underlying",
+      "status": "Avoid",
+      "score": 30,
+      "leapsOpportunityScore": 30,
+      "underlyingScore": 54,
+      "riskScore": 82,
+      "pullbackClassification": "Waiting for Reclaim",
+      "dcaSuitability": "DCA Rejected / Wait",
+      "reason": "Underlying stock quality is below 70, so the desk does not analyze LEAPS calls.",
+      "bullCase": "Bull case: valuation is not fighting the story too hard.",
+      "bearCase": "Bear case: growth is not fully confirmed by the checklist, the chart is not giving a clean confirmation, fundamental quality still needs proof.",
+      "underlyingComponents": [
+        {
+          "label": "Business quality",
+          "weight": 20,
+          "score": 61
+        },
+        {
+          "label": "Growth quality",
+          "weight": 20,
+          "score": 35
+        },
+        {
+          "label": "Financial strength",
+          "weight": 15,
+          "score": 30
+        },
+        {
+          "label": "Valuation reasonableness",
+          "weight": 15,
+          "score": 58
+        },
+        {
+          "label": "Catalyst strength",
+          "weight": 15,
+          "score": 89
+        },
+        {
+          "label": "Technical setup",
+          "weight": 15,
+          "score": 57
         }
       ],
       "pullback": {
@@ -4311,23 +1156,91 @@
           "fundamental/risk profile needs confirmation before DCA"
         ],
         "distanceFrom52WeekHighPct": -24.7,
-        "distanceFrom50DayPct": -3.5,
-        "distanceFrom200DayPct": -8.9,
-        "rsi14": 57,
-        "volumeVs20Day": 0.54
+        "distanceFrom50DayPct": 0.3,
+        "distanceFrom200DayPct": -5,
+        "rsi14": 56.9,
+        "volumeVs20Day": 0.76
+      }
+    },
+    {
+      "symbol": "C",
+      "name": "Citigroup Inc.",
+      "sector": "Financial Services",
+      "currentPrice": 121.32,
+      "decision": "Avoid - weak underlying",
+      "status": "Avoid",
+      "score": 29,
+      "leapsOpportunityScore": 29,
+      "underlyingScore": 53,
+      "riskScore": 83,
+      "pullbackClassification": "Waiting for Reclaim",
+      "dcaSuitability": "DCA Rejected / Wait",
+      "reason": "Underlying stock quality is below 70, so the desk does not analyze LEAPS calls.",
+      "bullCase": "Bull case: valuation is not fighting the story too hard.",
+      "bearCase": "Bear case: growth is not fully confirmed by the checklist, the chart is not giving a clean confirmation, fundamental quality still needs proof.",
+      "underlyingComponents": [
+        {
+          "label": "Business quality",
+          "weight": 20,
+          "score": 39
+        },
+        {
+          "label": "Growth quality",
+          "weight": 20,
+          "score": 43.75
+        },
+        {
+          "label": "Financial strength",
+          "weight": 15,
+          "score": 53
+        },
+        {
+          "label": "Valuation reasonableness",
+          "weight": 15,
+          "score": 84
+        },
+        {
+          "label": "Catalyst strength",
+          "weight": 15,
+          "score": 78
+        },
+        {
+          "label": "Technical setup",
+          "weight": 15,
+          "score": 25
+        }
+      ],
+      "pullback": {
+        "score": 73,
+        "classification": "Waiting for Reclaim",
+        "reasons": [
+          "meaningful pullback from the 52-week high",
+          "price is near the 50-day trend area",
+          "RSI has reset without becoming washed out",
+          "selloff volume is not extreme"
+        ],
+        "risks": [
+          "price is below the 200-day average",
+          "fundamental/risk profile needs confirmation before DCA"
+        ],
+        "distanceFrom52WeekHighPct": -18,
+        "distanceFrom50DayPct": -3.9,
+        "distanceFrom200DayPct": -2.5,
+        "rsi14": 42.7,
+        "volumeVs20Day": 0.97
       }
     },
     {
       "symbol": "PFE",
       "name": "Pfizer Inc.",
       "sector": "Healthcare",
-      "currentPrice": 28.89,
+      "currentPrice": 28.86,
       "decision": "Avoid - weak underlying",
       "status": "Avoid",
-      "score": 29,
-      "leapsOpportunityScore": 29,
-      "underlyingScore": 53,
-      "riskScore": 75,
+      "score": 28,
+      "leapsOpportunityScore": 28,
+      "underlyingScore": 51,
+      "riskScore": 76,
       "pullbackClassification": "Healthy Pullback",
       "dcaSuitability": "DCA Rejected / Wait",
       "reason": "Underlying stock quality is below 70, so the desk does not analyze LEAPS calls.",
@@ -4357,7 +1270,7 @@
         {
           "label": "Catalyst strength",
           "weight": 15,
-          "score": 84
+          "score": 72
         },
         {
           "label": "Technical setup",
@@ -4377,25 +1290,25 @@
         "risks": [
           "fundamental/risk profile needs confirmation before DCA"
         ],
-        "distanceFrom52WeekHighPct": -8.1,
-        "distanceFrom50DayPct": 0.1,
-        "distanceFrom200DayPct": 6.4,
-        "rsi14": 37.1,
-        "volumeVs20Day": 0.47
+        "distanceFrom52WeekHighPct": -8.2,
+        "distanceFrom50DayPct": 0,
+        "distanceFrom200DayPct": 6.2,
+        "rsi14": 36.7,
+        "volumeVs20Day": 0.86
       }
     },
     {
-      "symbol": "UBER",
-      "name": "Uber Technologies, Inc.",
-      "sector": "Technology",
-      "currentPrice": 69.6,
+      "symbol": "HOOD",
+      "name": "Robinhood Markets, Inc.",
+      "sector": "Financial Services",
+      "currentPrice": 72.06,
       "decision": "Avoid - weak underlying",
       "status": "Avoid",
-      "score": 28,
-      "leapsOpportunityScore": 28,
-      "underlyingScore": 51,
-      "riskScore": 84,
-      "pullbackClassification": "Waiting for Reclaim",
+      "score": 27,
+      "leapsOpportunityScore": 27,
+      "underlyingScore": 49,
+      "riskScore": 94,
+      "pullbackClassification": "Falling Knife / Do Not DCA",
       "dcaSuitability": "DCA Rejected / Wait",
       "reason": "Underlying stock quality is below 70, so the desk does not analyze LEAPS calls.",
       "bullCase": "Bull case: valuation is not fighting the story too hard.",
@@ -4404,75 +1317,7 @@
         {
           "label": "Business quality",
           "weight": 20,
-          "score": 58
-        },
-        {
-          "label": "Growth quality",
-          "weight": 20,
-          "score": 35
-        },
-        {
-          "label": "Financial strength",
-          "weight": 15,
-          "score": 30
-        },
-        {
-          "label": "Valuation reasonableness",
-          "weight": 15,
-          "score": 58
-        },
-        {
-          "label": "Catalyst strength",
-          "weight": 15,
-          "score": 89
-        },
-        {
-          "label": "Technical setup",
-          "weight": 15,
           "score": 39
-        }
-      ],
-      "pullback": {
-        "score": 73,
-        "classification": "Waiting for Reclaim",
-        "reasons": [
-          "meaningful pullback from the 52-week high",
-          "price is near the 50-day trend area",
-          "RSI has reset without becoming washed out",
-          "selloff volume is not extreme"
-        ],
-        "risks": [
-          "price is below the 200-day average",
-          "fundamental/risk profile needs confirmation before DCA"
-        ],
-        "distanceFrom52WeekHighPct": -26,
-        "distanceFrom50DayPct": -0.2,
-        "distanceFrom200DayPct": -5.6,
-        "rsi14": 54.6,
-        "volumeVs20Day": 0.48
-      }
-    },
-    {
-      "symbol": "RBLX",
-      "name": "Roblox Corporation",
-      "sector": "Communication Services",
-      "currentPrice": 49.96,
-      "decision": "Avoid - weak underlying",
-      "status": "Avoid",
-      "score": 28,
-      "leapsOpportunityScore": 28,
-      "underlyingScore": 50,
-      "riskScore": 94,
-      "pullbackClassification": "Falling Knife / Do Not DCA",
-      "dcaSuitability": "DCA Rejected / Wait",
-      "reason": "Underlying stock quality is below 70, so the desk does not analyze LEAPS calls.",
-      "bullCase": "Bull case: the chart trend is supportive, valuation is not fighting the story too hard.",
-      "bearCase": "Bear case: growth is not fully confirmed by the checklist, fundamental quality still needs proof.",
-      "underlyingComponents": [
-        {
-          "label": "Business quality",
-          "weight": 20,
-          "score": 44
         },
         {
           "label": "Growth quality",
@@ -4482,56 +1327,55 @@
         {
           "label": "Financial strength",
           "weight": 15,
-          "score": 30
+          "score": 53
         },
         {
           "label": "Valuation reasonableness",
           "weight": 15,
-          "score": 58
+          "score": 65
         },
         {
           "label": "Catalyst strength",
           "weight": 15,
-          "score": 64
+          "score": 80
         },
         {
           "label": "Technical setup",
           "weight": 15,
-          "score": 67
+          "score": 16
         }
       ],
       "pullback": {
-        "score": 38,
+        "score": 5,
         "classification": "Falling Knife / Do Not DCA",
-        "reasons": [
-          "price is near the 50-day trend area",
-          "RSI has reset without becoming washed out",
-          "selloff volume is not extreme"
-        ],
+        "reasons": [],
         "risks": [
           "drawdown is deep enough to question the thesis",
+          "price is meaningfully below the 50-day average",
           "price is below the 200-day average",
+          "RSI is weak; wait for reclaim",
+          "recent volume is elevated; confirm the selloff is not company-specific",
           "fundamental/risk profile needs confirmation before DCA"
         ],
-        "distanceFrom52WeekHighPct": -52.1,
-        "distanceFrom50DayPct": 3.4,
-        "distanceFrom200DayPct": -9,
-        "rsi14": 49.4,
-        "volumeVs20Day": 0.44
+        "distanceFrom52WeekHighPct": -48.4,
+        "distanceFrom50DayPct": -24.6,
+        "distanceFrom200DayPct": -25.7,
+        "rsi14": 24.6,
+        "volumeVs20Day": 1.4
       }
     },
     {
-      "symbol": "BAC",
-      "name": "Bank of America Corporation",
-      "sector": "Financial Services",
-      "currentPrice": 51.01,
+      "symbol": "GM",
+      "name": "General Motors Company Common Stock",
+      "sector": "Consumer Cyclical",
+      "currentPrice": 83.67,
       "decision": "Avoid - weak underlying",
       "status": "Avoid",
-      "score": 27,
-      "leapsOpportunityScore": 27,
-      "underlyingScore": 49,
-      "riskScore": 84,
-      "pullbackClassification": "Waiting for Reclaim",
+      "score": 26,
+      "leapsOpportunityScore": 26,
+      "underlyingScore": 47,
+      "riskScore": 77,
+      "pullbackClassification": "Healthy Pullback",
       "dcaSuitability": "DCA Rejected / Wait",
       "reason": "Underlying stock quality is below 70, so the desk does not analyze LEAPS calls.",
       "bullCase": "Bull case: valuation is not fighting the story too hard.",
@@ -4540,65 +1384,64 @@
         {
           "label": "Business quality",
           "weight": 20,
-          "score": 39
+          "score": 27
         },
         {
           "label": "Growth quality",
           "weight": 20,
-          "score": 23.75
+          "score": 43.75
         },
         {
           "label": "Financial strength",
           "weight": 15,
-          "score": 37
+          "score": 22
         },
         {
           "label": "Valuation reasonableness",
           "weight": 15,
-          "score": 84
+          "score": 88
         },
         {
           "label": "Catalyst strength",
           "weight": 15,
-          "score": 74
+          "score": 83
         },
         {
           "label": "Technical setup",
           "weight": 15,
-          "score": 51
+          "score": 27
         }
       ],
       "pullback": {
-        "score": 73,
-        "classification": "Waiting for Reclaim",
+        "score": 91,
+        "classification": "Healthy Pullback",
         "reasons": [
           "meaningful pullback from the 52-week high",
           "price is near the 50-day trend area",
-          "RSI has reset without becoming washed out",
+          "long-term trend remains above the 200-day average",
           "selloff volume is not extreme"
         ],
         "risks": [
-          "price is below the 200-day average",
           "fundamental/risk profile needs confirmation before DCA"
         ],
-        "distanceFrom52WeekHighPct": -21.8,
-        "distanceFrom50DayPct": -4.6,
-        "distanceFrom200DayPct": -6.8,
-        "rsi14": 54.6,
-        "volumeVs20Day": 0.38
+        "distanceFrom52WeekHighPct": -10.7,
+        "distanceFrom50DayPct": -0.7,
+        "distanceFrom200DayPct": 4.5,
+        "rsi14": 40.3,
+        "volumeVs20Day": 0.63
       }
     },
     {
       "symbol": "RIVN",
       "name": "Rivian Automotive, Inc.",
       "sector": "Consumer Cyclical",
-      "currentPrice": 12.23,
+      "currentPrice": 12.1,
       "decision": "Avoid - weak underlying",
       "status": "Avoid",
-      "score": 27,
-      "leapsOpportunityScore": 27,
-      "underlyingScore": 49,
-      "riskScore": 94,
+      "score": 26,
+      "leapsOpportunityScore": 26,
+      "underlyingScore": 47,
+      "riskScore": 95,
       "pullbackClassification": "Falling Knife / Do Not DCA",
       "dcaSuitability": "DCA Rejected / Wait",
       "reason": "Underlying stock quality is below 70, so the desk does not analyze LEAPS calls.",
@@ -4628,74 +1471,7 @@
         {
           "label": "Catalyst strength",
           "weight": 15,
-          "score": 76
-        },
-        {
-          "label": "Technical setup",
-          "weight": 15,
-          "score": 9
-        }
-      ],
-      "pullback": {
-        "score": 10,
-        "classification": "Falling Knife / Do Not DCA",
-        "reasons": [
-          "selloff volume is not extreme"
-        ],
-        "risks": [
-          "drawdown is deep enough to question the thesis",
-          "price is meaningfully below the 50-day average",
-          "price is below the 200-day average",
-          "fundamental/risk profile needs confirmation before DCA"
-        ],
-        "distanceFrom52WeekHighPct": -46.1,
-        "distanceFrom50DayPct": -11.2,
-        "distanceFrom200DayPct": -18.4,
-        "rsi14": 36.4,
-        "volumeVs20Day": 0.8
-      }
-    },
-    {
-      "symbol": "HOOD",
-      "name": "Robinhood Markets, Inc.",
-      "sector": "Financial Services",
-      "currentPrice": 77.76,
-      "decision": "Avoid - weak underlying",
-      "status": "Avoid",
-      "score": 26,
-      "leapsOpportunityScore": 26,
-      "underlyingScore": 47,
-      "riskScore": 95,
-      "pullbackClassification": "Falling Knife / Do Not DCA",
-      "dcaSuitability": "DCA Rejected / Wait",
-      "reason": "Underlying stock quality is below 70, so the desk does not analyze LEAPS calls.",
-      "bullCase": "Bull case: valuation is not fighting the story too hard.",
-      "bearCase": "Bear case: growth is not fully confirmed by the checklist, the chart is not giving a clean confirmation, fundamental quality still needs proof.",
-      "underlyingComponents": [
-        {
-          "label": "Business quality",
-          "weight": 20,
-          "score": 37
-        },
-        {
-          "label": "Growth quality",
-          "weight": 20,
-          "score": 43.75
-        },
-        {
-          "label": "Financial strength",
-          "weight": 15,
-          "score": 53
-        },
-        {
-          "label": "Valuation reasonableness",
-          "weight": 15,
-          "score": 65
-        },
-        {
-          "label": "Catalyst strength",
-          "weight": 15,
-          "score": 79
+          "score": 64
         },
         {
           "label": "Technical setup",
@@ -4716,24 +1492,24 @@
           "RSI is weak; wait for reclaim",
           "fundamental/risk profile needs confirmation before DCA"
         ],
-        "distanceFrom52WeekHighPct": -44.4,
-        "distanceFrom50DayPct": -19.4,
-        "distanceFrom200DayPct": -20,
-        "rsi14": 31.4,
-        "volumeVs20Day": 0.86
+        "distanceFrom52WeekHighPct": -46.7,
+        "distanceFrom50DayPct": -11.7,
+        "distanceFrom200DayPct": -19.1,
+        "rsi14": 34.9,
+        "volumeVs20Day": 1.09
       }
     },
     {
       "symbol": "INTC",
       "name": "Intel Corporation",
       "sector": "Technology",
-      "currentPrice": 59.7,
+      "currentPrice": 55.47,
       "decision": "Avoid - weak underlying",
       "status": "Avoid",
-      "score": 26,
-      "leapsOpportunityScore": 26,
-      "underlyingScore": 47,
-      "riskScore": 95,
+      "score": 25,
+      "leapsOpportunityScore": 25,
+      "underlyingScore": 46,
+      "riskScore": 96,
       "pullbackClassification": "Falling Knife / Do Not DCA",
       "dcaSuitability": "DCA Rejected / Wait",
       "reason": "Underlying stock quality is below 70, so the desk does not analyze LEAPS calls.",
@@ -4763,7 +1539,7 @@
         {
           "label": "Catalyst strength",
           "weight": 15,
-          "score": 61
+          "score": 55
         },
         {
           "label": "Technical setup",
@@ -4784,23 +1560,23 @@
           "RSI is weak; wait for reclaim",
           "fundamental/risk profile needs confirmation before DCA"
         ],
-        "distanceFrom52WeekHighPct": -58.1,
-        "distanceFrom50DayPct": -30.8,
-        "distanceFrom200DayPct": -29.4,
-        "rsi14": 34.5,
-        "volumeVs20Day": 0.55
+        "distanceFrom52WeekHighPct": -61,
+        "distanceFrom50DayPct": -34.8,
+        "distanceFrom200DayPct": -34.1,
+        "rsi14": 29.1,
+        "volumeVs20Day": 0.69
       }
     },
     {
-      "symbol": "SNAP",
-      "name": "Snap Inc.",
+      "symbol": "RBLX",
+      "name": "Roblox Corporation",
       "sector": "Communication Services",
-      "currentPrice": 5.24,
+      "currentPrice": 46.12,
       "decision": "Avoid - weak underlying",
       "status": "Avoid",
       "score": 25,
       "leapsOpportunityScore": 25,
-      "underlyingScore": 45,
+      "underlyingScore": 46,
       "riskScore": 96,
       "pullbackClassification": "Falling Knife / Do Not DCA",
       "dcaSuitability": "DCA Rejected / Wait",
@@ -4811,7 +1587,141 @@
         {
           "label": "Business quality",
           "weight": 20,
-          "score": 33
+          "score": 38
+        },
+        {
+          "label": "Growth quality",
+          "weight": 20,
+          "score": 43.75
+        },
+        {
+          "label": "Financial strength",
+          "weight": 15,
+          "score": 30
+        },
+        {
+          "label": "Valuation reasonableness",
+          "weight": 15,
+          "score": 58
+        },
+        {
+          "label": "Catalyst strength",
+          "weight": 15,
+          "score": 68
+        },
+        {
+          "label": "Technical setup",
+          "weight": 15,
+          "score": 39
+        }
+      ],
+      "pullback": {
+        "score": 22,
+        "classification": "Falling Knife / Do Not DCA",
+        "reasons": [
+          "price is near the 50-day trend area",
+          "selloff volume is not extreme"
+        ],
+        "risks": [
+          "drawdown is deep enough to question the thesis",
+          "price is below the 200-day average",
+          "fundamental/risk profile needs confirmation before DCA"
+        ],
+        "distanceFrom52WeekHighPct": -55.6,
+        "distanceFrom50DayPct": -4.4,
+        "distanceFrom200DayPct": -15.8,
+        "rsi14": 36.8,
+        "volumeVs20Day": 0.9
+      }
+    },
+    {
+      "symbol": "BAC",
+      "name": "Bank of America Corporation",
+      "sector": "Financial Services",
+      "currentPrice": 50.08,
+      "decision": "Avoid - weak underlying",
+      "status": "Avoid",
+      "score": 24,
+      "leapsOpportunityScore": 24,
+      "underlyingScore": 44,
+      "riskScore": 87,
+      "pullbackClassification": "Waiting for Reclaim",
+      "dcaSuitability": "DCA Rejected / Wait",
+      "reason": "Underlying stock quality is below 70, so the desk does not analyze LEAPS calls.",
+      "bullCase": "Bull case: valuation is not fighting the story too hard.",
+      "bearCase": "Bear case: growth is not fully confirmed by the checklist, the chart is not giving a clean confirmation, fundamental quality still needs proof.",
+      "underlyingComponents": [
+        {
+          "label": "Business quality",
+          "weight": 20,
+          "score": 32
+        },
+        {
+          "label": "Growth quality",
+          "weight": 20,
+          "score": 23.75
+        },
+        {
+          "label": "Financial strength",
+          "weight": 15,
+          "score": 37
+        },
+        {
+          "label": "Valuation reasonableness",
+          "weight": 15,
+          "score": 84
+        },
+        {
+          "label": "Catalyst strength",
+          "weight": 15,
+          "score": 83
+        },
+        {
+          "label": "Technical setup",
+          "weight": 15,
+          "score": 17
+        }
+      ],
+      "pullback": {
+        "score": 55,
+        "classification": "Waiting for Reclaim",
+        "reasons": [
+          "meaningful pullback from the 52-week high",
+          "RSI has reset without becoming washed out",
+          "selloff volume is not extreme"
+        ],
+        "risks": [
+          "price is below the 200-day average",
+          "fundamental/risk profile needs confirmation before DCA"
+        ],
+        "distanceFrom52WeekHighPct": -23.2,
+        "distanceFrom50DayPct": -6.1,
+        "distanceFrom200DayPct": -8.5,
+        "rsi14": 43.2,
+        "volumeVs20Day": 0.89
+      }
+    },
+    {
+      "symbol": "SNAP",
+      "name": "Snap Inc.",
+      "sector": "Communication Services",
+      "currentPrice": 5.09,
+      "decision": "Avoid - weak underlying",
+      "status": "Avoid",
+      "score": 24,
+      "leapsOpportunityScore": 24,
+      "underlyingScore": 43,
+      "riskScore": 97,
+      "pullbackClassification": "Falling Knife / Do Not DCA",
+      "dcaSuitability": "DCA Rejected / Wait",
+      "reason": "Underlying stock quality is below 70, so the desk does not analyze LEAPS calls.",
+      "bullCase": "Bull case: valuation is not fighting the story too hard.",
+      "bearCase": "Bear case: growth is not fully confirmed by the checklist, the chart is not giving a clean confirmation, fundamental quality still needs proof.",
+      "underlyingComponents": [
+        {
+          "label": "Business quality",
+          "weight": 20,
+          "score": 31
         },
         {
           "label": "Growth quality",
@@ -4831,19 +1741,18 @@
         {
           "label": "Catalyst strength",
           "weight": 15,
-          "score": 62
+          "score": 60
         },
         {
           "label": "Technical setup",
           "weight": 15,
-          "score": 35
+          "score": 27
         }
       ],
       "pullback": {
-        "score": 20,
+        "score": 4,
         "classification": "Falling Knife / Do Not DCA",
         "reasons": [
-          "RSI has reset without becoming washed out",
           "selloff volume is not extreme"
         ],
         "risks": [
@@ -4851,24 +1760,24 @@
           "price is below the 200-day average",
           "fundamental/risk profile needs confirmation before DCA"
         ],
-        "distanceFrom52WeekHighPct": -42.2,
-        "distanceFrom50DayPct": -6.5,
-        "distanceFrom200DayPct": -9.9,
-        "rsi14": 42.7,
-        "volumeVs20Day": 0.72
+        "distanceFrom52WeekHighPct": -43.9,
+        "distanceFrom50DayPct": -8.9,
+        "distanceFrom200DayPct": -12.4,
+        "rsi14": 38,
+        "volumeVs20Day": 1.06
       }
     },
     {
       "symbol": "DKNG",
       "name": "DraftKings Inc.",
       "sector": "Consumer Cyclical",
-      "currentPrice": 18.92,
+      "currentPrice": 18.42,
       "decision": "Avoid - weak underlying",
       "status": "Avoid",
-      "score": 23,
-      "leapsOpportunityScore": 23,
-      "underlyingScore": 42,
-      "riskScore": 100,
+      "score": 24,
+      "leapsOpportunityScore": 24,
+      "underlyingScore": 44,
+      "riskScore": 98,
       "pullbackClassification": "Falling Knife / Do Not DCA",
       "dcaSuitability": "DCA Rejected / Wait",
       "reason": "Underlying stock quality is below 70, so the desk does not analyze LEAPS calls.",
@@ -4898,74 +1807,7 @@
         {
           "label": "Catalyst strength",
           "weight": 15,
-          "score": 72
-        },
-        {
-          "label": "Technical setup",
-          "weight": 15,
-          "score": 9
-        }
-      ],
-      "pullback": {
-        "score": 10,
-        "classification": "Falling Knife / Do Not DCA",
-        "reasons": [
-          "selloff volume is not extreme"
-        ],
-        "risks": [
-          "drawdown is deep enough to question the thesis",
-          "price is meaningfully below the 50-day average",
-          "price is below the 200-day average",
-          "fundamental/risk profile needs confirmation before DCA"
-        ],
-        "distanceFrom52WeekHighPct": -48.8,
-        "distanceFrom50DayPct": -10.4,
-        "distanceFrom200DayPct": -23.8,
-        "rsi14": 37.7,
-        "volumeVs20Day": 0.57
-      }
-    },
-    {
-      "symbol": "COIN",
-      "name": "Coinbase Global, Inc.",
-      "sector": "Financial Services",
-      "currentPrice": 127.69,
-      "decision": "Avoid - weak underlying",
-      "status": "Avoid",
-      "score": 22,
-      "leapsOpportunityScore": 22,
-      "underlyingScore": 40,
-      "riskScore": 100,
-      "pullbackClassification": "Falling Knife / Do Not DCA",
-      "dcaSuitability": "DCA Rejected / Wait",
-      "reason": "Underlying stock quality is below 70, so the desk does not analyze LEAPS calls.",
-      "bullCase": "Bull case: the setup needs more proof before it becomes compelling.",
-      "bearCase": "Bear case: growth is not fully confirmed by the checklist, the chart is not giving a clean confirmation, valuation or missing valuation support can limit upside, fundamental quality still needs proof.",
-      "underlyingComponents": [
-        {
-          "label": "Business quality",
-          "weight": 20,
-          "score": 32
-        },
-        {
-          "label": "Growth quality",
-          "weight": 20,
-          "score": 43.75
-        },
-        {
-          "label": "Financial strength",
-          "weight": 15,
-          "score": 39
-        },
-        {
-          "label": "Valuation reasonableness",
-          "weight": 15,
-          "score": 45
-        },
-        {
-          "label": "Catalyst strength",
-          "weight": 15,
-          "score": 73
+          "score": 81
         },
         {
           "label": "Technical setup",
@@ -4986,24 +1828,24 @@
           "RSI is weak; wait for reclaim",
           "fundamental/risk profile needs confirmation before DCA"
         ],
-        "distanceFrom52WeekHighPct": -58,
-        "distanceFrom50DayPct": -20.8,
-        "distanceFrom200DayPct": -31.1,
-        "rsi14": 28.2,
-        "volumeVs20Day": 0.85
+        "distanceFrom52WeekHighPct": -50.2,
+        "distanceFrom50DayPct": -12.3,
+        "distanceFrom200DayPct": -25.6,
+        "rsi14": 34.1,
+        "volumeVs20Day": 0.6
       }
     },
     {
       "symbol": "NKE",
       "name": "NIKE, Inc.",
       "sector": "Consumer Cyclical",
-      "currentPrice": 37.92,
+      "currentPrice": 38.26,
       "decision": "Avoid - weak underlying",
       "status": "Avoid",
-      "score": 21,
-      "leapsOpportunityScore": 21,
-      "underlyingScore": 38,
-      "riskScore": 100,
+      "score": 24,
+      "leapsOpportunityScore": 24,
+      "underlyingScore": 43,
+      "riskScore": 98,
       "pullbackClassification": "Falling Knife / Do Not DCA",
       "dcaSuitability": "DCA Rejected / Wait",
       "reason": "Underlying stock quality is below 70, so the desk does not analyze LEAPS calls.",
@@ -5013,7 +1855,7 @@
         {
           "label": "Business quality",
           "weight": 20,
-          "score": 47
+          "score": 51
         },
         {
           "label": "Growth quality",
@@ -5033,12 +1875,12 @@
         {
           "label": "Catalyst strength",
           "weight": 15,
-          "score": 52
+          "score": 63
         },
         {
           "label": "Technical setup",
           "weight": 15,
-          "score": 35
+          "score": 55
         }
       ],
       "pullback": {
@@ -5054,18 +1896,86 @@
           "price is below the 200-day average",
           "fundamental/risk profile needs confirmation before DCA"
         ],
-        "distanceFrom52WeekHighPct": -45.2,
-        "distanceFrom50DayPct": -0.2,
-        "distanceFrom200DayPct": -15.5,
-        "rsi14": 45.3,
-        "volumeVs20Day": 0.44
+        "distanceFrom52WeekHighPct": -44.7,
+        "distanceFrom50DayPct": 0.7,
+        "distanceFrom200DayPct": -14.5,
+        "rsi14": 49,
+        "volumeVs20Day": 0.87
+      }
+    },
+    {
+      "symbol": "COIN",
+      "name": "Coinbase Global, Inc.",
+      "sector": "Financial Services",
+      "currentPrice": 119.84,
+      "decision": "Avoid - weak underlying",
+      "status": "Avoid",
+      "score": 23,
+      "leapsOpportunityScore": 23,
+      "underlyingScore": 41,
+      "riskScore": 99,
+      "pullbackClassification": "Falling Knife / Do Not DCA",
+      "dcaSuitability": "DCA Rejected / Wait",
+      "reason": "Underlying stock quality is below 70, so the desk does not analyze LEAPS calls.",
+      "bullCase": "Bull case: the setup needs more proof before it becomes compelling.",
+      "bearCase": "Bear case: growth is not fully confirmed by the checklist, the chart is not giving a clean confirmation, valuation or missing valuation support can limit upside, fundamental quality still needs proof.",
+      "underlyingComponents": [
+        {
+          "label": "Business quality",
+          "weight": 20,
+          "score": 34
+        },
+        {
+          "label": "Growth quality",
+          "weight": 20,
+          "score": 43.75
+        },
+        {
+          "label": "Financial strength",
+          "weight": 15,
+          "score": 39
+        },
+        {
+          "label": "Valuation reasonableness",
+          "weight": 15,
+          "score": 45
+        },
+        {
+          "label": "Catalyst strength",
+          "weight": 15,
+          "score": 67
+        },
+        {
+          "label": "Technical setup",
+          "weight": 15,
+          "score": 16
+        }
+      ],
+      "pullback": {
+        "score": 15,
+        "classification": "Falling Knife / Do Not DCA",
+        "reasons": [
+          "selloff volume is not extreme"
+        ],
+        "risks": [
+          "drawdown is deep enough to question the thesis",
+          "price is meaningfully below the 50-day average",
+          "price is below the 200-day average",
+          "RSI is weak; wait for reclaim",
+          "fundamental/risk profile needs confirmation before DCA"
+        ],
+        "distanceFrom52WeekHighPct": -59.1,
+        "distanceFrom50DayPct": -24.9,
+        "distanceFrom200DayPct": -35.2,
+        "rsi14": 22.8,
+        "volumeVs20Day": 1.32
       }
     },
     {
       "symbol": "F",
       "name": "Ford Motor Company",
       "sector": "Consumer Cyclical",
-      "currentPrice": 11.91,
+      "currentPrice": 11.57,
       "decision": "Avoid - weak underlying",
       "status": "Avoid",
       "score": 18,
@@ -5101,7 +2011,7 @@
         {
           "label": "Catalyst strength",
           "weight": 15,
-          "score": 62
+          "score": 60
         },
         {
           "label": "Technical setup",
@@ -5110,21 +2020,21 @@
         }
       ],
       "pullback": {
-        "score": 32,
+        "score": 19,
         "classification": "Waiting for Reclaim",
         "reasons": [
-          "price is near the 50-day trend area",
           "selloff volume is not extreme"
         ],
         "risks": [
           "price is below the 200-day average",
+          "RSI is weak; wait for reclaim",
           "fundamental/risk profile needs confirmation before DCA"
         ],
-        "distanceFrom52WeekHighPct": -33,
-        "distanceFrom50DayPct": -5.2,
-        "distanceFrom200DayPct": -8.7,
-        "rsi14": 36.9,
-        "volumeVs20Day": 0.58
+        "distanceFrom52WeekHighPct": -34.9,
+        "distanceFrom50DayPct": -7.7,
+        "distanceFrom200DayPct": -11.2,
+        "rsi14": 28.1,
+        "volumeVs20Day": 0.99
       }
     },
     {

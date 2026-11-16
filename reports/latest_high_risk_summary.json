@@ -1,14 +1,14 @@
 {
   "accountSize": 5000,
   "sleeveName": "Very High Risk / High Reward",
-  "primaryAction": "RBLX: WATCHLIST",
-  "topSymbol": "RBLX",
-  "topReason": "Interesting high-beta name, but it still needs proof. I would keep it on the board, not buy blindly.",
+  "primaryAction": "No speculative edge today",
+  "topSymbol": "",
+  "topReason": "No top setup.",
   "buyCount": 0,
   "starterCount": 0,
-  "watchCount": 2,
-  "plannedCapital": 600,
-  "cashReserve": 4400,
+  "watchCount": 0,
+  "plannedCapital": 0,
+  "cashReserve": 5000,
   "rules": [
     "This is not retirement money.",
     "Maximum 5-7 names.",
@@ -18,34 +18,34 @@
   ],
   "marketContext": {
     "SPY": {
-      "close": 754.01,
-      "return20": -1.21,
-      "return60": -1.13
+      "close": 739.95,
+      "return20": -3.46,
+      "return60": -3.37
     },
     "QQQ": {
-      "close": 679.91,
-      "return20": -4.21,
-      "return60": -4.36
+      "close": 661.75,
+      "return20": -7.88,
+      "return60": -7.25
     },
     "IWM": {
-      "close": 277.6,
-      "return20": 2.65,
-      "return60": -6.74
+      "close": 272.94,
+      "return20": 0.61,
+      "return60": -9.01
     },
     "ARKK": {
-      "close": 75.01,
-      "return20": -8.13,
-      "return60": -9.91
+      "close": 71.55,
+      "return20": -13.07,
+      "return60": -17
     },
     "XIU.TO": {
-      "close": 54.53,
-      "return20": 0.66,
-      "return60": 0.75
+      "close": 54,
+      "return20": 0.41,
+      "return60": 0.04
     },
     "XIC.TO": {
-      "close": 57.75,
-      "return20": -0.02,
-      "return60": -0.79
+      "close": 57.12,
+      "return20": -0.35,
+      "return60": -1.69
     }
   }
 }
