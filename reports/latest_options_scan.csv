@@ -1,21 +1,21 @@
 symbol,signal,strategy,score,reason,marketRegime,eventRisk,contracts,maxRiskDollars,riskPerContract,riskPerSpread,plannedCapital
 COIN,NO_TRADE,PUT_DEBIT_SPREAD,102,No liquid long option found,RISK_OFF,CLEAR,0,1000,,,
-MSTR,WATCH,PUT_DEBIT_SPREAD,102,bear trend stack; ADX confirms bearish trend; volume expansion,RISK_OFF,CLEAR,0,1000,1140,1140,0
-ORCL,PUT_SETUP,PUT_DEBIT_SPREAD,102,bear trend stack; ADX confirms bearish trend,RISK_OFF,CLEAR,1,1000,767.5,767.5,767.5
-TSM,PUT_SETUP,PUT_DEBIT_SPREAD,102,bear trend stack; ADX confirms bearish trend,RISK_OFF,CLEAR,0,1000,2015,2015,0
-MU,WATCH,PUT_DEBIT_SPREAD,92,bear trend stack; ADX confirms bearish trend,RISK_OFF,CLEAR,0,1000,9910,9910,0
-NFLX,WATCH,PUT_DEBIT_SPREAD,92,bear trend stack; ADX confirms bearish trend; below lower Bollinger band,RISK_OFF,CLEAR,3,1000,332.5,332.5,997.5
-PLTR,WATCH,PUT_DEBIT_SPREAD,92,bear trend stack; ADX confirms bearish trend,RISK_OFF,CLEAR,0,1000,1092.5,1092.5,0
-NVDA,WATCH,PUT_DEBIT_SPREAD,85,bear trend stack; ADX confirms bearish trend,RISK_OFF,MANUAL_CHECK,0,1000,1132.5,1132.5,0
-C,WATCH,PUT_DEBIT_SPREAD,82,bear trend stack; ADX confirms bearish trend; below lower Bollinger band,RISK_OFF,CLEAR,2,1000,337.5,337.5,675
-GOOGL,WATCH,PUT_DEBIT_SPREAD,80,bear trend stack; ADX confirms bullish trend,RISK_OFF,CLEAR,0,1000,1070,1070,0
-INTC,WATCH,PUT_DEBIT_SPREAD,80,bear trend stack; ADX confirms bearish trend,RISK_OFF,CLEAR,2,1000,457.5,457.5,915
-WDC,NO_TRADE,PUT_DEBIT_SPREAD,80,No liquid long option found,RISK_OFF,CLEAR,0,1000,,,
-META,WATCH,PUT_DEBIT_SPREAD,75,bear trend stack; ADX confirms bearish trend; below lower Bollinger band,RISK_OFF,MANUAL_CHECK,0,1000,3987.5,3987.5,0
-AMD,WATCH,PUT_DEBIT_SPREAD,55,bear trend stack; volume expansion,RISK_OFF,MANUAL_CHECK,0,1000,6797.5,6797.5,0
-MSFT,NO_TRADE,NONE,52,ADX confirms bearish trend; neutral technical regime,RISK_OFF,MANUAL_CHECK,0,250,,,
-AAPL,NO_TRADE,NONE,50,bull trend stack; ADX confirms bearish trend; neutral technical regime,RISK_OFF,MANUAL_CHECK,0,250,,,
-AVGO,NO_TRADE,NONE,40,ADX confirms bullish trend; neutral technical regime,RISK_OFF,CLEAR,0,250,,,
-TSLA,NO_TRADE,NONE,32,weak trend strength; neutral technical regime,RISK_OFF,MANUAL_CHECK,0,250,,,
-AMZN,NO_TRADE,NONE,10,neutral technical regime,RISK_OFF,MANUAL_CHECK,0,250,,,
-SNDK,SKIP,,,Not enough price history,,,0,250,,,
+MSTR,WATCH,PUT_DEBIT_SPREAD,102,bear trend stack; ADX confirms bearish trend; volume expansion,RISK_OFF,CLEAR,0,1000,1132.5,1132.5,0
+MU,WATCH,PUT_DEBIT_SPREAD,102,bear trend stack; ADX confirms bearish trend; volume expansion,RISK_OFF,CLEAR,0,1000,9785,9785,0
+NFLX,NO_TRADE,PUT_DEBIT_SPREAD,102,No liquid long option found,RISK_OFF,CLEAR,0,1000,,,
+ORCL,PUT_SETUP,PUT_DEBIT_SPREAD,102,bear trend stack; ADX confirms bearish trend; below lower Bollinger band,RISK_OFF,CLEAR,1,1000,800,800,800
+PLTR,WATCH,PUT_DEBIT_SPREAD,102,bear trend stack; ADX confirms bearish trend; volume expansion,RISK_OFF,CLEAR,0,1000,1207.5,1207.5,0
+SNDK,NO_TRADE,PUT_DEBIT_SPREAD,102,No liquid long option found,RISK_OFF,CLEAR,0,1000,,,
+TSM,WATCH,PUT_DEBIT_SPREAD,102,bear trend stack; ADX confirms bearish trend; below lower Bollinger band; volume expansion,RISK_OFF,CLEAR,0,1000,3230,3230,0
+WDC,NO_TRADE,PUT_DEBIT_SPREAD,102,No liquid long option found,RISK_OFF,CLEAR,0,1000,,,
+NVDA,WATCH,PUT_DEBIT_SPREAD,97,bear trend stack; ADX confirms bearish trend; volume expansion,RISK_OFF,MANUAL_CHECK,1,1000,910,910,910
+C,NO_TRADE,PUT_DEBIT_SPREAD,92,No liquid long option found,RISK_OFF,CLEAR,0,1000,,,
+GOOGL,WATCH,PUT_DEBIT_SPREAD,92,bear trend stack; ADX confirms bearish trend; volume expansion,RISK_OFF,CLEAR,0,1000,1910,1910,0
+INTC,WATCH,PUT_DEBIT_SPREAD,90,bear trend stack; ADX confirms bearish trend; volume expansion,RISK_OFF,CLEAR,2,1000,490,490,980
+META,WATCH,PUT_DEBIT_SPREAD,87,bear trend stack; ADX confirms bearish trend; below lower Bollinger band,RISK_OFF,MANUAL_CHECK,0,1000,3380,3380,0
+AMD,WATCH,PUT_DEBIT_SPREAD,77,bear trend stack; ADX confirms bearish trend; volume expansion,RISK_OFF,MANUAL_CHECK,0,1000,5990,5990,0
+AVGO,WATCH,PUT_DEBIT_SPREAD,70,bear trend stack; ADX confirms bearish trend; volume expansion,RISK_OFF,CLEAR,0,1000,3640,3640,0
+MSFT,NO_TRADE,NONE,52,ADX confirms bearish trend; below lower Bollinger band; volume expansion; neutral technical regime,RISK_OFF,MANUAL_CHECK,0,250,,,
+AAPL,NO_TRADE,NONE,42,ADX confirms bearish trend; volume expansion; neutral technical regime,RISK_OFF,MANUAL_CHECK,0,250,,,
+AMZN,NO_TRADE,NONE,32,volume expansion; neutral technical regime,RISK_OFF,MANUAL_CHECK,0,250,,,
+TSLA,NO_TRADE,NONE,32,neutral technical regime,RISK_OFF,MANUAL_CHECK,0,250,,,

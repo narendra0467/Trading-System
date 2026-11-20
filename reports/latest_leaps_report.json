@@ -1,6 +1,6 @@
 {
   "title": "LEAPS Call Opportunity Desk",
-  "asOf": "2026-11-19T22:23:30.281Z",
+  "asOf": "2026-11-20T21:55:53.219Z",
   "disclaimer": "Research watchlist only. Not financial advice and not a buy/sell recommendation.",
   "schedule": {
     "timeZone": "America/Edmonton",
@@ -14,7 +14,7 @@
   },
   "summary": {
     "scanned": 30,
-    "cleanCandidates": 1,
+    "cleanCandidates": 0,
     "existingPositions": 0,
     "portfolioHealthScore": 100,
     "healthyHolds": 0,
@@ -22,7 +22,7 @@
     "noMoreAdds": 0,
     "rollCandidates": 0,
     "exitReviewPositions": 0,
-    "topStatus": "Candidates found",
+    "topStatus": "No high-quality LEAPS candidates today.",
     "rule": "Calls only. Underlying score must clear 70 before any long-dated option contract can qualify."
   },
   "portfolio": {
@@ -44,9 +44,9 @@
   },
   "riskSummary": {
     "biggestTimeDecayRisk": "No existing LEAPS positions loaded.",
-    "biggestIvRisk": "NVDA IV 53%.",
+    "biggestIvRisk": "No IV risk available.",
     "biggestEarningsRisk": "No high event risk flagged.",
-    "biggestTechnicalBreakdownRisk": "NVDA: Falling Knife / Do Not DCA.",
+    "biggestTechnicalBreakdownRisk": "No broken technical profile flagged.",
     "biggestConcentrationRisk": "No concentration risk until positions are loaded."
   },
   "finalActionSummary": {
@@ -59,29 +59,21 @@
       "exitReview": []
     },
     "newOpportunitiesSummary": {
-      "top10": [
-        "NVDA"
-      ],
-      "top3Strongest": [
-        "NVDA"
-      ],
-      "waitForPullback": [
-        "NVDA"
-      ],
+      "top10": [],
+      "top3Strongest": [],
+      "waitForPullback": [],
       "avoid": []
     },
     "riskSummary": {
       "biggestTimeDecayRisk": "No existing LEAPS positions loaded.",
-      "biggestIvRisk": "NVDA IV 53%.",
+      "biggestIvRisk": "No IV risk available.",
       "biggestEarningsRisk": "No high event risk flagged.",
-      "biggestTechnicalBreakdownRisk": "NVDA: Falling Knife / Do Not DCA.",
+      "biggestTechnicalBreakdownRisk": "No broken technical profile flagged.",
       "biggestConcentrationRisk": "No concentration risk until positions are loaded."
     },
     "actionWatchlist": {
       "reviewToday": [],
-      "watchForPullback": [
-        "NVDA"
-      ],
+      "watchForPullback": [],
       "waitForEarnings": [],
       "considerRolling": [],
       "doNotAdd": [],
@@ -89,1624 +81,20 @@
     },
     "finalPlainEnglishSummary": "No existing LEAPS positions are loaded, so the daily monitor is waiting on your positions CSV. The weekly scanner still ranks new research candidates."
   },
-  "top10": [
-    {
-      "symbol": "NVDA",
-      "name": "NVIDIA Corporation",
-      "sector": "Technology",
-      "currentPrice": 145.98,
-      "direction": "CALL",
-      "decision": "Watch Only / Wait for Better Entry",
-      "status": "Watch for Pullback",
-      "score": 72,
-      "leapsOpportunityScore": 72,
-      "underlyingScore": 70,
-      "riskScore": 63,
-      "riskLabel": "High Risk",
-      "eventRisk": "Medium Event Risk",
-      "eventRiskHeadline": "Positive catalyst tape",
-      "earningsDate": "Unavailable",
-      "preferredExpiryRange": "12-24 months preferred; 6 months minimum",
-      "preferredStrikeZone": "Balanced: near 130 strike",
-      "preferredDelta": "0.55-0.75",
-      "bestContractCandidate": "2027-12-17 130C near 38.6 mid",
-      "optionLiquidityStatus": "Good",
-      "dcaSuitability": "DCA Rejected / Wait",
-      "pullbackClassification": "Falling Knife / Do Not DCA",
-      "bullCase": "Bull case: growth is strong enough to qualify as a growth-stock candidate, valuation is not fighting the story too hard, business quality is acceptable.",
-      "bearCase": "Bear case: the chart is not giving a clean confirmation.",
-      "whyOpportunityExists": "NVIDIA Corporation clears the underlying-quality gate and has a falling knife / do not dca setup with a usable long-dated call candidate.",
-      "longTermThesis": "NVIDIA Corporation is a AI / semiconductor infrastructure candidate. Overall, I would treat it as a growth stock candidate with risk around 29/100. The key is whether revenue growth can stay ahead of the stock's valuation. Analyst tone is bullish.",
-      "catalysts": [
-        "Next earnings window shown by Yahoo: 2026-11-17.",
-        "Growth itself is a catalyst if management keeps beating expectations.",
-        "Analyst target is above current price, so estimate revisions matter.",
-        "Recent Yahoo headline catalyst: Construction Partners, Inc. Q4 2026 Earnings Call Summary",
-        "Recent Yahoo headline catalyst: Bath & Body Works, Inc. Q3 2026 Earnings Call Summary",
-        "Recent Yahoo headline catalyst: Tsakos Energy Navigation Limited Q3 2026 Earnings Call Summary"
-      ],
-      "technicalSetup": "Falling Knife / Do Not DCA. Price is -40% from 52-week high, -26.5% from 50-day, -27.6% from 200-day, RSI 13.5.",
-      "dcaPlan": {
-        "suitability": "DCA Rejected / Wait",
-        "allowed": false,
-        "starterPositionZone": "143.06-148.9",
-        "addZone1": "131.38-137.22",
-        "addZone2": "123.91-128.46",
-        "stopAddingInvalidationLevel": 123.91,
-        "rules": "Do not DCA unless the thesis, trend, time-to-expiration, liquidity, and IV conditions improve."
-      },
-      "invalidationLevel": 123.91,
-      "finalResearchVerdict": "Research verdict: watchlist candidate; wait for a better entry, cleaner pullback, or tighter spread.",
-      "underlyingComponents": [
-        {
-          "label": "Business quality",
-          "weight": 20,
-          "score": 63
-        },
-        {
-          "label": "Growth quality",
-          "weight": 20,
-          "score": 83.75
-        },
-        {
-          "label": "Financial strength",
-          "weight": 15,
-          "score": 85
-        },
-        {
-          "label": "Valuation reasonableness",
-          "weight": 15,
-          "score": 88
-        },
-        {
-          "label": "Catalyst strength",
-          "weight": 15,
-          "score": 90
-        },
-        {
-          "label": "Technical setup",
-          "weight": 15,
-          "score": 9
-        }
-      ],
-      "pullback": {
-        "score": 28,
-        "classification": "Falling Knife / Do Not DCA",
-        "reasons": [
-          "selloff volume is not extreme",
-          "fundamentals still look intact from available data"
-        ],
-        "risks": [
-          "drawdown is deep enough to question the thesis",
-          "price is meaningfully below the 50-day average",
-          "price is below the 200-day average",
-          "RSI is weak; wait for reclaim"
-        ],
-        "distanceFrom52WeekHighPct": -40,
-        "distanceFrom50DayPct": -26.5,
-        "distanceFrom200DayPct": -27.6,
-        "rsi14": 13.5,
-        "volumeVs20Day": 1.22
-      },
-      "optionContracts": [
-        {
-          "contractSymbol": "NVDA271217C00130000",
-          "expiration": "2027-12-17",
-          "dte": 392,
-          "strike": 130,
-          "lastPrice": 39,
-          "bid": 38.3,
-          "ask": 38.9,
-          "mid": 38.6,
-          "delta": 0.71,
-          "theta": -0.0417,
-          "vega": 0.5148,
-          "impliedVolatility": 53,
-          "impliedVolatilityRaw": 0.5304612384033205,
-          "openInterest": 7727,
-          "volume": 188,
-          "breakeven": 168.6,
-          "breakevenMovePct": 15.5,
-          "intrinsicValue": 15.98,
-          "extrinsicValue": 22.62,
-          "spreadPct": 1.6,
-          "spreadPctRaw": 0.015544041450777242,
-          "bucket": "Balanced",
-          "contractQualityScore": 100,
-          "contractQualityReasons": [
-            "preferred 12-24 month expiration",
-            "delta is in the preferred LEAPS range",
-            "tight bid/ask spread",
-            "open interest is strong",
-            "IV is not extreme",
-            "premium has meaningful intrinsic support",
-            "breakeven move is reasonable"
-          ],
-          "contractQualityRisks": []
-        },
-        {
-          "contractSymbol": "NVDA280121C00130000",
-          "expiration": "2028-01-21",
-          "dte": 427,
-          "strike": 130,
-          "lastPrice": 39.8,
-          "bid": 39.4,
-          "ask": 40.15,
-          "mid": 39.77,
-          "delta": 0.72,
-          "theta": -0.04,
-          "vega": 0.5353,
-          "impliedVolatility": 52.9,
-          "impliedVolatilityRaw": 0.5293015820312501,
-          "openInterest": 3010,
-          "volume": 165,
-          "breakeven": 169.78,
-          "breakevenMovePct": 16.3,
-          "intrinsicValue": 15.98,
-          "extrinsicValue": 23.8,
-          "spreadPct": 1.9,
-          "spreadPctRaw": 0.018856065367693277,
-          "bucket": "Balanced",
-          "contractQualityScore": 100,
-          "contractQualityReasons": [
-            "preferred 12-24 month expiration",
-            "delta is in the preferred LEAPS range",
-            "tight bid/ask spread",
-            "open interest is strong",
-            "IV is not extreme",
-            "premium has meaningful intrinsic support",
-            "breakeven move is reasonable"
-          ],
-          "contractQualityRisks": []
-        },
-        {
-          "contractSymbol": "NVDA280616C00130000",
-          "expiration": "2028-06-16",
-          "dte": 574,
-          "strike": 130,
-          "lastPrice": 45.3,
-          "bid": 43.6,
-          "ask": 45.3,
-          "mid": 44.45,
-          "delta": 0.73,
-          "theta": -0.0344,
-          "vega": 0.6095,
-          "impliedVolatility": 52.9,
-          "impliedVolatilityRaw": 0.5290879611206055,
-          "openInterest": 818,
-          "volume": 34,
-          "breakeven": 174.45,
-          "breakevenMovePct": 19.5,
-          "intrinsicValue": 15.98,
-          "extrinsicValue": 28.47,
-          "spreadPct": 3.8,
-          "spreadPctRaw": 0.038245219347581454,
-          "bucket": "Balanced",
-          "contractQualityScore": 100,
-          "contractQualityReasons": [
-            "preferred 12-24 month expiration",
-            "delta is in the preferred LEAPS range",
-            "tight bid/ask spread",
-            "open interest is strong",
-            "IV is not extreme",
-            "premium has meaningful intrinsic support",
-            "breakeven move is reasonable"
-          ],
-          "contractQualityRisks": []
-        },
-        {
-          "contractSymbol": "NVDA280121C00125000",
-          "expiration": "2028-01-21",
-          "dte": 427,
-          "strike": 125,
-          "lastPrice": 42.8,
-          "bid": 42.15,
-          "ask": 43.05,
-          "mid": 42.6,
-          "delta": 0.74,
-          "theta": -0.0392,
-          "vega": 0.5139,
-          "impliedVolatility": 53.7,
-          "impliedVolatilityRaw": 0.5372055557250978,
-          "openInterest": 1121,
-          "volume": 21,
-          "breakeven": 167.6,
-          "breakevenMovePct": 14.8,
-          "intrinsicValue": 20.98,
-          "extrinsicValue": 21.62,
-          "spreadPct": 2.1,
-          "spreadPctRaw": 0.02112676056338025,
-          "bucket": "Balanced",
-          "contractQualityScore": 100,
-          "contractQualityReasons": [
-            "preferred 12-24 month expiration",
-            "delta is in the preferred LEAPS range",
-            "tight bid/ask spread",
-            "open interest is strong",
-            "IV is not extreme",
-            "premium has meaningful intrinsic support",
-            "breakeven move is reasonable"
-          ],
-          "contractQualityRisks": []
-        },
-        {
-          "contractSymbol": "NVDA271217C00125000",
-          "expiration": "2027-12-17",
-          "dte": 392,
-          "strike": 125,
-          "lastPrice": 41.74,
-          "bid": 40.75,
-          "ask": 41.8,
-          "mid": 41.27,
-          "delta": 0.74,
-          "theta": -0.0407,
-          "vega": 0.4935,
-          "impliedVolatility": 53.5,
-          "impliedVolatilityRaw": 0.5349777947998047,
-          "openInterest": 4184,
-          "volume": 27,
-          "breakeven": 166.28,
-          "breakevenMovePct": 13.9,
-          "intrinsicValue": 20.98,
-          "extrinsicValue": 20.3,
-          "spreadPct": 2.5,
-          "spreadPctRaw": 0.025439127801332458,
-          "bucket": "Balanced",
-          "contractQualityScore": 100,
-          "contractQualityReasons": [
-            "preferred 12-24 month expiration",
-            "delta is in the preferred LEAPS range",
-            "tight bid/ask spread",
-            "open interest is strong",
-            "IV is not extreme",
-            "premium has meaningful intrinsic support",
-            "breakeven move is reasonable"
-          ],
-          "contractQualityRisks": []
-        },
-        {
-          "contractSymbol": "NVDA280616C00125000",
-          "expiration": "2028-06-16",
-          "dte": 574,
-          "strike": 125,
-          "lastPrice": 48.25,
-          "bid": 46.75,
-          "ask": 48.05,
-          "mid": 47.4,
-          "delta": 0.75,
-          "theta": -0.034,
-          "vega": 0.5871,
-          "impliedVolatility": 54,
-          "impliedVolatilityRaw": 0.5404098693847659,
-          "openInterest": 832,
-          "volume": 12,
-          "breakeven": 172.4,
-          "breakevenMovePct": 18.1,
-          "intrinsicValue": 20.98,
-          "extrinsicValue": 26.42,
-          "spreadPct": 2.7,
-          "spreadPctRaw": 0.027426160337552682,
-          "bucket": "Balanced",
-          "contractQualityScore": 100,
-          "contractQualityReasons": [
-            "preferred 12-24 month expiration",
-            "delta is in the preferred LEAPS range",
-            "tight bid/ask spread",
-            "open interest is strong",
-            "IV is not extreme",
-            "premium has meaningful intrinsic support",
-            "breakeven move is reasonable"
-          ],
-          "contractQualityRisks": []
-        },
-        {
-          "contractSymbol": "NVDA280121C00120000",
-          "expiration": "2028-01-21",
-          "dte": 427,
-          "strike": 120,
-          "lastPrice": 46,
-          "bid": 45.3,
-          "ask": 46.05,
-          "mid": 45.67,
-          "delta": 0.76,
-          "theta": -0.0383,
-          "vega": 0.491,
-          "impliedVolatility": 54.8,
-          "impliedVolatilityRaw": 0.5479171185302736,
-          "openInterest": 2493,
-          "volume": 255,
-          "breakeven": 165.68,
-          "breakevenMovePct": 13.5,
-          "intrinsicValue": 25.98,
-          "extrinsicValue": 19.7,
-          "spreadPct": 1.6,
-          "spreadPctRaw": 0.016420361247947456,
-          "bucket": "Conservative",
-          "contractQualityScore": 100,
-          "contractQualityReasons": [
-            "preferred 12-24 month expiration",
-            "delta is in the preferred LEAPS range",
-            "tight bid/ask spread",
-            "open interest is strong",
-            "IV is not extreme",
-            "premium has meaningful intrinsic support",
-            "breakeven move is reasonable"
-          ],
-          "contractQualityRisks": []
-        },
-        {
-          "contractSymbol": "NVDA280616C00120000",
-          "expiration": "2028-06-16",
-          "dte": 574,
-          "strike": 120,
-          "lastPrice": 50,
-          "bid": 49.65,
-          "ask": 50.8,
-          "mid": 50.22,
-          "delta": 0.76,
-          "theta": -0.0333,
-          "vega": 0.5634,
-          "impliedVolatility": 54.9,
-          "impliedVolatilityRaw": 0.5485274639892579,
-          "openInterest": 1216,
-          "volume": 128,
-          "breakeven": 170.22,
-          "breakevenMovePct": 16.6,
-          "intrinsicValue": 25.98,
-          "extrinsicValue": 24.25,
-          "spreadPct": 2.3,
-          "spreadPctRaw": 0.02289696366351416,
-          "bucket": "Conservative",
-          "contractQualityScore": 100,
-          "contractQualityReasons": [
-            "preferred 12-24 month expiration",
-            "delta is in the preferred LEAPS range",
-            "tight bid/ask spread",
-            "open interest is strong",
-            "IV is not extreme",
-            "premium has meaningful intrinsic support",
-            "breakeven move is reasonable"
-          ],
-          "contractQualityRisks": []
-        }
-      ],
-      "best3Contracts": {
-        "conservative": {
-          "contractSymbol": "NVDA280121C00120000",
-          "expiration": "2028-01-21",
-          "dte": 427,
-          "strike": 120,
-          "lastPrice": 46,
-          "bid": 45.3,
-          "ask": 46.05,
-          "mid": 45.67,
-          "delta": 0.76,
-          "theta": -0.0383,
-          "vega": 0.491,
-          "impliedVolatility": 54.8,
-          "impliedVolatilityRaw": 0.5479171185302736,
-          "openInterest": 2493,
-          "volume": 255,
-          "breakeven": 165.68,
-          "breakevenMovePct": 13.5,
-          "intrinsicValue": 25.98,
-          "extrinsicValue": 19.7,
-          "spreadPct": 1.6,
-          "spreadPctRaw": 0.016420361247947456,
-          "bucket": "Conservative",
-          "contractQualityScore": 100,
-          "contractQualityReasons": [
-            "preferred 12-24 month expiration",
-            "delta is in the preferred LEAPS range",
-            "tight bid/ask spread",
-            "open interest is strong",
-            "IV is not extreme",
-            "premium has meaningful intrinsic support",
-            "breakeven move is reasonable"
-          ],
-          "contractQualityRisks": [],
-          "gamma": null,
-          "ivRankOrPercentile": "Unavailable from Yahoo option chain",
-          "riskLabel": "Defined premium risk",
-          "classification": "Conservative LEAPS Call",
-          "whySelected": "Conservative stock-replacement style: 18-24 months preferred, ITM/deep ITM, 0.75-0.90 delta."
-        },
-        "balanced": {
-          "contractSymbol": "NVDA271217C00130000",
-          "expiration": "2027-12-17",
-          "dte": 392,
-          "strike": 130,
-          "lastPrice": 39,
-          "bid": 38.3,
-          "ask": 38.9,
-          "mid": 38.6,
-          "delta": 0.71,
-          "theta": -0.0417,
-          "vega": 0.5148,
-          "impliedVolatility": 53,
-          "impliedVolatilityRaw": 0.5304612384033205,
-          "openInterest": 7727,
-          "volume": 188,
-          "breakeven": 168.6,
-          "breakevenMovePct": 15.5,
-          "intrinsicValue": 15.98,
-          "extrinsicValue": 22.62,
-          "spreadPct": 1.6,
-          "spreadPctRaw": 0.015544041450777242,
-          "bucket": "Balanced",
-          "contractQualityScore": 100,
-          "contractQualityReasons": [
-            "preferred 12-24 month expiration",
-            "delta is in the preferred LEAPS range",
-            "tight bid/ask spread",
-            "open interest is strong",
-            "IV is not extreme",
-            "premium has meaningful intrinsic support",
-            "breakeven move is reasonable"
-          ],
-          "contractQualityRisks": [],
-          "gamma": null,
-          "ivRankOrPercentile": "Unavailable from Yahoo option chain",
-          "riskLabel": "Defined premium risk",
-          "classification": "Balanced LEAPS Call",
-          "whySelected": "Balanced LEAPS profile: 12-24 months, ITM/ATM, 0.55-0.75 delta."
-        },
-        "aggressive": {
-          "contractSymbol": "NVDA280121C00200000",
-          "expiration": "2028-01-21",
-          "dte": 427,
-          "strike": 200,
-          "lastPrice": 13.79,
-          "bid": 13.75,
-          "ask": 13.85,
-          "mid": 13.8,
-          "delta": 0.39,
-          "theta": -0.0377,
-          "vega": 0.606,
-          "impliedVolatility": 46.7,
-          "impliedVolatilityRaw": 0.46713789703369146,
-          "openInterest": 38236,
-          "volume": 2882,
-          "breakeven": 213.8,
-          "breakevenMovePct": 46.5,
-          "intrinsicValue": 0,
-          "extrinsicValue": 13.8,
-          "spreadPct": 0.7,
-          "spreadPctRaw": 0.007246376811594177,
-          "bucket": "Aggressive",
-          "contractQualityScore": 74,
-          "contractQualityReasons": [
-            "preferred 12-24 month expiration",
-            "tight bid/ask spread",
-            "open interest is strong",
-            "IV is not extreme"
-          ],
-          "contractQualityRisks": [
-            "delta is aggressive/speculative",
-            "premium is mostly extrinsic/time value",
-            "breakeven requires a very large move"
-          ],
-          "gamma": null,
-          "ivRankOrPercentile": "Unavailable from Yahoo option chain",
-          "riskLabel": "Speculative",
-          "classification": "Avoid - Bad Risk/Reward",
-          "whySelected": "Aggressive/speculative profile: 12-24 months, slightly OTM, 0.35-0.55 delta."
-        }
-      },
-      "contractQualityReasons": [
-        "preferred 12-24 month expiration",
-        "delta is in the preferred LEAPS range",
-        "tight bid/ask spread",
-        "open interest is strong",
-        "IV is not extreme",
-        "premium has meaningful intrinsic support",
-        "breakeven move is reasonable"
-      ],
-      "contractQualityRisks": [],
-      "expiration": "2027-12-17",
-      "dte": 392,
-      "strike": 130,
-      "lastPrice": 39,
-      "bid": 38.3,
-      "ask": 38.9,
-      "mid": 38.6,
-      "delta": 0.71,
-      "theta": -0.0417,
-      "vega": 0.5148,
-      "impliedVolatility": 53,
-      "openInterest": 7727,
-      "volume": 188,
-      "breakeven": 168.6,
-      "breakevenMovePct": 15.5,
-      "intrinsicValue": 15.98,
-      "extrinsicValue": 22.62,
-      "spreadPct": 1.6,
-      "contractQualityScore": 100,
-      "bucket": "Balanced"
-    }
-  ],
-  "top5": [
-    {
-      "symbol": "NVDA",
-      "name": "NVIDIA Corporation",
-      "sector": "Technology",
-      "currentPrice": 145.98,
-      "direction": "CALL",
-      "decision": "Watch Only / Wait for Better Entry",
-      "status": "Watch for Pullback",
-      "score": 72,
-      "leapsOpportunityScore": 72,
-      "underlyingScore": 70,
-      "riskScore": 63,
-      "riskLabel": "High Risk",
-      "eventRisk": "Medium Event Risk",
-      "eventRiskHeadline": "Positive catalyst tape",
-      "earningsDate": "Unavailable",
-      "preferredExpiryRange": "12-24 months preferred; 6 months minimum",
-      "preferredStrikeZone": "Balanced: near 130 strike",
-      "preferredDelta": "0.55-0.75",
-      "bestContractCandidate": "2027-12-17 130C near 38.6 mid",
-      "optionLiquidityStatus": "Good",
-      "dcaSuitability": "DCA Rejected / Wait",
-      "pullbackClassification": "Falling Knife / Do Not DCA",
-      "bullCase": "Bull case: growth is strong enough to qualify as a growth-stock candidate, valuation is not fighting the story too hard, business quality is acceptable.",
-      "bearCase": "Bear case: the chart is not giving a clean confirmation.",
-      "whyOpportunityExists": "NVIDIA Corporation clears the underlying-quality gate and has a falling knife / do not dca setup with a usable long-dated call candidate.",
-      "longTermThesis": "NVIDIA Corporation is a AI / semiconductor infrastructure candidate. Overall, I would treat it as a growth stock candidate with risk around 29/100. The key is whether revenue growth can stay ahead of the stock's valuation. Analyst tone is bullish.",
-      "catalysts": [
-        "Next earnings window shown by Yahoo: 2026-11-17.",
-        "Growth itself is a catalyst if management keeps beating expectations.",
-        "Analyst target is above current price, so estimate revisions matter.",
-        "Recent Yahoo headline catalyst: Construction Partners, Inc. Q4 2026 Earnings Call Summary",
-        "Recent Yahoo headline catalyst: Bath & Body Works, Inc. Q3 2026 Earnings Call Summary",
-        "Recent Yahoo headline catalyst: Tsakos Energy Navigation Limited Q3 2026 Earnings Call Summary"
-      ],
-      "technicalSetup": "Falling Knife / Do Not DCA. Price is -40% from 52-week high, -26.5% from 50-day, -27.6% from 200-day, RSI 13.5.",
-      "dcaPlan": {
-        "suitability": "DCA Rejected / Wait",
-        "allowed": false,
-        "starterPositionZone": "143.06-148.9",
-        "addZone1": "131.38-137.22",
-        "addZone2": "123.91-128.46",
-        "stopAddingInvalidationLevel": 123.91,
-        "rules": "Do not DCA unless the thesis, trend, time-to-expiration, liquidity, and IV conditions improve."
-      },
-      "invalidationLevel": 123.91,
-      "finalResearchVerdict": "Research verdict: watchlist candidate; wait for a better entry, cleaner pullback, or tighter spread.",
-      "underlyingComponents": [
-        {
-          "label": "Business quality",
-          "weight": 20,
-          "score": 63
-        },
-        {
-          "label": "Growth quality",
-          "weight": 20,
-          "score": 83.75
-        },
-        {
-          "label": "Financial strength",
-          "weight": 15,
-          "score": 85
-        },
-        {
-          "label": "Valuation reasonableness",
-          "weight": 15,
-          "score": 88
-        },
-        {
-          "label": "Catalyst strength",
-          "weight": 15,
-          "score": 90
-        },
-        {
-          "label": "Technical setup",
-          "weight": 15,
-          "score": 9
-        }
-      ],
-      "pullback": {
-        "score": 28,
-        "classification": "Falling Knife / Do Not DCA",
-        "reasons": [
-          "selloff volume is not extreme",
-          "fundamentals still look intact from available data"
-        ],
-        "risks": [
-          "drawdown is deep enough to question the thesis",
-          "price is meaningfully below the 50-day average",
-          "price is below the 200-day average",
-          "RSI is weak; wait for reclaim"
-        ],
-        "distanceFrom52WeekHighPct": -40,
-        "distanceFrom50DayPct": -26.5,
-        "distanceFrom200DayPct": -27.6,
-        "rsi14": 13.5,
-        "volumeVs20Day": 1.22
-      },
-      "optionContracts": [
-        {
-          "contractSymbol": "NVDA271217C00130000",
-          "expiration": "2027-12-17",
-          "dte": 392,
-          "strike": 130,
-          "lastPrice": 39,
-          "bid": 38.3,
-          "ask": 38.9,
-          "mid": 38.6,
-          "delta": 0.71,
-          "theta": -0.0417,
-          "vega": 0.5148,
-          "impliedVolatility": 53,
-          "impliedVolatilityRaw": 0.5304612384033205,
-          "openInterest": 7727,
-          "volume": 188,
-          "breakeven": 168.6,
-          "breakevenMovePct": 15.5,
-          "intrinsicValue": 15.98,
-          "extrinsicValue": 22.62,
-          "spreadPct": 1.6,
-          "spreadPctRaw": 0.015544041450777242,
-          "bucket": "Balanced",
-          "contractQualityScore": 100,
-          "contractQualityReasons": [
-            "preferred 12-24 month expiration",
-            "delta is in the preferred LEAPS range",
-            "tight bid/ask spread",
-            "open interest is strong",
-            "IV is not extreme",
-            "premium has meaningful intrinsic support",
-            "breakeven move is reasonable"
-          ],
-          "contractQualityRisks": []
-        },
-        {
-          "contractSymbol": "NVDA280121C00130000",
-          "expiration": "2028-01-21",
-          "dte": 427,
-          "strike": 130,
-          "lastPrice": 39.8,
-          "bid": 39.4,
-          "ask": 40.15,
-          "mid": 39.77,
-          "delta": 0.72,
-          "theta": -0.04,
-          "vega": 0.5353,
-          "impliedVolatility": 52.9,
-          "impliedVolatilityRaw": 0.5293015820312501,
-          "openInterest": 3010,
-          "volume": 165,
-          "breakeven": 169.78,
-          "breakevenMovePct": 16.3,
-          "intrinsicValue": 15.98,
-          "extrinsicValue": 23.8,
-          "spreadPct": 1.9,
-          "spreadPctRaw": 0.018856065367693277,
-          "bucket": "Balanced",
-          "contractQualityScore": 100,
-          "contractQualityReasons": [
-            "preferred 12-24 month expiration",
-            "delta is in the preferred LEAPS range",
-            "tight bid/ask spread",
-            "open interest is strong",
-            "IV is not extreme",
-            "premium has meaningful intrinsic support",
-            "breakeven move is reasonable"
-          ],
-          "contractQualityRisks": []
-        },
-        {
-          "contractSymbol": "NVDA280616C00130000",
-          "expiration": "2028-06-16",
-          "dte": 574,
-          "strike": 130,
-          "lastPrice": 45.3,
-          "bid": 43.6,
-          "ask": 45.3,
-          "mid": 44.45,
-          "delta": 0.73,
-          "theta": -0.0344,
-          "vega": 0.6095,
-          "impliedVolatility": 52.9,
-          "impliedVolatilityRaw": 0.5290879611206055,
-          "openInterest": 818,
-          "volume": 34,
-          "breakeven": 174.45,
-          "breakevenMovePct": 19.5,
-          "intrinsicValue": 15.98,
-          "extrinsicValue": 28.47,
-          "spreadPct": 3.8,
-          "spreadPctRaw": 0.038245219347581454,
-          "bucket": "Balanced",
-          "contractQualityScore": 100,
-          "contractQualityReasons": [
-            "preferred 12-24 month expiration",
-            "delta is in the preferred LEAPS range",
-            "tight bid/ask spread",
-            "open interest is strong",
-            "IV is not extreme",
-            "premium has meaningful intrinsic support",
-            "breakeven move is reasonable"
-          ],
-          "contractQualityRisks": []
-        },
-        {
-          "contractSymbol": "NVDA280121C00125000",
-          "expiration": "2028-01-21",
-          "dte": 427,
-          "strike": 125,
-          "lastPrice": 42.8,
-          "bid": 42.15,
-          "ask": 43.05,
-          "mid": 42.6,
-          "delta": 0.74,
-          "theta": -0.0392,
-          "vega": 0.5139,
-          "impliedVolatility": 53.7,
-          "impliedVolatilityRaw": 0.5372055557250978,
-          "openInterest": 1121,
-          "volume": 21,
-          "breakeven": 167.6,
-          "breakevenMovePct": 14.8,
-          "intrinsicValue": 20.98,
-          "extrinsicValue": 21.62,
-          "spreadPct": 2.1,
-          "spreadPctRaw": 0.02112676056338025,
-          "bucket": "Balanced",
-          "contractQualityScore": 100,
-          "contractQualityReasons": [
-            "preferred 12-24 month expiration",
-            "delta is in the preferred LEAPS range",
-            "tight bid/ask spread",
-            "open interest is strong",
-            "IV is not extreme",
-            "premium has meaningful intrinsic support",
-            "breakeven move is reasonable"
-          ],
-          "contractQualityRisks": []
-        },
-        {
-          "contractSymbol": "NVDA271217C00125000",
-          "expiration": "2027-12-17",
-          "dte": 392,
-          "strike": 125,
-          "lastPrice": 41.74,
-          "bid": 40.75,
-          "ask": 41.8,
-          "mid": 41.27,
-          "delta": 0.74,
-          "theta": -0.0407,
-          "vega": 0.4935,
-          "impliedVolatility": 53.5,
-          "impliedVolatilityRaw": 0.5349777947998047,
-          "openInterest": 4184,
-          "volume": 27,
-          "breakeven": 166.28,
-          "breakevenMovePct": 13.9,
-          "intrinsicValue": 20.98,
-          "extrinsicValue": 20.3,
-          "spreadPct": 2.5,
-          "spreadPctRaw": 0.025439127801332458,
-          "bucket": "Balanced",
-          "contractQualityScore": 100,
-          "contractQualityReasons": [
-            "preferred 12-24 month expiration",
-            "delta is in the preferred LEAPS range",
-            "tight bid/ask spread",
-            "open interest is strong",
-            "IV is not extreme",
-            "premium has meaningful intrinsic support",
-            "breakeven move is reasonable"
-          ],
-          "contractQualityRisks": []
-        },
-        {
-          "contractSymbol": "NVDA280616C00125000",
-          "expiration": "2028-06-16",
-          "dte": 574,
-          "strike": 125,
-          "lastPrice": 48.25,
-          "bid": 46.75,
-          "ask": 48.05,
-          "mid": 47.4,
-          "delta": 0.75,
-          "theta": -0.034,
-          "vega": 0.5871,
-          "impliedVolatility": 54,
-          "impliedVolatilityRaw": 0.5404098693847659,
-          "openInterest": 832,
-          "volume": 12,
-          "breakeven": 172.4,
-          "breakevenMovePct": 18.1,
-          "intrinsicValue": 20.98,
-          "extrinsicValue": 26.42,
-          "spreadPct": 2.7,
-          "spreadPctRaw": 0.027426160337552682,
-          "bucket": "Balanced",
-          "contractQualityScore": 100,
-          "contractQualityReasons": [
-            "preferred 12-24 month expiration",
-            "delta is in the preferred LEAPS range",
-            "tight bid/ask spread",
-            "open interest is strong",
-            "IV is not extreme",
-            "premium has meaningful intrinsic support",
-            "breakeven move is reasonable"
-          ],
-          "contractQualityRisks": []
-        },
-        {
-          "contractSymbol": "NVDA280121C00120000",
-          "expiration": "2028-01-21",
-          "dte": 427,
-          "strike": 120,
-          "lastPrice": 46,
-          "bid": 45.3,
-          "ask": 46.05,
-          "mid": 45.67,
-          "delta": 0.76,
-          "theta": -0.0383,
-          "vega": 0.491,
-          "impliedVolatility": 54.8,
-          "impliedVolatilityRaw": 0.5479171185302736,
-          "openInterest": 2493,
-          "volume": 255,
-          "breakeven": 165.68,
-          "breakevenMovePct": 13.5,
-          "intrinsicValue": 25.98,
-          "extrinsicValue": 19.7,
-          "spreadPct": 1.6,
-          "spreadPctRaw": 0.016420361247947456,
-          "bucket": "Conservative",
-          "contractQualityScore": 100,
-          "contractQualityReasons": [
-            "preferred 12-24 month expiration",
-            "delta is in the preferred LEAPS range",
-            "tight bid/ask spread",
-            "open interest is strong",
-            "IV is not extreme",
-            "premium has meaningful intrinsic support",
-            "breakeven move is reasonable"
-          ],
-          "contractQualityRisks": []
-        },
-        {
-          "contractSymbol": "NVDA280616C00120000",
-          "expiration": "2028-06-16",
-          "dte": 574,
-          "strike": 120,
-          "lastPrice": 50,
-          "bid": 49.65,
-          "ask": 50.8,
-          "mid": 50.22,
-          "delta": 0.76,
-          "theta": -0.0333,
-          "vega": 0.5634,
-          "impliedVolatility": 54.9,
-          "impliedVolatilityRaw": 0.5485274639892579,
-          "openInterest": 1216,
-          "volume": 128,
-          "breakeven": 170.22,
-          "breakevenMovePct": 16.6,
-          "intrinsicValue": 25.98,
-          "extrinsicValue": 24.25,
-          "spreadPct": 2.3,
-          "spreadPctRaw": 0.02289696366351416,
-          "bucket": "Conservative",
-          "contractQualityScore": 100,
-          "contractQualityReasons": [
-            "preferred 12-24 month expiration",
-            "delta is in the preferred LEAPS range",
-            "tight bid/ask spread",
-            "open interest is strong",
-            "IV is not extreme",
-            "premium has meaningful intrinsic support",
-            "breakeven move is reasonable"
-          ],
-          "contractQualityRisks": []
-        }
-      ],
-      "best3Contracts": {
-        "conservative": {
-          "contractSymbol": "NVDA280121C00120000",
-          "expiration": "2028-01-21",
-          "dte": 427,
-          "strike": 120,
-          "lastPrice": 46,
-          "bid": 45.3,
-          "ask": 46.05,
-          "mid": 45.67,
-          "delta": 0.76,
-          "theta": -0.0383,
-          "vega": 0.491,
-          "impliedVolatility": 54.8,
-          "impliedVolatilityRaw": 0.5479171185302736,
-          "openInterest": 2493,
-          "volume": 255,
-          "breakeven": 165.68,
-          "breakevenMovePct": 13.5,
-          "intrinsicValue": 25.98,
-          "extrinsicValue": 19.7,
-          "spreadPct": 1.6,
-          "spreadPctRaw": 0.016420361247947456,
-          "bucket": "Conservative",
-          "contractQualityScore": 100,
-          "contractQualityReasons": [
-            "preferred 12-24 month expiration",
-            "delta is in the preferred LEAPS range",
-            "tight bid/ask spread",
-            "open interest is strong",
-            "IV is not extreme",
-            "premium has meaningful intrinsic support",
-            "breakeven move is reasonable"
-          ],
-          "contractQualityRisks": [],
-          "gamma": null,
-          "ivRankOrPercentile": "Unavailable from Yahoo option chain",
-          "riskLabel": "Defined premium risk",
-          "classification": "Conservative LEAPS Call",
-          "whySelected": "Conservative stock-replacement style: 18-24 months preferred, ITM/deep ITM, 0.75-0.90 delta."
-        },
-        "balanced": {
-          "contractSymbol": "NVDA271217C00130000",
-          "expiration": "2027-12-17",
-          "dte": 392,
-          "strike": 130,
-          "lastPrice": 39,
-          "bid": 38.3,
-          "ask": 38.9,
-          "mid": 38.6,
-          "delta": 0.71,
-          "theta": -0.0417,
-          "vega": 0.5148,
-          "impliedVolatility": 53,
-          "impliedVolatilityRaw": 0.5304612384033205,
-          "openInterest": 7727,
-          "volume": 188,
-          "breakeven": 168.6,
-          "breakevenMovePct": 15.5,
-          "intrinsicValue": 15.98,
-          "extrinsicValue": 22.62,
-          "spreadPct": 1.6,
-          "spreadPctRaw": 0.015544041450777242,
-          "bucket": "Balanced",
-          "contractQualityScore": 100,
-          "contractQualityReasons": [
-            "preferred 12-24 month expiration",
-            "delta is in the preferred LEAPS range",
-            "tight bid/ask spread",
-            "open interest is strong",
-            "IV is not extreme",
-            "premium has meaningful intrinsic support",
-            "breakeven move is reasonable"
-          ],
-          "contractQualityRisks": [],
-          "gamma": null,
-          "ivRankOrPercentile": "Unavailable from Yahoo option chain",
-          "riskLabel": "Defined premium risk",
-          "classification": "Balanced LEAPS Call",
-          "whySelected": "Balanced LEAPS profile: 12-24 months, ITM/ATM, 0.55-0.75 delta."
-        },
-        "aggressive": {
-          "contractSymbol": "NVDA280121C00200000",
-          "expiration": "2028-01-21",
-          "dte": 427,
-          "strike": 200,
-          "lastPrice": 13.79,
-          "bid": 13.75,
-          "ask": 13.85,
-          "mid": 13.8,
-          "delta": 0.39,
-          "theta": -0.0377,
-          "vega": 0.606,
-          "impliedVolatility": 46.7,
-          "impliedVolatilityRaw": 0.46713789703369146,
-          "openInterest": 38236,
-          "volume": 2882,
-          "breakeven": 213.8,
-          "breakevenMovePct": 46.5,
-          "intrinsicValue": 0,
-          "extrinsicValue": 13.8,
-          "spreadPct": 0.7,
-          "spreadPctRaw": 0.007246376811594177,
-          "bucket": "Aggressive",
-          "contractQualityScore": 74,
-          "contractQualityReasons": [
-            "preferred 12-24 month expiration",
-            "tight bid/ask spread",
-            "open interest is strong",
-            "IV is not extreme"
-          ],
-          "contractQualityRisks": [
-            "delta is aggressive/speculative",
-            "premium is mostly extrinsic/time value",
-            "breakeven requires a very large move"
-          ],
-          "gamma": null,
-          "ivRankOrPercentile": "Unavailable from Yahoo option chain",
-          "riskLabel": "Speculative",
-          "classification": "Avoid - Bad Risk/Reward",
-          "whySelected": "Aggressive/speculative profile: 12-24 months, slightly OTM, 0.35-0.55 delta."
-        }
-      },
-      "contractQualityReasons": [
-        "preferred 12-24 month expiration",
-        "delta is in the preferred LEAPS range",
-        "tight bid/ask spread",
-        "open interest is strong",
-        "IV is not extreme",
-        "premium has meaningful intrinsic support",
-        "breakeven move is reasonable"
-      ],
-      "contractQualityRisks": [],
-      "expiration": "2027-12-17",
-      "dte": 392,
-      "strike": 130,
-      "lastPrice": 39,
-      "bid": 38.3,
-      "ask": 38.9,
-      "mid": 38.6,
-      "delta": 0.71,
-      "theta": -0.0417,
-      "vega": 0.5148,
-      "impliedVolatility": 53,
-      "openInterest": 7727,
-      "volume": 188,
-      "breakeven": 168.6,
-      "breakevenMovePct": 15.5,
-      "intrinsicValue": 15.98,
-      "extrinsicValue": 22.62,
-      "spreadPct": 1.6,
-      "contractQualityScore": 100,
-      "bucket": "Balanced"
-    }
-  ],
+  "top10": [],
+  "top5": [],
   "rows": [
-    {
-      "symbol": "NVDA",
-      "name": "NVIDIA Corporation",
-      "sector": "Technology",
-      "currentPrice": 145.98,
-      "direction": "CALL",
-      "decision": "Watch Only / Wait for Better Entry",
-      "status": "Watch for Pullback",
-      "score": 72,
-      "leapsOpportunityScore": 72,
-      "underlyingScore": 70,
-      "riskScore": 63,
-      "riskLabel": "High Risk",
-      "eventRisk": "Medium Event Risk",
-      "eventRiskHeadline": "Positive catalyst tape",
-      "earningsDate": "Unavailable",
-      "preferredExpiryRange": "12-24 months preferred; 6 months minimum",
-      "preferredStrikeZone": "Balanced: near 130 strike",
-      "preferredDelta": "0.55-0.75",
-      "bestContractCandidate": "2027-12-17 130C near 38.6 mid",
-      "optionLiquidityStatus": "Good",
-      "dcaSuitability": "DCA Rejected / Wait",
-      "pullbackClassification": "Falling Knife / Do Not DCA",
-      "bullCase": "Bull case: growth is strong enough to qualify as a growth-stock candidate, valuation is not fighting the story too hard, business quality is acceptable.",
-      "bearCase": "Bear case: the chart is not giving a clean confirmation.",
-      "whyOpportunityExists": "NVIDIA Corporation clears the underlying-quality gate and has a falling knife / do not dca setup with a usable long-dated call candidate.",
-      "longTermThesis": "NVIDIA Corporation is a AI / semiconductor infrastructure candidate. Overall, I would treat it as a growth stock candidate with risk around 29/100. The key is whether revenue growth can stay ahead of the stock's valuation. Analyst tone is bullish.",
-      "catalysts": [
-        "Next earnings window shown by Yahoo: 2026-11-17.",
-        "Growth itself is a catalyst if management keeps beating expectations.",
-        "Analyst target is above current price, so estimate revisions matter.",
-        "Recent Yahoo headline catalyst: Construction Partners, Inc. Q4 2026 Earnings Call Summary",
-        "Recent Yahoo headline catalyst: Bath & Body Works, Inc. Q3 2026 Earnings Call Summary",
-        "Recent Yahoo headline catalyst: Tsakos Energy Navigation Limited Q3 2026 Earnings Call Summary"
-      ],
-      "technicalSetup": "Falling Knife / Do Not DCA. Price is -40% from 52-week high, -26.5% from 50-day, -27.6% from 200-day, RSI 13.5.",
-      "dcaPlan": {
-        "suitability": "DCA Rejected / Wait",
-        "allowed": false,
-        "starterPositionZone": "143.06-148.9",
-        "addZone1": "131.38-137.22",
-        "addZone2": "123.91-128.46",
-        "stopAddingInvalidationLevel": 123.91,
-        "rules": "Do not DCA unless the thesis, trend, time-to-expiration, liquidity, and IV conditions improve."
-      },
-      "invalidationLevel": 123.91,
-      "finalResearchVerdict": "Research verdict: watchlist candidate; wait for a better entry, cleaner pullback, or tighter spread.",
-      "underlyingComponents": [
-        {
-          "label": "Business quality",
-          "weight": 20,
-          "score": 63
-        },
-        {
-          "label": "Growth quality",
-          "weight": 20,
-          "score": 83.75
-        },
-        {
-          "label": "Financial strength",
-          "weight": 15,
-          "score": 85
-        },
-        {
-          "label": "Valuation reasonableness",
-          "weight": 15,
-          "score": 88
-        },
-        {
-          "label": "Catalyst strength",
-          "weight": 15,
-          "score": 90
-        },
-        {
-          "label": "Technical setup",
-          "weight": 15,
-          "score": 9
-        }
-      ],
-      "pullback": {
-        "score": 28,
-        "classification": "Falling Knife / Do Not DCA",
-        "reasons": [
-          "selloff volume is not extreme",
-          "fundamentals still look intact from available data"
-        ],
-        "risks": [
-          "drawdown is deep enough to question the thesis",
-          "price is meaningfully below the 50-day average",
-          "price is below the 200-day average",
-          "RSI is weak; wait for reclaim"
-        ],
-        "distanceFrom52WeekHighPct": -40,
-        "distanceFrom50DayPct": -26.5,
-        "distanceFrom200DayPct": -27.6,
-        "rsi14": 13.5,
-        "volumeVs20Day": 1.22
-      },
-      "optionContracts": [
-        {
-          "contractSymbol": "NVDA271217C00130000",
-          "expiration": "2027-12-17",
-          "dte": 392,
-          "strike": 130,
-          "lastPrice": 39,
-          "bid": 38.3,
-          "ask": 38.9,
-          "mid": 38.6,
-          "delta": 0.71,
-          "theta": -0.0417,
-          "vega": 0.5148,
-          "impliedVolatility": 53,
-          "impliedVolatilityRaw": 0.5304612384033205,
-          "openInterest": 7727,
-          "volume": 188,
-          "breakeven": 168.6,
-          "breakevenMovePct": 15.5,
-          "intrinsicValue": 15.98,
-          "extrinsicValue": 22.62,
-          "spreadPct": 1.6,
-          "spreadPctRaw": 0.015544041450777242,
-          "bucket": "Balanced",
-          "contractQualityScore": 100,
-          "contractQualityReasons": [
-            "preferred 12-24 month expiration",
-            "delta is in the preferred LEAPS range",
-            "tight bid/ask spread",
-            "open interest is strong",
-            "IV is not extreme",
-            "premium has meaningful intrinsic support",
-            "breakeven move is reasonable"
-          ],
-          "contractQualityRisks": []
-        },
-        {
-          "contractSymbol": "NVDA280121C00130000",
-          "expiration": "2028-01-21",
-          "dte": 427,
-          "strike": 130,
-          "lastPrice": 39.8,
-          "bid": 39.4,
-          "ask": 40.15,
-          "mid": 39.77,
-          "delta": 0.72,
-          "theta": -0.04,
-          "vega": 0.5353,
-          "impliedVolatility": 52.9,
-          "impliedVolatilityRaw": 0.5293015820312501,
-          "openInterest": 3010,
-          "volume": 165,
-          "breakeven": 169.78,
-          "breakevenMovePct": 16.3,
-          "intrinsicValue": 15.98,
-          "extrinsicValue": 23.8,
-          "spreadPct": 1.9,
-          "spreadPctRaw": 0.018856065367693277,
-          "bucket": "Balanced",
-          "contractQualityScore": 100,
-          "contractQualityReasons": [
-            "preferred 12-24 month expiration",
-            "delta is in the preferred LEAPS range",
-            "tight bid/ask spread",
-            "open interest is strong",
-            "IV is not extreme",
-            "premium has meaningful intrinsic support",
-            "breakeven move is reasonable"
-          ],
-          "contractQualityRisks": []
-        },
-        {
-          "contractSymbol": "NVDA280616C00130000",
-          "expiration": "2028-06-16",
-          "dte": 574,
-          "strike": 130,
-          "lastPrice": 45.3,
-          "bid": 43.6,
-          "ask": 45.3,
-          "mid": 44.45,
-          "delta": 0.73,
-          "theta": -0.0344,
-          "vega": 0.6095,
-          "impliedVolatility": 52.9,
-          "impliedVolatilityRaw": 0.5290879611206055,
-          "openInterest": 818,
-          "volume": 34,
-          "breakeven": 174.45,
-          "breakevenMovePct": 19.5,
-          "intrinsicValue": 15.98,
-          "extrinsicValue": 28.47,
-          "spreadPct": 3.8,
-          "spreadPctRaw": 0.038245219347581454,
-          "bucket": "Balanced",
-          "contractQualityScore": 100,
-          "contractQualityReasons": [
-            "preferred 12-24 month expiration",
-            "delta is in the preferred LEAPS range",
-            "tight bid/ask spread",
-            "open interest is strong",
-            "IV is not extreme",
-            "premium has meaningful intrinsic support",
-            "breakeven move is reasonable"
-          ],
-          "contractQualityRisks": []
-        },
-        {
-          "contractSymbol": "NVDA280121C00125000",
-          "expiration": "2028-01-21",
-          "dte": 427,
-          "strike": 125,
-          "lastPrice": 42.8,
-          "bid": 42.15,
-          "ask": 43.05,
-          "mid": 42.6,
-          "delta": 0.74,
-          "theta": -0.0392,
-          "vega": 0.5139,
-          "impliedVolatility": 53.7,
-          "impliedVolatilityRaw": 0.5372055557250978,
-          "openInterest": 1121,
-          "volume": 21,
-          "breakeven": 167.6,
-          "breakevenMovePct": 14.8,
-          "intrinsicValue": 20.98,
-          "extrinsicValue": 21.62,
-          "spreadPct": 2.1,
-          "spreadPctRaw": 0.02112676056338025,
-          "bucket": "Balanced",
-          "contractQualityScore": 100,
-          "contractQualityReasons": [
-            "preferred 12-24 month expiration",
-            "delta is in the preferred LEAPS range",
-            "tight bid/ask spread",
-            "open interest is strong",
-            "IV is not extreme",
-            "premium has meaningful intrinsic support",
-            "breakeven move is reasonable"
-          ],
-          "contractQualityRisks": []
-        },
-        {
-          "contractSymbol": "NVDA271217C00125000",
-          "expiration": "2027-12-17",
-          "dte": 392,
-          "strike": 125,
-          "lastPrice": 41.74,
-          "bid": 40.75,
-          "ask": 41.8,
-          "mid": 41.27,
-          "delta": 0.74,
-          "theta": -0.0407,
-          "vega": 0.4935,
-          "impliedVolatility": 53.5,
-          "impliedVolatilityRaw": 0.5349777947998047,
-          "openInterest": 4184,
-          "volume": 27,
-          "breakeven": 166.28,
-          "breakevenMovePct": 13.9,
-          "intrinsicValue": 20.98,
-          "extrinsicValue": 20.3,
-          "spreadPct": 2.5,
-          "spreadPctRaw": 0.025439127801332458,
-          "bucket": "Balanced",
-          "contractQualityScore": 100,
-          "contractQualityReasons": [
-            "preferred 12-24 month expiration",
-            "delta is in the preferred LEAPS range",
-            "tight bid/ask spread",
-            "open interest is strong",
-            "IV is not extreme",
-            "premium has meaningful intrinsic support",
-            "breakeven move is reasonable"
-          ],
-          "contractQualityRisks": []
-        },
-        {
-          "contractSymbol": "NVDA280616C00125000",
-          "expiration": "2028-06-16",
-          "dte": 574,
-          "strike": 125,
-          "lastPrice": 48.25,
-          "bid": 46.75,
-          "ask": 48.05,
-          "mid": 47.4,
-          "delta": 0.75,
-          "theta": -0.034,
-          "vega": 0.5871,
-          "impliedVolatility": 54,
-          "impliedVolatilityRaw": 0.5404098693847659,
-          "openInterest": 832,
-          "volume": 12,
-          "breakeven": 172.4,
-          "breakevenMovePct": 18.1,
-          "intrinsicValue": 20.98,
-          "extrinsicValue": 26.42,
-          "spreadPct": 2.7,
-          "spreadPctRaw": 0.027426160337552682,
-          "bucket": "Balanced",
-          "contractQualityScore": 100,
-          "contractQualityReasons": [
-            "preferred 12-24 month expiration",
-            "delta is in the preferred LEAPS range",
-            "tight bid/ask spread",
-            "open interest is strong",
-            "IV is not extreme",
-            "premium has meaningful intrinsic support",
-            "breakeven move is reasonable"
-          ],
-          "contractQualityRisks": []
-        },
-        {
-          "contractSymbol": "NVDA280121C00120000",
-          "expiration": "2028-01-21",
-          "dte": 427,
-          "strike": 120,
-          "lastPrice": 46,
-          "bid": 45.3,
-          "ask": 46.05,
-          "mid": 45.67,
-          "delta": 0.76,
-          "theta": -0.0383,
-          "vega": 0.491,
-          "impliedVolatility": 54.8,
-          "impliedVolatilityRaw": 0.5479171185302736,
-          "openInterest": 2493,
-          "volume": 255,
-          "breakeven": 165.68,
-          "breakevenMovePct": 13.5,
-          "intrinsicValue": 25.98,
-          "extrinsicValue": 19.7,
-          "spreadPct": 1.6,
-          "spreadPctRaw": 0.016420361247947456,
-          "bucket": "Conservative",
-          "contractQualityScore": 100,
-          "contractQualityReasons": [
-            "preferred 12-24 month expiration",
-            "delta is in the preferred LEAPS range",
-            "tight bid/ask spread",
-            "open interest is strong",
-            "IV is not extreme",
-            "premium has meaningful intrinsic support",
-            "breakeven move is reasonable"
-          ],
-          "contractQualityRisks": []
-        },
-        {
-          "contractSymbol": "NVDA280616C00120000",
-          "expiration": "2028-06-16",
-          "dte": 574,
-          "strike": 120,
-          "lastPrice": 50,
-          "bid": 49.65,
-          "ask": 50.8,
-          "mid": 50.22,
-          "delta": 0.76,
-          "theta": -0.0333,
-          "vega": 0.5634,
-          "impliedVolatility": 54.9,
-          "impliedVolatilityRaw": 0.5485274639892579,
-          "openInterest": 1216,
-          "volume": 128,
-          "breakeven": 170.22,
-          "breakevenMovePct": 16.6,
-          "intrinsicValue": 25.98,
-          "extrinsicValue": 24.25,
-          "spreadPct": 2.3,
-          "spreadPctRaw": 0.02289696366351416,
-          "bucket": "Conservative",
-          "contractQualityScore": 100,
-          "contractQualityReasons": [
-            "preferred 12-24 month expiration",
-            "delta is in the preferred LEAPS range",
-            "tight bid/ask spread",
-            "open interest is strong",
-            "IV is not extreme",
-            "premium has meaningful intrinsic support",
-            "breakeven move is reasonable"
-          ],
-          "contractQualityRisks": []
-        }
-      ],
-      "best3Contracts": {
-        "conservative": {
-          "contractSymbol": "NVDA280121C00120000",
-          "expiration": "2028-01-21",
-          "dte": 427,
-          "strike": 120,
-          "lastPrice": 46,
-          "bid": 45.3,
-          "ask": 46.05,
-          "mid": 45.67,
-          "delta": 0.76,
-          "theta": -0.0383,
-          "vega": 0.491,
-          "impliedVolatility": 54.8,
-          "impliedVolatilityRaw": 0.5479171185302736,
-          "openInterest": 2493,
-          "volume": 255,
-          "breakeven": 165.68,
-          "breakevenMovePct": 13.5,
-          "intrinsicValue": 25.98,
-          "extrinsicValue": 19.7,
-          "spreadPct": 1.6,
-          "spreadPctRaw": 0.016420361247947456,
-          "bucket": "Conservative",
-          "contractQualityScore": 100,
-          "contractQualityReasons": [
-            "preferred 12-24 month expiration",
-            "delta is in the preferred LEAPS range",
-            "tight bid/ask spread",
-            "open interest is strong",
-            "IV is not extreme",
-            "premium has meaningful intrinsic support",
-            "breakeven move is reasonable"
-          ],
-          "contractQualityRisks": [],
-          "gamma": null,
-          "ivRankOrPercentile": "Unavailable from Yahoo option chain",
-          "riskLabel": "Defined premium risk",
-          "classification": "Conservative LEAPS Call",
-          "whySelected": "Conservative stock-replacement style: 18-24 months preferred, ITM/deep ITM, 0.75-0.90 delta."
-        },
-        "balanced": {
-          "contractSymbol": "NVDA271217C00130000",
-          "expiration": "2027-12-17",
-          "dte": 392,
-          "strike": 130,
-          "lastPrice": 39,
-          "bid": 38.3,
-          "ask": 38.9,
-          "mid": 38.6,
-          "delta": 0.71,
-          "theta": -0.0417,
-          "vega": 0.5148,
-          "impliedVolatility": 53,
-          "impliedVolatilityRaw": 0.5304612384033205,
-          "openInterest": 7727,
-          "volume": 188,
-          "breakeven": 168.6,
-          "breakevenMovePct": 15.5,
-          "intrinsicValue": 15.98,
-          "extrinsicValue": 22.62,
-          "spreadPct": 1.6,
-          "spreadPctRaw": 0.015544041450777242,
-          "bucket": "Balanced",
-          "contractQualityScore": 100,
-          "contractQualityReasons": [
-            "preferred 12-24 month expiration",
-            "delta is in the preferred LEAPS range",
-            "tight bid/ask spread",
-            "open interest is strong",
-            "IV is not extreme",
-            "premium has meaningful intrinsic support",
-            "breakeven move is reasonable"
-          ],
-          "contractQualityRisks": [],
-          "gamma": null,
-          "ivRankOrPercentile": "Unavailable from Yahoo option chain",
-          "riskLabel": "Defined premium risk",
-          "classification": "Balanced LEAPS Call",
-          "whySelected": "Balanced LEAPS profile: 12-24 months, ITM/ATM, 0.55-0.75 delta."
-        },
-        "aggressive": {
-          "contractSymbol": "NVDA280121C00200000",
-          "expiration": "2028-01-21",
-          "dte": 427,
-          "strike": 200,
-          "lastPrice": 13.79,
-          "bid": 13.75,
-          "ask": 13.85,
-          "mid": 13.8,
-          "delta": 0.39,
-          "theta": -0.0377,
-          "vega": 0.606,
-          "impliedVolatility": 46.7,
-          "impliedVolatilityRaw": 0.46713789703369146,
-          "openInterest": 38236,
-          "volume": 2882,
-          "breakeven": 213.8,
-          "breakevenMovePct": 46.5,
-          "intrinsicValue": 0,
-          "extrinsicValue": 13.8,
-          "spreadPct": 0.7,
-          "spreadPctRaw": 0.007246376811594177,
-          "bucket": "Aggressive",
-          "contractQualityScore": 74,
-          "contractQualityReasons": [
-            "preferred 12-24 month expiration",
-            "tight bid/ask spread",
-            "open interest is strong",
-            "IV is not extreme"
-          ],
-          "contractQualityRisks": [
-            "delta is aggressive/speculative",
-            "premium is mostly extrinsic/time value",
-            "breakeven requires a very large move"
-          ],
-          "gamma": null,
-          "ivRankOrPercentile": "Unavailable from Yahoo option chain",
-          "riskLabel": "Speculative",
-          "classification": "Avoid - Bad Risk/Reward",
-          "whySelected": "Aggressive/speculative profile: 12-24 months, slightly OTM, 0.35-0.55 delta."
-        }
-      },
-      "contractQualityReasons": [
-        "preferred 12-24 month expiration",
-        "delta is in the preferred LEAPS range",
-        "tight bid/ask spread",
-        "open interest is strong",
-        "IV is not extreme",
-        "premium has meaningful intrinsic support",
-        "breakeven move is reasonable"
-      ],
-      "contractQualityRisks": [],
-      "expiration": "2027-12-17",
-      "dte": 392,
-      "strike": 130,
-      "lastPrice": 39,
-      "bid": 38.3,
-      "ask": 38.9,
-      "mid": 38.6,
-      "delta": 0.71,
-      "theta": -0.0417,
-      "vega": 0.5148,
-      "impliedVolatility": 53,
-      "openInterest": 7727,
-      "volume": 188,
-      "breakeven": 168.6,
-      "breakevenMovePct": 15.5,
-      "intrinsicValue": 15.98,
-      "extrinsicValue": 22.62,
-      "spreadPct": 1.6,
-      "contractQualityScore": 100,
-      "bucket": "Balanced"
-    },
     {
       "symbol": "META",
       "name": "Meta Platforms, Inc.",
       "sector": "Communication Services",
-      "currentPrice": 596.22,
+      "currentPrice": 560.84,
       "decision": "Avoid - weak underlying",
       "status": "Avoid",
-      "score": 37,
-      "leapsOpportunityScore": 37,
-      "underlyingScore": 68,
-      "riskScore": 76,
+      "score": 38,
+      "leapsOpportunityScore": 38,
+      "underlyingScore": 69,
+      "riskScore": 75,
       "pullbackClassification": "Waiting for Reclaim",
       "dcaSuitability": "DCA Rejected / Wait",
       "reason": "Underlying stock quality is below 70, so the desk does not analyze LEAPS calls.",
@@ -1736,7 +124,7 @@
         {
           "label": "Catalyst strength",
           "weight": 15,
-          "score": 81
+          "score": 85
         },
         {
           "label": "Technical setup",
@@ -1745,162 +133,97 @@
         }
       ],
       "pullback": {
-        "score": 57,
+        "score": 38,
         "classification": "Waiting for Reclaim",
         "reasons": [
-          "meaningful pullback from the 52-week high",
           "selloff volume is not extreme",
           "fundamentals still look intact from available data"
         ],
         "risks": [
+          "price is meaningfully below the 50-day average",
           "price is below the 200-day average",
           "RSI is weak; wait for reclaim"
         ],
-        "distanceFrom52WeekHighPct": -23.5,
-        "distanceFrom50DayPct": -8,
-        "distanceFrom200DayPct": -6.9,
-        "rsi14": 31.6,
-        "volumeVs20Day": 0.72
+        "distanceFrom52WeekHighPct": -28.1,
+        "distanceFrom50DayPct": -13,
+        "distanceFrom200DayPct": -12.3,
+        "rsi14": 21.9,
+        "volumeVs20Day": 1.17
       }
     },
     {
-      "symbol": "AMD",
-      "name": "Advanced Micro Devices, Inc.",
+      "symbol": "NVDA",
+      "name": "NVIDIA Corporation",
       "sector": "Technology",
-      "currentPrice": 489.19,
+      "currentPrice": 125.53,
       "decision": "Avoid - weak underlying",
       "status": "Avoid",
-      "score": 36,
-      "leapsOpportunityScore": 36,
-      "underlyingScore": 66,
-      "riskScore": 69,
-      "pullbackClassification": "Healthy Pullback",
+      "score": 37,
+      "leapsOpportunityScore": 37,
+      "underlyingScore": 68,
+      "riskScore": 86,
+      "pullbackClassification": "Falling Knife / Do Not DCA",
       "dcaSuitability": "DCA Rejected / Wait",
       "reason": "Underlying stock quality is below 70, so the desk does not analyze LEAPS calls.",
-      "bullCase": "Bull case: valuation is not fighting the story too hard, business quality is acceptable.",
-      "bearCase": "Bear case: growth is not fully confirmed by the checklist, the chart is not giving a clean confirmation.",
+      "bullCase": "Bull case: growth is strong enough to qualify as a growth-stock candidate, valuation is not fighting the story too hard, business quality is acceptable.",
+      "bearCase": "Bear case: the chart is not giving a clean confirmation.",
       "underlyingComponents": [
         {
           "label": "Business quality",
           "weight": 20,
-          "score": 76
+          "score": 65
         },
         {
           "label": "Growth quality",
           "weight": 20,
-          "score": 63.75
+          "score": 83.75
         },
         {
           "label": "Financial strength",
           "weight": 15,
-          "score": 78
+          "score": 85
         },
         {
           "label": "Valuation reasonableness",
           "weight": 15,
-          "score": 57
+          "score": 88
         },
         {
           "label": "Catalyst strength",
           "weight": 15,
-          "score": 77
+          "score": 64
         },
         {
           "label": "Technical setup",
           "weight": 15,
-          "score": 42
+          "score": 16
         }
       ],
       "pullback": {
-        "score": 92,
-        "classification": "Healthy Pullback",
+        "score": 18,
+        "classification": "Falling Knife / Do Not DCA",
         "reasons": [
-          "meaningful pullback from the 52-week high",
-          "long-term trend remains above the 200-day average",
-          "RSI has reset without becoming washed out",
           "fundamentals still look intact from available data"
         ],
         "risks": [
+          "drawdown is deep enough to question the thesis",
+          "price is meaningfully below the 50-day average",
+          "price is below the 200-day average",
+          "RSI is weak; wait for reclaim",
           "recent volume is elevated; confirm the selloff is not company-specific"
         ],
-        "distanceFrom52WeekHighPct": -25.7,
-        "distanceFrom50DayPct": -7.7,
-        "distanceFrom200DayPct": 9.7,
-        "rsi14": 43.4,
-        "volumeVs20Day": 1.79
-      }
-    },
-    {
-      "symbol": "DIS",
-      "name": "The Walt Disney Company",
-      "sector": "Communication Services",
-      "currentPrice": 120.25,
-      "decision": "Avoid - weak underlying",
-      "status": "Avoid",
-      "score": 36,
-      "leapsOpportunityScore": 36,
-      "underlyingScore": 65,
-      "riskScore": 77,
-      "pullbackClassification": "Waiting for Reclaim",
-      "dcaSuitability": "DCA Rejected / Wait",
-      "reason": "Underlying stock quality is below 70, so the desk does not analyze LEAPS calls.",
-      "bullCase": "Bull case: the chart trend is supportive, valuation is not fighting the story too hard.",
-      "bearCase": "Bear case: growth is not fully confirmed by the checklist, fundamental quality still needs proof.",
-      "underlyingComponents": [
-        {
-          "label": "Business quality",
-          "weight": 20,
-          "score": 71
-        },
-        {
-          "label": "Growth quality",
-          "weight": 20,
-          "score": 23.75
-        },
-        {
-          "label": "Financial strength",
-          "weight": 15,
-          "score": 50
-        },
-        {
-          "label": "Valuation reasonableness",
-          "weight": 15,
-          "score": 62
-        },
-        {
-          "label": "Catalyst strength",
-          "weight": 15,
-          "score": 97
-        },
-        {
-          "label": "Technical setup",
-          "weight": 15,
-          "score": 100
-        }
-      ],
-      "pullback": {
-        "score": 46,
-        "classification": "Waiting for Reclaim",
-        "reasons": [
-          "long-term trend remains above the 200-day average"
-        ],
-        "risks": [
-          "stock is still close to highs",
-          "recent volume is elevated; confirm the selloff is not company-specific",
-          "fundamental/risk profile needs confirmation before DCA"
-        ],
-        "distanceFrom52WeekHighPct": -2.5,
-        "distanceFrom50DayPct": 7.4,
-        "distanceFrom200DayPct": 12.5,
-        "rsi14": 60.8,
-        "volumeVs20Day": 1.55
+        "distanceFrom52WeekHighPct": -48.4,
+        "distanceFrom50DayPct": -35.9,
+        "distanceFrom200DayPct": -37.5,
+        "rsi14": 8.5,
+        "volumeVs20Day": 2.13
       }
     },
     {
       "symbol": "PLTR",
       "name": "Palantir Technologies Inc.",
       "sector": "Technology",
-      "currentPrice": 153.68,
+      "currentPrice": 143.49,
       "decision": "Avoid - weak underlying",
       "status": "Avoid",
       "score": 36,
@@ -1936,44 +259,43 @@
         {
           "label": "Catalyst strength",
           "weight": 15,
-          "score": 91
+          "score": 89
         },
         {
           "label": "Technical setup",
           "weight": 15,
-          "score": 17
+          "score": 16
         }
       ],
       "pullback": {
-        "score": 63,
+        "score": 28,
         "classification": "Waiting for Reclaim",
         "reasons": [
-          "meaningful pullback from the 52-week high",
-          "selloff volume is not extreme",
           "fundamentals still look intact from available data"
         ],
         "risks": [
           "price is meaningfully below the 50-day average",
           "price is below the 200-day average",
-          "RSI is weak; wait for reclaim"
+          "RSI is weak; wait for reclaim",
+          "recent volume is elevated; confirm the selloff is not company-specific"
         ],
-        "distanceFrom52WeekHighPct": -27.8,
-        "distanceFrom50DayPct": -12.9,
-        "distanceFrom200DayPct": -5.3,
-        "rsi14": 24.2,
-        "volumeVs20Day": 0.88
+        "distanceFrom52WeekHighPct": -32.6,
+        "distanceFrom50DayPct": -18.1,
+        "distanceFrom200DayPct": -11.5,
+        "rsi14": 17.4,
+        "volumeVs20Day": 1.44
       }
     },
     {
       "symbol": "SHOP",
       "name": "Shopify Inc.",
       "sector": "Technology",
-      "currentPrice": 131.97,
+      "currentPrice": 123.72,
       "decision": "Avoid - weak underlying",
       "status": "Avoid",
-      "score": 35,
-      "leapsOpportunityScore": 35,
-      "underlyingScore": 64,
+      "score": 36,
+      "leapsOpportunityScore": 36,
+      "underlyingScore": 65,
       "riskScore": 82,
       "pullbackClassification": "Waiting for Reclaim",
       "dcaSuitability": "DCA Rejected / Wait",
@@ -1984,7 +306,7 @@
         {
           "label": "Business quality",
           "weight": 20,
-          "score": 77
+          "score": 78
         },
         {
           "label": "Growth quality",
@@ -2004,19 +326,220 @@
         {
           "label": "Catalyst strength",
           "weight": 15,
-          "score": 80
+          "score": 76
         },
         {
           "label": "Technical setup",
           "weight": 15,
-          "score": 17
+          "score": 24
         }
       ],
       "pullback": {
-        "score": 63,
+        "score": 28,
         "classification": "Waiting for Reclaim",
         "reasons": [
-          "meaningful pullback from the 52-week high",
+          "fundamentals still look intact from available data"
+        ],
+        "risks": [
+          "price is meaningfully below the 50-day average",
+          "price is below the 200-day average",
+          "RSI is weak; wait for reclaim",
+          "recent volume is elevated; confirm the selloff is not company-specific"
+        ],
+        "distanceFrom52WeekHighPct": -31.6,
+        "distanceFrom50DayPct": -17.5,
+        "distanceFrom200DayPct": -10.9,
+        "rsi14": 18,
+        "volumeVs20Day": 1.67
+      }
+    },
+    {
+      "symbol": "AMD",
+      "name": "Advanced Micro Devices, Inc.",
+      "sector": "Technology",
+      "currentPrice": 424.39,
+      "decision": "Avoid - weak underlying",
+      "status": "Avoid",
+      "score": 36,
+      "leapsOpportunityScore": 36,
+      "underlyingScore": 65,
+      "riskScore": 87,
+      "pullbackClassification": "Falling Knife / Do Not DCA",
+      "dcaSuitability": "DCA Rejected / Wait",
+      "reason": "Underlying stock quality is below 70, so the desk does not analyze LEAPS calls.",
+      "bullCase": "Bull case: valuation is not fighting the story too hard, business quality is acceptable.",
+      "bearCase": "Bear case: growth is not fully confirmed by the checklist, the chart is not giving a clean confirmation.",
+      "underlyingComponents": [
+        {
+          "label": "Business quality",
+          "weight": 20,
+          "score": 75
+        },
+        {
+          "label": "Growth quality",
+          "weight": 20,
+          "score": 63.75
+        },
+        {
+          "label": "Financial strength",
+          "weight": 15,
+          "score": 78
+        },
+        {
+          "label": "Valuation reasonableness",
+          "weight": 15,
+          "score": 57
+        },
+        {
+          "label": "Catalyst strength",
+          "weight": 15,
+          "score": 81
+        },
+        {
+          "label": "Technical setup",
+          "weight": 15,
+          "score": 34
+        }
+      ],
+      "pullback": {
+        "score": 28,
+        "classification": "Falling Knife / Do Not DCA",
+        "reasons": [
+          "fundamentals still look intact from available data"
+        ],
+        "risks": [
+          "price is meaningfully below the 50-day average",
+          "price is below the 200-day average",
+          "RSI is weak; wait for reclaim",
+          "recent volume is elevated; confirm the selloff is not company-specific"
+        ],
+        "distanceFrom52WeekHighPct": -35.6,
+        "distanceFrom50DayPct": -19.3,
+        "distanceFrom200DayPct": -4.8,
+        "rsi14": 32.9,
+        "volumeVs20Day": 1.64
+      }
+    },
+    {
+      "symbol": "DIS",
+      "name": "The Walt Disney Company",
+      "sector": "Communication Services",
+      "currentPrice": 117.98,
+      "decision": "Avoid - weak underlying",
+      "status": "Avoid",
+      "score": 35,
+      "leapsOpportunityScore": 35,
+      "underlyingScore": 63,
+      "riskScore": 70,
+      "pullbackClassification": "Healthy Pullback",
+      "dcaSuitability": "DCA Rejected / Wait",
+      "reason": "Underlying stock quality is below 70, so the desk does not analyze LEAPS calls.",
+      "bullCase": "Bull case: the chart trend is supportive, valuation is not fighting the story too hard.",
+      "bearCase": "Bear case: growth is not fully confirmed by the checklist, fundamental quality still needs proof.",
+      "underlyingComponents": [
+        {
+          "label": "Business quality",
+          "weight": 20,
+          "score": 71
+        },
+        {
+          "label": "Growth quality",
+          "weight": 20,
+          "score": 23.75
+        },
+        {
+          "label": "Financial strength",
+          "weight": 15,
+          "score": 50
+        },
+        {
+          "label": "Valuation reasonableness",
+          "weight": 15,
+          "score": 62
+        },
+        {
+          "label": "Catalyst strength",
+          "weight": 15,
+          "score": 79
+        },
+        {
+          "label": "Technical setup",
+          "weight": 15,
+          "score": 100
+        }
+      ],
+      "pullback": {
+        "score": 90,
+        "classification": "Healthy Pullback",
+        "reasons": [
+          "price is near the 50-day trend area",
+          "long-term trend remains above the 200-day average",
+          "RSI has reset without becoming washed out",
+          "selloff volume is not extreme"
+        ],
+        "risks": [
+          "stock is still close to highs",
+          "fundamental/risk profile needs confirmation before DCA"
+        ],
+        "distanceFrom52WeekHighPct": -4.4,
+        "distanceFrom50DayPct": 5.1,
+        "distanceFrom200DayPct": 10.3,
+        "rsi14": 50.9,
+        "volumeVs20Day": 1.22
+      }
+    },
+    {
+      "symbol": "GOOGL",
+      "name": "Alphabet Inc.",
+      "sector": "Communication Services",
+      "currentPrice": 265.29,
+      "decision": "Avoid - weak underlying",
+      "status": "Avoid",
+      "score": 34,
+      "leapsOpportunityScore": 34,
+      "underlyingScore": 62,
+      "riskScore": 89,
+      "pullbackClassification": "Falling Knife / Do Not DCA",
+      "dcaSuitability": "DCA Rejected / Wait",
+      "reason": "Underlying stock quality is below 70, so the desk does not analyze LEAPS calls.",
+      "bullCase": "Bull case: valuation is not fighting the story too hard, business quality is acceptable.",
+      "bearCase": "Bear case: growth is not fully confirmed by the checklist, the chart is not giving a clean confirmation.",
+      "underlyingComponents": [
+        {
+          "label": "Business quality",
+          "weight": 20,
+          "score": 54
+        },
+        {
+          "label": "Growth quality",
+          "weight": 20,
+          "score": 63.75
+        },
+        {
+          "label": "Financial strength",
+          "weight": 15,
+          "score": 70
+        },
+        {
+          "label": "Valuation reasonableness",
+          "weight": 15,
+          "score": 88
+        },
+        {
+          "label": "Catalyst strength",
+          "weight": 15,
+          "score": 81
+        },
+        {
+          "label": "Technical setup",
+          "weight": 15,
+          "score": 16
+        }
+      ],
+      "pullback": {
+        "score": 38,
+        "classification": "Falling Knife / Do Not DCA",
+        "reasons": [
           "selloff volume is not extreme",
           "fundamentals still look intact from available data"
         ],
@@ -2025,25 +548,161 @@
           "price is below the 200-day average",
           "RSI is weak; wait for reclaim"
         ],
-        "distanceFrom52WeekHighPct": -27,
-        "distanceFrom50DayPct": -12.7,
-        "distanceFrom200DayPct": -5,
-        "rsi14": 23.3,
-        "volumeVs20Day": 0.93
+        "distanceFrom52WeekHighPct": -35.1,
+        "distanceFrom50DayPct": -15.2,
+        "distanceFrom200DayPct": -18,
+        "rsi14": 23.2,
+        "volumeVs20Day": 1.26
+      }
+    },
+    {
+      "symbol": "NFLX",
+      "name": "Netflix, Inc.",
+      "sector": "Communication Services",
+      "currentPrice": 56.73,
+      "decision": "Avoid - weak underlying",
+      "status": "Avoid",
+      "score": 33,
+      "leapsOpportunityScore": 33,
+      "underlyingScore": 60,
+      "riskScore": 90,
+      "pullbackClassification": "Falling Knife / Do Not DCA",
+      "dcaSuitability": "DCA Rejected / Wait",
+      "reason": "Underlying stock quality is below 70, so the desk does not analyze LEAPS calls.",
+      "bullCase": "Bull case: valuation is not fighting the story too hard, business quality is acceptable.",
+      "bearCase": "Bear case: growth is not fully confirmed by the checklist, the chart is not giving a clean confirmation.",
+      "underlyingComponents": [
+        {
+          "label": "Business quality",
+          "weight": 20,
+          "score": 64
+        },
+        {
+          "label": "Growth quality",
+          "weight": 20,
+          "score": 43.75
+        },
+        {
+          "label": "Financial strength",
+          "weight": 15,
+          "score": 75
+        },
+        {
+          "label": "Valuation reasonableness",
+          "weight": 15,
+          "score": 88
+        },
+        {
+          "label": "Catalyst strength",
+          "weight": 15,
+          "score": 74
+        },
+        {
+          "label": "Technical setup",
+          "weight": 15,
+          "score": 16
+        }
+      ],
+      "pullback": {
+        "score": 18,
+        "classification": "Falling Knife / Do Not DCA",
+        "reasons": [
+          "fundamentals still look intact from available data"
+        ],
+        "risks": [
+          "drawdown is deep enough to question the thesis",
+          "price is meaningfully below the 50-day average",
+          "price is below the 200-day average",
+          "RSI is weak; wait for reclaim",
+          "recent volume is elevated; confirm the selloff is not company-specific"
+        ],
+        "distanceFrom52WeekHighPct": -48.9,
+        "distanceFrom50DayPct": -14.9,
+        "distanceFrom200DayPct": -28,
+        "rsi14": 19.3,
+        "volumeVs20Day": 1.58
+      }
+    },
+    {
+      "symbol": "SOFI",
+      "name": "SoFi Technologies, Inc.",
+      "sector": "Financial Services",
+      "currentPrice": 12.48,
+      "decision": "Avoid - weak underlying",
+      "status": "Avoid",
+      "score": 33,
+      "leapsOpportunityScore": 33,
+      "underlyingScore": 60,
+      "riskScore": 90,
+      "pullbackClassification": "Falling Knife / Do Not DCA",
+      "dcaSuitability": "DCA Rejected / Wait",
+      "reason": "Underlying stock quality is below 70, so the desk does not analyze LEAPS calls.",
+      "bullCase": "Bull case: growth is strong enough to qualify as a growth-stock candidate, valuation is not fighting the story too hard, business quality is acceptable.",
+      "bearCase": "Bear case: the chart is not giving a clean confirmation.",
+      "underlyingComponents": [
+        {
+          "label": "Business quality",
+          "weight": 20,
+          "score": 47
+        },
+        {
+          "label": "Growth quality",
+          "weight": 20,
+          "score": 83.75
+        },
+        {
+          "label": "Financial strength",
+          "weight": 15,
+          "score": 59
+        },
+        {
+          "label": "Valuation reasonableness",
+          "weight": 15,
+          "score": 80
+        },
+        {
+          "label": "Catalyst strength",
+          "weight": 15,
+          "score": 73
+        },
+        {
+          "label": "Technical setup",
+          "weight": 15,
+          "score": 16
+        }
+      ],
+      "pullback": {
+        "score": 28,
+        "classification": "Falling Knife / Do Not DCA",
+        "reasons": [
+          "selloff volume is not extreme",
+          "fundamentals still look intact from available data"
+        ],
+        "risks": [
+          "drawdown is deep enough to question the thesis",
+          "price is meaningfully below the 50-day average",
+          "price is below the 200-day average",
+          "RSI is weak; wait for reclaim"
+        ],
+        "distanceFrom52WeekHighPct": -59,
+        "distanceFrom50DayPct": -21.2,
+        "distanceFrom200DayPct": -29.3,
+        "rsi14": 15.8,
+        "volumeVs20Day": 1.26
       }
     },
     {
       "symbol": "AAPL",
       "name": "Apple Inc.",
       "sector": "Technology",
-      "currentPrice": 349.21,
+      "currentPrice": 342.56,
       "decision": "Avoid - weak underlying",
       "status": "Avoid",
-      "score": 34,
-      "leapsOpportunityScore": 34,
-      "underlyingScore": 62,
-      "riskScore": 74,
-      "pullbackClassification": "Healthy Pullback",
+      "score": 32,
+      "leapsOpportunityScore": 32,
+      "underlyingScore": 59,
+      "riskScore": 76,
+      "pullbackClassification": "Deep Pullback but Thesis Intact",
       "dcaSuitability": "DCA Rejected / Wait",
       "reason": "Underlying stock quality is below 70, so the desk does not analyze LEAPS calls.",
       "bullCase": "Bull case: the chart trend is supportive, business quality is acceptable.",
@@ -2052,7 +711,7 @@
         {
           "label": "Business quality",
           "weight": 20,
-          "score": 81
+          "score": 78
         },
         {
           "label": "Growth quality",
@@ -2077,108 +736,106 @@
         {
           "label": "Technical setup",
           "weight": 15,
-          "score": 88
+          "score": 71
         }
       ],
       "pullback": {
-        "score": 100,
-        "classification": "Healthy Pullback",
+        "score": 69,
+        "classification": "Deep Pullback but Thesis Intact",
         "reasons": [
           "price is near the 50-day trend area",
           "long-term trend remains above the 200-day average",
-          "RSI has reset without becoming washed out",
-          "selloff volume is not extreme",
           "fundamentals still look intact from available data"
         ],
         "risks": [
-          "stock is still close to highs"
+          "recent volume is elevated; confirm the selloff is not company-specific"
         ],
-        "distanceFrom52WeekHighPct": -3.2,
-        "distanceFrom50DayPct": 2.5,
-        "distanceFrom200DayPct": 12.9,
-        "rsi14": 48.9,
-        "volumeVs20Day": 0.85
+        "distanceFrom52WeekHighPct": -5.1,
+        "distanceFrom50DayPct": 0.5,
+        "distanceFrom200DayPct": 10.7,
+        "rsi14": 37.5,
+        "volumeVs20Day": 1.6
       }
     },
     {
-      "symbol": "GOOGL",
-      "name": "Alphabet Inc.",
+      "symbol": "T",
+      "name": "AT&T Inc.",
       "sector": "Communication Services",
-      "currentPrice": 272.66,
+      "currentPrice": 22.31,
       "decision": "Avoid - weak underlying",
       "status": "Avoid",
-      "score": 34,
-      "leapsOpportunityScore": 34,
-      "underlyingScore": 61,
-      "riskScore": 79,
+      "score": 32,
+      "leapsOpportunityScore": 32,
+      "underlyingScore": 58,
+      "riskScore": 80,
       "pullbackClassification": "Waiting for Reclaim",
       "dcaSuitability": "DCA Rejected / Wait",
       "reason": "Underlying stock quality is below 70, so the desk does not analyze LEAPS calls.",
-      "bullCase": "Bull case: valuation is not fighting the story too hard, business quality is acceptable.",
-      "bearCase": "Bear case: growth is not fully confirmed by the checklist, the chart is not giving a clean confirmation.",
+      "bullCase": "Bull case: the chart trend is supportive, valuation is not fighting the story too hard.",
+      "bearCase": "Bear case: growth is not fully confirmed by the checklist, fundamental quality still needs proof.",
       "underlyingComponents": [
         {
           "label": "Business quality",
           "weight": 20,
-          "score": 55
+          "score": 58
         },
         {
           "label": "Growth quality",
           "weight": 20,
-          "score": 63.75
+          "score": 23.75
         },
         {
           "label": "Financial strength",
           "weight": 15,
-          "score": 70
+          "score": 36
         },
         {
           "label": "Valuation reasonableness",
           "weight": 15,
-          "score": 80
+          "score": 92
         },
         {
           "label": "Catalyst strength",
           "weight": 15,
-          "score": 81
+          "score": 80
         },
         {
           "label": "Technical setup",
           "weight": 15,
-          "score": 19
+          "score": 69
         }
       ],
       "pullback": {
-        "score": 38,
+        "score": 57,
         "classification": "Waiting for Reclaim",
         "reasons": [
-          "selloff volume is not extreme",
-          "fundamentals still look intact from available data"
+          "meaningful pullback from the 52-week high",
+          "price is near the 50-day trend area",
+          "selloff volume is not extreme"
         ],
         "risks": [
-          "price is meaningfully below the 50-day average",
           "price is below the 200-day average",
-          "RSI is weak; wait for reclaim"
+          "fundamental/risk profile needs confirmation before DCA"
         ],
-        "distanceFrom52WeekHighPct": -33.3,
-        "distanceFrom50DayPct": -13.4,
-        "distanceFrom200DayPct": -15.9,
-        "rsi14": 27.7,
-        "volumeVs20Day": 1.12
+        "distanceFrom52WeekHighPct": -24.2,
+        "distanceFrom50DayPct": -2.2,
+        "distanceFrom200DayPct": -7.9,
+        "rsi14": 58.5,
+        "volumeVs20Day": 1.17
       }
     },
     {
       "symbol": "AMZN",
       "name": "Amazon.com, Inc.",
       "sector": "Consumer Cyclical",
-      "currentPrice": 257.37,
+      "currentPrice": 246.82,
       "decision": "Avoid - weak underlying",
       "status": "Avoid",
-      "score": 33,
-      "leapsOpportunityScore": 33,
-      "underlyingScore": 60,
-      "riskScore": 72,
-      "pullbackClassification": "Healthy Pullback",
+      "score": 31,
+      "leapsOpportunityScore": 31,
+      "underlyingScore": 57,
+      "riskScore": 81,
+      "pullbackClassification": "Waiting for Reclaim",
       "dcaSuitability": "DCA Rejected / Wait",
       "reason": "Underlying stock quality is below 70, so the desk does not analyze LEAPS calls.",
       "bullCase": "Bull case: valuation is not fighting the story too hard.",
@@ -2187,7 +844,7 @@
         {
           "label": "Business quality",
           "weight": 20,
-          "score": 64
+          "score": 59
         },
         {
           "label": "Growth quality",
@@ -2207,175 +864,38 @@
         {
           "label": "Catalyst strength",
           "weight": 15,
-          "score": 85
+          "score": 95
         },
         {
           "label": "Technical setup",
           "weight": 15,
-          "score": 60
+          "score": 34
         }
       ],
       "pullback": {
-        "score": 100,
-        "classification": "Healthy Pullback",
+        "score": 47,
+        "classification": "Waiting for Reclaim",
         "reasons": [
           "meaningful pullback from the 52-week high",
-          "price is near the 50-day trend area",
-          "long-term trend remains above the 200-day average",
-          "RSI has reset without becoming washed out",
-          "selloff volume is not extreme"
+          "price is near the 50-day trend area"
         ],
         "risks": [
+          "price is below the 200-day average",
+          "recent volume is elevated; confirm the selloff is not company-specific",
           "fundamental/risk profile needs confirmation before DCA"
         ],
-        "distanceFrom52WeekHighPct": -10.4,
-        "distanceFrom50DayPct": 0.1,
-        "distanceFrom200DayPct": 3.8,
-        "rsi14": 45.5,
-        "volumeVs20Day": 1.03
-      }
-    },
-    {
-      "symbol": "NFLX",
-      "name": "Netflix, Inc.",
-      "sector": "Communication Services",
-      "currentPrice": 58.46,
-      "decision": "Avoid - weak underlying",
-      "status": "Avoid",
-      "score": 32,
-      "leapsOpportunityScore": 32,
-      "underlyingScore": 59,
-      "riskScore": 90,
-      "pullbackClassification": "Falling Knife / Do Not DCA",
-      "dcaSuitability": "DCA Rejected / Wait",
-      "reason": "Underlying stock quality is below 70, so the desk does not analyze LEAPS calls.",
-      "bullCase": "Bull case: valuation is not fighting the story too hard, business quality is acceptable.",
-      "bearCase": "Bear case: growth is not fully confirmed by the checklist, the chart is not giving a clean confirmation.",
-      "underlyingComponents": [
-        {
-          "label": "Business quality",
-          "weight": 20,
-          "score": 63
-        },
-        {
-          "label": "Growth quality",
-          "weight": 20,
-          "score": 43.75
-        },
-        {
-          "label": "Financial strength",
-          "weight": 15,
-          "score": 75
-        },
-        {
-          "label": "Valuation reasonableness",
-          "weight": 15,
-          "score": 88
-        },
-        {
-          "label": "Catalyst strength",
-          "weight": 15,
-          "score": 80
-        },
-        {
-          "label": "Technical setup",
-          "weight": 15,
-          "score": 9
-        }
-      ],
-      "pullback": {
-        "score": 28,
-        "classification": "Falling Knife / Do Not DCA",
-        "reasons": [
-          "selloff volume is not extreme",
-          "fundamentals still look intact from available data"
-        ],
-        "risks": [
-          "drawdown is deep enough to question the thesis",
-          "price is meaningfully below the 50-day average",
-          "price is below the 200-day average",
-          "RSI is weak; wait for reclaim"
-        ],
-        "distanceFrom52WeekHighPct": -48.4,
-        "distanceFrom50DayPct": -12.8,
-        "distanceFrom200DayPct": -26,
-        "rsi14": 24.1,
-        "volumeVs20Day": 0.96
-      }
-    },
-    {
-      "symbol": "SOFI",
-      "name": "SoFi Technologies, Inc.",
-      "sector": "Financial Services",
-      "currentPrice": 13.53,
-      "decision": "Avoid - weak underlying",
-      "status": "Avoid",
-      "score": 32,
-      "leapsOpportunityScore": 32,
-      "underlyingScore": 59,
-      "riskScore": 90,
-      "pullbackClassification": "Falling Knife / Do Not DCA",
-      "dcaSuitability": "DCA Rejected / Wait",
-      "reason": "Underlying stock quality is below 70, so the desk does not analyze LEAPS calls.",
-      "bullCase": "Bull case: growth is strong enough to qualify as a growth-stock candidate, valuation is not fighting the story too hard, business quality is acceptable.",
-      "bearCase": "Bear case: the chart is not giving a clean confirmation.",
-      "underlyingComponents": [
-        {
-          "label": "Business quality",
-          "weight": 20,
-          "score": 46
-        },
-        {
-          "label": "Growth quality",
-          "weight": 20,
-          "score": 83.75
-        },
-        {
-          "label": "Financial strength",
-          "weight": 15,
-          "score": 59
-        },
-        {
-          "label": "Valuation reasonableness",
-          "weight": 15,
-          "score": 80
-        },
-        {
-          "label": "Catalyst strength",
-          "weight": 15,
-          "score": 72
-        },
-        {
-          "label": "Technical setup",
-          "weight": 15,
-          "score": 9
-        }
-      ],
-      "pullback": {
-        "score": 28,
-        "classification": "Falling Knife / Do Not DCA",
-        "reasons": [
-          "selloff volume is not extreme",
-          "fundamentals still look intact from available data"
-        ],
-        "risks": [
-          "drawdown is deep enough to question the thesis",
-          "price is meaningfully below the 50-day average",
-          "price is below the 200-day average",
-          "RSI is weak; wait for reclaim"
-        ],
-        "distanceFrom52WeekHighPct": -55.5,
-        "distanceFrom50DayPct": -15.3,
-        "distanceFrom200DayPct": -23.6,
-        "rsi14": 21.4,
-        "volumeVs20Day": 0.99
+        "distanceFrom52WeekHighPct": -14.1,
+        "distanceFrom50DayPct": -3.8,
+        "distanceFrom200DayPct": -0.4,
+        "rsi14": 35.4,
+        "volumeVs20Day": 1.36
       }
     },
     {
       "symbol": "ORCL",
       "name": "Oracle Corporation",
       "sector": "Technology",
-      "currentPrice": 110.57,
+      "currentPrice": 101.19,
       "decision": "Avoid - weak underlying",
       "status": "Avoid",
       "score": 31,
@@ -2411,7 +931,7 @@
         {
           "label": "Catalyst strength",
           "weight": 15,
-          "score": 87
+          "score": 91
         },
         {
           "label": "Technical setup",
@@ -2432,25 +952,161 @@
           "price is below the 200-day average",
           "RSI is weak; wait for reclaim"
         ],
-        "distanceFrom52WeekHighPct": -55.8,
-        "distanceFrom50DayPct": -15.6,
-        "distanceFrom200DayPct": -28.6,
-        "rsi14": 31.2,
-        "volumeVs20Day": 0.67
+        "distanceFrom52WeekHighPct": -59.6,
+        "distanceFrom50DayPct": -22,
+        "distanceFrom200DayPct": -34.5,
+        "rsi14": 23,
+        "volumeVs20Day": 1.04
+      }
+    },
+    {
+      "symbol": "C",
+      "name": "Citigroup Inc.",
+      "sector": "Financial Services",
+      "currentPrice": 110.62,
+      "decision": "Avoid - weak underlying",
+      "status": "Avoid",
+      "score": 29,
+      "leapsOpportunityScore": 29,
+      "underlyingScore": 52,
+      "riskScore": 83,
+      "pullbackClassification": "Waiting for Reclaim",
+      "dcaSuitability": "DCA Rejected / Wait",
+      "reason": "Underlying stock quality is below 70, so the desk does not analyze LEAPS calls.",
+      "bullCase": "Bull case: valuation is not fighting the story too hard.",
+      "bearCase": "Bear case: growth is not fully confirmed by the checklist, the chart is not giving a clean confirmation, fundamental quality still needs proof.",
+      "underlyingComponents": [
+        {
+          "label": "Business quality",
+          "weight": 20,
+          "score": 38
+        },
+        {
+          "label": "Growth quality",
+          "weight": 20,
+          "score": 43.75
+        },
+        {
+          "label": "Financial strength",
+          "weight": 15,
+          "score": 53
+        },
+        {
+          "label": "Valuation reasonableness",
+          "weight": 15,
+          "score": 84
+        },
+        {
+          "label": "Catalyst strength",
+          "weight": 15,
+          "score": 78
+        },
+        {
+          "label": "Technical setup",
+          "weight": 15,
+          "score": 24
+        }
+      ],
+      "pullback": {
+        "score": 40,
+        "classification": "Waiting for Reclaim",
+        "reasons": [
+          "meaningful pullback from the 52-week high"
+        ],
+        "risks": [
+          "price is meaningfully below the 50-day average",
+          "price is below the 200-day average",
+          "RSI is weak; wait for reclaim",
+          "recent volume is elevated; confirm the selloff is not company-specific",
+          "fundamental/risk profile needs confirmation before DCA"
+        ],
+        "distanceFrom52WeekHighPct": -25.2,
+        "distanceFrom50DayPct": -11.3,
+        "distanceFrom200DayPct": -10.9,
+        "rsi14": 17.9,
+        "volumeVs20Day": 1.65
+      }
+    },
+    {
+      "symbol": "PYPL",
+      "name": "PayPal Holdings, Inc.",
+      "sector": "Financial Services",
+      "currentPrice": 53.29,
+      "decision": "Avoid - weak underlying",
+      "status": "Avoid",
+      "score": 29,
+      "leapsOpportunityScore": 29,
+      "underlyingScore": 52,
+      "riskScore": 83,
+      "pullbackClassification": "Waiting for Reclaim",
+      "dcaSuitability": "DCA Rejected / Wait",
+      "reason": "Underlying stock quality is below 70, so the desk does not analyze LEAPS calls.",
+      "bullCase": "Bull case: valuation is not fighting the story too hard.",
+      "bearCase": "Bear case: growth is not fully confirmed by the checklist, the chart is not giving a clean confirmation, fundamental quality still needs proof.",
+      "underlyingComponents": [
+        {
+          "label": "Business quality",
+          "weight": 20,
+          "score": 64
+        },
+        {
+          "label": "Growth quality",
+          "weight": 20,
+          "score": 23.75
+        },
+        {
+          "label": "Financial strength",
+          "weight": 15,
+          "score": 40
+        },
+        {
+          "label": "Valuation reasonableness",
+          "weight": 15,
+          "score": 80
+        },
+        {
+          "label": "Catalyst strength",
+          "weight": 15,
+          "score": 61
+        },
+        {
+          "label": "Technical setup",
+          "weight": 15,
+          "score": 46
+        }
+      ],
+      "pullback": {
+        "score": 52,
+        "classification": "Waiting for Reclaim",
+        "reasons": [
+          "meaningful pullback from the 52-week high",
+          "price is near the 50-day trend area"
+        ],
+        "risks": [
+          "price is below the 200-day average",
+          "RSI is weak; wait for reclaim",
+          "recent volume is elevated; confirm the selloff is not company-specific",
+          "fundamental/risk profile needs confirmation before DCA"
+        ],
+        "distanceFrom52WeekHighPct": -16.6,
+        "distanceFrom50DayPct": -5.9,
+        "distanceFrom200DayPct": -2.8,
+        "rsi14": 22.1,
+        "volumeVs20Day": 1.5
       }
     },
     {
       "symbol": "GM",
       "name": "General Motors Company",
       "sector": "Consumer Cyclical",
-      "currentPrice": 81.75,
+      "currentPrice": 78.71,
       "decision": "Avoid - weak underlying",
       "status": "Avoid",
-      "score": 29,
-      "leapsOpportunityScore": 29,
-      "underlyingScore": 52,
-      "riskScore": 75,
-      "pullbackClassification": "Healthy Pullback",
+      "score": 28,
+      "leapsOpportunityScore": 28,
+      "underlyingScore": 51,
+      "riskScore": 84,
+      "pullbackClassification": "Waiting for Reclaim",
       "dcaSuitability": "DCA Rejected / Wait",
       "reason": "Underlying stock quality is below 70, so the desk does not analyze LEAPS calls.",
       "bullCase": "Bull case: valuation is not fighting the story too hard.",
@@ -2479,80 +1135,12 @@
         {
           "label": "Catalyst strength",
           "weight": 15,
-          "score": 99
+          "score": 93
         },
         {
           "label": "Technical setup",
           "weight": 15,
           "score": 39
-        }
-      ],
-      "pullback": {
-        "score": 96,
-        "classification": "Healthy Pullback",
-        "reasons": [
-          "meaningful pullback from the 52-week high",
-          "price is near the 50-day trend area",
-          "long-term trend remains above the 200-day average",
-          "selloff volume is not extreme"
-        ],
-        "risks": [
-          "RSI is weak; wait for reclaim",
-          "fundamental/risk profile needs confirmation before DCA"
-        ],
-        "distanceFrom52WeekHighPct": -12.8,
-        "distanceFrom50DayPct": -2.8,
-        "distanceFrom200DayPct": 2,
-        "rsi14": 34.8,
-        "volumeVs20Day": 0.68
-      }
-    },
-    {
-      "symbol": "C",
-      "name": "Citigroup Inc.",
-      "sector": "Financial Services",
-      "currentPrice": 115.28,
-      "decision": "Avoid - weak underlying",
-      "status": "Avoid",
-      "score": 29,
-      "leapsOpportunityScore": 29,
-      "underlyingScore": 52,
-      "riskScore": 83,
-      "pullbackClassification": "Waiting for Reclaim",
-      "dcaSuitability": "DCA Rejected / Wait",
-      "reason": "Underlying stock quality is below 70, so the desk does not analyze LEAPS calls.",
-      "bullCase": "Bull case: valuation is not fighting the story too hard.",
-      "bearCase": "Bear case: growth is not fully confirmed by the checklist, the chart is not giving a clean confirmation, fundamental quality still needs proof.",
-      "underlyingComponents": [
-        {
-          "label": "Business quality",
-          "weight": 20,
-          "score": 37
-        },
-        {
-          "label": "Growth quality",
-          "weight": 20,
-          "score": 43.75
-        },
-        {
-          "label": "Financial strength",
-          "weight": 15,
-          "score": 53
-        },
-        {
-          "label": "Valuation reasonableness",
-          "weight": 15,
-          "score": 84
-        },
-        {
-          "label": "Catalyst strength",
-          "weight": 15,
-          "score": 82
-        },
-        {
-          "label": "Technical setup",
-          "weight": 15,
-          "score": 17
         }
       ],
       "pullback": {
@@ -2567,18 +1155,18 @@
           "RSI is weak; wait for reclaim",
           "fundamental/risk profile needs confirmation before DCA"
         ],
-        "distanceFrom52WeekHighPct": -22.1,
-        "distanceFrom50DayPct": -8,
-        "distanceFrom200DayPct": -7.2,
-        "rsi14": 25.3,
-        "volumeVs20Day": 1.06
+        "distanceFrom52WeekHighPct": -16,
+        "distanceFrom50DayPct": -6.1,
+        "distanceFrom200DayPct": -1.8,
+        "rsi14": 26.9,
+        "volumeVs20Day": 0.99
       }
     },
     {
       "symbol": "WFC",
       "name": "Wells Fargo & Company",
       "sector": "Financial Services",
-      "currentPrice": 80.61,
+      "currentPrice": 78.62,
       "decision": "Avoid - weak underlying",
       "status": "Avoid",
       "score": 28,
@@ -2614,7 +1202,7 @@
         {
           "label": "Catalyst strength",
           "weight": 15,
-          "score": 77
+          "score": 75
         },
         {
           "label": "Technical setup",
@@ -2623,11 +1211,10 @@
         }
       ],
       "pullback": {
-        "score": 62,
+        "score": 44,
         "classification": "Waiting for Reclaim",
         "reasons": [
           "meaningful pullback from the 52-week high",
-          "price is near the 50-day trend area",
           "selloff volume is not extreme"
         ],
         "risks": [
@@ -2635,23 +1222,91 @@
           "RSI is weak; wait for reclaim",
           "fundamental/risk profile needs confirmation before DCA"
         ],
-        "distanceFrom52WeekHighPct": -17.5,
-        "distanceFrom50DayPct": -4.1,
-        "distanceFrom200DayPct": -3.9,
-        "rsi14": 26.6,
-        "volumeVs20Day": 0.95
+        "distanceFrom52WeekHighPct": -19.6,
+        "distanceFrom50DayPct": -6.2,
+        "distanceFrom200DayPct": -6.2,
+        "rsi14": 20.5,
+        "volumeVs20Day": 1.23
       }
     },
     {
-      "symbol": "INTC",
-      "name": "Intel Corporation",
-      "sector": "Technology",
-      "currentPrice": 55.72,
+      "symbol": "RIVN",
+      "name": "Rivian Automotive, Inc.",
+      "sector": "Consumer Cyclical",
+      "currentPrice": 10.33,
       "decision": "Avoid - weak underlying",
       "status": "Avoid",
       "score": 28,
       "leapsOpportunityScore": 28,
-      "underlyingScore": 50,
+      "underlyingScore": 51,
+      "riskScore": 94,
+      "pullbackClassification": "Falling Knife / Do Not DCA",
+      "dcaSuitability": "DCA Rejected / Wait",
+      "reason": "Underlying stock quality is below 70, so the desk does not analyze LEAPS calls.",
+      "bullCase": "Bull case: growth is strong enough to qualify as a growth-stock candidate, valuation is not fighting the story too hard.",
+      "bearCase": "Bear case: the chart is not giving a clean confirmation, fundamental quality still needs proof.",
+      "underlyingComponents": [
+        {
+          "label": "Business quality",
+          "weight": 20,
+          "score": 22
+        },
+        {
+          "label": "Growth quality",
+          "weight": 20,
+          "score": 83.75
+        },
+        {
+          "label": "Financial strength",
+          "weight": 15,
+          "score": 27
+        },
+        {
+          "label": "Valuation reasonableness",
+          "weight": 15,
+          "score": 76
+        },
+        {
+          "label": "Catalyst strength",
+          "weight": 15,
+          "score": 77
+        },
+        {
+          "label": "Technical setup",
+          "weight": 15,
+          "score": 16
+        }
+      ],
+      "pullback": {
+        "score": 15,
+        "classification": "Falling Knife / Do Not DCA",
+        "reasons": [
+          "selloff volume is not extreme"
+        ],
+        "risks": [
+          "drawdown is deep enough to question the thesis",
+          "price is meaningfully below the 50-day average",
+          "price is below the 200-day average",
+          "RSI is weak; wait for reclaim",
+          "fundamental/risk profile needs confirmation before DCA"
+        ],
+        "distanceFrom52WeekHighPct": -54.5,
+        "distanceFrom50DayPct": -22.6,
+        "distanceFrom200DayPct": -30.3,
+        "rsi14": 18.1,
+        "volumeVs20Day": 1.29
+      }
+    },
+    {
+      "symbol": "HOOD",
+      "name": "Robinhood Markets, Inc.",
+      "sector": "Financial Services",
+      "currentPrice": 62.17,
+      "decision": "Avoid - weak underlying",
+      "status": "Avoid",
+      "score": 27,
+      "leapsOpportunityScore": 27,
+      "underlyingScore": 49,
       "riskScore": 94,
       "pullbackClassification": "Falling Knife / Do Not DCA",
       "dcaSuitability": "DCA Rejected / Wait",
@@ -2662,7 +1317,75 @@
         {
           "label": "Business quality",
           "weight": 20,
-          "score": 41
+          "score": 39
+        },
+        {
+          "label": "Growth quality",
+          "weight": 20,
+          "score": 43.75
+        },
+        {
+          "label": "Financial strength",
+          "weight": 15,
+          "score": 53
+        },
+        {
+          "label": "Valuation reasonableness",
+          "weight": 15,
+          "score": 65
+        },
+        {
+          "label": "Catalyst strength",
+          "weight": 15,
+          "score": 83
+        },
+        {
+          "label": "Technical setup",
+          "weight": 15,
+          "score": 16
+        }
+      ],
+      "pullback": {
+        "score": 15,
+        "classification": "Falling Knife / Do Not DCA",
+        "reasons": [
+          "selloff volume is not extreme"
+        ],
+        "risks": [
+          "drawdown is deep enough to question the thesis",
+          "price is meaningfully below the 50-day average",
+          "price is below the 200-day average",
+          "RSI is weak; wait for reclaim",
+          "fundamental/risk profile needs confirmation before DCA"
+        ],
+        "distanceFrom52WeekHighPct": -55.5,
+        "distanceFrom50DayPct": -31.9,
+        "distanceFrom200DayPct": -35.1,
+        "rsi14": 15.4,
+        "volumeVs20Day": 1.31
+      }
+    },
+    {
+      "symbol": "INTC",
+      "name": "Intel Corporation",
+      "sector": "Technology",
+      "currentPrice": 51.28,
+      "decision": "Avoid - weak underlying",
+      "status": "Avoid",
+      "score": 27,
+      "leapsOpportunityScore": 27,
+      "underlyingScore": 49,
+      "riskScore": 94,
+      "pullbackClassification": "Falling Knife / Do Not DCA",
+      "dcaSuitability": "DCA Rejected / Wait",
+      "reason": "Underlying stock quality is below 70, so the desk does not analyze LEAPS calls.",
+      "bullCase": "Bull case: valuation is not fighting the story too hard.",
+      "bearCase": "Bear case: growth is not fully confirmed by the checklist, the chart is not giving a clean confirmation, fundamental quality still needs proof.",
+      "underlyingComponents": [
+        {
+          "label": "Business quality",
+          "weight": 20,
+          "score": 40
         },
         {
           "label": "Growth quality",
@@ -2687,7 +1410,7 @@
         {
           "label": "Technical setup",
           "weight": 15,
-          "score": 21
+          "score": 16
         }
       ],
       "pullback": {
@@ -2703,24 +1426,90 @@
           "RSI is weak; wait for reclaim",
           "fundamental/risk profile needs confirmation before DCA"
         ],
-        "distanceFrom52WeekHighPct": -60.9,
-        "distanceFrom50DayPct": -31.8,
-        "distanceFrom200DayPct": -33.2,
-        "rsi14": 32,
-        "volumeVs20Day": 0.9
+        "distanceFrom52WeekHighPct": -64,
+        "distanceFrom50DayPct": -36.3,
+        "distanceFrom200DayPct": -38.3,
+        "rsi14": 25.3,
+        "volumeVs20Day": 1.33
+      }
+    },
+    {
+      "symbol": "UBER",
+      "name": "Uber Technologies, Inc.",
+      "sector": "Technology",
+      "currentPrice": 63.47,
+      "decision": "Avoid - weak underlying",
+      "status": "Avoid",
+      "score": 26,
+      "leapsOpportunityScore": 26,
+      "underlyingScore": 48,
+      "riskScore": 85,
+      "pullbackClassification": "Waiting for Reclaim",
+      "dcaSuitability": "DCA Rejected / Wait",
+      "reason": "Underlying stock quality is below 70, so the desk does not analyze LEAPS calls.",
+      "bullCase": "Bull case: valuation is not fighting the story too hard.",
+      "bearCase": "Bear case: growth is not fully confirmed by the checklist, the chart is not giving a clean confirmation, fundamental quality still needs proof.",
+      "underlyingComponents": [
+        {
+          "label": "Business quality",
+          "weight": 20,
+          "score": 55
+        },
+        {
+          "label": "Growth quality",
+          "weight": 20,
+          "score": 35
+        },
+        {
+          "label": "Financial strength",
+          "weight": 15,
+          "score": 30
+        },
+        {
+          "label": "Valuation reasonableness",
+          "weight": 15,
+          "score": 58
+        },
+        {
+          "label": "Catalyst strength",
+          "weight": 15,
+          "score": 86
+        },
+        {
+          "label": "Technical setup",
+          "weight": 15,
+          "score": 24
+        }
+      ],
+      "pullback": {
+        "score": 19,
+        "classification": "Waiting for Reclaim",
+        "reasons": [
+          "selloff volume is not extreme"
+        ],
+        "risks": [
+          "price is below the 200-day average",
+          "RSI is weak; wait for reclaim",
+          "fundamental/risk profile needs confirmation before DCA"
+        ],
+        "distanceFrom52WeekHighPct": -31.6,
+        "distanceFrom50DayPct": -8.4,
+        "distanceFrom200DayPct": -13.5,
+        "rsi14": 24.3,
+        "volumeVs20Day": 1.34
       }
     },
     {
       "symbol": "RBLX",
       "name": "Roblox Corporation",
       "sector": "Communication Services",
-      "currentPrice": 46.35,
+      "currentPrice": 46.72,
       "decision": "Avoid - weak underlying",
       "status": "Avoid",
-      "score": 28,
-      "leapsOpportunityScore": 28,
-      "underlyingScore": 50,
-      "riskScore": 94,
+      "score": 26,
+      "leapsOpportunityScore": 26,
+      "underlyingScore": 47,
+      "riskScore": 95,
       "pullbackClassification": "Falling Knife / Do Not DCA",
       "dcaSuitability": "DCA Rejected / Wait",
       "reason": "Underlying stock quality is below 70, so the desk does not analyze LEAPS calls.",
@@ -2730,7 +1519,7 @@
         {
           "label": "Business quality",
           "weight": 20,
-          "score": 42
+          "score": 39
         },
         {
           "label": "Growth quality",
@@ -2755,109 +1544,41 @@
         {
           "label": "Technical setup",
           "weight": 15,
-          "score": 57
+          "score": 42
         }
       ],
       "pullback": {
-        "score": 38,
+        "score": 28,
         "classification": "Falling Knife / Do Not DCA",
         "reasons": [
           "price is near the 50-day trend area",
-          "RSI has reset without becoming washed out",
-          "selloff volume is not extreme"
+          "RSI has reset without becoming washed out"
         ],
         "risks": [
           "drawdown is deep enough to question the thesis",
           "price is below the 200-day average",
+          "recent volume is elevated; confirm the selloff is not company-specific",
           "fundamental/risk profile needs confirmation before DCA"
         ],
-        "distanceFrom52WeekHighPct": -53.9,
-        "distanceFrom50DayPct": -3.4,
-        "distanceFrom200DayPct": -15,
-        "rsi14": 42.6,
-        "volumeVs20Day": 1.11
+        "distanceFrom52WeekHighPct": -53.3,
+        "distanceFrom50DayPct": -2.5,
+        "distanceFrom200DayPct": -14.2,
+        "rsi14": 44.1,
+        "volumeVs20Day": 1.47
       }
     },
     {
-      "symbol": "RIVN",
-      "name": "Rivian Automotive, Inc.",
-      "sector": "Consumer Cyclical",
-      "currentPrice": 11.29,
-      "decision": "Avoid - weak underlying",
-      "status": "Avoid",
-      "score": 28,
-      "leapsOpportunityScore": 28,
-      "underlyingScore": 50,
-      "riskScore": 94,
-      "pullbackClassification": "Falling Knife / Do Not DCA",
-      "dcaSuitability": "DCA Rejected / Wait",
-      "reason": "Underlying stock quality is below 70, so the desk does not analyze LEAPS calls.",
-      "bullCase": "Bull case: growth is strong enough to qualify as a growth-stock candidate, valuation is not fighting the story too hard.",
-      "bearCase": "Bear case: the chart is not giving a clean confirmation, fundamental quality still needs proof.",
-      "underlyingComponents": [
-        {
-          "label": "Business quality",
-          "weight": 20,
-          "score": 21
-        },
-        {
-          "label": "Growth quality",
-          "weight": 20,
-          "score": 83.75
-        },
-        {
-          "label": "Financial strength",
-          "weight": 15,
-          "score": 27
-        },
-        {
-          "label": "Valuation reasonableness",
-          "weight": 15,
-          "score": 76
-        },
-        {
-          "label": "Catalyst strength",
-          "weight": 15,
-          "score": 80
-        },
-        {
-          "label": "Technical setup",
-          "weight": 15,
-          "score": 9
-        }
-      ],
-      "pullback": {
-        "score": 15,
-        "classification": "Falling Knife / Do Not DCA",
-        "reasons": [
-          "selloff volume is not extreme"
-        ],
-        "risks": [
-          "drawdown is deep enough to question the thesis",
-          "price is meaningfully below the 50-day average",
-          "price is below the 200-day average",
-          "RSI is weak; wait for reclaim",
-          "fundamental/risk profile needs confirmation before DCA"
-        ],
-        "distanceFrom52WeekHighPct": -50.2,
-        "distanceFrom50DayPct": -16.2,
-        "distanceFrom200DayPct": -24,
-        "rsi14": 25.4,
-        "volumeVs20Day": 1
-      }
-    },
-    {
-      "symbol": "PYPL",
-      "name": "PayPal Holdings, Inc.",
+      "symbol": "COIN",
+      "name": "Coinbase Global, Inc.",
       "sector": "Financial Services",
-      "currentPrice": 56.37,
+      "currentPrice": 101.97,
       "decision": "Avoid - weak underlying",
       "status": "Avoid",
-      "score": 27,
-      "leapsOpportunityScore": 27,
-      "underlyingScore": 49,
-      "riskScore": 76,
-      "pullbackClassification": "Healthy Pullback",
+      "score": 25,
+      "leapsOpportunityScore": 25,
+      "underlyingScore": 46,
+      "riskScore": 96,
+      "pullbackClassification": "Falling Knife / Do Not DCA",
       "dcaSuitability": "DCA Rejected / Wait",
       "reason": "Underlying stock quality is below 70, so the desk does not analyze LEAPS calls.",
       "bullCase": "Bull case: valuation is not fighting the story too hard.",
@@ -2866,65 +1587,64 @@
         {
           "label": "Business quality",
           "weight": 20,
-          "score": 63
+          "score": 34
         },
         {
           "label": "Growth quality",
           "weight": 20,
-          "score": 23.75
+          "score": 43.75
         },
         {
           "label": "Financial strength",
           "weight": 15,
-          "score": 40
+          "score": 39
         },
         {
           "label": "Valuation reasonableness",
           "weight": 15,
-          "score": 80
+          "score": 57
         },
         {
           "label": "Catalyst strength",
           "weight": 15,
-          "score": 52
+          "score": 88
         },
         {
           "label": "Technical setup",
           "weight": 15,
-          "score": 39
+          "score": 16
         }
       ],
       "pullback": {
-        "score": 96,
-        "classification": "Healthy Pullback",
-        "reasons": [
-          "meaningful pullback from the 52-week high",
-          "price is near the 50-day trend area",
-          "long-term trend remains above the 200-day average",
-          "selloff volume is not extreme"
-        ],
+        "score": 5,
+        "classification": "Falling Knife / Do Not DCA",
+        "reasons": [],
         "risks": [
+          "drawdown is deep enough to question the thesis",
+          "price is meaningfully below the 50-day average",
+          "price is below the 200-day average",
           "RSI is weak; wait for reclaim",
+          "recent volume is elevated; confirm the selloff is not company-specific",
           "fundamental/risk profile needs confirmation before DCA"
         ],
-        "distanceFrom52WeekHighPct": -11.8,
-        "distanceFrom50DayPct": -0.7,
-        "distanceFrom200DayPct": 2.8,
-        "rsi14": 34.3,
-        "volumeVs20Day": 0.91
+        "distanceFrom52WeekHighPct": -64.2,
+        "distanceFrom50DayPct": -33,
+        "distanceFrom200DayPct": -43.9,
+        "rsi14": 13.9,
+        "volumeVs20Day": 1.46
       }
     },
     {
       "symbol": "PFE",
       "name": "Pfizer Inc.",
       "sector": "Healthcare",
-      "currentPrice": 27.54,
+      "currentPrice": 27.4,
       "decision": "Avoid - weak underlying",
       "status": "Avoid",
-      "score": 26,
-      "leapsOpportunityScore": 26,
-      "underlyingScore": 48,
-      "riskScore": 77,
+      "score": 24,
+      "leapsOpportunityScore": 24,
+      "underlyingScore": 44,
+      "riskScore": 79,
       "pullbackClassification": "Healthy Pullback",
       "dcaSuitability": "DCA Rejected / Wait",
       "reason": "Underlying stock quality is below 70, so the desk does not analyze LEAPS calls.",
@@ -2934,7 +1654,7 @@
         {
           "label": "Business quality",
           "weight": 20,
-          "score": 54
+          "score": 52
         },
         {
           "label": "Growth quality",
@@ -2954,12 +1674,12 @@
         {
           "label": "Catalyst strength",
           "weight": 15,
-          "score": 84
+          "score": 67
         },
         {
           "label": "Technical setup",
           "weight": 15,
-          "score": 39
+          "score": 27
         }
       ],
       "pullback": {
@@ -2975,221 +1695,18 @@
           "RSI is weak; wait for reclaim",
           "fundamental/risk profile needs confirmation before DCA"
         ],
-        "distanceFrom52WeekHighPct": -12.4,
-        "distanceFrom50DayPct": -4.2,
-        "distanceFrom200DayPct": 1.3,
-        "rsi14": 20.7,
-        "volumeVs20Day": 0.94
-      }
-    },
-    {
-      "symbol": "UBER",
-      "name": "Uber Technologies, Inc.",
-      "sector": "Technology",
-      "currentPrice": 65.6,
-      "decision": "Avoid - weak underlying",
-      "status": "Avoid",
-      "score": 26,
-      "leapsOpportunityScore": 26,
-      "underlyingScore": 47,
-      "riskScore": 85,
-      "pullbackClassification": "Waiting for Reclaim",
-      "dcaSuitability": "DCA Rejected / Wait",
-      "reason": "Underlying stock quality is below 70, so the desk does not analyze LEAPS calls.",
-      "bullCase": "Bull case: valuation is not fighting the story too hard.",
-      "bearCase": "Bear case: growth is not fully confirmed by the checklist, the chart is not giving a clean confirmation, fundamental quality still needs proof.",
-      "underlyingComponents": [
-        {
-          "label": "Business quality",
-          "weight": 20,
-          "score": 53
-        },
-        {
-          "label": "Growth quality",
-          "weight": 20,
-          "score": 35
-        },
-        {
-          "label": "Financial strength",
-          "weight": 15,
-          "score": 30
-        },
-        {
-          "label": "Valuation reasonableness",
-          "weight": 15,
-          "score": 58
-        },
-        {
-          "label": "Catalyst strength",
-          "weight": 15,
-          "score": 93
-        },
-        {
-          "label": "Technical setup",
-          "weight": 15,
-          "score": 16
-        }
-      ],
-      "pullback": {
-        "score": 27,
-        "classification": "Waiting for Reclaim",
-        "reasons": [
-          "price is near the 50-day trend area"
-        ],
-        "risks": [
-          "price is below the 200-day average",
-          "RSI is weak; wait for reclaim",
-          "recent volume is elevated; confirm the selloff is not company-specific",
-          "fundamental/risk profile needs confirmation before DCA"
-        ],
-        "distanceFrom52WeekHighPct": -29.3,
-        "distanceFrom50DayPct": -5.7,
-        "distanceFrom200DayPct": -10.8,
-        "rsi14": 30.9,
-        "volumeVs20Day": 1.48
-      }
-    },
-    {
-      "symbol": "HOOD",
-      "name": "Robinhood Markets, Inc.",
-      "sector": "Financial Services",
-      "currentPrice": 68.65,
-      "decision": "Avoid - weak underlying",
-      "status": "Avoid",
-      "score": 26,
-      "leapsOpportunityScore": 26,
-      "underlyingScore": 47,
-      "riskScore": 95,
-      "pullbackClassification": "Falling Knife / Do Not DCA",
-      "dcaSuitability": "DCA Rejected / Wait",
-      "reason": "Underlying stock quality is below 70, so the desk does not analyze LEAPS calls.",
-      "bullCase": "Bull case: valuation is not fighting the story too hard.",
-      "bearCase": "Bear case: growth is not fully confirmed by the checklist, the chart is not giving a clean confirmation, fundamental quality still needs proof.",
-      "underlyingComponents": [
-        {
-          "label": "Business quality",
-          "weight": 20,
-          "score": 37
-        },
-        {
-          "label": "Growth quality",
-          "weight": 20,
-          "score": 43.75
-        },
-        {
-          "label": "Financial strength",
-          "weight": 15,
-          "score": 53
-        },
-        {
-          "label": "Valuation reasonableness",
-          "weight": 15,
-          "score": 65
-        },
-        {
-          "label": "Catalyst strength",
-          "weight": 15,
-          "score": 81
-        },
-        {
-          "label": "Technical setup",
-          "weight": 15,
-          "score": 9
-        }
-      ],
-      "pullback": {
-        "score": 15,
-        "classification": "Falling Knife / Do Not DCA",
-        "reasons": [
-          "selloff volume is not extreme"
-        ],
-        "risks": [
-          "drawdown is deep enough to question the thesis",
-          "price is meaningfully below the 50-day average",
-          "price is below the 200-day average",
-          "RSI is weak; wait for reclaim",
-          "fundamental/risk profile needs confirmation before DCA"
-        ],
-        "distanceFrom52WeekHighPct": -50.9,
-        "distanceFrom50DayPct": -25.8,
-        "distanceFrom200DayPct": -28.6,
-        "rsi14": 21.2,
-        "volumeVs20Day": 1.22
-      }
-    },
-    {
-      "symbol": "T",
-      "name": "AT&T Inc.",
-      "sector": "Communication Services",
-      "currentPrice": 21.85,
-      "decision": "Avoid - weak underlying",
-      "status": "Avoid",
-      "score": 25,
-      "leapsOpportunityScore": 25,
-      "underlyingScore": 46,
-      "riskScore": 86,
-      "pullbackClassification": "Waiting for Reclaim",
-      "dcaSuitability": "DCA Rejected / Wait",
-      "reason": "Underlying stock quality is below 70, so the desk does not analyze LEAPS calls.",
-      "bullCase": "Bull case: valuation is not fighting the story too hard.",
-      "bearCase": "Bear case: growth is not fully confirmed by the checklist, the chart is not giving a clean confirmation, fundamental quality still needs proof.",
-      "underlyingComponents": [
-        {
-          "label": "Business quality",
-          "weight": 20,
-          "score": 47
-        },
-        {
-          "label": "Growth quality",
-          "weight": 20,
-          "score": 23.75
-        },
-        {
-          "label": "Financial strength",
-          "weight": 15,
-          "score": 36
-        },
-        {
-          "label": "Valuation reasonableness",
-          "weight": 15,
-          "score": 92
-        },
-        {
-          "label": "Catalyst strength",
-          "weight": 15,
-          "score": 70
-        },
-        {
-          "label": "Technical setup",
-          "weight": 15,
-          "score": 17
-        }
-      ],
-      "pullback": {
-        "score": 73,
-        "classification": "Waiting for Reclaim",
-        "reasons": [
-          "meaningful pullback from the 52-week high",
-          "price is near the 50-day trend area",
-          "RSI has reset without becoming washed out",
-          "selloff volume is not extreme"
-        ],
-        "risks": [
-          "price is below the 200-day average",
-          "fundamental/risk profile needs confirmation before DCA"
-        ],
-        "distanceFrom52WeekHighPct": -25.8,
-        "distanceFrom50DayPct": -4.3,
-        "distanceFrom200DayPct": -9.8,
-        "rsi14": 43.8,
-        "volumeVs20Day": 0.97
+        "distanceFrom52WeekHighPct": -12.8,
+        "distanceFrom50DayPct": -4.5,
+        "distanceFrom200DayPct": 0.8,
+        "rsi14": 19.6,
+        "volumeVs20Day": 1
       }
     },
     {
       "symbol": "BAC",
       "name": "Bank of America Corporation",
       "sector": "Financial Services",
-      "currentPrice": 48.57,
+      "currentPrice": 47.04,
       "decision": "Avoid - weak underlying",
       "status": "Avoid",
       "score": 24,
@@ -3205,7 +1722,7 @@
         {
           "label": "Business quality",
           "weight": 20,
-          "score": 31
+          "score": 32
         },
         {
           "label": "Growth quality",
@@ -3225,38 +1742,39 @@
         {
           "label": "Catalyst strength",
           "weight": 15,
-          "score": 91
+          "score": 83
         },
         {
           "label": "Technical setup",
           "weight": 15,
-          "score": 9
+          "score": 16
         }
       ],
       "pullback": {
-        "score": 44,
+        "score": 50,
         "classification": "Waiting for Reclaim",
         "reasons": [
           "meaningful pullback from the 52-week high",
           "selloff volume is not extreme"
         ],
         "risks": [
+          "price is meaningfully below the 50-day average",
           "price is below the 200-day average",
           "RSI is weak; wait for reclaim",
           "fundamental/risk profile needs confirmation before DCA"
         ],
-        "distanceFrom52WeekHighPct": -25.5,
-        "distanceFrom50DayPct": -8.1,
-        "distanceFrom200DayPct": -10.9,
-        "rsi14": 30,
-        "volumeVs20Day": 1.04
+        "distanceFrom52WeekHighPct": -27.9,
+        "distanceFrom50DayPct": -10.6,
+        "distanceFrom200DayPct": -13.6,
+        "rsi14": 21.1,
+        "volumeVs20Day": 1.33
       }
     },
     {
-      "symbol": "COIN",
-      "name": "Coinbase Global, Inc.",
-      "sector": "Financial Services",
-      "currentPrice": 108.87,
+      "symbol": "SNAP",
+      "name": "Snap Inc.",
+      "sector": "Communication Services",
+      "currentPrice": 4.55,
       "decision": "Avoid - weak underlying",
       "status": "Avoid",
       "score": 24,
@@ -3282,22 +1800,22 @@
         {
           "label": "Financial strength",
           "weight": 15,
-          "score": 39
+          "score": 30
         },
         {
           "label": "Valuation reasonableness",
           "weight": 15,
-          "score": 57
+          "score": 72
         },
         {
           "label": "Catalyst strength",
           "weight": 15,
-          "score": 86
+          "score": 58
         },
         {
           "label": "Technical setup",
           "weight": 15,
-          "score": 9
+          "score": 34
         }
       ],
       "pullback": {
@@ -3313,84 +1831,18 @@
           "RSI is weak; wait for reclaim",
           "fundamental/risk profile needs confirmation before DCA"
         ],
-        "distanceFrom52WeekHighPct": -61.8,
-        "distanceFrom50DayPct": -29.4,
-        "distanceFrom200DayPct": -40.4,
-        "rsi14": 17,
-        "volumeVs20Day": 0.91
-      }
-    },
-    {
-      "symbol": "SNAP",
-      "name": "Snap Inc.",
-      "sector": "Communication Services",
-      "currentPrice": 5.12,
-      "decision": "Avoid - weak underlying",
-      "status": "Avoid",
-      "score": 24,
-      "leapsOpportunityScore": 24,
-      "underlyingScore": 44,
-      "riskScore": 97,
-      "pullbackClassification": "Falling Knife / Do Not DCA",
-      "dcaSuitability": "DCA Rejected / Wait",
-      "reason": "Underlying stock quality is below 70, so the desk does not analyze LEAPS calls.",
-      "bullCase": "Bull case: valuation is not fighting the story too hard.",
-      "bearCase": "Bear case: growth is not fully confirmed by the checklist, the chart is not giving a clean confirmation, fundamental quality still needs proof.",
-      "underlyingComponents": [
-        {
-          "label": "Business quality",
-          "weight": 20,
-          "score": 31
-        },
-        {
-          "label": "Growth quality",
-          "weight": 20,
-          "score": 43.75
-        },
-        {
-          "label": "Financial strength",
-          "weight": 15,
-          "score": 30
-        },
-        {
-          "label": "Valuation reasonableness",
-          "weight": 15,
-          "score": 72
-        },
-        {
-          "label": "Catalyst strength",
-          "weight": 15,
-          "score": 66
-        },
-        {
-          "label": "Technical setup",
-          "weight": 15,
-          "score": 27
-        }
-      ],
-      "pullback": {
-        "score": 4,
-        "classification": "Falling Knife / Do Not DCA",
-        "reasons": [
-          "selloff volume is not extreme"
-        ],
-        "risks": [
-          "drawdown is deep enough to question the thesis",
-          "price is below the 200-day average",
-          "fundamental/risk profile needs confirmation before DCA"
-        ],
-        "distanceFrom52WeekHighPct": -43.6,
-        "distanceFrom50DayPct": -8,
-        "distanceFrom200DayPct": -11.7,
-        "rsi14": 41.1,
-        "volumeVs20Day": 1.12
+        "distanceFrom52WeekHighPct": -49.8,
+        "distanceFrom50DayPct": -17.6,
+        "distanceFrom200DayPct": -21.3,
+        "rsi14": 29.1,
+        "volumeVs20Day": 1.26
       }
     },
     {
       "symbol": "DKNG",
       "name": "DraftKings Inc.",
       "sector": "Consumer Cyclical",
-      "currentPrice": 16.82,
+      "currentPrice": 15.8,
       "decision": "Avoid - weak underlying",
       "status": "Avoid",
       "score": 24,
@@ -3426,7 +1878,7 @@
         {
           "label": "Catalyst strength",
           "weight": 15,
-          "score": 81
+          "score": 80
         },
         {
           "label": "Technical setup",
@@ -3447,89 +1899,23 @@
           "RSI is weak; wait for reclaim",
           "fundamental/risk profile needs confirmation before DCA"
         ],
-        "distanceFrom52WeekHighPct": -54.5,
-        "distanceFrom50DayPct": -18.4,
-        "distanceFrom200DayPct": -31.5,
-        "rsi14": 23.7,
-        "volumeVs20Day": 0.87
-      }
-    },
-    {
-      "symbol": "F",
-      "name": "Ford Motor Company",
-      "sector": "Consumer Cyclical",
-      "currentPrice": 11.24,
-      "decision": "Avoid - weak underlying",
-      "status": "Avoid",
-      "score": 20,
-      "leapsOpportunityScore": 20,
-      "underlyingScore": 36,
-      "riskScore": 100,
-      "pullbackClassification": "Falling Knife / Do Not DCA",
-      "dcaSuitability": "DCA Rejected / Wait",
-      "reason": "Underlying stock quality is below 70, so the desk does not analyze LEAPS calls.",
-      "bullCase": "Bull case: valuation is not fighting the story too hard.",
-      "bearCase": "Bear case: growth is not fully confirmed by the checklist, the chart is not giving a clean confirmation, fundamental quality still needs proof.",
-      "underlyingComponents": [
-        {
-          "label": "Business quality",
-          "weight": 20,
-          "score": 13
-        },
-        {
-          "label": "Growth quality",
-          "weight": 20,
-          "score": 43.75
-        },
-        {
-          "label": "Financial strength",
-          "weight": 15,
-          "score": 12
-        },
-        {
-          "label": "Valuation reasonableness",
-          "weight": 15,
-          "score": 62
-        },
-        {
-          "label": "Catalyst strength",
-          "weight": 15,
-          "score": 84
-        },
-        {
-          "label": "Technical setup",
-          "weight": 15,
-          "score": 9
-        }
-      ],
-      "pullback": {
-        "score": 19,
-        "classification": "Falling Knife / Do Not DCA",
-        "reasons": [
-          "selloff volume is not extreme"
-        ],
-        "risks": [
-          "price is below the 200-day average",
-          "RSI is weak; wait for reclaim",
-          "fundamental/risk profile needs confirmation before DCA"
-        ],
-        "distanceFrom52WeekHighPct": -36.8,
-        "distanceFrom50DayPct": -9.3,
-        "distanceFrom200DayPct": -13.4,
-        "rsi14": 21.9,
-        "volumeVs20Day": 0.99
+        "distanceFrom52WeekHighPct": -57.3,
+        "distanceFrom50DayPct": -22.6,
+        "distanceFrom200DayPct": -35.4,
+        "rsi14": 19.1,
+        "volumeVs20Day": 0.81
       }
     },
     {
       "symbol": "NKE",
       "name": "NIKE, Inc.",
       "sector": "Consumer Cyclical",
-      "currentPrice": 34.33,
+      "currentPrice": 32.92,
       "decision": "Avoid - weak underlying",
       "status": "Avoid",
-      "score": 20,
-      "leapsOpportunityScore": 20,
-      "underlyingScore": 36,
+      "score": 21,
+      "leapsOpportunityScore": 21,
+      "underlyingScore": 38,
       "riskScore": 100,
       "pullbackClassification": "Falling Knife / Do Not DCA",
       "dcaSuitability": "DCA Rejected / Wait",
@@ -3540,7 +1926,7 @@
         {
           "label": "Business quality",
           "weight": 20,
-          "score": 44
+          "score": 47
         },
         {
           "label": "Growth quality",
@@ -3560,31 +1946,98 @@
         {
           "label": "Catalyst strength",
           "weight": 15,
-          "score": 62
+          "score": 55
         },
         {
           "label": "Technical setup",
           "weight": 15,
-          "score": 17
+          "score": 34
         }
       ],
       "pullback": {
-        "score": 9,
+        "score": 15,
         "classification": "Falling Knife / Do Not DCA",
         "reasons": [
           "selloff volume is not extreme"
         ],
         "risks": [
           "drawdown is deep enough to question the thesis",
+          "price is meaningfully below the 50-day average",
           "price is below the 200-day average",
           "RSI is weak; wait for reclaim",
           "fundamental/risk profile needs confirmation before DCA"
         ],
-        "distanceFrom52WeekHighPct": -50.3,
-        "distanceFrom50DayPct": -9,
-        "distanceFrom200DayPct": -22.8,
-        "rsi14": 26.7,
-        "volumeVs20Day": 1.22
+        "distanceFrom52WeekHighPct": -52.4,
+        "distanceFrom50DayPct": -12.3,
+        "distanceFrom200DayPct": -25.8,
+        "rsi14": 21.9,
+        "volumeVs20Day": 1.29
+      }
+    },
+    {
+      "symbol": "F",
+      "name": "Ford Motor Company",
+      "sector": "Consumer Cyclical",
+      "currentPrice": 11.17,
+      "decision": "Avoid - weak underlying",
+      "status": "Avoid",
+      "score": 20,
+      "leapsOpportunityScore": 20,
+      "underlyingScore": 36,
+      "riskScore": 100,
+      "pullbackClassification": "Falling Knife / Do Not DCA",
+      "dcaSuitability": "DCA Rejected / Wait",
+      "reason": "Underlying stock quality is below 70, so the desk does not analyze LEAPS calls.",
+      "bullCase": "Bull case: valuation is not fighting the story too hard.",
+      "bearCase": "Bear case: growth is not fully confirmed by the checklist, the chart is not giving a clean confirmation, fundamental quality still needs proof.",
+      "underlyingComponents": [
+        {
+          "label": "Business quality",
+          "weight": 20,
+          "score": 16
+        },
+        {
+          "label": "Growth quality",
+          "weight": 20,
+          "score": 43.75
+        },
+        {
+          "label": "Financial strength",
+          "weight": 15,
+          "score": 12
+        },
+        {
+          "label": "Valuation reasonableness",
+          "weight": 15,
+          "score": 62
+        },
+        {
+          "label": "Catalyst strength",
+          "weight": 15,
+          "score": 64
+        },
+        {
+          "label": "Technical setup",
+          "weight": 15,
+          "score": 24
+        }
+      ],
+      "pullback": {
+        "score": 19,
+        "classification": "Falling Knife / Do Not DCA",
+        "reasons": [
+          "selloff volume is not extreme"
+        ],
+        "risks": [
+          "price is below the 200-day average",
+          "RSI is weak; wait for reclaim",
+          "fundamental/risk profile needs confirmation before DCA"
+        ],
+        "distanceFrom52WeekHighPct": -37.2,
+        "distanceFrom50DayPct": -9.5,
+        "distanceFrom200DayPct": -13.8,
+        "rsi14": 20.6,
+        "volumeVs20Day": 1.27
       }
     },
     {
